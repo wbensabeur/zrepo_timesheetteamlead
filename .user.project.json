@@ -2,8 +2,8 @@
   "run": [
     {
       "filePath": "/timesheet-admin/webapp/test/mockServer.html",
-      "previewMode": 1,
-      "dataMode": 1,
+      "previewMode": 0,
+      "dataMode": 0,
       "workspace": "withoutWorkspace",
       "urlParameters": [
         {
@@ -18,14 +18,20 @@
         }
       ],
       "hashParameter": "",
-      "ui5ActiveVersion": null,
+      "ui5ActiveVersion": "1.46.7",
       "ui5VerSource": null,
       "isDefaultVersion": 1,
+      "backendSystem": [
+        {
+          "source": "vesidgwci",
+          "destinations": "vesidgwci"
+        }
+      ],
       "_metadata": {
         "id": "417603",
         "runnerId": "webapprunner",
         "displayName": "App (Mock Server)",
-        "lastRunTimeStamp": 1497505680798
+        "lastRunTimeStamp": 1497511237637
       }
     },
     {
