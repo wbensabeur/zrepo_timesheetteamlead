@@ -2,9 +2,10 @@ sap.ui.define([
 		"com/vinci/timesheet/admin/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
 		"com/vinci/timesheet/admin/model/formatter",
+		"com/vinci/timesheet/admin/utility/datetime",
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator"
-	], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+	], function (BaseController, JSONModel, formatter,datetime, Filter, FilterOperator) {
 		"use strict";
 
 		return BaseController.extend("com.vinci.timesheet.admin.controller.Worklist", {
@@ -41,6 +42,31 @@ sap.ui.define([
 					tableBusyDelay : 0
 				});
 				this.setModel(oViewModel, "worklistView");
+				
+				// model for Calendar
+				var monday = datetime.getMonday(new Date());
+				var sunday = datetime.getLastDay(monday,2);
+				var oCalendarData = [];
+				var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle().getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText("tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText("tablleColTitleSat")];
+				var idata = {
+						ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+						ColumnTxt2: '' ,
+						width :'30%' ,
+						Date : new Date()
+					};
+					oCalendarData.push(idata);
+				for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
+					var data = {
+						ColumnTxt1:  weekday[d.getDay()] ,
+						ColumnTxt2: '  '+ d.getDate(),
+						width :"5%" ,
+						Date : d
+					};
+					oCalendarData.push(data);
+				}
+
+				var oCalendarModel = new JSONModel(oCalendarData);
+				this.setModel(oCalendarModel, "calendar");
 
 				// Make sure, busy indication is showing immediately so there is no
 				// break after the busy indication for loading the view's meta data is
