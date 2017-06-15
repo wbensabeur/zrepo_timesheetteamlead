@@ -2,6 +2,7 @@
 	controllerName="com.vinci.timesheet.admin.controller.Worklist"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
 	xmlns:semantic="sap.f.semantic">
 
 	<semantic:SemanticPage
@@ -18,12 +19,9 @@
 				id="table"
 				width="auto"
 				items="{
-					path: '/EmployeeSet',
-					sorter: {
-						path: 'FullName',
-						descending: false
-					}
+					path: '/EmployeeSet'
 				}"
+				columns="{ path: 'calendar>/' }"
 				noDataText="{worklistView>/tableNoDataText}"
 				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
 				growing="true"
@@ -44,8 +42,11 @@
 				</headerToolbar>
 
 				<columns>
-					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					<Column width="{calendar>width}">
+						<l:VerticalLayout >
+							<Text text="{calendar>ColumnTxt1}"/>
+							<Text text=" {calendar>ColumnTxt2}"/>
+						</l:VerticalLayout>
 					</Column>
 				</columns>
 
@@ -55,7 +56,50 @@
 						press="onPress">
 						<cells>
 							<ObjectIdentifier
-								title="{FullName}"/>
+								title="{FullName}"
+								text="Role"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
+						</cells>
+						<cells>
+							<Button text="8" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
 				</items>

@@ -47,8 +47,8 @@
     "resourceModelName": "i18n"
   },
   "mockpreview": {
-    "mockUri": "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV",
-    "metadataFilePath": "",
+    "mockUri": "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/",
+    "metadataFilePath": "localService/metadata.xml",
     "loadJSONFiles": true,
     "loadCustomRequests": false,
     "mockRequestsFilePath": ""
