@@ -1,8 +1,8 @@
 {
   "run": [
     {
-      "filePath": "/timesheet-admin/webapp/test/mockServer.html",
-      "previewMode": 0,
+      "filePath": "/webapp/index.html",
+      "previewMode": 1,
       "dataMode": 0,
       "workspace": "withoutWorkspace",
       "urlParameters": [
@@ -23,15 +23,15 @@
       "isDefaultVersion": 1,
       "backendSystem": [
         {
-          "source": "vesidgwci",
-          "destinations": "vesidgwci"
+          "source": "vesidgwci_SAP",
+          "destinations": "vesidgwci_SAP"
         }
       ],
       "_metadata": {
         "id": "417603",
         "runnerId": "webapprunner",
         "displayName": "App (Mock Server)",
-        "lastRunTimeStamp": 1497511237637
+        "lastRunTimeStamp": 1498221750643
       }
     },
     {
@@ -59,7 +59,7 @@
         "id": "4693853",
         "runnerId": "webapprunner",
         "displayName": "App",
-        "lastRunTimeStamp": 1497502626660
+        "lastRunTimeStamp": 1498221014527
       }
     },
     {

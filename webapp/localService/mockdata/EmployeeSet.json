@@ -1,261 +1,311 @@
 [{
-	"EmpId": "EmpId 1",
+	"EmployeeId": "EmployeeId 1",
 	"UserId": "UserId 1",
 	"FullName": "FullName 1",
 	"UserType": "UserType 1",
-	"StartDate": "/Date(1014526025000)/",
-	"EndDate": "/Date(1046234825000)/",
+	"StartDate": "/Date(957364664000)/",
+	"EndDate": "/Date(1230561464000)/",
 	"IsTimeEntryEnable": true,
 	"ManagerId": "ManagerId 1",
 	"BusinessUnit": "BusinessUnit 1",
 	"Company": "Company 1",
 	"AnalyticalUnit": "AnalyticalUnit 1",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%201')",
+		"uri": "EmployeeSet('EmployeeId%201')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%201')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%201')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%201')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%201')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%201')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 2",
+	"EmployeeId": "EmployeeId 2",
 	"UserId": "UserId 2",
 	"FullName": "FullName 2",
 	"UserType": "UserType 2",
-	"StartDate": "/Date(1358743625000)/",
-	"EndDate": "/Date(1234759625000)/",
-	"IsTimeEntryEnable": false,
+	"StartDate": "/Date(1397745464000)/",
+	"EndDate": "/Date(1441204664000)/",
+	"IsTimeEntryEnable": true,
 	"ManagerId": "ManagerId 2",
 	"BusinessUnit": "BusinessUnit 2",
 	"Company": "Company 2",
 	"AnalyticalUnit": "AnalyticalUnit 2",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%202')",
+		"uri": "EmployeeSet('EmployeeId%202')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%202')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%202')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%202')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%202')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%202')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 3",
+	"EmployeeId": "EmployeeId 3",
 	"UserId": "UserId 3",
 	"FullName": "FullName 3",
 	"UserType": "UserType 3",
-	"StartDate": "/Date(1097038025000)/",
-	"EndDate": "/Date(1042865225000)/",
-	"IsTimeEntryEnable": false,
+	"StartDate": "/Date(1236523064000)/",
+	"EndDate": "/Date(1537713464000)/",
+	"IsTimeEntryEnable": true,
 	"ManagerId": "ManagerId 3",
 	"BusinessUnit": "BusinessUnit 3",
 	"Company": "Company 3",
 	"AnalyticalUnit": "AnalyticalUnit 3",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%203')",
+		"uri": "EmployeeSet('EmployeeId%203')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%203')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%203')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%203')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%203')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%203')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 4",
+	"EmployeeId": "EmployeeId 4",
 	"UserId": "UserId 4",
 	"FullName": "FullName 4",
 	"UserType": "UserType 4",
-	"StartDate": "/Date(1443674825000)/",
-	"EndDate": "/Date(1319258825000)/",
+	"StartDate": "/Date(1492007864000)/",
+	"EndDate": "/Date(1427639864000)/",
 	"IsTimeEntryEnable": true,
 	"ManagerId": "ManagerId 4",
 	"BusinessUnit": "BusinessUnit 4",
 	"Company": "Company 4",
 	"AnalyticalUnit": "AnalyticalUnit 4",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%204')",
+		"uri": "EmployeeSet('EmployeeId%204')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%204')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%204')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%204')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%204')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%204')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 5",
+	"EmployeeId": "EmployeeId 5",
 	"UserId": "UserId 5",
 	"FullName": "FullName 5",
 	"UserType": "UserType 5",
-	"StartDate": "/Date(1343796425000)/",
-	"EndDate": "/Date(1094964425000)/",
-	"IsTimeEntryEnable": false,
+	"StartDate": "/Date(1000823864000)/",
+	"EndDate": "/Date(1238164664000)/",
+	"IsTimeEntryEnable": true,
 	"ManagerId": "ManagerId 5",
 	"BusinessUnit": "BusinessUnit 5",
 	"Company": "Company 5",
 	"AnalyticalUnit": "AnalyticalUnit 5",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%205')",
+		"uri": "EmployeeSet('EmployeeId%205')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%205')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%205')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%205')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%205')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%205')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 6",
+	"EmployeeId": "EmployeeId 6",
 	"UserId": "UserId 6",
 	"FullName": "FullName 6",
 	"UserType": "UserType 6",
-	"StartDate": "/Date(1047703625000)/",
-	"EndDate": "/Date(1119934025000)/",
-	"IsTimeEntryEnable": true,
+	"StartDate": "/Date(1153406264000)/",
+	"EndDate": "/Date(1004625464000)/",
+	"IsTimeEntryEnable": false,
 	"ManagerId": "ManagerId 6",
 	"BusinessUnit": "BusinessUnit 6",
 	"Company": "Company 6",
 	"AnalyticalUnit": "AnalyticalUnit 6",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%206')",
+		"uri": "EmployeeSet('EmployeeId%206')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%206')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%206')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%206')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%206')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%206')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 7",
+	"EmployeeId": "EmployeeId 7",
 	"UserId": "UserId 7",
 	"FullName": "FullName 7",
 	"UserType": "UserType 7",
-	"StartDate": "/Date(1008046025000)/",
-	"EndDate": "/Date(979015625000)/",
-	"IsTimeEntryEnable": false,
+	"StartDate": "/Date(1207751864000)/",
+	"EndDate": "/Date(1398091064000)/",
+	"IsTimeEntryEnable": true,
 	"ManagerId": "ManagerId 7",
 	"BusinessUnit": "BusinessUnit 7",
 	"Company": "Company 7",
 	"AnalyticalUnit": "AnalyticalUnit 7",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%207')",
+		"uri": "EmployeeSet('EmployeeId%207')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%207')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%207')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%207')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%207')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%207')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 8",
+	"EmployeeId": "EmployeeId 8",
 	"UserId": "UserId 8",
 	"FullName": "FullName 8",
 	"UserType": "UserType 8",
-	"StartDate": "/Date(1226810825000)/",
-	"EndDate": "/Date(1266036425000)/",
-	"IsTimeEntryEnable": true,
+	"StartDate": "/Date(1567435064000)/",
+	"EndDate": "/Date(1281451064000)/",
+	"IsTimeEntryEnable": false,
 	"ManagerId": "ManagerId 8",
 	"BusinessUnit": "BusinessUnit 8",
 	"Company": "Company 8",
 	"AnalyticalUnit": "AnalyticalUnit 8",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%208')",
+		"uri": "EmployeeSet('EmployeeId%208')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%208')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%208')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%208')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%208')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%208')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 9",
+	"EmployeeId": "EmployeeId 9",
 	"UserId": "UserId 9",
 	"FullName": "FullName 9",
 	"UserType": "UserType 9",
-	"StartDate": "/Date(962599625000)/",
-	"EndDate": "/Date(951281225000)/",
+	"StartDate": "/Date(1254148664000)/",
+	"EndDate": "/Date(1231943864000)/",
 	"IsTimeEntryEnable": true,
 	"ManagerId": "ManagerId 9",
 	"BusinessUnit": "BusinessUnit 9",
 	"Company": "Company 9",
 	"AnalyticalUnit": "AnalyticalUnit 9",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%209')",
+		"uri": "EmployeeSet('EmployeeId%209')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%209')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%209')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%209')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%209')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%209')/NavMyTravelDays"
 		}
 	}
 }, {
-	"EmpId": "EmpId 10",
+	"EmployeeId": "EmployeeId 10",
 	"UserId": "UserId 10",
 	"FullName": "FullName 10",
 	"UserType": "UserType 10",
-	"StartDate": "/Date(1369457225000)/",
-	"EndDate": "/Date(1410324425000)/",
+	"StartDate": "/Date(1100529464000)/",
+	"EndDate": "/Date(1091975864000)/",
 	"IsTimeEntryEnable": true,
 	"ManagerId": "ManagerId 10",
 	"BusinessUnit": "BusinessUnit 10",
 	"Company": "Company 10",
 	"AnalyticalUnit": "AnalyticalUnit 10",
 	"__metadata": {
-		"uri": "EmployeeSet('EmpId%2010')",
+		"uri": "EmployeeSet('EmployeeId%2010')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%2010')/NavMyWeekSummary"
+		}
 	},
 	"NavMyWorkDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%2010')/NavMyWorkDays"
+			"uri": "EmployeeSet('EmployeeId%2010')/NavMyWorkDays"
 		}
 	},
 	"NavMyTravelDays": {
 		"__deferred": {
-			"uri": "EmployeeSet('EmpId%2010')/NavMyTravelDays"
+			"uri": "EmployeeSet('EmployeeId%2010')/NavMyTravelDays"
 		}
 	}
 }]
