@@ -55,11 +55,12 @@ sap.ui.define([
 			};
 			oCalendarData.push(idata);
 			for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
+				var cDate = d;
 				var data = {
 					ColumnTxt1: weekday[d.getDay()],
 					ColumnTxt2: '  ' + d.getDate(),
 					width: "auto",
-					Date: d
+					Date: new Date(cDate.getTime())
 				};
 				oCalendarData.push(data);
 			}
@@ -112,6 +113,72 @@ sap.ui.define([
 				return "L";
 			}
 			return "W";
+		},
+		weekTwo: function(oEvent){
+			if(oEvent.getSource().getPressed()){
+			this.getView().byId('Week1').setPressed(false);
+			var monday = datetime.getMonday(new Date());
+			var sunday = datetime.getLastDay(monday, 2);
+			var oCalendarData = [];
+			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
+				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
+					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
+					"tablleColTitleSat")
+			];
+			var idata = {
+				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+				ColumnTxt2: '',
+				width: '10em',
+				Date: new Date()
+			};
+			oCalendarData.push(idata);
+			for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
+				var cDate = d;
+				var data = {
+					ColumnTxt1: weekday[d.getDay()],
+					ColumnTxt2: '  ' + d.getDate(),
+					width: "auto",
+					Date: new Date(cDate.getTime())
+				};
+				oCalendarData.push(data);
+			}
+
+			var oCalendarModel = new JSONModel(oCalendarData);
+			this.setModel(oCalendarModel, "calendar");
+			}
+		},
+		weekOne: function(oEvent){
+			if(oEvent.getSource().getPressed()){
+			this.getView().byId('Week2').setPressed(false);
+			var monday = datetime.getMonday(new Date());
+			var sunday = datetime.getLastDay(monday, 1);
+			var oCalendarData = [];
+			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
+				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
+					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
+					"tablleColTitleSat")
+			];
+			var idata = {
+				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+				ColumnTxt2: '',
+				width: '10em',
+				Date: new Date()
+			};
+			oCalendarData.push(idata);
+			for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
+				var cDate = d;
+				var data = {
+					ColumnTxt1: weekday[d.getDay()],
+					ColumnTxt2: '  ' + d.getDate(),
+					width: "auto",
+					Date: new Date(cDate.getTime())
+				};
+				oCalendarData.push(data);
+			}
+
+			var oCalendarModel = new JSONModel(oCalendarData);
+			this.setModel(oCalendarModel, "calendar");
+			}
 		}
 
 		/**
