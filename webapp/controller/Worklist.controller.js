@@ -20,7 +20,7 @@ sap.ui.define([
 			 * Called when the worklist controller is instantiated.
 			 * @public
 			 */
-			onInit : function () {
+			/*onInit : function () {
 				var oViewModel,
 					iOriginalBusyDelay,
 					oTable = this.byId("table");
@@ -51,7 +51,7 @@ sap.ui.define([
 				var idata = {
 						ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
 						ColumnTxt2: '' ,
-						width :'30%' ,
+						width :'20%' ,
 						Date : new Date()
 					};
 					oCalendarData.push(idata);
@@ -59,7 +59,7 @@ sap.ui.define([
 					var data = {
 						ColumnTxt1:  weekday[d.getDay()] ,
 						ColumnTxt2: '  '+ d.getDate(),
-						width :"5%" ,
+						width :"11%" ,
 						Date : d
 					};
 					oCalendarData.push(data);
@@ -67,6 +67,9 @@ sap.ui.define([
 
 				var oCalendarModel = new JSONModel(oCalendarData);
 				this.setModel(oCalendarModel, "calendar");
+				
+				/// Workdat status binding
+				
 
 				// Make sure, busy indication is showing immediately so there is no
 				// break after the busy indication for loading the view's meta data is
@@ -75,7 +78,7 @@ sap.ui.define([
 					// Restore original busy indicator delay for worklist's table
 					oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 				});
-			},
+			},*/
 
 			/* =========================================================== */
 			/* event handlers                                              */
@@ -90,7 +93,7 @@ sap.ui.define([
 			 * @param {sap.ui.base.Event} oEvent the update finished event
 			 * @public
 			 */
-			onUpdateFinished : function (oEvent) {
+			/*onUpdateFinished : function (oEvent) {
 				// update the worklist's object counter after the table update
 				var sTitle,
 					oTable = oEvent.getSource(),
@@ -104,16 +107,21 @@ sap.ui.define([
 				}
 				this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			},
-
+			onUpdateStarted : function (oEvent) {
+			var oTable = oEvent.getSource();
+			oTable.getBinding("items");
+			
+			},
+*/
 			/**
 			 * Event handler when a table item gets pressed
 			 * @param {sap.ui.base.Event} oEvent the table selectionChange event
 			 * @public
 			 */
-			onPress : function (oEvent) {
+			/*onPress : function (oEvent) {
 				// The source is the list item that got pressed
 				this._showObject(oEvent.getSource());
-			},
+			},*/
 
 
 			/**
@@ -121,12 +129,12 @@ sap.ui.define([
 			 * We navigate back in the browser historz
 			 * @public
 			 */
-			onNavBack : function() {
+			/*onNavBack : function() {
 				history.go(-1);
-			},
+			},*/
 
 
-			onSearch : function (oEvent) {
+			/*onSearch : function (oEvent) {
 				if (oEvent.getParameters().refreshButtonPressed) {
 					// Search field's 'refresh' button has been pressed.
 					// This is visible if you select any master list item.
@@ -143,17 +151,21 @@ sap.ui.define([
 					this._applySearch(oTableSearchState);
 				}
 
-			},
+			},*/
 
 			/**
 			 * Event handler for refresh event. Keeps filter, sort
 			 * and group settings and refreshes the list binding.
 			 * @public
 			 */
-			onRefresh : function () {
+			/*onRefresh : function () {
 				var oTable = this.byId("table");
 				oTable.getBinding("items").refresh();
-			},
+			},*/
+			/*onSearchPress : function(){
+			this.getId('columnList');
+			
+			},*/
 
 			/* =========================================================== */
 			/* internal methods                                            */
@@ -165,18 +177,18 @@ sap.ui.define([
 			 * @param {sap.m.ObjectListItem} oItem selected Item
 			 * @private
 			 */
-			_showObject : function (oItem) {
+			/*_showObject : function (oItem) {
 				this.getRouter().navTo("object", {
 					objectId: oItem.getBindingContext().getProperty("EmpId")
 				});
-			},
+			},*/
 
 			/**
 			 * Internal helper method to apply both filter and search state together on the list binding
 			 * @param {object} oTableSearchState an array of filters for the search
 			 * @private
 			 */
-			_applySearch: function(oTableSearchState) {
+			/*_applySearch: function(oTableSearchState) {
 				var oTable = this.byId("table"),
 					oViewModel = this.getModel("worklistView");
 				oTable.getBinding("items").filter(oTableSearchState, "Application");
@@ -184,7 +196,7 @@ sap.ui.define([
 				if (oTableSearchState.length !== 0) {
 					oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
 				}
-			}
+			}*/
 
 		});
 	}

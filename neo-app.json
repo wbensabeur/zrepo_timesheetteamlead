@@ -40,10 +40,10 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "vesidgwci",
+        "name": "vesidgwci_SAP",
         "entryPath": "/sap/opu/odata"
       },
-      "description": "vesidgwci"
+      "description": "vesidgwci_SAP"
     }
   ]
 }
