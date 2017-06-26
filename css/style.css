@@ -1,0 +1,52 @@
+.sapUiTableTr>td {
+    border-right: 1px solid #e5e5e5 !important; 
+    border-bottom: 1px solid #e5e5e5 !important;
+    padding: 0; 
+    vertical-align: middle !important;
+    box-sizing: border-box !important;
+}
+
+.sapMListTblCell.cellBorderLeft > table > thead > tr > th{
+    border-left: 1px solid red !important;
+}
+
+.sapMListTblCell.cellBorderRight {
+    border-right: 1px solid red !important;
+}
+
+.sapMListTblCell {
+    padding-top: 0rem;
+    padding-right: 0rem;
+    padding-bottom: 0rem;
+    padding-left: 0rem;
+    vertical-align: top;
+    font-size: 0.875rem;
+}
+
+.hourSize>span>span {
+    font-size: 1.5rem;
+}
+
+.blackFont{
+color: black;	
+}
+.redFont{
+color: red;	
+}
+.hourSize[data-status="OK"]>span>span {
+ color: red !Important;
+}
+
+.hourSize[data-background="L"] {
+ background-color: lightgrey;
+}
+.tableColumn[data-background="L"] {
+	background-color: lightgrey;
+}
+
+.tableColumn {
+	    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.1rem;
+    padding-left: 0.5rem;
+}
