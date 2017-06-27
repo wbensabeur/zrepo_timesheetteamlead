@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Manage Timesheet</title>
+
+	<!-- Bootstrapping UI5 -->
+	<script id="sap-ui-bootstrap"
+			src="resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m, sap.f"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-preload="async"
+			data-sap-ui-resourceroots='{"com.vinci.timesheet.admin": "."}'
+			data-sap-ui-frameOptions="trusted">
+	</script>
+
+	<script>
+		
+		
+		
+		sap.ui.getCore().attachInit(function () {
+			sap.ui.require([
+				"sap/ui/unified/Shell",
+				"sap/ui/core/ComponentContainer",
+				"sap/ui/unified/ShellHeadItem",
+				"sap/ui/unified/ShellHeadUserItem"
+			], function (Shell, ComponentContainer,ShellHeadItem,ShellHeadUserItem) {
+				// initialize the UI component
+				/*new Shell({
+					app: new ComponentContainer({
+						height : "100%",
+						name : "com.vinci.timesheet.admin"
+					})
+				}).placeAt("content");*/
+				
+				//////
+				new Shell("shell", {
+    					icon : "https://sapui5.netweaver.ondemand.com/sdk/resources/sap/ui/core/mimes/logo/sap_50x26.png",
+    					user : new ShellHeadUserItem({
+    						username : "Vijay Singh Rajput",
+    						image : "sap-icon://employee"
+    						}),
+    					headEndItems :[
+    							new ShellHeadItem({
+    							icon : "sap-icon://filter",
+    							}),
+    							new ShellHeadItem({
+    							icon : "sap-icon://search",
+    							})
+
+    						],
+    					content : new ComponentContainer({name :"com.vinci.timesheet.admin"})
+
+					}).placeAt('content');
+
+				////
+			});
+		});
+	</script>
+
+</head>
+
+<!-- UI Content -->
+<body class="sapUiBody" id="content">
+</body>
+</html>
