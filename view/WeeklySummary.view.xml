@@ -1,0 +1,122 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.vinci.timesheet.admin.controller.WeeklySummary" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Toolbar>
+			<ToggleButton id="Week1" text="1 Week" press="weekOne" pressed="false"/>
+			<ToggleButton id="Week2" text="2 Week" press="weekTwo" pressed="true"/>
+			
+			<Button icon="sap-icon://navigation-left-arrow" type="Transparent" press="onPastPeriodNavPress"/>
+			<Label text="June 2017" textAlign="Center" class="monthLabelPadding"/>
+			<Button icon="sap-icon://navigation-right-arrow" type="Transparent" press="onFuturePeriodNavPress"/>
+			
+		</Toolbar> 
+	<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
+		busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
+		growingThreshold="10" showSeparators="None" inset="false">
+		 
+		<columns>
+			<Column width="{calendar>width}" hAlign="Center">
+				<VBox class="tableColumn">
+					<Label text="{calendar>ColumnTxt1}"/>
+					<Label text=" {calendar>ColumnTxt2}"/>
+					<customData>
+						<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+					</customData>
+				</VBox>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
+				<cells>
+					<VBox>
+						<Label text="{EmployeeName}"/>
+						<Label text="72H 3IPD 10KM" design="Bold"/>
+					</VBox>
+					<Button text="{WeekDate1Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate1Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate2Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate2Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate3Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate3Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate4Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate4Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate5Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate5Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate6Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate6Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate7Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate7Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate8Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate8Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate8Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate9Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate9Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate9Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate10Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate10Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate10Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate11Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate11Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate11Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate12Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate12Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate12Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate13Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate13Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate13Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+					<Button text="{WeekDate14Hours}" type="Transparent" width="100%" class="hourSize">
+						<customData>
+							<core:CustomData key="status" value="{WeekDate14Status}" writeToDom="true"/>
+							<core:CustomData key="background" value="{path:'WeekDate14Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
+						</customData>
+					</Button>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>
