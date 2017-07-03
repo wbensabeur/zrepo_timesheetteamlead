@@ -22,6 +22,7 @@
 		"sourceTemplate": {
 			"id": "sap.ui.ui5-template-plugin.1worklist",
 			"version": "1.46.8"
+			
 		}
 	},
 	"sap.ui": {
