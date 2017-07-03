@@ -13,7 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true
+    "buildRequired": false,
+    "lastBuildDateTime": "Sat, 01 Jul 2017 15:12:21 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -92,5 +93,10 @@
       "compass": {},
       "bFacade": false
     }
+  },
+  "hcpdeploy": {
+    "account": "a4769796d",
+    "name": "timesheetadmin",
+    "lastVersionWeTriedToDeploy": "1.0.6"
   }
 }

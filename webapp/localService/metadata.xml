@@ -1,369 +1,517 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
-   <edmx:DataServices m:DataServiceVersion="2.0">
-      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHR_MOB_TIMESHEET_SRV" xml:lang="en" sap:schema-version="1">
-         <EntityType Name="TimeAdminstrator" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="UserId" />
-            </Key>
-            <Property Name="UserId" Type="Edm.String" Nullable="false" sap:label="Time Administrator Id" sap:creatable="false" sap:updatable="false" />
-            <Property Name="FullName" Type="Edm.String" sap:label="Time Administrator" sap:creatable="false" sap:updatable="false" />
-            <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date" sap:creatable="false" sap:updatable="false" />
-            <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date" sap:creatable="false" sap:updatable="false" />
-            <NavigationProperty Name="NavMyEmployees" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyEmployees" FromRole="FromRole_AssMyEmployees" ToRole="ToRole_AssMyEmployees" />
-            <NavigationProperty Name="NavMyEquipments" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyEquipments" FromRole="FromRole_AssMyEquipments" ToRole="ToRole_AssMyEquipments" />
-            <NavigationProperty Name="NavMyTeams" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyTeams" FromRole="FromRole_AssMyTeams" ToRole="ToRole_AssMyTeams" />
-            <NavigationProperty Name="NavMyPersonalisations" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyPersonalisations" FromRole="FromRole_AssMyPersonalisations" ToRole="ToRole_AssMyPersonalisations" />
-            <NavigationProperty Name="NavMyHelpLists" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyHelpLists" FromRole="FromRole_AssMyHelpLists" ToRole="ToRole_AssMyHelpLists" />
-         </EntityType>
-         <EntityType Name="WeekSummary" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="WeekNumber" />
-               <PropertyRef Name="WeekYear" />
-               <PropertyRef Name="isByWeekly" />
-               <PropertyRef Name="EmployeeId" />
-            </Key>
-            <Property Name="WeekNumber" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="WeekYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="isByWeekly" Type="Edm.Byte" Nullable="false" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="WeekTotalHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="isEntryEnabled" Type="Edm.Boolean" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekStatus" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate1Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate1Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate1Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate2Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate2Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate2Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate3Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate3Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate3Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate4Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate4Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate4Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate5Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate5Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate5Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate6Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate6Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate6Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate7Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate7Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate7Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate8Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate8Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate8Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate9Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate9Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate9Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate10Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate10Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate10Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate11Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate11Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate11Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate12Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate12Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate12Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate13Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate13Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate13Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate14Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate14Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekDate14Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-         </EntityType>
-         <EntityType Name="Employee" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="EmployeeId" />
-            </Key>
-            <Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:label="Employee Id" sap:creatable="false" sap:updatable="false" />
-            <Property Name="UserId" Type="Edm.String" sap:label="User Id" sap:creatable="false" sap:updatable="false" />
-            <Property Name="FullName" Type="Edm.String" sap:label="Employee Name" sap:creatable="false" sap:updatable="false" />
-            <Property Name="UserType" Type="Edm.String" sap:label="User Type" sap:creatable="false" sap:updatable="false" />
-            <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
-            <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:filterable="false" />
-            <Property Name="IsTimeEntryEnable" Type="Edm.Boolean" sap:label="Time Entry Allowed" sap:creatable="false" sap:updatable="false" />
-            <Property Name="ManagerId" Type="Edm.String" sap:label="Manager Id" sap:creatable="false" sap:updatable="false" />
-            <Property Name="BusinessUnit" Type="Edm.String" sap:label="Business Unit" sap:creatable="false" sap:updatable="false" />
-            <Property Name="Company" Type="Edm.String" sap:label="Company" sap:creatable="false" sap:updatable="false" />
-            <Property Name="AnalyticalUnit" Type="Edm.String" sap:label="Analytical Unit" sap:creatable="false" sap:updatable="false" />
-            <NavigationProperty Name="NavMyWeekSummary" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyWeekSummary" FromRole="FromRole_AssMyWeekSummary" ToRole="ToRole_AssMyWeekSummary" />
-            <NavigationProperty Name="NavMyWorkDays" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyWorkDays" FromRole="FromRole_AssMyWorkDays" ToRole="ToRole_AssMyWorkDays" />
-            <NavigationProperty Name="NavMyTravelDays" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyTravelDays" FromRole="FromRole_AssMyTravelDays" ToRole="ToRole_AssMyTravelDays" />
-         </EntityType>
-         <EntityType Name="WorkDay" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="EmployeeId" />
-               <PropertyRef Name="WorkDate" />
-            </Key>
-            <Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:label="Employee Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Working Day" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Status" Type="Edm.String" sap:label="Time Entry Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="TargetHours" Type="Edm.String" sap:label="Target Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="FilledHours" Type="Edm.String" sap:label="Filled Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="AbsenceHours" Type="Edm.String" sap:label="Absence Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="IsWorkingDay" Type="Edm.Boolean" sap:label="Working / Non Working Day Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date of month" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date of Month" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <NavigationProperty Name="NavAbsenceItems" Relationship="ZHR_MOB_TIMESHEET_SRV.AssAbsenceItems" FromRole="FromRole_AssAbsenceItems" ToRole="ToRole_AssAbsenceItems" />
-            <NavigationProperty Name="NavWorkDayTimeItems" Relationship="ZHR_MOB_TIMESHEET_SRV.AssWorkDayTimeItems" FromRole="FromRole_AssWorkDayTimeItems" ToRole="ToRole_AssWorkDayTimeItems" />
-         </EntityType>
-         <EntityType Name="WorkDayItem" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="EmployeeId" />
-               <PropertyRef Name="WorkDate" />
-               <PropertyRef Name="Counter" />
-            </Key>
-            <Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:label="Employee Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Counter" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ProjectID" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EntryType" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Hours" Type="Edm.Decimal" Precision="31" Scale="0" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="StartTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EndTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Comment" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="CreatedBy" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ReleaseOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ApprovedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Reason" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="AllowancesType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="AllowancesName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ZoneType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="MealIndicator" Type="Edm.Boolean" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-         </EntityType>
-         <EntityType Name="AbsenceDayItem" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="EmpId" />
-               <PropertyRef Name="WorkDate" />
-               <PropertyRef Name="Counter" />
-            </Key>
-            <Property Name="EmpId" Type="Edm.String" Nullable="false" sap:label="Employee Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Counter" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ProjectID" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="AbsenceCategory" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="Hours" Type="Edm.Decimal" Precision="31" Scale="0" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="StartTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EndTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="Comment" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="CreatedBy" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ReleaseOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ApprovedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Reason" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-         </EntityType>
-         <EntityType Name="Equipment" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="EquipmentId" />
-            </Key>
-            <Property Name="EquipmentId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="EquipmentName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EquipmentType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="TimeEntryEnable" Type="Edm.Boolean" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="BusinessUnit" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="Company" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="AnalyticalUnit" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="Section" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <NavigationProperty Name="NavEquipmentTimeItems" Relationship="ZHR_MOB_TIMESHEET_SRV.AssEquipmentTimeItems" FromRole="FromRole_AssEquipmentTimeItems" ToRole="ToRole_AssEquipmentTimeItems" />
-         </EntityType>
-         <EntityType Name="EquipmentTime" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="EquipmentId" />
-               <PropertyRef Name="WorkDate" />
-               <PropertyRef Name="ProjectID" />
-               <PropertyRef Name="Counter" />
-            </Key>
-            <Property Name="EquipmentId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ProjectID" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Counter" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Unit" Type="Edm.Int16" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-         </EntityType>
-         <EntityType Name="TravelDayBooking" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="EmployeeId" />
-               <PropertyRef Name="WorkDate" />
-            </Key>
-            <Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="WorkDate" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="TravelByType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="NoOfKms" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="AllowancesType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="AllowancesName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="ProjectId" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-         </EntityType>
-         <EntityType Name="Team" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="UserId" />
-               <PropertyRef Name="TeamId" />
-            </Key>
-            <Property Name="UserId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="TeamId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="TeamName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="TeamDescription" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <NavigationProperty Name="NavTeamEmployees" Relationship="ZHR_MOB_TIMESHEET_SRV.AssTeamEmployees" FromRole="FromRole_AssTeamEmployees" ToRole="ToRole_AssTeamEmployees" />
-         </EntityType>
-         <EntityType Name="Personalisation" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="UserId" />
-               <PropertyRef Name="PersonalisationId" />
-            </Key>
-            <Property Name="UserId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="PersonalisationId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="PersonalisationValue" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="PersonalisationDescription" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-         </EntityType>
-         <EntityType Name="ValueHelp" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="UserId" />
-               <PropertyRef Name="HelpType" />
-            </Key>
-            <Property Name="UserId" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="User Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="HelpType" Type="Edm.String" Nullable="false" sap:label="Field Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="FieldName" Type="Edm.String" sap:label="Field Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="FieldValue" Type="Edm.String" sap:label="Field Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="FieldRDescription" Type="Edm.String" sap:label="Field Related To" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-            <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" />
-         </EntityType>
-         <EntityType Name="Calander" sap:content-version="1">
-            <Key>
-               <PropertyRef Name="WorkDate" />
-            </Key>
-            <Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="Country" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="IsWeekDay" Type="Edm.Boolean" Nullable="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="IsBusinessHoliday" Type="Edm.Boolean" Nullable="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-            <Property Name="WeekNumber" Type="Edm.Byte" Nullable="false" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
-         </EntityType>
-         <Association Name="AssTeamEmployees" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Team" Multiplicity="1" Role="FromRole_AssTeamEmployees" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="*" Role="ToRole_AssTeamEmployees" />
-         </Association>
-         <Association Name="AssMyEquipments" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyEquipments" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Equipment" Multiplicity="*" Role="ToRole_AssMyEquipments" />
-         </Association>
-         <Association Name="AssMyTeams" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyTeams" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Team" Multiplicity="*" Role="ToRole_AssMyTeams" />
-         </Association>
-         <Association Name="AssMyPersonalisations" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="1" Role="FromRole_AssMyPersonalisations" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Personalisation" Multiplicity="*" Role="ToRole_AssMyPersonalisations" />
-         </Association>
-         <Association Name="AssMyHelpLists" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="1" Role="FromRole_AssMyHelpLists" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.ValueHelp" Multiplicity="*" Role="ToRole_AssMyHelpLists" />
-         </Association>
-         <Association Name="AssMyEmployees" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyEmployees" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="*" Role="ToRole_AssMyEmployees" />
-         </Association>
-         <Association Name="AssMyWorkDays" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="1" Role="FromRole_AssMyWorkDays" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.WorkDay" Multiplicity="*" Role="ToRole_AssMyWorkDays" />
-         </Association>
-         <Association Name="AssMyTravelDays" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="0..1" Role="FromRole_AssMyTravelDays" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.TravelDayBooking" Multiplicity="*" Role="ToRole_AssMyTravelDays" />
-         </Association>
-         <Association Name="AssMyWeekSummary" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="0..1" Role="FromRole_AssMyWeekSummary" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.WeekSummary" Multiplicity="1" Role="ToRole_AssMyWeekSummary" />
-         </Association>
-         <Association Name="AssEquipmentTimeItems" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.Equipment" Multiplicity="1" Role="FromRole_AssEquipmentTimeItems" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.EquipmentTime" Multiplicity="*" Role="ToRole_AssEquipmentTimeItems" />
-         </Association>
-         <Association Name="AssWorkDayTimeItems" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.WorkDay" Multiplicity="0..1" Role="FromRole_AssWorkDayTimeItems" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.WorkDayItem" Multiplicity="*" Role="ToRole_AssWorkDayTimeItems" />
-         </Association>
-         <Association Name="AssAbsenceItems" sap:content-version="1">
-            <End Type="ZHR_MOB_TIMESHEET_SRV.WorkDay" Multiplicity="0..1" Role="FromRole_AssAbsenceItems" />
-            <End Type="ZHR_MOB_TIMESHEET_SRV.AbsenceDayItem" Multiplicity="*" Role="ToRole_AssAbsenceItems" />
-         </Association>
-         
-         <EntityContainer Name="ZHR_MOB_TIMESHEET_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-            <EntitySet Name="TimeAdminSet" EntityType="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="WeekSummarySet" EntityType="ZHR_MOB_TIMESHEET_SRV.WeekSummary" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1" />
-            <EntitySet Name="EmployeeSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Employee" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="WorkDaySet" EntityType="ZHR_MOB_TIMESHEET_SRV.WorkDay" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="WorkDayItemSet" EntityType="ZHR_MOB_TIMESHEET_SRV.WorkDayItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="AbsenceDayItemSet" EntityType="ZHR_MOB_TIMESHEET_SRV.AbsenceDayItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="EquipmentSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Equipment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="EquipmentTimeSet" EntityType="ZHR_MOB_TIMESHEET_SRV.EquipmentTime" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="TravelDayBookingSet" EntityType="ZHR_MOB_TIMESHEET_SRV.TravelDayBooking" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="TeamSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Team" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="PersonalisationSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Personalisation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="ValueHelpSet" EntityType="ZHR_MOB_TIMESHEET_SRV.ValueHelp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" />
-            <EntitySet Name="CalanderSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Calander" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1" />
-            <AssociationSet Name="AssWorkDayTimeItemsSet" Association="ZHR_MOB_TIMESHEET_SRV.AssWorkDayTimeItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="WorkDaySet" Role="FromRole_AssWorkDayTimeItems" />
-               <End EntitySet="WorkDayItemSet" Role="ToRole_AssWorkDayTimeItems" />
-            </AssociationSet>
-            <AssociationSet Name="AssMyWorkDays_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyWorkDays" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="EmployeeSet" Role="FromRole_AssMyWorkDays" />
-               <End EntitySet="WorkDaySet" Role="ToRole_AssMyWorkDays" />
-            </AssociationSet>
-            <AssociationSet Name="AssMyEquipments_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyEquipments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="TimeAdminSet" Role="FromRole_AssMyEquipments" />
-               <End EntitySet="EquipmentSet" Role="ToRole_AssMyEquipments" />
-            </AssociationSet>
-            <AssociationSet Name="AssMyHelpLists_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyHelpLists" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="TimeAdminSet" Role="FromRole_AssMyHelpLists" />
-               <End EntitySet="ValueHelpSet" Role="ToRole_AssMyHelpLists" />
-            </AssociationSet>
-            <AssociationSet Name="AssMyWeekSummary_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyWeekSummary" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="EmployeeSet" Role="FromRole_AssMyWeekSummary" />
-               <End EntitySet="WeekSummarySet" Role="ToRole_AssMyWeekSummary" />
-            </AssociationSet>
-            <AssociationSet Name="AssMyTeams_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyTeams" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="TimeAdminSet" Role="FromRole_AssMyTeams" />
-               <End EntitySet="TeamSet" Role="ToRole_AssMyTeams" />
-            </AssociationSet>
-            <AssociationSet Name="AssMyTravelDays_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyTravelDays" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="EmployeeSet" Role="FromRole_AssMyTravelDays" />
-               <End EntitySet="TravelDayBookingSet" Role="ToRole_AssMyTravelDays" />
-            </AssociationSet>
-            <AssociationSet Name="AssMyPersonalisations_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyPersonalisations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="TimeAdminSet" Role="FromRole_AssMyPersonalisations" />
-               <End EntitySet="PersonalisationSet" Role="ToRole_AssMyPersonalisations" />
-            </AssociationSet>
-            <AssociationSet Name="AssMyEmployees_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyEmployees" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="TimeAdminSet" Role="FromRole_AssMyEmployees" />
-               <End EntitySet="EmployeeSet" Role="ToRole_AssMyEmployees" />
-            </AssociationSet>
-            <AssociationSet Name="AssAbsenceItems_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssAbsenceItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="WorkDaySet" Role="FromRole_AssAbsenceItems" />
-               <End EntitySet="AbsenceDayItemSet" Role="ToRole_AssAbsenceItems" />
-            </AssociationSet>
-            <AssociationSet Name="AssTeamEmployees_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssTeamEmployees" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="TeamSet" Role="FromRole_AssTeamEmployees" />
-               <End EntitySet="EmployeeSet" Role="ToRole_AssTeamEmployees" />
-            </AssociationSet>
-            <AssociationSet Name="AssEquipmentTimeItems_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssEquipmentTimeItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
-               <End EntitySet="EquipmentSet" Role="FromRole_AssEquipmentTimeItems" />
-               <End EntitySet="EquipmentTimeSet" Role="ToRole_AssEquipmentTimeItems" />
-            </AssociationSet>
-         </EntityContainer>
-         <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://vesidgwci.vinci-energies.net:1080/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/$metadata" />
-         <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://vesidgwci.vinci-energies.net:1080/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/$metadata" />
-      </Schema>
-   </edmx:DataServices>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHR_MOB_TIMESHEET_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="TimeAdminstrator" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="UserId"/>
+				</Key>
+				<Property Name="UserId" Type="Edm.String" Nullable="false" sap:label="Time Administrator Id" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="FullName" Type="Edm.String" sap:label="Time Administrator" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date" sap:creatable="false" sap:updatable="false"/>
+				<NavigationProperty Name="NavMyEmployees" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyEmployees" FromRole="FromRole_AssMyEmployees"
+					ToRole="ToRole_AssMyEmployees"/>
+				<NavigationProperty Name="NavMyEquipments" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyEquipments" FromRole="FromRole_AssMyEquipments"
+					ToRole="ToRole_AssMyEquipments"/>
+				<NavigationProperty Name="NavMyTeams" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyTeams" FromRole="FromRole_AssMyTeams"
+					ToRole="ToRole_AssMyTeams"/>
+				<NavigationProperty Name="NavMyPersonalisations" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyPersonalisations"
+					FromRole="FromRole_AssMyPersonalisations" ToRole="ToRole_AssMyPersonalisations"/>
+				<NavigationProperty Name="NavMyHelpLists" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyHelpLists" FromRole="FromRole_AssMyHelpLists"
+					ToRole="ToRole_AssMyHelpLists"/>
+			</EntityType>
+			<EntityType Name="WeekSummary" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="WeekNumber"/>
+					<PropertyRef Name="WeekYear"/>
+					<PropertyRef Name="isByWeekly"/>
+					<PropertyRef Name="EmployeeId"/>
+				</Key>
+				<Property Name="WeekNumber" Type="Edm.String" Nullable="false" MaxLength="2" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="WeekYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="isByWeekly" Type="Edm.Byte" Nullable="false" sap:label="Int." sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="EmployeeName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekTotalHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="isEntryEnabled" Type="Edm.Boolean" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekStatus" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate1Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate1Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate1Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate2Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate2Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate2Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate3Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate3Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate3Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate4Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate4Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate4Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate5Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate5Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate5Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate6Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate6Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate6Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate7Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate7Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate7Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate8Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate8Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate8Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate9Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate9Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate9Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate10Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate10Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate10Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate11Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate11Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate11Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate12Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate12Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate12Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate13Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate13Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate13Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate14Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekDate14Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekDate14Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Employee" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="EmployeeId"/>
+				</Key>
+				<Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:label="Employee Id" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="UserId" Type="Edm.String" sap:label="User Id" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="FullName" Type="Edm.String" sap:label="Employee Name" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="UserType" Type="Edm.String" sap:label="User Type" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/>
+				<Property Name="IsTimeEntryEnable" Type="Edm.Boolean" sap:label="Time Entry Allowed" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="ManagerId" Type="Edm.String" sap:label="Manager Id" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="BusinessUnit" Type="Edm.String" sap:label="Business Unit" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="BusinessUnitId" Type="Edm.String" sap:label="BU Id" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="Company" Type="Edm.String" sap:label="Company" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="CompanyId" Type="Edm.String" sap:label="Company" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="AnalyticalUnit" Type="Edm.String" sap:label="Analytical Unit" sap:creatable="false" sap:updatable="false"/>
+				<NavigationProperty Name="NavMyWeekSummary" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyWeekSummary" FromRole="FromRole_AssMyWeekSummary"
+					ToRole="ToRole_AssMyWeekSummary"/>
+				<NavigationProperty Name="NavMyWorkDays" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyWorkDays" FromRole="FromRole_AssMyWorkDays"
+					ToRole="ToRole_AssMyWorkDays"/>
+			</EntityType>
+			<EntityType Name="WorkDay" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="EmployeeId"/>
+					<PropertyRef Name="WorkDate"/>
+				</Key>
+				<Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:label="Employee Id" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Working Day" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Status" Type="Edm.String" sap:label="Time Entry Status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="TargetHours" Type="Edm.String" sap:label="Target Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="FilledHours" Type="Edm.String" sap:label="Filled Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="AbsenceHours" Type="Edm.String" sap:label="Absence Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="IsWorkingDay" Type="Edm.Boolean" sap:label="Working / Non Working Day Indicator" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date of month" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date of Month" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="NavAbsenceItems" Relationship="ZHR_MOB_TIMESHEET_SRV.AssAbsenceItems" FromRole="FromRole_AssAbsenceItems"
+					ToRole="ToRole_AssAbsenceItems"/>
+				<NavigationProperty Name="NavWorkDayTimeItems" Relationship="ZHR_MOB_TIMESHEET_SRV.AssWorkDayTimeItems"
+					FromRole="FromRole_AssWorkDayTimeItems" ToRole="ToRole_AssWorkDayTimeItems"/>
+			</EntityType>
+			<EntityType Name="WorkDayItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="EmployeeId"/>
+					<PropertyRef Name="WorkDate"/>
+					<PropertyRef Name="Counter"/>
+				</Key>
+				<Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:label="Employee Id" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Counter" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="ProjectID" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EntryType" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+					
+				<Property Name="Hours" Type="Edm.Decimal" Precision="31" Scale="0" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="TravelByType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="NoOfKms" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>	
+				<Property Name="StartTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EndTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Comment" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CreatedBy" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ReleaseOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ApprovedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Reason" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="AllowancesType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="AllowancesName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ZoneType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="MealIndicator" Type="Edm.Boolean" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="AbsenceDayItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="EmpId"/>
+					<PropertyRef Name="WorkDate"/>
+					<PropertyRef Name="Counter"/>
+				</Key>
+				<Property Name="EmpId" Type="Edm.String" Nullable="false" sap:label="Employee Id" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Counter" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="ProjectID" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="AbsenceCategory" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="Hours" Type="Edm.Decimal" Precision="31" Scale="0" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="StartTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EndTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="Comment" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CreatedBy" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ReleaseOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ApprovedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Reason" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Equipment" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="EquipmentId"/>
+				</Key>
+				<Property Name="EquipmentId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="EquipmentName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EquipmentType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="TimeEntryEnable" Type="Edm.Boolean" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="BusinessUnit" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="Company" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="AnalyticalUnit" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="Section" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<NavigationProperty Name="NavEquipmentTimeItems" Relationship="ZHR_MOB_TIMESHEET_SRV.AssEquipmentTimeItems"
+					FromRole="FromRole_AssEquipmentTimeItems" ToRole="ToRole_AssEquipmentTimeItems"/>
+			</EntityType>
+			<EntityType Name="EquipmentTime" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="EquipmentId"/>
+					<PropertyRef Name="WorkDate"/>
+					<PropertyRef Name="ProjectID"/>
+					<PropertyRef Name="Counter"/>
+				</Key>
+				<Property Name="EquipmentId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ProjectID" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="Counter" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="Unit" Type="Edm.Int16" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+			</EntityType>
+			
+			<EntityType Name="Team" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="UserId"/>
+					<PropertyRef Name="TeamId"/>
+				</Key>
+				<Property Name="UserId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="TeamId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="TeamName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="TeamDescription" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="NavTeamEmployees" Relationship="ZHR_MOB_TIMESHEET_SRV.AssTeamEmployees" FromRole="FromRole_AssTeamEmployees"
+					ToRole="ToRole_AssTeamEmployees"/>
+			</EntityType>
+			<EntityType Name="Personalisation" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="UserId"/>
+					<PropertyRef Name="PersonalisationId"/>
+				</Key>
+				<Property Name="UserId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="PersonalisationId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="PersonalisationValue" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="PersonalisationDescription" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="ValueHelp" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="UserId"/>
+					<PropertyRef Name="HelpType"/>
+				</Key>
+				<Property Name="UserId" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="User Id" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="HelpType" Type="Edm.String" Nullable="false" sap:label="Field Id" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="FieldName" Type="Edm.String" sap:label="Field Name" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="FieldValue" Type="Edm.String" sap:label="Field Value" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="FieldRDescription" Type="Edm.String" sap:label="Field Related To" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+			</EntityType>
+			<EntityType Name="Calander" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="WorkDate"/>
+				</Key>
+				<Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Country" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="IsWeekDay" Type="Edm.Boolean" Nullable="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="IsBusinessHoliday" Type="Edm.Boolean" Nullable="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WeekNumber" Type="Edm.Byte" Nullable="false" sap:label="Int." sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Document" m:HasStream="true" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="DocName"/>
+				</Key>
+				<Property Name="DocName" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+			</EntityType>
+			<EntityType sap:content-version="1" Name="Project">
+				<Key>
+					<PropertyRef Name="ProjectId"/>
+				</Key>
+				<Property Name="ProjectId" sap:updatable="false" sap:creatable="false" sap:label="Project Id" Nullable="false" Type="Edm.String"
+					sap:sortable="false" MaxLength="10" sap:filterable="false"/>
+				<Property Name="CompanyCode" sap:updatable="false" sap:creatable="false" sap:label="Company Code" Nullable="false" Type="Edm.String"
+					sap:sortable="false" MaxLength="4" sap:filterable="false"/>
+				<Property Name="CompanyName" sap:updatable="false" sap:creatable="false" sap:label="Company Name" Nullable="false" Type="Edm.String"
+					sap:sortable="false" MaxLength="25" sap:filterable="false"/>
+				<Property Name="BUCode" sap:updatable="false" sap:creatable="false" sap:label="BUCode" Nullable="false" Type="Edm.String"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="BusinessUnit" sap:updatable="false" sap:creatable="false" sap:label="Business Unit" Nullable="false" Type="Edm.String"
+					sap:sortable="false" MaxLength="6" sap:filterable="false"/>
+				<Property Name="Position" sap:updatable="false" sap:creatable="false" sap:label="Position" Nullable="false" Type="Edm.String"
+					sap:sortable="false" MaxLength="3" sap:filterable="false"/>
+				<Property Name="ResponsiblePM" sap:updatable="false" sap:creatable="false" sap:label="Pers.Resp.Name" Nullable="false" Type="Edm.String"
+					sap:sortable="false" MaxLength="25" sap:filterable="false"/>
+				<Property Name="Description" sap:updatable="false" sap:creatable="false" sap:label="Project" Nullable="false" Type="Edm.String"
+					sap:sortable="false" MaxLength="35" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Favorite" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="FavoriteType"/>
+					<PropertyRef Name="UserId"/>
+					<PropertyRef Name="ObjectId"/>
+				</Key>
+				<Property Name="FavoriteType" Type="Edm.String" Nullable="false"  sap:label="Favorite Type" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="UserId" Type="Edm.String" Nullable="false" sap:label="User Id" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/>
+				<Property Name="ObjectId" Type="Edm.String" Nullable="false"  sap:label="Object Id" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>	
+				
+			</EntityType>
+			<Association Name="AssTeamEmployees" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Team" Multiplicity="1" Role="FromRole_AssTeamEmployees"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="*" Role="ToRole_AssTeamEmployees"/>
+			</Association>
+			<Association Name="AssMyEquipments" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyEquipments"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Equipment" Multiplicity="*" Role="ToRole_AssMyEquipments"/>
+			</Association>
+			<Association Name="AssMyTeams" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyTeams"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Team" Multiplicity="*" Role="ToRole_AssMyTeams"/>
+			</Association>
+			<Association Name="AssMyPersonalisations" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="1" Role="FromRole_AssMyPersonalisations"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Personalisation" Multiplicity="*" Role="ToRole_AssMyPersonalisations"/>
+			</Association>
+			<Association Name="AssMyHelpLists" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="1" Role="FromRole_AssMyHelpLists"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.ValueHelp" Multiplicity="*" Role="ToRole_AssMyHelpLists"/>
+			</Association>
+			<Association Name="AssMyEmployees" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyEmployees"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="*" Role="ToRole_AssMyEmployees"/>
+			</Association>
+			<Association Name="AssMyWorkDays" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="1" Role="FromRole_AssMyWorkDays"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.WorkDay" Multiplicity="*" Role="ToRole_AssMyWorkDays"/>
+			</Association>
+			<Association Name="AssMyWeekSummary" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="0..1" Role="FromRole_AssMyWeekSummary"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.WeekSummary" Multiplicity="1" Role="ToRole_AssMyWeekSummary"/>
+			</Association>
+			<Association Name="AssEquipmentTimeItems" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Equipment" Multiplicity="1" Role="FromRole_AssEquipmentTimeItems"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.EquipmentTime" Multiplicity="*" Role="ToRole_AssEquipmentTimeItems"/>
+			</Association>
+			<Association Name="AssWorkDayTimeItems" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.WorkDay" Multiplicity="0..1" Role="FromRole_AssWorkDayTimeItems"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.WorkDayItem" Multiplicity="*" Role="ToRole_AssWorkDayTimeItems"/>
+			</Association>
+			<Association Name="AssAbsenceItems" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.WorkDay" Multiplicity="0..1" Role="FromRole_AssAbsenceItems"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.AbsenceDayItem" Multiplicity="*" Role="ToRole_AssAbsenceItems"/>
+			</Association>
+			<EntityContainer Name="ZHR_MOB_TIMESHEET_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="TimeAdminSet" EntityType="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="WeekSummarySet" EntityType="ZHR_MOB_TIMESHEET_SRV.WeekSummary" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="EmployeeSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Employee" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="WorkDaySet" EntityType="ZHR_MOB_TIMESHEET_SRV.WorkDay" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="WorkDayItemSet" EntityType="ZHR_MOB_TIMESHEET_SRV.WorkDayItem" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="AbsenceDayItemSet" EntityType="ZHR_MOB_TIMESHEET_SRV.AbsenceDayItem" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="EquipmentSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Equipment" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="EquipmentTimeSet" EntityType="ZHR_MOB_TIMESHEET_SRV.EquipmentTime" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="TeamSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Team" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="PersonalisationSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Personalisation" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="ValueHelpSet" EntityType="ZHR_MOB_TIMESHEET_SRV.ValueHelp" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="CalanderSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Calander" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+					sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="DocumentSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Document" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="ProjectSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Project" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="true" sap:addressable="false" sap:content-version="1"/>
+				<EntitySet Name="FavoriteSet" EntityType="ZHR_MOB_TIMESHEET_SRV.Favorite" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:pageable="true" sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="AssWorkDayTimeItemsSet" Association="ZHR_MOB_TIMESHEET_SRV.AssWorkDayTimeItems" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="WorkDaySet" Role="FromRole_AssWorkDayTimeItems"/>
+					<End EntitySet="WorkDayItemSet" Role="ToRole_AssWorkDayTimeItems"/>
+				</AssociationSet>
+				<AssociationSet Name="AssMyWorkDays_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyWorkDays" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1">
+					<End EntitySet="EmployeeSet" Role="FromRole_AssMyWorkDays"/>
+					<End EntitySet="WorkDaySet" Role="ToRole_AssMyWorkDays"/>
+				</AssociationSet>
+				<AssociationSet Name="AssMyEquipments_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyEquipments" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="TimeAdminSet" Role="FromRole_AssMyEquipments"/>
+					<End EntitySet="EquipmentSet" Role="ToRole_AssMyEquipments"/>
+				</AssociationSet>
+				<AssociationSet Name="AssMyHelpLists_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyHelpLists" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="TimeAdminSet" Role="FromRole_AssMyHelpLists"/>
+					<End EntitySet="ValueHelpSet" Role="ToRole_AssMyHelpLists"/>
+				</AssociationSet>
+				<AssociationSet Name="AssMyWeekSummary_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyWeekSummary" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="EmployeeSet" Role="FromRole_AssMyWeekSummary"/>
+					<End EntitySet="WeekSummarySet" Role="ToRole_AssMyWeekSummary"/>
+				</AssociationSet>
+				<AssociationSet Name="AssMyTeams_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyTeams" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1">
+					<End EntitySet="TimeAdminSet" Role="FromRole_AssMyTeams"/>
+					<End EntitySet="TeamSet" Role="ToRole_AssMyTeams"/>
+				</AssociationSet>
+				<AssociationSet Name="AssMyPersonalisations_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyPersonalisations" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="TimeAdminSet" Role="FromRole_AssMyPersonalisations"/>
+					<End EntitySet="PersonalisationSet" Role="ToRole_AssMyPersonalisations"/>
+				</AssociationSet>
+				<AssociationSet Name="AssMyEmployees_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyEmployees" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="TimeAdminSet" Role="FromRole_AssMyEmployees"/>
+					<End EntitySet="EmployeeSet" Role="ToRole_AssMyEmployees"/>
+				</AssociationSet>
+				<AssociationSet Name="AssAbsenceItems_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssAbsenceItems" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="WorkDaySet" Role="FromRole_AssAbsenceItems"/>
+					<End EntitySet="AbsenceDayItemSet" Role="ToRole_AssAbsenceItems"/>
+				</AssociationSet>
+				<AssociationSet Name="AssTeamEmployees_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssTeamEmployees" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="TeamSet" Role="FromRole_AssTeamEmployees"/>
+					<End EntitySet="EmployeeSet" Role="ToRole_AssTeamEmployees"/>
+				</AssociationSet>
+				<AssociationSet Name="AssEquipmentTimeItems_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssEquipmentTimeItems" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="EquipmentSet" Role="FromRole_AssEquipmentTimeItems"/>
+					<End EntitySet="EquipmentTimeSet" Role="ToRole_AssEquipmentTimeItems"/>
+				</AssociationSet>
+			</EntityContainer>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="http://vesidgwci.vinci-energies.net:1080/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/$metadata"/>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="http://vesidgwci.vinci-energies.net:1080/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/$metadata"/>
+		</Schema>
+	</edmx:DataServices>
 </edmx:Edmx>

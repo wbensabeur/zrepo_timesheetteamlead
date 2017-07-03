@@ -39,36 +39,9 @@ sap.ui.define([
 			this.setModel(oViewModel, "worklistView");
 
 			// model for Calendar
-			var monday = datetime.getMonday(new Date());
-			var sunday = datetime.getLastDay(monday, 2);
-			var oCalendarData = [];
-			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
-				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
-					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
-					"tablleColTitleSat")
-			];
-			var idata = {
-				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-				ColumnTxt2: '',
-				width: '10em',
-				Date: new Date()
-			};
-			oCalendarData.push(idata);
-			for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
-				var cDate = d;
-				var data = {
-					ColumnTxt1: weekday[d.getDay()],
-					ColumnTxt2: '  ' + d.getDate(),
-					width: "auto",
-					Date: new Date(cDate.getTime())
-				};
-				oCalendarData.push(data);
-			}
-
-			var oCalendarModel = new JSONModel(oCalendarData);
-			this.setModel(oCalendarModel, "calendar");
-
-			/// Workdat status binding
+			this.twoWeek = true;
+			this.startDate = new Date();
+			this._calendarBinding(this.startDate, 2);
 
 			// Make sure, busy indication is showing immediately so there is no
 			// break after the busy indication for loading the view's meta data is
@@ -114,72 +87,42 @@ sap.ui.define([
 			}
 			return "W";
 		},
-		weekTwo: function(oEvent){
-			if(oEvent.getSource().getPressed()){
-			this.getView().byId('Week1').setPressed(false);
-			var monday = datetime.getMonday(new Date());
-			var sunday = datetime.getLastDay(monday, 2);
-			var oCalendarData = [];
-			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
-				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
-					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
-					"tablleColTitleSat")
-			];
-			var idata = {
-				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-				ColumnTxt2: '',
-				width: '10em',
-				Date: new Date()
-			};
-			oCalendarData.push(idata);
-			for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
-				var cDate = d;
-				var data = {
-					ColumnTxt1: weekday[d.getDay()],
-					ColumnTxt2: '  ' + d.getDate(),
-					width: "auto",
-					Date: new Date(cDate.getTime())
-				};
-				oCalendarData.push(data);
-			}
-
-			var oCalendarModel = new JSONModel(oCalendarData);
-			this.setModel(oCalendarModel, "calendar");
+		weekTwo: function(oEvent) {
+			this.twoWeek = true;
+			if (oEvent.getSource().getPressed()) {
+				this.getView().byId('Week1').setPressed(false);
+				this.getView().byId('Week1').setEnabled(true);
+				this.getView().byId('Week2').setEnabled(false);
+				this._calendarBinding(new Date(), 2);
 			}
 		},
-		weekOne: function(oEvent){
-			if(oEvent.getSource().getPressed()){
-			this.getView().byId('Week2').setPressed(false);
-			var monday = datetime.getMonday(new Date());
-			var sunday = datetime.getLastDay(monday, 1);
-			var oCalendarData = [];
-			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
-				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
-					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
-					"tablleColTitleSat")
-			];
-			var idata = {
-				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-				ColumnTxt2: '',
-				width: '10em',
-				Date: new Date()
-			};
-			oCalendarData.push(idata);
-			for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
-				var cDate = d;
-				var data = {
-					ColumnTxt1: weekday[d.getDay()],
-					ColumnTxt2: '  ' + d.getDate(),
-					width: "auto",
-					Date: new Date(cDate.getTime())
-				};
-				oCalendarData.push(data);
+		weekOne: function(oEvent) {
+			this.twoWeek = false;
+			if (oEvent.getSource().getPressed()) {
+				this.getView().byId('Week2').setPressed(false);
+				this.getView().byId('Week2').setEnabled(true);
+				this.getView().byId('Week1').setEnabled(false);
+				this._calendarBinding(new Date(), 1);
 			}
-
-			var oCalendarModel = new JSONModel(oCalendarData);
-			this.setModel(oCalendarModel, "calendar");
+		},
+		onPastPeriodNavPress: function(oEvent) {
+			if (this.twoWeek) {
+				this.startDate.setDate(this.startDate.getDate() - 14);
+				this._calendarBinding(this.startDate, 2);
+			} else {
+				this.startDate.setDate(this.startDate.getDate() - 7);
+				this._calendarBinding(this.startDate, 1);
 			}
-		}
+		},
+		onFuturePeriodNavPress: function(oEvent) {
+			if (this.twoWeek) {
+				this.startDate.setDate(this.startDate.getDate() + 14);
+				this._calendarBinding(this.startDate, 2);
+			} else {
+				this.startDate.setDate(this.startDate.getDate() + 7);
+				this._calendarBinding(this.startDate, 1);
+			}
+		},
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -206,6 +149,44 @@ sap.ui.define([
 		//	onExit: function() {
 		//
 		//	}
+
+		/* =========================================================== */
+		/* internal methods                                            */
+		/* =========================================================== */
+
+		_calendarBinding: function(startDate, noOfWeek) {
+			var monday = datetime.getMonday(startDate);
+			var sunday = datetime.getLastDay(monday, noOfWeek);
+			var oCalendarData = {
+				StartDate: new Date(monday.getTime()),
+				data: []
+			};
+			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
+				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
+					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
+					"tablleColTitleSat")
+			];
+			var idata = {
+				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+				ColumnTxt2: '',
+				width: '10em',
+				Date: new Date(monday.getTime())
+			};
+			oCalendarData.data.push(idata);
+			for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
+				var cDate = d;
+				var data = {
+					ColumnTxt1: weekday[d.getDay()],
+					ColumnTxt2: '  ' + d.getDate(),
+					width: "auto",
+					Date: new Date(cDate.getTime())
+				};
+				oCalendarData.data.push(data);
+			}
+
+			var oCalendarModel = new JSONModel(oCalendarData);
+			this.setModel(oCalendarModel, "calendar");
+		}
 
 	});
 
