@@ -31,7 +31,7 @@
         "id": "417603",
         "runnerId": "webapprunner",
         "displayName": "App (Mock Server)",
-        "lastRunTimeStamp": 1498239929816
+        "lastRunTimeStamp": 1498919495987
       }
     },
     {
@@ -142,5 +142,8 @@
         "displayName": "Test Suite (Unit, OPA)"
       }
     }
-  ]
+  ],
+  "hybrid": {
+    "dirty": false
+  }
 }

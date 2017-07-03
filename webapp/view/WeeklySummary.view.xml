@@ -1,12 +1,15 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	controllerName="com.vinci.timesheet.admin.controller.WeeklySummary" xmlns:html="http://www.w3.org/1999/xhtml">
 	<Toolbar>
-			<ToggleButton id="Week1" text="1 Week" press="weekOne" pressed="false"/>
+			<ToggleButton id="Week1" text="1 Week" press="weekOne" pressed="false" enabled="true"/>
+			<ToggleButton id="Week2" text="2 Week" press="weekTwo" pressed="true" enabled="false"/>
 			
-			<ToggleButton id="Week2" text="2 Week" press="weekTwo" pressed="true"/>
+			<Button icon="sap-icon://navigation-left-arrow" type="Transparent" press="onPastPeriodNavPress"/>
+			<Label text="{calendar>/StartDate}" textAlign="Center" class="monthLabelPadding"/>
+			<Button icon="sap-icon://navigation-right-arrow" type="Transparent" press="onFuturePeriodNavPress"/>
 			
 		</Toolbar> 
-	<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/' }" noDataText="{worklistView>/tableNoDataText}"
+	<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
 		busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
 		growingThreshold="10" showSeparators="None" inset="false">
 		 
@@ -24,9 +27,13 @@
 		<items>
 			<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
 				<cells>
-					<VBox>
-						<Label text="{EmployeeId}"/>
+					<VBox class="EmpWeekStatus">
+						<Label text="{EmployeeName}"/>
 						<Label text="72H 3IPD 10KM" design="Bold"/>
+						<customData>
+							<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
+							
+					</customData>
 					</VBox>
 					<Button text="{WeekDate1Hours}" type="Transparent" width="100%" class="hourSize">
 						<customData>
