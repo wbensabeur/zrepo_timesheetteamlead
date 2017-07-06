@@ -1,18 +1,24 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	controllerName="com.vinci.timesheet.admin.controller.WeeklySummary" xmlns:html="http://www.w3.org/1999/xhtml">
-	<Toolbar>
-			<ToggleButton id="Week1" text="1 Week" press="weekOne" pressed="false" enabled="true"/>
-			<ToggleButton id="Week2" text="2 Week" press="weekTwo" pressed="true" enabled="false"/>
-			
-			<Button icon="sap-icon://navigation-left-arrow" type="Transparent" press="onPastPeriodNavPress"/>
-			<Label text="{calendar>/StartDate}" textAlign="Center" class="monthLabelPadding"/>
-			<Button icon="sap-icon://navigation-right-arrow" type="Transparent" press="onFuturePeriodNavPress"/>
-			
-		</Toolbar> 
-	<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
-		busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
-		growingThreshold="10" showSeparators="None" inset="false">
-		 
+	<Bar design="SubHeader" class="VinciBar">
+		<contentLeft>
+			<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
+			<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
+			<Label text="{parts:['calendar>/StartDate'],formatter:'.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+		</contentLeft>
+		<contentRight>
+			<SegmentedButton selectedKey="OneWeek" select="selectPeriod" width="9rem">
+				<items>
+					<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
+					<SegmentedButtonItem text="14 {i18n>days}" key="twoWeek"/>
+				</items>
+			</SegmentedButton>
+		</contentRight>
+	</Bar>
+	<Table id="table"
+		items="{ path: '/WeekSummarySet' , filters: [{ path:'WeekNumber', operator: 'EQ', value1: '27' }, { path:'WeekYear', operator: 'EQ', value1: '2017' }, { path:'isByWeekly', operator: 'EQ', value1: '1' }] }"
+		columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+		growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="10" showSeparators="None" inset="false">
 		<columns>
 			<Column width="{calendar>width}" hAlign="Center">
 				<VBox class="tableColumn">
@@ -29,11 +35,10 @@
 				<cells>
 					<VBox class="EmpWeekStatus">
 						<Label text="{EmployeeName}"/>
-						<Label text="72H 3IPD 10KM" design="Bold"/>
+						<Label text="{WeekTotalHours}H 3IPD 10KM"/>
 						<customData>
 							<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
-							
-					</customData>
+						</customData>
 					</VBox>
 					<Button text="{WeekDate1Hours}" type="Transparent" width="100%" class="hourSize">
 						<customData>

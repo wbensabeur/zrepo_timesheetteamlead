@@ -1,18 +1,28 @@
+/*.VinciBar{
+	    background-color: rgb(20, 35, 94) !important;
+	    color:white;
+}*/
+
 .sapUiTableTr>td {
-    border-right: 1px solid #e5e5e5 !important; 
-    border-bottom: 1px solid #e5e5e5 !important;
+    border-right: .1rem solid black !important; 
+    border-bottom: .1rem solid black !important;
     padding: 0 !important; 
     vertical-align: middle !important;
     box-sizing: border-box !important;
 }
 
-.sapMListTblCell.cellBorderLeft > table > thead > tr > th{
-    border-left: 1px solid red !important;
+.sapMLIBShowSeparator>td {
+    border-top: none;
 }
 
-.sapMListTblCell.cellBorderRight {
-    border-right: 1px solid red !important;
+.sapMListTblHeader th {
+    border-bottom: .1rem solid black;
 }
+.circleIcon>span {
+	border-radius: 50%;
+}
+
+
 
 .sapMListTblCell {
     padding-top: 0rem !important;
@@ -23,19 +33,25 @@
     font-size: 0.875rem;
 }
 
+.sapMSegB .sapMSegBBtn {
+    padding-left: .1rem !important;
+    padding-right: .1rem !important;
+}
+
+.sapMBtnInner.sapMBtnText {
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+.hourSize {
+	padding: 0;	
+}
+
+.hourSize>span {
+    height: 100%;
+}
 .hourSize>span>span {
     font-size: 1.5rem;
 }
-
-/*.blackFont{
-color: black;	
-}
-.redFont{
-color: red;	
-}*/
-/*.hourSize[data-status="OK"]>span>span {
- color: red !Important;
-}*/
 
 .hourSize[data-background="L"] {
  background-color: lightgrey;
@@ -55,57 +71,35 @@ color: red;
 
 .EmpWeekStatus[data-status="W"] {
     background-color: rgb(249, 203, 130);
-   /* text-align: left;
-    padding-left: .75rem;
-    height: 3rem;*/
 }
 
 .EmpWeekStatus[data-status="V"] {
     background-color: rgb(150, 213, 209);
-/*    text-align: left;
-    padding-left: .75rem;
-    height: 3rem;*/
 }
 
 .EmpWeekStatus[data-status="R"] {
     background-color: rgb(252, 107, 138);
-/*    text-align: left;
-    padding-left: .75rem;
-    height: 3rem;*/
 }
-/*.EmpWeekStatus[data-status=""] {
-    text-align: left;
-    padding-left: .75rem;
-    height: 3rem;
-}*/
 
 .hourSize[data-status="D"] {
-/*    border-bottom-style: solid;
-    border-bottom-width: .3rem;*/
     background-color: rgb(230, 231, 232);
 }
 
 .hourSize[data-status="W"] {
-/*    border-bottom-style: solid;
-    border-bottom-width: .3rem;*/
     background-color: rgb(249, 203, 130);
 }
 
 .hourSize[data-status="V"] {
-/*    border-bottom-style: solid;
-    border-bottom-width: .3rem;*/
     background-color: rgb(150, 213, 209);
 }
 
 .hourSize[data-status="R"] {
-/*    border-bottom-style: solid;
-    border-bottom-width: .3rem;*/
     background-color: rgb(252, 107, 138);
 }
 
 .tableColumn {
-	    padding-top: 0.5rem;
-    padding-right: 0.5rem;
+	padding-top: 0.5rem;
+    padding-right: 0.1rem;
     padding-bottom: 0.1rem;
-    padding-left: 0.5rem;
+    padding-left: 0.1rem;
 }

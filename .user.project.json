@@ -2,7 +2,7 @@
   "run": [
     {
       "filePath": "/webapp/index.html",
-      "previewMode": 1,
+      "previewMode": 0,
       "dataMode": 0,
       "workspace": "withoutWorkspace",
       "urlParameters": [
@@ -31,7 +31,7 @@
         "id": "417603",
         "runnerId": "webapprunner",
         "displayName": "App (Mock Server)",
-        "lastRunTimeStamp": 1498919495987
+        "lastRunTimeStamp": 1499251994593
       }
     },
     {
@@ -59,7 +59,7 @@
         "id": "4693853",
         "runnerId": "webapprunner",
         "displayName": "App",
-        "lastRunTimeStamp": 1498221014527
+        "lastRunTimeStamp": 1499086583249
       }
     },
     {
