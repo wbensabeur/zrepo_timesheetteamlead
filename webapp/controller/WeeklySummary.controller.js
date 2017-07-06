@@ -84,6 +84,7 @@ sap.ui.define([
 				sTitle = this.getResourceBundle().getText("worklistTableTitle");
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
+			this.getModel("calendar").setProperty("/data/0/ColumnTxt1",sTitle);
 		},
 		leaveFormatter: function(value) {
 			if (value === null) {
@@ -122,6 +123,12 @@ sap.ui.define([
 				this._calendarBinding(new Date(), 1);
 			}
 		},*/
+		booleanNot: function(value) {
+			if (value) {
+				return false;
+			}
+			return true;
+		},
 		periodFormat: function(oDate) {
 			var currentWeekNumber = datetime.getWeek(oDate);
 			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
@@ -219,7 +226,8 @@ sap.ui.define([
 			var idata = {
 				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
 				ColumnTxt2: '',
-				width: '10em',
+				ComboVisible: true,
+				width: '15em',
 				Date: new Date(monday.getTime())
 			};
 			oCalendarData.data.push(idata);
@@ -229,6 +237,7 @@ sap.ui.define([
 					ColumnTxt1: weekday[d.getDay()],
 					ColumnTxt2: '  ' + d.getDate(),
 					width: "auto",
+					ComboVisible: false,
 					Date: new Date(cDate.getTime())
 				};
 				oCalendarData.data.push(data);

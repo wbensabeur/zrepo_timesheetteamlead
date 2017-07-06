@@ -22,8 +22,9 @@
 		<columns>
 			<Column width="{calendar>width}" hAlign="Center">
 				<VBox class="tableColumn">
-					<Label text="{calendar>ColumnTxt1}"/>
-					<Label text=" {calendar>ColumnTxt2}"/>
+					<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
+					<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.booleanNot'}"/>
+					<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.booleanNot'}"/>
 					<customData>
 						<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.leaveFormatter'}" writeToDom="true"/>
 					</customData>
