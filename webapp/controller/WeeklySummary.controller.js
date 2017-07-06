@@ -39,9 +39,16 @@ sap.ui.define([
 			this.setModel(oViewModel, "worklistView");
 
 			// model for Calendar
-			this.twoWeek = true;
+			this.twoWeek = false;
 			this.startDate = new Date();
-			this._calendarBinding(this.startDate, 2);
+
+			var currentWeekNumber = datetime.getWeek(this.startDate);
+			var currentYear = (new Date(this.startDate.getTime())).getFullYear();
+
+			this.getView().byId("table").mBindingInfos.items.filters[0].oValue1 = currentWeekNumber; //WeekNumber
+			this.getView().byId("table").mBindingInfos.items.filters[1].oValue1 = currentYear; //WeekYear
+			this.getView().byId("table").mBindingInfos.items.filters[2].oValue1 = 0; //isByWeekly
+			this._calendarBinding(this.startDate, 1);
 
 			// Make sure, busy indication is showing immediately so there is no
 			// break after the busy indication for loading the view's meta data is
@@ -87,7 +94,17 @@ sap.ui.define([
 			}
 			return "W";
 		},
-		weekTwo: function(oEvent) {
+		selectPeriod: function(oEvent) {
+			var oKey = oEvent.getParameter("key");
+			if (oKey === 'OneWeek') {
+				this.twoWeek = false;
+				this._calendarBinding(new Date(), 1);
+			} else {
+				this.twoWeek = true;
+				this._calendarBinding(datetime.getLastWeek(new Date()), 2);
+			}
+		},
+		/*weekTwo: function(oEvent) {
 			this.twoWeek = true;
 			if (oEvent.getSource().getPressed()) {
 				this.getView().byId('Week1').setPressed(false);
@@ -104,6 +121,27 @@ sap.ui.define([
 				this.getView().byId('Week1').setEnabled(false);
 				this._calendarBinding(new Date(), 1);
 			}
+		},*/
+		periodFormat: function(oDate) {
+			var currentWeekNumber = datetime.getWeek(oDate);
+			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
+				month: "long"
+			});
+			var currentYear = oDate.getFullYear();
+			var oString = this.getResourceBundle().getText("week")+' ' + currentWeekNumber + ',' + month + ' ' + currentYear + ' - '+this.getResourceBundle().getText("from")+' ';
+			var dd = oDate.getDate();
+			var mm = oDate.getMonth() + 1;
+			oString = oString.concat(dd + '/' + mm + ' '+this.getResourceBundle().getText("to")+' ');
+			var oDateEnd = null;
+
+			if (this.twoWeek) {
+				oDateEnd = datetime.getLastDay(oDate, 2);
+			} else {
+				oDateEnd = datetime.getLastDay(oDate, 1);
+			}
+			var dd2 = oDateEnd.getDate();
+			var mm2 = oDateEnd.getMonth() + 1;
+			return oString + dd2 + '/' + mm2;
 		},
 		onPastPeriodNavPress: function(oEvent) {
 			if (this.twoWeek) {
@@ -161,6 +199,18 @@ sap.ui.define([
 				StartDate: new Date(monday.getTime()),
 				data: []
 			};
+			var currentWeekNumber = datetime.getWeek(monday);
+			var currentYear = (new Date(monday.getTime())).getFullYear();
+			var isByWeekly = 0;
+			if (noOfWeek === 2) {
+				isByWeekly = 1;
+			}
+			var oTable = this.byId("table");
+			if (oTable.getBinding("items") != null) {
+				var Filters = [new Filter("WeekNumber", FilterOperator.EQ, currentWeekNumber), new Filter("WeekYear", FilterOperator.EQ,
+					currentYear), new Filter("isByWeekly", FilterOperator.EQ, isByWeekly)];
+				oTable.getBinding("items").filter(Filters, "Application");
+			}
 			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
 				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
 					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
@@ -173,7 +223,7 @@ sap.ui.define([
 				Date: new Date(monday.getTime())
 			};
 			oCalendarData.data.push(idata);
-			for (var d = monday; d < sunday; d.setDate(d.getDate() + 1)) {
+			for (var d = monday; d <= sunday; d.setDate(d.getDate() + 1)) {
 				var cDate = d;
 				var data = {
 					ColumnTxt1: weekday[d.getDay()],
