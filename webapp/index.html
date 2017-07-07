@@ -37,19 +37,21 @@
 				}).placeAt("content");*/
 				
 				//////
+				
 				new Shell("shell", {
     					icon : "https://sapui5.netweaver.ondemand.com/sdk/resources/sap/ui/core/mimes/logo/sap_50x26.png",
     					user : new ShellHeadUserItem({
     						username : "Martin Durant",
     						image : "sap-icon://customer"
     											}),
+    				/*	headItems :[new ShellHeadItem({
+    							icon : "sap-icon://log",
+    							}),],*/						
     						
     					headEndItems :[
+    							
     							new ShellHeadItem({
-    							icon : "sap-icon://filter",
-    							}),
-    							new ShellHeadItem({
-    							icon : "sap-icon://search",
+    							icon : "sap-icon://log",
     							})
 
     						],
