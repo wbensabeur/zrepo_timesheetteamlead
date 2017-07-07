@@ -1,7 +1,32 @@
-/*.VinciBar{
-	    background-color: rgb(20, 35, 94) !important;
-	    color:white;
-}*/
+/* css for Shell */
+
+.sapUiUfdShellHeader {
+	background-color: rgba(0, 69, 134, 1);
+}
+.sapUiUfdShellHeadUsrItm {
+    color: white;
+}
+
+.sapUiUfdShellHeadItm>span, .sapUiUfdShellHeadUsrItm {
+    color: white;
+    text-shadow: none;
+}
+
+/* css for sub header*/
+
+.VinciBar {
+      background-color: rgba(20, 35, 94, 1) !important;
+      text-shadow: none !important;
+}
+.VinciBar .sapMLabel {
+	color: white;
+}
+
+:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
+    color: #ffffff;
+}
+
+
 .sapMInputBaseInner {
 	background: transparent !important;
 }
@@ -9,8 +34,11 @@
 .tableColumnCombo {
      border: none; 
      margin: 0;
-     height: 2.43rem;
+     height: 1.5rem;
 }   
+.tableBULabel {
+	font-size: 0.6rem;
+}
 
 .sapUiTableTr>td {
     border-right: .1rem solid black !important; 

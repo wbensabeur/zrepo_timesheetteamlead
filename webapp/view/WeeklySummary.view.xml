@@ -6,7 +6,11 @@
 			<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
 			<Label text="{parts:['calendar>/StartDate'],formatter:'.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
 		</contentLeft>
+		<contentMiddle>
+			<SearchField placeholder="Search Employee" />
+		</contentMiddle>
 		<contentRight>
+			<Button icon="sap-icon://filter" type="Transparent"  class="circleIcon"/>
 			<SegmentedButton selectedKey="OneWeek" select="selectPeriod" width="9rem">
 				<items>
 					<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
@@ -18,11 +22,12 @@
 	<Table id="table"
 		items="{ path: '/WeekSummarySet' , filters: [{ path:'WeekNumber', operator: 'EQ', value1: '27' }, { path:'WeekYear', operator: 'EQ', value1: '2017' }, { path:'isByWeekly', operator: 'EQ', value1: '1' }] }"
 		columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
-		growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="10" showSeparators="None" inset="false">
+		growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="30" showSeparators="None" inset="false">
 		<columns>
 			<Column width="{calendar>width}" hAlign="Center">
 				<VBox class="tableColumn">
 					<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
+					<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
 					<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.booleanNot'}"/>
 					<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.booleanNot'}"/>
 					<customData>

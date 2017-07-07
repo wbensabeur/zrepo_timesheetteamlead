@@ -225,7 +225,7 @@ sap.ui.define([
 			];
 			var idata = {
 				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-				ColumnTxt2: '',
+				ColumnTxt2: 'Business Unit 1',
 				ComboVisible: true,
 				width: '15em',
 				Date: new Date(monday.getTime())
