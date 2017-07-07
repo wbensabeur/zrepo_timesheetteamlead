@@ -7,7 +7,7 @@
 			<Label text="{parts:['calendar>/StartDate'],formatter:'.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
 		</contentLeft>
 		<contentMiddle>
-			<SearchField placeholder="Search Employee" />
+			<SearchField placeholder="Search Employee" search="onEmployeSearch" />
 		</contentMiddle>
 		<contentRight>
 			<Button icon="sap-icon://filter" type="Transparent"  class="circleIcon"/>

@@ -40,18 +40,21 @@
 				
 				new Shell("shell", {
     					icon : "https://sapui5.netweaver.ondemand.com/sdk/resources/sap/ui/core/mimes/logo/sap_50x26.png",
-    					user : new ShellHeadUserItem({
-    						username : "Martin Durant",
+    					user : new ShellHeadUserItem("shellUser",{
+    						username : "{/firstName}",
     						image : "sap-icon://customer"
     											}),
-    				/*	headItems :[new ShellHeadItem({
-    							icon : "sap-icon://log",
-    							}),],*/						
+    					headItems :[new ShellHeadItem("shellSettings",{
+    							icon : "sap-icon://action-settings",
+    							}),],						
     						
     					headEndItems :[
     							
     							new ShellHeadItem({
     							icon : "sap-icon://log",
+    							press: function (oEvent) {
+    								alert("Log Off");
+    							}
     							})
 
     						],
