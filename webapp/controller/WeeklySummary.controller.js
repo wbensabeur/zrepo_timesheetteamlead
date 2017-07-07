@@ -19,6 +19,15 @@ sap.ui.define([
 			var oViewModel,
 				iOriginalBusyDelay,
 				oTable = this.byId("table");
+				
+			/// Attach Seeting button from Shell
+			var setting =  sap.ui.getCore().byId('shellSettings');
+				if(setting != null)
+				{
+					setting.attachPress(function (oEvent) {
+                			alert("Personal Setting");
+            						});
+				}
 
 			// Put down worklist table's original value for busy indicator delay,
 			// so it can be restored later on. Busy handling on the table is
@@ -123,6 +132,20 @@ sap.ui.define([
 				this._calendarBinding(new Date(), 1);
 			}
 		},*/
+		onEmployeSearch : function(oEvent) {
+			var oTable = this.byId("table");
+			var oTableSearchState = [];
+			var sQuery = oEvent.getParameter("query");
+			var existingFilters = oTable.mBindingInfos.items.filters;
+			/*for(var i in existingFilters ){
+				oTableSearchState.push(new Filter(existingFilters[i].sPath, existingFilters[i].sOperator, existingFilters[i].oValue1));
+			}*/
+			if (sQuery && sQuery.length > 0) {
+					existingFilters.push(new Filter("EmployeeName", FilterOperator.Contains, sQuery));
+			}
+			oTable.getBinding("items").filter(existingFilters, "Application");
+			
+		},
 		booleanNot: function(value) {
 			if (value) {
 				return false;

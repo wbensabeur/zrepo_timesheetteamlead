@@ -19,6 +19,12 @@ sap.ui.define([
 			 * @override
 			 */
 			init : function () {
+				
+				var userBox =  sap.ui.getCore().byId('shellUser');
+				if(userBox != null)
+				{
+					userBox.setModel(this.getModel('user'));
+				}
 				// call the base component's init function
 				UIComponent.prototype.init.apply(this, arguments);
 
