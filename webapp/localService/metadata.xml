@@ -38,6 +38,10 @@
 				<Property Name="EmployeeName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekTotalHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekTotalAllownce" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="WeekTotalKMTotal" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
 				<Property Name="isEntryEnabled" Type="Edm.Boolean" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
 				<Property Name="WeekStatus" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -135,6 +139,12 @@
 					ToRole="ToRole_AssMyWeekSummary"/>
 				<NavigationProperty Name="NavMyWorkDays" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyWorkDays" FromRole="FromRole_AssMyWorkDays"
 					ToRole="ToRole_AssMyWorkDays"/>
+				<NavigationProperty Name="NavMyEquipments" Relationship="ZHR_MOB_TIMESHEET_SRV.AssEmployeeEquipments" FromRole="FromRole_AssEmployeeEquipments"
+					ToRole="ToRole_AssEmployeeEquipments"/>
+				<NavigationProperty Name="NavMyPersonalisations" Relationship="ZHR_MOB_TIMESHEET_SRV.AssEmployeePersonalisations"
+					FromRole="FromRole_AssEmployeePersonalisations" ToRole="ToRole_AssEmployeePersonalisations"/>
+				<NavigationProperty Name="NavMyHelpLists" Relationship="ZHR_MOB_TIMESHEET_SRV.AssEmployeeHelpLists" FromRole="FromRole_AssEmployeeHelpLists"
+					ToRole="ToRole_AssEmployeeHelpLists"/>	
 			</EntityType>
 			<EntityType Name="WorkDay" sap:content-version="1">
 				<Key>
@@ -151,6 +161,10 @@
 				<Property Name="FilledHours" Type="Edm.String" sap:label="Filled Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
 				<Property Name="AbsenceHours" Type="Edm.String" sap:label="Absence Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="DayAllowanceQuantity" Type="Edm.String" sap:label="Allownene Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+				<Property Name="DayKms" Type="Edm.String" sap:label="Absence Hour" sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
 				<Property Name="IsWorkingDay" Type="Edm.Boolean" sap:label="Working / Non Working Day Indicator" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
@@ -251,6 +265,8 @@
 				<Property Name="Company" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
 				<Property Name="AnalyticalUnit" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
 				<Property Name="Section" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<NavigationProperty Name="NavEquipmentDaySummary" Relationship="ZHR_MOB_TIMESHEET_SRV.AssEquipmentDaySummary"
+					FromRole="FromRole_AssEquipmentDaySummary" ToRole="ToRole_AssEquipmentDaySummary"/>
 				<NavigationProperty Name="NavEquipmentTimeItems" Relationship="ZHR_MOB_TIMESHEET_SRV.AssEquipmentTimeItems"
 					FromRole="FromRole_AssEquipmentTimeItems" ToRole="ToRole_AssEquipmentTimeItems"/>
 			</EntityType>
@@ -268,6 +284,18 @@
 					sap:filterable="false"/>
 				<Property Name="Counter" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="Unit" Type="Edm.Int16" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
+			</EntityType>
+			
+			<EntityType Name="EquipmentDaySummary" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="EquipmentId"/>
+					<PropertyRef Name="WorkDate"/>
+				</Key>
+				<Property Name="EquipmentId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="WorkDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="Unit" Type="Edm.Int16" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
 			</EntityType>
@@ -388,6 +416,10 @@
 				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyEquipments"/>
 				<End Type="ZHR_MOB_TIMESHEET_SRV.Equipment" Multiplicity="*" Role="ToRole_AssMyEquipments"/>
 			</Association>
+			<Association Name="AssEmployeeEquipments" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="0..1" Role="FromRole_AssEmployeeEquipments"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Equipment" Multiplicity="*" Role="ToRole_AssEmployeeEquipments"/>
+			</Association>
 			<Association Name="AssMyTeams" sap:content-version="1">
 				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyTeams"/>
 				<End Type="ZHR_MOB_TIMESHEET_SRV.Team" Multiplicity="*" Role="ToRole_AssMyTeams"/>
@@ -396,9 +428,18 @@
 				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="1" Role="FromRole_AssMyPersonalisations"/>
 				<End Type="ZHR_MOB_TIMESHEET_SRV.Personalisation" Multiplicity="*" Role="ToRole_AssMyPersonalisations"/>
 			</Association>
+			<Association Name="AssEmployeePersonalisations" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="1" Role="FromRole_AssEmployeePersonalisations"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Personalisation" Multiplicity="*" Role="ToRole_AssEmployeePersonalisations"/>
+			</Association>
+			
 			<Association Name="AssMyHelpLists" sap:content-version="1">
 				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="1" Role="FromRole_AssMyHelpLists"/>
 				<End Type="ZHR_MOB_TIMESHEET_SRV.ValueHelp" Multiplicity="*" Role="ToRole_AssMyHelpLists"/>
+			</Association>
+			<Association Name="AssEmployeeHelpLists" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Employee" Multiplicity="1" Role="FromRole_AssEmployeeHelpLists"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.ValueHelp" Multiplicity="*" Role="ToRole_AssEmployeeHelpLists"/>
 			</Association>
 			<Association Name="AssMyEmployees" sap:content-version="1">
 				<End Type="ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator" Multiplicity="0..1" Role="FromRole_AssMyEmployees"/>
@@ -415,6 +456,10 @@
 			<Association Name="AssEquipmentTimeItems" sap:content-version="1">
 				<End Type="ZHR_MOB_TIMESHEET_SRV.Equipment" Multiplicity="1" Role="FromRole_AssEquipmentTimeItems"/>
 				<End Type="ZHR_MOB_TIMESHEET_SRV.EquipmentTime" Multiplicity="*" Role="ToRole_AssEquipmentTimeItems"/>
+			</Association>DaySummary
+			<Association Name="AssEquipmentDaySummary" sap:content-version="1">
+				<End Type="ZHR_MOB_TIMESHEET_SRV.Equipment" Multiplicity="1" Role="FromRole_AssEquipmentDaySummary"/>
+				<End Type="ZHR_MOB_TIMESHEET_SRV.EquipmentDaySummary" Multiplicity="*" Role="ToRole_AssEquipmentDaySummary"/>
 			</Association>
 			<Association Name="AssWorkDayTimeItems" sap:content-version="1">
 				<End Type="ZHR_MOB_TIMESHEET_SRV.WorkDay" Multiplicity="0..1" Role="FromRole_AssWorkDayTimeItems"/>
@@ -467,10 +512,20 @@
 					<End EntitySet="TimeAdminSet" Role="FromRole_AssMyEquipments"/>
 					<End EntitySet="EquipmentSet" Role="ToRole_AssMyEquipments"/>
 				</AssociationSet>
+				<AssociationSet Name="AssEmployeeEquipments_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssEmployeeEquipments" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="EmployeeSet" Role="FromRole_AssEmployeeEquipments"/>
+					<End EntitySet="EquipmentSet" Role="ToRole_AssEmployeeEquipments"/>
+				</AssociationSet>
 				<AssociationSet Name="AssMyHelpLists_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyHelpLists" sap:creatable="false"
 					sap:updatable="false" sap:deletable="false" sap:content-version="1">
 					<End EntitySet="TimeAdminSet" Role="FromRole_AssMyHelpLists"/>
 					<End EntitySet="ValueHelpSet" Role="ToRole_AssMyHelpLists"/>
+				</AssociationSet>
+				<AssociationSet Name="AssEmployeeHelpLists_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssEmployeeHelpLists" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="EmployeeSet" Role="FromRole_AssEmployeeHelpLists"/>
+					<End EntitySet="ValueHelpSet" Role="ToRole_AssEmployeeHelpLists"/>
 				</AssociationSet>
 				<AssociationSet Name="AssMyWeekSummary_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyWeekSummary" sap:creatable="false"
 					sap:updatable="false" sap:deletable="false" sap:content-version="1">
@@ -486,6 +541,11 @@
 					sap:updatable="false" sap:deletable="false" sap:content-version="1">
 					<End EntitySet="TimeAdminSet" Role="FromRole_AssMyPersonalisations"/>
 					<End EntitySet="PersonalisationSet" Role="ToRole_AssMyPersonalisations"/>
+				</AssociationSet>
+				<AssociationSet Name="AssEmployeePersonalisations_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssEmployeePersonalisations" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="EmployeeSet" Role="FromRole_AssEmployeePersonalisations"/>
+					<End EntitySet="PersonalisationSet" Role="ToRole_AssEmployeePersonalisations"/>
 				</AssociationSet>
 				<AssociationSet Name="AssMyEmployees_AssocSet" Association="ZHR_MOB_TIMESHEET_SRV.AssMyEmployees" sap:creatable="false"
 					sap:updatable="false" sap:deletable="false" sap:content-version="1">
