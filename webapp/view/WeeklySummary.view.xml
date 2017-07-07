@@ -1,5 +1,7 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	controllerName="com.vinci.timesheet.admin.controller.WeeklySummary" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="false">
+				<content>
 	<Bar design="SubHeader" class="VinciBar">
 		<contentLeft>
 			<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
@@ -10,7 +12,7 @@
 			<SearchField placeholder="Search Employee" search="onEmployeSearch" />
 		</contentMiddle>
 		<contentRight>
-			<Button icon="sap-icon://filter" type="Transparent"  class="circleIcon"/>
+			<Button icon="sap-icon://filter" type="Transparent"  class="circleIcon" press="onFilterPres"/>
 			<SegmentedButton selectedKey="OneWeek" select="selectPeriod" width="9rem">
 				<items>
 					<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
@@ -134,4 +136,15 @@
 			</ColumnListItem>
 		</items>
 	</Table>
+	</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="Accept" type="Accept"/>
+				<Button text="Reject" type="Reject"/>
+				<Button text="Weekly Report"/>
+				<Button text="Delete"/>
+			</Toolbar>
+		</footer>
+	</Page>
 </mvc:View>
