@@ -45,7 +45,14 @@
         "entryPath": "/sap/opu/odata"
       },
       "description": "vesidgwci_SAP"
-    }
+    },
+    {
+     "path": "/services/userapi",
+     "target": {
+       "type": "service",
+       "name": "userapi"
+     }
+  }
   ],
   "cacheControl": [
     {
