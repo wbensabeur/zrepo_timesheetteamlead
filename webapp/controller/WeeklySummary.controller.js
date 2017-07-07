@@ -146,6 +146,27 @@ sap.ui.define([
 			oTable.getBinding("items").filter(existingFilters, "Application");
 			
 		},
+		onFilterPress : function (oEvent){
+			var menuView = com.vinci.empvinciemptimesheet.homePagePtr.byId("vinMenuId");
+			if (menuView.getSize() === "0%") {
+				menuView.setSize("38%");
+			} else {
+				menuView.setSize("0%");
+				
+			}
+	/*	if (! this._oDialog) {
+				this._oDialog = sap.ui.xmlfragment("com.vinci.timesheet.admin.view.filter", this);
+				
+			}
+ 
+			this._oDialog.setModel(this.getView().getModel());
+			// toggle compact style
+			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
+			this._oDialog.open();*/
+			
+			
+	
+		},
 		booleanNot: function(value) {
 			if (value) {
 				return false;
