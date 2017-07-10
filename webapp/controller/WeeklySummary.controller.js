@@ -19,15 +19,14 @@ sap.ui.define([
 			var oViewModel,
 				iOriginalBusyDelay,
 				oTable = this.byId("table");
-				
+
 			/// Attach Seeting button from Shell
-			var setting =  sap.ui.getCore().byId('shellSettings');
-				if(setting != null)
-				{
-					setting.attachPress(function (oEvent) {
-                			alert("Personal Setting");
-            						});
-				}
+			var setting = sap.ui.getCore().byId('shellSettings');
+			if (setting != null) {
+				setting.attachPress(function(oEvent) {
+					alert("Personal Setting");
+				});
+			}
 
 			// Put down worklist table's original value for busy indicator delay,
 			// so it can be restored later on. Busy handling on the table is
@@ -50,6 +49,7 @@ sap.ui.define([
 			// model for Calendar
 			this.twoWeek = false;
 			this.startDate = new Date();
+			this.employeeFilter = null;
 
 			var currentWeekNumber = datetime.getWeek(this.startDate);
 			var currentYear = (new Date(this.startDate.getTime())).getFullYear();
@@ -93,7 +93,7 @@ sap.ui.define([
 				sTitle = this.getResourceBundle().getText("worklistTableTitle");
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
-			this.getModel("calendar").setProperty("/data/0/ColumnTxt1",sTitle);
+			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 		},
 		leaveFormatter: function(value) {
 			if (value === null) {
@@ -108,10 +108,12 @@ sap.ui.define([
 			var oKey = oEvent.getParameter("key");
 			if (oKey === 'OneWeek') {
 				this.twoWeek = false;
-				this._calendarBinding(new Date(), 1);
+				this.startDate = new Date();
+				this._calendarBinding(this.startDate, 1);
 			} else {
 				this.twoWeek = true;
-				this._calendarBinding(datetime.getLastWeek(new Date()), 2);
+				this.startDate = datetime.getLastWeek(new Date());
+				this._calendarBinding(this.startDate, 2);
 			}
 		},
 		/*weekTwo: function(oEvent) {
@@ -132,40 +134,44 @@ sap.ui.define([
 				this._calendarBinding(new Date(), 1);
 			}
 		},*/
-		onEmployeSearch : function(oEvent) {
+		onEmployeSearch: function(oEvent) {
 			var oTable = this.byId("table");
-			var oTableSearchState = [];
-			var sQuery = oEvent.getParameter("query");
-			var existingFilters = oTable.mBindingInfos.items.filters;
-			/*for(var i in existingFilters ){
-				oTableSearchState.push(new Filter(existingFilters[i].sPath, existingFilters[i].sOperator, existingFilters[i].oValue1));
-			}*/
-			if (sQuery && sQuery.length > 0) {
-					existingFilters.push(new Filter("EmployeeName", FilterOperator.Contains, sQuery));
-			}
-			oTable.getBinding("items").filter(existingFilters, "Application");
 			
-		},
-		onFilterPress : function (oEvent){
-			var menuView = com.vinci.empvinciemptimesheet.homePagePtr.byId("vinMenuId");
-			if (menuView.getSize() === "0%") {
-				menuView.setSize("38%");
-			} else {
-				menuView.setSize("0%");
-				
+			//var oTableSearchState = [];
+			var sQuery = oEvent.getParameter("query");
+			this.employeeFilter = sQuery;
+			var Filters = [new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber), new Filter("WeekYear", FilterOperator.EQ,
+					this.currentYear), new Filter("isByWeekly", FilterOperator.EQ, this.isByWeekly)];
+			
+			if (sQuery && sQuery.length > 0) {
+
+				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, sQuery));
+
 			}
-	/*	if (! this._oDialog) {
+
+			oTable.getBinding("items").filter(Filters, "Application");
+
+		},
+		onFilterPress: function(oEvent) {
+			var filterView = this.getView().byId('adminFilter');
+			if (filterView.getSize() === "0%") {
+				filterView.setSize("38%");
+			} else {
+				filterView.setSize("0%");
+
+			}
+			/*if (! this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment("com.vinci.timesheet.admin.view.filter", this);
 				
 			}
  
 			this._oDialog.setModel(this.getView().getModel());
+			this._oDialog.setContentHeight("900px");
+			this._oDialog.setContentWidth("390px");
 			// toggle compact style
 			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
 			this._oDialog.open();*/
-			
-			
-	
+
 		},
 		booleanNot: function(value) {
 			if (value) {
@@ -179,10 +185,11 @@ sap.ui.define([
 				month: "long"
 			});
 			var currentYear = oDate.getFullYear();
-			var oString = this.getResourceBundle().getText("week")+' ' + currentWeekNumber + ',' + month + ' ' + currentYear + ' - '+this.getResourceBundle().getText("from")+' ';
+			var oString = this.getResourceBundle().getText("week") + ' ' + currentWeekNumber + ',' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
+				.getText("from") + ' ';
 			var dd = oDate.getDate();
 			var mm = oDate.getMonth() + 1;
-			oString = oString.concat(dd + '/' + mm + ' '+this.getResourceBundle().getText("to")+' ');
+			oString = oString.concat(dd + '/' + mm + ' ' + this.getResourceBundle().getText("to") + ' ');
 			var oDateEnd = null;
 
 			if (this.twoWeek) {
@@ -250,18 +257,36 @@ sap.ui.define([
 				StartDate: new Date(monday.getTime()),
 				data: []
 			};
-			var currentWeekNumber = datetime.getWeek(monday);
-			var currentYear = (new Date(monday.getTime())).getFullYear();
-			var isByWeekly = 0;
+			this.currentWeekNumber = datetime.getWeek(monday);
+			this.currentYear = (new Date(monday.getTime())).getFullYear();
+			this.isByWeekly = 0;
 			if (noOfWeek === 2) {
-				isByWeekly = 1;
+				this.isByWeekly = 1;
 			}
 			var oTable = this.byId("table");
 			if (oTable.getBinding("items") != null) {
-				var Filters = [new Filter("WeekNumber", FilterOperator.EQ, currentWeekNumber), new Filter("WeekYear", FilterOperator.EQ,
-					currentYear), new Filter("isByWeekly", FilterOperator.EQ, isByWeekly)];
+
+				var existingFilters = oTable.mBindingInfos.items.filters;
+
+				var Filters = [new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber), new Filter("WeekYear", FilterOperator.EQ,
+					this.currentYear), new Filter("isByWeekly", FilterOperator.EQ, this.isByWeekly)];
+				if(this.employeeFilter != null && this.employeeFilter.length > 0)
+				{
+					Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.employeeFilter));
+				}
+				
+				/*if (existingFilters.length > 3) {
+					for (var i = 3; i < existingFilters.length; i++) {
+						if (existingFilters[i].sPath === 'EmployeeName') {
+							Filters.push(existingFilters[i]);
+							break;
+						}
+					}
+
+				}*/
 				oTable.getBinding("items").filter(Filters, "Application");
 			}
+
 			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
 				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
 					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(

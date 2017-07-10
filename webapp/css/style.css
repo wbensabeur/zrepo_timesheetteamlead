@@ -31,6 +31,10 @@
 	background-color: rgba(20, 35, 94, 1) !important;
 }
 
+.sapUiLoSplitterBar{
+	    width: 0rem !important;
+}
+
 .sapMInputBaseInner {
 	background: transparent !important;
 }
