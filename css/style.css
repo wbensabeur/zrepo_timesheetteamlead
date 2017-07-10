@@ -1,0 +1,150 @@
+/* css for Shell */
+
+.sapUiUfdShellHeader {
+	background-color: rgba(0, 69, 134, 1);
+}
+.sapUiUfdShellHeadUsrItm {
+    color: white;
+}
+
+.sapUiUfdShellHeadItm>span, .sapUiUfdShellHeadUsrItm {
+    color: white;
+    text-shadow: none;
+}
+
+/* css for sub header*/
+
+.VinciBar {
+      background-color: rgba(20, 35, 94, 1) !important;
+      text-shadow: none !important;
+}
+.VinciBar .sapMLabel {
+	color: white;
+}
+
+:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
+    color: #ffffff;
+}
+
+/* CSS for Filter Screen*/
+.filterPage{
+	background-color: rgba(20, 35, 94, 1) !important;
+}
+
+.sapUiLoSplitterBar{
+	    width: 0rem !important;
+}
+
+.sapMInputBaseInner {
+	background: transparent !important;
+}
+
+.tableColumnCombo {
+     border: none; 
+     margin: 0;
+     height: 1.5rem;
+}   
+.tableBULabel {
+	font-size: 0.6rem;
+}
+
+.sapUiTableTr>td {
+    border-right: .1rem solid black !important; 
+    border-bottom: .1rem solid black !important;
+    padding: 0 !important; 
+    vertical-align: middle !important;
+    box-sizing: border-box !important;
+}
+
+.sapMLIBShowSeparator>td {
+    border-top: none;
+}
+
+.sapMListTblHeader th {
+    border-bottom: .1rem solid black;
+}
+.circleIcon>span {
+	border-radius: 50%;
+}
+
+
+
+.sapMListTblCell {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+    vertical-align: top;
+    font-size: 0.875rem;
+}
+
+.sapMSegB .sapMSegBBtn {
+    padding-left: .1rem !important;
+    padding-right: .1rem !important;
+}
+
+.sapMBtnInner.sapMBtnText {
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+.hourSize {
+	padding: 0;	
+}
+
+.hourSize>span {
+    height: 100%;
+}
+.hourSize>span>span {
+    font-size: 1.5rem;
+}
+
+.hourSize[data-background="L"] {
+ background-color: lightgrey;
+}
+.tableColumn[data-background="L"] {
+	background-color: lightgrey;
+}
+.EmpWeekStatus {
+	text-align: left;
+    padding-left: .75rem;
+    height: 3rem;
+}
+.EmpWeekStatus[data-status="D"] {
+    background-color: rgb(230, 231, 232);
+
+}
+
+.EmpWeekStatus[data-status="W"] {
+    background-color: rgb(249, 203, 130);
+}
+
+.EmpWeekStatus[data-status="V"] {
+    background-color: rgb(150, 213, 209);
+}
+
+.EmpWeekStatus[data-status="R"] {
+    background-color: rgb(252, 107, 138);
+}
+
+.hourSize[data-status="D"] {
+    background-color: rgb(230, 231, 232);
+}
+
+.hourSize[data-status="W"] {
+    background-color: rgb(249, 203, 130);
+}
+
+.hourSize[data-status="V"] {
+    background-color: rgb(150, 213, 209);
+}
+
+.hourSize[data-status="R"] {
+    background-color: rgb(252, 107, 138);
+}
+
+.tableColumn {
+	padding-top: 0.5rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0rem;
+    padding-left: 0.1rem;
+}
