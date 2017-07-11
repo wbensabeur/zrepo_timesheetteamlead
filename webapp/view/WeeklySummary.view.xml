@@ -4,7 +4,7 @@
 		<VBox>
 			<Bar design="SubHeader" class="VinciBar">
 				<contentLeft>
-					<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
+					<Button icon="./image/back.png" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
 					<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
 					<Label text="{parts:['calendar>/StartDate'],formatter:'.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
 				</contentLeft>
@@ -24,7 +24,7 @@
 			<Table id="table"
 				items="{ path: '/WeekSummarySet' , filters: [{ path:'WeekNumber', operator: 'EQ', value1: '27' }, { path:'WeekYear', operator: 'EQ', value1: '2017' }, { path:'isByWeekly', operator: 'EQ', value1: '1' }] }"
 				columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
-				growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="30" showSeparators="None" inset="false">
+				growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="30" showSeparators="None" inset="false" class="employeeListTable">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn">

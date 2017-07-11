@@ -296,20 +296,37 @@ sap.ui.define([
 				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
 				ColumnTxt2: 'Business Unit 1',
 				ComboVisible: true,
-				width: '15em',
+				width: '18.18%',
 				Date: new Date(monday.getTime())
 			};
 			oCalendarData.data.push(idata);
-			for (var d = monday; d <= sunday; d.setDate(d.getDate() + 1)) {
+			
+			var friday = datetime.getTodayDate(new Date());
+			friday.setDate(sunday.getDate() - 2);
+			for (var d = monday; d <= friday  ; d.setDate(d.getDate() + 1)) {
 				var cDate = d;
 				var data = {
 					ColumnTxt1: weekday[d.getDay()],
 					ColumnTxt2: '  ' + d.getDate(),
-					width: "auto",
+					width: "13.13%",
 					ComboVisible: false,
 					Date: new Date(cDate.getTime())
 				};
 				oCalendarData.data.push(data);
+			}
+			
+			var saturday = datetime.getTodayDate(new Date());
+			saturday.setDate(sunday.getDate() - 1);
+			for (var d2 = saturday; d2 <= sunday; d2.setDate(d2.getDate() + 1)) {
+				var cDate2 = d2;
+				var data2 = {
+					ColumnTxt1: weekday[d2.getDay()],
+					ColumnTxt2: '  ' + d2.getDate(),
+					width: "auto",
+					ComboVisible: false,
+					Date: new Date(cDate2.getTime())
+				};
+				oCalendarData.data.push(data2);
 			}
 
 			var oCalendarModel = new JSONModel(oCalendarData);
