@@ -1,5 +1,5 @@
 {
- "authenticationMethod":"none",
+ "authenticationMethod":"saml",
   "routes": [
     {
       "path": "/webapp/resources",

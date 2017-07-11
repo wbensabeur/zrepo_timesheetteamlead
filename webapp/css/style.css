@@ -7,6 +7,10 @@
     color: white;
 }
 
+/**/
+.VinciBackground{
+	background-color: rgba(20, 35, 94, 1) !important;
+}
 .sapUiUfdShellHeadItm>span, .sapUiUfdShellHeadUsrItm {
     color: white;
     text-shadow: none;
@@ -20,10 +24,17 @@
 }
 .VinciBar .sapMLabel {
 	color: white;
+	font-size: 1rem;
 }
 
 :not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
     color: #ffffff;
+}
+
+/* CSS for Table*/
+.employeeListTable{
+	padding-left: 14px !important;
+	
 }
 
 /* CSS for Filter Screen*/

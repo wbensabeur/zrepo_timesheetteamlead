@@ -1,5 +1,5 @@
 <mvc:View controllerName="com.vinci.timesheet.admin.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout">
-	<Page showHeader="false" >
+	<Page showHeader="false" class="VinciBackground">
 		<content>
 			<mvc:XMLView viewName="com.vinci.timesheet.admin.view.WeeklySummary"/>
 		</content>
@@ -18,13 +18,21 @@
 			</l:contentAreas>
 		</l:Splitter>-->
 		<footer>
-			<Toolbar>
-				<ToolbarSpacer/>
-				<Button text="Accept" type="Accept"/>
-				<Button text="Reject" type="Reject"/>
-				<Button text="Weekly Report"/>
-				<Button text="Delete"/>
-			</Toolbar>
+			<Bar>
+			<contentLeft>
+				<Label text="Draft"/>
+				<Label text="Waiting"/>
+				<Label text="Validated"/>
+				<Label text="Refused"/>
+					
+				
+			</contentLeft>	
+			<contentRight>
+				<Button text="Manage my teams" icon="sap-icon://action"/>
+				<Button text="Edit planning" type="Emphasized"/>
+				<Button text="Weekly report" type="Emphasized"/>
+			</contentRight>		
+			</Bar>
 		</footer>
 	</Page>
 </mvc:View>
