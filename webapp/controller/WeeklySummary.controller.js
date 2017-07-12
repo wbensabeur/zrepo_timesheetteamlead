@@ -136,13 +136,13 @@ sap.ui.define([
 		},*/
 		onEmployeSearch: function(oEvent) {
 			var oTable = this.byId("table");
-			
+
 			//var oTableSearchState = [];
 			var sQuery = oEvent.getParameter("query");
 			this.employeeFilter = sQuery;
 			var Filters = [new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber), new Filter("WeekYear", FilterOperator.EQ,
-					this.currentYear), new Filter("isByWeekly", FilterOperator.EQ, this.isByWeekly)];
-			
+				this.currentYear), new Filter("isByWeekly", FilterOperator.EQ, this.isByWeekly)];
+
 			if (sQuery && sQuery.length > 0) {
 
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, sQuery));
@@ -152,7 +152,20 @@ sap.ui.define([
 			oTable.getBinding("items").filter(Filters, "Application");
 
 		},
-		OnskipFilterScreen : function(oEvent) {
+		OnHourPress: function(oEvent) {
+			var source = oEvent.getSource();
+			var oView = this.getView();
+			var oDialog = oView.byId("EmpDayCheckDialog");
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.EmployeeDayDialog", this);
+				oView.addDependent(oDialog);
+			}
+
+			oDialog.open();
+		},
+		OnskipFilterScreen: function(oEvent) {
 			var filterView = this.getView().byId('adminFilter');
 			var oTable = this.byId("table");
 			filterView.setSize("0%");
@@ -164,7 +177,7 @@ sap.ui.define([
 			if (filterView.getSize() === "0%") {
 				filterView.setSize("38%");
 				oTable.setBusy(true);
-				
+
 			} else {
 				filterView.setSize("0%");
 				oTable.setBusy(false);
@@ -228,6 +241,10 @@ sap.ui.define([
 				this._calendarBinding(this.startDate, 1);
 			}
 		},
+		OnCancelEmpDayCheckDialog : function(oEvent) {
+			var oDialog = this.getView().byId("EmpDayCheckDialog");
+			oDialog.close();
+		},
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -279,8 +296,7 @@ sap.ui.define([
 
 				var Filters = [new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber), new Filter("WeekYear", FilterOperator.EQ,
 					this.currentYear), new Filter("isByWeekly", FilterOperator.EQ, this.isByWeekly)];
-				if(this.employeeFilter != null && this.employeeFilter.length > 0)
-				{
+				if (this.employeeFilter != null && this.employeeFilter.length > 0) {
 					Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.employeeFilter));
 				}
 
@@ -300,73 +316,72 @@ sap.ui.define([
 				Date: new Date(monday.getTime())
 			};
 			oCalendarData.data.push(idata);*/
-			
+
 			if (noOfWeek === 2) {
-			
-			var idata = {
-				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-				ColumnTxt2: 'Business Unit 1',
-				ComboVisible: true,
-				width: '18.18%',
-				cssClass:'tableColumnE',
-				Date: new Date(monday.getTime())
-			};
-			oCalendarData.data.push(idata);
-			
-			for (var d = monday; d <= sunday  ; d.setDate(d.getDate() + 1)) {
-				var cDate = d;
-				var data = {
-					ColumnTxt1: weekday[d.getDay()],
-					ColumnTxt2: '  ' + d.getDate(),
-					width: "6%",
-					cssClass:'tableColumn',
-					ComboVisible: false,
-					Date: new Date(cDate.getTime())
+
+				var idata = {
+					ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+					ColumnTxt2: 'Business Unit 1',
+					ComboVisible: true,
+					width: '18.18%',
+					cssClass: 'tableColumnE',
+					Date: new Date(monday.getTime())
 				};
-				oCalendarData.data.push(data);
-			}	
-			}
-			else{
-				
-			var idata = {
-				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-				ColumnTxt2: 'Business Unit 1',
-				ComboVisible: true,
-				cssClass:'tableColumnE',
-				width: '18.18%',
-				Date: new Date(monday.getTime())
-			};
-			oCalendarData.data.push(idata);	
-				
-			var friday = datetime.getTodayDate(new Date());
-			friday.setTime(sunday.getTime() - (2 * 24 * 60 * 60 * 1000));
-			for (var d3 = monday; d3 <= friday  ; d3.setDate(d3.getDate() + 1)) {
-				var cDate3 = d3;
-				var data3 = {
-					ColumnTxt1: weekday[d3.getDay()],
-					ColumnTxt2: '  ' + d3.getDate(),
-					width: "13.13%",
-					cssClass:'tableColumn',
-					ComboVisible: false,
-					Date: new Date(cDate3.getTime())
+				oCalendarData.data.push(idata);
+
+				for (var d = monday; d <= sunday; d.setDate(d.getDate() + 1)) {
+					var cDate = d;
+					var data = {
+						ColumnTxt1: weekday[d.getDay()],
+						ColumnTxt2: '  ' + d.getDate(),
+						width: "6%",
+						cssClass: 'tableColumn',
+						ComboVisible: false,
+						Date: new Date(cDate.getTime())
+					};
+					oCalendarData.data.push(data);
+				}
+			} else {
+
+				var idata = {
+					ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+					ColumnTxt2: 'Business Unit 1',
+					ComboVisible: true,
+					cssClass: 'tableColumnE',
+					width: '18.18%',
+					Date: new Date(monday.getTime())
 				};
-				oCalendarData.data.push(data3);
-			}
-			
-			var saturday = datetime.getTodayDate(new Date());
-			saturday.setTime(sunday.getTime() - (1* 24 * 60 * 60 * 1000));
-			for (var d2 = saturday; d2 <= sunday; d2.setDate(d2.getDate() + 1)) {
-				var cDate2 = d2;
-				var data2 = {
-					ColumnTxt1: weekday[d2.getDay()],
-					ColumnTxt2: '  ' + d2.getDate(),
-					width: "auto",
-					cssClass:'tableColumn',
-					ComboVisible: false,
-					Date: new Date(cDate2.getTime())
-				};
-				oCalendarData.data.push(data2);
-			}
+				oCalendarData.data.push(idata);
+
+				var friday = datetime.getTodayDate(new Date());
+				friday.setTime(sunday.getTime() - (2 * 24 * 60 * 60 * 1000));
+				for (var d3 = monday; d3 <= friday; d3.setDate(d3.getDate() + 1)) {
+					var cDate3 = d3;
+					var data3 = {
+						ColumnTxt1: weekday[d3.getDay()],
+						ColumnTxt2: '  ' + d3.getDate(),
+						width: "13.13%",
+						cssClass: 'tableColumn',
+						ComboVisible: false,
+						Date: new Date(cDate3.getTime())
+					};
+					oCalendarData.data.push(data3);
+				}
+
+				var saturday = datetime.getTodayDate(new Date());
+				saturday.setTime(sunday.getTime() - (1 * 24 * 60 * 60 * 1000));
+				for (var d2 = saturday; d2 <= sunday; d2.setDate(d2.getDate() + 1)) {
+					var cDate2 = d2;
+					var data2 = {
+						ColumnTxt1: weekday[d2.getDay()],
+						ColumnTxt2: '  ' + d2.getDate(),
+						width: "auto",
+						cssClass: 'tableColumn',
+						ComboVisible: false,
+						Date: new Date(cDate2.getTime())
+					};
+					oCalendarData.data.push(data2);
+				}
 			}
 
 			var oCalendarModel = new JSONModel(oCalendarData);
