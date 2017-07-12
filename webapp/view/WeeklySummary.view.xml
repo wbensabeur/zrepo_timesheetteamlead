@@ -24,7 +24,7 @@
 			<Table id="table"
 				items="{ path: '/WeekSummarySet' , filters: [{ path:'WeekNumber', operator: 'EQ', value1: '27' }, { path:'WeekYear', operator: 'EQ', value1: '2017' }, { path:'isByWeekly', operator: 'EQ', value1: '1' }] }"
 				columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
-				growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="30" showSeparators="None" inset="false" class="employeeListTable">
+				growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="10" showSeparators="None" inset="false" class="employeeListTable">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn">
@@ -42,8 +42,16 @@
 					<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
 						<cells>
 							<VBox class="EmpWeekStatus">
-								<Label text="{EmployeeName}"/>
-								<Label text="{WeekTotalHours}H 3IPD 10KM"/>
+								<Label text="{EmployeeName}" class="EmpName">
+									<layoutData>
+										<FlexItemData growFactor="1" />
+									</layoutData>
+								</Label>
+								<Label text="{WeekTotalHours}H 3IPD 10KM" class="EmpWeekDetails">
+									<layoutData>
+										<FlexItemData growFactor="1" />
+									</layoutData>
+								</Label>
 								<customData>
 									<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
 								</customData>
@@ -140,7 +148,7 @@
 		</VBox>
 		<VBox  class="filterPage" height="100%">
 			
-			<Label text="test"/>
+			<Button text="Cancel" type="Reject" press="OnskipFilterScreen"/>
 			<layoutData><l:SplitterLayoutData size="0%" id="adminFilter" /></layoutData>
 		</VBox>
 		
