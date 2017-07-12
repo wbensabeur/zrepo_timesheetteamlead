@@ -38,9 +38,9 @@
 				<Property Name="EmployeeName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekTotalHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
-				<Property Name="WeekTotalAllownce" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+				<Property Name="WeekTotalAllowances" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
-				<Property Name="WeekTotalKMTotal" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+				<Property Name="WeekTotalKms" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
 				<Property Name="isEntryEnabled" Type="Edm.Boolean" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
@@ -197,6 +197,7 @@
 					sap:filterable="false"/>
 				<Property Name="TravelByType" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
 				<Property Name="NoOfKms" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>	
+				<Property Name="KmsHours" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>	
 				<Property Name="StartTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="EndTime" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -344,6 +345,12 @@
 					sap:filterable="false"/>
 				<Property Name="FieldRDescription" Type="Edm.String" sap:label="Field Related To" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Filter1" Type="Edm.String" sap:label="Filter 1" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="true"/>
+				<Property Name="Filter2" Type="Edm.String" sap:label="Filter 2" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="true"/>
+				<Property Name="Filter3" Type="Edm.String" sap:label="Filter 3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="true"/>	
 				<Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false"/>
 				<Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date" sap:creatable="false" sap:updatable="false"

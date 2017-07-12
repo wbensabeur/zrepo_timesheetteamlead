@@ -52,7 +52,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%201',WeekYear='WeekYear%201',isByWeekly=1,EmployeeId='EmployeeId%201')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "TOMAS KEVIN"
+	"EmployeeName": "TOMAS KEVIN",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -107,7 +109,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%202',WeekYear='WeekYear%202',isByWeekly=1,EmployeeId='EmployeeId%202')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "CUSSAC SYLVIE"
+	"EmployeeName": "CUSSAC SYLVIE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -162,7 +166,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%203',WeekYear='WeekYear%203',isByWeekly=1,EmployeeId='EmployeeId%203')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "MAGDELEINE VALERIE"
+	"EmployeeName": "MAGDELEINE VALERIE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -217,7 +223,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%204',WeekYear='WeekYear%204',isByWeekly=1,EmployeeId='EmployeeId%204')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "PALOMBA PASCALE"
+	"EmployeeName": "PALOMBA PASCALE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -272,7 +280,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%205',WeekYear='WeekYear%205',isByWeekly=1,EmployeeId='EmployeeId%205')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "ANTOINE PATRICE"
+	"EmployeeName": "ANTOINE PATRICE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -327,7 +337,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%206',WeekYear='WeekYear%206',isByWeekly=1,EmployeeId='EmployeeId%206')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "MIUS MARYLINE"
+	"EmployeeName": "MIUS MARYLINE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "22"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -382,7 +394,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%207',WeekYear='WeekYear%207',isByWeekly=1,EmployeeId='EmployeeId%207')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "EYVASO ALINE"
+	"EmployeeName": "EYVASO ALINE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -437,7 +451,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%208',WeekYear='WeekYear%208',isByWeekly=1,EmployeeId='EmployeeId%208')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "GALLO STEPHANIE"
+	"EmployeeName": "GALLO STEPHANIE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -492,7 +508,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%209',WeekYear='WeekYear%209',isByWeekly=1,EmployeeId='EmployeeId%209')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "SOLER SABINE"
+	"EmployeeName": "SOLER SABINE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -547,7 +565,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%2010',WeekYear='WeekYear%2010',isByWeekly=1,EmployeeId='EmployeeId%2010')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "SUCCIVALLI VALERIE"
+	"EmployeeName": "SUCCIVALLI VALERIE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -602,7 +622,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%201',WeekYear='WeekYear%201',isByWeekly=0,EmployeeId='EmployeeId%201')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "TOMAS KEVIN"
+	"EmployeeName": "TOMAS KEVIN",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -657,7 +679,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%202',WeekYear='WeekYear%202',isByWeekly=0,EmployeeId='EmployeeId%202')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "CUSSAC SYLVIE"
+	"EmployeeName": "CUSSAC SYLVIE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -712,7 +736,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%203',WeekYear='WeekYear%203',isByWeekly=0,EmployeeId='EmployeeId%203')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "MAGDELEINE VALERIE"
+	"EmployeeName": "MAGDELEINE VALERIE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -767,7 +793,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%204',WeekYear='WeekYear%204',isByWeekly=0,EmployeeId='EmployeeId%204')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "PALOMBA PASCALE"
+	"EmployeeName": "PALOMBA PASCALE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -822,7 +850,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%205',WeekYear='WeekYear%205',isByWeekly=0,EmployeeId='EmployeeId%205')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "ANTOINE PATRICE"
+	"EmployeeName": "ANTOINE PATRICE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -877,7 +907,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%206',WeekYear='WeekYear%206',isByWeekly=0,EmployeeId='EmployeeId%206')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "MIUS MARYLINE"
+	"EmployeeName": "MIUS MARYLINE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -932,7 +964,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%207',WeekYear='WeekYear%207',isByWeekly=0,EmployeeId='EmployeeId%207')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "EYVASO ALINE"
+	"EmployeeName": "EYVASO ALINE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -987,7 +1021,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%208',WeekYear='WeekYear%208',isByWeekly=0,EmployeeId='EmployeeId%208')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "GALLO STEPHANIE"
+	"EmployeeName": "GALLO STEPHANIE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1042,7 +1078,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%209',WeekYear='WeekYear%209',isByWeekly=0,EmployeeId='EmployeeId%209')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "SOLER SABINE"
+	"EmployeeName": "SOLER SABINE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1097,8 +1135,10 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%2010',WeekYear='WeekYear%2010',isByWeekly=0,EmployeeId='EmployeeId%2010')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "SUCCIVALLI VALERIE"
-},{
+	"EmployeeName": "SUCCIVALLI VALERIE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
+}, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
 	"isByWeekly": 0,
@@ -1152,7 +1192,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%201',WeekYear='WeekYear%201',isByWeekly=0,EmployeeId='EmployeeId%201')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "TOMAS1 KEVIN"
+	"EmployeeName": "TOMAS1 KEVIN",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1207,7 +1249,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%202',WeekYear='WeekYear%202',isByWeekly=0,EmployeeId='EmployeeId%202')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "CUSSAC1 SYLVIE"
+	"EmployeeName": "CUSSAC1 SYLVIE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1262,7 +1306,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%203',WeekYear='WeekYear%203',isByWeekly=0,EmployeeId='EmployeeId%203')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "MAGDELEINE1 VALERIE"
+	"EmployeeName": "MAGDELEINE1 VALERIE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1317,7 +1363,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%204',WeekYear='WeekYear%204',isByWeekly=0,EmployeeId='EmployeeId%204')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "PALOMBA1 PASCALE"
+	"EmployeeName": "PALOMBA1 PASCALE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1372,7 +1420,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%205',WeekYear='WeekYear%205',isByWeekly=0,EmployeeId='EmployeeId%205')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "ANTOINE1 PATRICE"
+	"EmployeeName": "ANTOINE1 PATRICE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1427,7 +1477,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%206',WeekYear='WeekYear%206',isByWeekly=0,EmployeeId='EmployeeId%206')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "MIUS1 MARYLINE"
+	"EmployeeName": "MIUS1 MARYLINE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1482,7 +1534,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%207',WeekYear='WeekYear%207',isByWeekly=0,EmployeeId='EmployeeId%207')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "EYVASO1 ALINE"
+	"EmployeeName": "EYVASO1 ALINE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1537,7 +1591,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%208',WeekYear='WeekYear%208',isByWeekly=0,EmployeeId='EmployeeId%208')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "GALLO1 STEPHANIE"
+	"EmployeeName": "GALLO1 STEPHANIE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1592,7 +1648,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%209',WeekYear='WeekYear%209',isByWeekly=0,EmployeeId='EmployeeId%209')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "SOLER1 SABINE"
+	"EmployeeName": "SOLER1 SABINE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "28",
 	"WeekYear": "2017",
@@ -1647,7 +1705,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%2010',WeekYear='WeekYear%2010',isByWeekly=0,EmployeeId='EmployeeId%2010')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "SUCCIVALLI1 VALERIE"
+	"EmployeeName": "SUCCIVALLI1 VALERIE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -1702,7 +1762,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%201',WeekYear='WeekYear%201',isByWeekly=1,EmployeeId='EmployeeId%201')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "TOMAS KEVIN"
+	"EmployeeName": "TOMAS KEVIN",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -1757,7 +1819,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%202',WeekYear='WeekYear%202',isByWeekly=1,EmployeeId='EmployeeId%202')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "CUSSAC SYLVIE"
+	"EmployeeName": "CUSSAC SYLVIE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "25",
 	"WeekYear": "2017",
@@ -1812,7 +1876,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%201',WeekYear='WeekYear%201',isByWeekly=1,EmployeeId='EmployeeId%201')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "TOMAS KEVIN"
+	"EmployeeName": "TOMAS KEVIN",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "25",
 	"WeekYear": "2017",
@@ -1867,7 +1933,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%202',WeekYear='WeekYear%202',isByWeekly=1,EmployeeId='EmployeeId%202')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "CUSSAC SYLVIE"
+	"EmployeeName": "CUSSAC SYLVIE",
+	"WeekTotalAllowances": "41",
+	"WeekTotalKms": "2"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -1922,7 +1990,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%205',WeekYear='WeekYear%205',isByWeekly=0,EmployeeId='EmployeeId%205')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "ANTOINE PATRICE"
+	"EmployeeName": "ANTOINE PATRICE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -1977,7 +2047,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%206',WeekYear='WeekYear%206',isByWeekly=0,EmployeeId='EmployeeId%206')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "MIUS MARYLINE"
+	"EmployeeName": "MIUS MARYLINE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -2032,7 +2104,9 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%205',WeekYear='WeekYear%205',isByWeekly=0,EmployeeId='EmployeeId%205')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "ANTOINE PATRICE"
+	"EmployeeName": "ANTOINE PATRICE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }, {
 	"WeekNumber": "27",
 	"WeekYear": "2017",
@@ -2087,5 +2161,7 @@
 		"uri": "WeekSummarySet(WeekNumber='WeekNumber%206',WeekYear='WeekYear%206',isByWeekly=0,EmployeeId='EmployeeId%206')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.WeekSummary"
 	},
-	"EmployeeName": "MIUS MARYLINE"
+	"EmployeeName": "MIUS MARYLINE",
+	"WeekTotalAllowances": "21",
+	"WeekTotalKms": "1"
 }]
