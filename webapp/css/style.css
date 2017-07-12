@@ -146,36 +146,36 @@
     font-size: 0.7rem !important;
 }
 .EmpWeekStatus[data-status="D"] {
-    background-color: rgb(230, 231, 232);
+    background-color: #e6e7e8;
 
 }
 
 .EmpWeekStatus[data-status="W"] {
-    background-color: rgb(249, 203, 130);
+    background-color: #f9cB82;
 }
 
 .EmpWeekStatus[data-status="V"] {
-    background-color: rgb(150, 213, 209);
+    background-color: #00dbc0;
 }
 
 .EmpWeekStatus[data-status="R"] {
-    background-color: rgb(252, 107, 138);
+    background-color: #fc6b8a;
 }
 
 .hourSize[data-status="D"] {
-    background-color: rgb(230, 231, 232);
+    background-color: #e6e7e8;
 }
 
 .hourSize[data-status="W"] {
-    background-color: rgb(249, 203, 130);
+    background-color: #f9cB82;
 }
 
 .hourSize[data-status="V"] {
-    background-color: rgb(150, 213, 209);
+    background-color: #00dbc0;
 }
 
 .hourSize[data-status="R"] {
-    background-color: rgb(252, 107, 138);
+    background-color: #fc6b8a;
 }
 
 .tableColumn {
@@ -190,4 +190,51 @@
     padding-bottom: 0rem;
     padding-left: 0.5rem;
     text-align: left;
+}
+
+/*Bottom Legend*/
+.DraftL{
+	height: 1rem;
+    width: 1rem;
+        margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    background-color: #e6e7e8 !important;
+}
+.WaitingL{
+	height: 1rem;
+    width: 1rem;
+        margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    background-color: #f9cB82 !important;	
+}
+.ValidatedL{
+	height: 1rem;
+    width: 1rem; 
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    background-color: #00dbc0 !important;
+}
+.RefusedL{
+	height: 1rem;
+    width: 1rem;
+        margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    background-color: #fc6b8a !important;
+}
+.LLabel{
+	font-size: 13px !important;;
+}
+.BottomButton  {
+	margin-right: 2rem !important;
+}
+.BottomButton1 {
+	margin-right: 2rem !important;
+}
+.BottomButton>span{
+	padding-left: 2rem !important;
+    padding-right: 2rem !important;
 }
