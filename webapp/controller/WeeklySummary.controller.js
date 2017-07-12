@@ -152,13 +152,22 @@ sap.ui.define([
 			oTable.getBinding("items").filter(Filters, "Application");
 
 		},
+		OnskipFilterScreen : function(oEvent) {
+			var filterView = this.getView().byId('adminFilter');
+			var oTable = this.byId("table");
+			filterView.setSize("0%");
+			oTable.setBusy(false);
+		},
 		onFilterPress: function(oEvent) {
 			var filterView = this.getView().byId('adminFilter');
+			var oTable = this.byId("table");
 			if (filterView.getSize() === "0%") {
 				filterView.setSize("38%");
+				oTable.setBusy(true);
+				
 			} else {
 				filterView.setSize("0%");
-
+				oTable.setBusy(false);
 			}
 			/*if (! this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment("com.vinci.timesheet.admin.view.filter", this);
@@ -274,16 +283,7 @@ sap.ui.define([
 				{
 					Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.employeeFilter));
 				}
-				
-				/*if (existingFilters.length > 3) {
-					for (var i = 3; i < existingFilters.length; i++) {
-						if (existingFilters[i].sPath === 'EmployeeName') {
-							Filters.push(existingFilters[i]);
-							break;
-						}
-					}
 
-				}*/
 				oTable.getBinding("items").filter(Filters, "Application");
 			}
 
@@ -292,41 +292,81 @@ sap.ui.define([
 					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
 					"tablleColTitleSat")
 			];
-			var idata = {
+			/*var idata = {
 				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
 				ColumnTxt2: 'Business Unit 1',
 				ComboVisible: true,
 				width: '18.18%',
 				Date: new Date(monday.getTime())
 			};
+			oCalendarData.data.push(idata);*/
+			
+			if (noOfWeek === 2) {
+			
+			var idata = {
+				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+				ColumnTxt2: 'Business Unit 1',
+				ComboVisible: true,
+				width: '18.18%',
+				cssClass:'tableColumnE',
+				Date: new Date(monday.getTime())
+			};
 			oCalendarData.data.push(idata);
 			
-			var friday = datetime.getTodayDate(new Date());
-			friday.setDate(sunday.getDate() - 2);
-			for (var d = monday; d <= friday  ; d.setDate(d.getDate() + 1)) {
+			for (var d = monday; d <= sunday  ; d.setDate(d.getDate() + 1)) {
 				var cDate = d;
 				var data = {
 					ColumnTxt1: weekday[d.getDay()],
 					ColumnTxt2: '  ' + d.getDate(),
-					width: "13.13%",
+					width: "6%",
+					cssClass:'tableColumn',
 					ComboVisible: false,
 					Date: new Date(cDate.getTime())
 				};
 				oCalendarData.data.push(data);
+			}	
+			}
+			else{
+				
+			var idata = {
+				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+				ColumnTxt2: 'Business Unit 1',
+				ComboVisible: true,
+				cssClass:'tableColumnE',
+				width: '18.18%',
+				Date: new Date(monday.getTime())
+			};
+			oCalendarData.data.push(idata);	
+				
+			var friday = datetime.getTodayDate(new Date());
+			friday.setTime(sunday.getTime() - (2 * 24 * 60 * 60 * 1000));
+			for (var d3 = monday; d3 <= friday  ; d3.setDate(d3.getDate() + 1)) {
+				var cDate3 = d3;
+				var data3 = {
+					ColumnTxt1: weekday[d3.getDay()],
+					ColumnTxt2: '  ' + d3.getDate(),
+					width: "13.13%",
+					cssClass:'tableColumn',
+					ComboVisible: false,
+					Date: new Date(cDate3.getTime())
+				};
+				oCalendarData.data.push(data3);
 			}
 			
 			var saturday = datetime.getTodayDate(new Date());
-			saturday.setDate(sunday.getDate() - 1);
+			saturday.setTime(sunday.getTime() - (1* 24 * 60 * 60 * 1000));
 			for (var d2 = saturday; d2 <= sunday; d2.setDate(d2.getDate() + 1)) {
 				var cDate2 = d2;
 				var data2 = {
 					ColumnTxt1: weekday[d2.getDay()],
 					ColumnTxt2: '  ' + d2.getDate(),
 					width: "auto",
+					cssClass:'tableColumn',
 					ComboVisible: false,
 					Date: new Date(cDate2.getTime())
 				};
 				oCalendarData.data.push(data2);
+			}
 			}
 
 			var oCalendarModel = new JSONModel(oCalendarData);
