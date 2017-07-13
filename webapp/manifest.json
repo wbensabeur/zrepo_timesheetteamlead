@@ -145,6 +145,11 @@
 					"uri": "css/style.css",
 					"id": ""
 				}
+			],
+			"js": [
+				{
+					"uri": "utility/tableHeadFixer"
+				}
 			]
 		}
 	},

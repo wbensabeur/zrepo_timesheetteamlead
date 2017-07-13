@@ -57,7 +57,13 @@
     							new ShellHeadItem({
     							icon : "sap-icon://log",
     							press: function (oEvent) {
-    								alert("Log Off");
+    								        if (document.execCommand("ClearAuthenticationCache", "false")) {
+                                                           // redirect to the logout page     
+                                                         window.location.assign("/logout.html");
+                                              } else {
+                                                  sap.m.URLHelper.redirect("/logout.html", false);
+                                           }
+
     							}
     							})
 

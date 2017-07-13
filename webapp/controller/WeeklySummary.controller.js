@@ -19,7 +19,9 @@ sap.ui.define([
 			var oViewModel,
 				iOriginalBusyDelay,
 				oTable = this.byId("table");
-
+				
+			
+			
 			/// Attach Seeting button from Shell
 			var setting = sap.ui.getCore().byId('shellSettings');
 			if (setting != null) {
@@ -95,6 +97,8 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 		},
+		
+		
 
 		/* =========================================================== */
 		/* User Event methods                                            */
@@ -212,9 +216,9 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.vinci.timesheet.admin.view.WeeklySummary
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+//			onAfterRendering: function() {
+//
+//			},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.

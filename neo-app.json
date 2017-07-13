@@ -1,5 +1,7 @@
 {
  "authenticationMethod":"saml",
+ "welcomeFile":"/index.html",
+ "logoutPage":"/logout.html",
   "routes": [
     {
       "path": "/webapp/resources",
