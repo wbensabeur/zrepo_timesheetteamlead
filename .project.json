@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": true,
-    "lastBuildDateTime": "Wed, 12 Jul 2017 11:14:47 GMT"
+    "lastBuildDateTime": "Wed, 12 Jul 2017 13:16:33 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -97,6 +97,6 @@
   "hcpdeploy": {
     "account": "a4769796d",
     "name": "timesheetadmin",
-    "lastVersionWeTriedToDeploy": "1.0.16"
+    "lastVersionWeTriedToDeploy": "1.0.17"
   }
 }
