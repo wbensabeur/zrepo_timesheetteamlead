@@ -9,7 +9,7 @@ sap.ui.define([
 	"use strict";
 
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklySummary", {
-
+	    formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -68,7 +68,7 @@ sap.ui.define([
 			});
 		},
 		/* =========================================================== */
-		/* event handlers                                              */
+		/* UI element event handlers                                              */
 		/* =========================================================== */
 
 		/**
@@ -95,16 +95,11 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 		},
-		leaveFormatter: function(value) {
-			if (value === null) {
-				return "W";
-			}
-			if (value.getDay() === 0 || value.getDay() === 6) {
-				return "L";
-			}
-			return "W";
-		},
-		selectPeriod: function(oEvent) {
+
+		/* =========================================================== */
+		/* User Event methods                                            */
+		/* =========================================================== */		
+		onPeriodSelect: function(oEvent) {
 			var oKey = oEvent.getParameter("key");
 			if (oKey === 'OneWeek') {
 				this.twoWeek = false;
@@ -116,24 +111,7 @@ sap.ui.define([
 				this._calendarBinding(this.startDate, 2);
 			}
 		},
-		/*weekTwo: function(oEvent) {
-			this.twoWeek = true;
-			if (oEvent.getSource().getPressed()) {
-				this.getView().byId('Week1').setPressed(false);
-				this.getView().byId('Week1').setEnabled(true);
-				this.getView().byId('Week2').setEnabled(false);
-				this._calendarBinding(new Date(), 2);
-			}
-		},
-		weekOne: function(oEvent) {
-			this.twoWeek = false;
-			if (oEvent.getSource().getPressed()) {
-				this.getView().byId('Week2').setPressed(false);
-				this.getView().byId('Week2').setEnabled(true);
-				this.getView().byId('Week1').setEnabled(false);
-				this._calendarBinding(new Date(), 1);
-			}
-		},*/
+		
 		onEmployeSearch: function(oEvent) {
 			var oTable = this.byId("table");
 
@@ -195,34 +173,8 @@ sap.ui.define([
 			this._oDialog.open();*/
 
 		},
-		booleanNot: function(value) {
-			if (value) {
-				return false;
-			}
-			return true;
-		},
-		periodFormat: function(oDate) {
-			var currentWeekNumber = datetime.getWeek(oDate);
-			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
-				month: "long"
-			});
-			var currentYear = oDate.getFullYear();
-			var oString = this.getResourceBundle().getText("week") + ' ' + currentWeekNumber + ',' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
-				.getText("from") + ' ';
-			var dd = oDate.getDate();
-			var mm = oDate.getMonth() + 1;
-			oString = oString.concat(dd + '/' + mm + ' ' + this.getResourceBundle().getText("to") + ' ');
-			var oDateEnd = null;
-
-			if (this.twoWeek) {
-				oDateEnd = datetime.getLastDay(oDate, 2);
-			} else {
-				oDateEnd = datetime.getLastDay(oDate, 1);
-			}
-			var dd2 = oDateEnd.getDate();
-			var mm2 = oDateEnd.getMonth() + 1;
-			return oString + dd2 + '/' + mm2;
-		},
+		
+		
 		onPastPeriodNavPress: function(oEvent) {
 			if (this.twoWeek) {
 				this.startDate.setDate(this.startDate.getDate() - 14);
@@ -241,7 +193,7 @@ sap.ui.define([
 				this._calendarBinding(this.startDate, 1);
 			}
 		},
-		OnCancelEmpDayCheckDialog : function(oEvent) {
+		OnCancelEmpDayCheckDialog: function(oEvent) {
 			var oDialog = this.getView().byId("EmpDayCheckDialog");
 			oDialog.close();
 		},
@@ -277,6 +229,7 @@ sap.ui.define([
 		/* =========================================================== */
 
 		_calendarBinding: function(startDate, noOfWeek) {
+
 			var monday = datetime.getMonday(startDate);
 			var sunday = datetime.getLastDay(monday, noOfWeek);
 			var oCalendarData = {
@@ -308,26 +261,16 @@ sap.ui.define([
 					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
 					"tablleColTitleSat")
 			];
-			/*var idata = {
+			var idata = {
 				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
 				ColumnTxt2: 'Business Unit 1',
 				ComboVisible: true,
 				width: '18.18%',
 				Date: new Date(monday.getTime())
 			};
-			oCalendarData.data.push(idata);*/
+			oCalendarData.data.push(idata);
 
 			if (noOfWeek === 2) {
-
-				var idata = {
-					ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-					ColumnTxt2: 'Business Unit 1',
-					ComboVisible: true,
-					width: '18.18%',
-					cssClass: 'tableColumnE',
-					Date: new Date(monday.getTime())
-				};
-				oCalendarData.data.push(idata);
 
 				for (var d = monday; d <= sunday; d.setDate(d.getDate() + 1)) {
 					var cDate = d;
@@ -342,16 +285,6 @@ sap.ui.define([
 					oCalendarData.data.push(data);
 				}
 			} else {
-
-				var idata = {
-					ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-					ColumnTxt2: 'Business Unit 1',
-					ComboVisible: true,
-					cssClass: 'tableColumnE',
-					width: '18.18%',
-					Date: new Date(monday.getTime())
-				};
-				oCalendarData.data.push(idata);
 
 				var friday = datetime.getTodayDate(new Date());
 				friday.setTime(sunday.getTime() - (2 * 24 * 60 * 60 * 1000));
