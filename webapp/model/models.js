@@ -14,7 +14,7 @@ sap.ui.define([
 		createUserPersolisationModel: function(backendModel) {
 			var userPref = {
 				defaultBU:'BU1',
-				defaultPeriod:2
+				defaultPeriod:1
 			};
 			var oModel = new JSONModel(userPref);
 			oModel.setDefaultBindingMode("OneWay");

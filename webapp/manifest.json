@@ -39,7 +39,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_belize"]
+		"supportedThemes": ["sap_hcb", "sap_belize", "sap_belize_plus"]
 	},
 	"sap.ui5": {
 		"rootView": {
