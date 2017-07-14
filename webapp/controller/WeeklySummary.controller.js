@@ -146,7 +146,6 @@ sap.ui.define([
 
 		},
 		OnHourPress: function(oEvent) {
-			var source = oEvent.getSource();
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
 			// create dialog lazily
@@ -165,16 +164,16 @@ sap.ui.define([
 			oTable.setBusy(false);
 		},
 		onFilterPress: function(oEvent) {
-			var filterView = this.getView().byId('adminFilter');
-			var oTable = this.byId("table");
-			if (filterView.getSize() === "0%") {
-				filterView.setSize("38%");
-				oTable.setBusy(true);
-
-			} else {
-				filterView.setSize("0%");
-				oTable.setBusy(false);
+			var oView = this.getView();
+			var oDialog = oView.byId("filterDialog");
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.FilterDialog", this);
+				oView.addDependent(oDialog);
 			}
+
+			oDialog.open();
 
 		},
 
@@ -198,6 +197,10 @@ sap.ui.define([
 		},
 		OnCancelEmpDayCheckDialog: function(oEvent) {
 			var oDialog = this.getView().byId("EmpDayCheckDialog");
+			oDialog.close();
+		},
+		OnCancelFilterDialog: function(oEvent) {
+			var oDialog = this.getView().byId("filterDialog");
 			oDialog.close();
 		},
 
