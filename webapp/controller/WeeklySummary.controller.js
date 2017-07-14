@@ -20,9 +20,7 @@ sap.ui.define([
 				iOriginalBusyDelay,
 				oTable = this.byId("table");
 				
-			
-			
-			/// Attach Seeting button from Shell
+				/// Attach Seeting button from Shell
 			var setting = sap.ui.getCore().byId('shellSettings');
 			if (setting != null) {
 				setting.attachPress(function(oEvent) {
@@ -164,17 +162,6 @@ sap.ui.define([
 				filterView.setSize("0%");
 				oTable.setBusy(false);
 			}
-			/*if (! this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("com.vinci.timesheet.admin.view.filter", this);
-				
-			}
- 
-			this._oDialog.setModel(this.getView().getModel());
-			this._oDialog.setContentHeight("900px");
-			this._oDialog.setContentWidth("390px");
-			// toggle compact style
-			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
-			this._oDialog.open();*/
 
 		},
 		
@@ -233,13 +220,13 @@ sap.ui.define([
 		/* =========================================================== */
 
 		_calendarBinding: function(startDate, noOfWeek) {
-
+			
+			var caldenderdata = datetime.getCalenderData(startDate, noOfWeek,this.getResourceBundle() );
+			var oCalendarModel = new JSONModel(caldenderdata);
+			this.setModel(oCalendarModel, "calendar");
+			
+			// Change Table OData Binding
 			var monday = datetime.getMonday(startDate);
-			var sunday = datetime.getLastDay(monday, noOfWeek);
-			var oCalendarData = {
-				StartDate: new Date(monday.getTime()),
-				data: []
-			};
 			this.currentWeekNumber = datetime.getWeek(monday);
 			this.currentYear = (new Date(monday.getTime())).getFullYear();
 			this.isByWeekly = 0;
@@ -260,69 +247,6 @@ sap.ui.define([
 				oTable.getBinding("items").filter(Filters, "Application");
 			}
 
-			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
-				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
-					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
-					"tablleColTitleSat")
-			];
-			var idata = {
-				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
-				ColumnTxt2: 'Business Unit 1',
-				ComboVisible: true,
-				width: '18.18%',
-				Date: new Date(monday.getTime())
-			};
-			oCalendarData.data.push(idata);
-
-			if (noOfWeek === 2) {
-
-				for (var d = monday; d <= sunday; d.setDate(d.getDate() + 1)) {
-					var cDate = d;
-					var data = {
-						ColumnTxt1: weekday[d.getDay()],
-						ColumnTxt2: '  ' + d.getDate(),
-						width: "6%",
-						cssClass: 'tableColumn',
-						ComboVisible: false,
-						Date: new Date(cDate.getTime())
-					};
-					oCalendarData.data.push(data);
-				}
-			} else {
-
-				var friday = datetime.getTodayDate(new Date());
-				friday.setTime(sunday.getTime() - (2 * 24 * 60 * 60 * 1000));
-				for (var d3 = monday; d3 <= friday; d3.setDate(d3.getDate() + 1)) {
-					var cDate3 = d3;
-					var data3 = {
-						ColumnTxt1: weekday[d3.getDay()],
-						ColumnTxt2: '  ' + d3.getDate(),
-						width: "13.13%",
-						cssClass: 'tableColumn',
-						ComboVisible: false,
-						Date: new Date(cDate3.getTime())
-					};
-					oCalendarData.data.push(data3);
-				}
-
-				var saturday = datetime.getTodayDate(new Date());
-				saturday.setTime(sunday.getTime() - (1 * 24 * 60 * 60 * 1000));
-				for (var d2 = saturday; d2 <= sunday; d2.setDate(d2.getDate() + 1)) {
-					var cDate2 = d2;
-					var data2 = {
-						ColumnTxt1: weekday[d2.getDay()],
-						ColumnTxt2: '  ' + d2.getDate(),
-						width: "auto",
-						cssClass: 'tableColumn',
-						ComboVisible: false,
-						Date: new Date(cDate2.getTime())
-					};
-					oCalendarData.data.push(data2);
-				}
-			}
-
-			var oCalendarModel = new JSONModel(oCalendarData);
-			this.setModel(oCalendarModel, "calendar");
 		}
 
 	});

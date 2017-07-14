@@ -42,20 +42,20 @@ sap.ui.define([], function() {
 			var oDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
 			return oDate;
 		},
-		getCalenderData: function(startDate, noOfWeek) {
+		getCalenderData: function(startDate, noOfWeek,resourceBundle) {
 			var monday = this.getMonday(startDate);
 			var sunday = this.getLastDay(monday, noOfWeek);
 			var oCalendarData = {
 				StartDate: new Date(monday.getTime()),
 				data: []
 			};
-			var weekday = [this.getResourceBundle().getText("tablleColTitleSun"), this.getResourceBundle().getText("tablleColTitleMon"), this.getResourceBundle()
-				.getText("tablleColTitleTues"), this.getResourceBundle().getText("tablleColTitleWed"), this.getResourceBundle().getText(
-					"tablleColTitleThru"), this.getResourceBundle().getText("tablleColTitleFri"), this.getResourceBundle().getText(
+			var weekday = [resourceBundle.getText("tablleColTitleSun"), resourceBundle.getText("tablleColTitleMon"), resourceBundle
+				.getText("tablleColTitleTues"), resourceBundle.getText("tablleColTitleWed"), resourceBundle.getText(
+					"tablleColTitleThru"), resourceBundle.getText("tablleColTitleFri"), resourceBundle.getText(
 					"tablleColTitleSat")
 			];
 			var idata = {
-				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+				ColumnTxt1: resourceBundle.getText("tableNameColumnTitleEmpName"),
 				ColumnTxt2: 'Business Unit 1',
 				ComboVisible: true,
 				width: '18.18%',
