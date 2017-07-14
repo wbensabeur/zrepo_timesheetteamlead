@@ -30,7 +30,7 @@
         "id": "417603",
         "runnerId": "webapprunner",
         "displayName": "App (Mock Server)",
-        "lastRunTimeStamp": 1499950254479
+        "lastRunTimeStamp": 1500015186702
       }
     },
     {
@@ -143,6 +143,7 @@
     }
   ],
   "hybrid": {
-    "dirty": false
+    "dirty": true,
+    "configSaved": true
   }
 }
