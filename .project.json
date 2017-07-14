@@ -22,15 +22,6 @@
     },
     "/webapp/view/NotFound.view.xml": {
       "entitySet": "UNBINDKEY"
-    },
-    "/webapp/view/ObjectNotFound.view.xml": {
-      "entitySet": "UNBINDKEY"
-    },
-    "/webapp/view/Worklist.view.xml": {
-      "entitySet": "EmployeeSet"
-    },
-    "/webapp/view/Object.view.xml": {
-      "entitySet": "EmployeeSet"
     }
   },
   "generation": [
