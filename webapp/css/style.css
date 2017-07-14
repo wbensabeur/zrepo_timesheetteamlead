@@ -1,26 +1,39 @@
 /* css for Shell */
 
 .sapUiUfdShellHeader {
-	background-color: rgba(0, 69, 134, 1);
+	background-color: #004586;
 }
 .sapUiUfdShellHeadUsrItm {
     color: white;
 }
-
-/**/
-.VinciBackground{
-	background-color: rgba(20, 35, 94, 1) !important;
+.sapUiUfdShellHeadItm:hover>span {
+	background-color: #004586 !important;
 }
+
 .sapUiUfdShellHeadItm>span, .sapUiUfdShellHeadUsrItm {
     color: white;
     text-shadow: none;
 }
+.sapUiUfdShellHeadBegin>.sapUiUfdShellIco>img {
+    max-height: 44px !important;
+    max-width: 125px !important;
+   
+}
+
+/*CSS for page background*/
+.VinciBackground{
+	background-color: rgba(20, 35, 94, 1) !important;
+}
+
 html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: white;
 }
 
 /* css for sub header*/
 
+.circleIcon>span {
+	border-radius: 50%;
+}
 .VinciBar {
       background-color: rgba(20, 35, 94, 1) !important;
       text-shadow: none !important;
@@ -30,6 +43,11 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 	color: white;
 	font-size: 1rem;
 	
+}
+
+.sapMSegB .sapMSegBBtn {
+    padding-left: .1rem !important;
+    padding-right: .1rem !important;
 }
 
 :not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
@@ -43,14 +61,41 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 /* CSS for Filter Screen*/
-.filterPage{
+/*.filterPage{
 	background-color: rgba(20, 35, 94, 1) !important;
 }
 
 .sapUiLoSplitterBar{
 	    width: 0rem !important;
-}
+}*/
 
+/*CSS for Table Column*/
+.tableColumn {
+	padding-top: 0.5rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0rem;
+    padding-left: 0.1rem;
+}
+.tableColumnE{
+	padding-top: 0.5rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0rem;
+    padding-left: 0.5rem;
+    text-align: left;
+}
+.tableColumnCombo {
+     border: none; 
+     margin: 0;
+     height: 1.4rem;
+}   
+.tableColumn[data-background="L"] {
+	background-color: rgb(232, 241, 246);
+}
+.tableBULabel {
+	font-size: 0.7rem  !important;
+    font-style: italic  !important;
+    color: #3b617e;
+}
 .sapMInputBaseInner {
 	background: transparent !important;
 	padding: 0 0.5rem;
@@ -58,16 +103,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 	color: #3b617e;
 }
 
-.tableColumnCombo {
-     border: none; 
-     margin: 0;
-     height: 1.4rem;
-}   
-.tableBULabel {
-	font-size: 0.7rem  !important;
-    font-style: italic  !important;
-    color: #3b617e;
-}
+
 
 .sapUiTableTr>td {
     border-right: .1rem solid black !important; 
@@ -88,48 +124,10 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     border-right: .1rem solid black !important;
 }
 
-.circleIcon>span {
-	border-radius: 50%;
-}
 
+/*Table data*/
 
-
-.sapMListTblCell {
-    padding-top: 0rem !important;
-    padding-right: 0rem !important;
-    padding-bottom: 0rem !important;
-    padding-left: 0rem !important;
-    vertical-align: top;
-    font-size: 0.875rem;
-}
-
-.sapMSegB .sapMSegBBtn {
-    padding-left: .1rem !important;
-    padding-right: .1rem !important;
-}
-
-.hourSize {
-	padding: 0;	
-	height: 60px;
-}
-
-.hourSize>span {
-    height: 100%;
-    padding-left: 0rem !important;
-    padding-right: 0rem !important;
-}
-.hourSize>span>span {
-    font-size: 30px;
-    padding-top: 10px;
-    color: #3b617e;
-}
-
-.hourSize[data-background="L"] {
- background-color: rgb(232, 241, 246);
-}
-.tableColumn[data-background="L"] {
-	background-color: rgb(232, 241, 246);
-}
+/*Employee*/
 .EmpWeekStatus {
 	text-align: left;
     padding-left: .75rem;
@@ -167,6 +165,40 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     background-color: #e6e7e8;
 }
 
+/*Day Cell*/
+
+.sapMListTblCell {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+    vertical-align: top;
+    font-size: 0.875rem;
+}
+
+
+
+.hourSize {
+	padding: 0;	
+	height: 60px;
+}
+
+.hourSize>span {
+    height: 100%;
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+.hourSize>span>span {
+    font-size: 30px;
+    padding-top: 10px;
+    color: #3b617e;
+}
+
+.hourSize[data-background="L"] {
+ background-color: rgb(232, 241, 246);
+}
+
+
 .hourSize[data-status="W"] {
     background-color: #f9cB82;
 }
@@ -179,19 +211,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     background-color: #fc6b8a;
 }
 
-.tableColumn {
-	padding-top: 0.5rem;
-    padding-right: 0.1rem;
-    padding-bottom: 0rem;
-    padding-left: 0.1rem;
-}
-.tableColumnE{
-	padding-top: 0.5rem;
-    padding-right: 0.1rem;
-    padding-bottom: 0rem;
-    padding-left: 0.5rem;
-    text-align: left;
-}
+
 
 /*Bottom Legend*/
 .DraftL{
