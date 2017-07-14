@@ -10,6 +10,15 @@ sap.ui.define([
 			var oModel = new JSONModel(Device);
 			oModel.setDefaultBindingMode("OneWay");
 			return oModel;
+		},
+		createUserPersolisationModel: function(backendModel) {
+			var userPref = {
+				defaultBU:'BU1',
+				defaultPeriod:2
+			};
+			var oModel = new JSONModel(userPref);
+			oModel.setDefaultBindingMode("OneWay");
+			return oModel;
 		}
 
 	};
