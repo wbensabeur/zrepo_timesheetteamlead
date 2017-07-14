@@ -9,7 +9,7 @@ sap.ui.define([
 	"use strict";
 
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklySummary", {
-	    formatter: formatter,
+		formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -19,8 +19,8 @@ sap.ui.define([
 			var oViewModel,
 				iOriginalBusyDelay,
 				oTable = this.byId("table");
-				
-				/// Attach Seeting button from Shell
+
+			/// Attach Seeting button from Shell
 			var setting = sap.ui.getCore().byId('shellSettings');
 			if (setting != null) {
 				setting.attachPress(function(oEvent) {
@@ -47,17 +47,31 @@ sap.ui.define([
 			this.setModel(oViewModel, "worklistView");
 
 			// model for Calendar
-			this.twoWeek = false;
-			this.startDate = new Date();
+			var userPref = this.getOwnerComponent().getModel('userPreference').getData();
 			this.employeeFilter = null;
-
-			var currentWeekNumber = datetime.getWeek(this.startDate);
-			var currentYear = (new Date(this.startDate.getTime())).getFullYear();
+			var currentWeekNumber = null;
+			var currentYear = null;
+			var oPeriodbutton = this.getView().byId('periodButton');
+			if (userPref.defaultPeriod === 1) {
+				this.twoWeek = false;
+				this.startDate = new Date();
+				this.isByWeekly = 0;
+				currentWeekNumber = datetime.getWeek(this.startDate);
+				currentYear = (new Date(this.startDate.getTime())).getFullYear();
+				
+			} else {
+				this.twoWeek = true;
+				this.startDate = datetime.getLastWeek(new Date());
+				this.isByWeekly = 1;
+				currentWeekNumber = datetime.getWeek(this.startDate);
+				currentYear = (new Date(this.startDate.getTime())).getFullYear();
+				oPeriodbutton.setSelectedKey("twoWeek");
+			}
 
 			this.getView().byId("table").mBindingInfos.items.filters[0].oValue1 = currentWeekNumber; //WeekNumber
 			this.getView().byId("table").mBindingInfos.items.filters[1].oValue1 = currentYear; //WeekYear
-			this.getView().byId("table").mBindingInfos.items.filters[2].oValue1 = 0; //isByWeekly
-			this._calendarBinding(this.startDate, 1);
+			this.getView().byId("table").mBindingInfos.items.filters[2].oValue1 = this.isByWeekly; //isByWeekly
+			this._calendarBinding(this.startDate, this.isByWeekly + 1);
 
 			// Make sure, busy indication is showing immediately so there is no
 			// break after the busy indication for loading the view's meta data is
@@ -94,13 +108,12 @@ sap.ui.define([
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
+			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
 		},
-		
-		
 
 		/* =========================================================== */
 		/* User Event methods                                            */
-		/* =========================================================== */		
+		/* =========================================================== */
 		onPeriodSelect: function(oEvent) {
 			var oKey = oEvent.getParameter("key");
 			if (oKey === 'OneWeek') {
@@ -113,7 +126,7 @@ sap.ui.define([
 				this._calendarBinding(this.startDate, 2);
 			}
 		},
-		
+
 		onEmployeSearch: function(oEvent) {
 			var oTable = this.byId("table");
 
@@ -164,8 +177,7 @@ sap.ui.define([
 			}
 
 		},
-		
-		
+
 		onPastPeriodNavPress: function(oEvent) {
 			if (this.twoWeek) {
 				this.startDate.setDate(this.startDate.getDate() - 14);
@@ -203,9 +215,9 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.vinci.timesheet.admin.view.WeeklySummary
 		 */
-//			onAfterRendering: function() {
-//
-//			},
+		//			onAfterRendering: function() {
+		//
+		//			},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -220,11 +232,11 @@ sap.ui.define([
 		/* =========================================================== */
 
 		_calendarBinding: function(startDate, noOfWeek) {
-			
-			var caldenderdata = datetime.getCalenderData(startDate, noOfWeek,this.getResourceBundle() );
+
+			var caldenderdata = datetime.getCalenderData(startDate, noOfWeek, this.getResourceBundle());
 			var oCalendarModel = new JSONModel(caldenderdata);
 			this.setModel(oCalendarModel, "calendar");
-			
+
 			// Change Table OData Binding
 			var monday = datetime.getMonday(startDate);
 			this.currentWeekNumber = datetime.getWeek(monday);

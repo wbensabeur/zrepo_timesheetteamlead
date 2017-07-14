@@ -15,7 +15,7 @@
 						</contentMiddle>
 						<contentRight>
 							<Button icon="sap-icon://filter" type="Transparent" class="circleIcon" press="onFilterPress"/>
-							<SegmentedButton selectedKey="OneWeek" select="onPeriodSelect" width="9rem">
+							<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" width="9rem">
 								<items>
 									<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
 									<SegmentedButtonItem text="14 {i18n>days}" key="twoWeek"/>

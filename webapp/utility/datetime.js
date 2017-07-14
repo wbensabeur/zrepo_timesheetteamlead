@@ -56,7 +56,7 @@ sap.ui.define([], function() {
 			];
 			var idata = {
 				ColumnTxt1: resourceBundle.getText("tableNameColumnTitleEmpName"),
-				ColumnTxt2: 'Business Unit 1',
+				ColumnTxt2: '...',
 				ComboVisible: true,
 				width: '18.18%',
 				cssClass: 'tableColumnE',
