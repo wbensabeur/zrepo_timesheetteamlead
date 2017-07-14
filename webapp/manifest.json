@@ -39,10 +39,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-		]
+		"supportedThemes": ["sap_hcb", "sap_belize"]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -94,44 +91,21 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": [
-						"notFound"
-					]
+					"target": ["notFound"]
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "worklist",
-					"target": [
-						"worklist"
-					]
-				},
-				{
-					"pattern": "EmployeeSet/{objectId}",
-					"name": "object",
-					"target": [
-						"object"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "home",
+				"target": ["home"]
+			}],
 			"targets": {
-				"worklist": {
+				"home": {
 					"viewName": "WeeklySummary",
 					"viewId": "WeeklySummary",
 					"viewLevel": 1,
 					"title": "{i18n>worklistViewTitle}"
-				},
-				"object": {
-					"viewName": "Object",
-					"viewId": "object",
-					"viewLevel": 2,
-					"title": "{i18n>objectViewTitle}"
-				},
-				"objectNotFound": {
-					"viewName": "ObjectNotFound",
-					"viewId": "objectNotFound"
 				},
 				"notFound": {
 					"viewName": "NotFound",
@@ -140,17 +114,13 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css",
-					"id": ""
-				}
-			],
-			"js": [
-				{
-					"uri": "utility/tableHeadFixer"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css",
+				"id": ""
+			}],
+			"js": [{
+				"uri": "utility/tableHeadFixer"
+			}]
 		}
 	},
 	"sap.platform.hcp": {
