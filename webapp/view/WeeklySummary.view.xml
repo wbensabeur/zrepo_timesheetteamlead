@@ -2,8 +2,6 @@
 	controllerName="com.vinci.timesheet.admin.controller.WeeklySummary" xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page showHeader="false" class="VinciBackground">
 		<content>
-			<l:Splitter height="auto">
-				<VBox>
 					<Bar design="SubHeader" class="VinciBar">
 						<contentLeft>
 							<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
@@ -175,13 +173,6 @@
 							</ColumnListItem>
 						</items>
 					</Table>
-					<layoutData><l:SplitterLayoutData/></layoutData>
-				</VBox>
-				<VBox class="filterPage" height="100%">
-					<Button text="Cancel" type="Reject" press="OnskipFilterScreen"/>
-					<layoutData><l:SplitterLayoutData size="0%" id="adminFilter"/></layoutData>
-				</VBox>
-			</l:Splitter>
 		</content>
 		<footer>
 			<Bar>
