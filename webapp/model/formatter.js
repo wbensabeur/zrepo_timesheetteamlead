@@ -60,6 +60,12 @@ sap.ui.define([
 				return "L";
 			}
 			return "W";
+		},
+		disableDays: function (isEntryEnabled){
+			if(isEntryEnabled){
+			  return '';	
+			}
+			return 'D';
 		}
 
 		};

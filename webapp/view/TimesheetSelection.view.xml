@@ -1,0 +1,117 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.TimesheetSelection">
+	<Page showHeader="false" class="VinciBackground">
+		<content>
+					<Bar design="SubHeader" class="VinciBar">
+						<contentLeft>
+							<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
+							<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
+							
+						</contentLeft>
+						<contentRight>
+							<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding" />	
+						</contentRight>
+					</Bar>
+					<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="10" showSeparators="None" inset="false" class="employeeListTable" updateStarted="onUpdateStart">
+						<columns>
+							<Column width="{calendar>width}" hAlign="Center">
+								<VBox class="tableColumn">
+									<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
+									<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
+									<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+									<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+									<customData>
+										<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									</customData>
+								</VBox>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
+								<cells>
+									<VBox class="EmpWeekStatus">
+										<Label text="{EmployeeName}" class="EmpName">
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</Label>
+										<Label text="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" class="EmpWeekDetails">
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</Label>
+										<customData>
+											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+										</customData>
+									</VBox>
+									<Button text="{WeekDate1Hours}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
+										<customData>
+											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="employee" value="{EmployeeId}"/>
+											<core:CustomData key="selectedDate" value="{WeekDate1Date}"/>
+										</customData>
+									</Button>
+									<Button text="{WeekDate2Hours}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
+										<customData>
+											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="employee" value="{EmployeeId}"/>
+											<core:CustomData key="selectedDate" value="{WeekDate2Date}"/>
+										</customData>
+									</Button>
+									<Button text="{WeekDate3Hours}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
+										<customData>
+											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="employee" value="{EmployeeId}"/>
+											<core:CustomData key="selectedDate" value="{WeekDate3Date}"/>
+										</customData>
+									</Button>
+									<Button text="{WeekDate4Hours}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
+										<customData>
+											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="employee" value="{EmployeeId}"/>
+											<core:CustomData key="selectedDate" value="{WeekDate4Date}"/>
+										</customData>
+									</Button>
+									<Button text="{WeekDate5Hours}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
+										<customData>
+											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="employee" value="{EmployeeId}"/>
+											<core:CustomData key="selectedDate" value="{WeekDate5Date}"/>
+										</customData>
+									</Button>
+									<Button text="{path:'WeekDate6Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
+										<customData>
+											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="employee" value="{EmployeeId}"/>
+											<core:CustomData key="selectedDate" value="{WeekDate6Date}"/>
+										</customData>
+									</Button>
+									<Button text="{path:'WeekDate7Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
+										<customData>
+											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="employee" value="{EmployeeId}"/>
+											<core:CustomData key="selectedDate" value="{WeekDate7Date}"/>
+										</customData>
+									</Button>
+									
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
+					<Button text="{i18n>addTime}" type="Emphasized" icon="sap-icon://add"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
