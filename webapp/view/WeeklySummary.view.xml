@@ -1,5 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
-	controllerName="com.vinci.timesheet.admin.controller.WeeklySummary" xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.WeeklySummary">
 	<Page showHeader="false" class="VinciBackground">
 		<content>
 					<Bar design="SubHeader" class="VinciBar">
@@ -21,11 +20,7 @@
 							</SegmentedButton>
 						</contentRight>
 					</Bar>
-					<Table id="table"
-						items="{ path: '/WeekSummarySet' , filters: [{ path:'WeekNumber', operator: 'EQ', value1: '27' }, { path:'WeekYear', operator: 'EQ', value1: '2017' }, { path:'isByWeekly', operator: 'EQ', value1: '1' }] }"
-						columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
-						growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="10" showSeparators="None" inset="false"
-						class="employeeListTable">
+					<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="10" showSeparators="None" inset="false" class="employeeListTable" updateStarted="onUpdateStart">
 						<columns>
 							<Column width="{calendar>width}" hAlign="Center">
 								<VBox class="tableColumn">
@@ -190,7 +185,7 @@
 				</contentLeft>
 				<contentRight>
 					<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png" class="BottomButton12"/>
-					<Button text="{i18n>button-edit-planning}" type="Emphasized" class="BottomButton2"/>
+					<Button text="{i18n>button-edit-planning}" type="Emphasized" class="BottomButton2" press="OnTimesheetSelection"/>
 					<Button text="{i18n>button-weekly-report}" type="Emphasized" class="BottomButton2"/>
 				</contentRight>
 			</Bar>

@@ -144,6 +144,11 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     font-style: italic !important;
     font-size: 0.7rem !important;
 }
+
+.EmpWeekStatus[data-status="S"] {
+   background-color: #39a9db;
+}
+
 .EmpWeekStatus[data-status="D"] {
     background-color: #e6e7e8;
 
@@ -194,10 +199,22 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: #3b617e;
 }
 
+.hourSize[data-status="S"]>span>span {
+    color: white;
+}
+
 .hourSize[data-background="L"] {
  background-color: rgb(232, 241, 246);
 }
 
+
+.hourSize[data-status="S"] {
+   background-color: #39a9db;
+}
+
+.hourSize[data-status="D"] {
+   background-color: #e6e7e8;
+}
 
 .hourSize[data-status="W"] {
     background-color: #f9cB82;

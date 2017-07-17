@@ -33,7 +33,7 @@
     {
       "templateId": "ui5template.basicSAPUI5ApplicationComponent",
       "templateVersion": "1.4.0",
-      "dateTimeStamp": "Fri, 07 Jul 2017 15:41:33 GMT"
+      "dateTimeStamp": "Fri, 14 Jul 2017 11:03:21 GMT"
     }
   ],
   "translation": {
@@ -88,7 +88,7 @@
     },
     "appname": "admin",
     "appid": "com.vinci.timesheet",
-    "appdesc": "",
+    "appdesc": "Vinci admin application for Timesheet",
     "appversion": "0.0.1",
     "debugMode": true,
     "appIcon": {
@@ -199,16 +199,16 @@
     },
     "platform": {
       "ios": {
-        "selected": false,
+        "selected": true,
         "preferences": {
           "Fullscreen": false,
-          "Orientation": "all",
+          "Orientation": "landscape",
           "EnableViewportScale": false,
           "UrlScheme": ""
         }
       },
       "android": {
-        "selected": true,
+        "selected": false,
         "preferences": {
           "Fullscreen": false,
           "Orientation": "default",
