@@ -54,12 +54,12 @@ sap.ui.define([
 		},
 		leaveFormatter: function(value) {
 			if (value === null) {
-				return "W";
+				return "";
 			}
 			if (value.getDay() === 0 || value.getDay() === 6) {
 				return "L";
 			}
-			return "W";
+			return "";
 		},
 		disableDays: function (isEntryEnabled){
 			if(isEntryEnabled){
@@ -72,6 +72,24 @@ sap.ui.define([
 			  return 'Active';	
 			}
 			return 'Inactive';
+		},
+		DaySelectorFormatter:function(value) {
+			if (value === null) {
+				return "Active";
+			}
+			if (value.getDay() === 0 || value.getDay() === 6) {
+				return "Inactive";
+			}
+			return "Active";
+		},
+		leaveDaySelectorFormatter:function(value) {
+			if (value === null) {
+				return "";
+			}
+			if (value.getDay() === 0 || value.getDay() === 6) {
+				return "Inactive";
+			}
+			return "";
 		}
 
 		};
