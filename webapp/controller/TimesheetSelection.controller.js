@@ -42,7 +42,7 @@ sap.ui.define([
 			});
 		},
 		onUpdateStart : function(oEvent) {
-				$(".EmpWeekStatus").unbind('click');
+				$(".EmpName").unbind('click');
 		},	
 		onUpdateFinished: function(oEvent) {
 			// update the worklist's object counter after the table update
@@ -59,7 +59,7 @@ sap.ui.define([
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
 			
-			$(".EmpWeekStatus").bind('click', function() {
+			$(".EmpName").bind('click', function() {
         		alert('Box Click');
     		});
 		},
@@ -74,7 +74,26 @@ sap.ui.define([
 			}
 		},
 		OnEmployeePress :function(oEvent) {
-			alert("test");
+			var empBox = oEvent.getSource();
+			if (empBox.getCustomData()[0].getValue() === '')
+			{
+				empBox.getCustomData()[0].setValue('S');
+				var emphours = empBox.getParent().getParent().getCells();
+				for (var k = 1; k < 6; k++ ){
+					var button = emphours[k]; 
+					button.getCustomData()[0].setValue('S');
+				}
+			}
+			else {
+				empBox.getCustomData()[0].setValue('');
+				var emphours = empBox.getParent().getParent().getCells();
+				for (var k = 1; k < 6; k++ ){
+					var button = emphours[k]; 
+					button.getCustomData()[0].setValue('');
+				}
+			}
+			
+			
 		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
