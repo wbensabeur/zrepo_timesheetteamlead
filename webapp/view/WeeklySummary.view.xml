@@ -20,10 +20,10 @@
 							</SegmentedButton>
 						</contentRight>
 					</Bar>
-					<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="10" showSeparators="None" inset="false" class="employeeListTable" updateStarted="onUpdateStart">
+					<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable" updateStarted="onUpdateStart">
 						<columns>
 							<Column width="{calendar>width}" hAlign="Center">
-								<VBox class="tableColumn">
+								<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
 									<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
 									<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
