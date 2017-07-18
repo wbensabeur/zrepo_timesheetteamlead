@@ -58,7 +58,7 @@ sap.ui.define([], function() {
 				ColumnTxt1: resourceBundle.getText("tableNameColumnTitleEmpName"),
 				ColumnTxt2: '...',
 				ComboVisible: true,
-				width: '18.18%',
+				width: '180px',
 				cssClass: 'tableColumnE',
 				Date: new Date(monday.getTime())
 			};

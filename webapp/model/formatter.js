@@ -66,6 +66,12 @@ sap.ui.define([
 			  return '';	
 			}
 			return 'D';
+		},
+		disableEmployees: function (isEntryEnabled) {
+			if(isEntryEnabled){
+			  return 'Active';	
+			}
+			return 'Inactive';
 		}
 
 		};
