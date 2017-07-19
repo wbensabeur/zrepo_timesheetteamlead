@@ -33,6 +33,7 @@ sap.ui.define([
 				tableBusyDelay: 0
 			});
 			this.setModel(oViewModel, "worklistView");
+		
 			// Make sure, busy indication is showing immediately so there is no
 			// break after the busy indication for loading the view's meta data is
 			// ended (see promise 'oWhenMetadataIsLoaded' in AppController)
@@ -58,6 +59,8 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
+			var bar = this.byId("VinciBar");
+				bar.focus(true);
 
 		},
 		OnHourPress: function(oEvent) {
@@ -126,7 +129,7 @@ sap.ui.define([
 		 * @memberOf com.vinci.timesheet.admin.view.TimesheetSelection
 		 */
 		//		onAfterRendering: function() {
-
+				
 		//		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -153,7 +156,7 @@ sap.ui.define([
 			var Filters = [
 				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
-				new Filter("isByWeekly", FilterOperator.EQ, 0)
+				new Filter("isByWeekly", FilterOperator.EQ, false)
 			];
 			if (this.userPref.employeeFilter != null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
@@ -164,6 +167,7 @@ sap.ui.define([
 			this.userPref = this.getView().getModel("userPreference").getData();
 			this.userPref.defaultPeriod = 1;
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
+			
 		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection

@@ -4,8 +4,9 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageBox"
+], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator,MessageBox) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklySummary", {
 		formatter: formatter,
@@ -230,7 +231,7 @@ sap.ui.define([
 			var Filters = [
 					new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
 					new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
-					new Filter("isByWeekly", FilterOperator.EQ, this.userPref.defaultPeriod -1)
+					new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek)
 				];
 			if (this.userPref.employeeFilter != null && this.userPref.employeeFilter.length > 0) {
 					Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
@@ -241,7 +242,13 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
 		OnTimesheetSelection: function() {
+			if(this.twoWeek)
+			{
+				MessageBox.alert("Planning is only support for weekly view selection");	
+			}
+			else{
 			this.getRouter().navTo("periodSelection", {	}, true);
+			}
 		}
 		
 		
