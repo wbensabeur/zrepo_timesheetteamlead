@@ -169,23 +169,23 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .EmpWeekStatus[data-status="S"] {
-    background-color: #39a9db;
+    background-color: #39a9db !important;
 }
 
 .EmpWeekStatus[data-status="D"] {
-    background-color: #e6e7e8;
+    background-color: #e6e7e8 !important;
 }
 
 .EmpWeekStatus[data-status="W"] {
-    background-color: #f9cB82;
+    background-color: #f9cB82 !important;
 }
 
 .EmpWeekStatus[data-status="V"] {
-    background-color: #00dbc0;
+    background-color: #00dbc0 !important;
 }
 
 .EmpWeekStatus[data-status="R"] {
-    background-color: #fc6b8a;
+    background-color: #fc6b8a !important;
 }
 
 .hourSize[data-status="D"] {

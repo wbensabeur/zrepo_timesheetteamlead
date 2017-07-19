@@ -33,7 +33,6 @@ sap.ui.define([
 				tableBusyDelay: 0
 			});
 			this.setModel(oViewModel, "worklistView");
-		
 			// Make sure, busy indication is showing immediately so there is no
 			// break after the busy indication for loading the view's meta data is
 			// ended (see promise 'oWhenMetadataIsLoaded' in AppController)
@@ -42,9 +41,7 @@ sap.ui.define([
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
 		},
-		onUpdateStart: function(oEvent) {
-
-		},
+		onUpdateStart: function(oEvent) {},
 		onUpdateFinished: function(oEvent) {
 			// update the worklist's object counter after the table update
 			var sTitle, oTable = oEvent.getSource(),
@@ -59,61 +56,57 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
-			var bar = this.byId("VinciBar");
-				bar.focus(true);
 
 		},
 		OnHourPress: function(oEvent) {
 			var button = oEvent.getSource();
-			if (button.getCustomData()[0].getValue() === '') {
-				button.getCustomData()[0].setValue('S');
+			if (button.getCustomData()[0].getValue() === "") {
+				button.getCustomData()[0].setValue("S");
 			} else {
-				button.getCustomData()[0].setValue('');
+				button.getCustomData()[0].setValue("");
 			}
 		},
 		OnDatePress: function(oEvent) {
 			var source = oEvent.getSource();
 			var headerSeq = source.getParent().getParent().getInitialOrder();
 			var Items = source.getParent().getParent().getParent().getItems();
-			if (source.getCustomData()[0].getValue() === '') {
-				source.getCustomData()[0].setValue('S');
-				source.getParent().getCustomData()[0].setValue('S');
+			if (source.getCustomData()[0].getValue() === "") {
+				source.getCustomData()[0].setValue("S");
+				source.getParent().getCustomData()[0].setValue("S");
 				for (var k = 0; k < Items.length; k++) {
 					var button = oEvent.getSource().getParent().getParent().getParent().getItems()[k].getCells()[headerSeq];
 					if (button.getEnabled()) {
-						button.getCustomData()[0].setValue('S');
+						button.getCustomData()[0].setValue("S");
 					}
 				}
 			} else {
-				source.getCustomData()[0].setValue('');
-				source.getParent().getCustomData()[0].setValue('');
+				source.getCustomData()[0].setValue("");
+				source.getParent().getCustomData()[0].setValue("");
 				for (var j = 0; j < Items.length; j++) {
 					var button1 = oEvent.getSource().getParent().getParent().getParent().getItems()[j].getCells()[headerSeq];
 					if (button1.getEnabled()) {
-						button1.getCustomData()[0].setValue('');
+						button1.getCustomData()[0].setValue("");
 					}
 				}
 			}
-
 		},
 		OnEmployeePress: function(oEvent) {
 			var empBox = oEvent.getSource();
-			if (empBox.getCustomData()[0].getValue() === '') {
-				empBox.getCustomData()[0].setValue('S');
+			if (empBox.getCustomData()[0].getValue() === "") {
+				empBox.getCustomData()[0].setValue("S");
 				var emphours = empBox.getParent().getParent().getCells();
 				for (var k = 1; k < 6; k++) {
 					var button = emphours[k];
-					button.getCustomData()[0].setValue('S');
+					button.getCustomData()[0].setValue("S");
 				}
 			} else {
-				empBox.getCustomData()[0].setValue('');
+				empBox.getCustomData()[0].setValue("");
 				var emphours = empBox.getParent().getParent().getCells();
 				for (var k = 1; k < 6; k++) {
 					var button = emphours[k];
-					button.getCustomData()[0].setValue('');
+					button.getCustomData()[0].setValue("");
 				}
 			}
-
 		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -121,7 +114,6 @@ sap.ui.define([
 		 * @memberOf com.vinci.timesheet.admin.view.TimesheetSelection
 		 */
 		//		onBeforeRendering: function() {
-
 		//		},
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
@@ -129,7 +121,6 @@ sap.ui.define([
 		 * @memberOf com.vinci.timesheet.admin.view.TimesheetSelection
 		 */
 		//		onAfterRendering: function() {
-				
 		//		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -167,13 +158,18 @@ sap.ui.define([
 			this.userPref = this.getView().getModel("userPreference").getData();
 			this.userPref.defaultPeriod = 1;
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
-			
 		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection
 		 */
 		onPressCancel: function() {
 			this.getRouter().navTo("home", {}, true);
+		},
+		/**
+		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection
+		 */
+		OnAddTimesheet: function() {
+			this.getRouter().navTo("AddTimesheet", {	}, true);
 		}
 	});
 });

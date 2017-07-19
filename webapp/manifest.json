@@ -105,6 +105,12 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["periodSelection"]
+			}, {
+				"name": "AddTimesheet",
+				"pattern": "AddTimesheet",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["AddTimesheet"]
 			}],
 			"targets": {
 				"home": {
@@ -124,6 +130,14 @@
 					"viewName": "TimesheetSelection",
 					"viewLevel": 2,
 					"viewId": "TimesheetSelection"
+				},
+				"AddTimesheet": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "AddTimesheet",
+					"viewLevel": 3,
+					"viewId": "AddTimesheet"
 				}
 			}
 		},

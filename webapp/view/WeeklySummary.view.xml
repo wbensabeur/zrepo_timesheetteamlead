@@ -1,5 +1,26 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.WeeklySummary">
 	<Page showHeader="false" class="VinciBackground">
+		<!--<customHeader>
+			<Bar design="SubHeader" class="VinciBar">
+						<contentLeft>
+							<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
+							<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
+							<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+						</contentLeft>
+						<contentMiddle>
+							<SearchField id="EmpSearch" placeholder="Search Employee" search="onEmployeSearch"/>
+						</contentMiddle>
+						<contentRight>
+							<Button icon="sap-icon://filter" type="Transparent" class="circleIcon" press="onFilterPress"/>
+							<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" width="9rem">
+								<items>
+									<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
+									<SegmentedButtonItem text="14 {i18n>days}" key="twoWeek"/>
+								</items>
+							</SegmentedButton>
+						</contentRight>
+					</Bar>
+		</customHeader>-->
 		<content>
 					<Bar design="SubHeader" class="VinciBar">
 						<contentLeft>
