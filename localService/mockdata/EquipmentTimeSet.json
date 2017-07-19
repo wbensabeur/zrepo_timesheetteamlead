@@ -1,0 +1,101 @@
+[{
+	"EquipmentId": "EquipmentId 1",
+	"WorkDate": "/Date(1466763317000)/",
+	"ProjectID": "ProjectID 1",
+	"Counter": "Counter 1",
+	"Unit": 3215,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%201',WorkDate=datetime'2016-06-24T10%3A15%3A17',ProjectID='ProjectID%201',Counter='Counter%201')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 2",
+	"WorkDate": "/Date(1263204917000)/",
+	"ProjectID": "ProjectID 2",
+	"Counter": "Counter 2",
+	"Unit": 5292,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%202',WorkDate=datetime'2010-01-11T10%3A15%3A17',ProjectID='ProjectID%202',Counter='Counter%202')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 3",
+	"WorkDate": "/Date(1046340917000)/",
+	"ProjectID": "ProjectID 3",
+	"Counter": "Counter 3",
+	"Unit": 5219,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%203',WorkDate=datetime'2003-02-27T10%3A15%3A17',ProjectID='ProjectID%203',Counter='Counter%203')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 4",
+	"WorkDate": "/Date(1524824117000)/",
+	"ProjectID": "ProjectID 4",
+	"Counter": "Counter 4",
+	"Unit": 7178,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%204',WorkDate=datetime'2018-04-27T10%3A15%3A17',ProjectID='ProjectID%204',Counter='Counter%204')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 5",
+	"WorkDate": "/Date(1203848117000)/",
+	"ProjectID": "ProjectID 5",
+	"Counter": "Counter 5",
+	"Unit": 3716,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%205',WorkDate=datetime'2008-02-24T10%3A15%3A17',ProjectID='ProjectID%205',Counter='Counter%205')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 6",
+	"WorkDate": "/Date(1220350517000)/",
+	"ProjectID": "ProjectID 6",
+	"Counter": "Counter 6",
+	"Unit": 344,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%206',WorkDate=datetime'2008-09-02T10%3A15%3A17',ProjectID='ProjectID%206',Counter='Counter%206')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 7",
+	"WorkDate": "/Date(1385374517000)/",
+	"ProjectID": "ProjectID 7",
+	"Counter": "Counter 7",
+	"Unit": 7402,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%207',WorkDate=datetime'2013-11-25T10%3A15%3A17',ProjectID='ProjectID%207',Counter='Counter%207')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 8",
+	"WorkDate": "/Date(1098785717000)/",
+	"ProjectID": "ProjectID 8",
+	"Counter": "Counter 8",
+	"Unit": 4904,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%208',WorkDate=datetime'2004-10-26T10%3A15%3A17',ProjectID='ProjectID%208',Counter='Counter%208')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 9",
+	"WorkDate": "/Date(1317032117000)/",
+	"ProjectID": "ProjectID 9",
+	"Counter": "Counter 9",
+	"Unit": 703,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%209',WorkDate=datetime'2011-09-26T10%3A15%3A17',ProjectID='ProjectID%209',Counter='Counter%209')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}, {
+	"EquipmentId": "EquipmentId 10",
+	"WorkDate": "/Date(984737717000)/",
+	"ProjectID": "ProjectID 10",
+	"Counter": "Counter 10",
+	"Unit": 7446,
+	"__metadata": {
+		"uri": "EquipmentTimeSet(EquipmentId='EquipmentId%2010',WorkDate=datetime'2001-03-16T10%3A15%3A17',ProjectID='ProjectID%2010',Counter='Counter%2010')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.EquipmentTime"
+	}
+}]
