@@ -2,9 +2,10 @@
 	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.TimesheetSelection">
 	<Page showHeader="false" class="VinciBackground">
 		<content>
-			<Bar design="SubHeader" class="VinciBar">
+			<Bar  design="SubHeader" class="VinciBar">
+				<contentLeft><Label text="{i18n>selectionText}" textAlign="Center" class="monthLabelPadding" /></contentLeft>
 				<contentRight>
-					<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+					<Label id="VinciBar" text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding" />
 				</contentRight>
 			</Bar>
 			<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"

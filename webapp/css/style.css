@@ -316,7 +316,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 .EmpWeekStatus>div>div>div>.sapMSLITitle {
     width: 174px;
-    /* color: #3b617e; */
+    font-size: .875rem;
     color: #3b617e;
     font-weight: bold;
     padding-top: .75rem;
@@ -335,17 +335,17 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .DaySelectionStatus[data-background="S"] {
-    background-color: #39a9db;
+    background-color: #39a9db !important;
     height: 100%;
 }
 
 .DaySelectionStatus[data-background="L"] {
-    background-color: rgb(232, 241, 246);
+    background-color: rgb(232, 241, 246) !important;
     height: 100%;
 }
 
 .DaySelectionStatus[data-background=""] {
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(247, 247, 247) !important;
     height: 100%;
 }
 
