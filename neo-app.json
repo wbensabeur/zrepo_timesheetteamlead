@@ -1,5 +1,5 @@
 {
- "authenticationMethod":"none",
+ "authenticationMethod":"saml",
  "welcomeFile":"/index.html",
  "logoutPage":"/logout.html",
   "routes": [
