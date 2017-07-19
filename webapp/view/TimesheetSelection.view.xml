@@ -1,23 +1,21 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
-	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.TimesheetSelection">
-	<Page showHeader="false" class="VinciBackground">
-		<content>
-			<Bar  design="SubHeader" class="VinciBar">
-				<contentLeft><Label text="{i18n>selectionText}" textAlign="Center" class="monthLabelPadding" /></contentLeft>
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.TimesheetSelection">
+	<Page class="VinciBackground">
+		<customHeader>
+			<Bar design="SubHeader" class="VinciBar">
+				<contentLeft><Label text="{i18n>selectionText}" textAlign="Center" class="monthLabelPadding"/></contentLeft>
 				<contentRight>
-					<Label id="VinciBar" text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding" />
+					<Label id="VinciBar" text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
 				</contentRight>
 			</Bar>
-			<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
-				busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
-				growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable" updateStarted="onUpdateStart">
+		</customHeader>
+		<content>
+			<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable" updateStarted="onUpdateStart">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
 							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
 							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
-							<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}"
-									description="{calendar>ColumnTxt2}" press="OnDatePress" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
+							<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" press="OnDatePress" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
 								<customData>
 										<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 								</customData>
@@ -33,7 +31,7 @@
 						</VBox>
 					</Column>
 				</columns>
-				<items >
+				<items>
 					<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
 						<cells>
 							<!--<VBox class="EmpWeekStatus">
@@ -52,8 +50,7 @@
 										</customData>
 									</VBox>-->
 							<VBox>
-								<StandardListItem class="EmpWeekStatus" type="{path:'isEntryEnabled', formatter:'.formatter.disableEmployees'}" title="{EmployeeName}"
-									description="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" press="OnEmployeePress">
+								<StandardListItem class="EmpWeekStatus" type="{path:'isEntryEnabled', formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" press="OnEmployeePress">
 									<customData>
 										<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
 									</customData>
@@ -102,8 +99,7 @@
 									<core:CustomData key="selectedDate" value="{WeekDate5Date}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate6Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize"
-								press="OnHourPress" enabled="{isEntryEnabled}">
+							<Button text="{path:'WeekDate6Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
 								<customData>
 									<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -111,8 +107,7 @@
 									<core:CustomData key="selectedDate" value="{WeekDate6Date}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate7Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize"
-								press="OnHourPress" enabled="{isEntryEnabled}">
+							<Button text="{path:'WeekDate7Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{isEntryEnabled}">
 								<customData>
 									<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -129,7 +124,7 @@
 			<Bar>
 				<contentRight>
 					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
-					<Button text="{i18n>addTime}" type="Emphasized" icon="sap-icon://add"/>
+					<Button text="{i18n>addTime}" type="Emphasized" icon="sap-icon://add" press="OnAddTimesheet"/>
 				</contentRight>
 			</Bar>
 		</footer>

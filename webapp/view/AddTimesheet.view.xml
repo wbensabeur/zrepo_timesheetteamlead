@@ -1,0 +1,25 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.vinci.timesheet.admin.controller.AddTimesheet" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page>
+		<customHeader>
+			<Bar design="SubHeader" class="VinciBar">
+				<contentLeft>
+					<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancel" class="circleIcon"/>
+					<Label text="{i18n>backPlanning}" textAlign="Center" class="monthLabelPadding"/>
+				</contentLeft>
+				<contentRight>
+					<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content></content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
+					<Button text="{i18n>addtimedata}" type="Accept"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
