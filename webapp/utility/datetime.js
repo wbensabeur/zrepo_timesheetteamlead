@@ -13,6 +13,10 @@ sap.ui.define([], function() {
 			var lastWeek = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate() - 7);
 			return lastWeek;
 		},
+		getNextWeek: function(cDate) {
+			var nextWeek = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate() + 7);
+			return nextWeek;
+		},
 		getLastMonday: function(cDate) {
 			cDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
 			var day = cDate.getDay(),
@@ -58,7 +62,7 @@ sap.ui.define([], function() {
 				ColumnTxt1: resourceBundle.getText("tableNameColumnTitleEmpName"),
 				ColumnTxt2: '...',
 				ComboVisible: true,
-				width: '180px',
+				width: '18.18%',
 				cssClass: 'tableColumnE',
 				Date: new Date(monday.getTime())
 			};

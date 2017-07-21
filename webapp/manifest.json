@@ -39,11 +39,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize",
-			"sap_belize_plus"
-		]
+		"supportedThemes": ["sap_hcb", "sap_belize", "sap_belize_plus"]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -95,39 +91,33 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": [
-						"notFound"
-					]
+					"target": ["notFound"]
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "home",
-					"target": [
-						"home"
-					]
-				},
-				{
-					"name": "periodSelection",
-					"pattern": "periodSelection",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"periodSelection"
-					]
-				},
-				{
-					"name": "AddTimesheet",
-					"pattern": "AddTimesheet",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"AddTimesheet"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "home",
+				"target": ["home"]
+			}, {
+				"name": "periodSelection",
+				"pattern": "periodSelection",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["periodSelection"]
+			}, {
+				"name": "AddTimesheet",
+				"pattern": "AddTimesheet",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["AddTimesheet"]
+			}, {
+				"name": "ReportEmployeeSelection",
+				"pattern": "ReportEmployeeSelection",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["ReportEmployeeSelection"]
+			}],
 			"targets": {
 				"home": {
 					"viewName": "WeeklySummary",
@@ -154,21 +144,25 @@
 					"viewName": "AddTimesheet",
 					"viewLevel": 3,
 					"viewId": "AddTimesheet"
+				},
+				"ReportEmployeeSelection": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "ReportEmployeeSelection",
+					"viewId": "ReportEmployeeSelection",
+					"viewLevel": 2
 				}
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css",
-					"id": ""
-				}
-			],
-			"js": [
-				{
-					"uri": "utility/tableHeadFixer"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css",
+				"id": ""
+			}],
+			"js": [{
+				"uri": "utility/tableHeadFixer"
+			}]
 		}
 	},
 	"sap.platform.hcp": {
