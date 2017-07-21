@@ -30,6 +30,10 @@
     background-color: rgba(20, 35, 94, 1) !important;
 }
 
+.VinciBackground>section {
+    background-color: rgba(20, 35, 94, 1) !important;
+}
+
 html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: white;
 }
@@ -315,7 +319,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }*/
 
 .EmpWeekStatus>div>div>div>.sapMSLITitle {
-    width: 174px;
+    
     font-size: .875rem;
     color: #3b617e;
     font-weight: bold;

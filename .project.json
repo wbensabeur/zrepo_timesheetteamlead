@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": false,
-    "lastBuildDateTime": "Wed, 19 Jul 2017 08:46:42 GMT"
+    "buildRequired": true,
+    "lastBuildDateTime": "Wed, 19 Jul 2017 08:56:52 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -33,7 +33,7 @@
     {
       "templateId": "ui5template.basicSAPUI5ApplicationComponent",
       "templateVersion": "1.4.0",
-      "dateTimeStamp": "Wed, 19 Jul 2017 06:36:32 GMT"
+      "dateTimeStamp": "Wed, 19 Jul 2017 09:02:33 GMT"
     }
   ],
   "translation": {
@@ -410,6 +410,6 @@
   "hcpdeploy": {
     "account": "a4769796d",
     "name": "timesheetadmin",
-    "lastVersionWeTriedToDeploy": "1.0.22.SNAPSHOT"
+    "lastVersionWeTriedToDeploy": "1.0.23.SNAPSHOT"
   }
 }

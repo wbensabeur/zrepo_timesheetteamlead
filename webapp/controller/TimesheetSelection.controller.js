@@ -41,9 +41,12 @@ sap.ui.define([
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
 		},
-		onUpdateStart: function(oEvent) {},
+		onUpdateStart: function(oEvent) {
+		
+		},
 		onUpdateFinished: function(oEvent) {
 			// update the worklist's object counter after the table update
+			
 			var sTitle, oTable = oEvent.getSource(),
 				iTotalItems = oEvent.getParameter("total");
 			// only update the counter if the length is final and
@@ -56,6 +59,9 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
+			
+			/*var col1 = oTable.getColumns()[0].getWidth();
+			alert(col1);*/
 
 		},
 		OnHourPress: function(oEvent) {
@@ -94,17 +100,23 @@ sap.ui.define([
 			var empBox = oEvent.getSource();
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
+				empBox.getParent().getCustomData()[0].setValue("S");
 				var emphours = empBox.getParent().getParent().getCells();
-				for (var k = 1; k < 6; k++) {
+				for (var k = 1; k < 15; k++) {
 					var button = emphours[k];
-					button.getCustomData()[0].setValue("S");
+					if (button.getCustomData()[1].getValue() != "L") {
+						button.getCustomData()[0].setValue("S");
+					}
 				}
 			} else {
 				empBox.getCustomData()[0].setValue("");
+				empBox.getParent().getCustomData()[0].setValue("");
 				var emphours = empBox.getParent().getParent().getCells();
-				for (var k = 1; k < 6; k++) {
+				for (var k = 1; k < 15; k++) {
 					var button = emphours[k];
-					button.getCustomData()[0].setValue("");
+					if (button.getCustomData()[1].getValue() != "L") {
+						button.getCustomData()[0].setValue("");
+					}
 				}
 			}
 		},
@@ -121,6 +133,7 @@ sap.ui.define([
 		 * @memberOf com.vinci.timesheet.admin.view.TimesheetSelection
 		 */
 		//		onAfterRendering: function() {
+				
 		//		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -147,7 +160,7 @@ sap.ui.define([
 			var Filters = [
 				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
-				new Filter("isByWeekly", FilterOperator.EQ, false)
+				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek)
 			];
 			if (this.userPref.employeeFilter != null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
@@ -156,7 +169,11 @@ sap.ui.define([
 		},
 		_onObjectMatched: function(oEvent) {
 			this.userPref = this.getView().getModel("userPreference").getData();
-			this.userPref.defaultPeriod = 1;
+			if (this.userPref.defaultPeriod === 1) {
+				this.twoWeek = false;
+			} else {
+				this.twoWeek = true;
+			}
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
 		},
 		/**
@@ -169,7 +186,7 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection
 		 */
 		OnAddTimesheet: function() {
-			this.getRouter().navTo("AddTimesheet", {	}, true);
+			this.getRouter().navTo("AddTimesheet", {}, true);
 		}
 	});
 });
