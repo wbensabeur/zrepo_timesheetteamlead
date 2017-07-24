@@ -22,10 +22,10 @@
 	"WeekDate5Hours": "8",
 	"WeekDate5Status": "W",
 	"WeekDate6Date": "/Date(1498242600000)/",
-	"WeekDate6Hours": "",
+	"WeekDate6Hours": "0",
 	"WeekDate6Status": "",
 	"WeekDate7Date": "/Date(1498329000000)/",
-	"WeekDate7Hours": "",
+	"WeekDate7Hours": "0",
 	"WeekDate7Status": "",
 	"WeekDate8Date": "/Date(1498415400000)/",
 	"WeekDate8Hours": 2,
@@ -54,7 +54,14 @@
 	},
 	"EmployeeName": "TOMAS KEVIN",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -111,7 +118,14 @@
 	},
 	"EmployeeName": "CUSSAC SYLVIE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -168,7 +182,14 @@
 	},
 	"EmployeeName": "MAGDELEINE VALERIE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -225,7 +246,14 @@
 	},
 	"EmployeeName": "PALOMBA PASCALE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -282,7 +310,14 @@
 	},
 	"EmployeeName": "ANTOINE PATRICE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -339,7 +374,14 @@
 	},
 	"EmployeeName": "MIUS MARYLINE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "22"
+	"WeekTotalKms": "22",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -396,7 +438,14 @@
 	},
 	"EmployeeName": "EYVASO ALINE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -453,7 +502,14 @@
 	},
 	"EmployeeName": "GALLO STEPHANIE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -510,7 +566,14 @@
 	},
 	"EmployeeName": "SOLER SABINE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "29",
 	"WeekYear": "2017",
@@ -567,7 +630,14 @@
 	},
 	"EmployeeName": "SUCCIVALLI VALERIE",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -624,7 +694,14 @@
 	},
 	"EmployeeName": "TOMAS KEVIN",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -681,7 +758,14 @@
 	},
 	"EmployeeName": "CUSSAC SYLVIE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8",
+	"WeekDate2TargetHours": "8",
+	"WeekDate3TargetHours": "8",
+	"WeekDate4TargetHours": "8",
+	"WeekDate5TargetHours": "8",
+	"WeekDate6TargetHours": "0",
+	"WeekDate7TargetHours": "0"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -738,7 +822,8 @@
 	},
 	"EmployeeName": "MAGDELEINE VALERIE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -795,7 +880,8 @@
 	},
 	"EmployeeName": "PALOMBA PASCALE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -852,7 +938,8 @@
 	},
 	"EmployeeName": "ANTOINE PATRICE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -909,7 +996,8 @@
 	},
 	"EmployeeName": "MIUS MARYLINE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -966,7 +1054,8 @@
 	},
 	"EmployeeName": "EYVASO ALINE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1023,7 +1112,8 @@
 	},
 	"EmployeeName": "GALLO STEPHANIE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1080,7 +1170,8 @@
 	},
 	"EmployeeName": "SOLER SABINE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1137,7 +1228,8 @@
 	},
 	"EmployeeName": "SUCCIVALLI VALERIE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1194,7 +1286,8 @@
 	},
 	"EmployeeName": "TOMAS1 KEVIN",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1251,7 +1344,8 @@
 	},
 	"EmployeeName": "CUSSAC1 SYLVIE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "1"
+	"WeekTotalKms": "1",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1308,7 +1402,8 @@
 	},
 	"EmployeeName": "MAGDELEINE1 VALERIE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1365,7 +1460,8 @@
 	},
 	"EmployeeName": "PALOMBA1 PASCALE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1422,7 +1518,8 @@
 	},
 	"EmployeeName": "ANTOINE1 PATRICE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1479,7 +1576,8 @@
 	},
 	"EmployeeName": "MIUS1 MARYLINE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1536,7 +1634,8 @@
 	},
 	"EmployeeName": "EYVASO1 ALINE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1593,7 +1692,8 @@
 	},
 	"EmployeeName": "GALLO1 STEPHANIE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1650,7 +1750,8 @@
 	},
 	"EmployeeName": "SOLER1 SABINE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -1707,7 +1808,8 @@
 	},
 	"EmployeeName": "SUCCIVALLI1 VALERIE",
 	"WeekTotalAllowances": "21",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "31",
 	"WeekYear": "2017",
@@ -1764,7 +1866,8 @@
 	},
 	"EmployeeName": "TOMAS KEVIN",
 	"WeekTotalAllowances": "41",
-	"WeekTotalKms": "2"
+	"WeekTotalKms": "2",
+	"WeekDate1TargetHours": "8"
 }, {
 	"WeekNumber": "31",
 	"WeekYear": "2017",
