@@ -175,7 +175,7 @@
 				"id": ""
 			}],
 			"js": [{
-				"uri": "utility/tableHeadFixer"
+				"uri": "utility/jspdf.min.js"
 			}]
 		}
 	},

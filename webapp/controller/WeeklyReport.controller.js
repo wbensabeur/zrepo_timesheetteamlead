@@ -6,7 +6,6 @@ sap.ui.define([
 	"sap/m/MessageBox"
 ], function(BaseController, JSONModel, formatter, datetime, MessageBox) {
 	"use strict";
-
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklyReport", {
 		formatter: formatter,
 		/**
@@ -17,32 +16,22 @@ sap.ui.define([
 		onInit: function() {
 			this.getRouter().getRoute("WeeklyReport").attachPatternMatched(this._onObjectMatched, this);
 		},
-		
-		onPreviousEmployeePress : function (oEvent) {
-			if(this.index === 0)
-			{
+		onPreviousEmployeePress: function(oEvent) {
+			if (this.index === 0) {
 				this.index = this.noOfEmp - 1;
-			}
-			else
-			{
+			} else {
 				this.index = this.index - 1;
 			}
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
-			
 		},
-		onNextEmployeePress : function (oEvent) {
-			if(this.index === this.noOfEmp - 1)
-			{
+		onNextEmployeePress: function(oEvent) {
+			if (this.index === this.noOfEmp - 1) {
 				this.index = 0;
-				
-			}
-			else
-			{
+			} else {
 				this.index = this.index + 1;
 			}
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
 		},
-
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
@@ -51,7 +40,6 @@ sap.ui.define([
 		//	onBeforeRendering: function() {
 		//
 		//	},
-
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
@@ -60,7 +48,6 @@ sap.ui.define([
 		//	onAfterRendering: function() {
 		//
 		//	},
-
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.vinci.timesheet.admin.view.WeeklyReport
@@ -83,20 +70,21 @@ sap.ui.define([
 			} else {
 				this.getRouter().navTo("ReportEmployeeSelection", {}, true);
 			}
-			sap.ui.getCore().byId('shell').setHeaderHiding(true);
+			sap.ui.getCore().byId("shell").setHeaderHiding(true);
 		},
 		onPressCancel: function() {
-			sap.ui.getCore().byId('shell').setHeaderHiding(false);
+			sap.ui.getCore().byId("shell").setHeaderHiding(false);
 			this.getRouter().navTo("ReportEmployeeSelection", {}, true);
 		},
 		_applyEmployeeBinding: function(employee) {
 			var oView = this.getView();
 			this.employeId = employee.getCustomData()[1].getValue();
-			oView.byId("userInfo").bindElement("/EmployeeSet('"+this.employeId+"')");
+			oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
 			oView.byId("WeeklyStatus").bindElement(employee.getBindingContextPath());
 			oView.byId("WeeklyAggregation").bindElement(employee.getBindingContextPath());
-			
-			var aggregatedData = [{
+			oView.byId("WeeklyArregatedFilledData").bindElement(employee.getBindingContextPath());
+			oView.byId("WeeklyArregatedTargetData").bindElement(employee.getBindingContextPath());
+			/*	var aggregatedData = [{
 				title: "Theoretical hours",
 				unit:"H",
 				total:40,
@@ -121,28 +109,36 @@ sap.ui.define([
 				
 			}];
 			var oModel = new JSONModel(aggregatedData);
-			oView.setModel(oModel, "aggregatedData");
-			
-			
-			var urlStr = "/WorkDayItemSet?$filter=EmployeeId%20eq%20'" +this.employeId+"'";//%20and%20WorkDate%20gt%20"+datetime.getODataDateFilter(this.employeeSelected.startDate)+"%20and%20WorkDate%20lt%20"+datetime.getODataDateFilter(datetime.getLastDay(this.employeeSelected.startDate,1));  //"+empId + "'," + "WorkDate=datetime'" + encodeURIComponent(startDate) + "')";
-	//		 var that = this;
+			oView.setModel(oModel, "aggregatedData");*/
+			/*var urlStr = "/WorkDayItemSet?$filter=EmployeeId%20eq%20'" + this.employeId + "'";
+			//%20and%20WorkDate%20gt%20"+datetime.getODataDateFilter(this.employeeSelected.startDate)+"%20and%20WorkDate%20lt%20"+datetime.getODataDateFilter(datetime.getLastDay(this.employeeSelected.startDate,1));  //"+empId + "'," + "WorkDate=datetime'" + encodeURIComponent(startDate) + "')";
+			//		 var that = this;
 			this.getModel().read(urlStr, {
 				success: function(data) {
-					/*var selectedDayModel = new JSONModel();
-					that.getView().setModel(selectedDayModel,"WorkDayModel");
-					selectedDayModel.setData(data);
-					that.getView().getModel("timesheetview").setProperty("/busy",false);*/
+					
 					sap.m.MessageToast.show("data");
 				},
 				error: function(error) {
 					//that.getView().getModel("timesheetview").setProperty("/busy",false);
 					sap.m.MessageToast.show("Failed");
 				}
-			});
-			
-			
+			});*/
+		},
+		/**
+		 *@memberOf com.vinci.timesheet.admin.controller.WeeklyReport
+		 */
+		OnTimeSubmit: function() {
+			html2canvas(document.getElementById("shell-container-canvas"), {
+
+				onrendered: function(canvas) {
+
+					var img = canvas.toDataURL("image/jpg", 0);
+					window.open(img);
+					/*var doc = new jsPDF();
+					doc.addImage(img, 'JPEG', 600, 400);
+					doc.save('test.pdf');*/
+				}
+			})
 		}
-
 	});
-
 });
