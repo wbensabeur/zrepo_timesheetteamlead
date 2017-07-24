@@ -111,6 +111,11 @@ sap.ui.define([
 			}
 		return status;
 			
+		},
+		theoritecalHourFormat : function (filled,target) {
+			if((filled === target) || (filled === '' && target === '0') || (filled === '' && target === '') || (filled === '0' && target === ''))
+			  return 'T';
+			 else return 'NT';
 		}
 
 	};

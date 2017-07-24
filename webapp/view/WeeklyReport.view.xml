@@ -1,5 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-	controllerName="com.vinci.timesheet.admin.controller.WeeklyReport" xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.WeeklyReport">
 	<Page class="VinciBackground">
 		<customHeader>
 			<Bar design="SubHeader" class="VinciLightBar">
@@ -31,8 +30,7 @@
 						</layoutData>
 					</HBox>
 					<HBox alignItems="End" justifyContent="Start">
-						<Label id="WeeklyAggregation" text="Summary : {WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM - Planning 40 hours"
-							class="EmployeeAttribute"/>
+						<Label id="WeeklyAggregation" text="Summary : {WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM - Planning 40 hours" class="EmployeeAttribute"/>
 					</HBox>
 					<layoutData>
 						<FlexItemData growFactor="1"/>
@@ -43,8 +41,7 @@
 					<HBox>
 						<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
 						<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
-						<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center"
-							class="sapUiSmallMarginTop sapUiSmallMarginBegin EmployeeName" design="Bold"/>
+						<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="sapUiSmallMarginTop sapUiSmallMarginBegin EmployeeName" design="Bold"/>
 						<layoutData>
 							<FlexItemData growFactor="1"/>
 						</layoutData>
@@ -60,7 +57,7 @@
 					</layoutData>
 				</VBox>
 			</HBox>
-			<Table showNoData='false' class="sapUiSmallMarginBegin sapUiSmallMarginEnd EmployeeWeeklyReport">
+			<Table showNoData="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd EmployeeWeeklyReport">
 				<columns>
 					<Column width="12%" hAlign="Center" class="EmployeeWeeklyReportColumn">
 						<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -124,8 +121,8 @@
 					</Column>
 				</columns>
 			</Table>
-			<Table items="{aggregatedData>/}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
-				<columns >
+			<Table class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+				<columns>
 					<Column width="auto"/>
 					<Column width="6%"/>
 					<Column width="6%"/>
@@ -138,60 +135,118 @@
 					<Column minScreenWidth="Tablet" demandPopin="true" width="6%"/>
 				</columns>
 				<items>
-					<ColumnListItem>
+					<ColumnListItem id="WeeklyArregatedTargetData">
 						<cells>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>title}" design="Bold"/>
+								<Label text="{i18n>TheoreticalHours}" design="Bold"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>unit}" />
+								<Label text="{i18n>timeUnit}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>total}"/>
+								<Label text="{WeekTotalTargetHours}"/>
 								<customData>
 										<core:CustomData key="background" value="T" writeToDom="true"/>
 								</customData>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>mon}"/>
+								<Label text="{WeekDate1TargetHours}"/>
 								<customData>
 										<core:CustomData key="background" value="T" writeToDom="true"/>
 									</customData>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>tue}"/>
+								<Label text="{WeekDate2TargetHours}"/>
 								<customData>
 										<core:CustomData key="background" value="T" writeToDom="true"/>
 									</customData>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>wed}"/>
+								<Label text="{WeekDate3TargetHours}"/>
 								<customData>
 										<core:CustomData key="background" value="T" writeToDom="true"/>
 									</customData>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>thr}"/>
+								<Label text="{WeekDate4TargetHours}"/>
 								<customData>
 										<core:CustomData key="background" value="T" writeToDom="true"/>
 									</customData>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>fri}"/>
+								<Label text="{WeekDate5TargetHours}"/>
 								<customData>
 										<core:CustomData key="background" value="T" writeToDom="true"/>
 									</customData>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>sat}"/>
+								<Label text="{WeekDate6TargetHours}"/>
 								<customData>
 										<core:CustomData key="background" value="T" writeToDom="true"/>
 									</customData>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{aggregatedData>sun}"/>
+								<Label text="{WeekDate7TargetHours}"/>
 								<customData>
 										<core:CustomData key="background" value="T" writeToDom="true"/>
+									</customData>
+							</VBox>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem id="WeeklyArregatedFilledData">
+						<cells>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{i18n>TotalHours}" design="Bold"/>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{i18n>timeUnit}"/>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{WeekTotalHours}"/>
+								<customData>
+										<core:CustomData key="background" value="{parts:['WeekTotalHours','WeekTotalTargetHours'],formatter:'.formatter.theoritecalHourFormat'}" writeToDom="true"/>
+								</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{WeekDate1Hours}"/>
+								<customData>
+										<core:CustomData key="background" value="{parts:['WeekDate1Hours','WeekDate1TargetHours'],formatter:'.formatter.theoritecalHourFormat'}" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{WeekDate2Hours}"/>
+								<customData>
+										<core:CustomData key="background" value="{parts:['WeekDate2Hours','WeekDate2TargetHours'],formatter:'.formatter.theoritecalHourFormat'}" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{WeekDate3Hours}"/>
+								<customData>
+										<core:CustomData key="background" value="{parts:['WeekDate3Hours','WeekDate3TargetHours'],formatter:'.formatter.theoritecalHourFormat'}" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{WeekDate4Hours}"/>
+								<customData>
+										<core:CustomData key="background" value="{parts:['WeekDate4Hours','WeekDate4TargetHours'],formatter:'.formatter.theoritecalHourFormat'}" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{WeekDate5Hours}"/>
+								<customData>
+										<core:CustomData key="background" value="{parts:['WeekDate5Hours','WeekDate5TargetHours'],formatter:'.formatter.theoritecalHourFormat'}" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{WeekDate6Hours}"/>
+								<customData>
+										<core:CustomData key="background" value="{parts:['WeekDate6Hours','WeekDate6TargetHours'],formatter:'.formatter.theoritecalHourFormat'}" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{WeekDate7Hours}"/>
+								<customData>
+										<core:CustomData key="background" value="{parts:['WeekDate7Hours','WeekDate7TargetHours'],formatter:'.formatter.theoritecalHourFormat'}" writeToDom="true"/>
 									</customData>
 							</VBox>
 						</cells>
@@ -237,7 +292,7 @@
 			<Bar>
 				<contentRight>
 					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
-					<Button text="{i18n>sign}" type="Emphasized"/>
+					<Button text="{i18n>sign}" type="Emphasized" press="OnTimeSubmit"/>
 				</contentRight>
 			</Bar>
 		</footer>

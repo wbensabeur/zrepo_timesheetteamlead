@@ -37,6 +37,8 @@
 				<Property Name="EmployeeName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekTotalHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+					<Property Name="WeekTotalTargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>
 				<Property Name="WeekTotalAllowances" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
 				<Property Name="WeekTotalKms" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"

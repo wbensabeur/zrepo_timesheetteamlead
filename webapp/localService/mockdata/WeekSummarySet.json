@@ -701,7 +701,8 @@
 	"WeekDate4TargetHours": "8",
 	"WeekDate5TargetHours": "8",
 	"WeekDate6TargetHours": "0",
-	"WeekDate7TargetHours": "0"
+	"WeekDate7TargetHours": "0",
+	"WeekTotalTargetHours": "42"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -765,7 +766,8 @@
 	"WeekDate4TargetHours": "8",
 	"WeekDate5TargetHours": "8",
 	"WeekDate6TargetHours": "0",
-	"WeekDate7TargetHours": "0"
+	"WeekDate7TargetHours": "0",
+	"WeekTotalTargetHours": "40"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
@@ -881,7 +883,8 @@
 	"EmployeeName": "PALOMBA PASCALE",
 	"WeekTotalAllowances": "21",
 	"WeekTotalKms": "1",
-	"WeekDate1TargetHours": "8"
+	"WeekDate1TargetHours": "8",
+	"WeekTotalTargetHours": "40"
 }, {
 	"WeekNumber": "30",
 	"WeekYear": "2017",
