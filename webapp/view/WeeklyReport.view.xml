@@ -140,18 +140,60 @@
 				<items>
 					<ColumnListItem>
 						<cells>
-							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="6rem">
-							<Label text="{aggregatedData>title}" design="Bold"/>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>title}" design="Bold"/>
 							</VBox>
-							<Label text="{aggregatedData>unit}" design="Bold"/>
-							<Label text="{aggregatedData>total}"/>
-							<Label text="{aggregatedData>mon}"/>
-							<Label text="{aggregatedData>tue}"/>
-							<Label text="{aggregatedData>wed}"/>
-							<Label text="{aggregatedData>thr}"/>
-							<Label text="{aggregatedData>fri}"/>
-							<Label text="{aggregatedData>sat}"/>
-							<Label text="{aggregatedData>sun}"/>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>unit}" />
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>total}"/>
+								<customData>
+										<core:CustomData key="background" value="T" writeToDom="true"/>
+								</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>mon}"/>
+								<customData>
+										<core:CustomData key="background" value="T" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>tue}"/>
+								<customData>
+										<core:CustomData key="background" value="T" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>wed}"/>
+								<customData>
+										<core:CustomData key="background" value="T" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>thr}"/>
+								<customData>
+										<core:CustomData key="background" value="T" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>fri}"/>
+								<customData>
+										<core:CustomData key="background" value="T" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>sat}"/>
+								<customData>
+										<core:CustomData key="background" value="T" writeToDom="true"/>
+									</customData>
+							</VBox>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+								<Label text="{aggregatedData>sun}"/>
+								<customData>
+										<core:CustomData key="background" value="T" writeToDom="true"/>
+									</customData>
+							</VBox>
 						</cells>
 					</ColumnListItem>
 				</items>

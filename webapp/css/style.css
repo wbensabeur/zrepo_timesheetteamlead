@@ -412,5 +412,15 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 	color:white;
 }
 .EmployeeWeeklyReportColumn{
-	background-color: rgba(188, 210, 229, 1);
+	background-color: rgb(188, 210, 229);
+}
+.EmployeeWeeklyReportAggregateRow{
+	border-bottom: .05rem solid black;
+	border-right: .05rem solid black;
+} 
+.EmployeeWeeklyReportAggregateRow[data-background="T"] {
+    background-color: rgb(217, 235, 246);
+}
+.EmployeeWeeklyReportAggregateRow[data-background="NT"] {
+    background-color: #f9cb82;
 }

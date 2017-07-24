@@ -48,71 +48,99 @@
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate1Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate1TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>	
 				<Property Name="WeekDate1Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate2Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate2Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate2TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate2Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate3Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate3Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate3TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate3Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate4Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate4Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate4TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate4Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate5Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate5Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate5TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate5Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate6Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate6Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate6TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate6Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate7Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate7Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate7TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate7Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate8Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate8Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate8TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate8Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate9Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate9Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate9TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate9Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate10Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate10Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate10TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate10Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate11Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate11Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate11TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate11Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate12Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate12Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate12TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate12Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate13Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate13Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate13TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate13Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate14Date" Type="Edm.DateTime" Precision="0" sap:label="Time Stamp" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekDate14Hours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
+				<Property Name="WeekDate14TargetHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/>		
 				<Property Name="WeekDate14Status" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 			</EntityType>
 			<EntityType Name="Employee" sap:content-version="1">
