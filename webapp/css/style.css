@@ -424,3 +424,26 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .EmployeeWeeklyReportAggregateRow[data-background="NT"] {
     background-color: #f9cb82;
 }
+
+/** Time addition**/
+.sapMITBHorizontal.sapMITBFilter>.sapMITBHorizontalWrapper>.sapMITBText {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+.VinciTabBar>div {
+    background-color: rgba(20, 35, 94, 1) !important;
+}
+.sapContrastPlus.sapMITBFilterDefault, .sapContrastPlus .sapMITBFilterDefault {
+    color: white;
+}
+
+.sapContrastPlus.sapMITBSelected .sapMITBFilterDefault, .sapContrastPlus .sapMITBSelected .sapMITBFilterDefault {
+    background: white;
+    color: #004586;
+}
+.sapContrastPlus.sapMITBFilterIcon, .sapContrastPlus .sapMITBFilterIcon {
+    border: 1px solid white;
+}
+.sapContrastPlus.sapMITBSelected>.sapMITBContentArrow, .sapContrastPlus .sapMITBSelected>.sapMITBContentArrow {
+    border-bottom-color: white;
+}

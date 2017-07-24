@@ -12,7 +12,31 @@
 				</contentRight>
 			</Bar>
 		</customHeader>
-		<content></content>
+		<content>
+			<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding VinciTabBar">
+				<items>
+					<IconTabFilter icon="sap-icon://write-new-document" text="SIMPLE ENTRY" design="Horizontal">
+						<Text text="Info content goes here ..."/>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://multiselect-none" text="MULTIPLE ENTRY" design="Horizontal">
+						<Text text="Attachments go here ..."/>
+					</IconTabFilter>
+						<IconTabFilter icon="sap-icon://create-leave-request"  text="ABSENCE" design="Horizontal">
+						<Text text="Notes go here ..."/>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://map"  text="KM" design="Horizontal">
+						<Text text="Notes go here ..."/>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://add-equipment" text="EQUIPMENT" design="Horizontal">
+						<Text text="People content goes here ..."/>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://activity-items" text="SUMMARY" design="Horizontal">
+						<Text text="People content goes here ..."/>
+					</IconTabFilter>
+					
+				</items>
+			</IconTabBar>
+		</content>
 		<footer>
 			<Bar>
 				<contentRight>
