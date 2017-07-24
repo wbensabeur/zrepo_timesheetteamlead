@@ -4,18 +4,18 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageBox"
+], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox) {
 	"use strict";
-
 	return BaseController.extend("com.vinci.timesheet.admin.controller.ReportEmployeeSelection", {
-			formatter: formatter,
+		formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf com.vinci.timesheet.admin.view.ReportEmployeeSelection
 		 */
-			onInit: function() {
+		onInit: function() {
 			var oViewModel, iOriginalBusyDelay, oTable = this.byId("table");
 			this.getRouter().getRoute("ReportEmployeeSelection").attachPatternMatched(this._onObjectMatched, this);
 			// Put down worklist table's original value for busy indicator delay,
@@ -41,11 +41,9 @@ sap.ui.define([
 				// Restore original busy indicator delay for worklist's table
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
-			},
-			
-			onUpdateFinished: function(oEvent) {
+		},
+		onUpdateFinished: function(oEvent) {
 			// update the worklist's object counter after the table update
-			
 			var sTitle, oTable = oEvent.getSource(),
 				iTotalItems = oEvent.getParameter("total");
 			// only update the counter if the length is final and
@@ -58,28 +56,34 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
-			
 			/*var col1 = oTable.getColumns()[0].getWidth();
-			alert(col1);*/
-
+							alert(col1);*/
 		},
-		
 		OnEmployeePress: function(oEvent) {
 			var empBox = oEvent.getSource();
+			//var empID = empBox.getCustomData()[1].getValue();
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
 				empBox.getParent().getCustomData()[0].setValue("S");
+				this.employeeSelected.employees.push(empBox);
+				// employee ID
 				
 			} else {
 				empBox.getCustomData()[0].setValue("");
 				empBox.getParent().getCustomData()[0].setValue("");
+				var index = this.employeeSelected.employees.indexOf(empBox);
+				this.employeeSelected.employees.splice(index, 1);
 				
 			}
 		},
 		onPressCancel: function() {
 			this.getRouter().navTo("home", {}, true);
+			var boxes = this.employeeSelected.employees;
+			for (var k = 0;k < boxes.length; k++ ){
+				boxes[k].getCustomData()[0].setValue("");
+				boxes[k].getParent().getCustomData()[0].setValue("");
+			}
 		},
-
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
@@ -88,7 +92,6 @@ sap.ui.define([
 		//	onBeforeRendering: function() {
 		//
 		//	},
-
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
@@ -97,7 +100,6 @@ sap.ui.define([
 		//	onAfterRendering: function() {
 		//
 		//	},
-
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.vinci.timesheet.admin.view.ReportEmployeeSelection
@@ -105,8 +107,7 @@ sap.ui.define([
 		//	onExit: function() {
 		//
 		//	}
-		
-			/* =========================================================== */
+		/* =========================================================== */
 		/* internal methods                                            */
 		/* =========================================================== */
 		_calendarBinding: function(startDate, noOfWeek) {
@@ -132,8 +133,9 @@ sap.ui.define([
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
 		_onObjectMatched: function(oEvent) {
-			
 			this.userPref = $.extend({}, this.getView().getModel("userPreference").getData());
+			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
+			this.employeeSelected.startDate = this.userPref.startDate;
 			if (this.userPref.defaultPeriod === 1) {
 				this.twoWeek = false;
 			} else {
@@ -142,8 +144,26 @@ sap.ui.define([
 				this.userPref.startDate = datetime.getNextWeek(this.userPref.startDate);
 			}
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
+		},
+		/**
+		 *@memberOf com.vinci.timesheet.admin.controller.ReportEmployeeSelection
+		 */
+		OnWeeklyReportPress: function() {
+			if (this.employeeSelected.employees.length > 0) {
+				this.getRouter().navTo("WeeklyReport", {}, true);
+			} else {
+				MessageBox.alert("Planning is only support for weekly view selection");
+			}
+		},
+		/**
+		 *@memberOf com.vinci.timesheet.admin.controller.ReportEmployeeSelection
+		 */
+		OnSelectionReSet: function() {
+			var boxes = this.employeeSelected.employees;
+			for (var k = 0;k < boxes.length; k++ ){
+				boxes[k].getCustomData()[0].setValue("");
+				boxes[k].getParent().getCustomData()[0].setValue("");
+			}
 		}
-
 	});
-
 });

@@ -133,7 +133,7 @@
 				<Property Name="BusinessUnitId" Type="Edm.String" sap:label="BU Id" sap:creatable="false" sap:updatable="false"/>
 				<Property Name="Company" Type="Edm.String" sap:label="Company" sap:creatable="false" sap:updatable="false"/>
 				<Property Name="CompanyId" Type="Edm.String" sap:label="Company" sap:creatable="false" sap:updatable="false"/>
-				<Property Name="AnalyticalUnit" Type="Edm.String" sap:label="Analytical Unit" sap:creatable="false" sap:updatable="false"/>
+				<Property Name="Section" Type="Edm.String" sap:label="Section" sap:creatable="false" sap:updatable="false"/>
 				<NavigationProperty Name="NavMyWeekSummary" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyWeekSummary" FromRole="FromRole_AssMyWeekSummary"
 					ToRole="ToRole_AssMyWeekSummary"/>
 				<NavigationProperty Name="NavMyWorkDays" Relationship="ZHR_MOB_TIMESHEET_SRV.AssMyWorkDays" FromRole="FromRole_AssMyWorkDays"

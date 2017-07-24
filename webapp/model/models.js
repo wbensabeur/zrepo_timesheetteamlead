@@ -23,6 +23,16 @@ sap.ui.define([
 			var oModel = new JSONModel(userPref);
 			oModel.setDefaultBindingMode("OneWay");
 			return oModel;
+		},
+		createEmployeeSelection: function () {
+			var startDate = new Date();
+			var data = {
+				startDate:startDate,
+				employees:[]
+			};
+			var oModel = new JSONModel(data);
+			oModel.setDefaultBindingMode("OneWay");
+			return oModel;
 		}
 
 	};

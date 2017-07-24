@@ -114,7 +114,14 @@ sap.ui.define([], function() {
 				}
 			}
 			return oCalendarData;
-		}
+		},
+		getODataDateFilter: function (date) {
+			if (date && typeof date.toISOString === "function") {
+				var time = date.toISOString();
+				return "datetime'" + time.substr(0, time.length - 1) + "'";
+			}
+			return "";
+		}	
 
 	};
 

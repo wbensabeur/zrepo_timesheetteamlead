@@ -117,6 +117,12 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["ReportEmployeeSelection"]
+			}, {
+				"name": "WeeklyReport",
+				"pattern": "WeeklyReport",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["WeeklyReport"]
 			}],
 			"targets": {
 				"home": {
@@ -151,6 +157,14 @@
 					"clearAggregation": true,
 					"viewName": "ReportEmployeeSelection",
 					"viewId": "ReportEmployeeSelection",
+					"viewLevel": 2
+				},
+				"WeeklyReport": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "WeeklyReport",
+					"viewId": "WeeklyReport",
 					"viewLevel": 2
 				}
 			}

@@ -37,6 +37,9 @@ sap.ui.define([
 				// set the userPref model
 				this.setModel(models.createUserPersolisationModel(this.getModel()), "userPreference");
 				
+				//set EmployeeSelection Model
+				this.setModel(models.createEmployeeSelection(),"employeeSelected");
+				
 				
 				// create the views based on the url/hash
 				this.getRouter().initialize();
