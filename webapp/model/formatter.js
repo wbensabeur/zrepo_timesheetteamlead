@@ -1,23 +1,23 @@
 sap.ui.define([
 	"com/vinci/timesheet/admin/utility/datetime"
-	] , function (datetime) {
-		"use strict";
+], function(datetime) {
+	"use strict";
 
-		return {
+	return {
 
-			/**
-			 * Rounds the number unit value to 2 digits
-			 * @public
-			 * @param {string} sValue the number string to be rounded
-			 * @returns {string} sValue with 2 digits rounded
-			 */
-			numberUnit : function (sValue) {
-				if (!sValue) {
-					return "";
-				}
-				return parseFloat(sValue).toFixed(2);
-			},
-			periodFormat: function(oDate) {
+		/**
+		 * Rounds the number unit value to 2 digits
+		 * @public
+		 * @param {string} sValue the number string to be rounded
+		 * @returns {string} sValue with 2 digits rounded
+		 */
+		numberUnit: function(sValue) {
+			if (!sValue) {
+				return "";
+			}
+			return parseFloat(sValue).toFixed(2);
+		},
+		periodFormat: function(oDate) {
 			var currentWeekNumber = datetime.getWeek(oDate);
 			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
 				month: "long"
@@ -50,7 +50,7 @@ sap.ui.define([
 				return '';
 			}
 			return number;
-			
+
 		},
 		leaveFormatter: function(value) {
 			if (value === null) {
@@ -61,19 +61,19 @@ sap.ui.define([
 			}
 			return "";
 		},
-		disableDays: function (isEntryEnabled){
-			if(isEntryEnabled){
-			  return '';	
+		disableDays: function(isEntryEnabled) {
+			if (isEntryEnabled) {
+				return '';
 			}
 			return 'D';
 		},
-		disableEmployees: function (isEntryEnabled) {
-			if(isEntryEnabled){
-			  return 'Active';	
+		disableEmployees: function(isEntryEnabled) {
+			if (isEntryEnabled) {
+				return 'Active';
 			}
 			return 'Inactive';
 		},
-		DaySelectorFormatter:function(value) {
+		DaySelectorFormatter: function(value) {
 			if (value === null) {
 				return "Active";
 			}
@@ -82,7 +82,7 @@ sap.ui.define([
 			}
 			return "Active";
 		},
-		leaveDaySelectorFormatter:function(value) {
+		leaveDaySelectorFormatter: function(value) {
 			if (value === null) {
 				return "";
 			}
@@ -90,9 +90,29 @@ sap.ui.define([
 				return "Inactive";
 			}
 			return "";
+		},
+		statusFormat: function(value) {
+			var status = '';
+			switch (value) {
+				case 'D':
+					status = 'Draft';
+					break;
+				case 'W':
+					status = 'Waiting';
+					break;
+				case 'V':
+					status = 'Validated';
+					break;
+				case 'R':
+					status = 'Refused';
+					break;
+				default:
+					status = '';
+			}
+		return status;
+			
 		}
 
-		};
+	};
 
-	}
-);
+});

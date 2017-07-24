@@ -1,5 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-	controllerName="com.vinci.timesheet.admin.controller.ReportEmployeeSelection" xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.ReportEmployeeSelection">
 	<Page class="VinciBackground">
 		<customHeader>
 			<Bar design="SubHeader" class="VinciBar">
@@ -10,9 +9,7 @@
 			</Bar>
 		</customHeader>
 		<content>
-			<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
-				busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
-				growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable" updateStarted="onUpdateStart">
+			<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable" updateStarted="onUpdateStart">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -38,10 +35,10 @@
 					<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
 						<cells>
 							<VBox class="EmpWeekStatus">
-								<StandardListItem class="EmpWeekStatus" type="{path:'isEntryEnabled', formatter:'.formatter.disableEmployees'}" title="{EmployeeName}"
-									description="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" press="OnEmployeePress">
+								<StandardListItem class="EmpWeekStatus" type="{path:'isEntryEnabled', formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" press="OnEmployeePress">
 									<customData>
 										<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+										<core:CustomData key="employee" value="{EmployeeId}"/>
 									</customData>
 									<layoutData>
 										<FlexItemData growFactor="1"/>
@@ -76,14 +73,12 @@
 									<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate6Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize"
-								press="OnHourPress" enabled="false">
+							<Button text="{path:'WeekDate6Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
 									<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate7Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize"
-								press="OnHourPress" enabled="false">
+							<Button text="{path:'WeekDate7Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
 									<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 								</customData>
@@ -97,8 +92,8 @@
 			<Bar>
 				<contentRight>
 					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
-					<Button text="{i18n>resumePanel}" type="Emphasized"/>
-					<Button text="{i18n>weeklyReport}" type="Emphasized"/>
+					<Button text="{i18n>resumePanel}" type="Emphasized" press="OnSelectionReSet"/>
+					<Button text="{i18n>weeklyReport}" type="Emphasized" press="OnWeeklyReportPress"/>
 				</contentRight>
 			</Bar>
 		</footer>
