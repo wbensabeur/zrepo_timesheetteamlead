@@ -83,9 +83,9 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 /* CSS for Table*/
 
-.employeeListTable {
+/*.employeeListTable {
     padding-left: 14px !important;
-}
+}*/
 
 
 /* CSS for Filter Screen*/
@@ -446,4 +446,18 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 .sapContrastPlus.sapMITBSelected>.sapMITBContentArrow, .sapContrastPlus .sapMITBSelected>.sapMITBContentArrow {
     border-bottom-color: white;
+}
+
+/* Time addition content*/
+.sapMITBContent {
+    background-color: rgba(249, 249, 249, 1) !important;
+}
+
+.AddHoursDivider {
+	    height: .1rem;
+    background-color: black;
+}
+
+:not(.sapMBtnDisabled) .DeleteButton>.sapMBtnTransparent>.sapMBtnIcon {
+    color: red;
 }
