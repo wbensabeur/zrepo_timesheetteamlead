@@ -16,6 +16,12 @@ sap.ui.define([
 			this.getRouter().getRoute("AddTimesheet").attachPatternMatched(this._onObjectMatched, this);
 			var oFragment = sap.ui.xmlfragment(this.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", this);
 			this.getView().byId('addTimeTab').addContent(oFragment);
+			
+			var odata = {
+				totalhrs:0	
+			};
+			var oModel = new JSONModel(odata);
+			this.getView().setModel(oModel, "AddTime");
 		
 		},
 		/**
@@ -63,8 +69,47 @@ sap.ui.define([
 			this.getView().byId('addTimeTab').addContent(oFragment);
 		},
 		OnTimeDelete : function(oEvent) {
-			var sourceContent = oEvent.getSource().getParent().getParent();
-			this.getView().byId('addTimeTab').removeContent(sourceContent);
+			var source = oEvent.getSource();
+			var sourcePanel = source.getParent().getParent();
+			this.getView().byId('addTimeTab').removeContent(sourcePanel);
+			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			var currentTotalhrs = this.getView().getModel('AddTime').getProperty('/totalhrs');
+			var newTotalhrs = currentTotalhrs - currentValue;
+			this.getView().getModel('AddTime').setProperty('/totalhrs',newTotalhrs);
+			
+		},
+		OnChangeHours : function(oEvent) {
+			var source = oEvent.getSource();
+			var sourcePanel = source.getParent().getParent().getParent();
+			var newValue = datetime.timeToDecimal(oEvent.getParameter("value"));
+			
+			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			var deltahrs = newValue - currentValue;
+			var currentTotalhrs = this.getView().getModel('AddTime').getProperty('/totalhrs');
+			var newTotalhrs = currentTotalhrs + deltahrs;
+			this.getView().getModel('AddTime').setProperty('/totalhrs',newTotalhrs);
+			sourcePanel.getCustomData()[0].setValue(newValue);
+		
+		},
+		OnchangeTimeSelection: function(oEvent) {
+			var source = oEvent.getSource();
+			var sourcePanel = source.getParent().getParent();
+			var newValue = 0;
+			if(oEvent.getParameter("selectedIndex") === 1)
+			{
+				newValue = 8;
+			
+				
+			}
+			/*else {
+				
+			}*/
+			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			var deltahrs = newValue - currentValue;
+			var currentTotalhrs = this.getView().getModel('AddTime').getProperty('/totalhrs');
+			var newTotalhrs = currentTotalhrs + deltahrs;
+			this.getView().getModel('AddTime').setProperty('/totalhrs',newTotalhrs);
+			sourcePanel.getCustomData()[0].setValue(newValue);
 		}
 	});
 });

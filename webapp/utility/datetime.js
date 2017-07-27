@@ -121,7 +121,11 @@ sap.ui.define([], function() {
 				return "datetime'" + time.substr(0, time.length - 1) + "'";
 			}
 			return "";
-		}	
+		},
+		timeToDecimal: function (t) {
+		 var arr = t.split(':');
+    	 return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1]/6)*10, 10));
+		} 
 
 	};
 

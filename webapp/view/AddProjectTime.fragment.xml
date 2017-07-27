@@ -3,22 +3,21 @@
 		<FlexBox class="AddHoursDivider"/>
 		<FlexBox alignContent="Start" justifyContent="End">
 			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnTimeDelete"/>
-				
 		</FlexBox>
 		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom">
 			<Label text="Select your Project:"/>
 			<Button text="Select your project here" type="Emphasized"/>
-			<RadioButtonGroup columns="2">
+			<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection">
 				<buttons>
-					<RadioButton text="All Day"/>
 					<RadioButton text="Specific time"/>
+					<RadioButton text="All Day"/>
 				</buttons>
 			</RadioButtonGroup>
 		</VBox>
 		<VBox class="sapUiSmallMarginBottom">
 			<Label text="Select hours"/>
 			<HBox alignContent="End" justifyContent="End">
-				<TimePicker value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes">
+				<TimePicker value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours">
 					<layoutData>
 						<FlexItemData growFactor="1"/>
 					</layoutData>
@@ -26,5 +25,8 @@
 				<ComboBox/>
 			</HBox>
 		</VBox>
+		<customData>
+			<core:CustomData key="hrs" value="0"/>
+		</customData>
 	</VBox>
 </core:FragmentDefinition>
