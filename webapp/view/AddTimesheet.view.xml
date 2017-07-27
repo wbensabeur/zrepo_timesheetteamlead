@@ -56,7 +56,7 @@
 									</layoutData>
 								</Button>
 								<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop"/>
-								<StepInput class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="6rem" value="25"/>
+								<StepInput displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem" value="{AddTime>/totalhrs}"/>
 							</HBox>
 							<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddProjectTime' type='XML' />-->
 						</VBox>
