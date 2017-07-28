@@ -1,35 +1,35 @@
 [{
-	"UserId": "UserId 1",
-	"FullName": "FullName 1",
+	"UserId": "ACHARBON",
+	"FullName": "ALEXIS CHARBONNEL",
 	"StartDate": "/Date(1165644230000)/",
 	"EndDate": "/Date(1012111430000)/",
 	"__metadata": {
-		"uri": "TimeAdminSet('UserId%201')",
+		"uri": "TimeAdminSet('ACHARBON')",
 		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
 	},
 	"NavMyEmployees": {
 		"__deferred": {
-			"uri": "TimeAdminSet('UserId%201')/NavMyEmployees"
+			"uri": "TimeAdminSet('ACHARBON')/NavMyEmployees"
 		}
 	},
 	"NavMyEquipments": {
 		"__deferred": {
-			"uri": "TimeAdminSet('UserId%201')/NavMyEquipments"
+			"uri": "TimeAdminSet('ACHARBON')/NavMyEquipments"
 		}
 	},
 	"NavMyTeams": {
 		"__deferred": {
-			"uri": "TimeAdminSet('UserId%201')/NavMyTeams"
+			"uri": "TimeAdminSet('ACHARBON')/NavMyTeams"
 		}
 	},
 	"NavMyPersonalisations": {
 		"__deferred": {
-			"uri": "TimeAdminSet('UserId%201')/NavMyPersonalisations"
+			"uri": "TimeAdminSet('ACHARBON')/NavMyPersonalisations"
 		}
 	},
 	"NavMyHelpLists": {
 		"__deferred": {
-			"uri": "TimeAdminSet('UserId%201')/NavMyHelpLists"
+			"uri": "TimeAdminSet('ACHARBON')/NavMyHelpLists"
 		}
 	}
 }, {
