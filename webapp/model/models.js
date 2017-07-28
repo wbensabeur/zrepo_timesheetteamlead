@@ -11,12 +11,14 @@ sap.ui.define([
 			oModel.setDefaultBindingMode("OneWay");
 			return oModel;
 		},
-		createUserPersolisationModel: function(backendModel) {
-			var startDate = new Date(); /// =datetime.getLastWeek(new Date()); in case of default 2 week display
-			
+		createUserPersolisationModel: function() {
+			var startDate = null; /// =datetime.getLastWeek(new Date()); in case of default 2 week display
+			var defaultBU = null;
+			var defaultPeriod = null;
+		
 			var userPref = {
-				defaultBU:'BU1',
-				defaultPeriod:1,
+				defaultBU:defaultBU,
+				defaultPeriod:defaultPeriod,
 				employeeFilter:null,
 				startDate:startDate
 			};

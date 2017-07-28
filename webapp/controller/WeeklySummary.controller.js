@@ -92,6 +92,7 @@ sap.ui.define([
 		/* =========================================================== */
 		onPeriodSelect: function(oEvent) {
 			var oKey = oEvent.getParameter("key");
+			var oData = {PersoValue:''};
 			if (oKey === "OneWeek") {
 				this.twoWeek = false;
 				this.userPref.startDate = new Date();
@@ -100,7 +101,14 @@ sap.ui.define([
 				this.twoWeek = true;
 				this.userPref.startDate = datetime.getLastWeek(new Date());
 				this.userPref.defaultPeriod = 2;
+				oData.PersoValue = 'X';
 			}
+			
+			this.getView().getModel().update("/PersonalizationSet(UserId='ACHARBON',PersoId='BW')",oData,{
+				success:function(oData, response) {
+            
+       }
+			});
 			this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);
 			this.getView().getModel("userPreference").setProperty("/defaultPeriod", this.userPref.defaultPeriod);
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
