@@ -104,18 +104,14 @@ sap.ui.define([
 				oData.PersoValue = 'X';
 			}
 			
-			this.getView().getModel().update("/PersonalizationSet(UserId='ACHARBON',PersoId='BW')",oData,{
-				success:function(oData, response) {
-            
-       }
-			});
+			var url = "/PersonalizationSet(UserId='"+this.getView().getModel("userPreference").getProperty("/userID")+"',PersoId='BW')";
+			this.getView().getModel().update(url,oData);
 			this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);
 			this.getView().getModel("userPreference").setProperty("/defaultPeriod", this.userPref.defaultPeriod);
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
 		},
 		onEmployeSearch: function(oEvent) {
-			var oTable = this.byId("table");
-			//var oTableSearchState = [];
+			
 			var sQuery = oEvent.getParameter("query");
 			this.userPref.employeeFilter = sQuery;
 			this.getView().getModel("userPreference").setProperty("/employeeFilter", this.userPref.employeeFilter);
@@ -229,11 +225,13 @@ sap.ui.define([
 			var Filters = [
 				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
-				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek)
+				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
+				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
 			];
 			if (this.userPref.employeeFilter != null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
+			
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
 		/**

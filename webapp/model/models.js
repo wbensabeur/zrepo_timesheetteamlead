@@ -20,7 +20,8 @@ sap.ui.define([
 				defaultBU:defaultBU,
 				defaultPeriod:defaultPeriod,
 				employeeFilter:null,
-				startDate:startDate
+				startDate:startDate,
+				userID:null
 			};
 			var oModel = new JSONModel(userPref);
 			oModel.setDefaultBindingMode("OneWay");

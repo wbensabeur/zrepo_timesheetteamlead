@@ -35,6 +35,7 @@
 				<Property Name="isByWeekly" Type="Edm.Boolean" Nullable="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false"
 					sap:sortable="false" sap:filterable="false"/>
 				<Property Name="EmployeeId" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="BusinessUnit" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="true"/>
 				<Property Name="EmployeeName" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 				<Property Name="WeekTotalHours" Type="Edm.Byte" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false"
 					sap:filterable="false"/>
