@@ -128,7 +128,7 @@ sap.ui.define([
 				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
 			];
-			if (this.userPref.employeeFilter != null && this.userPref.employeeFilter.length > 0) {
+			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");

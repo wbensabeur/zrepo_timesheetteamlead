@@ -104,18 +104,18 @@ sap.ui.define([
 				var emphours = empBox.getParent().getParent().getCells();
 				for (var k = 1; k < 15; k++) {
 					var button = emphours[k];
-					if (button.getCustomData()[1].getValue() != "L") {
+					if (button.getCustomData()[1].getValue() !== "L") {
 						button.getCustomData()[0].setValue("S");
 					}
 				}
 			} else {
 				empBox.getCustomData()[0].setValue("");
 				empBox.getParent().getCustomData()[0].setValue("");
-				var emphours = empBox.getParent().getParent().getCells();
-				for (var k = 1; k < 15; k++) {
-					var button = emphours[k];
-					if (button.getCustomData()[1].getValue() != "L") {
-						button.getCustomData()[0].setValue("");
+				var emphours1 = empBox.getParent().getParent().getCells();
+				for (var k1 = 1; k1 < 15; k1++) {
+					var button1 = emphours1[k1];
+					if (button1.getCustomData()[1].getValue() !== "L") {
+						button1.getCustomData()[0].setValue("");
 					}
 				}
 			}
@@ -163,7 +163,7 @@ sap.ui.define([
 				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
 			];
-			if (this.userPref.employeeFilter != null && this.userPref.employeeFilter.length > 0) {
+			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");

@@ -20,9 +20,9 @@ sap.ui.define([
 			var oViewModel, iOriginalBusyDelay, oTable = this.byId("table");
 			/// Attach Seeting button from Shell
 			var setting = sap.ui.getCore().byId("shellSettings");
-			if (setting != null) {
+			if (setting !== null) {
 				setting.attachPress(function(oEvent) {
-					alert("Personal Setting");
+					//alert("Personal Setting");
 				});
 			}
 			// Put down worklist table's original value for busy indicator delay,
@@ -228,7 +228,7 @@ sap.ui.define([
 				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
 			];
-			if (this.userPref.employeeFilter != null && this.userPref.employeeFilter.length > 0) {
+			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
 			

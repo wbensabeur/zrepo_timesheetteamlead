@@ -1,11 +1,14 @@
+/* global jspdf:true */
 sap.ui.define([
 	"com/vinci/timesheet/admin/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
-	"sap/m/MessageBox"
-], function(BaseController, JSONModel, formatter, datetime, MessageBox) {
+	"sap/m/MessageBox",
+	"com/vinci/timesheet/admin/utility/jspdf"
+], function(BaseController, JSONModel, formatter, datetime, MessageBox, jspdfView) {
 	"use strict";
+
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklyReport", {
 		formatter: formatter,
 		/**
@@ -13,6 +16,7 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf com.vinci.timesheet.admin.view.WeeklyReport
 		 */
+
 		onInit: function() {
 			this.getRouter().getRoute("WeeklyReport").attachPatternMatched(this._onObjectMatched, this);
 		},
@@ -128,7 +132,8 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklyReport
 		 */
 		OnTimeSubmit: function() {
-			html2canvas(document.getElementById("shell-container-canvas"), {
+
+			window.html2canvas($("#shell-container-canvas"), {
 
 				onrendered: function(canvas) {
 
@@ -138,7 +143,7 @@ sap.ui.define([
 					doc.addImage(img, 'JPEG', 600, 400);
 					doc.save('test.pdf');*/
 				}
-			})
+			});
 		}
 	});
 });
