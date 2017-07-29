@@ -174,9 +174,7 @@
 				"uri": "css/style.css",
 				"id": ""
 			}],
-			"js": [{
-				"uri": "utility/jspdf.min.js"
-			}]
+			"js": []
 		}
 	},
 	"sap.platform.hcp": {

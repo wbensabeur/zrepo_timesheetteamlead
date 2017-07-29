@@ -55,8 +55,9 @@ sap.ui.define([
 				maxFractionDigits: 2
 			};
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
-			var valueInNum = Number(number);
 			
+			var valueInNum = oFloatFormat.format(Number(number));
+			 
 			if (valueInNum === null || valueInNum === 0 || valueInNum === '') {
 				return '';
 			}
@@ -124,7 +125,18 @@ sap.ui.define([
 
 		},
 		theoritecalHourFormat: function(filled, target) {
-			if ((filled === target) || (filled === '' && target === '0') || (filled === '' && target === '') || (filled === '0' && target === ''))
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {
+				minIntegerDigits: 1,
+				maxIntegerDigits: 3,
+				minFractionDigits: 0,
+				maxFractionDigits: 2
+			};
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			var oFilled = oFloatFormat.format(Number(filled));
+			var otarget = oFloatFormat.format(Number(target));
+			
+			if ((oFilled === otarget) || (oFilled === '' && otarget === '0') || (oFilled === '' && otarget === '') || (oFilled === '0' && otarget === ''))
 				return 'T';
 			else return 'NT';
 		},
