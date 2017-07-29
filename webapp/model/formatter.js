@@ -1,6 +1,7 @@
 sap.ui.define([
-	"com/vinci/timesheet/admin/utility/datetime"
-], function(datetime) {
+	"com/vinci/timesheet/admin/utility/datetime",
+	"sap/ui/core/format/NumberFormat"
+], function(datetime, NumberFormat) {
 	"use strict";
 
 	return {
@@ -46,10 +47,20 @@ sap.ui.define([
 			return true;
 		},
 		weekendFormatter: function(number) {
-			if (number === null || number === 0 || number === '') {
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {
+				minIntegerDigits: 1,
+				maxIntegerDigits: 3,
+				minFractionDigits: 0,
+				maxFractionDigits: 2
+			};
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			var valueInNum = Number(number);
+			
+			if (valueInNum === null || valueInNum === 0 || valueInNum === '') {
 				return '';
 			}
-			return number;
+			return valueInNum;
 
 		},
 		leaveFormatter: function(value) {
@@ -109,13 +120,25 @@ sap.ui.define([
 				default:
 					status = '';
 			}
-		return status;
-			
+			return status;
+
 		},
-		theoritecalHourFormat : function (filled,target) {
-			if((filled === target) || (filled === '' && target === '0') || (filled === '' && target === '') || (filled === '0' && target === ''))
-			  return 'T';
-			 else return 'NT';
+		theoritecalHourFormat: function(filled, target) {
+			if ((filled === target) || (filled === '' && target === '0') || (filled === '' && target === '') || (filled === '0' && target === ''))
+				return 'T';
+			else return 'NT';
+		},
+		numberFormatter: function(value) {
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {
+				minIntegerDigits: 1,
+				maxIntegerDigits: 3,
+				minFractionDigits: 0,
+				maxFractionDigits: 2
+			};
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			var valueInNum = Number(value);//.toString();
+			return oFloatFormat.format(valueInNum); 
 		}
 
 	};

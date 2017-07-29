@@ -73,7 +73,7 @@
 											<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
 										</customData>
 									</VBox>
-									<Button text="{path:'WeekDate1Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate1Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -81,7 +81,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate1Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate2Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate2Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate2Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -89,7 +89,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate2Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate3Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate3Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate3Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -97,7 +97,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate3Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate4Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate4Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate4Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -105,7 +105,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate4Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate5Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate5Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate5Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -129,7 +129,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate7Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate8Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate8Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate8Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate8Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -137,7 +137,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate8Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate9Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate9Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate9Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate9Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -145,7 +145,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate9Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate10Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate10Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate10Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate10Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -153,7 +153,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate10Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate11Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate11Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate11Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate11Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -161,7 +161,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate11Date}"/>
 										</customData>
 									</Button>
-									<Button text="{path:'WeekDate12Hours',type:'Float'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
+									<Button text="{path:'WeekDate12Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate12Status}" writeToDom="true"/>
 											<core:CustomData key="background" value="{path:'WeekDate12Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>

@@ -25,12 +25,12 @@
         "id": "4693853",
         "runnerId": "webapprunner",
         "displayName": "App",
-        "lastRunTimeStamp": 1501242101220
+        "lastRunTimeStamp": 1501305183099
       }
     },
     {
       "filePath": "/webapp/index.html",
-      "previewMode": 1,
+      "previewMode": 0,
       "dataMode": 0,
       "workspace": "withoutWorkspace",
       "urlParameters": [
@@ -58,7 +58,7 @@
         "id": "417603",
         "runnerId": "webapprunner",
         "displayName": "App (Mock Server)",
-        "lastRunTimeStamp": 1501239149365
+        "lastRunTimeStamp": 1501305121621
       }
     },
     {
