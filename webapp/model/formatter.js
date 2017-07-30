@@ -24,7 +24,7 @@ sap.ui.define([
 				month: "long"
 			});
 			var currentYear = oDate.getFullYear();
-			var oString = this.getResourceBundle().getText("week") + ' ' + currentWeekNumber + ',' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
+			var oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + ',' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
 				.getText("from") + ' ';
 			var dd = oDate.getDate();
 			var mm = oDate.getMonth() + 1;
