@@ -15,7 +15,7 @@ sap.ui.define([
 		onInit: function() {
 			this.getRouter().getRoute("AddTimesheet").attachPatternMatched(this._onObjectMatched, this);
 			var oFragment = sap.ui.xmlfragment(this.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", this);
-			this.getView().byId('addTimeTab').addContent(oFragment);
+			this.getView().byId("addTimeTa").addContent(oFragment);
 			
 			var odata = {
 				totalhrs:0	

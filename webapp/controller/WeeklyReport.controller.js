@@ -1,4 +1,3 @@
-/* global jspdf:true */
 sap.ui.define([
 	"com/vinci/timesheet/admin/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
