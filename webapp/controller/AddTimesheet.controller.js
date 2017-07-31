@@ -15,7 +15,7 @@ sap.ui.define([
 		onInit: function() {
 			this.getRouter().getRoute("AddTimesheet").attachPatternMatched(this._onObjectMatched, this);
 			var oFragment = sap.ui.xmlfragment(this.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", this);
-			this.getView().byId("addTimeTa").addContent(oFragment);
+			this.getView().byId('addTimeTab').getContent()[0].addItem(oFragment);
 			
 			var odata = {
 				totalhrs:0	
@@ -59,6 +59,17 @@ sap.ui.define([
 		onPressCancel: function() {
 			this.getRouter().navTo("periodSelection", {}, true);
 		},
+		onPressProjectCancel : function () {
+			this._backtoMainScreen();	
+		
+		},
+		onPressProjectSelect : function () {
+			this.currentLabel.bindElement(this.currentProjectContext);
+			this.currentLabel.setVisible(true);
+			this.ownIntialButton.setVisible(false);
+			this.ownRefreshButton.setVisible(true);
+			this._backtoMainScreen();
+		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.AddTimesheet
 		 */
@@ -66,12 +77,13 @@ sap.ui.define([
 			
 			var oFragment = sap.ui.xmlfragment(this.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", this);
 		    
-			this.getView().byId('addTimeTab').addContent(oFragment);
+			this.getView().byId('addTimeTab').getContent()[0].addItem(oFragment);
 		},
 		OnTimeDelete : function(oEvent) {
 			var source = oEvent.getSource();
-			var sourcePanel = source.getParent().getParent();
-			this.getView().byId('addTimeTab').removeContent(sourcePanel);
+			//var sourcePanel = source.getParent().getParent();
+			var sourcePanel = this._getOwnPanelObject(source);
+			this.getView().byId('addTimeTab').getContent()[0].removeItem(sourcePanel);
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var currentTotalhrs = this.getView().getModel('AddTime').getProperty('/totalhrs');
 			var newTotalhrs = currentTotalhrs - currentValue;
@@ -80,7 +92,8 @@ sap.ui.define([
 		},
 		OnChangeHours : function(oEvent) {
 			var source = oEvent.getSource();
-			var sourcePanel = source.getParent().getParent().getParent();
+			//var sourcePanel = source.getParent().getParent().getParent();
+			var sourcePanel = this._getOwnPanelObject(source);
 			var newValue = datetime.timeToDecimal(oEvent.getParameter("value"));
 			
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
@@ -93,7 +106,7 @@ sap.ui.define([
 		},
 		OnchangeTimeSelection: function(oEvent) {
 			var source = oEvent.getSource();
-			var sourcePanel = source.getParent().getParent();
+			var sourcePanel = this._getOwnPanelObject(source);
 			var newValue = 0;
 			if(oEvent.getParameter("selectedIndex") === 1)
 			{
@@ -110,6 +123,80 @@ sap.ui.define([
 			var newTotalhrs = currentTotalhrs + deltahrs;
 			this.getView().getModel('AddTime').setProperty('/totalhrs',newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
+		},
+		OnProjectSelected : function (oEvent) {
+			var contextPath = oEvent.getParameter('listItem').getBindingContext().getPath();
+			oEvent.getSource().getParent().getCustomData()[0].setValue(contextPath);
+			this.currentProjectContext = contextPath;
+			//var label = sap.ui.getCore().byId(oEvent.getSource().getParent().getCustomData()[1].getValue());
+			//label.bindElement(contextPath);
+				
+		},
+		OnProjectSearch : function(oEvent) {
+			
+			var ownHBox = oEvent.getSource().getParent();
+			var ownLabel = ownHBox.getItems()[0]; 
+			this.ownIntialButton = ownHBox.getItems()[1];
+			this.ownRefreshButton = ownHBox.getItems()[2];
+			var content = this._getOwnContentObject(ownHBox);
+			
+			content[1].getCustomData()[1].setValue(ownLabel.getId());
+			this.currentLabel = ownLabel;
+			content[0].setVisible(false);  // main Frame
+			content[1].setVisible(true);   // Project SEarch Frame
+			// Visible = false
+			this.getView().byId('MainCancelButton').setVisible(false);
+			this.getView().byId('MainAddButton').setVisible(false);
+			
+			// Visible = true
+			this.getView().byId('ProjectCancelButton').setVisible(true);
+			this.getView().byId('ProjectSelectButton').setVisible(true);
+			
+			
+		},
+		OnFavoriteChange : function(oEvent) {
+			alert('test');
+		},
+		_getOwnPanelObject: function(source){
+			var parent = source.getParent();
+			
+			while (parent.getCustomData().length === 0){
+				parent = parent.getParent();
+			}
+			return parent;
+				
+		},
+		_getOwnContentObject : function(source) {
+			 var parent = source.getParent();
+			 while (parent.getMetadata().getName() !== 'sap.m.IconTabFilter'){
+			 	parent = parent.getParent();
+			 }
+			 return parent.getContent();
+		},
+		_getProjectSearchObject : function (source) {
+			
+		},
+		_getOwnHBox : function (source) {
+			
+		},
+		_backtoMainScreen : function () {
+			
+			var tabItems = this.getView().byId('idIconTabBarMulti').getItems();
+			
+			for (var k = 0; k < tabItems.length; k++){
+				var content = tabItems[k].getContent();
+				content[0].setVisible(true);
+				content[1].setVisible(false);
+			}	
+		
+
+			// Visible = true
+			this.getView().byId('MainCancelButton').setVisible(true);
+			this.getView().byId('MainAddButton').setVisible(true);
+			
+			// Visible = false
+			this.getView().byId('ProjectCancelButton').setVisible(false);
+			this.getView().byId('ProjectSelectButton').setVisible(false);
 		}
 	});
 });

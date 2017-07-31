@@ -5,8 +5,7 @@
 			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnTimeDelete"/>
 		</FlexBox>
 		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom">
-			<Label text="Select your Project:"/>
-			<Button text="Select your project here" type="Emphasized"/>
+			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
 			<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection">
 				<buttons>
 					<RadioButton text="Specific time"/>

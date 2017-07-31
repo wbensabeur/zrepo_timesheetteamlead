@@ -18,8 +18,7 @@
 					<IconTabFilter icon="sap-icon://write-new-document" text="SIMPLE ENTRY" design="Horizontal">
 						<VBox width="100%" height="100%">
 							<VBox alignItems="Start" justifyContent="Start" class="sapUiLargeMarginTop sapUiSmallMarginBottom">
-								<Label text="Select your Project:"/>
-								<Button text="Select your project here" type="Emphasized"/>
+								<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
 							</VBox>
 							<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiSmallMarginBottom">
 								<Label text="Select hours"/>
@@ -46,6 +45,7 @@
 								</HBox>
 							</VBox>
 						</VBox>
+						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
 					</IconTabFilter>
 					<IconTabFilter id="addTimeTab" icon="sap-icon://multiselect-none" text="MULTIPLE ENTRY" design="Horizontal">
 						<VBox width="100%" height="100%">
@@ -56,22 +56,27 @@
 									</layoutData>
 								</Button>
 								<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop"/>
-								<StepInput displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem" value="{AddTime>/totalhrs}"/>
+								<StepInput displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
+									value="{AddTime>/totalhrs}"/>
 							</HBox>
-							<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddProjectTime' type='XML' />-->
 						</VBox>
+						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://create-leave-request" text="ABSENCE" design="Horizontal">
 						<Text text="Notes go here ..."/>
+						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://map" text="KM" design="Horizontal">
 						<Text text="Notes go here ..."/>
+						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://add-equipment" text="EQUIPMENT" design="Horizontal">
 						<Text text="People content goes here ..."/>
+						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
 					</IconTabFilter>
 					<IconTabFilter icon="sap-icon://activity-items" text="SUMMARY" design="Horizontal">
 						<Text text="People content goes here ..."/>
+						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
 					</IconTabFilter>
 				</items>
 			</IconTabBar>
@@ -79,8 +84,10 @@
 		<footer>
 			<Bar>
 				<contentRight>
-					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
-					<Button text="{i18n>addtimedata}" type="Accept"/>
+					<Button id="MainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
+					<Button id="MainAddButton" text="{i18n>addtimedata}" type="Accept"/>
+					<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="false" press="onPressProjectCancel"/>
+					<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="false" press="onPressProjectSelect"/>
 				</contentRight>
 			</Bar>
 		</footer>

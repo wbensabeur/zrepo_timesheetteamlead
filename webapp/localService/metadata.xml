@@ -424,7 +424,7 @@
 					sap:sortable="false" MaxLength="3" sap:filterable="false"/>
 				<Property Name="ResponsiblePM" sap:updatable="false" sap:creatable="false" sap:label="Pers.Resp.Name" Nullable="false" Type="Edm.String"
 					sap:sortable="false" MaxLength="25" sap:filterable="false"/>
-				<Property Name="Description" sap:updatable="false" sap:creatable="false" sap:label="Project" Nullable="false" Type="Edm.String"
+				<Property Name="ProjectDescription" sap:updatable="false" sap:creatable="false" sap:label="Project" Nullable="false" Type="Edm.String"
 					sap:sortable="false" MaxLength="35" sap:filterable="false"/>
 			</EntityType>
 			<EntityType Name="Favorite" sap:content-version="1">
