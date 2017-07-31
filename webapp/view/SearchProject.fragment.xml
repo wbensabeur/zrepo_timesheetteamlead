@@ -1,9 +1,57 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<VBox width="100%" height="100%">
+	<VBox width="100%" height="100%" visible="false">
 		<Label text="{i18n>filterBy} :"/>
-		
+		<Table items="{ path: '/ProjectSet' }" mode="SingleSelectMaster" modeAnimationOn="false" selectionChange="OnProjectSelected">
+			<columns>
+				<Column width="auto" hAlign="Center">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+						<Label text="{i18n>ProjectDescription}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					</VBox>
+				</Column>
+				<Column width="auto" hAlign="Center">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+						<Label text="{i18n>company}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					</VBox>
+				</Column>
+				<Column width="auto" hAlign="Center">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+						<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					</VBox>
+				</Column>
+				<Column width="auto" hAlign="Center">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+						<Label text="{i18n>position}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					</VBox>
+				</Column>
+				<Column width="auto" hAlign="Center">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+						<Label text="{i18n>manager}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					</VBox>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="6%">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+						<Label text="" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					</VBox>
+				</Column>
+			</columns>
+			<!-- sap.m.Column -->
+			<items>
+				<ColumnListItem vAlign="Middle" class="sapUiTableTr">
+					<cells>
+						<Label text="{ProjectDescription}"/>
+						<Label text="{Company}"/>
+						<Label text="{ProjectId}"/>
+						<Label text="{Position}"/>
+						<Label text="{ResponsiblePM}"/>
+						<core:Icon src="sap-icon://unfavorite" class="sapUiSmallMarginBegin" press="OnFavoriteChange"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+			<!-- sap.m.ListItemBase -->
+		</Table>
 		<customData>
-			<core:CustomData key="ProjectName" value=""/>
+			<core:CustomData key="ProjectBinding" value=""/>
+			<core:CustomData key="UpdateObject" value=""/>
 		</customData>
 	</VBox>
 </core:FragmentDefinition>

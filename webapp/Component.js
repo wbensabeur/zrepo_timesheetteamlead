@@ -42,7 +42,7 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			//this.getRouter().initialize(); done under  _updateUserPreference
-			var userPreferenceModel =  this.getModel("userPreference);
+			var userPreferenceModel =  this.getModel("userPreference");
 			this._updateUserPreference(this.getModel(), userPreferenceModel);
 
 			var userBox = sap.ui.getCore().byId('shellUser');
