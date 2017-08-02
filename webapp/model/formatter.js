@@ -77,7 +77,7 @@ sap.ui.define([
 			if (isEntryEnabled) {
 				return '';
 			}
-			return 'D';
+			return 'D1';
 		},
 		disableEmployees: function(isEntryEnabled) {
 			if (isEntryEnabled) {
