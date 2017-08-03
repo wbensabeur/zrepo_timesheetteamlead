@@ -18,14 +18,20 @@
         }
       ],
       "hashParameter": "",
-      "ui5ActiveVersion": null,
+      "ui5ActiveVersion": "1.46.10",
       "ui5VerSource": null,
       "isDefaultVersion": 1,
+      "backendSystem": [
+        {
+          "source": "vesidgwci_SAP",
+          "destinations": "vesidgwci_SAP"
+        }
+      ],
       "_metadata": {
         "id": "4693853",
         "runnerId": "webapprunner",
         "displayName": "App",
-        "lastRunTimeStamp": 1501664080178
+        "lastRunTimeStamp": 1501770958109
       }
     },
     {

@@ -4,8 +4,10 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"sap/m/MessageBox",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
 	"com/vinci/timesheet/admin/utility/jspdf"
-], function(BaseController, JSONModel, formatter, datetime, MessageBox, jspdfView) {
+], function(BaseController, JSONModel, formatter, datetime, MessageBox, Filter, FilterOperator, jspdfView) {
 	"use strict";
 
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklyReport", {
@@ -87,6 +89,118 @@ sap.ui.define([
 			oView.byId("WeeklyAggregation").bindElement(employee.getBindingContextPath());
 			oView.byId("WeeklyArregatedFilledData").bindElement(employee.getBindingContextPath());
 			oView.byId("WeeklyArregatedTargetData").bindElement(employee.getBindingContextPath());
+
+			//var startDateFilter = new Filter("WorkDate", FilterOperator.GT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date);
+			//var endDateFilter = new Filter("WorkDate", FilterOperator.LT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date);
+			//var filter2 = new Filter([startDateFilter,endDateFilter],true);
+
+			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'%20and%20WorkDate%20gt%20" + datetime.getODataDateFilter(
+				oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
+				oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "&$orderby=ProjectID,EntryType";
+			var mParameters = {
+				urlParameters: urlFilterParam,
+				success: function(oData, oResponse) {
+					var results = oResponse.data.results;
+					var oData = [];
+					var projectId = null;
+					var entryType = null;
+					var line = null;
+					for (var k = 0; k < results.length; k++) {
+						var hrs = formatter.getQuantity(results[k].EntryType,results[k].Hours);
+						if (projectId !== results[k].ProjectID || entryType !== results[k].EntryType) /// New Line
+						{
+							if (line !== null) {
+								oData.push(line);
+							}
+							line = {
+								project: results[k].ProjectID,
+								projectName: "",
+								type: results[k].EntryType,
+								unit: formatter.getUnit(results[k].EntryType,results[k].ZoneType),
+								total:hrs,
+								mon: 0,
+								tue: 0,
+								wed: 0,
+								thr: 0,
+								fri: 0,
+								sat: 0,
+								sun: 0
+							};
+							switch (results[k].WorkDate.getDay()) {
+								case 1:
+									line.mon = hrs;
+								
+									break;
+								case 2:
+									line.tue = hrs;
+									break;
+								case 3:
+									line.wed = hrs;
+									break;
+								case 4:
+									line.thr = hrs;
+									break;
+								case 5:
+									line.fri = hrs;
+									break;
+								case 6:
+									line.sat = hrs;
+									break;
+								case 7:
+									line.sun = hrs;
+									break;
+								default:
+
+							}
+
+							/*	if (results[k].WorkDate === oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) {
+									line.mon = results[k].Hours;
+								} */
+						} else /// add
+						{
+							line.total = line.total + hrs;
+							switch (results[k].WorkDate.getDay()) {
+								case 1:
+									line.mon = line.mon + hrs;
+									break;
+								case 2:
+									line.tue = line.tue + hrs;
+									break;
+								case 3:
+									line.wed = line.wed + hrs;
+									break;
+								case 4:
+									line.thr = line.thr + hrs;
+									break;
+								case 5:
+									line.fri = line.fri + hrs;
+									break;
+								case 6:
+									line.sat = line.sat + hrs;
+									break;
+								case 7:
+									line.sun = line.sun + hrs;
+									break;
+								default:
+							}
+						}
+					projectId = results[k].ProjectID;
+					entryType = results[k].EntryType;
+						
+					}
+					if (line !== null) {
+							oData.push(line);
+						}
+						var oModel = new JSONModel(oData);
+						oView.setModel(oModel, "itemData");
+				},
+				error: function(oError) {
+
+				}
+
+			};
+			oView.getModel().read("/WorkDayItemSet", mParameters);
+
 			/*	var aggregatedData = [{
 				title: "Theoretical hours",
 				unit:"H",

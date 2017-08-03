@@ -55,9 +55,9 @@ sap.ui.define([
 				maxFractionDigits: 2
 			};
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
-			
+
 			var valueInNum = oFloatFormat.format(Number(number));
-			 
+
 			if (valueInNum === null || valueInNum === 0 || valueInNum === '') {
 				return '';
 			}
@@ -135,8 +135,9 @@ sap.ui.define([
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
 			var oFilled = oFloatFormat.format(Number(filled));
 			var otarget = oFloatFormat.format(Number(target));
-			
-			if ((oFilled === otarget) || (oFilled === '' && otarget === '0') || (oFilled === '' && otarget === '') || (oFilled === '0' && otarget === ''))
+
+			if ((oFilled === otarget) || (oFilled === '' && otarget === '0') || (oFilled === '' && otarget === '') || (oFilled === '0' && otarget ===
+					''))
 				return 'T';
 			else return 'NT';
 		},
@@ -149,8 +150,23 @@ sap.ui.define([
 				maxFractionDigits: 2
 			};
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
-			var valueInNum = Number(value);//.toString();
-			return oFloatFormat.format(valueInNum); 
+			var valueInNum = Number(value); //.toString();
+			return oFloatFormat.format(valueInNum);
+		},
+		getUnit: function(type,zone) {
+			if (type === 'Hours')
+				return 'H';
+			else if (type === "IPD")
+				return zone;
+		},
+		getQuantity: function(type,hrs) {
+			if (type === 'Hours')
+			{
+				return Number(hrs);
+			}
+			else if (type === "IPD"){
+				return 1;
+			}
 		}
 
 	};
