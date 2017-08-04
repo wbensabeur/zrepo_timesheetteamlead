@@ -1,5 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Label text="{i18n>LProjectSelect}"/>
+	<HBox>
+		<Label text="{i18n>LProjectSelect}"/>
+		<Label text="{i18n>ifNecessary}" visible="{AddTime>/visibleProjectOptional}" class="sapUiSmallMarginBegin"/>
+	</HBox>
 	<HBox width="100%">
 		<Label text="{ProjectDescription}" class="sapUiSmallMarginTop" visible="false">
 			<layoutData>

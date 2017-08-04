@@ -6,22 +6,21 @@
 		</FlexBox>
 		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom">
 			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
-			<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection">
-				<buttons>
-					<RadioButton text="Specific time"/>
-					<RadioButton text="All Day"/>
-				</buttons>
-			</RadioButtonGroup>
+			<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
+				<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="0">
+					<buttons>
+						<RadioButton text="{i18n>allDay}"/>
+						<RadioButton text="{i18n>specificTime}"/>
+					</buttons>
+				</RadioButtonGroup>
+				<ComboBox value="{i18n>hrType}"/>
+			</HBox>
 		</VBox>
-		<VBox class="sapUiSmallMarginBottom">
+		<VBox class="sapUiSmallMarginBottom" visible="false">
 			<Label text="Select hours"/>
-			<HBox alignContent="End" justifyContent="End">
-				<TimePicker value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours">
-					<layoutData>
-						<FlexItemData growFactor="1"/>
-					</layoutData>
-				</TimePicker>
-				<ComboBox/>
+			<HBox alignItems="Start" justifyContent="SpaceBetween">
+				<TimePicker value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours"/>
+			<ComboBox value="{i18n>hrType}"/>
 			</HBox>
 		</VBox>
 		<customData>
