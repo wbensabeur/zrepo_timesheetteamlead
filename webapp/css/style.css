@@ -468,3 +468,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 :not(.sapMBtnDisabled) .DeleteButton>.sapMBtnTransparent>.sapMBtnIcon {
     color: red;
 }
+
+.sapMITBFilter .sapMITBText {
+	overflow: visible;
+}
