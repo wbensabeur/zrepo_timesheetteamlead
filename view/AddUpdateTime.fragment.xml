@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding VinciTabBar" select="OnTabSelected">
+		<items>
+			<IconTabFilter key="hours" id="addTimeTab" icon="sap-icon://write-new-document" text="{i18n>hours}" visible="{AddTime>/visibleHrs}"
+				design="Horizontal">
+				<VBox width="100%" height="100%">
+					<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}">
+						<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewHourPress" icon="sap-icon://add" class="sapUiLargeMarginEnd"/>
+						<Button text="{i18n>addEquipment}" type="Emphasized" icon="sap-icon://add">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Button>
+						<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop"/>
+						<StepInput displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
+							value="{AddTime>/totalhrs}"/>
+					</HBox>
+				</VBox>
+				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+			</IconTabFilter>
+			<IconTabFilter key="allowance" icon="sap-icon://multiselect-none" text="{i18n>dailyAllowance}" visible="{AddTime>/visibleDailyAllow}"
+				design="Horizontal">
+				<VBox width="100%" height="100%">
+					<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
+						<Label text="Daily allowances:"/>
+						<HBox alignItems="Center" justifyContent="Start">
+							<ComboBox value="{i18n>selectZone}"/>
+							<SegmentedButton class="sapUiLargeMarginBegin sapUiLargeMarginEnd" width="20rem">
+								<items>
+									<SegmentedButtonItem icon="sap-icon://meal" key="food"/>
+									<SegmentedButtonItem icon="sap-icon://shipping-status" key="travel"/>
+									<SegmentedButtonItem icon="sap-icon://flight" key="flight"/>
+								</items>
+							</SegmentedButton>
+						</HBox>
+					</VBox>
+					<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
+					</VBox>
+				</VBox>
+				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://create-leave-request" visible="{AddTime>/visibleAbsence}" text="ABSENCE" design="Horizontal">
+				<Text text="Notes go here ..."/>
+				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+			</IconTabFilter>
+			<IconTabFilter key="km" icon="sap-icon://map" text="KM" visible="{AddTime>/visibleKM}" design="Horizontal">
+				<VBox width="100%" height="100%">
+					<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
+				</VBox>
+				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://add-equipment" text="EQUIPMENT" visible="{AddTime>/visibleEquipment}" design="Horizontal">
+				<Text text="People content goes here ..."/>
+				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+			</IconTabFilter>
+			<IconTabFilter icon="sap-icon://activity-items" text="SUMMARY" visible="{AddTime>/visibleSummary}" design="Horizontal">
+				<Text text="People content goes here ..."/>
+				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

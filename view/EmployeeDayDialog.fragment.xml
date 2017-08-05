@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="EmpDayCheckDialog" title="Daily Detail Description" contentHeight="600px" contentWidth="800px" draggable="false">
+		<content>
+			<VBox>
+				<HBox>
+					<Label  text="{FullName}" design="Bold"/>
+					<Label id="EmpDayTotal" text="{FilledHours} H - {DayAllowanceQty} IPD - {DayKms} KM "/>
+				</HBox>
+				<HBox>
+					<Label text="Company: {Company}" class=" sapUiTinyMarginEnd"/>
+					<Label text="Business Unit: {BusinessUnit}" class=" sapUiTinyMarginEnd"/>
+					<Label text="Section: {Section}" />
+				</HBox>
+				<Label id="EmpDayStatus" text="Status: {parts:['Status'],formatter:'.formatter.statusFormat'}" />
+				<HBox id="EmpDayInfo">
+					<Label text="{parts:['WorkDate'],formatter:'.formatter.dateFormatinEmpDay'}"/>
+					<Label text=" - {i18n>legend-theoritical} : {TargetHours} hours"/>
+				</HBox>	
+				
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="Cancel" type="Reject" press="OnCancelEmpDayCheckDialog"/>
+			<Button text="Add Information" icon="sap-icon://add" type="Emphasized"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

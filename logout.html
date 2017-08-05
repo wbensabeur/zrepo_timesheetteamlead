@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<!--<head onload="window.location.href = 'https://dcswebapp-a1fe2c8f4.dispatcher.hana.ondemand.com/'">-->
+<head >
+
+<meta charset="UTF-8">
+
+  	 <script>
+  	 function nav()
+  	 {
+
+  	 var url = window.location.protocol + "//" +window.location.hostname;
+  	 window.location.href = url;
+}
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+if(isIE)
+{
+document.onload="nav()";
+}
+        </script>
+<title></title>
+</head>
+<body onload="nav()">
+      <p></p>
+</body>
+</html>
