@@ -122,6 +122,13 @@ sap.ui.define([], function() {
 			}
 			return "";
 		},
+		getODataDateKey: function (date) {
+			if (date && typeof date.toISOString === "function") {
+			
+				return "datetime'" + date.getUTCFullYear()+"-"+(date.getMonth() + 1)+"-"+date.getDate() + "T00%3A00%3A00'";
+			}
+			return "";
+		},
 		timeToDecimal: function (t) {
 		 var arr = t.split(':');
     	 return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1]/6)*10, 10));

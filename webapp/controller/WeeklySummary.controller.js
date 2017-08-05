@@ -118,6 +118,9 @@ sap.ui.define([
 			this._applyFilters();
 		},
 		OnHourPress: function(oEvent) {
+		//	var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
+			var currentEmp = oEvent.getSource().getCustomData()[2].getValue();
+			var currentDate = oEvent.getSource().getCustomData()[3].getValue();
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
 			// create dialog lazily
@@ -126,6 +129,13 @@ sap.ui.define([
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.EmployeeDayDialog", this);
 				oView.addDependent(oDialog);
 			}
+			oDialog.bindElement("/EmployeeSet('" + currentEmp + "')");
+			
+			var urlStr = "/WorkDaySet(EmployeeId='"+currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(currentDate) +")";
+			oView.byId('EmpDayTotal').bindElement(urlStr);
+			oView.byId('EmpDayStatus').bindElement(urlStr);
+			oView.byId('EmpDayInfo').bindElement(urlStr);
+			
 			oDialog.open();
 		},
 		OnskipFilterScreen: function(oEvent) {

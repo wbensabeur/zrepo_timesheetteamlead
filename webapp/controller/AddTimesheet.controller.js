@@ -21,10 +21,23 @@ sap.ui.define([
 				totalhrs: 0,
 				visibleHrs: true,
 				visibleDailyAllow: true,
-				visibleProjectOptional: false
+				visibleKM:true,
+				visibleAbsence:false,
+				visibleEquipment:false,
+				visibleSummary:false,
+				visibleProjectOptional: false,
+				newTime : true
 			};
 			var oModel = new JSONModel(odata);
 			this.getView().setModel(oModel, "AddTime");
+			
+			var projectdata = {
+				worklistTableTitle : this.getResourceBundle().getText("projectSearchHeader")
+			};
+			
+			var oProjectModel = new JSONModel(projectdata);
+			this.getView().setModel(oProjectModel, "projectSearch");
+			
 
 		},
 		/**
@@ -138,17 +151,24 @@ sap.ui.define([
 
 		},
 		OnProjectSearch: function(oEvent) {
+			
+			
 
 			var ownHBox = oEvent.getSource().getParent();
 			var ownLabel = ownHBox.getItems()[0];
 			this.ownIntialButton = ownHBox.getItems()[1];
 			this.ownRefreshButton = ownHBox.getItems()[2];
 			var content = this._getOwnContentObject(ownHBox);
-
-			content[1].getCustomData()[1].setValue(ownLabel.getId());
-			this.currentLabel = ownLabel;
+			/*if(content.length < 2)
+			{
+				var oFragment = sap.ui.xmlfragment(this.getView().getId(), "com.vinci.timesheet.admin.view.SelectProject", this);
+				content.push(oFragment);
+			}*/
+			
 			content[0].setVisible(false); // main Frame
 			content[1].setVisible(true); // Project SEarch Frame
+			content[1].getCustomData()[1].setValue(ownLabel.getId());
+			this.currentLabel = ownLabel;
 			// Visible = false
 			this.getView().byId('MainCancelButton').setVisible(false);
 			this.getView().byId('MainAddButton').setVisible(false);
@@ -157,6 +177,19 @@ sap.ui.define([
 			this.getView().byId('ProjectCancelButton').setVisible(true);
 			this.getView().byId('ProjectSelectButton').setVisible(true);
 
+		},
+		onProjectSearchFinished : function (oEvent) {
+			var sTitle, oTable = oEvent.getSource(),
+				iTotalItems = oEvent.getParameter("total");
+			// only update the counter if the length is final and
+			// the table is not empty
+			if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
+				sTitle = this.getResourceBundle().getText("projectSearchHeaderCount", [iTotalItems]);
+			} else {
+				sTitle = this.getResourceBundle().getText("projectSearchHeader");
+			}
+			this.getModel("projectSearch").setProperty("/worklistTableTitle", sTitle);
+			
 		},
 		OnProjectRefresh : function(oEvent) {
 			var ownHBox = oEvent.getSource().getParent();
@@ -186,7 +219,21 @@ sap.ui.define([
 			}
 		},
 		OnFavoriteChange: function(oEvent) {
-			alert('test');
+			var icon = oEvent.getSource();
+			var currentState = this.getView().getModel().getProperty(icon.getBindingContext().getPath()+'/Favorite');
+			if(currentState) // to become unfav
+			{
+				this.getView().getModel().setProperty(icon.getBindingContext().getPath()+'/Favorite',false);
+				
+				this.getView().getModel().update(icon.getBindingContext().getPath(),{Favorite:false});
+			
+			}
+			else // to become Fav
+			{
+				this.getView().getModel().setProperty(icon.getBindingContext().getPath()+'/Favorite',true);
+				this.getView().getModel().update(icon.getBindingContext().getPath(),{Favorite:true});
+			}
+			
 		},
 		_getOwnPanelObject: function(source) {
 			var parent = source.getParent();
