@@ -21,7 +21,11 @@
 					<Button id="MainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
 					<Button id="MainAddButton" text="{i18n>addtimedata}" type="Accept"/>
 					<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="false" press="onPressProjectCancel"/>
-					<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="false" press="onPressProjectSelect"/>
+					<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="false" press="onPressProjectSelect">
+						<customData>
+							<core:CustomData key="context" value="" />
+						</customData>
+					</Button>
 				</contentRight>
 			</Bar>
 		</footer>

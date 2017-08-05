@@ -2,8 +2,10 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
 	"com/vinci/timesheet/admin/model/formatter",
-	"com/vinci/timesheet/admin/utility/datetime"
-], function(BaseController, JSONModel, formatter, datetime) {
+	"com/vinci/timesheet/admin/utility/datetime",
+	"com/vinci/timesheet/admin/utility/fragment",
+	"sap/m/MessageBox"
+], function(BaseController, JSONModel, formatter, datetime,fragment,MessageBox) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.AddTimesheet", {
 		formatter: formatter,
@@ -79,8 +81,13 @@ sap.ui.define([
 			this._backtoMainScreen();
 
 		},
-		onPressProjectSelect: function() {
-			this.currentLabel.bindElement(this.currentProjectContext);
+		onPressProjectSelect: function(oEvent) {
+			var projectContext = oEvent.getSource().getCustomData()[0].getValue();
+			if(projectContext === null || projectContext === "")
+			{
+				MessageBox.alert(this.getResourceBundle().getText("noprojectselectmessage"));
+			}
+			this.currentLabel.bindElement(projectContext);
 			this.currentLabel.setVisible(true);
 			this.ownIntialButton.setVisible(false);
 			this.ownRefreshButton.setVisible(true);
@@ -142,14 +149,20 @@ sap.ui.define([
 			this.getView().getModel('AddTime').setProperty('/totalhrs', newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
+		
+		//// **Project Fragment Event** ///////
 		OnProjectSelected: function(oEvent) {
-			var contextPath = oEvent.getParameter('listItem').getBindingContext().getPath();
+			var selectButton = this.getView().byId('ProjectSelectButton');
+			fragment.SearchProject_OnProjectSelected(oEvent, selectButton);
+			/*var contextPath = oEvent.getParameter('listItem').getBindingContext().getPath();
 			oEvent.getSource().getParent().getCustomData()[0].setValue(contextPath);
-			this.currentProjectContext = contextPath;
+			this.currentProjectContext = contextPath;*/
 			//var label = sap.ui.getCore().byId(oEvent.getSource().getParent().getCustomData()[1].getValue());
 			//label.bindElement(contextPath);
 
 		},
+		
+		////****Project Fragment Event End******//////////
 		OnProjectSearch: function(oEvent) {
 			
 			

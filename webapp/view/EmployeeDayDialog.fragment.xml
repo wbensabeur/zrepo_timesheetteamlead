@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<Dialog id="EmpDayCheckDialog" title="Daily Detail Description" contentHeight="600px" contentWidth="800px" draggable="false">
 		<content>
-			<VBox>
+			<VBox id="DailogMainPage" >
 				<HBox>
 					<Label  text="{FullName}" design="Bold"/>
 					<Label id="EmpDayTotal" text="{FilledHours} H - {DayAllowanceQty} IPD - {DayKms} KM "/>
@@ -18,10 +18,11 @@
 				</HBox>	
 				
 			</VBox>
+			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddUpdateTime' type='XML' />
 		</content>
 		<buttons>
 			<Button text="Cancel" type="Reject" press="OnCancelEmpDayCheckDialog"/>
-			<Button text="Add Information" icon="sap-icon://add" type="Emphasized"/>
+			<Button text="Add Information" icon="sap-icon://add" type="Emphasized" press="OnAddEmpTime"/>
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>
