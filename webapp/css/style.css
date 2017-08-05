@@ -472,3 +472,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .sapMITBFilter .sapMITBText {
 	overflow: visible;
 }
+.textAlignmentStart>td {
+    text-align: start !important;
+    border-right: 0rem !important;
+}

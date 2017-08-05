@@ -18,6 +18,16 @@ sap.ui.define([
 			}
 			return parseFloat(sValue).toFixed(2);
 		},
+		dateFormatinEmpDay : function(oDate) {
+				if (oDate && typeof oDate.toISOString === "function") {
+			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
+				weekday: "long"
+			});
+			
+			return month + " "+oDate.getDate()+"/"+ (oDate.getMonth() + 1)+"/"+oDate.getUTCFullYear();
+				}
+				return "";
+		},
 		periodFormat: function(oDate) {
 			var currentWeekNumber = datetime.getWeek(oDate);
 			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
@@ -166,6 +176,16 @@ sap.ui.define([
 			}
 			else if (type === "IPD"){
 				return 1;
+			}
+		},
+		favIcon: function(fav) {
+			if(fav)
+			{
+				return "sap-icon://favorite";
+			}
+			else
+			{
+				return "sap-icon://unfavorite";	
 			}
 		}
 

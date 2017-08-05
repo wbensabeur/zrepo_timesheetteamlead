@@ -1,29 +1,59 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<VBox width="100%" height="100%" visible="false">
 		<Label text="{i18n>filterBy} :"/>
-		<Table items="{ path: '/ProjectSet' }" mode="SingleSelectMaster" modeAnimationOn="false" selectionChange="OnProjectSelected">
+		<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnchangeTimeSelection" selectedIndex="1">
+			<buttons>
+				<RadioButton text="{i18n>projectFav}"/>
+				<RadioButton text="{i18n>allProject}"/>
+			</buttons>
+		</RadioButtonGroup>
+		<HBox width="100%" class="sapUiSmallMarginBottom">
+			<ComboBox value="{i18n>company}">
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>
+			<ComboBox value="{i18n>projID}">
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>
+			<ComboBox value="{i18n>position}">
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>
+			<ComboBox value="{i18n>manager}">
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>
+		</HBox>
+		<Label class="sapUiTinyMarginBottom" text="{projectSearch>/worklistTableTitle}" design="Bold"/>
+		<Table items="{ path: '/ProjectSet' }" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" modeAnimationOn="false" updateFinished="onProjectSearchFinished"
+			growingThreshold="10" selectionChange="OnProjectSelected">
 			<columns>
 				<Column width="auto" hAlign="Center">
 					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 						<Label text="{i18n>ProjectDescription}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 					</VBox>
 				</Column>
-				<Column width="auto" hAlign="Center">
+				<Column hAlign="Center" width="10%">
 					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 						<Label text="{i18n>company}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 					</VBox>
 				</Column>
-				<Column width="auto" hAlign="Center">
+				<Column hAlign="Center" width="15%">
 					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 						<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 					</VBox>
 				</Column>
-				<Column width="auto" hAlign="Center">
+				<Column hAlign="Center" width="10%">
 					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 						<Label text="{i18n>position}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 					</VBox>
 				</Column>
-				<Column width="auto" hAlign="Center">
+				<Column hAlign="Center" width="20%">
 					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 						<Label text="{i18n>manager}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 					</VBox>
@@ -36,14 +66,16 @@
 			</columns>
 			<!-- sap.m.Column -->
 			<items>
-				<ColumnListItem vAlign="Middle" class="sapUiTableTr">
+				<ColumnListItem class="sapUiTableTr textAlignmentStart">
 					<cells>
-						<Label text="{ProjectDescription}"/>
-						<Label text="{Company}"/>
-						<Label text="{ProjectId}"/>
-						<Label text="{Position}"/>
-						<Label text="{ResponsiblePM}"/>
-						<core:Icon src="sap-icon://unfavorite" class="sapUiSmallMarginBegin" press="OnFavoriteChange"/>
+						<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="{ProjectDescription}" textAlign="Begin"/>
+					</cells>
+					<cells>
+						<Label class="sapUiTinyMarginBegin" text="{Company}"/>
+						<Label class="sapUiTinyMarginBegin" text="{ProjectId}"/>
+						<Label class="sapUiTinyMarginBegin" text="{Position}"/>
+						<Label class="sapUiTinyMarginBegin" text="{ResponsiblePM}"/>
+						<core:Icon src="{path:'Favorite',formatter:'.formatter.favIcon'}" class="sapUiSmallMarginBegin" press="OnFavoriteChange"/>
 					</cells>
 				</ColumnListItem>
 			</items>
