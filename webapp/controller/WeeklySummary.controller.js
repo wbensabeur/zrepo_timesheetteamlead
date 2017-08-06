@@ -5,8 +5,9 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/m/MessageBox"
-], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox) {
+	"sap/m/MessageBox",
+	"com/vinci/timesheet/admin/utility/fragment"
+], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox,fragment) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklySummary", {
 		formatter: formatter,
@@ -128,8 +129,15 @@ sap.ui.define([
 				// create dialog via fragment factory
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.EmployeeDayDialog", this);
 				oView.addDependent(oDialog);
-				var oFragment = sap.ui.xmlfragment(this.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", this);
-				this.getView().byId('addTimeTab').getContent()[0].addItem(oFragment);
+				var footerData = {
+				MainNewScreen: false,
+				MainUpdateScreen : false,
+				ProjectScreen: false,
+				MainPreviousScreen: true
+			}; 
+			var oFooterModel = new JSONModel(footerData);
+			this.getView().setModel(oFooterModel, "footer");
+
 			}
 			oDialog.bindElement("/EmployeeSet('" + currentEmp + "')");
 			
@@ -138,8 +146,8 @@ sap.ui.define([
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			oView.byId('EmpDayInfo').bindElement(urlStr);
 			
-			oDialog.getContent()[0].setVisible(true);
-			oDialog.getContent()[1].setVisible(false); // Invisible Add Information Screen
+			/*oDialog.getContent()[0].setVisible(true);
+			oDialog.getContent()[1].setVisible(false);*/ // Invisible Add Information Screen
 			
 			oDialog.open();
 		},
@@ -158,6 +166,7 @@ sap.ui.define([
 				// create dialog via fragment factory
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.FilterDialog", this);
 				oView.addDependent(oDialog);
+				
 			}
 			oDialog.open();
 		},
@@ -196,222 +205,38 @@ sap.ui.define([
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
 			
+			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New",this.getResourceBundle());
+
+			this.getView().setModel(oModel.AddTime, "AddTime");
+			this.getView().setModel(oModel.projectSearch, "projectSearch");
+			this.getView().getModel("footer").destroy();
+			this.getView().setModel(oModel.footer,"footer");
 			
 			
-			
-			oDialog.getContent()[0].setVisible(false);
-			oDialog.getContent()[1].setVisible(true);
-			
-			var odata = {
-				totalhrs: 0,
-				visibleHrs: true,
-				visibleDailyAllow: true,
-				visibleKM:true,
-				visibleAbsence:false,
-				visibleEquipment:false,
-				visibleSummary:false,
-				visibleProjectOptional: false,
-				newTime : true
-			};
-			var oModel = new JSONModel(odata);
-			this.getView().setModel(oModel, "AddTime");
-			
-			var projectdata = {
-				worklistTableTitle : this.getResourceBundle().getText("projectSearchHeader")
-			};
-			
-			var oProjectModel = new JSONModel(projectdata);
-			this.getView().setModel(oProjectModel, "projectSearch");
 		},
-		
-		OnTimeDelete: function(oEvent) {
-			var source = oEvent.getSource();
-			//var sourcePanel = source.getParent().getParent();
-			var sourcePanel = this._getOwnPanelObject(source);
-			this.getView().byId('addTimeTab').getContent()[0].removeItem(sourcePanel);
-			var currentValue = sourcePanel.getCustomData()[0].getValue();
-			var currentTotalhrs = this.getView().getModel('AddTime').getProperty('/totalhrs');
-			var newTotalhrs = currentTotalhrs - currentValue;
-			this.getView().getModel('AddTime').setProperty('/totalhrs', newTotalhrs);
+		/*onPressProjectCancel: function() {
+			var projectfragment = fragment.SearchProject_getProjectSearchFragment();
+			fragment.SearchProject_destroy(projectfragment);
 
 		},
-		OnChangeHours: function(oEvent) {
-			var source = oEvent.getSource();
-			//var sourcePanel = source.getParent().getParent().getParent();
-			var sourcePanel = this._getOwnPanelObject(source);
-			var newValue = datetime.timeToDecimal(oEvent.getParameter("value"));
-
-			var currentValue = sourcePanel.getCustomData()[0].getValue();
-			var deltahrs = newValue - currentValue;
-			var currentTotalhrs = this.getView().getModel('AddTime').getProperty('/totalhrs');
-			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.getView().getModel('AddTime').setProperty('/totalhrs', newTotalhrs);
-			sourcePanel.getCustomData()[0].setValue(newValue);
-
-		},
-		OnTabSelected: function(oEvent) {
-			var key = oEvent.getParameter('key');
-			if (key === 'allowance') {
-				this.getView().getModel('AddTime').setProperty('/visibleProjectOptional', true);
+		onPressProjectSelect: function(oEvent) {
+			var projectfragment = fragment.SearchProject_getProjectSearchFragment();
+			var projectContext = fragment.SearchProject_getProjectContext(projectfragment); //oEvent.getSource().getCustomData()[0].getValue();
+			if (projectContext === null || projectContext === "") {
+				MessageBox.alert(this.getResourceBundle().getText("noprojectselectmessage"));
 			} else {
-				this.getView().getModel('AddTime').setProperty('/visibleProjectOptional', false);
+			
+				fragment.SelectProject_afterSelection(projectContext);
+				fragment.SearchProject_destroy(projectfragment);
+
 			}
-		},
-		OnaddNewHourPress: function(oEvent) {
-
-			var oFragment = sap.ui.xmlfragment(this.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", this);
-
-			this.getView().byId('addTimeTab').getContent()[0].addItem(oFragment);
-		},
-		OnchangeTimeSelection: function(oEvent) {
-			var source = oEvent.getSource();
-			var sourcePanel = this._getOwnPanelObject(source);
-			var newValue = 0;
-			var allDayCombo = this._getOwnAllDayComboBox(source);
-			var selecthrsCombo = this._getOwnSelectedHrContent(source);
-			if (oEvent.getParameter("selectedIndex") === 1) {
-				newValue = 0;
-				allDayCombo.setVisible(false);
-				selecthrsCombo.setVisible(true);
-
-			} else { // For all day Selection
-				allDayCombo.setVisible(true);
-				selecthrsCombo.setVisible(false);
-			}
-			var currentValue = sourcePanel.getCustomData()[0].getValue();
-			var deltahrs = newValue - currentValue;
-			var currentTotalhrs = this.getView().getModel('AddTime').getProperty('/totalhrs');
-			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.getView().getModel('AddTime').setProperty('/totalhrs', newTotalhrs);
-			sourcePanel.getCustomData()[0].setValue(newValue);
-		},
-		OnProjectSelected: function(oEvent) {
-			var contextPath = oEvent.getParameter('listItem').getBindingContext().getPath();
-			oEvent.getSource().getParent().getCustomData()[0].setValue(contextPath);
-			this.currentProjectContext = contextPath;
-			//var label = sap.ui.getCore().byId(oEvent.getSource().getParent().getCustomData()[1].getValue());
-			//label.bindElement(contextPath);
-
-		},
-		OnProjectSearch: function(oEvent) {
-			
-			
-
-			var ownHBox = oEvent.getSource().getParent();
-			var ownLabel = ownHBox.getItems()[0];
-			this.ownIntialButton = ownHBox.getItems()[1];
-			this.ownRefreshButton = ownHBox.getItems()[2];
-			var content = this._getOwnContentObject(ownHBox);
-			/*if(content.length < 2)
-			{
-				var oFragment = sap.ui.xmlfragment(this.getView().getId(), "com.vinci.timesheet.admin.view.SelectProject", this);
-				content.push(oFragment);
-			}*/
-			
-			content[0].setVisible(false); // main Frame
-			content[1].setVisible(true); // Project SEarch Frame
-			content[1].getCustomData()[1].setValue(ownLabel.getId());
-			this.currentLabel = ownLabel;
-			// Visible = false
-			this.getView().byId('MainCancelButton').setVisible(false);
-			this.getView().byId('MainAddButton').setVisible(false);
-
-			// Visible = true
-			this.getView().byId('ProjectCancelButton').setVisible(true);
-			this.getView().byId('ProjectSelectButton').setVisible(true);
-
-		},
-		onProjectSearchFinished : function (oEvent) {
-			var sTitle, oTable = oEvent.getSource(),
-				iTotalItems = oEvent.getParameter("total");
-			// only update the counter if the length is final and
-			// the table is not empty
-			if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
-				sTitle = this.getResourceBundle().getText("projectSearchHeaderCount", [iTotalItems]);
-			} else {
-				sTitle = this.getResourceBundle().getText("projectSearchHeader");
-			}
-			this.getView().getModel("projectSearch").setProperty("/worklistTableTitle", sTitle);
-			
-		},
-		OnProjectRefresh : function(oEvent) {
-			var ownHBox = oEvent.getSource().getParent();
-			var ownLabel = ownHBox.getItems()[0];
-			var content = this._getOwnContentObject(ownHBox);
-			
-			content[1].getCustomData()[1].setValue(ownLabel.getId());
-			this.currentLabel = ownLabel;
-			content[0].setVisible(false); // main Frame
-			content[1].setVisible(true); // Project SEarch Frame
-			// Visible = false
-			this.getView().byId('MainCancelButton').setVisible(false);
-			this.getView().byId('MainAddButton').setVisible(false);
-
-			// Visible = true
-			this.getView().byId('ProjectCancelButton').setVisible(true);
-			this.getView().byId('ProjectSelectButton').setVisible(true);
-
+		},*/
+		onPressCancel: function() {
+			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			
 		},
 		
-		_getOwnPanelObject: function(source) {
-			var parent = source.getParent();
-
-			while (parent.getCustomData().length === 0) {
-				parent = parent.getParent();
-			}
-			return parent;
-
-		},
-		_getOwnContentObject: function(source) {
-			var parent = source.getParent();
-			while (parent.getMetadata().getName() !== 'sap.m.IconTabFilter') {
-				parent = parent.getParent();
-			}
-			return parent.getContent();
-		},
-		_getProjectSearchObject: function(source) {
-
-		},
-		_getOwnHBox: function(source) {
-
-		},
-		_backtoMainScreen: function() {
-
-			var tabItems = this.getView().byId('idIconTabBarMulti').getItems();
-
-			for (var k = 0; k < tabItems.length; k++) {
-				var content = tabItems[k].getContent();
-				content[0].setVisible(true);
-				content[1].setVisible(false);
-			}
-
-			// Visible = true
-			this.getView().byId('MainCancelButton').setVisible(true);
-			this.getView().byId('MainAddButton').setVisible(true);
-
-			// Visible = false
-			this.getView().byId('ProjectCancelButton').setVisible(false);
-			this.getView().byId('ProjectSelectButton').setVisible(false);
-		},
-		_getOwnAllDayComboBox: function(radioGroup) {
-			var parent = radioGroup.getParent();
-			while (parent.getMetadata().getName() !== 'sap.m.HBox') {
-				parent = parent.getParent();
-			}
-			var items = parent.getItems();
-			var comboBox = null;
-			for (var k = 0; k < items.length; k++) {
-				if (items[k].getMetadata().getName() === 'sap.m.ComboBox') {
-					comboBox = items[k];
-					break;
-				}
-			}
-			return comboBox;
-		},
-		_getOwnSelectedHrContent: function(radioGroup) {
-			return radioGroup.getParent().getParent().getParent().getItems()[3];
-		},
+	
 		///////
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -490,6 +315,68 @@ sap.ui.define([
 		 */
 		OnWeeklyReportSelection: function() {
 			this.getRouter().navTo("ReportEmployeeSelection", {}, true);
+		},
+		
+		
+		
+		
+		//// **SearchProject Fragment Event** ///////
+		OnProjectSelected: function(oEvent) {
+			var selectButton = this.getView().byId('ProjectSelectButton');
+			fragment.SearchProject_OnProjectSelected(oEvent, selectButton);
+		},
+		OnFavoriteChange: function(oEvent) {
+			fragment.SearchProject_OnFavoriteChange(oEvent, this.getView().getModel());
+		},
+		onProjectSearchFinished: function(oEvent) {
+			fragment.SearchProject_onProjectSearchFinished(oEvent);
+		},
+		onPressProjectCancel: function() {
+			fragment.SelectProject_onPressProjectCancel();
+
+		},
+		onPressProjectSelect: function(oEvent) {
+			fragment.SelectProject_onPressProjectSelect();
+		},
+
+		////****SearchProject Fragment Event End******//////////
+
+		//// **SelectProject Fragment Event** ///////
+		OnProjectSearch: function(oEvent) {
+			fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'));
+		},
+		OnProjectRefresh: function(oEvent) {
+			fragment.SelectProject_OnProjectRefresh(oEvent, this,  this.getView().byId('ProjectSelectButton'));
+		},
+		//// **SelectProject Fragment Event End** ///////
+		
+		//// **AddProjectTime Fragment Event** ///////
+		OnTimeDelete: function(oEvent) {
+			//var timeModel = this.getView().getModel('AddTime');
+			var container = this.getView().byId('addTimeTab').getItems()[0];
+			fragment.AddProjectTime_OnTimeDelete(oEvent,  container);
+
+		},
+		OnchangeTimeSelection: function(oEvent) {
+		//	var timeModel = this.getView().getModel('AddTime');
+			fragment.AddProjectTime_OnchangeTimeSelection(oEvent);
+		},
+		OnChangeHours: function(oEvent) {
+	//		var timeModel = this.getView().getModel('AddTime');
+			fragment.AddProjectTime_OnChangeHours(oEvent);
+		
+		},
+		//// **AddProjectTime Fragment Event End** ///////
+		
+		//// **AddUpdateTime Fragment Event** ///////
+		OnTabSelected: function(oEvent) {
+		//	var addTimeModel = this.getView().getModel('AddTime');
+			fragment.AddUpdatetime_OnTabSelected(oEvent);
+		},
+		OnaddNewHourPress: function(oEvent) {
+			fragment.AddUpdatetime_OnaddNewHourPress(this);
 		}
+		
+		//// **AddUpdateTime Fragment Event End** ///////
 	});
 });

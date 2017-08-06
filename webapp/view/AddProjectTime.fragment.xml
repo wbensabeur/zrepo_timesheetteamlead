@@ -20,7 +20,7 @@
 			<Label text="Select hours"/>
 			<HBox alignItems="Start" justifyContent="SpaceBetween">
 				<TimePicker value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours"/>
-			<ComboBox value="{i18n>hrType}"/>
+				<ComboBox value="{i18n>hrType}"/>
 			</HBox>
 		</VBox>
 		<customData>
