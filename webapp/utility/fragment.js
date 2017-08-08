@@ -2,7 +2,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox"
 
-], function(datetime, JSONModel,MessageBox) {
+], function(datetime, JSONModel, MessageBox) {
 	"use strict";
 
 	return {
@@ -20,10 +20,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			selectButton.getCustomData()[0].setValue("");
 
 			// Hide Element from previous screen
-			this.footerModel.setProperty("/MainNewScreen",false);
-			this.footerModel.setProperty("/MainUpdateScreen",false);
-			this.footerModel.setProperty("/MainPreviousScreen",false);
-			this.footerModel.setProperty("/ProjectScreen",true);
+			this.footerModel.setProperty("/MainNewScreen", false);
+			this.footerModel.setProperty("/MainUpdateScreen", false);
+			this.footerModel.setProperty("/MainPreviousScreen", false);
+			this.footerModel.setProperty("/ProjectScreen", true);
 			/*for (var k = 0; k < hideElemnt.length; k++) {
 				hideElemnt[k].setVisible(false);
 			}*/
@@ -35,17 +35,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 		},
 		SearchProject_destroy: function(fragmentObject) {
-			
+
 			var container = fragmentObject.getParent();
 			var hideContainer = container.getItems()[0];
 			hideContainer.setVisible(true);
 			fragmentObject.destroy(true);
-			
-			
-			this.footerModel.setProperty("/MainNewScreen",true);
-			this.footerModel.setProperty("/MainUpdateScreen",false);
-			this.footerModel.setProperty("/MainPreviousScreen",false);
-			this.footerModel.setProperty("/ProjectScreen",false);
+
+			this.footerModel.setProperty("/MainNewScreen", true);
+			this.footerModel.setProperty("/MainUpdateScreen", false);
+			this.footerModel.setProperty("/MainPreviousScreen", false);
+			this.footerModel.setProperty("/ProjectScreen", false);
 
 		},
 		SearchProject_getProjectContext: function(fragmentObject) {
@@ -101,28 +100,28 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.selectProjectcontext[1].setVisible(false); // ownIntialButton
 			this.selectProjectcontext[2].setVisible(true); // ownRefreshButton
 		},
-		SelectProject_OnProjectSearch: function(oEvent, controler,  selectButton) {
+		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton) {
 
 			var ownHBox = oEvent.getSource().getParent();
 			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
 			this.SearchProject_init(controler, container, selectButton);
 		},
-		SelectProject_OnProjectRefresh: function(oEvent, controler,  selectButton) {
+		SelectProject_OnProjectRefresh: function(oEvent, controler, selectButton) {
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
 			this.SearchProject_init(controler, container, selectButton);
 		},
-		SelectProject_onPressProjectCancel:function(){
+		SelectProject_onPressProjectCancel: function() {
 			var projectfragment = this.SearchProject_getProjectSearchFragment();
 			this.SearchProject_destroy(projectfragment);
 		},
-		SelectProject_onPressProjectSelect:function(){
+		SelectProject_onPressProjectSelect: function() {
 			var projectfragment = this.SearchProject_getProjectSearchFragment();
 			var projectContext = this.SearchProject_getProjectContext(projectfragment); //oEvent.getSource().getCustomData()[0].getValue();
 			if (projectContext === null || projectContext === "") {
 				MessageBox.alert(this.i18nModel.getText("noprojectselectmessage"));
 			} else {
-			
+
 				this.SelectProject_afterSelection(projectContext);
 				this.SearchProject_destroy(projectfragment);
 
@@ -137,7 +136,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddProjectTime_destroy: function(fragmentObject) {
 			fragmentObject.destroy(true);
 		},
-		AddProjectTime_OnTimeDelete: function(oEvent,  container) {
+		AddProjectTime_OnTimeDelete: function(oEvent, container) {
 			var source = oEvent.getSource();
 
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
@@ -211,7 +210,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		//////**Add Update Time** ////
-		AddUpdatetime_init: function(controler, container, type,i18nModel) {
+		AddUpdatetime_init: function(controler, container, type, i18nModel) {
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0]); // initialse with single hour
@@ -234,29 +233,29 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			};
 			var oModel = new JSONModel(odata);
 			this.AddUpdatetimeModel = oModel;
-			
+
 			var projectdata = {
 				worklistTableTitle: i18nModel.getText("projectSearchHeader")
 			};
-			
+
 			this.i18nModel = i18nModel;
 
 			var oProjectModel = new JSONModel(projectdata);
 			this.projectModel = oProjectModel;
-			
+
 			var footerData = {
 				MainNewScreen: true,
-				MainUpdateScreen : false,
+				MainUpdateScreen: false,
 				ProjectScreen: false,
 				MainPreviousScreen: false
-			}; 
+			};
 			var oFooterModel = new JSONModel(footerData);
 			this.footerModel = oFooterModel;
-			
-			var oModelData ={
-				AddTime:oModel,
+
+			var oModelData = {
+				AddTime: oModel,
 				projectSearch: oProjectModel,
-				footer:oFooterModel
+				footer: oFooterModel
 			};
 			return oModelData;
 			//this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0]);
@@ -264,15 +263,19 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			/*<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddUpdateTime' type='XML'/>*/
 		},
 		AddUpdatetime_destroy: function(fragmentObject) {
-			this.footerModel.setProperty("/MainNewScreen",false);
-			this.footerModel.setProperty("/MainUpdateScreen",false);
-			this.footerModel.setProperty("/MainPreviousScreen",true);
-			this.footerModel.setProperty("/ProjectScreen",false);
-			var parentframe = fragmentObject.getParent();
-			fragmentObject.destroy(true);
-			var items = parentframe.getItems();
-			if (items.length === 1) {
-				items[0].setVisible(true);
+			if (fragmentObject !== undefined) {
+				this.footerModel.setProperty("/MainNewScreen", false);
+				this.footerModel.setProperty("/MainUpdateScreen", false);
+				this.footerModel.setProperty("/MainPreviousScreen", true);
+				this.footerModel.setProperty("/ProjectScreen", false);
+
+				var parentframe = fragmentObject.getParent();
+				fragmentObject.destroy(true);
+				var items = parentframe.getItems();
+
+				if (items.length === 1) {
+					items[0].setVisible(true);
+				}
 			}
 		},
 		AddUpdatetime_OnTabSelected: function(oEvent) {

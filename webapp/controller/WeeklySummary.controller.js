@@ -202,6 +202,7 @@ sap.ui.define([
 		},
 		OnCancelEmpDayCheckDialog: function(oEvent) {
 			var oDialog = this.getView().byId("EmpDayCheckDialog");
+			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			oDialog.close();
 		},
 		OnCancelFilterDialog: function(oEvent) {
@@ -325,6 +326,11 @@ sap.ui.define([
 		 */
 		OnWeeklyReportSelection: function() {
 			this.getRouter().navTo("ReportEmployeeSelection", {}, true);
+		},
+		
+		OnDeleteEmpDayitem: function(oEvent) {
+			var binding = oEvent.getSource().getBindingContext().getPath();
+			this.getView().getModel().remove(binding);
 		},
 		
 		
