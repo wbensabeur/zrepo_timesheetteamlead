@@ -1,0 +1,36 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="com.vinci.timesheet.admin.controller.AddTimesheet">
+	<Page class="VinciBackground">
+		<customHeader>
+			<Bar design="SubHeader" class="VinciBar">
+				<contentLeft>
+					<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancel" class="circleIcon"/>
+					<Label text="{i18n>backPlanning}" textAlign="Center" class="monthLabelPadding"/>
+				</contentLeft>
+				<contentRight>
+					<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox id="PageContent">
+				
+			</VBox>
+			
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="MainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainNewScreen}"/>
+					<Button id="MainAddButton" text="{i18n>addtimedata}" type="Accept" visible="{footer>/MainNewScreen}"/>
+					<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="{footer>/ProjectScreen}" press="onPressProjectCancel"/>
+					<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="{footer>/ProjectScreen}" press="onPressProjectSelect">
+						<customData>
+							<core:CustomData key="context" value="" />
+						</customData>
+					</Button>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

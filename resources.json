@@ -1,0 +1,278 @@
+{
+    "resources": [
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "test/integration/AllJourneys.js"
+        },
+        {
+            "name": "test/integration/WorklistJourney.js"
+        },
+        {
+            "name": "test/integration/opaTests.qunit.html"
+        },
+        {
+            "name": "test/integration/NotFoundJourney.js"
+        },
+        {
+            "name": "test/integration/NavigationJourney.js"
+        },
+        {
+            "name": "test/integration/ObjectJourney.js"
+        },
+        {
+            "name": "test/integration/pages/Worklist.js"
+        },
+        {
+            "name": "test/integration/pages/App.js"
+        },
+        {
+            "name": "test/integration/pages/shareOptions.js"
+        },
+        {
+            "name": "test/integration/pages/Object.js"
+        },
+        {
+            "name": "test/integration/pages/NotFound.js"
+        },
+        {
+            "name": "test/integration/pages/Common.js"
+        },
+        {
+            "name": "test/integration/pages/Browser.js"
+        },
+        {
+            "name": "test/testsuite.qunit.html"
+        },
+        {
+            "name": "test/unit/extended_runnable_file.html"
+        },
+        {
+            "name": "test/unit/unitTests.qunit.html"
+        },
+        {
+            "name": "test/unit/allTests.js"
+        },
+        {
+            "name": "test/unit/controller/App.controller.js"
+        },
+        {
+            "name": "test/unit/controller/Worklist.controller.js"
+        },
+        {
+            "name": "test/unit/model/formatter.js"
+        },
+        {
+            "name": "test/unit/model/models.js"
+        },
+        {
+            "name": "test/unit/helper/FakeI18nModel.js"
+        },
+        {
+            "name": "test/mockServer.html"
+        },
+        {
+            "name": "test/extended_runnable_file.html"
+        },
+        {
+            "name": "view/TimesheetSelection.view.xml"
+        },
+        {
+            "name": "view/AddTimesheet.view.xml"
+        },
+        {
+            "name": "view/WeeklySummary.view.xml"
+        },
+        {
+            "name": "view/NotFound.view.xml"
+        },
+        {
+            "name": "view/EmployeeDayDialog.fragment.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/FilterDialog.fragment.xml"
+        },
+        {
+            "name": "view/ReportEmployeeSelection.view.xml"
+        },
+        {
+            "name": "view/AddProjectTime.fragment.xml"
+        },
+        {
+            "name": "view/AddUpdateTime.fragment.xml"
+        },
+        {
+            "name": "view/SearchProject.fragment.xml"
+        },
+        {
+            "name": "view/SelectProject.fragment.xml"
+        },
+        {
+            "name": "view/WeeklyReport.view.xml"
+        },
+        {
+            "name": "image/sap.png"
+        },
+        {
+            "name": "image/VE-Blanc-fr.png"
+        },
+        {
+            "name": "image/externalURL.png"
+        },
+        {
+            "name": "image/back.png"
+        },
+        {
+            "name": "image/team.png"
+        },
+        {
+            "name": "image/VE-blanc-rouge.png"
+        },
+        {
+            "name": "image/vinci-logo.jpg"
+        },
+        {
+            "name": "logout.html"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "localService/TimeAdminSet.json"
+        },
+        {
+            "name": "localService/mockserver.js"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "localService/WeekSummarySet.json"
+        },
+        {
+            "name": "localService/mockdata/AbsenceDayItemSet.json"
+        },
+        {
+            "name": "localService/mockdata/EmployeeSet.json"
+        },
+        {
+            "name": "localService/mockdata/EquipmentTimeSet.json"
+        },
+        {
+            "name": "localService/mockdata/WorkDayItemSet.json"
+        },
+        {
+            "name": "localService/mockdata/PersonalizationSet.json"
+        },
+        {
+            "name": "localService/mockdata/CalanderSet.json"
+        },
+        {
+            "name": "localService/mockdata/ValueHelpSet.json"
+        },
+        {
+            "name": "localService/mockdata/WeekSummarySet.json"
+        },
+        {
+            "name": "localService/mockdata/DocumentSet.json"
+        },
+        {
+            "name": "localService/mockdata/WorkDaySet.json"
+        },
+        {
+            "name": "localService/mockdata/TeamSet.json"
+        },
+        {
+            "name": "localService/mockdata/TimeAdminSet.json"
+        },
+        {
+            "name": "localService/mockdata/ProjectSet.json"
+        },
+        {
+            "name": "localService/mockdata/FavoriteSet.json"
+        },
+        {
+            "name": "localService/mockdata/EquipmentSet.json"
+        },
+        {
+            "name": "localService/mockdata/PersonalisationSet.json"
+        },
+        {
+            "name": "controller/TimesheetSelection.controller.js"
+        },
+        {
+            "name": "controller/NotFound.controller.js"
+        },
+        {
+            "name": "controller/ReportEmployeeSelection.controller.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
+        },
+        {
+            "name": "controller/AddTimesheet.controller.js"
+        },
+        {
+            "name": "controller/WeeklySummary.controller.js"
+        },
+        {
+            "name": "controller/WeeklyReport.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "utility/datetime.js"
+        },
+        {
+            "name": "utility/jspdf.js"
+        },
+        {
+            "name": "utility/fragment.js"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "extended_runnable_file.html"
+        },
+        {
+            "name": "test.html"
+        },
+        {
+            "name": "i18n/i18n_de.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n_fr.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "neo-app.json"
+        }
+    ]
+}
