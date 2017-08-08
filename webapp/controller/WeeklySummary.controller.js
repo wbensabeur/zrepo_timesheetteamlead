@@ -141,15 +141,25 @@ sap.ui.define([
 			}
 			oDialog.bindElement("/EmployeeSet('" + currentEmp + "')");
 			
+			
 			var urlStr = "/WorkDaySet(EmployeeId='"+currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(currentDate) +")";
 			oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			oView.byId('EmpDayInfo').bindElement(urlStr);
 			
+			var Filters = [
+				new Filter("EmployeeId", FilterOperator.EQ, currentEmp),
+				new Filter("WorkDate", FilterOperator.EQ, currentDate)
+			];	
+		   
+			
 			/*oDialog.getContent()[0].setVisible(true);
 			oDialog.getContent()[1].setVisible(false);*/ // Invisible Add Information Screen
 			
 			oDialog.open();
+			var table =this.getView().byId('tableDayItems');
+			table.setModel(this.getView().getModel());
+			table.getBinding("items").filter(Filters, "Application");
 		},
 		
 		OnskipFilterScreen: function(oEvent) {
