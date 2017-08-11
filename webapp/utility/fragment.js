@@ -154,16 +154,23 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newValue = 0;
 			var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
 			var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3]; //this._getOwnSelectedHrContent(source);
+			var timepicker = selecthrsCombo.getItems()[2].getItems()[0];
+			var timepickerFrom = selecthrsCombo.getItems()[2].getItems()[1];
+			var timepickerTo = selecthrsCombo.getItems()[2].getItems()[2];
 			if (oEvent.getParameter("selectedIndex") === 1) {
 				//newValue = 0;
-				var timepicker = selecthrsCombo.getItems()[1].getItems()[0];
+				
 				allDayCombo.setVisible(false);
 				selecthrsCombo.setVisible(true);
 				timepicker.setValue("00:00");
+			//	timepickerFrom.setValue("00:00 A");
+			//	timepickerTo.setValue("00:00 A");
+				timepickerTo.setEnabled(false);
 
 			} else { // For all day Selection
 				allDayCombo.setVisible(true);
 				selecthrsCombo.setVisible(false);
+				
 			}
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
@@ -184,6 +191,42 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newTotalhrs = currentTotalhrs + deltahrs;
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
+		},
+		AddProjectTime_OnChangeStartTime: function(oEvent) {
+			var source = oEvent.getSource();
+			
+			var endTimer = source.getParent().getItems()[2];
+			endTimer.setEnabled(true);
+			//endTimer.setValue(source.getValue());
+
+		},
+		AddProjectTime_OnChangeEndTime: function(oEvent) {
+			var source = oEvent.getSource();
+			var startTimer = source.getParent().getItems()[1];
+			
+		//	var milliSecond = datetime.timeToMilliSec(oEvent.getParameter("value"));
+			var diffTime = datetime.timeToMilliSec(oEvent.getParameter("value")) - datetime.timeToMilliSec(startTimer.getValue());
+			if(diffTime < 0)
+			{
+			    source.setValueState("Error"); 
+			    source.setValueStateText(this.i18nModel.getText("timeValidationErrorMsg"));
+			    source.setShowValueStateMessage(true);
+			    source.openValueStateMessage();
+				return;
+			}
+			source.setValueState("None");
+			var dDate = new Date(diffTime);
+			var duration = dDate.getUTCHours() +":"+dDate.getUTCMinutes();
+			var newValue = datetime.timeToDecimal(duration);
+			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
+			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			var deltahrs = newValue - currentValue;
+			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			var newTotalhrs = currentTotalhrs + deltahrs;
+			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			sourcePanel.getCustomData()[0].setValue(newValue);
+			
+		
 		},
 		AddProjectTime__getOwnFrameObject: function(source) {
 			var parent = source.getParent();
@@ -229,7 +272,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				visibleEquipment: false,
 				visibleSummary: false,
 				visibleProjectOptional: false,
-				newTime: true
+				newTime: true,
+				duration:false
 			};
 			var oModel = new JSONModel(odata);
 			this.AddUpdatetimeModel = oModel;

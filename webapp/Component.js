@@ -39,6 +39,9 @@ sap.ui.define([
 
 			//set EmployeeSelection Model
 			this.setModel(models.createEmployeeSelection(), "employeeSelected");
+			
+			//set EmployeeDaySelection Model
+			this.setModel(models.createEmployeeDaySelection(),"employeeDaysSelected");
 
 			// create the views based on the url/hash
 			//this.getRouter().initialize(); done under  _updateUserPreference

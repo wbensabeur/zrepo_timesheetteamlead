@@ -382,6 +382,16 @@ sap.ui.define([
 			fragment.AddProjectTime_OnChangeHours(oEvent);
 		
 		},
+		OnChangeStartTime :function(oEvent) {
+			//		var timeModel = this.getView().getModel('AddTime');
+			fragment.AddProjectTime_OnChangeStartTime(oEvent);
+
+		},
+		OnChangeEndTime : function(oEvent) {
+			//		var timeModel = this.getView().getModel('AddTime');
+			fragment.AddProjectTime_OnChangeEndTime(oEvent);
+
+		},
 		//// **AddProjectTime Fragment Event End** ///////
 		
 		//// **AddUpdateTime Fragment Event** ///////

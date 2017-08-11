@@ -153,7 +153,7 @@ sap.ui.define([
 			if (this.employeeSelected.employees.length > 0) {
 				this.getRouter().navTo("WeeklyReport", {}, true);
 			} else {
-				MessageBox.alert("Planning is only support for weekly view selection");
+				MessageBox.alert(this.getResourceBundle().getText("msgNoEmployeeSelected"));
 			}
 		},
 		/**

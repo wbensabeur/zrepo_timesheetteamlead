@@ -18,12 +18,13 @@
 							<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" press="OnDatePress" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
 								<customData>
 										<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+										<core:CustomData key="Date" value="{calendar>Date}" />
 								</customData>
 								<layoutData>
 										<FlexItemData growFactor="1"/>
 									</layoutData>
 							</StandardListItem>
-							<!--<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+							<!--<Label text="{calendar>ColumnTxt1}" visible={path:'calendar>Date', formatter:'.formatter.datetotimestamp'}"{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
 							<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>-->
 							<customData>
 								<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -53,6 +54,7 @@
 								<StandardListItem class="EmpWeekStatus" type="{path:'isEntryEnabled', formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" press="OnEmployeePress">
 									<customData>
 										<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+										<core:CustomData key="employee" value="{EmployeeId}"/>
 									</customData>
 									<layoutData>
 										<FlexItemData growFactor="1"/>
