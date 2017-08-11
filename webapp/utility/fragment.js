@@ -163,8 +163,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				allDayCombo.setVisible(false);
 				selecthrsCombo.setVisible(true);
 				timepicker.setValue("00:00");
-			//	timepickerFrom.setValue("00:00 A");
-			//	timepickerTo.setValue("00:00 A");
 				timepickerTo.setEnabled(false);
 
 			} else { // For all day Selection
@@ -197,6 +195,29 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			
 			var endTimer = source.getParent().getItems()[2];
 			endTimer.setEnabled(true);
+			var diffTime = 0;
+			
+			if(endTimer.getValue() !== null && endTimer.getValue().length > 0 ){
+				diffTime = datetime.timeToMilliSec(oEvent.getParameter("value")) - datetime.timeToMilliSec(endTimer.getValue());
+			}
+			if(diffTime > 0)
+			{
+			    source.setValueState("Error"); 
+			    this.Common_raiseinputError(source,this.i18nModel.getText("timeValidationErrorMsg"));
+				return;
+			}
+			source.setValueState("None");
+			endTimer.setValueState("None");
+			var dDate = new Date(diffTime);
+			var duration = dDate.getUTCHours() +":"+dDate.getUTCMinutes();
+			var newValue = datetime.timeToDecimal(duration);
+			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
+			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			var deltahrs = newValue - currentValue;
+			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			var newTotalhrs = currentTotalhrs + deltahrs;
+			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			sourcePanel.getCustomData()[0].setValue(newValue);
 			//endTimer.setValue(source.getValue());
 
 		},
@@ -209,12 +230,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if(diffTime < 0)
 			{
 			    source.setValueState("Error"); 
-			    source.setValueStateText(this.i18nModel.getText("timeValidationErrorMsg"));
-			    source.setShowValueStateMessage(true);
-			    source.openValueStateMessage();
+			    this.Common_raiseinputError(source,this.i18nModel.getText("timeValidationErrorMsg"));
 				return;
 			}
 			source.setValueState("None");
+			startTimer.setValueState("None");
 			var dDate = new Date(diffTime);
 			var duration = dDate.getUTCHours() +":"+dDate.getUTCMinutes();
 			var newValue = datetime.timeToDecimal(duration);
@@ -339,6 +359,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				parent = parent.getParent();
 			}
 			return parent.getContent()[0];
+		},
+		Common_raiseinputError: function(source,text) {
+			source.setValueStateText(text);
+			source.setShowValueStateMessage(true);
+			source.openValueStateMessage();
+			source.focus();
 		}
 
 	};
