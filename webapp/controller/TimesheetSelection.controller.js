@@ -4,8 +4,9 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageBox"
+], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator,MessageBox) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.TimesheetSelection", {
 		formatter: formatter,
@@ -42,11 +43,11 @@ sap.ui.define([
 			});
 		},
 		onUpdateStart: function(oEvent) {
-		
+
 		},
 		onUpdateFinished: function(oEvent) {
 			// update the worklist's object counter after the table update
-			
+
 			var sTitle, oTable = oEvent.getSource(),
 				iTotalItems = oEvent.getParameter("total");
 			// only update the counter if the length is final and
@@ -59,7 +60,7 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
-			
+
 			/*var col1 = oTable.getColumns()[0].getWidth();
 			alert(col1);*/
 
@@ -68,8 +69,33 @@ sap.ui.define([
 			var button = oEvent.getSource();
 			if (button.getCustomData()[0].getValue() === "") {
 				button.getCustomData()[0].setValue("S");
+				var empId = button.getCustomData()[2].getValue();
+				var sDay = button.getCustomData()[3].getValue();
+				var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
+				if (index === -1) {
+					var data = {
+						employee: empId,
+						Days: [sDay]
+					};
+					this.employees.push(data);
+				} else {
+					if (this.employees[index].Days.indexOf(sDay) === -1) {
+						this.employees[index].Days.push(sDay);
+					}
+				}
+
 			} else {
 				button.getCustomData()[0].setValue("");
+				var empId2 = button.getCustomData()[2].getValue();
+				var sDay2 = button.getCustomData()[3].getValue();
+				var empIndex = this._EmployeeIndexInArray(empId2);
+				var index2 = this.employees[empIndex].Days.indexOf(sDay2);
+				this.employees[empIndex].Days.splice(index2, 1);
+				if (this.employees[empIndex].Days.length === 0) {
+
+					this.employees.splice(empIndex, 1);
+
+				}
 			}
 		},
 		OnDatePress: function(oEvent) {
@@ -78,39 +104,86 @@ sap.ui.define([
 			var Items = source.getParent().getParent().getParent().getItems();
 			if (source.getCustomData()[0].getValue() === "") {
 				source.getCustomData()[0].setValue("S");
+				//	this.days.push(source.getCustomData()[1].getValue());
 				source.getParent().getCustomData()[0].setValue("S");
 				for (var k = 0; k < Items.length; k++) {
 					var button = oEvent.getSource().getParent().getParent().getParent().getItems()[k].getCells()[headerSeq];
 					if (button.getEnabled()) {
 						button.getCustomData()[0].setValue("S");
+						var empId = button.getCustomData()[2].getValue();
+						var sDay = button.getCustomData()[3].getValue();
+						var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
+						if (index === -1) {
+							var data = {
+								employee: empId,
+								Days: [sDay]
+							};
+							this.employees.push(data);
+
+						} else {
+							if (this.employees[index].Days.indexOf(sDay) === -1) {
+								this.employees[index].Days.push(sDay);
+							}
+						}
+
 					}
 				}
 			} else {
 				source.getCustomData()[0].setValue("");
 				source.getParent().getCustomData()[0].setValue("");
+				//var index2 = this.days.indexOf(source.getCustomData()[1].getValue());
+				//this.days.splice(index2, 1);
+
 				for (var j = 0; j < Items.length; j++) {
 					var button1 = oEvent.getSource().getParent().getParent().getParent().getItems()[j].getCells()[headerSeq];
 					if (button1.getEnabled()) {
 						button1.getCustomData()[0].setValue("");
+						var empId2 = button1.getCustomData()[2].getValue();
+						var sDay2 = button1.getCustomData()[3].getValue();
+						var empIndex = this._EmployeeIndexInArray(empId2);
+						var index2 = this.employees[empIndex].Days.indexOf(sDay2);
+						this.employees[empIndex].Days.splice(index2, 1);
+						if (this.employees[empIndex].Days.length === 0) {
+
+							this.employees.splice(empIndex, 1);
+
+						}
+
 					}
 				}
 			}
 		},
 		OnEmployeePress: function(oEvent) {
 			var empBox = oEvent.getSource();
+			var empId = empBox.getCustomData()[1].getValue();
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
 				empBox.getParent().getCustomData()[0].setValue("S");
+				var index = this._EmployeeIndexInArray(empId);
+				if (index === -1) {
+					var data = {
+						employee: empId,
+						Days: []
+					};
+					this.employees.push(data);
+				}
 				var emphours = empBox.getParent().getParent().getCells();
+				var sDate = [];
 				for (var k = 1; k < 15; k++) {
+
 					var button = emphours[k];
 					if (button.getCustomData()[1].getValue() !== "L") {
 						button.getCustomData()[0].setValue("S");
+						sDate.push(button.getCustomData()[3].getValue());
 					}
 				}
+				var index3 = this._EmployeeIndexInArray(empId);
+				this.employees[index3].Days = sDate;
 			} else {
 				empBox.getCustomData()[0].setValue("");
 				empBox.getParent().getCustomData()[0].setValue("");
+				var index2 = this._EmployeeIndexInArray(empId);
+				this.employees.splice(index2, 1);
 				var emphours1 = empBox.getParent().getParent().getCells();
 				for (var k1 = 1; k1 < 15; k1++) {
 					var button1 = emphours1[k1];
@@ -133,7 +206,7 @@ sap.ui.define([
 		 * @memberOf com.vinci.timesheet.admin.view.TimesheetSelection
 		 */
 		//		onAfterRendering: function() {
-				
+
 		//		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -176,6 +249,10 @@ sap.ui.define([
 				this.twoWeek = true;
 			}
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
+			this.employees = this.getView().getModel("employeeDaysSelected").getData();
+			/*this.employees = [];
+			this.byId("table").getBinding("items").refresh();*/
+
 		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection
@@ -187,7 +264,21 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection
 		 */
 		OnAddTimesheet: function() {
-			this.getRouter().navTo("AddTimesheet", {}, true);
+				if (this.employees.length > 0) {
+				this.getRouter().navTo("AddTimesheet", {}, true);
+			} else {
+				MessageBox.alert(this.getResourceBundle().getText("msgNoEmployeeDaySelected"));
+			}
+			
+			
+		},
+		_EmployeeIndexInArray: function(empId) {
+			for (var k = 0; k < this.employees.length; k++) {
+				if (this.employees[k].employee === empId)
+					return k;
+			}
+			return -1;
 		}
+
 	});
 });

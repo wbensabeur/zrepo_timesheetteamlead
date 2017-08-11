@@ -36,6 +36,13 @@ sap.ui.define([
 			var oModel = new JSONModel(data);
 			oModel.setDefaultBindingMode("OneWay");
 			return oModel;
+		},
+		createEmployeeDaySelection: function () {
+			
+			var data = [];
+			var oModel = new JSONModel(data);
+			oModel.setDefaultBindingMode("OneWay");
+			return oModel;
 		}
 
 	};

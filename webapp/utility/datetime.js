@@ -132,7 +132,21 @@ sap.ui.define([], function() {
 		timeToDecimal: function (t) {
 		 var arr = t.split(':');
     	 return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1]/6)*10, 10));
-		} 
+		} ,
+		timeToMilliSec: function(time) {  // format = 13:00 PM
+			var arr = time.split(':');
+			var arr2 = arr[1].split(' ');
+			
+			var hour = Number(arr[0]);
+			var min = Number (arr2[0]);
+			
+			if (hour < 12 && arr2[1] === 'PM' )
+				hour = hour + 12;
+			var date = new Date();	
+			var offset = date.getTimezoneOffset() * 60000	;
+			return 	(hour * 60 + min )*60000 + offset; 
+			
+		}
 
 	};
 

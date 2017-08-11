@@ -16,7 +16,6 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			this.getRouter().getRoute("AddTimesheet").attachPatternMatched(this._onObjectMatched, this);
-			
 
 		},
 		/**
@@ -46,30 +45,33 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.AddTimesheet
 		 */
 		_onObjectMatched: function(oEvent) {
-			this.userPref = this.getView().getModel("userPreference").getData();
-			var caldenderdata = datetime.getCalenderData(this.userPref.startDate, this.userPref.defaultPeriod, this.getResourceBundle());
-			var oCalendarModel = new JSONModel(caldenderdata);
-			this.setModel(oCalendarModel, "calendar");
-			
-			var oModel = fragment.AddUpdatetime_init(this, this.getView().byId('PageContent'), "New",this.getResourceBundle());
 
-			this.getView().setModel(oModel.AddTime, "AddTime");
-			this.getView().setModel(oModel.projectSearch, "projectSearch");
-			this.getView().setModel(oModel.footer, "footer");
+			this.employees = this.getView().getModel("employeeDaysSelected").getData();
+			if (this.employees.length > 0) {
+				this.userPref = this.getView().getModel("userPreference").getData();
+				var caldenderdata = datetime.getCalenderData(this.userPref.startDate, this.userPref.defaultPeriod, this.getResourceBundle());
+				var oCalendarModel = new JSONModel(caldenderdata);
+				this.setModel(oCalendarModel, "calendar");
+
+				var oModel = fragment.AddUpdatetime_init(this, this.getView().byId('PageContent'), "New", this.getResourceBundle());
+
+				this.getView().setModel(oModel.AddTime, "AddTime");
+				this.getView().setModel(oModel.projectSearch, "projectSearch");
+				this.getView().setModel(oModel.footer, "footer");
+			} else {
+				this.getRouter().navTo("periodSelection", {}, true);
+			}
+
 		},
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			this.getRouter().navTo("periodSelection", {}, true);
-			
+
 		},
-		
+
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.AddTimesheet
 		 */
-		
-		
-		
-		
 
 		//// **SearchProject Fragment Event** ///////
 		OnProjectSelected: function(oEvent) {
@@ -97,47 +99,56 @@ sap.ui.define([
 			fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'));
 		},
 		OnProjectRefresh: function(oEvent) {
-			fragment.SelectProject_OnProjectRefresh(oEvent, this,  this.getView().byId('ProjectSelectButton'));
+			fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
 		},
 		//// **SelectProject Fragment Event End** ///////
-		
+
 		//// **AddProjectTime Fragment Event** ///////
 		OnTimeDelete: function(oEvent) {
 			//var timeModel = this.getView().getModel('AddTime');
 			var container = this.getView().byId('addTimeTab').getItems()[0];
-			fragment.AddProjectTime_OnTimeDelete(oEvent,  container);
+			fragment.AddProjectTime_OnTimeDelete(oEvent, container);
 
 		},
 		OnchangeTimeSelection: function(oEvent) {
-		//	var timeModel = this.getView().getModel('AddTime');
+			//	var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnchangeTimeSelection(oEvent);
 		},
 		OnChangeHours: function(oEvent) {
-	//		var timeModel = this.getView().getModel('AddTime');
+			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeHours(oEvent);
-		
+
+		},
+		OnChangeStartTime :function(oEvent) {
+			//		var timeModel = this.getView().getModel('AddTime');
+			fragment.AddProjectTime_OnChangeStartTime(oEvent);
+
+		},
+		OnChangeEndTime : function(oEvent) {
+			//		var timeModel = this.getView().getModel('AddTime');
+			fragment.AddProjectTime_OnChangeEndTime(oEvent);
+
 		},
 		//// **AddProjectTime Fragment Event End** ///////
-		
+
 		//// **AddUpdateTime Fragment Event** ///////
 		OnTabSelected: function(oEvent) {
-		//	var addTimeModel = this.getView().getModel('AddTime');
+			//	var addTimeModel = this.getView().getModel('AddTime');
 			fragment.AddUpdatetime_OnTabSelected(oEvent);
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
 		}
-		
+
 		//// **AddUpdateTime Fragment Event End** ///////
 
-
-	/*	_getOwnContentObject: function(source) {
-			var parent = source.getParent();
-			while (parent.getMetadata().getName() !== 'sap.m.IconTabFilter') {
-				parent = parent.getParent();
-			}
-			return parent.getContent();
-		}*/
+		/*	_getOwnContentObject: function(source) {
+				var parent = source.getParent();
+				while (parent.getMetadata().getName() !== 'sap.m.IconTabFilter') {
+					parent = parent.getParent();
+				}
+				return parent.getContent();
+			}*/
 
 	});
 });

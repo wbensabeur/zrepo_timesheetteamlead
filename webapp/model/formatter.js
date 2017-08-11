@@ -170,13 +170,14 @@ sap.ui.define([
 				return zone;
 		},
 		getQuantity: function(type,hrs) {
-			if (type === 'Hours')
+			return Number(hrs);
+			/*if (type === 'Hours')
 			{
 				return Number(hrs);
 			}
 			else if (type === "IPD"){
-				return 1;
-			}
+				return Number(hrs);
+			}*/
 		},
 		favIcon: function(fav) {
 			if(fav)
@@ -186,6 +187,11 @@ sap.ui.define([
 			else
 			{
 				return "sap-icon://unfavorite";	
+			}
+		},
+		datetotimestamp: function(date) {
+			if(date instanceof Date) {
+			return date.getTime();
 			}
 		}
 
