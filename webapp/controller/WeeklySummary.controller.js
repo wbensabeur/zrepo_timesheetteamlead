@@ -209,6 +209,11 @@ sap.ui.define([
 			var oDialog = this.getView().byId("filterDialog");
 			oDialog.close();
 		},
+		onPressSaveEntries: function(oEvent) {
+			fragment.AddUpdatetime_saveEntries();
+			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
+			
+		},
 
 		////*** Add New Time  **///
 		OnAddEmpTime: function(oEvent) {
@@ -355,6 +360,9 @@ sap.ui.define([
 		onProjectDescriptionSuggest:function(oEvent) {
 			fragment.SearchProject_onProjectDescriptionSuggest(oEvent);
 		},
+		onProjectDescriptionSearch:function(oEvent){
+			fragment.SearchProject_onProjectDescriptionSearch(oEvent);
+		},
 
 		////****SearchProject Fragment Event End******//////////
 
@@ -409,10 +417,16 @@ sap.ui.define([
 		onSelectAbsenceEndDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent, this.getView());
 		},
-		onPressSaveEntries: function(oEvent) {
-			fragment.AddUpdatetime_saveEntries();
-		}
+		
 
 		//// **AddUpdateTime Fragment Event End** ///////
+		//// **AddKM Fragment Event** ///////
+		OnChangeStartTimeKM: function(oEvent){
+			fragment.AddKM_OnChangeStartTimeKM(oEvent);
+		},
+		OnChangeEndTimeKM: function(oEvent){
+			fragment.AddKM_OnChangeEndTimeKM(oEvent);
+		}
+		//// **AddKM Fragment Event End** ///////
 	});
 });

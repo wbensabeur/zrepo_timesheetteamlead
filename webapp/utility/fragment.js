@@ -4,7 +4,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
 
-], function(datetime, JSONModel, MessageBox,Filter,FilterOperator) {
+], function(datetime, JSONModel, MessageBox, Filter, FilterOperator) {
 	"use strict";
 
 	return {
@@ -13,6 +13,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
 			//	controler._setProjectSearchFragment(fragment.getId());
 			this.projectSearchFragment = fragment.getId();
+			this.projectfilter = null;
 			//	fragment.getCustomData()[1].setValue(returnRef.getId()); 
 
 			var hideContainer = container.getItems()[0];
@@ -92,17 +93,39 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var value = oEvent.getParameter("suggestValue");
 			var source = oEvent.getSource();
 			var filters = [];
-			
+
 			if (value.length > 2) {
 				filters = [new Filter("ProjectDescription", FilterOperator.Contains, value)];
 				source.getBinding("suggestionItems").filter(filters);
 				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
-    				 source.suggest();
-    			});   
-    
+					source.suggest();
+				});
+
 			}
- 
-			
+
+		},
+		SearchProject_onProjectDescriptionSearch: function(oEvent) {
+			if (oEvent.getParameter("suggestionItem") === undefined) {
+				var query = oEvent.getParameter("query");
+				if (query !== null && query.length > 0) {
+					this.projectfilter = new Filter("ProjectDescription", FilterOperator.Contains, query);
+				} else {
+					this.projectfilter = null;
+				}
+
+			} else {
+				this.projectfilter = new Filter("ProjectId", FilterOperator.EQ, oEvent.getParameter("suggestionItem").getKey());
+			}
+			this.SearchProject_applyFiler();
+
+		},
+		SearchProject_applyFiler: function() {
+			var Filters = [];
+			if (this.projectfilter !== null) {
+				Filters.push(this.projectfilter);
+			}
+			var projectfragment = sap.ui.getCore().byId(this.projectSearchFragment);
+			projectfragment.getItems()[4].getBinding("items").filter(Filters, "Application");
 
 		},
 		SelectProject_afterSelection: function(projectContext) {
@@ -140,9 +163,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		//////**Add Project Time** ////
-		AddProjectTime_init: function(controler, container) {
-			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
+		AddProjectTime_init: function(controler, container,addNew) {
+			if(addNew)
+			{var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
 			container.addItem(oFragment);
+			}
 		},
 		AddProjectTime_destroy: function(fragmentObject) {
 			fragmentObject.destroy(true);
@@ -279,6 +304,49 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return comboBox;
 		},
+		AddKM_init: function(controler, container, addnew) {
+
+			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddKM", controler);
+			container.addItem(oFragment);
+
+			if (addnew) {
+				var oFragment2 = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddKM", controler);
+				container.addItem(oFragment2);
+			}
+
+		},
+		AddKM_OnChangeStartTimeKM: function (oEvent) {
+			var source = oEvent.getSource();
+
+			var endTimer = source.getParent().getParent().getItems()[1].getItems()[1];
+			endTimer.setEnabled(true);
+			var diffTime = 0;
+
+			if (endTimer.getValue() !== null && endTimer.getValue().length > 0) {
+				diffTime = datetime.timeToMilliSec(oEvent.getParameter("value")) - datetime.timeToMilliSec(endTimer.getValue());
+			}
+			if (diffTime > 0) {
+				source.setValueState("Error");
+				this.Common_raiseinputError(source, this.i18nModel.getText("timeValidationErrorMsg"));
+				return;
+			}
+			source.setValueState("None");
+			endTimer.setValueState("None");
+		},
+		AddKM_OnChangeEndTimeKM: function(oEvent) {
+			var source = oEvent.getSource();
+			var startTimer = source.getParent().getParent().getItems()[0].getItems()[1];
+
+			//	var milliSecond = datetime.timeToMilliSec(oEvent.getParameter("value"));
+			var diffTime = datetime.timeToMilliSec(oEvent.getParameter("value")) - datetime.timeToMilliSec(startTimer.getValue());
+			if (diffTime < 0) {
+				source.setValueState("Error");
+				this.Common_raiseinputError(source, this.i18nModel.getText("timeValidationErrorMsg"));
+				return;
+			}
+			source.setValueState("None");
+			startTimer.setValueState("None");
+		},
 		AddUpdatetime_onSelectAbsenceStartDate: function(oEvent, view) {
 			var startDate = oEvent.getSource();
 			var endDate = view.byId('AbsEndDate');
@@ -309,17 +377,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		//////**Add Update Time** ////
-		AddUpdatetime_init: function(controler, container, type, i18nModel,employees,odataModel) {
+		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel) {
 
-			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
-			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0]); // initialse with single hour
-			var items = container.getItems();
-			if (items.length > 0) {
-				items[0].setVisible(false);
-			}
-			container.addItem(oFragment);
-			this.oDataModel = odataModel;
-			this.employees = employees;
 			var odata = {
 				totalhrs: 0,
 				visibleHrs: true,
@@ -335,6 +394,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				newTime: true,
 				duration: true
 			};
+
+			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
+			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
+			this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
+			var items = container.getItems();
+			if (items.length > 0) {
+				items[0].setVisible(false);
+			}
+			container.addItem(oFragment);
+			this.oDataModel = odataModel;
+			this.employees = employees;
+
 			var oModel = new JSONModel(odata);
 			this.AddUpdatetimeModel = oModel;
 
@@ -391,7 +462,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 		},
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
-			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0]);
+			var addNew = this.AddUpdatetimeModel.getData().newTime;
+			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0],addNew);
 		},
 		AddUpdatetime_getOwnIconTabObject: function(source) {
 			var parent = source.getParent();
@@ -400,54 +472,42 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent.getContent()[0];
 		},
-		AddUpdatetime_saveEntries: function () {
-			var data = {"EmployeeId":this.employees[0].employee,"WorkDate":this.employees[0].Days[0], "NavWorkDayTimeItems":[]};
-			for (var k = 0; k < this.employees.length; k++){
+		AddUpdatetime_saveEntries: function() {
+			/// Get Item Data from view
+
+			////
+			var data = {
+				"EmployeeId": this.employees[0].employee,
+				"WorkDate": this.employees[0].Days[0],
+				"NavWorkDayTimeItems": []
+			};
+			for (var k = 0; k < this.employees.length; k++) {
 				var empId = this.employees[k].employee;
-				for( var j = 0; j < this.employees[k].Days.length; j++) {
+				for (var j = 0; j < this.employees[k].Days.length; j++) {
 					var item = {
 						"EmployeeId": empId,
-                        "WorkDate": this.employees[k].Days[j],
-                        "Counter": "0",
-                        /*"ProjectID": "P0100981101",
-                        "EntryType": "HOURS",
-                        "Hours": "5.00 ",
-                        "StartTime": "000000",
-                        "EndTime": "000000",
-                        "Status": "D",
-                        "Comment": "",
-                        "CreatedBy": "",
-                        "CreatedOn": null,
-                        "AllowancesType": "",
-                        "AllowancesName": "",
-                        "ZoneType": "",
-                        "MealIndicator": false*/
-                       
-                                                                                                                                "ProjectID": "P0100981101",
-                                                                                                                                "ProjectName": "",
-                                                                                                                                "EntryType": "HOURS",
-                                                                                                                                "Hours": "5.00 ",
-                                                                                                                                "StartTime": "000000",
-                                                                                                                                "EndTime": "000000",
-                                                                                                                                "Status": "V",
-                                                                                                                                "Comment": "",
-                                                                                                                                "CreatedBy": "",
-                                                                                                                                "CreatedOn": null,
-                                                                                                                                "ReleaseOn": null,
-                                                                                                                                "ApprovedOn": null,
-                                                                                                                                "Reason": "",
-                                                                                                                                "AllowancesType": "",
-                                                                                                                                "AllowancesName": "",
-                                                                                                                                "ZoneType": "",
-                                                                                                                                "MealIndicator": false
-                                
+						"WorkDate": this.employees[k].Days[j],
+						"Counter": "0",
+						"ProjectID": "P0100981101",
+						"EntryType": "HOURS",
+						"Hours": "5.00 ",
+						"StartTime": "000000",
+						"EndTime": "000000",
+						"Status": "D",
+						"Comment": "",
+						"CreatedBy": "",
+						"CreatedOn": null,
+						"AllowancesType": "",
+						"AllowancesName": "",
+						"ZoneType": "",
+						"MealIndicator": false
 
 					};
 					data.NavWorkDayTimeItems.push(item);
 				}
-				
+
 			}
-			this.oDataModel.create("/WorkDaySet",data);
+			this.oDataModel.create("/WorkDaySet", data);
 		},
 		Common_raiseinputError: function(source, text) {
 			source.setValueStateText(text);
