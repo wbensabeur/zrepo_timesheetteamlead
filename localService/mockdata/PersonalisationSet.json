@@ -1,0 +1,91 @@
+[{
+	"UserId": "UserId 1",
+	"PersonalisationId": "PersonalisationId 1",
+	"PersonalisationValue": "PersonalisationValue 1",
+	"PersonalisationDescription": "PersonalisationDescription 1",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%201',PersonalisationId='PersonalisationId%201')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 2",
+	"PersonalisationId": "PersonalisationId 2",
+	"PersonalisationValue": "PersonalisationValue 2",
+	"PersonalisationDescription": "PersonalisationDescription 2",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%202',PersonalisationId='PersonalisationId%202')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 3",
+	"PersonalisationId": "PersonalisationId 3",
+	"PersonalisationValue": "PersonalisationValue 3",
+	"PersonalisationDescription": "PersonalisationDescription 3",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%203',PersonalisationId='PersonalisationId%203')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 4",
+	"PersonalisationId": "PersonalisationId 4",
+	"PersonalisationValue": "PersonalisationValue 4",
+	"PersonalisationDescription": "PersonalisationDescription 4",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%204',PersonalisationId='PersonalisationId%204')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 5",
+	"PersonalisationId": "PersonalisationId 5",
+	"PersonalisationValue": "PersonalisationValue 5",
+	"PersonalisationDescription": "PersonalisationDescription 5",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%205',PersonalisationId='PersonalisationId%205')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 6",
+	"PersonalisationId": "PersonalisationId 6",
+	"PersonalisationValue": "PersonalisationValue 6",
+	"PersonalisationDescription": "PersonalisationDescription 6",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%206',PersonalisationId='PersonalisationId%206')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 7",
+	"PersonalisationId": "PersonalisationId 7",
+	"PersonalisationValue": "PersonalisationValue 7",
+	"PersonalisationDescription": "PersonalisationDescription 7",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%207',PersonalisationId='PersonalisationId%207')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 8",
+	"PersonalisationId": "PersonalisationId 8",
+	"PersonalisationValue": "PersonalisationValue 8",
+	"PersonalisationDescription": "PersonalisationDescription 8",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%208',PersonalisationId='PersonalisationId%208')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 9",
+	"PersonalisationId": "PersonalisationId 9",
+	"PersonalisationValue": "PersonalisationValue 9",
+	"PersonalisationDescription": "PersonalisationDescription 9",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%209',PersonalisationId='PersonalisationId%209')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}, {
+	"UserId": "UserId 10",
+	"PersonalisationId": "PersonalisationId 10",
+	"PersonalisationValue": "PersonalisationValue 10",
+	"PersonalisationDescription": "PersonalisationDescription 10",
+	"__metadata": {
+		"uri": "PersonalisationSet(UserId='UserId%2010',PersonalisationId='PersonalisationId%2010')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Personalisation"
+	}
+}]
