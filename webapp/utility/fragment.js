@@ -1,8 +1,10 @@
 sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
+	"sap/m/MessageBox",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
 
-], function(datetime, JSONModel, MessageBox) {
+], function(datetime, JSONModel, MessageBox,Filter,FilterOperator) {
 	"use strict";
 
 	return {
@@ -85,6 +87,23 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_getProjectSearchFragment: function() {
 			var projectfragment = sap.ui.getCore().byId(this.projectSearchFragment);
 			return projectfragment;
+		},
+		SearchProject_onProjectDescriptionSuggest: function(oEvent) {
+			var value = oEvent.getParameter("suggestValue");
+			var source = oEvent.getSource();
+			var filters = [];
+			
+			if (value.length > 2) {
+				filters = [new Filter("ProjectDescription", FilterOperator.Contains, value)];
+				source.getBinding("suggestionItems").filter(filters);
+				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
+    				 source.suggest();
+    			});   
+    
+			}
+ 
+			
+
 		},
 		SelectProject_afterSelection: function(projectContext) {
 			this.selectProjectcontext[0].bindElement(projectContext); // Label

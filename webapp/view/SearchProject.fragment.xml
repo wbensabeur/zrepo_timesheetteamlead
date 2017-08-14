@@ -3,31 +3,68 @@
 		<Label text="{i18n>filterBy} :"/>
 		<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="1">
 			<buttons>
-				<RadioButton text="{i18n>projectFav}"/>
+				<RadioButton text="{i18n>projectFav}" enabled="false"/>
 				<RadioButton text="{i18n>allProject}"/>
 			</buttons>
 		</RadioButtonGroup>
 		<HBox width="100%" class="sapUiSmallMarginBottom">
-			<ComboBox value="{i18n>company}">
+			<ComboBox value="{i18n>businessUnit}">
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>
-			<ComboBox value="{i18n>projID}">
+			<SearchField
+				enableSuggestions="true"
+				search="onProjectDescriptionSearch"
+				suggest="onProjectDescriptionSuggest"
+				suggestionItems="{
+					path: '/ProjectSet',
+					length: 5,
+					sorter: { path: 'ProjectDescription' }
+				}"
+				>
+				<suggestionItems>
+					<SuggestionItem text="{ProjectDescription}" description="{ProjectId}" key="{ProjectDescription}"/>
+				</suggestionItems>
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
-			</ComboBox>
+			</SearchField>
+
+			<!--<ComboBox value="{i18n>projID}">
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>-->
 			<ComboBox value="{i18n>position}">
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>
-			<ComboBox value="{i18n>manager}">
+			<SearchField
+				
+				placeholder="{i18n>searchManager}"
+				enableSuggestions="true"
+				search="onProjectManagerSearch"
+				suggest="onProjectManagerSuggest"
+				suggestionItems="{
+					path: '/ProjectSet',
+					length: 5,
+					sorter: { path: 'ProjectId' }
+				}"
+				>
+				<suggestionItems>
+					<SuggestionItem text="{ResponsiblePM}" description="{path:'ResponsiblePM'}" key="{ResponsiblePM}"/>
+				</suggestionItems>
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
-			</ComboBox>
+			</SearchField>
+			<!--<ComboBox value="{i18n>manager}">
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>-->
 		</HBox>
 		<Label class="sapUiTinyMarginBottom" text="{projectSearch>/worklistTableTitle}" design="Bold"/>
 		<Table items="{ path: '/ProjectSet' }" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" modeAnimationOn="false" updateFinished="onProjectSearchFinished"

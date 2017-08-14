@@ -16,6 +16,10 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			this.getRouter().getRoute("AddTimesheet").attachPatternMatched(this._onObjectMatched, this);
+			
+			var data=[{ProjectDescription:"test1"},{ProjectDescription:"test2"},{ProjectDescription:"test5"}];
+			var model = new sap.ui.model.json.JSONModel(data);
+			this.getView().setModel(model,"test");
 
 		},
 		/**
@@ -90,6 +94,9 @@ sap.ui.define([
 		},
 		onPressProjectSelect: function(oEvent) {
 			fragment.SelectProject_onPressProjectSelect();
+		},
+		onProjectDescriptionSuggest:function(oEvent) {
+			fragment.SearchProject_onProjectDescriptionSuggest(oEvent);
 		},
 
 		////****SearchProject Fragment Event End******//////////
