@@ -479,3 +479,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .BiggerText {
 	font-size: 1rem;
 }
+
+.sapMRbBLabel {
+	height: 2rem;
+}
