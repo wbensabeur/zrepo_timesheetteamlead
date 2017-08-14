@@ -53,7 +53,7 @@ sap.ui.define([
 				var oCalendarModel = new JSONModel(caldenderdata);
 				this.setModel(oCalendarModel, "calendar");
 
-				var oModel = fragment.AddUpdatetime_init(this, this.getView().byId('PageContent'), "New", this.getResourceBundle());
+				var oModel = fragment.AddUpdatetime_init(this, this.getView().byId('PageContent'), "New", this.getResourceBundle(),this.employees,this.getView().getModel());
 
 				this.getView().setModel(oModel.AddTime, "AddTime");
 				this.getView().setModel(oModel.projectSearch, "projectSearch");

@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Tue, 08 Aug 2017 15:30:13 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Mon, 14 Aug 2017 08:45:10 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -410,6 +410,6 @@
   "hcpdeploy": {
     "account": "a4769796d",
     "name": "timesheetadmin",
-    "lastVersionWeTriedToDeploy": "1.0.29.SNAPSHOT"
+    "lastVersionWeTriedToDeploy": "1.0.30.SNAPSHOT"
   }
 }
