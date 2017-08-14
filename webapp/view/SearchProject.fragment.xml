@@ -14,6 +14,7 @@
 				</layoutData>
 			</ComboBox>
 			<SearchField
+				placeholder="{i18n>searchProject}"
 				enableSuggestions="true"
 				search="onProjectDescriptionSearch"
 				suggest="onProjectDescriptionSuggest"
@@ -24,7 +25,7 @@
 				}"
 				>
 				<suggestionItems>
-					<SuggestionItem text="{ProjectDescription}" description="{ProjectId}" key="{ProjectDescription}"/>
+					<SuggestionItem text="{ProjectDescription}" description="{ProjectId}" key="{ProjectId}"/>
 				</suggestionItems>
 				<layoutData>
 					<FlexItemData growFactor="1"/>

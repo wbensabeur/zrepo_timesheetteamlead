@@ -72,6 +72,12 @@ sap.ui.define([
 			this.getRouter().navTo("periodSelection", {}, true);
 
 		},
+		onPressSaveEntries: function(oEvent) {
+			fragment.AddUpdatetime_saveEntries();
+			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
+			this.getRouter().navTo("home", {}, true);
+		},
+		
 
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.AddTimesheet
@@ -97,6 +103,9 @@ sap.ui.define([
 		},
 		onProjectDescriptionSuggest:function(oEvent) {
 			fragment.SearchProject_onProjectDescriptionSuggest(oEvent);
+		},
+		onProjectDescriptionSearch:function(oEvent){
+			fragment.SearchProject_onProjectDescriptionSearch(oEvent);
 		},
 
 		////****SearchProject Fragment Event End******//////////
@@ -151,9 +160,17 @@ sap.ui.define([
 		},
 		onSelectAbsenceEndDate: function (oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent,this.getView());
-		}
-
+		},
 		//// **AddUpdateTime Fragment Event End** ///////
+		
+		//// **AddKM Fragment Event** ///////
+		OnChangeStartTimeKM: function(oEvent){
+			fragment.AddKM_OnChangeStartTimeKM(oEvent);
+		},
+		OnChangeEndTimeKM: function(oEvent){
+			fragment.AddKM_OnChangeEndTimeKM(oEvent);
+		}
+		//// **AddKM Fragment Event End** ///////
 
 		/*	_getOwnContentObject: function(source) {
 				var parent = source.getParent();
