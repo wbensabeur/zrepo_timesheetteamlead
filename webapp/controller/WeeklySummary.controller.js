@@ -352,6 +352,9 @@ sap.ui.define([
 		onPressProjectSelect: function(oEvent) {
 			fragment.SelectProject_onPressProjectSelect();
 		},
+		onProjectDescriptionSuggest:function(oEvent) {
+			fragment.SearchProject_onProjectDescriptionSuggest(oEvent);
+		},
 
 		////****SearchProject Fragment Event End******//////////
 

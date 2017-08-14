@@ -13,10 +13,7 @@
 			</Bar>
 		</customHeader>
 		<content>
-			<VBox id="PageContent">
-				
-			</VBox>
-			
+			<VBox id="PageContent"></VBox>
 		</content>
 		<footer>
 			<Bar>
@@ -26,7 +23,7 @@
 					<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="{footer>/ProjectScreen}" press="onPressProjectCancel"/>
 					<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="{footer>/ProjectScreen}" press="onPressProjectSelect">
 						<customData>
-							<core:CustomData key="context" value="" />
+							<core:CustomData key="context" value=""/>
 						</customData>
 					</Button>
 				</contentRight>
