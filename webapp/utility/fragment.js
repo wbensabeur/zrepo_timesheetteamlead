@@ -290,7 +290,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		//////**Add Update Time** ////
-		AddUpdatetime_init: function(controler, container, type, i18nModel,employees) {
+		AddUpdatetime_init: function(controler, container, type, i18nModel,employees,odataModel) {
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0]); // initialse with single hour
@@ -299,7 +299,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				items[0].setVisible(false);
 			}
 			container.addItem(oFragment);
-
+			this.oDataModel = odataModel;
+			this.employees = employees;
 			var odata = {
 				totalhrs: 0,
 				visibleHrs: true,
@@ -379,6 +380,55 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				parent = parent.getParent();
 			}
 			return parent.getContent()[0];
+		},
+		AddUpdatetime_saveEntries: function () {
+			var data = {"EmployeeId":this.employees[0].employee,"WorkDate":this.employees[0].Days[0], "NavWorkDayTimeItems":[]};
+			for (var k = 0; k < this.employees.length; k++){
+				var empId = this.employees[k].employee;
+				for( var j = 0; j < this.employees[k].Days.length; j++) {
+					var item = {
+						"EmployeeId": empId,
+                        "WorkDate": this.employees[k].Days[j],
+                        "Counter": "0",
+                        /*"ProjectID": "P0100981101",
+                        "EntryType": "HOURS",
+                        "Hours": "5.00 ",
+                        "StartTime": "000000",
+                        "EndTime": "000000",
+                        "Status": "D",
+                        "Comment": "",
+                        "CreatedBy": "",
+                        "CreatedOn": null,
+                        "AllowancesType": "",
+                        "AllowancesName": "",
+                        "ZoneType": "",
+                        "MealIndicator": false*/
+                       
+                                                                                                                                "ProjectID": "P0100981101",
+                                                                                                                                "ProjectName": "",
+                                                                                                                                "EntryType": "HOURS",
+                                                                                                                                "Hours": "5.00 ",
+                                                                                                                                "StartTime": "000000",
+                                                                                                                                "EndTime": "000000",
+                                                                                                                                "Status": "V",
+                                                                                                                                "Comment": "",
+                                                                                                                                "CreatedBy": "",
+                                                                                                                                "CreatedOn": null,
+                                                                                                                                "ReleaseOn": null,
+                                                                                                                                "ApprovedOn": null,
+                                                                                                                                "Reason": "",
+                                                                                                                                "AllowancesType": "",
+                                                                                                                                "AllowancesName": "",
+                                                                                                                                "ZoneType": "",
+                                                                                                                                "MealIndicator": false
+                                
+
+					};
+					data.NavWorkDayTimeItems.push(item);
+				}
+				
+			}
+			this.oDataModel.create("/WorkDaySet",data);
 		},
 		Common_raiseinputError: function(source, text) {
 			source.setValueStateText(text);

@@ -149,7 +149,7 @@
     }
   ],
   "hybrid": {
-    "dirty": true,
+    "dirty": false,
     "configSaved": true
   }
 }

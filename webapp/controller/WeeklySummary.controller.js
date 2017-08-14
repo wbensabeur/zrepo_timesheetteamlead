@@ -122,8 +122,8 @@ sap.ui.define([
 		},
 		OnHourPress: function(oEvent) {
 			//	var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
-			var currentEmp = oEvent.getSource().getCustomData()[2].getValue();
-			var currentDate = oEvent.getSource().getCustomData()[3].getValue();
+			this.currentEmp = oEvent.getSource().getCustomData()[2].getValue();
+			this.currentDate = oEvent.getSource().getCustomData()[3].getValue();
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
 			// create dialog lazily
@@ -141,16 +141,16 @@ sap.ui.define([
 				this.getView().setModel(oFooterModel, "footer");
 
 			}
-			oDialog.bindElement("/EmployeeSet('" + currentEmp + "')");
+			oDialog.bindElement("/EmployeeSet('" + this.currentEmp + "')");
 
-			var urlStr = "/WorkDaySet(EmployeeId='" + currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(currentDate) + ")";
+			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
 			oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			oView.byId('EmpDayInfo').bindElement(urlStr);
 
 			var Filters = [
-				new Filter("EmployeeId", FilterOperator.EQ, currentEmp),
-				new Filter("WorkDate", FilterOperator.EQ, currentDate)
+				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
+				new Filter("WorkDate", FilterOperator.EQ, this.currentDate)
 			];
 
 			/*oDialog.getContent()[0].setVisible(true);
@@ -214,8 +214,12 @@ sap.ui.define([
 		OnAddEmpTime: function(oEvent) {
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
+			this.employees = [
+				{employee:this.currentEmp,
+				 Days:[this.currentDate]
+				}];
 
-			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle());
+			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle(), this.employees,this.getView().getModel());
 
 			this.getView().setModel(oModel.AddTime, "AddTime");
 			this.getView().setModel(oModel.projectSearch, "projectSearch");
@@ -401,6 +405,9 @@ sap.ui.define([
 		},
 		onSelectAbsenceEndDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent, this.getView());
+		},
+		onPressSaveEntries: function(oEvent) {
+			fragment.AddUpdatetime_saveEntries();
 		}
 
 		//// **AddUpdateTime Fragment Event End** ///////
