@@ -138,6 +138,12 @@ sap.ui.define([
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
+		},
+		onSelectAbsenceStartDate: function (oEvent) {
+			fragment.AddUpdatetime_onSelectAbsenceStartDate(oEvent,this.getView());
+		},
+		onSelectAbsenceEndDate: function (oEvent) {
+			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent,this.getView());
 		}
 
 		//// **AddUpdateTime Fragment Event End** ///////

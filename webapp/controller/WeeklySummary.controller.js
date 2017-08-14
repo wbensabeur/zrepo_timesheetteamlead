@@ -7,7 +7,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/m/MessageBox",
 	"com/vinci/timesheet/admin/utility/fragment"
-], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox,fragment) {
+], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox, fragment) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklySummary", {
 		formatter: formatter,
@@ -93,7 +93,9 @@ sap.ui.define([
 		/* =========================================================== */
 		onPeriodSelect: function(oEvent) {
 			var oKey = oEvent.getParameter("key");
-			var oData = {PersoValue:''};
+			var oData = {
+				PersoValue: ''
+			};
 			if (oKey === "OneWeek") {
 				this.twoWeek = false;
 				this.userPref.startDate = new Date();
@@ -104,22 +106,22 @@ sap.ui.define([
 				this.userPref.defaultPeriod = 2;
 				oData.PersoValue = 'X';
 			}
-			
-			var url = "/PersonalizationSet(UserId='"+this.getView().getModel("userPreference").getProperty("/userID")+"',PersoId='BW')";
-			this.getView().getModel().update(url,oData);
+
+			var url = "/PersonalizationSet(UserId='" + this.getView().getModel("userPreference").getProperty("/userID") + "',PersoId='BW')";
+			this.getView().getModel().update(url, oData);
 			this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);
 			this.getView().getModel("userPreference").setProperty("/defaultPeriod", this.userPref.defaultPeriod);
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
 		},
 		onEmployeSearch: function(oEvent) {
-			
+
 			var sQuery = oEvent.getParameter("query");
 			this.userPref.employeeFilter = sQuery;
 			this.getView().getModel("userPreference").setProperty("/employeeFilter", this.userPref.employeeFilter);
 			this._applyFilters();
 		},
 		OnHourPress: function(oEvent) {
-		//	var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
+			//	var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
 			var currentEmp = oEvent.getSource().getCustomData()[2].getValue();
 			var currentDate = oEvent.getSource().getCustomData()[3].getValue();
 			var oView = this.getView();
@@ -130,38 +132,36 @@ sap.ui.define([
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.EmployeeDayDialog", this);
 				oView.addDependent(oDialog);
 				var footerData = {
-				MainNewScreen: false,
-				MainUpdateScreen : false,
-				ProjectScreen: false,
-				MainPreviousScreen: true
-			}; 
-			var oFooterModel = new JSONModel(footerData);
-			this.getView().setModel(oFooterModel, "footer");
+					MainNewScreen: false,
+					MainUpdateScreen: false,
+					ProjectScreen: false,
+					MainPreviousScreen: true
+				};
+				var oFooterModel = new JSONModel(footerData);
+				this.getView().setModel(oFooterModel, "footer");
 
 			}
 			oDialog.bindElement("/EmployeeSet('" + currentEmp + "')");
-			
-			
-			var urlStr = "/WorkDaySet(EmployeeId='"+currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(currentDate) +")";
+
+			var urlStr = "/WorkDaySet(EmployeeId='" + currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(currentDate) + ")";
 			oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			oView.byId('EmpDayInfo').bindElement(urlStr);
-			
+
 			var Filters = [
 				new Filter("EmployeeId", FilterOperator.EQ, currentEmp),
 				new Filter("WorkDate", FilterOperator.EQ, currentDate)
-			];	
-		   
-			
+			];
+
 			/*oDialog.getContent()[0].setVisible(true);
 			oDialog.getContent()[1].setVisible(false);*/ // Invisible Add Information Screen
-			
+
 			oDialog.open();
-			var table =this.getView().byId('tableDayItems');
+			var table = this.getView().byId('tableDayItems');
 			table.setModel(this.getView().getModel());
 			table.getBinding("items").filter(Filters, "Application");
 		},
-		
+
 		OnskipFilterScreen: function(oEvent) {
 			var filterView = this.getView().byId("adminFilter");
 			var oTable = this.byId("table");
@@ -176,7 +176,7 @@ sap.ui.define([
 				// create dialog via fragment factory
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.FilterDialog", this);
 				oView.addDependent(oDialog);
-				
+
 			}
 			oDialog.open();
 		},
@@ -209,21 +209,19 @@ sap.ui.define([
 			var oDialog = this.getView().byId("filterDialog");
 			oDialog.close();
 		},
-		
+
 		////*** Add New Time  **///
-		OnAddEmpTime : function(oEvent)
-		{
+		OnAddEmpTime: function(oEvent) {
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
-			
-			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New",this.getResourceBundle());
+
+			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle());
 
 			this.getView().setModel(oModel.AddTime, "AddTime");
 			this.getView().setModel(oModel.projectSearch, "projectSearch");
 			this.getView().getModel("footer").destroy();
-			this.getView().setModel(oModel.footer,"footer");
-			
-			
+			this.getView().setModel(oModel.footer, "footer");
+
 		},
 		/*onPressProjectCancel: function() {
 			var projectfragment = fragment.SearchProject_getProjectSearchFragment();
@@ -244,10 +242,9 @@ sap.ui.define([
 		},*/
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
-			
+
 		},
-		
-	
+
 		///////
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -307,35 +304,32 @@ sap.ui.define([
 			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
-			
+
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
 		OnTimesheetSelection: function() {
-		/*	if (this.twoWeek) {
-				MessageBox.alert("Planning is only support for weekly view selection");
-			} else {*/
-				this.getRouter().navTo("periodSelection", {}, true);
-	//		}
+			/*	if (this.twoWeek) {
+					MessageBox.alert("Planning is only support for weekly view selection");
+				} else {*/
+			this.getRouter().navTo("periodSelection", {}, true);
+			//		}
 		},
-		
+
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
 		OnWeeklyReportSelection: function() {
 			this.getRouter().navTo("ReportEmployeeSelection", {}, true);
 		},
-		
+
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			this.getView().getModel().remove(binding);
 		},
-		
-		
-		
-		
+
 		//// **SearchProject Fragment Event** ///////
 		OnProjectSelected: function(oEvent) {
 			var selectButton = this.getView().byId('ProjectSelectButton');
@@ -362,47 +356,53 @@ sap.ui.define([
 			fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'));
 		},
 		OnProjectRefresh: function(oEvent) {
-			fragment.SelectProject_OnProjectRefresh(oEvent, this,  this.getView().byId('ProjectSelectButton'));
+			fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
 		},
 		//// **SelectProject Fragment Event End** ///////
-		
+
 		//// **AddProjectTime Fragment Event** ///////
 		OnTimeDelete: function(oEvent) {
 			//var timeModel = this.getView().getModel('AddTime');
 			var container = this.getView().byId('addTimeTab').getItems()[0];
-			fragment.AddProjectTime_OnTimeDelete(oEvent,  container);
+			fragment.AddProjectTime_OnTimeDelete(oEvent, container);
 
 		},
 		OnchangeTimeSelection: function(oEvent) {
-		//	var timeModel = this.getView().getModel('AddTime');
+			//	var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnchangeTimeSelection(oEvent);
 		},
 		OnChangeHours: function(oEvent) {
-	//		var timeModel = this.getView().getModel('AddTime');
+			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeHours(oEvent);
-		
+
 		},
-		OnChangeStartTime :function(oEvent) {
+		OnChangeStartTime: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeStartTime(oEvent);
 
 		},
-		OnChangeEndTime : function(oEvent) {
+		OnChangeEndTime: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeEndTime(oEvent);
 
 		},
 		//// **AddProjectTime Fragment Event End** ///////
-		
+
 		//// **AddUpdateTime Fragment Event** ///////
 		OnTabSelected: function(oEvent) {
-		//	var addTimeModel = this.getView().getModel('AddTime');
+			//	var addTimeModel = this.getView().getModel('AddTime');
 			fragment.AddUpdatetime_OnTabSelected(oEvent);
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
+		},
+		onSelectAbsenceStartDate: function(oEvent) {
+			fragment.AddUpdatetime_onSelectAbsenceStartDate(oEvent, this.getView());
+		},
+		onSelectAbsenceEndDate: function(oEvent) {
+			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent, this.getView());
 		}
-		
+
 		//// **AddUpdateTime Fragment Event End** ///////
 	});
 });
