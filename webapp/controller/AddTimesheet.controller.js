@@ -73,7 +73,7 @@ sap.ui.define([
 
 		},
 		onPressSaveEntries: function(oEvent) {
-			fragment.AddUpdatetime_saveEntries();
+			fragment.AddUpdatetime_saveEntries(this.getView());
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			this.getRouter().navTo("home", {}, true);
 		},

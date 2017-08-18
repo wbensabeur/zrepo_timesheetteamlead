@@ -112,7 +112,7 @@
 						<Label class="sapUiTinyMarginBegin" text="{Company}"/>
 						<Label class="sapUiTinyMarginBegin" text="{ProjectId}"/>
 						<Label class="sapUiTinyMarginBegin" text="{Position}"/>
-						<Label class="sapUiTinyMarginBegin" text="{ResponsiblePM}"/>
+						<Label class="sapUiTinyMarginBegin" text="{ResponsiblePMName}"/>
 						<core:Icon src="{path:'Favorite',formatter:'.formatter.favIcon'}" class="sapUiSmallMarginBegin" press="OnFavoriteChange"/>
 					</cells>
 				</ColumnListItem>
