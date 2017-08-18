@@ -163,10 +163,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		//////**Add Project Time** ////
-		AddProjectTime_init: function(controler, container,addNew) {
-			if(addNew)
-			{var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
-			container.addItem(oFragment);
+		AddProjectTime_init: function(controler, container, addNew) {
+			if (addNew) {
+				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
+				container.addItem(oFragment);
 			}
 		},
 		AddProjectTime_destroy: function(fragmentObject) {
@@ -315,7 +315,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 		},
-		AddKM_OnChangeStartTimeKM: function (oEvent) {
+		AddKM_OnChangeStartTimeKM: function(oEvent) {
 			var source = oEvent.getSource();
 
 			var endTimer = source.getParent().getParent().getItems()[1].getItems()[1];
@@ -463,7 +463,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
-			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0],addNew);
+			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0], addNew);
 		},
 		AddUpdatetime_getOwnIconTabObject: function(source) {
 			var parent = source.getParent();
@@ -472,8 +472,30 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent.getContent()[0];
 		},
-		AddUpdatetime_saveEntries: function() {
-			/// Get Item Data from view
+		AddUpdatetime_saveEntries: function(oView) {
+			/// Get Item Data from view for Daily hour
+			var tab = oView.byId('addTimeTab').getItems()[0].getItems();
+			var workDayItems = [];
+			for (var k = 1; k < tab.length; k++) {
+				try{
+				var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+				}
+				catch(err) {
+					MessageBox.alert("Project is not selected");	
+				}
+				var projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+				var workDayItem = {
+					"ProjectID": projectID,
+					"EntryType": "HOURS",
+					"Hours": tab[k].getCustomData()[0].getValue().toString(),
+					"StartTime": "000000",
+					"EndTime": "000000"
+
+				};
+
+				workDayItems.push(workDayItem);
+
+			}
 
 			////
 			var data = {
@@ -481,29 +503,32 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				"WorkDate": this.employees[0].Days[0],
 				"NavWorkDayTimeItems": []
 			};
-			for (var k = 0; k < this.employees.length; k++) {
-				var empId = this.employees[k].employee;
-				for (var j = 0; j < this.employees[k].Days.length; j++) {
-					var item = {
-						"EmployeeId": empId,
-						"WorkDate": this.employees[k].Days[j],
-						"Counter": "0",
-						"ProjectID": "P0100981101",
-						"EntryType": "HOURS",
-						"Hours": "5.00 ",
-						"StartTime": "000000",
-						"EndTime": "000000",
-						"Status": "D",
-						"Comment": "",
-						"CreatedBy": "",
-						"CreatedOn": null,
-						"AllowancesType": "",
-						"AllowancesName": "",
-						"ZoneType": "",
-						"MealIndicator": false
+			for (var l = 0; l < this.employees.length; l++) {
+				var empId = this.employees[l].employee;
+				for (var j = 0; j < this.employees[l].Days.length; j++) {
+					for (var i = 0; i < workDayItems.length; i++) {
+						var item = {
+							"EmployeeId": empId,
+							"WorkDate": this.employees[l].Days[j],
+							"Counter": "0",
+							"ProjectID": workDayItems[i].ProjectID,
+							"EntryType": workDayItems[i].EntryType,
+							"Hours": workDayItems[i].Hours,
+							"StartTime": workDayItems[i].StartTime,
+							"EndTime": workDayItems[i].EndTime,
+							"Status": "D",
+							"Comment": "",
+							"CreatedBy": "",
+							"CreatedOn": null,
+							"AllowancesType": "",
+							"AllowancesName": "",
+							"ZoneType": "",
+							"MealIndicator": false
 
-					};
-					data.NavWorkDayTimeItems.push(item);
+						};
+						data.NavWorkDayTimeItems.push(item);
+					}
+
 				}
 
 			}
