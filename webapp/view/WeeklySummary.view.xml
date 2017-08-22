@@ -26,7 +26,7 @@
 						<contentLeft>
 							<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
 							<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
-							<Label text="{parts:['calendar>/StartDate','calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+							<Label text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
 						</contentLeft>
 						<contentMiddle>
 							<SearchField id="EmpSearch" placeholder="Search Employee" search="onEmployeSearch"/>

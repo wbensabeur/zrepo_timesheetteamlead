@@ -126,6 +126,9 @@ sap.ui.define([
 		onPositionFilterChange: function(oEvent) {
 			fragment.SearchProject_onPositionFilterChange(oEvent);
 		},
+		OnProjectFilterchange: function(oEvent) {
+			fragment.SearchProject_OnProjectFilterchange(oEvent);
+		},
 
 		////****SearchProject Fragment Event End******//////////
 

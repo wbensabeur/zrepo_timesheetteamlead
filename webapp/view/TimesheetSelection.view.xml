@@ -4,7 +4,7 @@
 			<Bar design="SubHeader" class="VinciBar">
 				<contentLeft><Label text="{i18n>selectionText}" textAlign="Center" class="monthLabelPadding"/></contentLeft>
 				<contentRight>
-					<Label id="VinciBar" text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+					<Label id="VinciBar" text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
 				</contentRight>
 			</Bar>
 		</customHeader>

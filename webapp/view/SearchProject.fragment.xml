@@ -1,9 +1,9 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<VBox width="100%" height="100%" >
-		<Label text="{i18n>filterBy} :"/>
-		<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="1">
+		<Label id="FilterByLabel" text="{i18n>filterBy} :"/>
+		<RadioButtonGroup  columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="1">
 			<buttons>
-				<RadioButton text="{i18n>projectFav}" enabled="false"/>
+				<RadioButton text="{i18n>projectFav}" />
 				<RadioButton text="{i18n>allProject}"/>
 			</buttons>
 		</RadioButtonGroup>
@@ -74,32 +74,32 @@
 			growingThreshold="10" selectionChange="OnProjectSelected">
 			<columns>
 				<Column width="auto" hAlign="Center">
-					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-						<Label text="{i18n>ProjectDescription}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
-					</VBox>
-				</Column>
-				<Column hAlign="Center" width="10%">
-					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-						<Label text="{i18n>company}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>description}" design="Bold" class="sapUiSmallMarginTop sapUiTinyMarginBegin sapUiSmallMarginBottom"/>
 					</VBox>
 				</Column>
 				<Column hAlign="Center" width="15%">
-					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-						<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>businessUnit}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
+					</VBox>
+				</Column>
+				<Column hAlign="Center" width="15%">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
 					</VBox>
 				</Column>
 				<Column hAlign="Center" width="10%">
-					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-						<Label text="{i18n>position}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>position}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
 					</VBox>
 				</Column>
 				<Column hAlign="Center" width="20%">
-					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-						<Label text="{i18n>manager}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>manager}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
 					</VBox>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true" width="6%">
-					<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
 						<Label text="" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 					</VBox>
 				</Column>
@@ -111,7 +111,7 @@
 						<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="{ProjectDescription}" textAlign="Begin"/>
 					</cells>
 					<cells>
-						<Label class="sapUiTinyMarginBegin" text="{Company}"/>
+						<Label class="sapUiTinyMarginBegin" text="{BusinessUnit}"/>
 						<Label class="sapUiTinyMarginBegin" text="{ProjectId}"/>
 						<Label class="sapUiTinyMarginBegin" text="{Position}"/>
 						<Label class="sapUiTinyMarginBegin" text="{ResponsiblePMName}"/>
