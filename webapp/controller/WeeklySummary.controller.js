@@ -363,6 +363,18 @@ sap.ui.define([
 		onProjectDescriptionSearch:function(oEvent){
 			fragment.SearchProject_onProjectDescriptionSearch(oEvent);
 		},
+		onProjectManagerSuggest:function(oEvent){
+			fragment.SearchProject_onProjectManagerSuggest(oEvent);
+		},
+		onProjectManagerSearch:function(oEvent){
+		fragment.SearchProject_onProjectManagerSearch(oEvent);
+		},
+		onBUFilterChange:function(oEvent){
+			fragment.SearchProject_onBUFilterChange(oEvent);
+		},
+		onPositionFilterChange:function(oEvent){
+			fragment.SearchProject_onPositionFilterChange(oEvent);
+		},
 
 		////****SearchProject Fragment Event End******//////////
 

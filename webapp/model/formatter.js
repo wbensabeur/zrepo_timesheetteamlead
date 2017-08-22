@@ -28,16 +28,34 @@ sap.ui.define([
 				}
 				return "";
 		},
-		periodFormat: function(oDate) {
+		
+		periodFormat: function(oDate,biweekly) {
 			var currentWeekNumber = datetime.getWeek(oDate);
 			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
 				month: "long"
 			});
+			month = month[0].toUpperCase() + month.slice(1);
 			var currentYear = oDate.getFullYear();
-			var oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + ',' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
+			var oString = null;
+			if(biweekly)
+			{
+			oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber+" "+this.getResourceBundle().getText("and")+" "+(currentWeekNumber + 1) + ', ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
+				.getText("from") + ' ';	
+			}
+			else{
+			oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + ', ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
 				.getText("from") + ' ';
+			}
 			var dd = oDate.getDate();
+			if(dd.length === 1)
+			{
+				dd = '0'+dd;
+			}
 			var mm = oDate.getMonth() + 1;
+			if(mm.length === 1)
+			{
+				mm = '0'+dd;
+			}
 			oString = oString.concat(dd + '/' + mm + ' ' + this.getResourceBundle().getText("to") + ' ');
 			var oDateEnd = null;
 

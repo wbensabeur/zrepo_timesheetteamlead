@@ -136,7 +136,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: #3b617e;
 }
 
-.sapMInputBaseInner {
+.tableColumnCombo>input {
     background: transparent !important;
     padding: 0 0.5rem;
     font-weight: bold;
@@ -185,6 +185,10 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: #3b617e !important;
     font-style: italic !important;
     font-size: 0.7rem !important;
+}
+
+.EmpDayDetails{
+	font-style: italic !important;
 }
 
 .EmpWeekStatus[data-status="S"] {

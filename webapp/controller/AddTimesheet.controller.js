@@ -16,10 +16,16 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			this.getRouter().getRoute("AddTimesheet").attachPatternMatched(this._onObjectMatched, this);
-			
-			var data=[{ProjectDescription:"test1"},{ProjectDescription:"test2"},{ProjectDescription:"test5"}];
+
+			var data = [{
+				ProjectDescription: "test1"
+			}, {
+				ProjectDescription: "test2"
+			}, {
+				ProjectDescription: "test5"
+			}];
 			var model = new sap.ui.model.json.JSONModel(data);
-			this.getView().setModel(model,"test");
+			this.getView().setModel(model, "test");
 
 		},
 		/**
@@ -57,7 +63,8 @@ sap.ui.define([
 				var oCalendarModel = new JSONModel(caldenderdata);
 				this.setModel(oCalendarModel, "calendar");
 
-				var oModel = fragment.AddUpdatetime_init(this, this.getView().byId('PageContent'), "New", this.getResourceBundle(),this.employees,this.getView().getModel());
+				var oModel = fragment.AddUpdatetime_init(this, this.getView().byId('PageContent'), "New", this.getResourceBundle(), this.employees,
+					this.getView().getModel());
 
 				this.getView().setModel(oModel.AddTime, "AddTime");
 				this.getView().setModel(oModel.projectSearch, "projectSearch");
@@ -77,7 +84,6 @@ sap.ui.define([
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			this.getRouter().navTo("home", {}, true);
 		},
-		
 
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.AddTimesheet
@@ -101,11 +107,24 @@ sap.ui.define([
 		onPressProjectSelect: function(oEvent) {
 			fragment.SelectProject_onPressProjectSelect();
 		},
-		onProjectDescriptionSuggest:function(oEvent) {
+		onProjectDescriptionSuggest: function(oEvent) {
 			fragment.SearchProject_onProjectDescriptionSuggest(oEvent);
 		},
-		onProjectDescriptionSearch:function(oEvent){
+
+		onProjectDescriptionSearch: function(oEvent) {
 			fragment.SearchProject_onProjectDescriptionSearch(oEvent);
+		},
+		onProjectManagerSuggest: function(oEvent) {
+			fragment.SearchProject_onProjectManagerSuggest(oEvent);
+		},
+		onProjectManagerSearch: function(oEvent) {
+			fragment.SearchProject_onProjectManagerSearch(oEvent);
+		},
+		onBUFilterChange: function(oEvent) {
+			fragment.SearchProject_onBUFilterChange(oEvent);
+		},
+		onPositionFilterChange: function(oEvent) {
+			fragment.SearchProject_onPositionFilterChange(oEvent);
 		},
 
 		////****SearchProject Fragment Event End******//////////
@@ -135,12 +154,12 @@ sap.ui.define([
 			fragment.AddProjectTime_OnChangeHours(oEvent);
 
 		},
-		OnChangeStartTime :function(oEvent) {
+		OnChangeStartTime: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeStartTime(oEvent);
 
 		},
-		OnChangeEndTime : function(oEvent) {
+		OnChangeEndTime: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeEndTime(oEvent);
 
@@ -155,22 +174,22 @@ sap.ui.define([
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
 		},
-		onSelectAbsenceStartDate: function (oEvent) {
-			fragment.AddUpdatetime_onSelectAbsenceStartDate(oEvent,this.getView());
+		onSelectAbsenceStartDate: function(oEvent) {
+			fragment.AddUpdatetime_onSelectAbsenceStartDate(oEvent, this.getView());
 		},
-		onSelectAbsenceEndDate: function (oEvent) {
-			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent,this.getView());
+		onSelectAbsenceEndDate: function(oEvent) {
+			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent, this.getView());
 		},
 		//// **AddUpdateTime Fragment Event End** ///////
-		
+
 		//// **AddKM Fragment Event** ///////
-		OnChangeStartTimeKM: function(oEvent){
+		OnChangeStartTimeKM: function(oEvent) {
 			fragment.AddKM_OnChangeStartTimeKM(oEvent);
 		},
-		OnChangeEndTimeKM: function(oEvent){
-			fragment.AddKM_OnChangeEndTimeKM(oEvent);
-		}
-		//// **AddKM Fragment Event End** ///////
+		OnChangeEndTimeKM: function(oEvent) {
+				fragment.AddKM_OnChangeEndTimeKM(oEvent);
+			}
+			//// **AddKM Fragment Event End** ///////
 
 		/*	_getOwnContentObject: function(source) {
 				var parent = source.getParent();

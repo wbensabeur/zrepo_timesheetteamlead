@@ -14,6 +14,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			//	controler._setProjectSearchFragment(fragment.getId());
 			this.projectSearchFragment = fragment.getId();
 			this.projectfilter = null;
+			this.BUfilter = null;
+			this.positionfilter = null;
 			//	fragment.getCustomData()[1].setValue(returnRef.getId()); 
 
 			var hideContainer = container.getItems()[0];
@@ -104,6 +106,21 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 		},
+		SearchProject_onProjectManagerSuggest: function(oEvent) {
+			var value = oEvent.getParameter("suggestValue");
+			var source = oEvent.getSource();
+			var filters = [];
+
+			if (value.length > 2) {
+				filters = [new Filter("ResponsiblePMName", FilterOperator.Contains, value)];
+				source.getBinding("suggestionItems").filter(filters);
+				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
+					source.suggest();
+				});
+
+			}
+
+		},
 		SearchProject_onProjectDescriptionSearch: function(oEvent) {
 			if (oEvent.getParameter("suggestionItem") === undefined) {
 				var query = oEvent.getParameter("query");
@@ -119,10 +136,44 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.SearchProject_applyFiler();
 
 		},
+		SearchProject_onProjectManagerSearch: function(oEvent) {
+			if (oEvent.getParameter("suggestionItem") === undefined) {
+				var query = oEvent.getParameter("query");
+				if (query !== null && query.length > 0) {
+					this.projectfilter = new Filter("ResponsiblePMName", FilterOperator.Contains, query);
+				} else {
+					this.projectfilter = null;
+				}
+
+			} else {
+				this.projectfilter = new Filter("ResponsiblePM", FilterOperator.EQ, oEvent.getParameter("suggestionItem").getKey());
+			}
+			this.SearchProject_applyFiler();
+
+		},
+		SearchProject_onBUFilterChange: function(oEvent) {
+			var BUId= oEvent.getSource().getSelectedKey();
+			this.BUfilter = new Filter("BusinessUnit", FilterOperator.EQ, BUId);
+			this.SearchProject_applyFiler();
+			
+		},
+		
+		SearchProject_onPositionFilterChange: function(oEvent) {
+			var positionId= oEvent.getSource().getSelectedKey();
+			this.positionfilter = new Filter("Position", FilterOperator.EQ, positionId);
+			this.SearchProject_applyFiler();
+			
+		},
 		SearchProject_applyFiler: function() {
 			var Filters = [];
 			if (this.projectfilter !== null) {
 				Filters.push(this.projectfilter);
+			}
+			if (this.BUfilter !== null) {
+				Filters.push(this.BUfilter);
+			}
+			if (this.positionfilter !== null) {
+				Filters.push(this.positionfilter);
 			}
 			var projectfragment = sap.ui.getCore().byId(this.projectSearchFragment);
 			projectfragment.getItems()[4].getBinding("items").filter(Filters, "Application");
@@ -512,19 +563,28 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"WorkDate": this.employees[l].Days[j],
 							"Counter": "0",
 							"ProjectID": workDayItems[i].ProjectID,
+							"ProjectName": "",
 							"EntryType": workDayItems[i].EntryType,
+							"EntryTypeCatId": "",
+				            "EntryTypeDesc": "",
 							"Hours": workDayItems[i].Hours,
+							"KMNumber": "",
 							"StartTime": workDayItems[i].StartTime,
 							"EndTime": workDayItems[i].EndTime,
 							"Status": "D",
 							"Comment": "",
 							"CreatedBy": "",
-							"CreatedOn": null,
+							"CreatedOn": new Date(),
+							"ReleaseOn": null,
+							"ApprovedOn": null,
+                            "Reason": "",
 							"AllowancesType": "",
 							"AllowancesName": "",
 							"ZoneType": "",
-							"MealIndicator": false
-
+							"ZoneName": "",
+							"MealIndicator": false,
+							"JourneyIndicator": false,
+                            "TransportIndicator": false
 						};
 						data.NavWorkDayTimeItems.push(item);
 					}

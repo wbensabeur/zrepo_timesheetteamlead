@@ -26,7 +26,7 @@
 						<contentLeft>
 							<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
 							<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
-							<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+							<Label text="{parts:['calendar>/StartDate','calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
 						</contentLeft>
 						<contentMiddle>
 							<SearchField id="EmpSearch" placeholder="Search Employee" search="onEmployeSearch"/>
@@ -41,7 +41,7 @@
 							</SegmentedButton>
 						</contentRight>
 					</Bar>
-					<Table id="table"  items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
+					<Table id="table" width="97%" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
 						<columns>
 							<Column width="{calendar>width}" hAlign="Center">
 								<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -64,7 +64,7 @@
 												<FlexItemData growFactor="1"/>
 											</layoutData>
 										</Label>
-										<Label text="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" class="EmpWeekDetails">
+										<Label text="{WeekTotalInfo}" class="EmpWeekDetails">   
 											<layoutData>
 												<FlexItemData growFactor="1"/>
 											</layoutData>
