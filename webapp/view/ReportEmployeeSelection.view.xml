@@ -35,7 +35,7 @@
 					<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
 						<cells>
 							<VBox class="EmpWeekStatus">
-								<StandardListItem class="EmpWeekStatus" type="{path:'isEntryEnabled', formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" press="OnEmployeePress">
+								<StandardListItem class="EmpWeekStatus" type="{path:'isEntryEnabled', formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="{WeekTotalInfo}" press="OnEmployeePress">  <!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
 									<customData>
 										<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
 										<core:CustomData key="employee" value="{EmployeeId}"/>

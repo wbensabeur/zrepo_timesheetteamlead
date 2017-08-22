@@ -115,7 +115,7 @@ sap.ui.define([
 							line = {
 								project: results[k].ProjectID,
 								projectName: "",
-								type: results[k].EntryType,
+								type: results[k].EntryTypeDesc,
 								unit: formatter.getUnit(results[k].EntryType,results[k].ZoneType),
 								total:hrs,
 								mon: 0,

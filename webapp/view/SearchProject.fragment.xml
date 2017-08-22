@@ -8,7 +8,8 @@
 			</buttons>
 		</RadioButtonGroup>
 		<HBox width="100%" class="sapUiSmallMarginBottom">
-			<ComboBox value="{i18n>businessUnit}">
+			<ComboBox placeholder="{i18n>searchBU}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}" change="onBUFilterChange">
+				<core:Item key="{FieldValue}" text="{FieldRDescription}" />
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
@@ -37,7 +38,8 @@
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>-->
-			<ComboBox value="{i18n>position}">
+			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'Position'}]}" change="onPositionFilterChange">
+				<core:Item key="{FieldValue}" text="{FieldRDescription}" />
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
@@ -51,11 +53,11 @@
 				suggestionItems="{
 					path: '/ProjectSet',
 					length: 5,
-					sorter: { path: 'ProjectId' }
+					sorter: { path: 'ResponsiblePMName' }
 				}"
 				>
 				<suggestionItems>
-					<SuggestionItem text="{ResponsiblePM}" description="{path:'ResponsiblePM'}" key="{ResponsiblePM}"/>
+					<SuggestionItem text="{ResponsiblePMName}" description="{path:'ResponsiblePM'}" key="{ResponsiblePM}"/>
 				</suggestionItems>
 				<layoutData>
 					<FlexItemData growFactor="1"/>
