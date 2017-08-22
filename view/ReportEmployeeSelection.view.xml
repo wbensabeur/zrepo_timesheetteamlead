@@ -1,0 +1,101 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.ReportEmployeeSelection">
+	<Page class="VinciBackground">
+		<customHeader>
+			<Bar design="SubHeader" class="VinciBar">
+				<contentLeft><Label text="{i18n>employeSelectionText}" textAlign="Center" class="monthLabelPadding"/></contentLeft>
+				<contentRight>
+					<Label id="VinciBar" text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Table id="table" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
+				<columns>
+					<Column width="{calendar>width}" hAlign="Center">
+						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
+							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
+							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
+							<!--<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" press="OnDatePress" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
+								<customData>
+										<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+								</customData>
+								<layoutData>
+										<FlexItemData growFactor="1"/>
+									</layoutData>
+							</StandardListItem>-->
+							<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+							<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+							<customData>
+								<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+							</customData>
+						</VBox>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
+						<cells>
+							<VBox class="EmpWeekStatus">
+								<StandardListItem class="EmpWeekStatus" type="{path:'isEntryEnabled', formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="{WeekTotalInfo}" press="OnEmployeePress">  <!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
+									<customData>
+										<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+										<core:CustomData key="employee" value="{EmployeeId}"/>
+									</customData>
+									<layoutData>
+										<FlexItemData growFactor="1"/>
+									</layoutData>
+								</StandardListItem>
+								<customData>
+									<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
+								</customData>
+							</VBox>
+							<Button text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
+								<customData>
+									<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate2Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
+								<customData>
+									<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate3Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
+								<customData>
+									<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate4Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
+								<customData>
+									<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate5Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
+								<customData>
+									<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate6Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
+								<customData>
+									<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate7Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
+								<customData>
+									<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+								</customData>
+							</Button>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
+					<Button text="{i18n>resumePanel}" type="Emphasized" press="OnSelectionReSet"/>
+					<Button text="{i18n>weeklyReport}" type="Emphasized" press="OnWeeklyReportPress"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
