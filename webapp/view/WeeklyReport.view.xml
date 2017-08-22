@@ -43,7 +43,7 @@
 					<HBox>
 						<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
 						<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
-						<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center"
+						<Label text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center"
 							class="sapUiSmallMarginTop sapUiSmallMarginBegin EmployeeName" design="Bold"/>
 						<layoutData>
 							<FlexItemData growFactor="1"/>

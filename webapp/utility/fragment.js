@@ -16,6 +16,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.projectfilter = null;
 			this.BUfilter = null;
 			this.positionfilter = null;
+			this.lastProjectFilter = null;
 			//	fragment.getCustomData()[1].setValue(returnRef.getId()); 
 
 			var hideContainer = container.getItems()[0];
@@ -47,8 +48,25 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_getProjectContext: function(fragmentObject) {
 			return fragmentObject.getCustomData()[0].getValue();
 		},
-		SearchProject_OnProjectFilterchange: function() {
-
+		SearchProject_OnProjectFilterchange: function(oEvent,oView) {
+			
+			                     
+			
+			var index = oEvent.getParameter('selectedIndex');
+			var button = oEvent.getSource().getButtons()[index];
+			button.focus(false);
+			if(index === 0)  // Last + Fav Projects  
+			{
+				this.lastProjectFilter = [ new sap.ui.model.Filter([new Filter("LastUsedProject", FilterOperator.EQ, true),new Filter("Favorite", FilterOperator.EQ, true)],false)]; 
+				oEvent.getSource().getParent().getItems()[2].setVisible(false);    
+				
+			}
+			else{
+				this.lastProjectFilter = null;
+				oEvent.getSource().getParent().getItems()[2].setVisible(true);    
+			}
+			this.SearchProject_applyFiler();
+			
 		},
 		SearchProject_OnProjectSelected: function(oEvent, selectButton) {
 			var contextPath = oEvent.getParameter('listItem').getBindingContext().getPath();
@@ -166,6 +184,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		SearchProject_applyFiler: function() {
 			var Filters = [];
+			if(this.lastProjectFilter !== null) {
+				Filters = this.lastProjectFilter;
+			}
+			else {
 			if (this.projectfilter !== null) {
 				Filters.push(this.projectfilter);
 			}
@@ -174,6 +196,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			if (this.positionfilter !== null) {
 				Filters.push(this.positionfilter);
+			}
 			}
 			var projectfragment = sap.ui.getCore().byId(this.projectSearchFragment);
 			projectfragment.getItems()[4].getBinding("items").filter(Filters, "Application");

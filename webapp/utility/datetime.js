@@ -49,8 +49,12 @@ sap.ui.define([], function() {
 		getCalenderData: function(startDate, noOfWeek,resourceBundle) {
 			var monday = this.getMonday(startDate);
 			var sunday = this.getLastDay(monday, noOfWeek);
+			var biweekly = false;
+			if(noOfWeek === 2)
+				biweekly = true;
 			var oCalendarData = {
 				StartDate: new Date(monday.getTime()),
+				BiWeekly: biweekly,
 				data: []
 			};
 			var weekday = [resourceBundle.getText("tablleColTitleSun"), resourceBundle.getText("tablleColTitleMon"), resourceBundle
