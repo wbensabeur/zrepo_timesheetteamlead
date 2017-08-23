@@ -20,18 +20,19 @@
 						<VBox id="userInfo">
 							<Label text="{FullName}" class="sapUiTinyMarginTop EmployeeName" design="Bold"/>
 							<HBox>
-								<Label text="Company: {Company}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
-								<Label text="Business Unit: {BusinessUnit}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
-								<Label text="Section: {Section}" class="EmployeeAttribute"/>
+								<Label text="{Company}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
+								<Label text="{BusinessUnit}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
+								<Label text="{Section}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
+								<Label id="WeeklyStatus" text="{i18n>status}: {parts:['WeekStatus'],formatter:'.formatter.statusFormat'}" class="EmployeeAttribute"/>
 							</HBox>
-							<Label id="WeeklyStatus" text="Status: {parts:['WeekStatus'],formatter:'.formatter.statusFormat'}" class="EmployeeAttribute"/>
+							
 						</VBox>
 						<layoutData>
 							<FlexItemData growFactor="1"/>
 						</layoutData>
 					</HBox>
 					<HBox alignItems="End" justifyContent="Start">
-						<Label id="WeeklyAggregation" text="Summary : {WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM - Planning 40 hours"
+						<Label id="WeeklyAggregation" text="{i18n>summary} : {WeekTotalInfo} - {i18n>targetPlanhrs}"
 							class="EmployeeAttribute"/>
 					</HBox>
 					<layoutData>
@@ -64,27 +65,27 @@
 				<columns>
 					<Column width="12%" hAlign="Center" class="EmployeeWeeklyReportColumn">
 						<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<Label text="Project ID" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+							<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 						</VBox>
 					</Column>
 					<Column width="auto" hAlign="Center">
 						<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<Label text="Project Name" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+							<Label text="{i18n>ProjectName}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 						</VBox>
 					</Column>
 					<Column width="12%" hAlign="Center">
 						<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<Label text="Type" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+							<Label text="{i18n>timeType}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 						</VBox>
 					</Column>
 					<Column width="6%" hAlign="Center">
 						<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<Label text="Unit" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+							<Label text="{i18n>unit}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 						</VBox>
 					</Column>
 					<Column width="6%">
 						<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<Label text="Total" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+							<Label text="{i18n>total}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 						</VBox>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true" width="6%">
@@ -140,8 +141,8 @@
 				<items>
 					<ColumnListItem id="WeeklyArregatedTargetData">
 						<cells>
-							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{i18n>TheoreticalHours}" design="Bold"/>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Start" justifyContent="Center" height="2.5rem">
+								<Label text="{i18n>TheoreticalHours}" class="sapUiSmallMarginBegin" design="Bold"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
 								<Label text="{i18n>timeUnit}"/>
@@ -198,8 +199,8 @@
 					</ColumnListItem>
 					<ColumnListItem id="WeeklyArregatedFilledData">
 						<cells>
-							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{i18n>TotalHours}" design="Bold"/>
+							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Start" justifyContent="Center" height="2.5rem">
+								<Label text="{i18n>TotalHours}" class="sapUiSmallMarginBegin" design="Bold"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
 								<Label text="{i18n>timeUnit}"/>
@@ -282,10 +283,10 @@
 				<items>
 					<ColumnListItem>
 						<cells>
-							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+							<VBox  alignItems="Center" justifyContent="Center" height="2.5rem">
 								<Label text="{itemData>project}"/>
 							</VBox>
-							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
+							<VBox  alignItems="Center" justifyContent="Center" height="2.5rem">
 								<Label text="{itemData>projectName}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
