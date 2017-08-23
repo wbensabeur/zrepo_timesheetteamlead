@@ -18,18 +18,18 @@ sap.ui.define([
 			}
 			return parseFloat(sValue).toFixed(2);
 		},
-		dateFormatinEmpDay : function(oDate) {
-				if (oDate && typeof oDate.toISOString === "function") {
-			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
-				weekday: "long"
-			});
-			
-			return month + " "+oDate.getDate()+"/"+ (oDate.getMonth() + 1)+"/"+oDate.getUTCFullYear();
-				}
-				return "";
+		dateFormatinEmpDay: function(oDate) {
+			if (oDate && typeof oDate.toISOString === "function") {
+				var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
+					weekday: "long"
+				});
+
+				return month + " " + oDate.getDate() + "/" + (oDate.getMonth() + 1) + "/" + oDate.getUTCFullYear();
+			}
+			return "";
 		},
-		
-		periodFormat: function(oDate,biweekly) {
+
+		periodFormat: function(oDate, biweekly) {
 			var currentWeekNumber = datetime.getWeek(oDate);
 			var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
 				month: "long"
@@ -37,24 +37,21 @@ sap.ui.define([
 			month = month[0].toUpperCase() + month.slice(1);
 			var currentYear = oDate.getFullYear();
 			var oString = null;
-			if(biweekly)
-			{
-			oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber+" "+this.getResourceBundle().getText("and")+" "+(currentWeekNumber + 1) + ', ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
-				.getText("from") + ' ';	
-			}
-			else{
-			oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + ', ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
-				.getText("from") + ' ';
+			if (biweekly) {
+				oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + " " + this.getResourceBundle().getText("and") + " " +
+					(currentWeekNumber + 1) + ', ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
+					.getText("from") + ' ';
+			} else {
+				oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + ', ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
+					.getText("from") + ' ';
 			}
 			var dd = oDate.getDate();
-			if(dd.length === 1)
-			{
-				dd = '0'+dd;
+			if (dd < 10) {
+				dd = '0' + dd;
 			}
 			var mm = oDate.getMonth() + 1;
-			if(mm.length === 1)
-			{
-				mm = '0'+dd;
+			if (mm < 10) {
+				mm = '0' + mm;
 			}
 			oString = oString.concat(dd + '/' + mm + ' ' + this.getResourceBundle().getText("to") + ' ');
 			var oDateEnd = null;
@@ -65,7 +62,13 @@ sap.ui.define([
 				oDateEnd = datetime.getLastDay(oDate, 1);
 			}
 			var dd2 = oDateEnd.getDate();
+			if (dd2 < 10) {
+				dd2 = '0' + dd2;
+			}
 			var mm2 = oDateEnd.getMonth() + 1;
+			if (mm2 < 10) {
+				mm2 = '0' + mm2;
+			}
 			return oString + dd2 + '/' + mm2;
 		},
 		booleanNot: function(value) {
@@ -181,13 +184,13 @@ sap.ui.define([
 			var valueInNum = Number(value); //.toString();
 			return oFloatFormat.format(valueInNum);
 		},
-		getUnit: function(type,zone) {
-			if (type === 'Hours')
+		getUnit: function(type, zone) {
+			if (type === 'HOURS')
 				return 'H';
 			else if (type === "IPD")
 				return zone;
 		},
-		getQuantity: function(type,hrs) {
+		getQuantity: function(type, hrs) {
 			return Number(hrs);
 			/*if (type === 'Hours')
 			{
@@ -198,18 +201,15 @@ sap.ui.define([
 			}*/
 		},
 		favIcon: function(fav) {
-			if(fav)
-			{
+			if (fav) {
 				return "sap-icon://favorite";
-			}
-			else
-			{
-				return "sap-icon://unfavorite";	
+			} else {
+				return "sap-icon://unfavorite";
 			}
 		},
 		datetotimestamp: function(date) {
-			if(date instanceof Date) {
-			return date.getTime();
+			if (date instanceof Date) {
+				return date.getTime();
 			}
 		}
 

@@ -19,10 +19,10 @@
 							text="{path:'FilledHours',type:'Float',formatter:'.formatter.numberFormatter'} H - {path:'DayAllowanceQty',type:'Float',formatter:'.formatter.numberFormatter'} IPD - {path:'DayKms',type:'Float',formatter:'.formatter.numberFormatter'} KM "/>
 					</HBox>
 					<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
-						<Label text="Company: {Company}" design="Bold"/>
-						<Label class="sapUiSmallMarginBegin" text="Business Unit: {BusinessUnit}" design="Bold"/>
-						<Label class="sapUiSmallMarginBegin" text="Section: {Section}" design="Bold"/>
-						<Label class="sapUiSmallMarginBegin" design="Bold" id="EmpDayStatus" text="Status: {parts:['Status'],formatter:'.formatter.statusFormat'}"/>
+						<Label text="{Company}" design="Bold" class="EmpDayDetails"/>
+						<Label class="sapUiSmallMarginBegin EmpDayDetails" text="{BusinessUnit}" design="Bold"/>
+						<Label class="sapUiSmallMarginBegin EmpDayDetails" text="{Section}" design="Bold"/>
+						<Label class="sapUiSmallMarginBegin EmpDayDetails" design="Bold" id="EmpDayStatus" text="{i18n>status}: {parts:['Status'],formatter:'.formatter.statusFormat'}"/>
 					</HBox>
 					<HBox id="EmpDayInfo" class="sapUiMediumMarginTop sapUiSmallMarginBegin">
 						<Label text="{parts:['WorkDate'],formatter:'.formatter.dateFormatinEmpDay'}"/>

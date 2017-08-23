@@ -112,7 +112,7 @@ sap.ui.define([
 				urlParameters: urlFilterParam,
 				success: function(oData, oResponse) {
 					var results = oResponse.data.results;
-					var oData = [];
+					var oData1 = [];
 					var projectId = null;
 					var entryType = null;
 					var line = null;
@@ -121,11 +121,11 @@ sap.ui.define([
 						if (projectId !== results[k].ProjectID || entryType !== results[k].EntryType) /// New Line
 						{
 							if (line !== null) {
-								oData.push(line);
+								oData1.push(line);
 							}
 							line = {
 								project: results[k].ProjectID,
-								projectName: "",
+								projectName: results[k].ProjectName,
 								type: results[k].EntryTypeDesc,
 								unit: formatter.getUnit(results[k].EntryType,results[k].ZoneType),
 								total:hrs,
@@ -200,9 +200,9 @@ sap.ui.define([
 						
 					}
 					if (line !== null) {
-							oData.push(line);
+							oData1.push(line);
 						}
-						var oModel = new JSONModel(oData);
+						var oModel = new JSONModel(oData1);
 						oView.setModel(oModel, "itemData");
 				},
 				error: function(oError) {

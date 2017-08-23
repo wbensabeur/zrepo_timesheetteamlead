@@ -48,25 +48,23 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_getProjectContext: function(fragmentObject) {
 			return fragmentObject.getCustomData()[0].getValue();
 		},
-		SearchProject_OnProjectFilterchange: function(oEvent,oView) {
-			
-			                     
-			
+		SearchProject_OnProjectFilterchange: function(oEvent, oView) {
+
 			var index = oEvent.getParameter('selectedIndex');
 			var button = oEvent.getSource().getButtons()[index];
 			button.focus(false);
-			if(index === 0)  // Last + Fav Projects  
+			if (index === 0) // Last + Fav Projects  
 			{
-				this.lastProjectFilter = [ new sap.ui.model.Filter([new Filter("LastUsedProject", FilterOperator.EQ, true),new Filter("Favorite", FilterOperator.EQ, true)],true)]; 
-				oEvent.getSource().getParent().getItems()[2].setVisible(false);    
-				
-			}
-			else{
+				this.lastProjectFilter = [new sap.ui.model.Filter([new Filter("LastUsedProject", FilterOperator.EQ, true), new Filter("Favorite",
+					FilterOperator.EQ, true)], true)];
+				oEvent.getSource().getParent().getItems()[2].setVisible(false);
+
+			} else {
 				this.lastProjectFilter = null;
-				oEvent.getSource().getParent().getItems()[2].setVisible(true);    
+				oEvent.getSource().getParent().getItems()[2].setVisible(true);
 			}
 			this.SearchProject_applyFiler();
-			
+
 		},
 		SearchProject_OnProjectSelected: function(oEvent, selectButton) {
 			var contextPath = oEvent.getParameter('listItem').getBindingContext().getPath();
@@ -170,33 +168,32 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 		},
 		SearchProject_onBUFilterChange: function(oEvent) {
-			var BUId= oEvent.getSource().getSelectedKey();
+			var BUId = oEvent.getSource().getSelectedKey();
 			this.BUfilter = new Filter("BusinessUnit", FilterOperator.EQ, BUId);
 			this.SearchProject_applyFiler();
-			
+
 		},
-		
+
 		SearchProject_onPositionFilterChange: function(oEvent) {
-			var positionId= oEvent.getSource().getSelectedKey();
+			var positionId = oEvent.getSource().getSelectedKey();
 			this.positionfilter = new Filter("Position", FilterOperator.EQ, positionId);
 			this.SearchProject_applyFiler();
-			
+
 		},
 		SearchProject_applyFiler: function() {
 			var Filters = [];
-			if(this.lastProjectFilter !== null) {
+			if (this.lastProjectFilter !== null) {
 				Filters = this.lastProjectFilter;
-			}
-			else {
-			if (this.projectfilter !== null) {
-				Filters.push(this.projectfilter);
-			}
-			if (this.BUfilter !== null) {
-				Filters.push(this.BUfilter);
-			}
-			if (this.positionfilter !== null) {
-				Filters.push(this.positionfilter);
-			}
+			} else {
+				if (this.projectfilter !== null) {
+					Filters.push(this.projectfilter);
+				}
+				if (this.BUfilter !== null) {
+					Filters.push(this.BUfilter);
+				}
+				if (this.positionfilter !== null) {
+					Filters.push(this.positionfilter);
+				}
 			}
 			var projectfragment = sap.ui.getCore().byId(this.projectSearchFragment);
 			projectfragment.getItems()[4].getBinding("items").filter(Filters, "Application");
@@ -559,17 +556,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var tab = oView.byId('addTimeTab').getItems()[0].getItems();
 			var workDayItems = [];
 			for (var k = 1; k < tab.length; k++) {
-				try{
-				var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
-				var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
-				var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
-				var fullDay = false;
-				if (fullDayindex === 0)
-				{fullDay = true;	}
-				
-				}
-				catch(err) {
-					MessageBox.alert("All Items are not selected");	
+				try {
+					var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+					var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+					var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+					var fullDay = false;
+					if (fullDayindex === 0) {
+						fullDay = true;
+					}
+
+				} catch (err) {
+					
+					MessageBox.alert("All Items are not selected");
 					return;
 				}
 				var projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
@@ -580,11 +578,50 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					"EntryTypeCatId": hrType,
 					"StartTime": "000000",
 					"EndTime": "000000",
-					"FullDay": fullDay
+					"FullDay": fullDay,
+					"ZoneType": "",
+					"MealIndicator": false,
+					"JourneyIndicator": false,
+					"TransportIndicator": false
 
 				};
 
 				workDayItems.push(workDayItem);
+
+			}
+
+			var meal = oView.byId('AllowanceMealIndicator').getPressed();
+			var transport = oView.byId('AllowanceTransportIndicator').getPressed();
+			var travel = oView.byId('AllowanceTravelIndicator').getPressed();
+			if (meal || transport || travel) {
+				var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
+				if(zonetype === undefined) {
+					MessageBox.alert("All Items are not selected");
+					return;
+				}
+				var allwProjectID = "";
+				try{
+				var allwProject = oView.byId('AllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
+				allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
+				} catch (err) {
+					//nthing to do
+				}
+				
+				var workDayAllowanceItem = {
+					"ProjectID": allwProjectID,
+					"EntryType": "IPD",
+					"EntryTypeCatId": null,
+					"Hours": "1",
+					"StartTime": "000000",
+					"EndTime": "000000",
+					"FullDay": false,
+					"ZoneType": zonetype,
+					"MealIndicator": meal,
+					"JourneyIndicator": transport,
+					"TransportIndicator": travel
+				};
+
+				workDayItems.push(workDayAllowanceItem);
 
 			}
 
@@ -606,7 +643,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"ProjectName": "",
 							"EntryType": workDayItems[i].EntryType,
 							"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
-				            "EntryTypeDesc": "",
+							"EntryTypeDesc": "",
 							"Hours": workDayItems[i].Hours,
 							"KMNumber": "",
 							"StartTime": workDayItems[i].StartTime,
@@ -618,14 +655,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"CreatedOn": new Date(),
 							"ReleaseOn": null,
 							"ApprovedOn": null,
-                            "Reason": "",
+							"Reason": "",
 							"AllowancesType": "",
 							"AllowancesName": "",
-							"ZoneType": "",
+							"ZoneType": workDayItems[i].ZoneType,
 							"ZoneName": "",
-							"MealIndicator": false,
-							"JourneyIndicator": false,
-                            "TransportIndicator": false
+							"MealIndicator": workDayItems[i].MealIndicator,
+							"JourneyIndicator": workDayItems[i].JourneyIndicator,
+							"TransportIndicator": workDayItems[i].TransportIndicator,
+							"ApplicationName": "TeamLead"
 						};
 						data.NavWorkDayTimeItems.push(item);
 					}
