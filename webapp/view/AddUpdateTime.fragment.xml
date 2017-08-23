@@ -26,7 +26,11 @@
 						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
 							<Label text="Daily allowances:"/>
 							<HBox alignItems="Center" justifyContent="Start">
-								<ComboBox value="{i18n>selectZone}"/>
+								<ComboBox placeholder="{i18n>selectZone}"
+									items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'}, suspended: true, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"
+									loadItems="handleLoadItems">
+									<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
+								</ComboBox>
 								<SegmentedButton class="sapUiLargeMarginBegin sapUiLargeMarginEnd" width="20rem">
 									<items>
 										<SegmentedButtonItem icon="sap-icon://meal" key="food"/>

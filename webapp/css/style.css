@@ -487,3 +487,6 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .sapMRbBLabel {
 	height: 2rem;
 }
+.ProjectLabel{
+text-decoration: underline !important;
+}
