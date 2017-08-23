@@ -37,6 +37,17 @@ sap.ui.define([
 			}
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
 		},
+		onPastPeriodNavPress: function(oEvent) {
+			/*	this.userPref.startDate.setDate(this.userPref.startDate.getDate() - 7);
+				this._calendarBinding(this.userPref.startDate, 1);
+				this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);*/
+		},
+		onFuturePeriodNavPress: function(oEvent) {
+			
+			/*	this.userPref.startDate.setDate(this.userPref.startDate.getDate() + 7);
+				this._calendarBinding(this.userPref.startDate, 1);
+				this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);*/
+		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).

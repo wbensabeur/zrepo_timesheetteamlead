@@ -60,7 +60,7 @@
 					</layoutData>
 				</VBox>
 			</HBox>
-			<Table showNoData="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd EmployeeWeeklyReport">
+			<Table width="97%" showNoData="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd EmployeeWeeklyReport">
 				<columns>
 					<Column width="12%" hAlign="Center" class="EmployeeWeeklyReportColumn">
 						<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -124,7 +124,7 @@
 					</Column>
 				</columns>
 			</Table>
-			<Table class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+			<Table width="97%" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
 				<columns>
 					<Column width="auto"/>
 					<Column width="6%"/>
@@ -264,7 +264,7 @@
 					</ColumnListItem>
 				</items>
 			</Table>
-			<Table items="{itemData>/}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+			<Table width="97%" items="{itemData>/}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
 				<columns>
 					<Column width="12%"/>
 					<Column width="auto"/>

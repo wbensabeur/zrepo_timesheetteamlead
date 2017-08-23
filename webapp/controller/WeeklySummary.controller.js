@@ -388,6 +388,12 @@ sap.ui.define([
 		OnProjectRefresh: function(oEvent) {
 			fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
 		},
+		OnDailyHrTypeChange2: function(oEvent) {
+			fragment.SelectProject_OnDailyHrTypeChange2(oEvent);
+		},
+		OnDailyHrTypeChange1: function(oEvent) {
+			fragment.SelectProject_OnDailyHrTypeChange1(oEvent);
+		},
 		//// **SelectProject Fragment Event End** ///////
 
 		//// **AddProjectTime Fragment Event** ///////

@@ -4,7 +4,7 @@
 		<Label text="{i18n>ifNecessary}" visible="{AddTime>/visibleProjectOptional}" class="sapUiSmallMarginBegin"/>
 	</HBox>
 	<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
-		<Label text="{ProjectDescription}" class="sapUiSmallMarginTop" visible="false"/>
+		<Link text="{ProjectDescription}" class="sapUiSmallMarginTop ProjectLabel" visible="false"/>
 		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch"/>
 		<Button text="{i18n>projectRefrsh}" visible="false" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
 	</HBox>

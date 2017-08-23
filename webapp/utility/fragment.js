@@ -57,7 +57,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			button.focus(false);
 			if(index === 0)  // Last + Fav Projects  
 			{
-				this.lastProjectFilter = [ new sap.ui.model.Filter([new Filter("LastUsedProject", FilterOperator.EQ, true),new Filter("Favorite", FilterOperator.EQ, true)],false)]; 
+				this.lastProjectFilter = [ new sap.ui.model.Filter([new Filter("LastUsedProject", FilterOperator.EQ, true),new Filter("Favorite", FilterOperator.EQ, true)],true)]; 
 				oEvent.getSource().getParent().getItems()[2].setVisible(false);    
 				
 			}
@@ -234,6 +234,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				this.SearchProject_destroy(projectfragment);
 
 			}
+		},
+		SelectProject_OnDailyHrTypeChange2: function(oEvent) {
+			var selectedKey = oEvent.getParameter('selectedItem').getKey();
+			oEvent.getSource().getParent().getParent().getParent().getItems()[2].getItems()[2].getItems()[1].setSelectedKey(selectedKey);
+		},
+		SelectProject_OnDailyHrTypeChange1: function(oEvent) {
+			var selectedKey = oEvent.getParameter('selectedItem').getKey();
+			oEvent.getSource().getParent().getParent().getParent().getItems()[3].getItems()[2].getItems()[3].setSelectedKey(selectedKey);
 		},
 
 		//////**Add Project Time** ////
@@ -553,17 +561,26 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			for (var k = 1; k < tab.length; k++) {
 				try{
 				var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+				var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+				var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+				var fullDay = false;
+				if (fullDayindex === 0)
+				{fullDay = true;	}
+				
 				}
 				catch(err) {
-					MessageBox.alert("Project is not selected");	
+					MessageBox.alert("All Items are not selected");	
+					return;
 				}
 				var projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
 				var workDayItem = {
 					"ProjectID": projectID,
 					"EntryType": "HOURS",
 					"Hours": tab[k].getCustomData()[0].getValue().toString(),
+					"EntryTypeCatId": hrType,
 					"StartTime": "000000",
-					"EndTime": "000000"
+					"EndTime": "000000",
+					"FullDay": fullDay
 
 				};
 
@@ -588,12 +605,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"ProjectID": workDayItems[i].ProjectID,
 							"ProjectName": "",
 							"EntryType": workDayItems[i].EntryType,
-							"EntryTypeCatId": "",
+							"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
 				            "EntryTypeDesc": "",
 							"Hours": workDayItems[i].Hours,
 							"KMNumber": "",
 							"StartTime": workDayItems[i].StartTime,
 							"EndTime": workDayItems[i].EndTime,
+							"FullDay": workDayItems[i].FullDay,
 							"Status": "D",
 							"Comment": "",
 							"CreatedBy": "",

@@ -13,7 +13,9 @@
 						<RadioButton text="{i18n>specificTime}"/>
 					</buttons>
 				</RadioButtonGroup>
-				<ComboBox value="{i18n>hrType}"/>
+				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'},  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange1">
+					<core:ListItem key="{FieldValue}" text="{FieldDescription}" />
+				</ComboBox>
 			</HBox>
 		</VBox>
 		<VBox class="sapUiSmallMarginBottom" visible="false">
@@ -23,7 +25,9 @@
 				<TimePicker visible='{AddTime>/duration}' value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours"/>
 				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"  valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="Enter Start Time" change="OnChangeStartTime"/>
 				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}" enabled="false"  valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="Enter End Time" change="OnChangeEndTime"/>
-				<ComboBox value="{i18n>hrType}"/>
+				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'},  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange2">
+					<core:ListItem key="{FieldValue}" text="{FieldDescription}" />
+				</ComboBox>
 			</HBox>
 		</VBox>
 		<customData>

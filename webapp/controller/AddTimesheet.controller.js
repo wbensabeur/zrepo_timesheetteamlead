@@ -85,6 +85,10 @@ sap.ui.define([
 			this.getRouter().navTo("home", {}, true);
 		},
 
+		handleLoadItems: function(oEvent) {
+			oEvent.getSource().getBinding("items").resume();
+		},
+
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.AddTimesheet
 		 */
@@ -138,6 +142,12 @@ sap.ui.define([
 		},
 		OnProjectRefresh: function(oEvent) {
 			fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
+		},
+		OnDailyHrTypeChange2: function(oEvent) {
+			fragment.SelectProject_OnDailyHrTypeChange2(oEvent);
+		},
+		OnDailyHrTypeChange1: function(oEvent) {
+			fragment.SelectProject_OnDailyHrTypeChange1(oEvent);
 		},
 		//// **SelectProject Fragment Event End** ///////
 
