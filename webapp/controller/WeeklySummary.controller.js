@@ -323,7 +323,7 @@ sap.ui.define([
 			/*	if (this.twoWeek) {
 					MessageBox.alert("Planning is only support for weekly view selection");
 				} else {*/
-			this.getRouter().navTo("periodSelection", {}, true);
+			this.getRouter().navTo("periodSelection", {source:'Summary'}, true);
 			//		}
 		},
 

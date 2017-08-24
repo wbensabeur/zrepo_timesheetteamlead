@@ -92,7 +92,7 @@
 			<Bar>
 				<contentRight>
 					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
-					<Button text="{i18n>resumePanel}" type="Emphasized" press="OnSelectionReSet"/>
+					<!--<Button text="{i18n>resumePanel}" type="Emphasized" press="OnSelectionReSet"/>-->
 					<Button text="{i18n>weeklyReport}" type="Emphasized" press="OnWeeklyReportPress"/>
 				</contentRight>
 			</Bar>

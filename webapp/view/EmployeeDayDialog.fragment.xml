@@ -73,19 +73,19 @@
 							<ColumnListItem class="textAlignmentStart">
 								<cells>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Label text="{ProjectID}" class="sapUiTinyMarginTop"/>
+										<Text   text="{ProjectID}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Label text="{ProjectName}" class="sapUiTinyMarginTop"/>
+										<Text text="{ProjectName}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Text text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Label text="{parts:['EntryType','ZoneType'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>
+										<Text text="{parts:['EntryType','ZoneType'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Label text="{parts:['EntryType','Hours'],type:'Float',formatter:'.formatter.getQuantity'}" class="sapUiTinyMarginTop"/>
+										<Text text="{parts:['EntryType','Hours'],type:'Float',formatter:'.formatter.getQuantity'}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<VBox class="hourSize sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd" height="1rem" width="1rem" alignItems="Center"

@@ -24,6 +24,7 @@ sap.ui.define([
 			iOriginalBusyDelay = oTable.getBusyIndicatorDelay();
 			// keeps the search state
 			this._oTableSearchState = [];
+			this.selectedBox = [];
 			// Model used to manipulate control states
 			oViewModel = new JSONModel({
 				worklistTableTitle: this.getResourceBundle().getText("worklistTableTitle"),
@@ -60,6 +61,16 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
+			
+			if(this.refresh)
+			{
+				for (var k = 0 ; k <this.selectedBox.length ; k++ ){
+					sap.ui.getCore().byId(this.selectedBox[k]).getCustomData()[0].setValue("");
+				}
+				this.selectedBox = [];
+				this.employees = [];
+				this.refresh = false;
+			}
 
 			/*var col1 = oTable.getColumns()[0].getWidth();
 			alert(col1);*/
@@ -69,6 +80,7 @@ sap.ui.define([
 			var button = oEvent.getSource();
 			if (button.getCustomData()[0].getValue() === "") {
 				button.getCustomData()[0].setValue("S");
+				this.selectedBox.push(button.getId());
 				var empId = button.getCustomData()[2].getValue();
 				var sDay = button.getCustomData()[3].getValue();
 				var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
@@ -91,6 +103,8 @@ sap.ui.define([
 				var empIndex = this._EmployeeIndexInArray(empId2);
 				var index2 = this.employees[empIndex].Days.indexOf(sDay2);
 				this.employees[empIndex].Days.splice(index2, 1);
+				var boxindex = this.selectedBox.indexOf(button.getId());
+				this.selectedBox.splice(boxindex,1);
 				if (this.employees[empIndex].Days.length === 0) {
 
 					this.employees.splice(empIndex, 1);
@@ -110,6 +124,7 @@ sap.ui.define([
 					var button = oEvent.getSource().getParent().getParent().getParent().getItems()[k].getCells()[headerSeq];
 					if (button.getEnabled()) {
 						button.getCustomData()[0].setValue("S");
+						this.selectedBox.push(button.getId());
 						var empId = button.getCustomData()[2].getValue();
 						var sDay = button.getCustomData()[3].getValue();
 						var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
@@ -138,6 +153,9 @@ sap.ui.define([
 					var button1 = oEvent.getSource().getParent().getParent().getParent().getItems()[j].getCells()[headerSeq];
 					if (button1.getEnabled()) {
 						button1.getCustomData()[0].setValue("");
+						var boxindex = this.selectedBox.indexOf(button1.getId());
+						this.selectedBox.splice(boxindex,1);
+						
 						var empId2 = button1.getCustomData()[2].getValue();
 						var sDay2 = button1.getCustomData()[3].getValue();
 						var empIndex = this._EmployeeIndexInArray(empId2);
@@ -158,7 +176,9 @@ sap.ui.define([
 			var empId = empBox.getCustomData()[1].getValue();
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
+				this.selectedBox.push(empBox.getId());
 				empBox.getParent().getCustomData()[0].setValue("S");
+				this.selectedBox.push(empBox.getParent().getId());
 				var index = this._EmployeeIndexInArray(empId);
 				if (index === -1) {
 					var data = {
@@ -169,25 +189,44 @@ sap.ui.define([
 				}
 				var emphours = empBox.getParent().getParent().getCells();
 				var sDate = [];
-				for (var k = 1; k < 15; k++) {
+				for (var k = 1; k < 6; k++) {
 
 					var button = emphours[k];
 					if (button.getCustomData()[1].getValue() !== "L") {
 						button.getCustomData()[0].setValue("S");
+						this.selectedBox.push(button.getId());
 						sDate.push(button.getCustomData()[3].getValue());
 					}
 				}
+				if(this.twoWeek) {
+					for (var k = 8; k < 15; k++) {
+
+					var button = emphours[k];
+					if (button.getCustomData()[1].getValue() !== "L") {
+						button.getCustomData()[0].setValue("S");
+						this.selectedBox.push(button.getId());
+						sDate.push(button.getCustomData()[3].getValue());
+					}
+				}	
+				}
+				
 				var index3 = this._EmployeeIndexInArray(empId);
 				this.employees[index3].Days = sDate;
 			} else {
 				empBox.getCustomData()[0].setValue("");
+				var empindex1 = this.selectedBox.indexOf(empBox.getId());
+				this.selectedBox.splice(empindex1,1);
 				empBox.getParent().getCustomData()[0].setValue("");
+				var empindex2 = this.selectedBox.indexOf(empBox.getParent().getId());
+				this.selectedBox.splice(empindex2,1);
 				var index2 = this._EmployeeIndexInArray(empId);
 				this.employees.splice(index2, 1);
 				var emphours1 = empBox.getParent().getParent().getCells();
 				for (var k1 = 1; k1 < 15; k1++) {
 					var button1 = emphours1[k1];
 					if (button1.getCustomData()[1].getValue() !== "L") {
+						var boxindex = this.selectedBox.indexOf(button1.getId());
+						this.selectedBox.splice(boxindex,1);
 						button1.getCustomData()[0].setValue("");
 					}
 				}
@@ -242,6 +281,9 @@ sap.ui.define([
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
 		_onObjectMatched: function(oEvent) {
+			var argument = oEvent.getParameter("arguments");
+			this.refresh = false;
+			
 			this.userPref = this.getView().getModel("userPreference").getData();
 			if (this.userPref.defaultPeriod === 1) {
 				this.twoWeek = false;
@@ -250,6 +292,11 @@ sap.ui.define([
 			}
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
 			this.employees = this.getView().getModel("employeeDaysSelected").getData();
+			if(argument.source === 'Summary'){
+				
+				
+				this.refresh = true;
+			}
 			/*this.employees = [];
 			this.byId("table").getBinding("items").refresh();*/
 
@@ -258,6 +305,7 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection
 		 */
 		onPressCancel: function() {
+			
 			this.getRouter().navTo("home", {}, true);
 		},
 		/**
@@ -265,6 +313,7 @@ sap.ui.define([
 		 */
 		OnAddTimesheet: function() {
 				if (this.employees.length > 0) {
+				this.getView().getModel("employeeDaysSelected").setData(this.employees);	
 				this.getRouter().navTo("AddTimesheet", {}, true);
 			} else {
 				MessageBox.alert(this.getResourceBundle().getText("msgNoEmployeeDaySelected"));
