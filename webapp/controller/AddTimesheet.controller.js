@@ -70,13 +70,13 @@ sap.ui.define([
 				this.getView().setModel(oModel.projectSearch, "projectSearch");
 				this.getView().setModel(oModel.footer, "footer");
 			} else {
-				this.getRouter().navTo("periodSelection", {}, true);
+				this.getRouter().navTo("periodSelection", {source:'Summary'}, true);
 			}
 
 		},
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
-			this.getRouter().navTo("periodSelection", {}, true);
+			this.getRouter().navTo("periodSelection", {source:'AddTime'}, true);
 
 		},
 		onPressSaveEntries: function(oEvent) {
