@@ -8,15 +8,15 @@ sap.ui.define(["sap/ui/core/Control"
 				properties: {
 					"width": {
 						type: "sap.ui.core.CSSSize",
-						defaultValue: "350px"
+						defaultValue: "800px"
 					},
 					"height": {
 						type: "sap.ui.core.CSSSize",
-						defaultValue: "100px"
+						defaultValue: "400px"
 					},
 					"thickness": {
 						type: "int",
-						defaultValue: 2
+						defaultValue: 3
 					},
 					"bgcolor": {
 						type: "sap.ui.core.CSSColor",

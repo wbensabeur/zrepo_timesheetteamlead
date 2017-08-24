@@ -328,7 +328,9 @@
 					</ColumnListItem>
 				</items>
 			</Table>
-			<Image id="imageSignature" src="" visible="false"/>
+			<HBox height="8rem" class="sapUiSmallMarginBegin WhiteBG" id="SignatureFrame" visible="false" alignItems="Center"  justifyContent="End" width="97%">
+				<Image id="imageSignature" src=""  height="5rem" width="20rem" class="sapUiLargeMarginEnd sapUiSmallMarginTop" />
+			</HBox>
 			</VBox>
 		</content>
 		<footer>

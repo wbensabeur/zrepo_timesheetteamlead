@@ -29,7 +29,7 @@
                             width = "9rem"
                             min="0.00"
                             max="24.00"
-                            step="0.05"
+                            step="0.5"
                             change="OnChangeHours"
                             />
 				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"  valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="Enter Start Time" change="OnChangeStartTime"/>
