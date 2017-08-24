@@ -8,8 +8,8 @@
 			<HBox class="sapUiSmallMarginBegin">
 				<FlexBox alignItems="Start" justifyContent="End">
 					<items>
-						<Button text="{i18n>clearBtn}" type="Default" press="onPressClear" class="sapUiSmallMarginEnd sapUiSmallMarginTopBottom"/>
-						<Button text="{i18n>signatureBtn}" type="Default" press="onPressSignature" class="sapUiSmallMarginTopBottom"/>
+						<Button text="{i18n>clearSign}" type="Default" press="onPressClear" class="sapUiSmallMarginEnd sapUiSmallMarginTopBottom"/>
+						<Button text="{i18n>takeSign}" type="Default" press="onPressSignature" class="sapUiSmallMarginTopBottom"/>
 					</items>
 				</FlexBox>
 			</HBox>

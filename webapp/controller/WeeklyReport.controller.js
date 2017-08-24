@@ -36,6 +36,9 @@ sap.ui.define([
 				this.index = this.index + 1;
 			}
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
+			this.getView().byId("SignatureFrame").setVisible(false);
+			this.getView().byId("signBtn").setVisible(true);
+			this.getView().byId("timeSubmitBtn").setVisible(false);
 		},
 		onPastPeriodNavPress: function(oEvent) {
 			/*	this.userPref.startDate.setDate(this.userPref.startDate.getDate() - 7);
@@ -72,6 +75,9 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function(oEvent) {
+			this.getView().byId("SignatureFrame").setVisible(false);
+			this.getView().byId("signBtn").setVisible(true);
+			this.getView().byId("timeSubmitBtn").setVisible(false);
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
 			if (this.employeeSelected.employees.length > 0) {
 				this._applyEmployeeBinding(this.employeeSelected.employees[0]);
@@ -100,7 +106,8 @@ sap.ui.define([
 			oView.byId("WeeklyAggregation").bindElement(employee.getBindingContextPath());
 			oView.byId("WeeklyArregatedFilledData").bindElement(employee.getBindingContextPath());
 			oView.byId("WeeklyArregatedTargetData").bindElement(employee.getBindingContextPath());
-
+			this.EmplWeekContext = [];
+			var that = this;
 			//var startDateFilter = new Filter("WorkDate", FilterOperator.GT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date);
 			//var endDateFilter = new Filter("WorkDate", FilterOperator.LT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date);
 			//var filter2 = new Filter([startDateFilter,endDateFilter],true);
@@ -112,11 +119,15 @@ sap.ui.define([
 				urlParameters: urlFilterParam,
 				success: function(oData, oResponse) {
 					var results = oResponse.data.results;
+
 					var oData1 = [];
 					var projectId = null;
 					var entryType = null;
 					var line = null;
 					for (var k = 0; k < results.length; k++) {
+						var uri = results[k].__metadata.uri;
+						var contextBinding = uri.substring((uri.indexOf('WorkDayItemSet') - 1));
+						that.EmplWeekContext.push(contextBinding);
 						var hrs = formatter.getQuantity(results[k].EntryType, results[k].Hours);
 						if (projectId !== results[k].ProjectID || entryType !== results[k].EntryType) /// New Line
 						{
@@ -259,7 +270,7 @@ sap.ui.define([
 			this.dialogPressSignature.close();
 			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
 			this.getView().byId("imageSignature").setSrc(srcImg);
-			this.getView().byId("imageSignature").setVisible(true);
+			this.getView().byId("SignatureFrame").setVisible(true);
 			this.getView().byId("signBtn").setVisible(false);
 			this.getView().byId("timeSubmitBtn").setVisible(true);
 		},
@@ -273,18 +284,34 @@ sap.ui.define([
 			this.getView().addDependent(this.dialogPressSignature);
 			this.dialogPressSignature.open();
 
-
 		},
 		OnTimeSubmit: function() {
-			window.html2canvas($("#shell-container-canvas"), {
 
-				onrendered: function(canvas) {
+			var batchChanges = [];
 
-					var img = canvas.toDataURL("image/jpg", 0);
-					window.open(img);
+			for (var k = 0; k < this.EmplWeekContext.length; k++) {
+				/*batchChanges.push(this.getView().getModel().createBatchOperation(this.EmplWeekContext[k], "MERGE", {
+					"Status": "W"
+				}));*/
+				this.getView().getModel().update(this.EmplWeekContext[k],{"Status": "W"});
+			}
+			
+			/*this.getView().getModel().addBatchChangeOperations(batchChanges);*/
 
-				}
-			});
+			/*this.getView().getModel().submitBatch(function(data) {*/
+				window.html2canvas($("#shell-container-canvas"), {
+
+					onrendered: function(canvas) {
+
+						var img = canvas.toDataURL("image/jpg", 0);
+						window.open(img);
+
+					}
+				});
+			/*}, function(err) {
+
+			});*/
+
 		}
 	});
 });

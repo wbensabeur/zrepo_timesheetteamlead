@@ -360,6 +360,9 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     background: white;
 }*/
 
+.WhiteBG {
+	background-color: white;
+}
 .EmpWeekStatus>div>div>div>.sapMSLITitle {
     
     font-size: .875rem;
