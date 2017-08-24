@@ -24,8 +24,10 @@
 		<content>
 					<Bar design="SubHeader" class="VinciBar">
 						<contentLeft>
-							<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>
-							<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>
+							<!--<Button icon="sap-icon://arrow-left" type="Transparent" press="onPastPeriodNavPress" class="circleIcon"/>-->
+							<core:Icon src="sap-icon://arrow-left" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white" press="onPastPeriodNavPress" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+							<!--<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>-->
+							<core:Icon src="sap-icon://arrow-right" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white" press="onFuturePeriodNavPress" class="circleIcon sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 							<Label text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
 						</contentLeft>
 						<contentMiddle>

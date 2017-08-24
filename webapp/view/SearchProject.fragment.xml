@@ -38,7 +38,7 @@
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>-->
-			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'Position'}]}" change="onPositionFilterChange">
+			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}" change="onPositionFilterChange">
 				<core:Item key="{FieldValue}" text="{FieldDescription}" />
 				<layoutData>
 					<FlexItemData growFactor="1"/>
@@ -51,13 +51,14 @@
 				search="onProjectManagerSearch"
 				suggest="onProjectManagerSuggest"
 				suggestionItems="{
-					path: '/ProjectSet',
+					path: '/ValueHelpSet',
 					length: 5,
-					sorter: { path: 'ResponsiblePMName' }
+					filters: [{ path: 'HelpType', operator: 'EQ', value1: 'PM'}],
+					sorter: { path: 'FieldValue' }
 				}"
 				>
 				<suggestionItems>
-					<SuggestionItem text="{ResponsiblePMName}" description="{path:'ResponsiblePM'}" key="{ResponsiblePM}"/>
+					<SuggestionItem text="{FieldDescription}" description="{path:'FieldValue'}" key="{FieldValue}"/>
 				</suggestionItems>
 				<layoutData>
 					<FlexItemData growFactor="1"/>

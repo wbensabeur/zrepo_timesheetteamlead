@@ -8,7 +8,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	"use strict";
 
 	return {
-		SearchProject_init: function(controler, container, selectButton, hideElemnt, visibleElement) {
+		SearchProject_init: function(controler, container, selectButton) {
 
 			var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
 			//	controler._setProjectSearchFragment(fragment.getId());
@@ -17,6 +17,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.BUfilter = null;
 			this.positionfilter = null;
 			this.lastProjectFilter = null;
+			
 			//	fragment.getCustomData()[1].setValue(returnRef.getId()); 
 
 			var hideContainer = container.getItems()[0];
@@ -55,8 +56,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			button.focus(false);
 			if (index === 0) // Last + Fav Projects  
 			{
-				this.lastProjectFilter = [new sap.ui.model.Filter([new Filter("LastUsedProject", FilterOperator.EQ, true), new Filter("Favorite",
-					FilterOperator.EQ, true)], true)];
+				this.lastProjectFilter = [];
+				for (var k=0 ; k < this.employees.length ; k++ ) {
+					var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
+					this.lastProjectFilter.push(filter);
+				}
+				this.lastProjectFilter.push(new Filter("LastUsedProject", FilterOperator.EQ, true));
+				this.lastProjectFilter.push(new Filter("Favorite", FilterOperator.EQ, true));
+				
+				/*this.lastProjectFilter = [new sap.ui.model.Filter([new Filter("LastUsedProject", FilterOperator.EQ, true), new Filter("Favorite",
+					FilterOperator.EQ, true)], true)];*/
 				oEvent.getSource().getParent().getItems()[2].setVisible(false);
 
 			} else {
@@ -113,7 +122,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var filters = [];
 
 			if (value.length > 2) {
-				filters = [new Filter("ProjectDescription", FilterOperator.Contains, value)];
+				filters = new Filter({filters: [new Filter("ProjectDescription", FilterOperator.Contains, value),new Filter("ProjectId", FilterOperator.Contains, value)], and:true});
 				source.getBinding("suggestionItems").filter(filters);
 				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
 					source.suggest();
@@ -128,7 +137,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var filters = [];
 
 			if (value.length > 2) {
-				filters = [new Filter("ResponsiblePMName", FilterOperator.Contains, value)];
+				filters = [new Filter("FieldDescription", FilterOperator.Contains, value)];
 				source.getBinding("suggestionItems").filter(filters);
 				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
 					source.suggest();
