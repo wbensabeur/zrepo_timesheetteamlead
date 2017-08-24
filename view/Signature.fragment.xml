@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:sigPad="com.vinci.timesheet.admin.utility">
+	<Dialog id="dialogSignature" title="Signature" class="VinciBar">
+		<VBox>
+			<Panel>
+				<sigPad:MySignaturePad id="mySignaturePad"/>
+			</Panel>
+			<HBox class="sapUiSmallMarginBegin">
+				<FlexBox alignItems="Start" justifyContent="End">
+					<items>
+						<Button text="{i18n>clearBtn}" type="Default" press="onPressClear" class="sapUiSmallMarginEnd sapUiSmallMarginTopBottom"/>
+						<Button text="{i18n>signatureBtn}" type="Default" press="onPressSignature" class="sapUiSmallMarginTopBottom"/>
+					</items>
+				</FlexBox>
+			</HBox>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>
