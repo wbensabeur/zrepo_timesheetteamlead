@@ -256,6 +256,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
 				container.addItem(oFragment);
 			}
+			
 		},
 		AddProjectTime_destroy: function(fragmentObject) {
 			fragmentObject.destroy(true);
@@ -281,12 +282,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var timepicker = selecthrsCombo.getItems()[2].getItems()[0];
 			var timepickerFrom = selecthrsCombo.getItems()[2].getItems()[1];
 			var timepickerTo = selecthrsCombo.getItems()[2].getItems()[2];
+			/*var durationId = '#' + timepicker.getId();
+			$(durationId).on('keydown',function(event){
+				sap.ui.getCore().byId(timepicker.getId()).fireChange();
+			} );*/
 			if (oEvent.getParameter("selectedIndex") === 1) {
 				//newValue = 0;
-
+				
 				allDayCombo.setVisible(false);
 				selecthrsCombo.setVisible(true);
-				timepicker.setValue("00:00");
+				timepicker.setValue("0.00");
 				timepickerTo.setEnabled(false);
 
 			} else { // For all day Selection
@@ -305,7 +310,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var source = oEvent.getSource();
 
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
-			var newValue = datetime.timeToDecimal(oEvent.getParameter("value"));
+			var newValue = oEvent.getParameter("value");
 
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
@@ -560,7 +565,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent.getContent()[0];
 		},
-		AddUpdatetime_saveEntries: function(oView) {
+		AddUpdatetime_saveEntries: function(oView, savepostFuction) {
 			/// Get Item Data from view for Daily hour
 			var tab = oView.byId('addTimeTab').getItems()[0].getItems();
 			var workDayItems = [];
@@ -672,7 +677,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"MealIndicator": workDayItems[i].MealIndicator,
 							"JourneyIndicator": workDayItems[i].JourneyIndicator,
 							"TransportIndicator": workDayItems[i].TransportIndicator,
-							"ApplicationName": "TeamLead"
+							"ApplicationName": "TEAMLEAD"
 						};
 						data.NavWorkDayTimeItems.push(item);
 					}
@@ -680,7 +685,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 
 			}
-			this.oDataModel.create("/WorkDaySet", data);
+			this.oDataModel.create("/WorkDaySet", data,{success:savepostFuction } );
 		},
 		Common_raiseinputError: function(source, text) {
 			source.setValueStateText(text);

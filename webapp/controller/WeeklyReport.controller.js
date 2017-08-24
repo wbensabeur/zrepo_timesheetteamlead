@@ -43,7 +43,7 @@ sap.ui.define([
 				this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);*/
 		},
 		onFuturePeriodNavPress: function(oEvent) {
-			
+
 			/*	this.userPref.startDate.setDate(this.userPref.startDate.getDate() + 7);
 				this._calendarBinding(this.userPref.startDate, 1);
 				this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);*/
@@ -117,7 +117,7 @@ sap.ui.define([
 					var entryType = null;
 					var line = null;
 					for (var k = 0; k < results.length; k++) {
-						var hrs = formatter.getQuantity(results[k].EntryType,results[k].Hours);
+						var hrs = formatter.getQuantity(results[k].EntryType, results[k].Hours);
 						if (projectId !== results[k].ProjectID || entryType !== results[k].EntryType) /// New Line
 						{
 							if (line !== null) {
@@ -127,8 +127,8 @@ sap.ui.define([
 								project: results[k].ProjectID,
 								projectName: results[k].ProjectName,
 								type: results[k].EntryTypeDesc,
-								unit: formatter.getUnit(results[k].EntryType,results[k].ZoneType),
-								total:hrs,
+								unit: formatter.getUnit(results[k].EntryType, results[k].ZoneType),
+								total: hrs,
 								mon: 0,
 								tue: 0,
 								wed: 0,
@@ -140,7 +140,7 @@ sap.ui.define([
 							switch (results[k].WorkDate.getDay()) {
 								case 1:
 									line.mon = hrs;
-								
+
 									break;
 								case 2:
 									line.tue = hrs;
@@ -195,15 +195,15 @@ sap.ui.define([
 								default:
 							}
 						}
-					projectId = results[k].ProjectID;
-					entryType = results[k].EntryType;
-						
+						projectId = results[k].ProjectID;
+						entryType = results[k].EntryType;
+
 					}
 					if (line !== null) {
-							oData1.push(line);
-						}
-						var oModel = new JSONModel(oData1);
-						oView.setModel(oModel, "itemData");
+						oData1.push(line);
+					}
+					var oModel = new JSONModel(oData1);
+					oView.setModel(oModel, "itemData");
 				},
 				error: function(oError) {
 
@@ -255,17 +255,34 @@ sap.ui.define([
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklyReport
 		 */
-		OnTimeSubmit: function() {
+		onPressSignature: function() {
+			this.dialogPressSignature.close();
+			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
+			this.getView().byId("imageSignature").setSrc(srcImg);
+			this.getView().byId("imageSignature").setVisible(true);
+			this.getView().byId("signBtn").setVisible(false);
+			this.getView().byId("timeSubmitBtn").setVisible(true);
+		},
+		OnTimeSignature: function() {
 
+			if (!this.dialogPressSignature) {
+				this.dialogPressSignature = sap.ui.xmlfragment("com.vinci.timesheet.admin.view.Signature", this);
+				this.dialogPressSignature.setModel(this.getView().getModel());
+			}
+			jQuery.sap.syncStyleClass("sapUISizeCompact", this.getView(), this.dialogPressSignature);
+			this.getView().addDependent(this.dialogPressSignature);
+			this.dialogPressSignature.open();
+
+
+		},
+		OnTimeSubmit: function() {
 			window.html2canvas($("#shell-container-canvas"), {
 
 				onrendered: function(canvas) {
 
 					var img = canvas.toDataURL("image/jpg", 0);
 					window.open(img);
-					/*var doc = new jsPDF();
-					doc.addImage(img, 'JPEG', 600, 400);
-					doc.save('test.pdf');*/
+
 				}
 			});
 		}
