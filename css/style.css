@@ -1,0 +1,500 @@
+/* css for Shell */
+
+.sapUiUfdShellHeader {
+    background-color: #004586;
+}
+
+.sapUiUfdShellHeadUsrItm {
+    color: white;
+}
+
+.sapUiUfdShellHeadItm:hover>span {
+    background-color: #004586 !important;
+}
+
+.sapUiUfdShellHeadItm>span,
+.sapUiUfdShellHeadUsrItm {
+    color: white;
+    text-shadow: none;
+}
+
+.sapUiUfdShellHeadBegin>.sapUiUfdShellIco>img {
+    max-height: 44px !important;
+    max-width: 125px !important;
+}
+
+
+/*CSS for page background*/
+
+.VinciBackground {
+    background-color: rgba(20, 35, 94, 1) !important;
+}
+
+
+
+
+.VinciBackground>section {
+    background-color: rgba(20, 35, 94, 1) !important;
+}
+
+
+
+html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
+    color: white;
+}
+
+
+/* css for sub header*/
+
+.circleIcon>span {
+    border-radius: 50%;
+}
+.circleIcon {
+    border-radius: 50%;
+}
+
+.VinciBar {
+    background-color: rgba(20, 35, 94, 1) !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.VinciLightBar {
+    background-color: #004586 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.VinciBar .sapMLabel {
+    color: white;
+    font-size: 1rem;
+}
+.VinciLightBar .sapMLabel {
+    color: white;
+    font-size: 1rem;
+}
+
+.sapMSegB .sapMSegBBtn {
+    padding-left: .1rem !important;
+    padding-right: .1rem !important;
+}
+
+:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
+    color: #ffffff;
+}
+
+
+/* CSS for Table*/
+
+/*.employeeListTable {
+    padding-left: 14px !important;
+}*/
+
+
+/* CSS for Filter Screen*/
+
+
+/*.filterPage{
+	background-color: rgba(20, 35, 94, 1) !important;
+}
+
+.sapUiLoSplitterBar{
+	    width: 0rem !important;
+}*/
+
+
+/*CSS for Table Column*/
+
+.tableColumn {
+    padding-top: 0.5rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0rem;
+    padding-left: 0.1rem;
+}
+
+.tableColumnE {
+    padding-top: 0.5rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0rem;
+    padding-left: 0.5rem;
+    text-align: left;
+}
+
+.tableColumnCombo {
+    border: none;
+    margin: 0;
+    height: 1.4rem;
+}
+
+.tableColumn[data-background="L"] {
+    background-color: rgb(232, 241, 246);
+}
+.tableColumn[data-background="S"] {
+    background-color: #39a9db;
+}
+
+.tableBULabel {
+    font-size: 0.7rem !important;
+    font-style: italic !important;
+    color: #3b617e;
+}
+
+.tableColumnCombo>input {
+    background: transparent !important;
+    padding: 0 0.5rem;
+    font-weight: bold;
+    color: #3b617e;
+}
+
+.sapUiTableTr>td {
+    border-right: .1rem solid rgba(0, 0, 0, 0.29) !important;
+    border-bottom: .1rem solid rgba(0, 0, 0, 0.29) !important;
+    padding: 0 !important;
+    vertical-align: middle !important;
+    box-sizing: border-box !important;
+}
+
+.sapMLIBShowSeparator>td {
+    border-top: none;
+}
+
+.employeeListTable>table>thead>.sapMListTblHeader th {
+    border-bottom: .1rem solid rgba(0, 0, 0, 0.29);
+}
+
+.employeeListTable>table>thead>.sapMListTblHeader th:nth-child(2) {
+    border-right: .1rem solid rgba(0, 0, 0, 0.29) !important;
+}
+
+
+/*Table data*/
+
+
+/*Employee*/
+
+.EmpWeekStatus {
+    text-align: left;
+    padding-left: .75rem;
+    height: 60px;
+}
+
+.EmpName {
+    color: #3b617e !important;
+    font-weight: bold !important;
+    padding-top: .75rem;
+}
+
+.EmpWeekDetails {
+    color: #3b617e !important;
+    font-style: italic !important;
+    font-size: 0.7rem !important;
+}
+
+.EmpDayDetails{
+	font-style: italic !important;
+}
+
+.EmpWeekStatus[data-status="S"] {
+    background-color: #39a9db !important;
+}
+
+.EmpWeekStatus[data-status="D1"] {
+    background-color: #e6e7e8 !important;
+}
+
+.EmpWeekStatus[data-status="D"] {
+    background-color: #e6e7e8 !important;
+}
+
+.EmpWeekStatus[data-status="W"] {
+    background-color: #f9cB82 !important;
+}
+
+.EmpWeekStatus[data-status="V"] {
+    background-color: #00dbc0 !important;
+}
+
+.EmpWeekStatus[data-status="R"] {
+    background-color: #fc6b8a !important;
+}
+
+/*.hourSize[data-status="D"] {
+    background-color: #e6e7e8;
+}*/
+
+
+/*Day Cell*/
+
+.sapMListTblCell {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+    vertical-align: top;
+    font-size: 0.875rem;
+}
+
+.hourSize {
+    padding: 0;
+    height: 60px;
+}
+
+.hourSize>span {
+    height: 100%;
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+
+.hourSize>span>span {
+    font-size: 30px;
+    padding-top: 10px;
+    color: #3b617e;
+}
+
+.hourSize[data-status="S"]>span>span {
+    color: white;
+}
+
+.hourSize[data-background="L"] {
+    background-color: rgb(232, 241, 246);
+}
+
+.hourSize[data-status="S"] {
+    background-color: #39a9db;
+}
+
+.hourSize[data-status="D1"] {
+    background-color: #e6e7e8;
+}
+.hourSize[data-status="D"] {
+    background-color: #e6e7e8;
+}
+
+.hourSize[data-status="W"] {
+    background-color: #f9cB82;
+}
+
+.hourSize[data-status="V"] {
+    background-color: #00dbc0;
+}
+
+.hourSize[data-status="R"] {
+    background-color: #fc6b8a;
+}
+
+
+/*Bottom Legend*/
+
+.DraftL {
+    height: 1rem;
+    width: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    background-color: #e6e7e8 !important;
+}
+
+.WaitingL {
+    height: 1rem;
+    width: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    background-color: #f9cB82 !important;
+}
+
+.ValidatedL {
+    height: 1rem;
+    width: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    background-color: #00dbc0 !important;
+}
+
+.TheoriticalL{
+	height: 1rem;
+    width: 1rem;
+    background-color:  rgb(217, 235, 246) !important;
+    margin-bottom: .2rem;
+}
+.NTheoriticalL{
+	height: 1rem;
+    width: 1rem;
+    background-color: #f9cb82 !important;
+    margin-bottom: .2rem;
+}
+
+.RefusedL {
+    height: 1rem;
+    width: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: .5rem;
+    background-color: #fc6b8a !important;
+}
+
+.LLabel {
+    font-size: 13px !important;
+    color:white;
+}
+
+.BottomButton {
+    margin-right: 2rem !important;
+}
+
+.BottomButton1 {
+    margin-right: 2rem !important;
+}
+
+.BottomButton>span {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+}
+
+
+/**   Employee Selection**/
+
+
+/*.sapMLIBHoverable:hover {
+    background: white;
+}*/
+
+.EmpWeekStatus>div>div>div>.sapMSLITitle {
+    
+    font-size: .875rem;
+    color: #3b617e;
+    font-weight: bold;
+    padding-top: .75rem;
+    padding-left: 5px;
+}
+
+.EmpWeekStatus>div>div>div>.sapMSLIDescription {
+    font-size: 0.7rem;
+    color: #3b617e;
+    font-style: italic;
+    padding-left: 5px;
+}
+
+.EmpWeekStatus[data-status="S"]>div>div>div>div {
+    color: white;
+}
+
+.DaySelectionStatus[data-background="S"] {
+    background-color: #39a9db !important;
+    height: 100%;
+}
+
+.DaySelectionStatus[data-background="L"] {
+    background-color: rgb(232, 241, 246) !important;
+    height: 100%;
+}
+
+.DaySelectionStatus[data-background=""] {
+    background-color: rgb(247, 247, 247) !important;
+    height: 100%;
+}
+
+.DaySelectionStatus>div>div>div>.sapMSLITitle {
+    color: #3b617e;
+    font-weight: normal;
+    font-size: 0.875rem;
+}
+
+.DaySelectionStatus>div>div>div>.sapMSLIDescription {
+    color: #3b617e;
+    font-weight: normal;
+    font-size: 0.875rem;
+}
+
+.DaySelectionStatus[data-background="S"]>div>div>div>div {
+    color: white;
+}
+
+/* */
+.divider {
+    width: .2rem;
+    background-color: rgb(232, 241, 246);
+
+}
+
+.EmployeeName{
+	color:white;
+	font-size: 1rem;
+}
+.EmployeeAttribute {
+	color:white;
+}
+.EmployeeWeeklyReportColumn{
+	background-color: rgb(188, 210, 229);
+}
+.EmployeeWeeklyReportAggregateRow{
+	border-bottom: .05rem solid rgba(0, 0, 0, 0.29);
+	border-right: .05rem solid rgba(0, 0, 0, 0.29);
+} 
+.EmployeeWeeklyReportAggregateRow_Bottom{
+	border-bottom: .05rem solid rgba(0, 0, 0, 0.29);
+	
+} 
+
+.EmployeeWeeklyReportAggregateRow[data-background="T"] {
+    background-color: rgb(217, 235, 246);
+}
+.EmployeeWeeklyReportAggregateRow[data-background="NT"] {
+    background-color: #f9cb82;
+}
+
+/** Time addition**/
+.sapMITBHorizontal.sapMITBFilter>.sapMITBHorizontalWrapper>.sapMITBText {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+.VinciTabBar>div {
+    background-color: rgba(20, 35, 94, 1) !important;
+}
+.sapContrastPlus.sapMITBFilterDefault, .sapContrastPlus .sapMITBFilterDefault {
+    color: white;
+}
+
+.sapContrastPlus.sapMITBSelected .sapMITBFilterDefault, .sapContrastPlus .sapMITBSelected .sapMITBFilterDefault {
+    background: white;
+    color: #004586;
+}
+.sapContrastPlus.sapMITBFilterIcon, .sapContrastPlus .sapMITBFilterIcon {
+    border: 1px solid white;
+}
+.sapContrastPlus.sapMITBSelected>.sapMITBContentArrow, .sapContrastPlus .sapMITBSelected>.sapMITBContentArrow {
+    border-bottom-color: white;
+}
+
+/* Time addition content*/
+.sapMITBContent {
+    background-color: rgba(249, 249, 249, 1) !important;
+}
+
+.AddHoursDivider {
+	    height: .1rem;
+    background-color: black;
+}
+
+:not(.sapMBtnDisabled) .DeleteButton>.sapMBtnTransparent>.sapMBtnIcon {
+    color: red;
+}
+
+.sapMITBFilter .sapMITBText {
+	overflow: visible;
+}
+.textAlignmentStart>td {
+    text-align: start !important;
+    border-right: 0rem !important;
+}
+.BiggerText {
+	font-size: 1rem;
+}
+
+.sapMRbBLabel {
+	height: 2rem;
+}
+.ProjectLabel{
+text-decoration: underline !important;
+}
