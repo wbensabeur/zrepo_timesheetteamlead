@@ -65,6 +65,7 @@
 					</layoutData>
 				</VBox>
 			</HBox>
+			<VBox height="600px">
 			<Table width="97%" showNoData="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd EmployeeWeeklyReport">
 				<columns>
 					<Column width="12%" hAlign="Center" class="EmployeeWeeklyReportColumn">
@@ -327,12 +328,15 @@
 					</ColumnListItem>
 				</items>
 			</Table>
+			<Image id="imageSignature" src="" visible="false"/>
+			</VBox>
 		</content>
 		<footer>
 			<Bar>
 				<contentRight>
 					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
-					<Button text="{i18n>sign}" type="Emphasized" press="OnTimeSubmit"/>
+					<Button id="timeSubmitBtn"  text="{i18n>submit}" type="Emphasized" press="OnTimeSubmit" visible="false"/>
+					<Button id="signBtn" text="{i18n>sign}" type="Emphasized" press="OnTimeSignature"/>
 				</contentRight>
 			</Bar>
 		</footer>

@@ -41,9 +41,10 @@
 									<Label text="{i18n>ProjectName}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
-							<Column width="15%" hAlign="Center">
+							<Column width="25%" hAlign="Center">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<Label text="{i18n>timeType}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+									
 								</VBox>
 							</Column>
 							<Column width="6%" hAlign="Center">
@@ -61,10 +62,10 @@
 									<Label text="{i18n>status}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true" width="5%">
+							<Column minScreenWidth="Tablet" demandPopin="true" width="4%">
 								<VBox class="EmployeeWeeklyReportColumn" height="50px"/>
 							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true" width="5%">
+							<Column minScreenWidth="Tablet" demandPopin="true" width="4%">
 								<VBox class="EmployeeWeeklyReportColumn" height="50px"/>
 							</Column>
 						</columns >
@@ -78,7 +79,7 @@
 										<Label text="{ProjectName}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Label text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>
+										<Text text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Label text="{parts:['EntryType','ZoneType'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>
