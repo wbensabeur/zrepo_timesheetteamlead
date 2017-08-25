@@ -602,8 +602,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var workDayItems = [];
 			for (var k = 1; k < tab.length; k++) {
 				try {
-					var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+					
 					var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+					var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 					var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
 					var fullDay = false;
 					if (fullDayindex === 0) {
@@ -611,9 +612,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					}
 
 				} catch (err) {
-
+					if(projectBindingPath === undefined && hrType === "" )
+					{
+						continue;
+					}
+					else{
 					MessageBox.alert("All Items are not selected");
 					return;
+					}
 				}
 				var projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
 				var workDayItem = {

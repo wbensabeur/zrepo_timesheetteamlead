@@ -188,7 +188,7 @@ sap.ui.define([
 			if (type === 'HOURS')
 				return 'H';
 			else if (type === "IPD")
-				return zone;
+				return "Q";
 		},
 		getQuantity: function(type, hrs) {
 			return Number(hrs);
@@ -211,6 +211,12 @@ sap.ui.define([
 			if (date instanceof Date) {
 				return date.getTime();
 			}
+		},
+		tableWidth : function (deviceType) {
+			if(deviceType.tablet){
+				return "97%";
+			}
+			return "98%";
 		}
 
 	};
