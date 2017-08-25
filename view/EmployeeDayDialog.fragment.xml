@@ -1,0 +1,127 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="EmpDayCheckDialog" title="{i18n>empDayHeader}" contentHeight="600px" contentWidth="800px" draggable="false">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label text="{i18n>empDayHeader}" design="Bold" class="sapUiSmallMarginBegin BiggerText"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" color="black" size="1.5rem" class="sapUiTinyMarginEnd" press="OnCancelEmpDayCheckDialog"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox>
+				<VBox>
+					<HBox class="sapUiMediumMarginTop sapUiSmallMarginBegin">
+						<Label text="{FullName}" design="Bold"/>
+						<Label class="sapUiLargeMarginBegin EmpDayDetails" design="Bold" id="EmpDayTotal"
+							text="{path:'FilledHours',type:'Float',formatter:'.formatter.numberFormatter'} H - {path:'DayAllowanceQty',type:'Float',formatter:'.formatter.numberFormatter'} IPD - {path:'DayKms',type:'Float',formatter:'.formatter.numberFormatter'} KM "/>
+					</HBox>
+					<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
+						<Label text="{Company}" design="Bold" class="EmpDayDetails"/>
+						<Label class="sapUiSmallMarginBegin EmpDayDetails" text="{BusinessUnit}" design="Bold"/>
+						<Label class="sapUiSmallMarginBegin EmpDayDetails" text="{Section}" design="Bold"/>
+						<Label class="sapUiSmallMarginBegin EmpDayDetails" design="Bold" id="EmpDayStatus" text="{i18n>status}: {parts:['Status'],formatter:'.formatter.statusFormat'}"/>
+					</HBox>
+					<HBox id="EmpDayInfo" class="sapUiMediumMarginTop sapUiSmallMarginBegin">
+						<Label text="{parts:['WorkDate'],formatter:'.formatter.dateFormatinEmpDay'}"/>
+						<Label text=" - {i18n>legend-theoritical} : {path:'TargetHours',type:'Float',formatter:'.formatter.numberFormatter'} hours"/>
+					</HBox>
+					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd"
+						items="{ path: '/WorkDayItemSet' }">
+						<columns>
+							<Column width="15%" hAlign="Center" class="EmployeeWeeklyReportColumn">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+								</VBox>
+							</Column>
+							<Column width="auto" hAlign="Center">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Label text="{i18n>ProjectName}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+								</VBox>
+							</Column>
+							<Column width="25%" hAlign="Center">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Label text="{i18n>timeType}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+									
+								</VBox>
+							</Column>
+							<Column width="6%" hAlign="Center">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Label text="{i18n>unit}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+								</VBox>
+							</Column>
+							<Column width="6%">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Label text="{i18n>total}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+								</VBox>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="6%">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Label text="{i18n>status}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+								</VBox>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="4%">
+								<VBox class="EmployeeWeeklyReportColumn" height="50px"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="4%">
+								<VBox class="EmployeeWeeklyReportColumn" height="50px"/>
+							</Column>
+						</columns >
+						<items>
+							<ColumnListItem class="textAlignmentStart">
+								<cells>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<Text   text="{ProjectID}" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<Text text="{ProjectName}" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<Text text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<Text text="{parts:['EntryType','ZoneType'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<Text text="{parts:['EntryType','Hours'],type:'Float',formatter:'.formatter.getQuantity'}" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<VBox class="hourSize sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd" height="1rem" width="1rem" alignItems="Center"
+											justifyContent="Center">
+											<customData>
+												<core:CustomData key="status" value="{Status}" writeToDom="true"/>
+											</customData>
+										</VBox>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<core:Icon src="sap-icon://edit" color="blue" size="1.3rem" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<core:Icon src="sap-icon://delete" color="red" size="1.3rem" class="sapUiTinyMarginTop" press="OnDeleteEmpDayitem"/>
+									</VBox>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</VBox>
+			</VBox>
+			<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddUpdateTime' type='XML' />-->
+		</content>
+		<buttons>
+			<Button text="Cancel" type="Reject" press="OnCancelEmpDayCheckDialog" visible="{footer>/MainPreviousScreen}"/>
+			<Button text="Add Information" icon="sap-icon://add" type="Emphasized" press="OnAddEmpTime" visible="{footer>/MainPreviousScreen}"/>
+			<Button id="MainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainNewScreen}"/>
+			<Button id="MainAddButton" text="{i18n>addtimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveEntries"/>
+			<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="{footer>/ProjectScreen}" press="onPressProjectCancel"/>
+			<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="{footer>/ProjectScreen}" press="onPressProjectSelect">
+				<customData>
+					<core:CustomData key="context" value=""/>
+				</customData>
+			</Button>
+			<Button id="MainUpdateCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainUpdateScreen}"/>
+			<Button id="MainUpdateButton" text="{i18n>addtimedata}" type="Accept" visible="{footer>/MainUpdateScreen}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
