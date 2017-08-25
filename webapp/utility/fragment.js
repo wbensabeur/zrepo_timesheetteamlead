@@ -650,12 +650,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					MessageBox.alert("All Items are not selected");
 					return;
 				}
-				var allwProjectID = "";
+				var allwProjectID = null;
 				try {
 					var allwProject = oView.byId('AllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
 					allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
 				} catch (err) {
-					//nthing to do
+					allwProjectID = "";
 				}
 
 				var workDayAllowanceItem = {

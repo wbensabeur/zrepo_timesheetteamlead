@@ -41,6 +41,11 @@ sap.ui.define([
 				// Restore original busy indicator delay for worklist's table
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
+			var that = this;
+			$(window).resize(function() {
+					var totalH = window.innerHeight - 200;
+					that.getView().byId('TableScroll').setHeight(totalH+'px');
+			});
 		},
 		onUpdateFinished: function(oEvent) {
 			// update the worklist's object counter after the table update
@@ -97,9 +102,10 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.vinci.timesheet.admin.view.ReportEmployeeSelection
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+			onAfterRendering: function() {
+				var totalH = window.innerHeight - 200;
+				this.getView().byId('TableScroll').setHeight(totalH+'px');
+			},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.vinci.timesheet.admin.view.ReportEmployeeSelection
