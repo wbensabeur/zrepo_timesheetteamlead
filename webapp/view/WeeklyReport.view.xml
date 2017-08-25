@@ -22,8 +22,8 @@
 						<VBox id="userInfo" class="sapUiSmallMarginBegin">
 							<Label text="{FullName}" class="sapUiTinyMarginTop EmployeeName" design="Bold"/>
 							<HBox>
-								<Label text="{Company}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
-								<Label text="{BusinessUnit}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
+								<Label text="{CompanyDesc}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
+								<Label text="{BusinessUnitDesc}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
 								<Label text="{Section}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
 								<Label id="WeeklyStatus" text="{i18n>status}: {parts:['WeekStatus'],formatter:'.formatter.statusFormat'}" class="EmployeeAttribute"/>
 							</HBox>

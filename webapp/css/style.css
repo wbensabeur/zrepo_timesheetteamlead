@@ -76,6 +76,19 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     padding-right: .1rem !important;
 }
 
+.sapContrastPlus.sapMSegB .sapMSegBBtn, .sapContrastPlus .sapMSegB .sapMSegBBtn {
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    text-shadow: none;
+    color: #346187;
+    border: 1px solid #bfbfbf;
+    background-color: #ffffff;
+}
+.sapContrastPlus.sapMSegBBtn.sapMSegBBtnSel, .sapContrastPlus .sapMSegBBtn.sapMSegBBtnSel {
+    background: #346187;
+    color: #ffffff;
+    border-color: #427cac;
+}
+
 :not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
     color: #ffffff;
 }
