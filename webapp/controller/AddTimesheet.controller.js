@@ -41,9 +41,14 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.vinci.timesheet.admin.view.AddTimesheet
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+			onAfterRendering: function() {
+				var that = this;
+				jQuery.sap.delayedCall(200, this, function() {
+    				that.getView().byId("MainAddButton").focus();
+				});
+				
+			//	MainAddButton
+			},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.vinci.timesheet.admin.view.AddTimesheet
@@ -135,7 +140,7 @@ sap.ui.define([
 			fragment.SearchProject_onPositionFilterChange(oEvent);
 		},
 		OnProjectFilterchange: function(oEvent) {
-			fragment.SearchProject_OnProjectFilterchange(oEvent);
+			fragment.SearchProject_OnProjectFilterchange(oEvent,this.getView());
 		},
 
 		////****SearchProject Fragment Event End******//////////

@@ -376,7 +376,7 @@ sap.ui.define([
 			fragment.SearchProject_onPositionFilterChange(oEvent);
 		},
 		OnProjectFilterchange: function(oEvent) {
-			fragment.SearchProject_OnProjectFilterchange(oEvent);
+			fragment.SearchProject_OnProjectFilterchange(oEvent,this.getView());
 		},
 
 		////****SearchProject Fragment Event End******//////////
