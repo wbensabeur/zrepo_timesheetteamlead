@@ -9,7 +9,7 @@
 			</Bar>
 		</customHeader>
 		<content>
-			<Table id="table" width="97%" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable  sapUiSmallMarginBegin" updateStarted="onUpdateStart">
+			<Table showNoData="false" width="97%" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable  sapUiSmallMarginBegin" updateStarted="onUpdateStart">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -31,6 +31,15 @@
 							</customData>
 						</VBox>
 					</Column>
+				</columns>
+				</Table>
+			<ScrollContainer id="TableScroll" width="auto" height="100%" vertical="true" horizontal="false" focusable="true">
+				<content>
+			<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable  sapUiSmallMarginBegin" updateStarted="onUpdateStart">
+				<columns>
+					<Column width="{calendar>width}" hAlign="Center"/>
+						
+					
 				</columns>
 				<items>
 					<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
@@ -180,6 +189,9 @@
 					</ColumnListItem>
 				</items>
 			</Table>
+			</content>
+				<!-- sap.ui.core.Control -->
+			</ScrollContainer>
 		</content>
 		<footer>
 			<Bar>

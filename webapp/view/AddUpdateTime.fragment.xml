@@ -28,7 +28,7 @@
 							<HBox alignItems="Center" justifyContent="Start">
 								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}"
 									items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'}, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}">
-									<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
+									<core:ListItem key="{FieldDescription}" text="{FieldDescription}"/>
 								</ComboBox>
 								<!--<SegmentedButton class="sapUiLargeMarginBegin sapUiLargeMarginEnd" width="20rem">
 									<items>-->
