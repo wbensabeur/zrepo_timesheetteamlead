@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Manage Timesheet</title>
+
+	<!-- Bootstrapping UI5 -->
+	<script id="sap-ui-bootstrap" src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_belize" data-sap-ui-compatversion="edge" data-sap-ui-preload="async" data-sap-ui-resourceroots="{&quot;com.vinci.timesheet.admin&quot;: &quot;.&quot;}" data-sap-ui-frameoptions="trusted">
+	</script>
+
+	<script>
+		
+		
+		
+		sap.ui.getCore().attachInit(function () {
+			sap.ui.require([
+				"sap/ui/unified/Shell",
+				"sap/ui/core/ComponentContainer",
+				"sap/ui/unified/ShellHeadItem",
+				"sap/ui/unified/ShellHeadUserItem"
+			], function (Shell, ComponentContainer,ShellHeadItem,ShellHeadUserItem) {
+				// initialize the UI component
+				/*new Shell({
+					app: new ComponentContainer({
+						height : "100%",
+						name : "com.vinci.timesheet.admin"
+					})
+				}).placeAt("content");*/
+				
+				//////
+				
+				new Shell("shell", {
+    					icon : "./image/VE-blanc-rouge.png",
+    					headerHiding : false,
+    					user : new ShellHeadUserItem("shellUser",{
+    						username : "",
+    						image : "sap-icon://customer"
+    											}),
+    					headItems :[new ShellHeadItem("shellSettings",{
+    							icon : "sap-icon://action-settings",
+    							}),],						
+    						
+    					headEndItems :[
+    							
+    							new ShellHeadItem({
+    							icon : "./image/externalURL.png"
+    							
+    							}),
+    							new ShellHeadItem({
+    							icon : "sap-icon://log",
+    							press: function (oEvent) {
+    								        if (document.execCommand("ClearAuthenticationCache", "false")) {
+                                                           // redirect to the logout page     
+                                                         window.location.assign("/logout.html");
+                                              } else {
+                                                  sap.m.URLHelper.redirect("/logout.html", false);
+                                           }
+
+    							}
+    							})
+
+    						],
+    					content : new ComponentContainer({name :"com.vinci.timesheet.admin"})
+
+					}).placeAt('content');
+
+				////
+			});
+		});
+	</script>
+
+<script src="https://trackerexta90daed17.hana.ondemand.com/tracker/js/privacy.js" type="text/javascript"></script>
+<style>.facadebtn{display:inline-block;width:60px;height:60px;background-color:#009de0;border-radius:50px;text-align:center;box-shadow: 2px 2px 3px #999;opacity:.3;}
+.facadebtn .sapUiIcon{color:#FFF;font-size:1.5rem;cursor:pointer;line-height:60px;width:60px;}
+.facadebtn:hover{opacity:1;}
+#interactive.viewport video{width:320px;height:240px;}
+.facade .sapMSLITitleOnly, .facade .sapMILILabel {font-size: 1rem;}
+#interactive.viewport .drawingBuffer{width:320px;height:240px;position:absolute;}
+</style>
+<script type="text/javascript">
+window.swa = {
+	"baseUrl": "https://trackerexta90daed17.hana.ondemand.com/tracker/",
+	"clicksEnabled": false,
+	"custom10": {
+		"ref": "a4769796d"
+	},
+	"custom3": {
+		"ref": "SAP"
+	},
+	"custom6": {
+		"ref": "170330"
+	},
+	"custom7": {},
+	"custom8": {
+		"ref": null
+	},
+	"pubToken": "9cd40036-9be2-a644-a76b-4b955748f028",
+	"optOutCookieTimeout": 63113852,
+	"visitorCookieTimeout": 63113852,
+	"custom1": {
+		"ref": "HAT_PreviewOn"
+	},
+	"custom2": {
+		"ref": "USAGE"
+	},
+	"custom4": {
+		"ref": "file"
+	},
+	"custom5": {
+		"ref": "file"
+	},
+	"custom9": {
+		"ref": null
+	},
+	"logger": false,
+	"loggingUrl": "https://trackerexta90daed17.hana.ondemand.com/tracker/",
+	"pageLoadEnabled": false,
+	"customEventsEnabled": true,
+	"hotkeysEnabled": false,
+	"loggingEnabled": true,
+	"dntLevel": 1,
+	"bannerEnabled": false,
+	"licenseUrl": "about:blank",
+	"bannerText": "<strong>This site uses <a href=\"about:blank\" target=\"_blank\">SAP Web Analytics</a>.</strong>",
+	"cookiesEnabled": true,
+	"optOutGroup": "9cd40036-9be2-a644-a76b-4b955748f028",
+	"sessionCookieTimeout": 1800,
+	"referralCookieTimeout": 15778463,
+	"frameExclusionSelector": ".swa_ignore",
+	"textExclusionSelector": "",
+	"referrerOfTop": false,
+	"test": false,
+	"currentEvent": "custom",
+	"_respectDNT": true,
+	"loggerLoaded": true,
+	"plugin": {
+		"clickedElements": [],
+		"customEventAddValues": []
+	}
+};
+window._facadeSettings = {"cordova-plugin-device-orientation":false,"accelerometer":{},"compass":{},"bFacade":false};
+	window.sIdeOrigin = "https://webide-a4769796d.dispatcher.hana.ondemand.com";
+	window.sap_webide_FacadePreview = false;
+	window.sFacadePath = "https://webide-a4769796d.dispatcher.hana.ondemand.com/plugins/pluginrepository/hybrid/cordovafacade/cordova.js";
+	window.sFacadeCfgViewPath = "https://webide-a4769796d.dispatcher.hana.ondemand.com/plugins/pluginrepository/hybrid/view/";
+	window.bridgeHtml = "https://webide-a4769796d.dispatcher.hana.ondemand.com/plugins/pluginrepository/hybrid/cordovafacade/MessageBridge.html";
+	window.msgDefPath = "https://webide-a4769796d.dispatcher.hana.ondemand.com/plugins/pluginrepository/hybrid/mobileextend/MessageDef.js";
+	window.msgBridgePath = "https://webide-a4769796d.dispatcher.hana.ondemand.com/plugins/pluginrepository/hybrid/mobileextend/MessageBridge.js";
+	window.meCssPath = "https://webide-a4769796d.dispatcher.hana.ondemand.com/plugins/pluginrepository/hybrid/css/mobileExtend.css";
+</script>
+<script src="https://webide-a4769796d.dispatcher.hana.ondemand.com/plugins/pluginrepository/hybrid/cordovafacade/floatingButton.js" type="text/javascript"></script>
+</head>
+
+<!-- UI Content -->
+<body class="sapUiBody" id="content">
+</body>
+</html>
