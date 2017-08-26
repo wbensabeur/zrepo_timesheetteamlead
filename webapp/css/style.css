@@ -250,7 +250,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 .hourSize {
     padding: 0 !important;
-    height: 60px !important;
+    height: 60px ;
 }
 
 .hourSize>span {
@@ -519,6 +519,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 .sapMITBFilter .sapMITBText {
     overflow: visible;
+    color: white;
 }
 
 .textAlignmentStart>td {

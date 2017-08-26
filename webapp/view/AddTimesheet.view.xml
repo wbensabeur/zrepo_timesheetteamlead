@@ -13,7 +13,7 @@
 			</Bar>
 		</customHeader>
 		<content>
-			<VBox id="PageContent"></VBox>
+			<VBox id="PageContent" ></VBox>
 		</content>
 		<footer>
 			<Bar>
