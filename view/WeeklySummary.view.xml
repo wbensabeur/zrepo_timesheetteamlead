@@ -1,0 +1,264 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.vinci.timesheet.admin.controller.WeeklySummary">
+	<Page showHeader="false" class="VinciBackground">
+	<!--	<customHeader>
+			<Bar design="SubHeader" class="VinciBar">
+				<contentLeft>
+					
+					<core:Icon src="sap-icon://arrow-left" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
+						press="onPastPeriodNavPress" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+					
+					<core:Icon src="sap-icon://arrow-right" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
+						press="onFuturePeriodNavPress" class="circleIcon sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+					<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
+				</contentLeft>
+				<contentMiddle>
+					<SearchField id="EmpSearch" placeholder="{i18n>searchEmp}" search="onEmployeSearch"/>
+				</contentMiddle>
+				<contentRight>
+					
+					<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" width="9rem" class="periodButton">
+						<items>
+							<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
+							<SegmentedButtonItem text="14 {i18n>days}" key="twoWeek"/>
+						</items>
+					</SegmentedButton>
+				</contentRight>
+			</Bar>
+		</customHeader>-->
+		<content>
+			<Bar design="SubHeader" class="VinciBar">
+				<contentLeft>
+					<core:Icon src="sap-icon://arrow-left" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
+						press="onPastPeriodNavPress" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+					<core:Icon src="sap-icon://arrow-right" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
+						press="onFuturePeriodNavPress" class="circleIcon sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+					<Label text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center"
+						class="monthLabelPadding"/>
+					<Label text="1.0.53" textAlign="Center" />	
+				</contentLeft>
+				<contentMiddle>
+					<SearchField  id="EmpSearch"  placeholder="{i18n>searchEmp}" search="onEmployeSearch"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://filter" type="Transparent" class="circleIcon" press="onFilterPress"/>
+					<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" class="sapUiSmallMarginEnd" width="9rem">
+						<items>
+							<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
+							<SegmentedButtonItem text="14 {i18n>days}" key="twoWeek"/>
+						</items>
+					</SegmentedButton>
+				</contentRight>
+			</Bar>
+			<Table showNoData="false" width="97%" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
+				busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
+				growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
+				<columns>
+					<Column width="{calendar>width}" hAlign="Center">
+						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
+							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
+							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
+							<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+							<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+							<customData>
+								<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+							</customData>
+						</VBox>
+					</Column>
+				</columns>
+			</Table>
+			<ScrollContainer id="TableScroll" width="auto" height="100%" vertical="true" horizontal="false" focusable="true">
+				<content>
+					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }"
+				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin"
+				updateStarted="onUpdateStart">
+				<columns>
+					<Column width="{calendar>width}" hAlign="Center">
+						<!--<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
+							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
+							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
+							<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+							<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
+							<customData>
+								<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+							</customData>
+						</VBox>-->
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
+						<cells>
+							<VBox class="EmpWeekStatus">
+								<Label text="{EmployeeName}" class="EmpName">
+									<layoutData>
+										<FlexItemData growFactor="1"/>
+									</layoutData>
+								</Label>
+								<Label text="{WeekTotalInfo}" class="EmpWeekDetails">
+									<layoutData>
+										<FlexItemData growFactor="1"/>
+									</layoutData>
+								</Label>
+								<customData>
+									<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
+								</customData>
+							</VBox>
+							<Button  text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
+								press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate1Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate1Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate2Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
+								press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate2Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate2Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate3Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
+								press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate3Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate3Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate4Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
+								press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate4Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate4Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate5Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
+								press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate5Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate5Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate6Hours', type:'Float', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%"
+								class="hourSize" press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate6Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate6Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate7Hours', type:'Float',formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%"
+								class="hourSize" press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate7Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate7Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate8Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
+								press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate8Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate8Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate8Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate9Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
+								press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate9Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate9Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate9Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate10Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%"
+								class="hourSize" press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate10Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate10Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate10Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate11Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%"
+								class="hourSize" press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate11Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate11Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate11Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate12Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%"
+								class="hourSize" press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate12Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate12Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate12Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate13Hours',type:'Float', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%"
+								class="hourSize" press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate13Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate13Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate13Date}"/>
+								</customData>
+							</Button>
+							<Button text="{path:'WeekDate14Hours',type:'Float', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%"
+								class="hourSize" press="OnHourPress">
+								<customData>
+									<core:CustomData key="status" value="{WeekDate14Status}" writeToDom="true"/>
+									<core:CustomData key="background" value="{path:'WeekDate14Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="employee" value="{EmployeeId}"/>
+									<core:CustomData key="selectedDate" value="{WeekDate14Date}"/>
+								</customData>
+							</Button>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+				</content>
+				<!-- sap.ui.core.Control -->
+			</ScrollContainer>
+			
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<HBox>
+						<VBox class="DraftL" alignItems="Center" justifyContent="Center"/>
+						<Label text="{i18n>legend-draft}" class="LLabel"/>
+						<VBox class="WaitingL" alignItems="Center" justifyContent="Center"/>
+						<Label text="{i18n>legend-waiting}" class="LLabel"/>
+						<VBox class="ValidatedL" alignItems="Center" justifyContent="Center"/>
+						<Label text="{i18n>legend-validated}" class="LLabel"/>
+						<VBox class="RefusedL" alignItems="Center" justifyContent="Center"/>
+						<Label text="{i18n>legend-refused}" class="LLabel"/>
+					</HBox>
+				</contentLeft>
+				<contentRight>
+					<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png"/>
+					<Button text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
+					<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
