@@ -1,0 +1,151 @@
+[{
+	"UserId": "UserId 1",
+	"HelpType": "HelpType 1",
+	"FieldName": "FieldName 1",
+	"FieldValue": "FieldValue 1",
+	"FieldRDescription": "FieldRDescription 1",
+	"Filter1": "Filter1 1",
+	"Filter2": "Filter2 1",
+	"Filter3": "Filter3 1",
+	"StartDate": "/Date(970121057000)/",
+	"EndDate": "/Date(1370757857000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%201',HelpType='HelpType%201')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 2",
+	"HelpType": "HelpType 2",
+	"FieldName": "FieldName 2",
+	"FieldValue": "FieldValue 2",
+	"FieldRDescription": "FieldRDescription 2",
+	"Filter1": "Filter1 2",
+	"Filter2": "Filter2 2",
+	"Filter3": "Filter3 2",
+	"StartDate": "/Date(1403417057000)/",
+	"EndDate": "/Date(1370498657000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%202',HelpType='HelpType%202')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 3",
+	"HelpType": "HelpType 3",
+	"FieldName": "FieldName 3",
+	"FieldValue": "FieldValue 3",
+	"FieldRDescription": "FieldRDescription 3",
+	"Filter1": "Filter1 3",
+	"Filter2": "Filter2 3",
+	"Filter3": "Filter3 3",
+	"StartDate": "/Date(958025057000)/",
+	"EndDate": "/Date(1435903457000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%203',HelpType='HelpType%203')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 4",
+	"HelpType": "HelpType 4",
+	"FieldName": "FieldName 4",
+	"FieldValue": "FieldValue 4",
+	"FieldRDescription": "FieldRDescription 4",
+	"Filter1": "Filter1 4",
+	"Filter2": "Filter2 4",
+	"Filter3": "Filter3 4",
+	"StartDate": "/Date(1073541857000)/",
+	"EndDate": "/Date(1204783457000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%204',HelpType='HelpType%204')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 5",
+	"HelpType": "HelpType 5",
+	"FieldName": "FieldName 5",
+	"FieldValue": "FieldValue 5",
+	"FieldRDescription": "FieldRDescription 5",
+	"Filter1": "Filter1 5",
+	"Filter2": "Filter2 5",
+	"Filter3": "Filter3 5",
+	"StartDate": "/Date(1473660257000)/",
+	"EndDate": "/Date(1425103457000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%205',HelpType='HelpType%205')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 6",
+	"HelpType": "HelpType 6",
+	"FieldName": "FieldName 6",
+	"FieldValue": "FieldValue 6",
+	"FieldRDescription": "FieldRDescription 6",
+	"Filter1": "Filter1 6",
+	"Filter2": "Filter2 6",
+	"Filter3": "Filter3 6",
+	"StartDate": "/Date(1450677857000)/",
+	"EndDate": "/Date(965455457000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%206',HelpType='HelpType%206')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 7",
+	"HelpType": "HelpType 7",
+	"FieldName": "FieldName 7",
+	"FieldValue": "FieldValue 7",
+	"FieldRDescription": "FieldRDescription 7",
+	"Filter1": "Filter1 7",
+	"Filter2": "Filter2 7",
+	"Filter3": "Filter3 7",
+	"StartDate": "/Date(1056607457000)/",
+	"EndDate": "/Date(1336802657000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%207',HelpType='HelpType%207')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 8",
+	"HelpType": "HelpType 8",
+	"FieldName": "FieldName 8",
+	"FieldValue": "FieldValue 8",
+	"FieldRDescription": "FieldRDescription 8",
+	"Filter1": "Filter1 8",
+	"Filter2": "Filter2 8",
+	"Filter3": "Filter3 8",
+	"StartDate": "/Date(1103781857000)/",
+	"EndDate": "/Date(1338185057000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%208',HelpType='HelpType%208')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 9",
+	"HelpType": "HelpType 9",
+	"FieldName": "FieldName 9",
+	"FieldValue": "FieldValue 9",
+	"FieldRDescription": "FieldRDescription 9",
+	"Filter1": "Filter1 9",
+	"Filter2": "Filter2 9",
+	"Filter3": "Filter3 9",
+	"StartDate": "/Date(1326693857000)/",
+	"EndDate": "/Date(1020665057000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%209',HelpType='HelpType%209')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}, {
+	"UserId": "UserId 10",
+	"HelpType": "HelpType 10",
+	"FieldName": "FieldName 10",
+	"FieldValue": "FieldValue 10",
+	"FieldRDescription": "FieldRDescription 10",
+	"Filter1": "Filter1 10",
+	"Filter2": "Filter2 10",
+	"Filter3": "Filter3 10",
+	"StartDate": "/Date(1566108257000)/",
+	"EndDate": "/Date(1306562657000)/",
+	"__metadata": {
+		"uri": "ValueHelpSet(UserId='UserId%2010',HelpType='HelpType%2010')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.ValueHelp"
+	}
+}]
