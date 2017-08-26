@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<VBox width="100%" height="100%">
+		<FlexBox class="AddHoursDivider"  visible="{AddTime>/newTime}"/>
+		<FlexBox alignContent="Start" justifyContent="End"  visible="{AddTime>/newTime}">
+			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnTimeDelete"/>
+		</FlexBox>
+		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom">
+			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
+			<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
+				<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="0">
+					<buttons>
+						<RadioButton text="{i18n>allDay}"/>
+						<RadioButton text="{i18n>specificTime}"/>
+					</buttons>
+				</RadioButtonGroup>
+				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'},  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange1">
+					<core:ListItem key="{FieldValue}" text="{FieldDescription}" />
+				</ComboBox>
+			</HBox>
+		</VBox>
+		<VBox class="sapUiSmallMarginBottom" visible="false">
+			<Label text="Select hours" visible='{AddTime>/duration}'/>
+			<Label text="Select from and to time" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}" />
+			<HBox alignItems="Start" justifyContent="SpaceBetween">
+				<!--<TimePicker visible='{AddTime>/duration}' value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours"/>-->
+				<StepInput
+                            value="0.00"
+                            displayValuePrecision="2"
+                            width = "9rem"
+                            min="0.00"
+                            max="24.00"
+                            step="0.5"
+                            change="OnChangeHours"
+                            />
+				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"  valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="Enter Start Time" change="OnChangeStartTime"/>
+				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}" enabled="false"  valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="Enter End Time" change="OnChangeEndTime"/>
+				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'},  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange2">
+					<core:ListItem key="{FieldValue}" text="{FieldDescription}" />
+				</ComboBox>
+			</HBox>
+		</VBox>
+		<customData>
+			<core:CustomData key="hrs" value="0"/>
+		</customData>
+	</VBox>
+</core:FragmentDefinition>
