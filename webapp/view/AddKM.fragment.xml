@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<VBox width="100%" height="100%" class="sapUiMediumMarginTop">
-		<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
+	
+		
 		<HBox class="sapUiSmallMarginTop" alignItems="Start" justifyContent="SpaceBetween">
 			<HBox>
 				<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
@@ -14,8 +14,5 @@
 			<Input type="Number" placeholder="{i18n>noOfKM}" width="10rem" />
 			<ComboBox value="{i18n>kmType}"/>
 		</HBox>
-		<!--<HBox class="sapUiSmallMarginTop">
-			
-		</HBox>-->
-	</VBox>
+		
 </core:FragmentDefinition>

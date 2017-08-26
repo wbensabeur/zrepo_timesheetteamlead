@@ -17,7 +17,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.BUfilter = null;
 			this.positionfilter = null;
 			this.lastProjectFilter = null;
-			var oView = controler.getView();
+			//var oView = controler.getView();
 			// change for radio focus 
 		/*	var buttons = fragment.getItems()[1].getButtons();
 			for (var k = 0; k < buttons.length; k++) {
@@ -33,7 +33,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var hideContainer = container.getItems()[0];
 			hideContainer.setVisible(false);
-			container.addItem(fragment);
+			container.getItems()[1].addItem(fragment);
 
 			selectButton.getCustomData()[0].setValue("");
 
@@ -46,7 +46,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		SearchProject_destroy: function(fragmentObject) {
 
-			var container = fragmentObject.getParent();
+			var container = fragmentObject.getParent().getParent();
 			var hideContainer = container.getItems()[0];
 			hideContainer.setVisible(true);
 			fragmentObject.destroy(true);
@@ -521,7 +521,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
-			this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
+			//this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
 			var items = container.getItems();
 			if (items.length > 0) {
 				items[0].setVisible(false);
