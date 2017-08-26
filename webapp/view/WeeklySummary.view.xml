@@ -35,6 +35,7 @@
 						press="onFuturePeriodNavPress" class="circleIcon sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 					<Label text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center"
 						class="monthLabelPadding"/>
+					<Label text="1.0.54" textAlign="Center" />	
 				</contentLeft>
 				<contentMiddle>
 					<SearchField  id="EmpSearch"  placeholder="{i18n>searchEmp}" search="onEmployeSearch"/>
