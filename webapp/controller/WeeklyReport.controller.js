@@ -274,13 +274,16 @@ sap.ui.define([
 			this.getView().byId("signBtn").setVisible(false);
 			this.getView().byId("timeSubmitBtn").setVisible(true);
 		},
+		onPressClear: function() {
+			sap.ui.getCore().getControl("mySignaturePad").clear();
+		},
 		OnTimeSignature: function() {
 
 			if (!this.dialogPressSignature) {
 				this.dialogPressSignature = sap.ui.xmlfragment("com.vinci.timesheet.admin.view.Signature", this);
 				this.dialogPressSignature.setModel(this.getView().getModel());
 			}
-			jQuery.sap.syncStyleClass("sapUISizeCompact", this.getView(), this.dialogPressSignature);
+			//jQuery.sap.syncStyleClass("sapUISizeCompact", this.getView(), this.dialogPressSignature);
 			this.getView().addDependent(this.dialogPressSignature);
 			this.dialogPressSignature.open();
 
