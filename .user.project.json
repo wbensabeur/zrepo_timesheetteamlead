@@ -18,8 +18,7 @@
         }
       ],
       "hashParameter": "",
-      "ui5ActiveVersion": "1.46.10",
-      "ui5VerSource": null,
+      "ui5ActiveVersion": "1.42.12",
       "isDefaultVersion": 1,
       "backendSystem": [
         {
@@ -31,7 +30,7 @@
         "id": "4693853",
         "runnerId": "webapprunner",
         "displayName": "App",
-        "lastRunTimeStamp": 1503743778006
+        "lastRunTimeStamp": 1503751010045
       }
     },
     {

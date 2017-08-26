@@ -53,6 +53,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     background-color: rgba(20, 35, 94, 1) !important;
     text-shadow: none !important;
     box-shadow: none !important;
+    height: 50px !important;
 }
 
 .VinciLightBar {
@@ -187,7 +188,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .EmpWeekStatus {
     text-align: left;
     padding-left: .75rem;
-    height: 60px;
+    height: 60px !important;
 }
 
 .EmpName {
@@ -248,18 +249,18 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .hourSize {
-    padding: 0;
-    height: 60px;
+    padding: 0 !important;
+    height: 60px !important;
 }
 
 .hourSize>span {
-    height: 100%;
+    height: 100% !important;
     padding-left: 0rem !important;
     padding-right: 0rem !important;
 }
 
 .hourSize>span>span {
-    font-size: 30px;
+    font-size: 30px !important;
     padding-top: 10px;
     color: #3b617e;
 }
@@ -400,17 +401,17 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 .DaySelectionStatus[data-background="S"] {
     background-color: #39a9db !important;
-    height: 100%;
+    height: 100% !important;
 }
 
 .DaySelectionStatus[data-background="L"] {
     background-color: rgb(232, 241, 246) !important;
-    height: 100%;
+    height: 100% !important;
 }
 
 .DaySelectionStatus[data-background=""] {
     background-color: rgb(247, 247, 247) !important;
-    height: 100%;
+    height: 100% !important;
 }
 
 .DaySelectionStatus>div>div>div>.sapMSLITitle {
