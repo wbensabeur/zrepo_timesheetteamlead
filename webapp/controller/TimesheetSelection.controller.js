@@ -120,13 +120,14 @@ sap.ui.define([
 		OnDatePress: function(oEvent) {
 			var source = oEvent.getSource();
 			var headerSeq = source.getParent().getParent().getInitialOrder();
-			var Items = source.getParent().getParent().getParent().getItems();
+		//	var Items = source.getParent().getParent().getParent().getItems();
+			var Items = this.getView().byId('table').getItems();
 			if (source.getCustomData()[0].getValue() === "") {
 				source.getCustomData()[0].setValue("S");
 				//	this.days.push(source.getCustomData()[1].getValue());
 				source.getParent().getCustomData()[0].setValue("S");
 				for (var k = 0; k < Items.length; k++) {
-					var button = oEvent.getSource().getParent().getParent().getParent().getItems()[k].getCells()[headerSeq];
+					var button = Items[k].getCells()[headerSeq];
 					if (button.getEnabled()) {
 						button.getCustomData()[0].setValue("S");
 						this.selectedBox.push(button.getId());
@@ -155,7 +156,7 @@ sap.ui.define([
 				//this.days.splice(index2, 1);
 
 				for (var j = 0; j < Items.length; j++) {
-					var button1 = oEvent.getSource().getParent().getParent().getParent().getItems()[j].getCells()[headerSeq];
+					var button1 = Items[j].getCells()[headerSeq];
 					if (button1.getEnabled()) {
 						button1.getCustomData()[0].setValue("");
 						var boxindex = this.selectedBox.indexOf(button1.getId());
