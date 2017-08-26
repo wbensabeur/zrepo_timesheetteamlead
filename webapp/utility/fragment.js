@@ -10,9 +10,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	return {
 		SearchProject_init: function(controler, container, selectButton) {
 
-			var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
+			//var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
 			//	controler._setProjectSearchFragment(fragment.getId());
-			this.projectSearchFragment = fragment.getId();
+			this.projectSearchFragment = container.getItems()[1].getItems()[0].getId();
 			this.projectfilter = null;
 			this.BUfilter = null;
 			this.positionfilter = null;
@@ -31,9 +31,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			//	fragment.getCustomData()[1].setValue(returnRef.getId()); 
 
-			var hideContainer = container.getItems()[0];
-			hideContainer.setVisible(false);
-			container.getItems()[1].addItem(fragment);
+			container.getItems()[0].setVisible(false);
+			container.getItems()[1].setVisible(true);
+			//hideContainer.setVisible(false);
+		//	container.getItems()[1].addItem(fragment);
 
 			selectButton.getCustomData()[0].setValue("");
 
@@ -47,9 +48,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_destroy: function(fragmentObject) {
 
 			var container = fragmentObject.getParent().getParent();
-			var hideContainer = container.getItems()[0];
-			hideContainer.setVisible(true);
-			fragmentObject.destroy(true);
+			container.getItems()[0].setVisible(true);
+			container.getItems()[1].setVisible(false);
+		//	hideContainer.setVisible(true);
+			//fragmentObject.destroy(true);
 
 			this.footerModel.setProperty("/MainNewScreen", true);
 			this.footerModel.setProperty("/MainUpdateScreen", false);
