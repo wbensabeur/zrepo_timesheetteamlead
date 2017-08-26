@@ -6,8 +6,9 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/m/MessageBox",
-	"com/vinci/timesheet/admin/utility/fragment"
-], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox, fragment) {
+	"com/vinci/timesheet/admin/utility/fragment",
+	"sap/m/MessageToast"
+], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox, fragment, MessageToast) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklySummary", {
 		formatter: formatter,
@@ -18,6 +19,8 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			this.getRouter().getRoute("home").attachPatternMatched(this._onObjectMatched, this);
+
+			this.successPost = false;
 			var oViewModel, iOriginalBusyDelay, oTable = this.byId("table");
 			/// Attach Seeting button from Shell
 			var setting = sap.ui.getCore().byId("shellSettings");
@@ -52,8 +55,8 @@ sap.ui.define([
 			});
 			var that = this;
 			$(window).resize(function() {
-					var totalH = window.innerHeight - 200;
-					that.getView().byId('TableScroll').setHeight(totalH+'px');
+				var totalH = window.innerHeight - 200;
+				that.getView().byId('TableScroll').setHeight(totalH + 'px');
 			});
 		},
 		/* =========================================================== */
@@ -92,6 +95,10 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
+			if (this.userPref.successMaskEntry) {
+				MessageToast.show(this.getResourceBundle().getText("successPostMsg"));
+				this.userPref.successMaskEntry = false;
+			}
 		},
 		/* =========================================================== */
 		/* User Event methods                                            */
@@ -215,21 +222,25 @@ sap.ui.define([
 			oDialog.close();
 		},
 		onPressSaveEntries: function(oEvent) {
-			fragment.AddUpdatetime_saveEntries(this.getView());
-			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
-			
+			var that = this;
+			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
+				fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
+				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
+			});
+
 		},
 
 		////*** Add New Time  **///
 		OnAddEmpTime: function(oEvent) {
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
-			this.employees = [
-				{employee:this.currentEmp,
-				 Days:[this.currentDate]
-				}];
+			this.employees = [{
+				employee: this.currentEmp,
+				Days: [this.currentDate]
+			}];
 
-			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle(), this.employees,this.getView().getModel());
+			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle(), this.employees, this.getView()
+				.getModel());
 
 			this.getView().setModel(oModel.AddTime, "AddTime");
 			this.getView().setModel(oModel.projectSearch, "projectSearch");
@@ -273,10 +284,10 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.vinci.timesheet.admin.view.WeeklySummary
 		 */
-					onAfterRendering: function() {
-						var totalH = window.innerHeight - 200;
-						this.getView().byId('TableScroll').setHeight(totalH+'px');
-					},
+		onAfterRendering: function() {
+			var totalH = window.innerHeight - 200;
+			this.getView().byId('TableScroll').setHeight(totalH + 'px');
+		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.vinci.timesheet.admin.view.WeeklySummary
@@ -298,6 +309,7 @@ sap.ui.define([
 			this._applyFilters();
 		},
 		_onObjectMatched: function(oEvent) {
+
 			this.userPref = this.getView().getModel("userPreference").getData();
 			var oPeriodbutton = this.getView().byId("periodButton");
 			if (this.userPref.defaultPeriod === 1) {
@@ -329,7 +341,9 @@ sap.ui.define([
 			/*	if (this.twoWeek) {
 					MessageBox.alert("Planning is only support for weekly view selection");
 				} else {*/
-			this.getRouter().navTo("periodSelection", {source:'Summary'}, true);
+			this.getRouter().navTo("periodSelection", {
+				source: 'Summary'
+			}, true);
 			//		}
 		},
 
@@ -342,7 +356,12 @@ sap.ui.define([
 
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
-			this.getView().getModel().remove(binding);
+			var that = this;
+			this.getView().getModel().remove(binding, {
+				success: function() {
+					MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+				}
+			});
 		},
 
 		//// **SearchProject Fragment Event** ///////
@@ -363,26 +382,26 @@ sap.ui.define([
 		onPressProjectSelect: function(oEvent) {
 			fragment.SelectProject_onPressProjectSelect();
 		},
-		onProjectDescriptionSuggest:function(oEvent) {
+		onProjectDescriptionSuggest: function(oEvent) {
 			fragment.SearchProject_onProjectDescriptionSuggest(oEvent);
 		},
-		onProjectDescriptionSearch:function(oEvent){
+		onProjectDescriptionSearch: function(oEvent) {
 			fragment.SearchProject_onProjectDescriptionSearch(oEvent);
 		},
-		onProjectManagerSuggest:function(oEvent){
+		onProjectManagerSuggest: function(oEvent) {
 			fragment.SearchProject_onProjectManagerSuggest(oEvent);
 		},
-		onProjectManagerSearch:function(oEvent){
-		fragment.SearchProject_onProjectManagerSearch(oEvent);
+		onProjectManagerSearch: function(oEvent) {
+			fragment.SearchProject_onProjectManagerSearch(oEvent);
 		},
-		onBUFilterChange:function(oEvent){
+		onBUFilterChange: function(oEvent) {
 			fragment.SearchProject_onBUFilterChange(oEvent);
 		},
-		onPositionFilterChange:function(oEvent){
+		onPositionFilterChange: function(oEvent) {
 			fragment.SearchProject_onPositionFilterChange(oEvent);
 		},
 		OnProjectFilterchange: function(oEvent) {
-			fragment.SearchProject_OnProjectFilterchange(oEvent,this.getView());
+			fragment.SearchProject_OnProjectFilterchange(oEvent, this.getView());
 		},
 
 		////****SearchProject Fragment Event End******//////////
@@ -444,16 +463,15 @@ sap.ui.define([
 		onSelectAbsenceEndDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent, this.getView());
 		},
-		
 
 		//// **AddUpdateTime Fragment Event End** ///////
 		//// **AddKM Fragment Event** ///////
-		OnChangeStartTimeKM: function(oEvent){
+		OnChangeStartTimeKM: function(oEvent) {
 			fragment.AddKM_OnChangeStartTimeKM(oEvent);
 		},
-		OnChangeEndTimeKM: function(oEvent){
-			fragment.AddKM_OnChangeEndTimeKM(oEvent);
-		}
-		//// **AddKM Fragment Event End** ///////
+		OnChangeEndTimeKM: function(oEvent) {
+				fragment.AddKM_OnChangeEndTimeKM(oEvent);
+			}
+			//// **AddKM Fragment Event End** ///////
 	});
 });

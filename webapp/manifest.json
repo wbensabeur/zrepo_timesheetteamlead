@@ -63,8 +63,8 @@
 			}
 		},
 		"contentDensities": {
-			"compact": true,
-			"cozy": true
+			"compact": false,
+			"cozy": false
 		},
 		"models": {
 			"i18n": {

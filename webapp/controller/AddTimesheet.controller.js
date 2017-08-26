@@ -4,8 +4,9 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"com/vinci/timesheet/admin/utility/fragment",
-	"sap/m/MessageBox"
-], function(BaseController, JSONModel, formatter, datetime, fragment, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/m/MessageToast"
+], function(BaseController, JSONModel, formatter, datetime, fragment, MessageBox,MessageToast) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.AddTimesheet", {
 		formatter: formatter,
@@ -88,7 +89,9 @@ sap.ui.define([
 			var that = this;
 			fragment.AddUpdatetime_saveEntries(this.getView(),function(){
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
-				that.getRouter().navTo("home", {}, true);	
+				that.getRouter().navTo("home", {}, true);
+				that.getView().getModel("userPreference").setProperty("/successMaskEntry",true);
+				//MessageToast.show(that.getResourceBundle().getText("successPostMsg"),{duration:10000});	 
 			});
 			
 			

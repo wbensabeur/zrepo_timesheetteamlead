@@ -213,10 +213,10 @@ sap.ui.define([
 			}
 		},
 		tableWidth : function (deviceType) {
-			if(deviceType.tablet){
-				return "97%";
+			if(deviceType.desktop){
+				return "98%";
 			}
-			return "98%";
+			return "97%";
 		}
 
 	};
