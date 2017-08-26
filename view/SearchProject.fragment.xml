@@ -1,0 +1,130 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<VBox width="100%" height="100%" >
+		<Label  text="{i18n>filterBy} :"/>
+		<RadioButtonGroup  columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="1">
+			<buttons>
+				<RadioButton text="{i18n>projectFav}" />
+				<RadioButton text="{i18n>allProject}"/>
+			</buttons>
+		</RadioButtonGroup>
+		<HBox width="100%" class="sapUiSmallMarginBottom">
+			<ComboBox placeholder="{i18n>searchBU}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}" change="onBUFilterChange">
+				<core:Item key="{FieldValue}" text="{FieldDescription}" />
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>
+			<SearchField
+				placeholder="{i18n>searchProject}"
+				enableSuggestions="true"
+				search="onProjectDescriptionSearch"
+				suggest="onProjectDescriptionSuggest"
+				suggestionItems="{
+					path: '/ProjectSet',
+					length: 5,
+					sorter: { path: 'ProjectDescription' }
+				}"
+				>
+				<suggestionItems>
+					<SuggestionItem text="{ProjectDescription}" description="{ProjectId}" key="{ProjectId}"/>
+				</suggestionItems>
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</SearchField>
+
+			<!--<ComboBox value="{i18n>projID}">
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>-->
+			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}" change="onPositionFilterChange">
+				<core:Item key="{FieldValue}" text="{FieldDescription}" />
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>
+			<SearchField
+				
+				placeholder="{i18n>searchManager}"
+				enableSuggestions="true"
+				search="onProjectManagerSearch"
+				suggest="onProjectManagerSuggest"
+				suggestionItems="{
+					path: '/ValueHelpSet',
+					length: 5,
+					filters: [{ path: 'HelpType', operator: 'EQ', value1: 'PM'}],
+					sorter: { path: 'FieldValue' }
+				}"
+				>
+				<suggestionItems>
+					<SuggestionItem text="{FieldDescription}" description="{path:'FieldValue'}" key="{FieldValue}"/>
+				</suggestionItems>
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</SearchField>
+			<!--<ComboBox value="{i18n>manager}">
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>-->
+		</HBox>
+		<Label class="sapUiTinyMarginBottom" text="{projectSearch>/worklistTableTitle}" design="Bold"/>
+		<Table items="{ path: '/ProjectSet' }" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" modeAnimationOn="false" updateFinished="onProjectSearchFinished"
+			growingThreshold="10" selectionChange="OnProjectSelected">
+			<columns>
+				<Column width="auto" hAlign="Center">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>description}" design="Bold" class="sapUiSmallMarginTop sapUiTinyMarginBegin sapUiSmallMarginBottom"/>
+					</VBox>
+				</Column>
+				<Column hAlign="Center" width="15%">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>businessUnit}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
+					</VBox>
+				</Column>
+				<Column hAlign="Center" width="15%">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
+					</VBox>
+				</Column>
+				<Column hAlign="Center" width="10%">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>position}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
+					</VBox>
+				</Column>
+				<Column hAlign="Center" width="20%">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="{i18n>manager}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
+					</VBox>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="6%">
+					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
+						<Label text="" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+					</VBox>
+				</Column>
+			</columns>
+			<!-- sap.m.Column -->
+			<items>
+				<ColumnListItem class="sapUiTableTr textAlignmentStart">
+					<cells>
+						<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="{ProjectDescription}" textAlign="Begin"/>
+					</cells>
+					<cells>
+						<Label class="sapUiTinyMarginBegin" text="{BusinessUnit}"/>
+						<Label class="sapUiTinyMarginBegin" text="{ProjectId}"/>
+						<Label class="sapUiTinyMarginBegin" text="{Position}"/>
+						<Label class="sapUiTinyMarginBegin" text="{ResponsiblePMName}"/>
+						<core:Icon src="{path:'Favorite',formatter:'.formatter.favIcon'}" class="sapUiSmallMarginBegin" press="OnFavoriteChange"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+			<!-- sap.m.ListItemBase -->
+		</Table>
+		<customData>
+			<core:CustomData key="ProjectBinding" value=""/>
+			<core:CustomData key="UpdateObject" value=""/>
+		</customData>
+	</VBox>
+</core:FragmentDefinition>
