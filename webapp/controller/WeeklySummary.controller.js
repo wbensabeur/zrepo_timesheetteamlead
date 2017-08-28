@@ -215,10 +215,12 @@ sap.ui.define([
 		OnCancelEmpDayCheckDialog: function(oEvent) {
 			var oDialog = this.getView().byId("EmpDayCheckDialog");
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
+			this.getView().byId('table').getBinding("items").refresh();
 			oDialog.close();
 		},
 		OnCancelFilterDialog: function(oEvent) {
 			var oDialog = this.getView().byId("filterDialog");
+			this.getView().byId('table').getBinding("items").refresh();
 			oDialog.close();
 		},
 		onPressSaveEntries: function(oEvent) {
