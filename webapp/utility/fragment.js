@@ -19,12 +19,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.lastProjectFilter = null;
 			//var oView = controler.getView();
 			// change for radio focus 
-		/*	var buttons = fragment.getItems()[1].getButtons();
-			for (var k = 0; k < buttons.length; k++) {
-				buttons[k].onAfterRendering = function() {
-					oView.byId("ProjectCancelButton").focus();
-				};
-			}*/
+			/*	var buttons = fragment.getItems()[1].getButtons();
+				for (var k = 0; k < buttons.length; k++) {
+					buttons[k].onAfterRendering = function() {
+						oView.byId("ProjectCancelButton").focus();
+					};
+				}*/
 			/*fragment.getItems()[1].onAfterRendering = function () {
 				oView.byId("ProjectCancelButton").focus();
 			};*/
@@ -34,7 +34,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.getItems()[0].setVisible(false);
 			container.getItems()[1].setVisible(true);
 			//hideContainer.setVisible(false);
-		//	container.getItems()[1].addItem(fragment);
+			//	container.getItems()[1].addItem(fragment);
 
 			selectButton.getCustomData()[0].setValue("");
 
@@ -50,7 +50,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var container = fragmentObject.getParent().getParent();
 			container.getItems()[0].setVisible(true);
 			container.getItems()[1].setVisible(false);
-		//	hideContainer.setVisible(true);
+			//	hideContainer.setVisible(true);
 			//fragmentObject.destroy(true);
 
 			this.footerModel.setProperty("/MainNewScreen", true);
@@ -88,7 +88,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			this.SearchProject_applyFiler();
 			var that = oView;
-			
+
 			jQuery.sap.delayedCall(0, this, function() {
 				document.getElementById(sourceId).blur();
 				//	that.byId("ProjectCancelButton").focus();
@@ -298,18 +298,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 		},
 		AddProjectTime_OnchangeTimeSelection: function(oEvent) {
-			
+
 			var index = oEvent.getParameter('selectedIndex');
 			var button = oEvent.getSource().getButtons()[index];
 			var sourceId = button.getId();
-			
+
 			var source = oEvent.getSource();
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var newValue = 0;
 			var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
 			var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3]; //this._getOwnSelectedHrContent(source);
 			var timepicker = selecthrsCombo.getItems()[2].getItems()[0];
-		//	var timepickerFrom = selecthrsCombo.getItems()[2].getItems()[1];
+			//	var timepickerFrom = selecthrsCombo.getItems()[2].getItems()[1];
 			var timepickerTo = selecthrsCombo.getItems()[2].getItems()[2];
 			/*var durationId = '#' + timepicker.getId();
 			$(durationId).on('keydown',function(event){
@@ -604,7 +604,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var workDayItems = [];
 			for (var k = 1; k < tab.length; k++) {
 				try {
-					
+
 					var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
 					var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 					var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
@@ -612,18 +612,23 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					if (fullDayindex === 0) {
 						fullDay = true;
 					}
+					var projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
 
 				} catch (err) {
-					if(projectBindingPath === undefined && hrType === "" )
-					{
+					if (projectID === undefined && hrType === "") {
 						continue;
-					}
-					else{
-					MessageBox.alert("All Items are not selected");
-					return;
+					} else {
+						MessageBox.alert("All Items are not selected");
+						return;
 					}
 				}
-				var projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+				if (projectID === undefined && hrType === "") {
+					continue;
+				} else {
+					MessageBox.alert("All Items are not selected");
+					return;
+				}
+
 				var workDayItem = {
 					"ProjectID": projectID,
 					"EntryType": "HOURS",
