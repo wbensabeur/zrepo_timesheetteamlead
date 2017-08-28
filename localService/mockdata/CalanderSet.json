@@ -1,0 +1,101 @@
+[{
+	"WorkDate": "/Date(1223273062000)/",
+	"Country": "Country 1",
+	"IsWeekDay": true,
+	"IsBusinessHoliday": true,
+	"WeekNumber": 6,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2008-10-06T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1258524262000)/",
+	"Country": "Country 2",
+	"IsWeekDay": false,
+	"IsBusinessHoliday": false,
+	"WeekNumber": 4,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2009-11-18T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1008396262000)/",
+	"Country": "Country 3",
+	"IsWeekDay": true,
+	"IsBusinessHoliday": true,
+	"WeekNumber": 1,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2001-12-15T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1146117862000)/",
+	"Country": "Country 4",
+	"IsWeekDay": false,
+	"IsBusinessHoliday": true,
+	"WeekNumber": 3,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2006-04-27T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1457935462000)/",
+	"Country": "Country 5",
+	"IsWeekDay": true,
+	"IsBusinessHoliday": true,
+	"WeekNumber": 0,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2016-03-14T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1287036262000)/",
+	"Country": "Country 6",
+	"IsWeekDay": false,
+	"IsBusinessHoliday": true,
+	"WeekNumber": 2,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2010-10-14T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1063865062000)/",
+	"Country": "Country 7",
+	"IsWeekDay": false,
+	"IsBusinessHoliday": false,
+	"WeekNumber": 3,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2003-09-18T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1425967462000)/",
+	"Country": "Country 8",
+	"IsWeekDay": false,
+	"IsBusinessHoliday": true,
+	"WeekNumber": 3,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2015-03-10T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1099116262000)/",
+	"Country": "Country 9",
+	"IsWeekDay": true,
+	"IsBusinessHoliday": true,
+	"WeekNumber": 0,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2004-10-30T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}, {
+	"WorkDate": "/Date(1136786662000)/",
+	"Country": "Country 10",
+	"IsWeekDay": false,
+	"IsBusinessHoliday": false,
+	"WeekNumber": 1,
+	"__metadata": {
+		"uri": "CalanderSet(datetime'2006-01-09T06%3A04%3A22')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Calander"
+	}
+}]
