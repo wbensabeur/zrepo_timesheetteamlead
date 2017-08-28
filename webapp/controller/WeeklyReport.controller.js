@@ -4,10 +4,11 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"sap/m/MessageBox",
+	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"com/vinci/timesheet/admin/utility/jspdf"
-], function(BaseController, JSONModel, formatter, datetime, MessageBox, Filter, FilterOperator, jspdfView) {
+], function(BaseController, JSONModel, formatter, datetime, MessageBox,MessageToast, Filter, FilterOperator, jspdfView) {
 	"use strict";
 
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklyReport", {
@@ -290,27 +291,85 @@ sap.ui.define([
 		},
 		OnTimeSubmit: function() {
 
-			var batchChanges = [];
+			//////
 
-			for (var k = 0; k < this.EmplWeekContext.length; k++) {
-				/*batchChanges.push(this.getView().getModel().createBatchOperation(this.EmplWeekContext[k], "MERGE", {
-					"Status": "W"
-				}));*/
-				this.getView().getModel().update(this.EmplWeekContext[k],{"Status": "W"});
-			}
 			
-			/*this.getView().getModel().addBatchChangeOperations(batchChanges);*/
-
-			/*this.getView().getModel().submitBatch(function(data) {*/
-				window.html2canvas($("#shell-container-canvas"), {
+			var requestBody = {
+				"EmployeeId": this.employeId,
+				"WorkDate": new Date(),
+				"Status": "RELEASE",
+				"NavWorkDayTimeItems": []
+			};
+			for (var i = 1; i < 8; i++) {
+				//var listWKDidLocal = "listWKD" + i;
+				//var listWKDidLocalModel = this.getView().byId(listWKDidLocal).getModel();
+				//var listWKDidLocalItems = this.getView().byId(listWKDidLocal).getItems();
+				for (var j = 0; j < this.EmplWeekContext.length; j++) {
+					var listWKDidLocalItemData = this.getView().getModel().getProperty(this.EmplWeekContext[j]);
+					var locatData = {
+						EmployeeId: listWKDidLocalItemData.EmployeeId,
+						WorkDate: listWKDidLocalItemData.WorkDate,
+						Counter: listWKDidLocalItemData.Counter,
+						ProjectID: listWKDidLocalItemData.ProjectID,
+						ProjectName: listWKDidLocalItemData.ProjectName,
+						EntryType: listWKDidLocalItemData.EntryType,
+						EntryTypeCatId: listWKDidLocalItemData.EntryTypeCatId,
+						EntryTypeDesc: listWKDidLocalItemData.EntryTypeDesc,
+						Hours: listWKDidLocalItemData.Hours,
+						HourUnit: listWKDidLocalItemData.HourUnit,
+						KMNumber: listWKDidLocalItemData.KMNumber,
+						StartTime: listWKDidLocalItemData.StartTime,
+						EndTime: listWKDidLocalItemData.EndTime,
+						FullDay: listWKDidLocalItemData.FullDay,
+						Status: listWKDidLocalItemData.Status,
+						Comment: listWKDidLocalItemData.Comment,
+						CreatedBy: listWKDidLocalItemData.CreatedBy,
+						CreatedOn: listWKDidLocalItemData.CreatedOn,
+						ReleaseOn: listWKDidLocalItemData.ReleaseOn,
+						ApprovedOn: listWKDidLocalItemData.ApprovedOn,
+						Reason: listWKDidLocalItemData.Reason,
+						AllowancesType: listWKDidLocalItemData.AllowancesType,
+						AllowancesName: listWKDidLocalItemData.AllowancesName,
+						ZoneType: listWKDidLocalItemData.ZoneType,
+						ZoneName: listWKDidLocalItemData.ZoneName,
+						MealIndicator: listWKDidLocalItemData.MealIndicator,
+						JourneyIndicator: listWKDidLocalItemData.JourneyIndicator,
+						TransportIndicator: listWKDidLocalItemData.TransportIndicator,
+						ApplicationName: 'TEAMLEAD'
+					};
+					requestBody.NavWorkDayTimeItems.push(locatData);
+				}
+			}
+			var that = this;
+			this.getView().getModel().create("/WorkDaySet", requestBody, {
+				success: window.html2canvas($("#shell-container-canvas"), {
 
 					onrendered: function(canvas) {
 
 						var img = canvas.toDataURL("image/jpg", 0);
-						window.open(img);
+						MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+						that.onNextEmployeePress();
+						//window.open(img);
 
 					}
+				})	
+			});
+
+			//////
+
+			/*var batchChanges = [];
+
+			for (var k = 0; k < this.EmplWeekContext.length; k++) {
+				
+				this.getView().getModel().update(this.EmplWeekContext[k], {
+					"Status": "W"
 				});
+			}*/
+
+			/*this.getView().getModel().addBatchChangeOperations(batchChanges);*/
+
+			/*this.getView().getModel().submitBatch(function(data) {*/
+
 			/*}, function(err) {
 
 			});*/
