@@ -624,7 +624,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 				if (projectID === undefined && hrType === "") {
 					continue;
-				} else {
+				} else if (projectID === undefined || hrType === "") {
 					MessageBox.alert("All Items are not selected");
 					return;
 				}
@@ -638,6 +638,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					"EndTime": "000000",
 					"FullDay": fullDay,
 					"ZoneType": "",
+					"ZoneName":"",
 					"MealIndicator": false,
 					"JourneyIndicator": false,
 					"TransportIndicator": false
@@ -653,7 +654,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var travel = oView.byId('AllowanceTravelIndicator').getPressed();
 			if (meal || transport || travel) {
 				var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
-				if (zonetype === undefined) {
+				var zoneName = oView.byId('AllowanceZoneType').getValue();
+				if (zoneName === undefined) {
 					MessageBox.alert("All Items are not selected");
 					return;
 				}
@@ -674,6 +676,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					"EndTime": "000000",
 					"FullDay": false,
 					"ZoneType": zonetype,
+					"ZoneName": zoneName,
 					"MealIndicator": meal,
 					"JourneyIndicator": transport,
 					"TransportIndicator": travel
@@ -717,7 +720,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"AllowancesType": "",
 							"AllowancesName": "",
 							"ZoneType": workDayItems[i].ZoneType,
-							"ZoneName": "",
+							"ZoneName": workDayItems[i].ZoneName,
 							"MealIndicator": workDayItems[i].MealIndicator,
 							"JourneyIndicator": workDayItems[i].JourneyIndicator,
 							"TransportIndicator": workDayItems[i].TransportIndicator,
