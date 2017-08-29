@@ -1,0 +1,341 @@
+[{
+	"UserId": "UserId 1",
+	"FullName": "FullName 1",
+	"StartDate": "/Date(1165644230000)/",
+	"EndDate": "/Date(1012111430000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%201')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%201')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%201')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%201')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%201')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%201')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 2",
+	"FullName": "FullName 2",
+	"StartDate": "/Date(1361426630000)/",
+	"EndDate": "/Date(1333865030000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%202')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%202')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%202')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%202')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%202')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%202')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 3",
+	"FullName": "FullName 3",
+	"StartDate": "/Date(1569218630000)/",
+	"EndDate": "/Date(1422338630000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%203')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%203')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%203')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%203')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%203')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%203')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 4",
+	"FullName": "FullName 4",
+	"StartDate": "/Date(1073369030000)/",
+	"EndDate": "/Date(1467525830000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%204')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%204')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%204')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%204')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%204')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%204')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 5",
+	"FullName": "FullName 5",
+	"StartDate": "/Date(1494655430000)/",
+	"EndDate": "/Date(1326175430000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%205')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%205')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%205')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%205')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%205')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%205')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 6",
+	"FullName": "FullName 6",
+	"StartDate": "/Date(1098943430000)/",
+	"EndDate": "/Date(1066457030000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%206')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%206')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%206')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%206')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%206')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%206')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 7",
+	"FullName": "FullName 7",
+	"StartDate": "/Date(1298873030000)/",
+	"EndDate": "/Date(1159077830000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%207')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%207')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%207')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%207')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%207')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%207')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 8",
+	"FullName": "FullName 8",
+	"StartDate": "/Date(982908230000)/",
+	"EndDate": "/Date(1353909830000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%208')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%208')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%208')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%208')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%208')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%208')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 9",
+	"FullName": "FullName 9",
+	"StartDate": "/Date(1353391430000)/",
+	"EndDate": "/Date(1514095430000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%209')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%209')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%209')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%209')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%209')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%209')/NavMyHelpLists"
+		}
+	}
+}, {
+	"UserId": "UserId 10",
+	"FullName": "FullName 10",
+	"StartDate": "/Date(1208930630000)/",
+	"EndDate": "/Date(1093413830000)/",
+	"__metadata": {
+		"uri": "TimeAdminSet('UserId%2010')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.TimeAdminstrator"
+	},
+	"NavMyEmployees": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%2010')/NavMyEmployees"
+		}
+	},
+	"NavMyEquipments": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%2010')/NavMyEquipments"
+		}
+	},
+	"NavMyTeams": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%2010')/NavMyTeams"
+		}
+	},
+	"NavMyPersonalisations": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%2010')/NavMyPersonalisations"
+		}
+	},
+	"NavMyHelpLists": {
+		"__deferred": {
+			"uri": "TimeAdminSet('UserId%2010')/NavMyHelpLists"
+		}
+	}
+}]
