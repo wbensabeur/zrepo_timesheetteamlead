@@ -56,7 +56,12 @@ sap.ui.define([
 			if (sDetails.responseText === undefined) {
 				errorDesc = sDetails;
 			} else {
+				try{
 				errorDesc = JSON.parse(sDetails.responseText).error.message.value;
+				}
+				catch(error ){
+					errorDesc = sDetails.responseText;
+				}
 			}
 			MessageBox.error(
 				this._sErrorText, {
