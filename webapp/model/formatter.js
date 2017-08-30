@@ -23,7 +23,7 @@ sap.ui.define([
 				var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
 					weekday: "long"
 				});
-
+				month = month[0].toUpperCase() + month.slice(1);
 				return month + " " + oDate.getDate() + "/" + (oDate.getMonth() + 1) + "/" + oDate.getUTCFullYear();
 			}
 			return "";

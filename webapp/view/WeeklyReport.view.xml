@@ -289,40 +289,40 @@
 					<ColumnListItem>
 						<cells>
 							<VBox class="EmployeeWeeklyReportAggregateRow_Bottom" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{itemData>project}"/>
+								<Text text="{itemData>project}"/>
 							</VBox>
 							<VBox  class="EmployeeWeeklyReportAggregateRow_Bottom" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{itemData>projectName}"/>
+								<Text text="{itemData>projectName}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{itemData>type}"/>
+								<Text text="{itemData>type}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{itemData>unit}"/>
+								<Text text="{itemData>unit}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{path:'itemData>total',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+								<Text text="{path:'itemData>total',type:'Float',formatter:'.formatter.numberFormatter'}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{path:'itemData>mon',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+								<Text text="{path:'itemData>mon',type:'Float',formatter:'.formatter.numberFormatter'}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{path:'itemData>tue',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+								<Text text="{path:'itemData>tue',type:'Float',formatter:'.formatter.numberFormatter'}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{path:'itemData>wed',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+								<Text text="{path:'itemData>wed',type:'Float',formatter:'.formatter.numberFormatter'}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{path:'itemData>thr',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+								<Text text="{path:'itemData>thr',type:'Float',formatter:'.formatter.numberFormatter'}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{path:'itemData>fri',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+								<Text text="{path:'itemData>fri',type:'Float',formatter:'.formatter.numberFormatter'}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{path:'itemData>sat',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+								<Text text="{path:'itemData>sat',type:'Float',formatter:'.formatter.numberFormatter'}"/>
 							</VBox>
 							<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="2.5rem">
-								<Label text="{path:'itemData>sun',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+								<Text text="{path:'itemData>sun',type:'Float',formatter:'.formatter.numberFormatter'}"/>
 							</VBox>
 						</cells>
 					</ColumnListItem>
