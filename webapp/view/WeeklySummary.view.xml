@@ -42,7 +42,7 @@
 				</contentMiddle>
 				<contentRight>
 					<Button icon="sap-icon://filter" type="Transparent" class="circleIcon" press="onFilterPress"/>
-					<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" class="sapUiSmallMarginEnd" width="9rem">
+					<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" class="sapUiSmallMarginEnd" width="10rem">
 						<items>
 							<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
 							<SegmentedButtonItem text="14 {i18n>days}" key="twoWeek"/>
@@ -52,7 +52,7 @@
 			</Bar>
 			<Table showNoData="false" width="97%" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
 				busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
-				growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
+				growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -71,7 +71,7 @@
 				<content>
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' }" columns="{ path: 'calendar>/data' }"
 				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
-				updateFinished="onUpdateFinished" growingThreshold="20" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin"
+				updateFinished="onUpdateFinished" growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin"
 				updateStarted="onUpdateStart">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">

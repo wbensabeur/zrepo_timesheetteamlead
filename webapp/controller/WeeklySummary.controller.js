@@ -359,11 +359,20 @@ sap.ui.define([
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;
+			var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
+			
+			
+			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
+			//oView.byId('EmpDayStatus').bindElement(urlStr);
+			//oView.byId('EmpDayInfo').bindElement(urlStr);
+			
 			this.getView().getModel().remove(binding, {
 				success: function() {
+					that.getView().getModel().read(contextPath);
 					MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
 				}
 			});
+			
 		},
 
 		//// **SearchProject Fragment Event** ///////

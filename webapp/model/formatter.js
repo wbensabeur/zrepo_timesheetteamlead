@@ -212,11 +212,18 @@ sap.ui.define([
 				return date.getTime();
 			}
 		},
-		tableWidth : function (deviceType) {
-			if(deviceType.desktop){
+		tableWidth: function(deviceType) {
+			if (deviceType.desktop) {
 				return "98%";
 			}
 			return "97%";
+		},
+		editVisibility: function(status) {
+			if (status === 'D' || status === 'W') {
+				return true;
+			}
+			return false;
+
 		}
 
 	};
