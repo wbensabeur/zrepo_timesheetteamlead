@@ -202,14 +202,27 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		SearchProject_onBUFilterChange: function(oEvent) {
 			var BUId = oEvent.getSource().getSelectedKey();
+			if (BUId === 'ALL')
+			{
+				this.BUfilter = null;
+			}
+			else
+			{
 			this.BUfilter = new Filter("BusinessUnit", FilterOperator.EQ, BUId);
+			}
 			this.SearchProject_applyFiler();
 
 		},
 
 		SearchProject_onPositionFilterChange: function(oEvent) {
 			var positionId = oEvent.getSource().getSelectedKey();
+			if (positionId === 'ALL')
+			{
+				this.positionfilter = null;
+			}
+			else {
 			this.positionfilter = new Filter("Position", FilterOperator.EQ, positionId);
+			}
 			this.SearchProject_applyFiler();
 
 		},

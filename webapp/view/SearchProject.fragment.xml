@@ -40,6 +40,7 @@
 			</ComboBox>-->
 			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}" change="onPositionFilterChange">
 				<core:Item key="{FieldValue}" text="{FieldDescription}" />
+				
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
