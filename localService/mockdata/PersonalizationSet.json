@@ -1,0 +1,11 @@
+[{
+	"UserId": "ACHARBON",
+	"PersoId": "BU",
+	"PersoValue": "11990",
+	"PersoDesc": "Default Business Unit for User Used as Personalization"
+}, {
+	"UserId": "ACHARBON",
+	"PersoId": "BW",
+	"PersoValue": "",
+	"PersoDesc": "Default Biweekly View as Active (X) or Non-Active (&lt;Space>) for User used as Personalization"
+}]
