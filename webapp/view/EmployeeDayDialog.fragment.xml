@@ -16,7 +16,7 @@
 					<HBox class="sapUiMediumMarginTop sapUiSmallMarginBegin">
 						<Label text="{FullName}" design="Bold"/>
 						<Label class="sapUiLargeMarginBegin EmpDayDetails" design="Bold" id="EmpDayTotal"
-							text="{path:'FilledHours',type:'Float',formatter:'.formatter.numberFormatter'} H - {path:'DayAllowanceQty',type:'Float',formatter:'.formatter.numberFormatter'} IPD - {path:'DayKms',type:'Float',formatter:'.formatter.numberFormatter'} KM "/>
+							text="{WorkDayInfo}"/>
 					</HBox>
 					<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
 						<Label text="{CompanyDesc}" design="Bold" class="EmpDayDetails"/>
@@ -96,10 +96,10 @@
 										</VBox>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<core:Icon src="sap-icon://edit" color="blue" size="1.3rem" class="sapUiTinyMarginTop"/>
+										<core:Icon src="sap-icon://edit" color="blue" size="1.3rem" class="sapUiTinyMarginTop" visible="{parts:['Status'],formatter:'.formatter.editVisibility'}"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<core:Icon src="sap-icon://delete" color="red" size="1.3rem" class="sapUiTinyMarginTop" press="OnDeleteEmpDayitem"/>
+										<core:Icon src="sap-icon://delete" color="red" size="1.3rem" class="sapUiTinyMarginTop" press="OnDeleteEmpDayitem" visible="{parts:['Status'],formatter:'.formatter.editVisibility'}"/>
 									</VBox>
 								</cells>
 							</ColumnListItem>
@@ -110,8 +110,8 @@
 			<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddUpdateTime' type='XML' />-->
 		</content>
 		<buttons>
-			<Button text="Cancel" type="Reject" press="OnCancelEmpDayCheckDialog" visible="{footer>/MainPreviousScreen}"/>
-			<Button text="Add Information" icon="sap-icon://add" type="Emphasized" press="OnAddEmpTime" visible="{footer>/MainPreviousScreen}"/>
+			<Button text="{i18n>cancel}" type="Reject" press="OnCancelEmpDayCheckDialog" visible="{footer>/MainPreviousScreen}"/>
+			<Button text="{i18n>addTime}" icon="sap-icon://add" type="Emphasized" press="OnAddEmpTime" visible="{footer>/MainPreviousScreen}"/>
 			<Button id="MainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainNewScreen}"/>
 			<Button id="MainAddButton" text="{i18n>addtimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveEntries"/>
 			<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="{footer>/ProjectScreen}" press="onPressProjectCancel"/>
