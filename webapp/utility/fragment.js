@@ -43,6 +43,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.footerModel.setProperty("/MainUpdateScreen", false);
 			this.footerModel.setProperty("/MainPreviousScreen", false);
 			this.footerModel.setProperty("/ProjectScreen", true);
+			
+			this.lastProjectFilter = [];
+			for (var k = 0; k < this.employees.length; k++) {
+				var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
+				this.lastProjectFilter.push(filter);
+			}
+			this.lastProjectFilter.push(new Filter("LastUsedProject", FilterOperator.EQ, true));
+			this.lastProjectFilter.push(new Filter("Favorite", FilterOperator.EQ, true));
+			this.SearchProject_applyFiler();
+			
 
 		},
 		SearchProject_destroy: function(fragmentObject) {
