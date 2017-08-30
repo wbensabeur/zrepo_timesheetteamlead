@@ -1,13 +1,13 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<VBox>
 		<Label  text="{i18n>filterBy} :"/>
-		<RadioButtonGroup  columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="1">
+		<RadioButtonGroup  columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="0">
 			<buttons>
 				<RadioButton text="{i18n>projectFav}" />
 				<RadioButton text="{i18n>allProject}"/>
 			</buttons>
 		</RadioButtonGroup>
-		<HBox  class="sapUiSmallMarginBottom">
+		<HBox  class="sapUiSmallMarginBottom" visible="false">
 			<ComboBox placeholder="{i18n>searchBU}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}" change="onBUFilterChange">
 				<core:Item key="{FieldValue}" text="{FieldDescription}" />
 				<layoutData>
@@ -85,7 +85,7 @@
 						<Label text="{i18n>businessUnit}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
 					</VBox>
 				</Column>
-				<Column hAlign="Center" width="15%">
+				<Column hAlign="Center" width="20%">
 					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
 						<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiTinyMarginBegin"/>
 					</VBox>
@@ -110,13 +110,13 @@
 			<items>
 				<ColumnListItem class="sapUiTableTr textAlignmentStart">
 					<cells>
-						<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="{ProjectDescription}" textAlign="Begin"/>
+						<Text class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="{ProjectDescription}" textAlign="Begin"/>
 					</cells>
 					<cells>
-						<Label class="sapUiTinyMarginBegin" text="{BusinessUnit}"/>
-						<Label class="sapUiTinyMarginBegin" text="{ProjectId}"/>
-						<Label class="sapUiTinyMarginBegin" text="{Position}"/>
-						<Label class="sapUiTinyMarginBegin" text="{ResponsiblePMName}"/>
+						<Text class="sapUiTinyMarginBegin" text="{BusinessUnit}"/>
+						<Text class="sapUiTinyMarginBegin" text="{ProjectId}"/>
+						<Text class="sapUiTinyMarginBegin" text="{Position}" textAlign="Center"/>
+						<Text class="sapUiTinyMarginBegin" text="{ResponsiblePMName}"/>
 						<core:Icon src="{path:'Favorite',formatter:'.formatter.favIcon'}" class="sapUiSmallMarginBegin" press="OnFavoriteChange"/>
 					</cells>
 				</ColumnListItem>
