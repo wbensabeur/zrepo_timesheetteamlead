@@ -225,8 +225,13 @@ sap.ui.define([
 		},
 		onPressSaveEntries: function(oEvent) {
 			var that = this;
+			var headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
+			var oTable = this.getView().byId('tableDayItems');
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
+				
+				that.getView().getModel().read(headerContextPath);
+				oTable.getBinding("items").refresh();
 				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
 			});
 
