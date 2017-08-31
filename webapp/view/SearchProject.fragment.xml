@@ -1,30 +1,23 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<VBox>
-		<Label  text="{i18n>filterBy} :"/>
-		<RadioButtonGroup  columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="0">
+		<Label text="{i18n>filterBy} :"/>
+		<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="0">
 			<buttons>
-				<RadioButton text="{i18n>projectFav}" />
+				<RadioButton text="{i18n>projectFav}"/>
 				<RadioButton text="{i18n>allProject}"/>
 			</buttons>
 		</RadioButtonGroup>
-		<HBox  class="sapUiSmallMarginBottom" visible="false">
-			<ComboBox placeholder="{i18n>searchBU}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}" change="onBUFilterChange">
-				<core:Item key="{FieldValue}" text="{FieldDescription}" />
+		<HBox class="sapUiSmallMarginBottom" visible="false">
+			<ComboBox placeholder="{i18n>searchBU}"
+				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}"
+				change="onBUFilterChange">
+				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>
-			<SearchField
-				placeholder="{i18n>searchProject}"
-				enableSuggestions="true"
-				search="onProjectDescriptionSearch"
-				suggest="onProjectDescriptionSuggest"
-				suggestionItems="{
-					path: '/ProjectSet',
-					length: 5,
-					sorter: { path: 'ProjectDescription' }
-				}"
-				>
+			<SearchField placeholder="{i18n>searchProject}" enableSuggestions="true" search="onProjectDescriptionSearch"
+				suggest="onProjectDescriptionSuggest" suggestionItems="{ path: '/ProjectSet', length: 5, sorter: { path: 'ProjectDescription' } }">
 				<suggestionItems>
 					<SuggestionItem text="{ProjectDescription}" description="{ProjectId}" key="{ProjectId}"/>
 				</suggestionItems>
@@ -32,32 +25,20 @@
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</SearchField>
-
 			<!--<ComboBox value="{i18n>projID}">
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>-->
-			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}" change="onPositionFilterChange">
-				<core:Item key="{FieldValue}" text="{FieldDescription}" />
-				
+			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}"
+				change="onPositionFilterChange">
+				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>
-			<SearchField
-				
-				placeholder="{i18n>searchManager}"
-				enableSuggestions="true"
-				search="onProjectManagerSearch"
-				suggest="onProjectManagerSuggest"
-				suggestionItems="{
-					path: '/ValueHelpSet',
-					length: 5,
-					filters: [{ path: 'HelpType', operator: 'EQ', value1: 'PM'}],
-					sorter: { path: 'FieldValue' }
-				}"
-				>
+			<SearchField placeholder="{i18n>searchManager}" enableSuggestions="true" search="onProjectManagerSearch" suggest="onProjectManagerSuggest"
+				suggestionItems="{ path: '/ValueHelpSet', length: 5, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'PM'}], sorter: { path: 'FieldValue' } }">
 				<suggestionItems>
 					<SuggestionItem text="{FieldDescription}" description="{path:'FieldValue'}" key="{FieldValue}"/>
 				</suggestionItems>
@@ -72,8 +53,8 @@
 			</ComboBox>-->
 		</HBox>
 		<Label class="sapUiTinyMarginBottom" text="{projectSearch>/worklistTableTitle}" design="Bold"/>
-		<Table items="{ path: '/ProjectSet' }" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" modeAnimationOn="false" updateFinished="onProjectSearchFinished"
-			growingThreshold="10" selectionChange="OnProjectSelected">
+		<Table items="{ path: '/ProjectSet' }" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" modeAnimationOn="false"
+			updateFinished="onProjectSearchFinished" growingThreshold="10" selectionChange="OnProjectSelected">
 			<columns>
 				<Column width="auto" hAlign="Center">
 					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
