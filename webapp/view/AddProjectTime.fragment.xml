@@ -9,8 +9,8 @@
 			<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
 				<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="0">
 					<buttons>
-						<RadioButton text="{i18n>allDay}"/>
-						<RadioButton text="{i18n>specificTime}"/>
+						<RadioButton text="{i18n>allDay}" select="onRBSelect"/>
+						<RadioButton text="{i18n>specificTime}" select="onRBSelect"/>
 					</buttons>
 				</RadioButtonGroup>
 				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet',  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange1">

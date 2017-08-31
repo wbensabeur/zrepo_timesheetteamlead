@@ -6,7 +6,7 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/utility/fragment",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast"
-], function(BaseController, JSONModel, formatter, datetime, fragment, MessageBox,MessageToast) {
+], function(BaseController, JSONModel, formatter, datetime, fragment, MessageBox, MessageToast) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.AddTimesheet", {
 		formatter: formatter,
@@ -42,14 +42,14 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.vinci.timesheet.admin.view.AddTimesheet
 		 */
-			onAfterRendering: function() {
-				var that = this;
-				jQuery.sap.delayedCall(200, this, function() {
-    				that.getView().byId("MainAddButton").focus();
-				});
-				
+		onAfterRendering: function() {
+			var that = this;
+			jQuery.sap.delayedCall(200, this, function() {
+				that.getView().byId("MainAddButton").focus();
+			});
+
 			//	MainAddButton
-			},
+		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.vinci.timesheet.admin.view.AddTimesheet
@@ -76,25 +76,28 @@ sap.ui.define([
 				this.getView().setModel(oModel.projectSearch, "projectSearch");
 				this.getView().setModel(oModel.footer, "footer");
 			} else {
-				this.getRouter().navTo("periodSelection", {source:'Summary'}, true);
+				this.getRouter().navTo("periodSelection", {
+					source: 'Summary'
+				}, true);
 			}
 
 		},
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
-			this.getRouter().navTo("periodSelection", {source:'AddTime'}, true);
+			this.getRouter().navTo("periodSelection", {
+				source: 'AddTime'
+			}, true);
 
 		},
 		onPressSaveEntries: function(oEvent) {
 			var that = this;
-			fragment.AddUpdatetime_saveEntries(this.getView(),function(){
+			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
 				that.getRouter().navTo("home", {}, true);
-				that.getView().getModel("userPreference").setProperty("/successMaskEntry",true);
+				that.getView().getModel("userPreference").setProperty("/successMaskEntry", true);
 				//MessageToast.show(that.getResourceBundle().getText("successPostMsg"),{duration:10000});	 
 			});
-			
-			
+
 		},
 
 		handleLoadItems: function(oEvent) {
@@ -143,7 +146,7 @@ sap.ui.define([
 			fragment.SearchProject_onPositionFilterChange(oEvent);
 		},
 		OnProjectFilterchange: function(oEvent) {
-			fragment.SearchProject_OnProjectFilterchange(oEvent,this.getView());
+			fragment.SearchProject_OnProjectFilterchange(oEvent, this.getView());
 		},
 
 		////****SearchProject Fragment Event End******//////////
@@ -173,6 +176,13 @@ sap.ui.define([
 		OnchangeTimeSelection: function(oEvent) {
 			//	var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnchangeTimeSelection(oEvent);
+		},
+		onRBSelect: function(oEvent) {
+			if (oEvent.getParameters().selected) {
+				oEvent.getSource().setEnabled(false);
+			} else {
+				oEvent.getSource().setEnabled(true);
+			}
 		},
 		OnChangeHours: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
