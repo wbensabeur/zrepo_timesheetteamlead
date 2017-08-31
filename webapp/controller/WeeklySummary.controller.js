@@ -119,7 +119,7 @@ sap.ui.define([
 				oData.PersoValue = 'X';
 			}
 
-			var url = "/PersonalizationSet(UserId='" + this.getView().getModel("userPreference").getProperty("/userID") + "',PersoId='BW')";
+			var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + this.getView().getModel("userPreference").getProperty("/userID") + "',PersoId='BW')";
 			this.getView().getModel().update(url, oData);
 			this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);
 			this.getView().getModel("userPreference").setProperty("/defaultPeriod", this.userPref.defaultPeriod);

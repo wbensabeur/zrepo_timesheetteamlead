@@ -1,10 +1,12 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
 	"com/vinci/timesheet/admin/model/models",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"com/vinci/timesheet/admin/controller/ErrorHandler"
-], function(UIComponent, Device, models, datetime, ErrorHandler) {
+], function(UIComponent, Device, Filter, FilterOperator, models, datetime, ErrorHandler) {
 	"use strict";
 
 	return UIComponent.extend("com.vinci.timesheet.admin.Component", {
@@ -101,6 +103,7 @@ sap.ui.define([
 			var that = this;
 			odataModel.read('/PersonalizationSet', {
 				async: false,
+				filters:[new Filter("ApplicationName", FilterOperator.EQ, 'TEAMLEAD')],
 				success: function(data) {
 					var results = data.results;
 					for (var k = 0; k < results.length; k++) {
