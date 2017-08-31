@@ -194,7 +194,7 @@ sap.ui.define([
 		},
 		onPastPeriodNavPress: function(oEvent) {
 			if (this.twoWeek) {
-				this.userPref.startDate.setDate(this.userPref.startDate.getDate() - 14);
+				this.userPref.startDate.setDate(this.userPref.startDate.getDate() - 7);
 				this._calendarBinding(this.userPref.startDate, 2);
 			} else {
 				this.userPref.startDate.setDate(this.userPref.startDate.getDate() - 7);
@@ -204,7 +204,7 @@ sap.ui.define([
 		},
 		onFuturePeriodNavPress: function(oEvent) {
 			if (this.twoWeek) {
-				this.userPref.startDate.setDate(this.userPref.startDate.getDate() + 14);
+				this.userPref.startDate.setDate(this.userPref.startDate.getDate() + 7);
 				this._calendarBinding(this.userPref.startDate, 2);
 			} else {
 				this.userPref.startDate.setDate(this.userPref.startDate.getDate() + 7);

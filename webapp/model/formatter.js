@@ -24,7 +24,15 @@ sap.ui.define([
 					weekday: "long"
 				});
 				month = month[0].toUpperCase() + month.slice(1);
-				return month + " " + oDate.getDate() + "/" + (oDate.getMonth() + 1) + "/" + oDate.getUTCFullYear();
+					var dd = oDate.getDate();
+					if (dd < 10) {
+				dd = '0' + dd;
+			}
+			var mm = oDate.getMonth() + 1;
+			if (mm < 10) {
+				mm = '0' + mm;
+			}
+				return month + " " + dd + "/" + mm + "/" + oDate.getUTCFullYear();
 			}
 			return "";
 		},

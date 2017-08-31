@@ -548,3 +548,7 @@ input {
     outline: none !important;
     outline-style: none !important;
 }
+.EmpWeekStatus[data-status=""]:hover
+{
+    background: white;
+}

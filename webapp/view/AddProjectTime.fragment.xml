@@ -13,7 +13,7 @@
 						<RadioButton text="{i18n>specificTime}"/>
 					</buttons>
 				</RadioButtonGroup>
-				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'},  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange1">
+				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet',  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange1">
 					<core:ListItem key="{FieldValue}" text="{FieldDescription}" />
 				</ComboBox>
 			</HBox>

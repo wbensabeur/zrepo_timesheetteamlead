@@ -678,7 +678,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (meal || transport || travel) {
 				var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
 				var zoneName = oView.byId('AllowanceZoneType').getValue();
-				if (zoneName === undefined) {
+				if (zoneName === undefined || zoneName === "") {
 					MessageBox.alert("All Items are not selected");
 					return;
 				}
