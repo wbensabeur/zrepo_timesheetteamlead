@@ -12,3 +12,4 @@ visual_ext_index.html
 preview.json
 cp.project.properties.json
 /dist/
+/.user.project.json
