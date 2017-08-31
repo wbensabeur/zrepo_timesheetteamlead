@@ -13,7 +13,7 @@
 						<RadioButton text="{i18n>specificTime}" select="onRBSelect"/>
 					</buttons>
 				</RadioButtonGroup>
-				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet',  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange1">
+				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet',  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange1">
 					<core:ListItem key="{FieldValue}" text="{FieldDescription}" />
 				</ComboBox>
 			</HBox>
@@ -34,7 +34,7 @@
                             />
 				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"  valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="Enter Start Time" change="OnChangeStartTime"/>
 				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}" enabled="false"  valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="Enter End Time" change="OnChangeEndTime"/>
-				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'},  filters: [{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange2">
+				<ComboBox placeholder="{i18n>hrType}" items="{path:'/ValueHelpSet', sorter: {path:'FieldValue'},  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}" selectionChange="OnDailyHrTypeChange2">
 					<core:ListItem key="{FieldValue}" text="{FieldDescription}" />
 				</ComboBox>
 			</HBox>
