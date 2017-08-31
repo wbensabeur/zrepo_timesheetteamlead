@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	
+		
+		<HBox class="sapUiSmallMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+			<HBox>
+				<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
+				<TimePicker valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="{i18n>startTime}" change="OnChangeStartTimeKM"
+					/>
+			</HBox>
+			<HBox>
+				<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
+				<TimePicker enabled="false" valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="{i18n>endTime}" change="OnChangeEndTimeKM"/>
+			</HBox>
+			<Input type="Number" placeholder="{i18n>noOfKM}" width="10rem" />
+			<ComboBox value="{i18n>kmType}"/>
+		</HBox>
+		
+</core:FragmentDefinition>
