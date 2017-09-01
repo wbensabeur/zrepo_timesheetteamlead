@@ -53,9 +53,9 @@ sap.ui.define([
 			var userBox = sap.ui.getCore().byId('shellUser');
 			var that = this;
 			this.getModel().read('/TimeAdminSet', {
-				/*	urlParameters:{
-						"$top" :"1"
-					},*/
+					urlParameters:{
+						"$select" :"UserId,FullName"
+					},
 				success: function(data) {
 					var results = data.results;
 					var usrName = results[0].FullName;
@@ -65,6 +65,7 @@ sap.ui.define([
 
 				}
 			});
+			
 
 		},
 

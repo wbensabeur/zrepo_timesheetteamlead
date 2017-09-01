@@ -91,6 +91,7 @@ sap.ui.define([
 		},
 		onPressSaveEntries: function(oEvent) {
 			var that = this;
+			
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
 				that.getRouter().navTo("home", {}, true);

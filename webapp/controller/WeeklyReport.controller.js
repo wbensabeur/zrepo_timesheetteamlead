@@ -76,6 +76,7 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function(oEvent) {
+			
 			this.getView().byId("SignatureFrame").setVisible(false);
 			this.getView().byId("signBtn").setVisible(true);
 			this.getView().byId("timeSubmitBtn").setVisible(false);
