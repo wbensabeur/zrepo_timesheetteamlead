@@ -75,11 +75,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_OnProjectFilterchange: function(oEvent, oView) {
 
 			var index = oEvent.getParameter('selectedIndex');
-			var button = oEvent.getSource().getButtons()[index];
-			var sourceId = button.getId();
+			var buttons = oEvent.getSource().getButtons();
+		//	var sourceId = button.getId();
 			//button.focus(false);
 			if (index === 0) // Last + Fav Projects  
 			{
+				buttons[0].setEnabled(false);
+				buttons[1].setEnabled(true);
+				
 				this.lastProjectFilter = [];
 				for (var k = 0; k < this.employees.length; k++) {
 					var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
@@ -93,16 +96,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oEvent.getSource().getParent().getItems()[2].setVisible(false);
 
 			} else {
+				buttons[0].setEnabled(true);
+				buttons[1].setEnabled(false);
 				this.lastProjectFilter = null;
 				oEvent.getSource().getParent().getItems()[2].setVisible(true);
 			}
 			this.SearchProject_applyFiler();
-			var that = oView;
+		//	var that = oView;
 
-			jQuery.sap.delayedCall(0, this, function() {
+		/*	jQuery.sap.delayedCall(0, this, function() {
 				document.getElementById(sourceId).blur();
 				//	that.byId("ProjectCancelButton").focus();
-			});
+			});*/
 
 		},
 		SearchProject_OnProjectSelected: function(oEvent, selectButton) {
@@ -322,9 +327,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddProjectTime_OnchangeTimeSelection: function(oEvent) {
 
-			var index = oEvent.getParameter('selectedIndex');
-			var button = oEvent.getSource().getButtons()[index];
-			var sourceId = button.getId();
+			//var index = oEvent.getParameter('selectedIndex');
+			var buttons = oEvent.getSource().getButtons();
+			
+			//var sourceId = button.getId();
 
 			var source = oEvent.getSource();
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
@@ -340,7 +346,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} );*/
 			if (oEvent.getParameter("selectedIndex") === 1) {
 				//newValue = 0;
-
+				buttons[0].setEnabled(true);
+				buttons[1].setEnabled(false);
 				allDayCombo.setVisible(false);
 				selecthrsCombo.setVisible(true);
 				timepicker.setValue("0.00");
@@ -349,6 +356,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else { // For all day Selection
 				allDayCombo.setVisible(true);
 				selecthrsCombo.setVisible(false);
+				buttons[0].setEnabled(false);
+				buttons[1].setEnabled(true);
 
 			}
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
@@ -357,10 +366,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newTotalhrs = currentTotalhrs + deltahrs;
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
-			jQuery.sap.delayedCall(0, this, function() {
+			/*jQuery.sap.delayedCall(0, this, function() {
 				document.getElementById(sourceId).blur();
 				//	that.byId("ProjectCancelButton").focus();
-			});
+			});*/
 		},
 		AddProjectTime_OnChangeHours: function(oEvent) {
 			var source = oEvent.getSource();
