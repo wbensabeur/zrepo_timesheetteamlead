@@ -22,7 +22,16 @@ sap.ui.define([
 				employeeFilter:null,
 				startDate:startDate,
 				userID:null,
-				successMaskEntry : false
+				successMaskEntry : false,
+				defaultHours : false,
+				defaultIPD : false,
+				defaultKM : false,
+				defaultAbsence : false,
+				defaultEquipment : false,
+				defaultOvernight : false,
+				defaultBonus: false,
+				defaultCraftCode: false
+				
 			};
 			var oModel = new JSONModel(userPref);
 			oModel.setDefaultBindingMode("OneWay");

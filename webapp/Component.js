@@ -41,29 +41,30 @@ sap.ui.define([
 
 			//set EmployeeSelection Model
 			this.setModel(models.createEmployeeSelection(), "employeeSelected");
-			
+
 			//set EmployeeDaySelection Model
-			this.setModel(models.createEmployeeDaySelection(),"employeeDaysSelected");
+			this.setModel(models.createEmployeeDaySelection(), "employeeDaysSelected");
 
 			// create the views based on the url/hash
 			//this.getRouter().initialize(); done under  _updateUserPreference
-			var userPreferenceModel =  this.getModel("userPreference");
+			var userPreferenceModel = this.getModel("userPreference");
 			this._updateUserPreference(this.getModel(), userPreferenceModel);
 
 			var userBox = sap.ui.getCore().byId('shellUser');
+			var that = this;
 			this.getModel().read('/TimeAdminSet', {
-			/*	urlParameters:{
-					"$top" :"1"
-				},*/
+				/*	urlParameters:{
+						"$top" :"1"
+					},*/
 				success: function(data) {
 					var results = data.results;
 					var usrName = results[0].FullName;
 					userBox.setUsername(usrName);
 					userPreferenceModel.setProperty('/userID', results[0].UserId);
+					that.getRouter().initialize();
+
 				}
 			});
-			
-			
 
 		},
 
@@ -103,7 +104,7 @@ sap.ui.define([
 			var that = this;
 			odataModel.read('/PersonalizationSet', {
 				async: false,
-				filters:[new Filter("ApplicationName", FilterOperator.EQ, 'TEAMLEAD')],
+				filters: [new Filter("ApplicationName", FilterOperator.EQ, 'TEAMLEAD')],
 				success: function(data) {
 					var results = data.results;
 					for (var k = 0; k < results.length; k++) {
@@ -122,9 +123,42 @@ sap.ui.define([
 									userPreferenceModel.setProperty('/startDate', datetime.getLastWeek(new Date()));
 								}
 								break;
+							case 'HOURS':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultHours', true);
+								break;
+							case 'IPD':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultIPD', true);
+								break;
+							case 'KM':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultKM', true);
+								break;
+							case 'ABSENCE':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultAbsence', true);
+								break;
+							case 'EQUIPMENT':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultEquipment', true);
+								break;
+							case 'OVERNIGHT':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultOvernight', true);
+								break;
+							case 'BONUS':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultBonus', true);
+								break;
+							case 'CRAFTCODE':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultCraftCode', true);
+								break;
+
 						}
 					}
-					that.getRouter().initialize();
+
 				}
 			});
 
