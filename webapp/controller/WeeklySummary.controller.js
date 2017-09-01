@@ -26,7 +26,8 @@ sap.ui.define([
 			var setting = sap.ui.getCore().byId("shellSettings");
 			if (setting !== null) {
 				setting.attachPress(function(oEvent) {
-					//alert("Personal Setting");
+					
+					MessageBox.information("Version - 1.0.63");
 				});
 			}
 			// Put down worklist table's original value for busy indicator delay,
