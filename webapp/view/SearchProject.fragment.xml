@@ -3,7 +3,7 @@
 		<Label text="{i18n>filterBy} :"/>
 		<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="0">
 			<buttons>
-				<RadioButton text="{i18n>projectFav}"/>
+				<RadioButton text="{i18n>projectFav}" enabled="false"/>
 				<RadioButton text="{i18n>allProject}"/>
 			</buttons>
 		</RadioButtonGroup>

@@ -177,13 +177,7 @@ sap.ui.define([
 			//	var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnchangeTimeSelection(oEvent);
 		},
-		onRBSelect: function(oEvent) {
-			if (oEvent.getParameters().selected) {
-				oEvent.getSource().setEnabled(false);
-			} else {
-				oEvent.getSource().setEnabled(true);
-			}
-		},
+		
 		OnChangeHours: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeHours(oEvent);
