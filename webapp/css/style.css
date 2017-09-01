@@ -520,6 +520,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .sapMITBFilter .sapMITBText {
     overflow: visible;
     color: white;
+    text-shadow: none;
 }
 
 .textAlignmentStart>td {
@@ -531,8 +532,8 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     font-size: 1rem;
 }
 
-.sapMRbBLabel {
-    height: 2rem;
+.CustomRatioBtn {
+    opacity: 1;
 }
 
 .ProjectLabel {

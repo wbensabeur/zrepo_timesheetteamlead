@@ -17,7 +17,7 @@
 						</HBox>
 					</VBox>
 					<VBox visible="false">  
-						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+						<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 					</VBox>
 				</VBox>
 				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
@@ -47,7 +47,7 @@
 						</VBox>
 					</VBox>
 					<VBox visible="false">  
-						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+						<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 					</VBox>
 				</VBox>
 				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
@@ -95,7 +95,7 @@
 						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddKM' type='XML'/>
 					</VBox>
 					<VBox visible="false">  
-						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>
+						<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 					</VBox>
 				</VBox>
 			</IconTabFilter>

@@ -10,9 +10,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	return {
 		SearchProject_init: function(controler, container, selectButton) {
 
-			//var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
-			//	controler._setProjectSearchFragment(fragment.getId());
-			this.projectSearchFragment = container.getItems()[1].getItems()[0].getId();
+			var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
+			
+			//this.projectSearchFragment = container.getItems()[1].getItems()[0].getId();
+			this.projectSearchFragment = fragment.getId();
 			this.projectfilter = null;
 			this.BUfilter = null;
 			this.positionfilter = null;
@@ -34,7 +35,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.getItems()[0].setVisible(false);
 			container.getItems()[1].setVisible(true);
 			//hideContainer.setVisible(false);
-			//	container.getItems()[1].addItem(fragment);
+			container.getItems()[1].addItem(fragment);
 
 			selectButton.getCustomData()[0].setValue("");
 
@@ -61,7 +62,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.getItems()[0].setVisible(true);
 			container.getItems()[1].setVisible(false);
 			//	hideContainer.setVisible(true);
-			//fragmentObject.destroy(true);
+			fragmentObject.destroy(true);
 
 			this.footerModel.setProperty("/MainNewScreen", true);
 			this.footerModel.setProperty("/MainUpdateScreen", false);
@@ -537,16 +538,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		//////**Add Update Time** ////
 		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel) {
 
+			var userPrefModel = controler.getModel('userPreference');
 			var odata = {
 				totalhrs: 0,
-				visibleHrs: true,
-				visibleDailyAllow: true,
-				visibleKM: true,
-				visibleAbsence: true,
+				visibleHrs: userPrefModel.getProperty('/defaultHours'),
+				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
+				visibleKM: userPrefModel.getProperty('/defaultKM'),
+				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
 				visibleAbsence1: true,
 				visibleAbsence2: false,
 				visibleAbsence3: false,
-				visibleEquipment: false,
+				visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
 				visibleSummary: false,
 				visibleProjectOptional: false,
 				newTime: true,
