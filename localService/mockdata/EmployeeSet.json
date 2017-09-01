@@ -1,0 +1,311 @@
+[{
+	"EmployeeId": "EmployeeId 1",
+	"UserId": "UserId 1",
+	"FullName": "TOMAS KEVIN",
+	"UserType": "UserType 1",
+	"StartDate": "/Date(957364664000)/",
+	"EndDate": "/Date(1230561464000)/",
+	"IsTimeEntryEnable": true,
+	"ManagerId": "ManagerId 1",
+	"BusinessUnit": "BusinessUnit 1",
+	"Company": "Company 1",
+	"AnalyticalUnit": "AnalyticalUnit 1",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%201')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%201')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%201')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%201')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 2",
+	"UserId": "UserId 2",
+	"FullName": "CUSSAC SYLVIE",
+	"UserType": "UserType 2",
+	"StartDate": "/Date(1397745464000)/",
+	"EndDate": "/Date(1441204664000)/",
+	"IsTimeEntryEnable": true,
+	"ManagerId": "ManagerId 2",
+	"BusinessUnit": "BusinessUnit 2",
+	"Company": "Company 2",
+	"AnalyticalUnit": "AnalyticalUnit 2",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%202')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%202')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%202')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%202')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 3",
+	"UserId": "UserId 3",
+	"FullName": "MAGDELEINE VALERIE",
+	"UserType": "UserType 3",
+	"StartDate": "/Date(1236523064000)/",
+	"EndDate": "/Date(1537713464000)/",
+	"IsTimeEntryEnable": true,
+	"ManagerId": "ManagerId 3",
+	"BusinessUnit": "BusinessUnit 3",
+	"Company": "Company 3",
+	"AnalyticalUnit": "AnalyticalUnit 3",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%203')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%203')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%203')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%203')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 4",
+	"UserId": "UserId 4",
+	"FullName": "PALOMBA PASCALE",
+	"UserType": "UserType 4",
+	"StartDate": "/Date(1492007864000)/",
+	"EndDate": "/Date(1427639864000)/",
+	"IsTimeEntryEnable": true,
+	"ManagerId": "ManagerId 4",
+	"BusinessUnit": "BusinessUnit 4",
+	"Company": "Company 4",
+	"AnalyticalUnit": "AnalyticalUnit 4",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%204')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%204')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%204')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%204')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 5",
+	"UserId": "UserId 5",
+	"FullName": "ANTOINE PATRICE",
+	"UserType": "UserType 5",
+	"StartDate": "/Date(1000823864000)/",
+	"EndDate": "/Date(1238164664000)/",
+	"IsTimeEntryEnable": true,
+	"ManagerId": "ManagerId 5",
+	"BusinessUnit": "BusinessUnit 5",
+	"Company": "Company 5",
+	"AnalyticalUnit": "AnalyticalUnit 5",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%205')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%205')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%205')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%205')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 6",
+	"UserId": "UserId 6",
+	"FullName": "MIUS MARYLINE",
+	"UserType": "UserType 6",
+	"StartDate": "/Date(1153406264000)/",
+	"EndDate": "/Date(1004625464000)/",
+	"IsTimeEntryEnable": false,
+	"ManagerId": "ManagerId 6",
+	"BusinessUnit": "BusinessUnit 6",
+	"Company": "Company 6",
+	"AnalyticalUnit": "AnalyticalUnit 6",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%206')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%206')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%206')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%206')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 7",
+	"UserId": "UserId 7",
+	"FullName": "EYVASO ALINE",
+	"UserType": "UserType 7",
+	"StartDate": "/Date(1207751864000)/",
+	"EndDate": "/Date(1398091064000)/",
+	"IsTimeEntryEnable": true,
+	"ManagerId": "ManagerId 7",
+	"BusinessUnit": "BusinessUnit 7",
+	"Company": "Company 7",
+	"AnalyticalUnit": "AnalyticalUnit 7",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%207')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%207')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%207')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%207')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 8",
+	"UserId": "UserId 8",
+	"FullName": "GALLO STEPHANIE",
+	"UserType": "UserType 8",
+	"StartDate": "/Date(1567435064000)/",
+	"EndDate": "/Date(1281451064000)/",
+	"IsTimeEntryEnable": false,
+	"ManagerId": "ManagerId 8",
+	"BusinessUnit": "BusinessUnit 8",
+	"Company": "Company 8",
+	"AnalyticalUnit": "AnalyticalUnit 8",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%208')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%208')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%208')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%208')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 9",
+	"UserId": "UserId 9",
+	"FullName": "SOLER SABINE",
+	"UserType": "UserType 9",
+	"StartDate": "/Date(1254148664000)/",
+	"EndDate": "/Date(1231943864000)/",
+	"IsTimeEntryEnable": true,
+	"ManagerId": "ManagerId 9",
+	"BusinessUnit": "BusinessUnit 9",
+	"Company": "Company 9",
+	"AnalyticalUnit": "AnalyticalUnit 9",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%209')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%209')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%209')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%209')/NavMyTravelDays"
+		}
+	}
+}, {
+	"EmployeeId": "EmployeeId 10",
+	"UserId": "UserId 10",
+	"FullName": "SUCCIVALLI VALERIE",
+	"UserType": "UserType 10",
+	"StartDate": "/Date(1100529464000)/",
+	"EndDate": "/Date(1091975864000)/",
+	"IsTimeEntryEnable": true,
+	"ManagerId": "ManagerId 10",
+	"BusinessUnit": "BusinessUnit 10",
+	"Company": "Company 10",
+	"AnalyticalUnit": "AnalyticalUnit 10",
+	"__metadata": {
+		"uri": "EmployeeSet('EmployeeId%2010')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Employee"
+	},
+	"NavMyWeekSummary": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%2010')/NavMyWeekSummary"
+		}
+	},
+	"NavMyWorkDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%2010')/NavMyWorkDays"
+		}
+	},
+	"NavMyTravelDays": {
+		"__deferred": {
+			"uri": "EmployeeSet('EmployeeId%2010')/NavMyTravelDays"
+		}
+	}
+}]
