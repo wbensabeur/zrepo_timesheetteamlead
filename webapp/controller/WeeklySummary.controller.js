@@ -359,7 +359,7 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
 		OnWeeklyReportSelection: function() {
-			this.getRouter().navTo("ReportEmployeeSelection", {}, true);
+			this.getRouter().navTo("ReportEmployeeSelection", {source: 'Summary'}, true);
 		},
 
 		OnDeleteEmpDayitem: function(oEvent) {

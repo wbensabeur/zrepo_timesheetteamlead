@@ -92,13 +92,13 @@ sap.ui.define([
 				var oCalendarModel = new JSONModel(caldenderdata);
 				this.setModel(oCalendarModel, "calendar");
 			} else {
-				this.getRouter().navTo("ReportEmployeeSelection", {}, true);
+				this.getRouter().navTo("ReportEmployeeSelection", {source: 'Summary'}, true);
 			}
 			sap.ui.getCore().byId("shell").setHeaderHiding(true);
 		},
 		onPressCancel: function() {
 			sap.ui.getCore().byId("shell").setHeaderHiding(false);
-			this.getRouter().navTo("ReportEmployeeSelection", {}, true);
+			this.getRouter().navTo("ReportEmployeeSelection", {source: 'WeeklyReport'}, true);
 		},
 		_applyEmployeeBinding: function(employee) {
 			var oView = this.getView();

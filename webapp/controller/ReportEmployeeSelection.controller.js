@@ -43,12 +43,16 @@ sap.ui.define([
 			});
 			var that = this;
 			$(window).resize(function() {
-					var totalH = window.innerHeight - 200;
-					that.getView().byId('TableScroll').setHeight(totalH+'px');
+				var totalH = window.innerHeight - 200;
+				that.getView().byId('TableScroll').setHeight(totalH + 'px');
 			});
+		},
+		onUpdateStart: function(oEvent) {
+			this.byId("table").setBusy(true);
 		},
 		onUpdateFinished: function(oEvent) {
 			// update the worklist's object counter after the table update
+			this.byId("table").setBusy(false);
 			var sTitle, oTable = oEvent.getSource(),
 				iTotalItems = oEvent.getParameter("total");
 			// only update the counter if the length is final and
@@ -61,6 +65,14 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
+			
+			if (this.refresh) {
+				
+				this.employeeSelected.employees  = [];                         
+				this.refresh = false;
+				
+			}
+			
 			/*var col1 = oTable.getColumns()[0].getWidth();
 							alert(col1);*/
 		},
@@ -72,19 +84,19 @@ sap.ui.define([
 				empBox.getParent().getCustomData()[0].setValue("S");
 				this.employeeSelected.employees.push(empBox);
 				// employee ID
-				
+
 			} else {
 				empBox.getCustomData()[0].setValue("");
 				empBox.getParent().getCustomData()[0].setValue("");
 				var index = this.employeeSelected.employees.indexOf(empBox);
 				this.employeeSelected.employees.splice(index, 1);
-				
+
 			}
 		},
 		onPressCancel: function() {
 			this.getRouter().navTo("home", {}, true);
 			var boxes = this.employeeSelected.employees;
-			for (var k = 0;k < boxes.length; k++ ){
+			for (var k = 0; k < boxes.length; k++) {
 				boxes[k].getCustomData()[0].setValue("");
 				boxes[k].getParent().getCustomData()[0].setValue("");
 			}
@@ -102,10 +114,10 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.vinci.timesheet.admin.view.ReportEmployeeSelection
 		 */
-			onAfterRendering: function() {
-				var totalH = window.innerHeight - 200;
-				this.getView().byId('TableScroll').setHeight(totalH+'px');
-			},
+		onAfterRendering: function() {
+			var totalH = window.innerHeight - 200;
+			this.getView().byId('TableScroll').setHeight(totalH + 'px');
+		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf com.vinci.timesheet.admin.view.ReportEmployeeSelection
@@ -140,8 +152,16 @@ sap.ui.define([
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
 		_onObjectMatched: function(oEvent) {
-			this.userPref = $.extend({}, this.getView().getModel("userPreference").getData());
+			var argument = oEvent.getParameter("arguments");
+			this.refresh = false;
+			this.userPref = this.getView().getModel("userPreference").getData();
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
+			if (argument.source === 'Summary') {
+
+				this.refresh = true;
+
+			}
+
 			this.employeeSelected.startDate = this.userPref.startDate;
 			if (this.userPref.defaultPeriod === 1) {
 				this.twoWeek = false;
@@ -167,7 +187,7 @@ sap.ui.define([
 		 */
 		OnSelectionReSet: function() {
 			var boxes = this.employeeSelected.employees;
-			for (var k = 0;k < boxes.length; k++ ){
+			for (var k = 0; k < boxes.length; k++) {
 				boxes[k].getCustomData()[0].setValue("");
 				boxes[k].getParent().getCustomData()[0].setValue("");
 			}
