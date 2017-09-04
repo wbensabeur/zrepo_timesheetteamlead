@@ -642,7 +642,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						fullDay = true;
 					}
 					var projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
-
+					if(hrType === "" || hrType === undefined || hrType === null) {
+						MessageBox.alert("Hour Type is not selected");
+						oView.setBusy(false);
+						return;
+					}
 				} catch (err) {
 					if (projectID === undefined && hrType === "") {
 						continue;
@@ -690,6 +694,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					var KMNumber = kmtab[km].getItems()[2].getValue();
 					var kmhrType = kmtab[km].getItems()[3].getSelectedKey();
 					var kmprojectID = oView.getModel().getProperty(kmprojectBindingPath).ProjectId;
+					if(kmhrType === "" || kmhrType === undefined || kmhrType === null) {
+						MessageBox.alert("Kilometer Type is not selected");
+						oView.setBusy(false);
+						return;
+					}
 				} catch (err) {
 					if (kmprojectID === undefined && kmhrType === "") {
 						continue;
@@ -724,8 +733,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (meal || transport || travel) {
 				var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
 				var zoneName = oView.byId('AllowanceZoneType').getValue();
-				if (zoneName === undefined || zoneName === "") {
-					MessageBox.alert("All Items are not selected");
+				if (zoneName === undefined || zoneName === "" || zoneName === null) {
+					MessageBox.alert("Zone type is not selected");
 					oView.setBusy(false);
 					return;
 				}
