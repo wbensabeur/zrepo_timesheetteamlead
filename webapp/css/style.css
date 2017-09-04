@@ -152,7 +152,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: #3b617e;
 }
 
-.tableColumnCombo>input {
+.tableColumnCombo>div>input {
     background: transparent !important;
     padding: 0 0.5rem;
     font-weight: bold;
