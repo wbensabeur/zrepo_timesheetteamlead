@@ -102,6 +102,7 @@
 								</Label>
 								<customData>
 									<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
+									<core:CustomData key="titlelen" value="Short" writeToDom="true"/>
 								</customData>
 							</VBox>
 							<Button  text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
