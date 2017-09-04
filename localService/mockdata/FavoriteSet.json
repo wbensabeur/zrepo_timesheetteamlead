@@ -1,0 +1,91 @@
+[{
+	"FavoriteType": "FavoriteType 1",
+	"UserId": "UserId 1",
+	"ObjectId": "ObjectId 1",
+	"CreatedOn": "/Date(1300946671000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%201',UserId='UserId%201',ObjectId='ObjectId%201')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 2",
+	"UserId": "UserId 2",
+	"ObjectId": "ObjectId 2",
+	"CreatedOn": "/Date(1301119471000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%202',UserId='UserId%202',ObjectId='ObjectId%202')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 3",
+	"UserId": "UserId 3",
+	"ObjectId": "ObjectId 3",
+	"CreatedOn": "/Date(1090821871000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%203',UserId='UserId%203',ObjectId='ObjectId%203')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 4",
+	"UserId": "UserId 4",
+	"ObjectId": "ObjectId 4",
+	"CreatedOn": "/Date(1029996271000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%204',UserId='UserId%204',ObjectId='ObjectId%204')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 5",
+	"UserId": "UserId 5",
+	"ObjectId": "ObjectId 5",
+	"CreatedOn": "/Date(1276409071000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%205',UserId='UserId%205',ObjectId='ObjectId%205')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 6",
+	"UserId": "UserId 6",
+	"ObjectId": "ObjectId 6",
+	"CreatedOn": "/Date(1143612271000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%206',UserId='UserId%206',ObjectId='ObjectId%206')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 7",
+	"UserId": "UserId 7",
+	"ObjectId": "ObjectId 7",
+	"CreatedOn": "/Date(1013925871000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%207',UserId='UserId%207',ObjectId='ObjectId%207')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 8",
+	"UserId": "UserId 8",
+	"ObjectId": "ObjectId 8",
+	"CreatedOn": "/Date(1369461871000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%208',UserId='UserId%208',ObjectId='ObjectId%208')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 9",
+	"UserId": "UserId 9",
+	"ObjectId": "ObjectId 9",
+	"CreatedOn": "/Date(1459663471000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%209',UserId='UserId%209',ObjectId='ObjectId%209')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}, {
+	"FavoriteType": "FavoriteType 10",
+	"UserId": "UserId 10",
+	"ObjectId": "ObjectId 10",
+	"CreatedOn": "/Date(1475561071000)/",
+	"__metadata": {
+		"uri": "FavoriteSet(FavoriteType='FavoriteType%2010',UserId='UserId%2010',ObjectId='ObjectId%2010')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Favorite"
+	}
+}]
