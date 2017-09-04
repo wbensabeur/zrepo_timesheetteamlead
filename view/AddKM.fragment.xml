@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<HBox class="sapUiSmallMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+		<HBox>
+			<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
+			<TimePicker valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="{i18n>startTime}" change="OnChangeStartTimeKM"/>
+		</HBox>
+		<HBox>
+			<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
+			<TimePicker enabled="false" valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="{i18n>endTime}" change="OnChangeEndTimeKM"/>
+		</HBox>
+		<Input type="Number" placeholder="{i18n>noOfKM}" width="10rem"/>
+		<ComboBox placeholder="{i18n>kmType}"
+			items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'KM'}]}">
+			<core:Item key="{FieldValue}" text="{FieldDescription}"/>
+			<layoutData>
+				<FlexItemData growFactor="1"/>
+			</layoutData>
+		</ComboBox>
+	</HBox>
+</core:FragmentDefinition>
