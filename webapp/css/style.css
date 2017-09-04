@@ -182,12 +182,23 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 /*Table data*/
 
-
 /*Employee*/
 
 .EmpWeekStatus {
     text-align: left;
     padding-left: .75rem;
+    /*height: 70px !important;*/
+}
+
+.EmpWeekStatus>div>div>div>.sapMSLITitle {
+	white-space: initial;
+}
+
+.EmpWeekStatus[data-titlelen="Long"] {
+    height: 70px !important;
+}
+
+.EmpWeekStatus[data-titlelen="Short"] {
     height: 60px !important;
 }
 
