@@ -679,7 +679,45 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				workDayItems.push(workDayItem);
 
 			}
+			
+			/// Get Item Data from view for KM Hours
+			var kmtab = oView.byId('addKM').getItems()[0].getItems();
+			for (var km = 2; km < kmtab.length; km++) {
+				try {
+					var kmprojectBindingPath = oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].getBindingContext().getPath();
+					var StartTime = kmtab[km].getItems()[0].getItems()[1].getValue();
+					var EndTime = kmtab[km].getItems()[1].getItems()[1].getValue(); 
+					var KMNumber = kmtab[km].getItems()[2].getValue();
+					var kmhrType = kmtab[km].getItems()[3].getSelectedKey();
+					var kmprojectID = oView.getModel().getProperty(kmprojectBindingPath).ProjectId;
+				} catch (err) {
+					if (kmprojectID === undefined && kmhrType === "") {
+						continue;
+					} else {
+						MessageBox.alert("All Items are not selected");
+						oView.setBusy(false);
+						return;
+					}
+				}
+				workDayItem = {
+					"ProjectID": kmprojectID,
+					"EntryType": "KM",
+					"Hours": "",
+					"EntryTypeCatId": kmhrType,
+					"KMNumber": KMNumber,
+					"StartTime": StartTime,
+					"EndTime": EndTime,
+					"FullDay": false,
+					"ZoneType": "",
+					"ZoneName": "",
+					"MealIndicator": false,
+					"JourneyIndicator": false,
+					"TransportIndicator": false
 
+				};
+				workDayItems.push(workDayItem);
+			}
+			/// Get Item Data from view for Daily Allowances
 			var meal = oView.byId('AllowanceMealIndicator').getPressed();
 			var transport = oView.byId('AllowanceTransportIndicator').getPressed();
 			var travel = oView.byId('AllowanceTravelIndicator').getPressed();
@@ -713,9 +751,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					"JourneyIndicator": transport,
 					"TransportIndicator": travel
 				};
-
 				workDayItems.push(workDayAllowanceItem);
-
 			}
 
 			////
@@ -738,7 +774,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
 							"EntryTypeDesc": "",
 							"Hours": workDayItems[i].Hours,
-							"KMNumber": "",
+							"KMNumber": workDayItems[i].KMNumber,
 							"StartTime": workDayItems[i].StartTime,
 							"EndTime": workDayItems[i].EndTime,
 							"FullDay": workDayItems[i].FullDay,
@@ -766,10 +802,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			var that = this;
 			this.oDataModel.create("/WorkDaySet", data, {
-				success: function(){
+				success: function() {
 					oView.setBusy(false);
 					savepostFuction(that);
-					
+
 				},
 				error: function() {
 					oView.setBusy(false);
