@@ -24,14 +24,14 @@ sap.ui.define([
 					weekday: "long"
 				});
 				month = month[0].toUpperCase() + month.slice(1);
-					var dd = oDate.getDate();
-					if (dd < 10) {
-				dd = '0' + dd;
-			}
-			var mm = oDate.getMonth() + 1;
-			if (mm < 10) {
-				mm = '0' + mm;
-			}
+				var dd = oDate.getDate();
+				if (dd < 10) {
+					dd = '0' + dd;
+				}
+				var mm = oDate.getMonth() + 1;
+				if (mm < 10) {
+					mm = '0' + mm;
+				}
 				return month + " " + dd + "/" + mm + "/" + oDate.getUTCFullYear();
 			}
 			return "";
@@ -117,6 +117,13 @@ sap.ui.define([
 				return '';
 			}
 			return 'D1';
+		},
+		titleLength: function(empName) {
+			if (empName.length > 15) {
+				return 'Long';
+			} else {
+				return 'Short';
+			}
 		},
 		disableEmployees: function(isEntryEnabled) {
 			if (isEntryEnabled) {
