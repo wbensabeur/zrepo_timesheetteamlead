@@ -718,6 +718,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								oView.setBusy(false);
 								return;
 							}
+						}
 							workDayItem = {
 								"ProjectID": kmprojectID,
 								"EntryType": "KM",
