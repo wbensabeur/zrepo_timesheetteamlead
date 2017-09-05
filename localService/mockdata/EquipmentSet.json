@@ -1,0 +1,251 @@
+[{
+	"EquipmentId": "EquipmentId 1",
+	"EquipmentName": "EquipmentName 1",
+	"EquipmentType": "EquipmentType 1",
+	"StartDate": "/Date(1066889045000)/",
+	"EndDate": "/Date(1441087445000)/",
+	"TimeEntryEnable": true,
+	"BusinessUnit": "BusinessUnit 1",
+	"Company": "Company 1",
+	"AnalyticalUnit": "AnalyticalUnit 1",
+	"Section": "Section 1",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%201')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%201')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%201')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 2",
+	"EquipmentName": "EquipmentName 2",
+	"EquipmentType": "EquipmentType 2",
+	"StartDate": "/Date(1175148245000)/",
+	"EndDate": "/Date(1012716245000)/",
+	"TimeEntryEnable": true,
+	"BusinessUnit": "BusinessUnit 2",
+	"Company": "Company 2",
+	"AnalyticalUnit": "AnalyticalUnit 2",
+	"Section": "Section 2",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%202')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%202')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%202')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 3",
+	"EquipmentName": "EquipmentName 3",
+	"EquipmentType": "EquipmentType 3",
+	"StartDate": "/Date(1098597845000)/",
+	"EndDate": "/Date(1549605845000)/",
+	"TimeEntryEnable": false,
+	"BusinessUnit": "BusinessUnit 3",
+	"Company": "Company 3",
+	"AnalyticalUnit": "AnalyticalUnit 3",
+	"Section": "Section 3",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%203')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%203')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%203')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 4",
+	"EquipmentName": "EquipmentName 4",
+	"EquipmentType": "EquipmentType 4",
+	"StartDate": "/Date(1500703445000)/",
+	"EndDate": "/Date(1246514645000)/",
+	"TimeEntryEnable": true,
+	"BusinessUnit": "BusinessUnit 4",
+	"Company": "Company 4",
+	"AnalyticalUnit": "AnalyticalUnit 4",
+	"Section": "Section 4",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%204')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%204')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%204')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 5",
+	"EquipmentName": "EquipmentName 5",
+	"EquipmentType": "EquipmentType 5",
+	"StartDate": "/Date(1329977045000)/",
+	"EndDate": "/Date(1139637845000)/",
+	"TimeEntryEnable": false,
+	"BusinessUnit": "BusinessUnit 5",
+	"Company": "Company 5",
+	"AnalyticalUnit": "AnalyticalUnit 5",
+	"Section": "Section 5",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%205')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%205')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%205')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 6",
+	"EquipmentName": "EquipmentName 6",
+	"EquipmentType": "EquipmentType 6",
+	"StartDate": "/Date(1025244245000)/",
+	"EndDate": "/Date(1357279445000)/",
+	"TimeEntryEnable": true,
+	"BusinessUnit": "BusinessUnit 6",
+	"Company": "Company 6",
+	"AnalyticalUnit": "AnalyticalUnit 6",
+	"Section": "Section 6",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%206')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%206')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%206')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 7",
+	"EquipmentName": "EquipmentName 7",
+	"EquipmentType": "EquipmentType 7",
+	"StartDate": "/Date(1532844245000)/",
+	"EndDate": "/Date(1478239445000)/",
+	"TimeEntryEnable": false,
+	"BusinessUnit": "BusinessUnit 7",
+	"Company": "Company 7",
+	"AnalyticalUnit": "AnalyticalUnit 7",
+	"Section": "Section 7",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%207')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%207')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%207')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 8",
+	"EquipmentName": "EquipmentName 8",
+	"EquipmentType": "EquipmentType 8",
+	"StartDate": "/Date(1332482645000)/",
+	"EndDate": "/Date(961221845000)/",
+	"TimeEntryEnable": true,
+	"BusinessUnit": "BusinessUnit 8",
+	"Company": "Company 8",
+	"AnalyticalUnit": "AnalyticalUnit 8",
+	"Section": "Section 8",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%208')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%208')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%208')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 9",
+	"EquipmentName": "EquipmentName 9",
+	"EquipmentType": "EquipmentType 9",
+	"StartDate": "/Date(1235973845000)/",
+	"EndDate": "/Date(1286863445000)/",
+	"TimeEntryEnable": false,
+	"BusinessUnit": "BusinessUnit 9",
+	"Company": "Company 9",
+	"AnalyticalUnit": "AnalyticalUnit 9",
+	"Section": "Section 9",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%209')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%209')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%209')/NavEquipmentTimeItems"
+		}
+	}
+}, {
+	"EquipmentId": "EquipmentId 10",
+	"EquipmentName": "EquipmentName 10",
+	"EquipmentType": "EquipmentType 10",
+	"StartDate": "/Date(1486533845000)/",
+	"EndDate": "/Date(1492322645000)/",
+	"TimeEntryEnable": true,
+	"BusinessUnit": "BusinessUnit 10",
+	"Company": "Company 10",
+	"AnalyticalUnit": "AnalyticalUnit 10",
+	"Section": "Section 10",
+	"__metadata": {
+		"uri": "EquipmentSet('EquipmentId%2010')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Equipment"
+	},
+	"NavEquipmentDaySummary": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%2010')/NavEquipmentDaySummary"
+		}
+	},
+	"NavEquipmentTimeItems": {
+		"__deferred": {
+			"uri": "EquipmentSet('EquipmentId%2010')/NavEquipmentTimeItems"
+		}
+	}
+}]

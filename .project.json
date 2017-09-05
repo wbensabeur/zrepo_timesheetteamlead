@@ -1,0 +1,14 @@
+{
+  "mockpreview": {
+    "mockUri": "",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "hcpdeploy": {
+    "account": "a4769796d",
+    "name": "timesheetadmin",
+    "lastVersionWeTriedToDeploy": "1"
+  }
+}
