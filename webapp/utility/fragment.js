@@ -642,11 +642,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								fullDay = true;
 							}
 							var projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
-							if (hrType === "" || hrType === undefined || hrType === null) {
-								MessageBox.alert("Hour Type is not selected");
-								oView.setBusy(false);
-								return;
-							}
 						} catch (err) {
 							if (projectID === undefined && hrType === "") {
 								continue;
