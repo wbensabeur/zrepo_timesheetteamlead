@@ -628,7 +628,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_saveEntries: function(oView, savepostFuction) {
 			/// Get Item Data from view for Daily hour
-			oView.setBusy(true);
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
 			if (selectedTab === 'hours') {
@@ -827,15 +826,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			}
 			var that = this;
-			this.oDataModel.create("/WorkDaySet", data, {
-				success: function() {
-					oView.setBusy(false);
-					savepostFuction(that);
+			oView.setBusy(true);
+			jQuery.sap.delayedCall(500, this, function() {
+				this.oDataModel.create("/WorkDaySet", data, {
+					success: function() {
+						oView.setBusy(false);
+						savepostFuction(that);
 
-				},
-				error: function() {
-					oView.setBusy(false);
-				}
+					},
+					error: function() {
+						oView.setBusy(false);
+					}
+				});
 			});
 		},
 		Common_raiseinputError: function(source, text) {
