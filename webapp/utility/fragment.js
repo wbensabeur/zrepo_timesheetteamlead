@@ -626,7 +626,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent.getContent()[0];
 		},
-		AddUpdatetime_saveEntries: function(oView, savepostFuction) {
+		AddUpdatetime_saveEntries: function(oView, savepostFuction, vtype) {
 			/// Get Item Data from view for Daily hour
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
@@ -826,16 +826,29 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			}
 			var that = this;
-			oView.setBusy(true);
+			if (vtype === 'View') {
+				oView.setBusy(true);
+			} else if (vtype === 'Dialog') {
+				var oDialog = oView.byId("EmpDayCheckDialog");
+				oDialog.setBusy(true);
+			}
 			jQuery.sap.delayedCall(500, this, function() {
 				this.oDataModel.create("/WorkDaySet", data, {
 					success: function() {
-						oView.setBusy(false);
+						if (vtype === 'View') {
+							oView.setBusy(false);
+						} else if (vtype === 'Dialog') {
+							oDialog.setBusy(false);
+						}
 						savepostFuction(that);
 
 					},
 					error: function() {
-						oView.setBusy(false);
+						if (vtype === 'View') {
+							oView.setBusy(false);
+						} else if (vtype === 'Dialog') {
+							oDialog.setBusy(false);
+						}
 					}
 				});
 			});

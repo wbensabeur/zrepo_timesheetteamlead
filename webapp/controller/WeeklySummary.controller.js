@@ -234,7 +234,7 @@ sap.ui.define([
 				that.getView().getModel().read(headerContextPath);
 				oTable.getBinding("items").refresh();
 				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
-			});
+			}, 'Dialog');
 
 		},
 

@@ -96,7 +96,7 @@ sap.ui.define([
 				that.getRouter().navTo("home", {}, true);
 				that.getView().getModel("userPreference").setProperty("/successMaskEntry", true);
 				//MessageToast.show(that.getResourceBundle().getText("successPostMsg"),{duration:10000});	 
-			});
+			}, 'View');
 		},
 
 		handleLoadItems: function(oEvent) {
