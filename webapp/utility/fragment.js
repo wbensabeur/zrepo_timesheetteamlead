@@ -648,7 +648,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						if (projectID === undefined && hrType === "") {
 							continue;
 						} else {
-							MessageBox.alert("All Items are not selected");
+							//MessageBox.alert("All Items are not selected");
+							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
 							oView.setBusy(false);
 							return;
 						}
@@ -656,7 +657,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					if (projectID === undefined && hrType === "") {
 						continue;
 					} else if (projectID === undefined || hrType === "") {
-						MessageBox.alert("All Items are not selected");
+						//MessageBox.alert("All Items are not selected");
+						MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
 						oView.setBusy(false);
 						return;
 					}
@@ -700,11 +702,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							(KMNumber === "" || KMNumber === undefined || KMNumber === null)) {
 							continue;
 						} else if (kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) {
-							MessageBox.alert("Project is not selected");
+							//MessageBox.alert("Project is not selected");
+							MessageBox.alert(this.i18nModel.getText("projectIsNotSelected"));
 							oView.setBusy(false);
 							return;
 						} else if (kmhrType === "" || kmhrType === undefined || kmhrType === null) {
-							MessageBox.alert("Kilometer Type is not selected");
+							//MessageBox.alert("Kilometer Type is not selected");
+							MessageBox.alert(this.i18nModel.getText("kmTypeIsNotSelected"));
 							oView.setBusy(false);
 							return;
 						}
@@ -713,7 +717,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							(kmhrType === "" || kmhrType === undefined || kmhrType === null)) {
 							continue;
 						} else {
-							MessageBox.alert("All Items are not selected");
+							//MessageBox.alert("All Items are not selected");
+							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
 							oView.setBusy(false);
 							return;
 						}
@@ -745,7 +750,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
 					var zoneName = oView.byId('AllowanceZoneType').getValue();
 					if (zoneName === undefined || zoneName === "" || zoneName === null) {
-						MessageBox.alert("Zone type is not selected");
+						//MessageBox.alert("Zone type is not selected");
+						MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
 						oView.setBusy(false);
 						return;
 					}
