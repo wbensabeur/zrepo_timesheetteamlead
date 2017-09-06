@@ -91,14 +91,11 @@ sap.ui.define([
 		},
 		onPressSaveEntries: function(oEvent) {
 			var that = this;
-			that.getView().setBusy(true);
-			jQuery.sap.delayedCall(500, this, function() {
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
 				that.getRouter().navTo("home", {}, true);
 				that.getView().getModel("userPreference").setProperty("/successMaskEntry", true);
 				//MessageToast.show(that.getResourceBundle().getText("successPostMsg"),{duration:10000});	 
-			});
 			});
 		},
 
