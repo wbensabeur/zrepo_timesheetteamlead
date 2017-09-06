@@ -1,0 +1,161 @@
+[{
+	"UserId": "UserId 1",
+	"TeamId": "TeamId 1",
+	"TeamName": "TeamName 1",
+	"TeamDescription": "TeamDescription 1",
+	"StartDate": "/Date(1250748250000)/",
+	"EndDate": "/Date(1218521050000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%201',TeamId='TeamId%201')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%201',TeamId='TeamId%201')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 2",
+	"TeamId": "TeamId 2",
+	"TeamName": "TeamName 2",
+	"TeamDescription": "TeamDescription 2",
+	"StartDate": "/Date(1403589850000)/",
+	"EndDate": "/Date(1285135450000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%202',TeamId='TeamId%202')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%202',TeamId='TeamId%202')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 3",
+	"TeamId": "TeamId 3",
+	"TeamName": "TeamName 3",
+	"TeamDescription": "TeamDescription 3",
+	"StartDate": "/Date(1342591450000)/",
+	"EndDate": "/Date(1049781850000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%203',TeamId='TeamId%203')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%203',TeamId='TeamId%203')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 4",
+	"TeamId": "TeamId 4",
+	"TeamName": "TeamName 4",
+	"TeamDescription": "TeamDescription 4",
+	"StartDate": "/Date(1490162650000)/",
+	"EndDate": "/Date(1169359450000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%204',TeamId='TeamId%204')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%204',TeamId='TeamId%204')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 5",
+	"TeamId": "TeamId 5",
+	"TeamName": "TeamName 5",
+	"TeamDescription": "TeamDescription 5",
+	"StartDate": "/Date(1482300250000)/",
+	"EndDate": "/Date(1328076250000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%205',TeamId='TeamId%205')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%205',TeamId='TeamId%205')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 6",
+	"TeamId": "TeamId 6",
+	"TeamName": "TeamName 6",
+	"TeamDescription": "TeamDescription 6",
+	"StartDate": "/Date(1325570650000)/",
+	"EndDate": "/Date(1574921050000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%206',TeamId='TeamId%206')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%206',TeamId='TeamId%206')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 7",
+	"TeamId": "TeamId 7",
+	"TeamName": "TeamName 7",
+	"TeamDescription": "TeamDescription 7",
+	"StartDate": "/Date(1517983450000)/",
+	"EndDate": "/Date(1200895450000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%207',TeamId='TeamId%207')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%207',TeamId='TeamId%207')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 8",
+	"TeamId": "TeamId 8",
+	"TeamName": "TeamName 8",
+	"TeamDescription": "TeamDescription 8",
+	"StartDate": "/Date(1136268250000)/",
+	"EndDate": "/Date(1455084250000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%208',TeamId='TeamId%208')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%208',TeamId='TeamId%208')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 9",
+	"TeamId": "TeamId 9",
+	"TeamName": "TeamName 9",
+	"TeamDescription": "TeamDescription 9",
+	"StartDate": "/Date(1005285850000)/",
+	"EndDate": "/Date(1560751450000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%209',TeamId='TeamId%209')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%209',TeamId='TeamId%209')/NavTeamEmployees"
+		}
+	}
+}, {
+	"UserId": "UserId 10",
+	"TeamId": "TeamId 10",
+	"TeamName": "TeamName 10",
+	"TeamDescription": "TeamDescription 10",
+	"StartDate": "/Date(962604250000)/",
+	"EndDate": "/Date(989733850000)/",
+	"__metadata": {
+		"uri": "TeamSet(UserId='UserId%2010',TeamId='TeamId%2010')",
+		"type": "ZHR_MOB_TIMESHEET_SRV.Team"
+	},
+	"NavTeamEmployees": {
+		"__deferred": {
+			"uri": "TeamSet(UserId='UserId%2010',TeamId='TeamId%2010')/NavTeamEmployees"
+		}
+	}
+}]
