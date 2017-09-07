@@ -9,7 +9,7 @@
 			</Bar>
 		</customHeader>
 		<content>
-			<Table width="97%" showNoData="false"  columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin" updateFinished="onUpdateFinished" >
+			<Table id="tableHeader" width="97%" showNoData="false"  columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin" updateFinished="onUpdateFinished" >
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">

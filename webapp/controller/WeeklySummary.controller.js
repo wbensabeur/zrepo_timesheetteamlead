@@ -26,7 +26,7 @@ sap.ui.define([
 			var setting = sap.ui.getCore().byId("shellSettings");
 			if (setting !== null) {
 				setting.attachPress(function(oEvent) {
-					
+
 					MessageBox.information("Version - 1.0.81");
 				});
 			}
@@ -48,13 +48,34 @@ sap.ui.define([
 			this.setModel(oViewModel, "worklistView");
 			// model for Calendar
 			// Make sure, busy indication is showing immediately so there is no
-			// break after the busy indication for loading the view's meta data is
+			// break after functionthe busy indication for loading the view's meta data is
 			// ended (see promise 'oWhenMetadataIsLoaded' in AppController)
 			oTable.attachEventOnce("updateFinished", function() {
 				// Restore original busy indicator delay for worklist's table
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
 			var that = this;
+			this.getView().byId('tableHeader').onAfterRendering = function(oEvent) {
+				//var comboId =  that.getView().byId('tableColumnCombo').getId() + '-inner';
+				try {
+					var elements = document.getElementsByClassName("tableColumnCombo"); //
+					for (var k = 0; k < elements.length; k++) {
+						var eleId = elements[k].id + '-inner';
+						document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
+						//	elements[k].disabled = true;
+					}
+				} catch (err) {
+
+				}
+				
+			};
+
+			/*	attachEventOnce("updateStarted", function(){
+					var comboId = "#"+this.getView().byId('tableColumnCombo').getId()+'-inner';	
+					$(comboId).prop('disabled', true);
+				}
+					);*/
+
 			$(window).resize(function() {
 				var totalH = window.innerHeight - 200;
 				that.getView().byId('TableScroll').setHeight(totalH + 'px');
@@ -72,6 +93,8 @@ sap.ui.define([
 						this.getView().byId("table").mBindingInfos.items.filters[1].oValue1 = currentYear;
 						//WeekYear
 						this.getView().byId("table").mBindingInfos.items.filters[2].oValue1 = this.isByWeekly;*/ //isByWeekly
+
+			//document.getElementById(comboId).disabled = true;
 		},
 		/**
 		 * Triggered by the table's 'updateFinished' event: after new table
@@ -120,7 +143,8 @@ sap.ui.define([
 				oData.PersoValue = 'X';
 			}
 
-			var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + this.getView().getModel("userPreference").getProperty("/userID") + "',PersoId='BW')";
+			var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + this.getView().getModel("userPreference").getProperty(
+				"/userID") + "',PersoId='BW')";
 			this.getView().getModel().update(url, oData);
 			this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);
 			this.getView().getModel("userPreference").setProperty("/defaultPeriod", this.userPref.defaultPeriod);
@@ -230,7 +254,7 @@ sap.ui.define([
 			var oTable = this.getView().byId('tableDayItems');
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
-				
+
 				that.getView().getModel().read(headerContextPath);
 				oTable.getBinding("items").refresh();
 				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
@@ -295,6 +319,7 @@ sap.ui.define([
 		onAfterRendering: function() {
 			var totalH = window.innerHeight - 200;
 			this.getView().byId('TableScroll').setHeight(totalH + 'px');
+
 		},
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
@@ -359,26 +384,27 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
 		OnWeeklyReportSelection: function() {
-			this.getRouter().navTo("ReportEmployeeSelection", {source: 'Summary'}, true);
+			this.getRouter().navTo("ReportEmployeeSelection", {
+				source: 'Summary'
+			}, true);
 		},
 
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;
 			var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
-			
-			
+
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
 			//oView.byId('EmpDayInfo').bindElement(urlStr);
-			
+
 			this.getView().getModel().remove(binding, {
 				success: function() {
 					that.getView().getModel().read(contextPath);
 					MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
 				}
 			});
-			
+
 		},
 
 		//// **SearchProject Fragment Event** ///////

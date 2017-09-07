@@ -44,6 +44,21 @@ sap.ui.define([
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
 			var that = this;
+			this.getView().byId('tableHeader').onAfterRendering = function(oEvent) {
+				//var comboId =  that.getView().byId('tableColumnCombo').getId() + '-inner';
+				try {
+					var elements = document.getElementsByClassName("tableColumnCombo"); //
+					for (var k = 0; k < elements.length; k++) {
+						var eleId = elements[k].id + '-inner';
+						document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
+						//	elements[k].disabled = true;
+					}
+				} catch (err) {
+
+				}
+				
+			};
+			
 			$(window).resize(function() {
 				var totalH = window.innerHeight - 200;
 				that.getView().byId('TableScroll').setHeight(totalH + 'px');
