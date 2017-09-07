@@ -626,8 +626,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent.getContent()[0];
 		},
-		AddUpdatetime_saveEntries: function(oView, savepostFuction, vtype) {
+		AddUpdatetime_saveEntries: function(oView, savepostFuction, ctype, rButton) {
 			/// Get Item Data from view for Daily hour
+			ctype.setBusy(true);
+			rButton.setEnabled(false);
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
 			if (selectedTab === 'hours') {
@@ -649,7 +651,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						} else {
 							//MessageBox.alert("All Items are not selected");
 							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
-							oView.setBusy(false);
+							ctype.setBusy(false);
+							rButton.setEnabled(true);
 							return;
 						}
 					}
@@ -658,7 +661,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					} else if (projectID === undefined || hrType === "") {
 						//MessageBox.alert("All Items are not selected");
 						MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
-						oView.setBusy(false);
+						ctype.setBusy(false);
+						rButton.setEnabled(true);
 						return;
 					}
 
@@ -703,12 +707,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						} else if (kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) {
 							//MessageBox.alert("Project is not selected");
 							MessageBox.alert(this.i18nModel.getText("projectIsNotSelected"));
-							oView.setBusy(false);
+							ctype.setBusy(false);
+							rButton.setEnabled(true);
 							return;
 						} else if (kmhrType === "" || kmhrType === undefined || kmhrType === null) {
 							//MessageBox.alert("Kilometer Type is not selected");
 							MessageBox.alert(this.i18nModel.getText("kmTypeIsNotSelected"));
-							oView.setBusy(false);
+							ctype.setBusy(false);
+							rButton.setEnabled(true);
 							return;
 						}
 					} catch (err) {
@@ -718,7 +724,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						} else {
 							//MessageBox.alert("All Items are not selected");
 							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
-							oView.setBusy(false);
+							ctype.setBusy(false);
+							rButton.setEnabled(true);
 							return;
 						}
 					}
@@ -751,7 +758,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					if (zoneName === undefined || zoneName === "" || zoneName === null) {
 						//MessageBox.alert("Zone type is not selected");
 						MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
-						oView.setBusy(false);
+						ctype.setBusy(false);
+						rButton.setEnabled(true);
 						return;
 					}
 					var allwProjectID = null;
@@ -780,6 +788,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			}
 			////
+			if(workDayItems.length <= 0) {
+				ctype.setBusy(false);
+				rButton.setEnabled(true);
+				return;
+			}
 			var data = {
 				"EmployeeId": this.employees[0].employee,
 				"WorkDate": this.employees[0].Days[0],
@@ -826,29 +839,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			}
 			var that = this;
-			if (vtype === 'View') {
-				oView.setBusy(true);
-			} else if (vtype === 'Dialog') {
-				var oDialog = oView.byId("EmpDayCheckDialog");
-				oDialog.setBusy(true);
-			}
+			ctype.setBusy(true);
 			jQuery.sap.delayedCall(500, this, function() {
 				this.oDataModel.create("/WorkDaySet", data, {
 					success: function() {
-						if (vtype === 'View') {
-							oView.setBusy(false);
-						} else if (vtype === 'Dialog') {
-							oDialog.setBusy(false);
-						}
+						ctype.setBusy(false);
+						rButton.setEnabled(true);
 						savepostFuction(that);
 
 					},
 					error: function() {
-						if (vtype === 'View') {
-							oView.setBusy(false);
-						} else if (vtype === 'Dialog') {
-							oDialog.setBusy(false);
-						}
+						ctype.setBusy(false);
+						rButton.setEnabled(true);
 					}
 				});
 			});
