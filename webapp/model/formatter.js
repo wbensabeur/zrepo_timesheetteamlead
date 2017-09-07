@@ -112,6 +112,14 @@ sap.ui.define([
 			}
 			return "";
 		},
+		byWeeklyFormattre: function(isByWeekly) {
+			if (isByWeekly) {
+				var days = '14';
+			} else {
+				days = '7';
+			}
+			return days;
+		},
 		disableDays: function(isEntryEnabled) {
 			if (isEntryEnabled) {
 				return '';
@@ -119,7 +127,7 @@ sap.ui.define([
 			return 'D1';
 		},
 		titleLength: function(empName) {
-			if (empName.length > 15) {
+			if (empName.length > 17) {
 				return 'Long';
 			} else {
 				return 'Short';
