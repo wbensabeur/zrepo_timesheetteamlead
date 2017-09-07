@@ -77,14 +77,17 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     padding-right: .1rem !important;
 }
 
-.sapContrastPlus.sapMSegB .sapMSegBBtn, .sapContrastPlus .sapMSegB .sapMSegBBtn {
-    -webkit-tap-highlight-color: rgba(255,255,255,0);
+.sapContrastPlus.sapMSegB .sapMSegBBtn,
+.sapContrastPlus .sapMSegB .sapMSegBBtn {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     text-shadow: none;
     color: #346187;
     border: 1px solid #bfbfbf;
     background-color: #ffffff;
 }
-.sapContrastPlus.sapMSegBBtn.sapMSegBBtnSel, .sapContrastPlus .sapMSegBBtn.sapMSegBBtnSel {
+
+.sapContrastPlus.sapMSegBBtn.sapMSegBBtnSel,
+.sapContrastPlus .sapMSegBBtn.sapMSegBBtnSel {
     background: #346187;
     color: #ffffff;
     border-color: #427cac;
@@ -182,6 +185,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 /*Table data*/
 
+
 /*Employee*/
 
 .EmpWeekStatus {
@@ -191,7 +195,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .EmpWeekStatus>div>div>div>.sapMSLITitle {
-	white-space: initial;
+    white-space: initial;
 }
 
 .EmpWeekStatus[data-titlelen="Long"] {
@@ -261,7 +265,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 .hourSize {
     padding: 0 !important;
-    height: 60px ;
+    height: 60px;
 }
 
 .hourSize>span {
@@ -270,10 +274,21 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     padding-right: 0rem !important;
 }
 
-.hourSize>span>span {
+.hourSize[data-selectedView="7"]>span>span {
+    font-size: 30px !important;
+}
+
+.hourSize[data-selectedView="14"]>span>span {
     font-size: 22px !important;
+}
+
+.hourSize>span>span {
     padding-top: 10px;
     color: #3b617e;
+}
+
+.hourSize[data-status="NE"]>span>span {
+    background-color: #e6e7e8;
 }
 
 .hourSize[data-status="S"]>span>span {
@@ -560,7 +575,7 @@ input {
     outline: none !important;
     outline-style: none !important;
 }
-.EmpWeekStatus[data-status=""]:hover
-{
+
+.EmpWeekStatus[data-status=""]:hover {
     background: white;
 }

@@ -112,6 +112,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate1Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate2Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
@@ -121,6 +122,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate2Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate3Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
@@ -130,6 +132,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate3Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate4Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
@@ -139,6 +142,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate4Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate5Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
@@ -148,6 +152,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate5Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate6Hours', type:'Float', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%"
@@ -157,6 +162,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate6Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate7Hours', type:'Float',formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%"
@@ -166,6 +172,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate7Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate8Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
@@ -175,6 +182,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate8Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate8Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate9Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize"
@@ -184,6 +192,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate9Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate9Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate10Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%"
@@ -193,6 +202,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate10Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate10Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate11Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%"
@@ -202,6 +212,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate11Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate11Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate12Hours',type:'Float' ,formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%"
@@ -211,6 +222,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate12Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate12Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate13Hours',type:'Float', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%"
@@ -220,6 +232,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate13Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate13Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate14Hours',type:'Float', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%"
@@ -229,6 +242,7 @@
 									<core:CustomData key="background" value="{path:'WeekDate14Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate14Date}"/>
+									<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 								</customData>
 							</Button>
 						</cells>
