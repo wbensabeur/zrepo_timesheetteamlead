@@ -34,7 +34,7 @@
 						</layoutData>
 					</HBox>
 					<HBox alignItems="End" justifyContent="Start">
-						<Label id="WeeklyAggregation" text="{i18n>summary} : {WeekTotalInfo} - {i18n>targetPlanhrs}"
+						<Label id="WeeklyAggregation" text="{i18n>summary} : {WeekTotalInfo} - {i18n>targetPlanhrs} : {WeekTotalTargetHours} {i18n>targetHrsUnit}"
 							class="EmployeeAttribute"/>
 					</HBox>
 					<layoutData>
