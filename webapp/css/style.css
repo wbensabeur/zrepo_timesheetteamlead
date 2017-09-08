@@ -96,7 +96,9 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 /*:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
     color: #ffffff;
 }*/
-
+:not(.sapMBtnDisabled) .circleIcon>.sapMBtnTransparent>.sapMBtnIcon {
+    color: white;
+}
 
 /* CSS for Table*/
 
