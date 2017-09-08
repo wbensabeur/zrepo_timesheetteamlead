@@ -27,6 +27,20 @@ sap.ui.define([
 			}];
 			var model = new sap.ui.model.json.JSONModel(data);
 			this.getView().setModel(model, "test");
+			
+				this.getView().byId('PageContent').onAfterRendering = function(oEvent) {
+				try {
+					var elements = document.getElementsByClassName("SelectCombo"); //
+					for (var k = 0; k < elements.length; k++) {
+						var eleId = elements[k].id + '-inner';
+						document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
+						//	elements[k].disabled = true;
+					}
+				} catch (err) {
+
+				}
+				
+				};
 
 		},
 		/**

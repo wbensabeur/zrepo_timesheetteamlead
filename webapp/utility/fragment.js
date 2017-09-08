@@ -36,6 +36,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.getItems()[1].setVisible(true);
 			//hideContainer.setVisible(false);
 			container.getItems()[1].addItem(fragment);
+			fragment.getItems()[2].getItems()[0].onAfterRendering  = this._comboKeyboardDisable;
+			fragment.getItems()[2].getItems()[2].onAfterRendering  = this._comboKeyboardDisable;
 
 			selectButton.getCustomData()[0].setValue("");
 
@@ -78,6 +80,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var buttons = oEvent.getSource().getButtons();
 			//	var sourceId = button.getId();
 			//button.focus(false);
+
 			if (index === 0) // Last + Fav Projects  
 			{
 				buttons[0].setEnabled(false);
@@ -100,6 +103,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				buttons[1].setEnabled(false);
 				this.lastProjectFilter = null;
 				oEvent.getSource().getParent().getItems()[2].setVisible(true);
+
+				/*setTimeout(function() {
+					try {
+						var elements = document.getElementsByClassName("SelectCombo"); //
+						for (var k = 0; k < elements.length; k++) {
+							var eleId = elements[k].id + '-inner';
+							document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
+							//	elements[k].disabled = true;
+						}
+					} catch (err) {
+
+					}
+				}, 500);*/
+
 			}
 			this.SearchProject_applyFiler();
 			//	var that = oView;
@@ -302,11 +319,26 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
 				container.addItem(oFragment);
+				oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering  = this._comboKeyboardDisable;
+				oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering  = this._comboKeyboardDisable;
 			}
 
 		},
+		_comboKeyboardDisable: function () {
+				try {
+						var elements = document.getElementsByClassName("SelectCombo"); //
+						for (var k = 0; k < elements.length; k++) {
+							var eleId = elements[k].id + '-inner';
+							document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
+							//	elements[k].disabled = true;
+						}
+					} catch (err) {
+
+					}
+		},
 		AddProjectTime_destroy: function(fragmentObject) {
 			fragmentObject.destroy(true);
+			
 		},
 		AddProjectTime_OnTimeDelete: function(oEvent, container) {
 			var source = oEvent.getSource();
@@ -461,11 +493,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddKM", controler);
 			container.addItem(oFragment);
+			oFragment.getItems()[3].onAfterRendering  = this._comboKeyboardDisable;
+			
 
 			if (addnew) {
 				var oFragment2 = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddKM", controler);
 				container.addItem(oFragment2);
+				oFragment2.getItems()[3].onAfterRendering  = this._comboKeyboardDisable;
 			}
+			
 
 		},
 		AddKM_OnChangeStartTimeKM: function(oEvent) {
@@ -557,6 +593,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				items[0].setVisible(false);
 			}
 			container.addItem(oFragment);
+			controler.getView().byId('AllowanceZoneType').onAfterRendering  = this._comboKeyboardDisable;
 			this.oDataModel = odataModel;
 			this.employees = employees;
 
@@ -788,7 +825,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			}
 			////
-			if(workDayItems.length <= 0) {
+			if (workDayItems.length <= 0) {
 				ctype.setBusy(false);
 				rButton.setEnabled(true);
 				return;

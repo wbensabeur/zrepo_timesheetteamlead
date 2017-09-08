@@ -8,7 +8,7 @@
 			</buttons>
 		</RadioButtonGroup>
 		<HBox class="sapUiSmallMarginBottom" visible="false">
-			<ComboBox placeholder="{i18n>searchBU}"
+			<ComboBox placeholder="{i18n>searchBU}" class="SelectCombo"
 				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}"
 				change="onBUFilterChange">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
@@ -31,7 +31,7 @@
 				</layoutData>
 			</ComboBox>-->
 			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}"
-				change="onPositionFilterChange">
+				change="onPositionFilterChange" class="SelectCombo">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
 					<FlexItemData growFactor="1"/>
