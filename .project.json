@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": true,
-    "lastBuildDateTime": "Wed, 06 Sep 2017 10:13:54 GMT"
+    "lastBuildDateTime": "Fri, 08 Sep 2017 10:47:31 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -70,14 +70,14 @@
       {
         "hybridOdata": {
           "name": "mainService",
-          "serviceUrl": "https://timesheetadmin-a4769796d.dispatcher.hana.ondemand.com/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/"
+          "serviceUrl": "https://mobile-a4769796d.hana.ondemand.com:443/com.vinci.timesheet.teamlead/"
         },
         "originOdata": {
           "name": "mainService",
           "serviceUrl": "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/"
         },
         "hcpDomain": "timesheetadmin-a4769796d.dispatcher.hana.ondemand.com",
-        "oDataType": "hcpodata"
+        "oDataType": "smpodata"
       }
     ],
     "FacadeConfig": {
@@ -90,7 +90,7 @@
     "appid": "com.vinci.timesheet.teamlead",
     "appdesc": "Vinci team lead application for Timesheet",
     "appversion": "0.0.1",
-    "debugMode": true,
+    "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
       "defaultIconData": "",
@@ -162,7 +162,7 @@
       }
     },
     "kapselLogon": {
-      "type": "",
+      "type": "enterUsernamePassword",
       "logo": "",
       "logoText": "",
       "background": "",
@@ -334,7 +334,7 @@
       },
       "kapsel": {
         "logon": {
-          "selected": false,
+          "selected": true,
           "registry": "kapsel-plugin-logon",
           "localBuild": true
         },

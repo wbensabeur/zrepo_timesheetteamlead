@@ -1,14 +1,15 @@
 {
- "authenticationMethod":"saml",
- "welcomeFile":"/index.html",
- "logoutPage":"/logout.html",
+  "authenticationMethod": "saml",
+  "welcomeFile": "/index.html",
+  "logoutPage": "/logout.html",
   "routes": [
     {
       "path": "/webapp/resources",
       "target": {
         "type": "service",
         "name": "sapui5",
-        "entryPath": "/resources"
+        "entryPath": "/resources",
+        "version": "1.44.11"
       },
       "description": "SAPUI5 Resources"
     },
@@ -17,7 +18,8 @@
       "target": {
         "type": "service",
         "name": "sapui5",
-        "entryPath": "/test-resources"
+        "entryPath": "/test-resources",
+        "version": "1.44.11"
       },
       "description": "SAPUI5 Test Resources"
     },
@@ -26,7 +28,8 @@
       "target": {
         "type": "service",
         "name": "sapui5",
-        "entryPath": "/resources"
+        "entryPath": "/resources",
+        "version": "1.44.11"
       },
       "description": "SAPUI5 Resources"
     },
@@ -35,7 +38,8 @@
       "target": {
         "type": "service",
         "name": "sapui5",
-        "entryPath": "/test-resources"
+        "entryPath": "/test-resources",
+        "version": "1.44.11"
       },
       "description": "SAPUI5 Test Resources"
     },
@@ -49,12 +53,12 @@
       "description": "vesidgwci_SAP"
     },
     {
-     "path": "/services/userapi",
-     "target": {
-       "type": "service",
-       "name": "userapi"
-     }
-  }
+      "path": "/services/userapi",
+      "target": {
+        "type": "service",
+        "name": "userapi"
+      }
+    }
   ],
   "cacheControl": [
     {
