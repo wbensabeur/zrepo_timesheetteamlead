@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": true,
-    "lastBuildDateTime": "Fri, 08 Sep 2017 10:47:31 GMT"
+    "lastBuildDateTime": "Fri, 08 Sep 2017 16:01:36 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -37,7 +37,7 @@
     }
   ],
   "translation": {
-    "translationDomain": "",
+    "translationDomain": "08",
     "supportedLanguages": "en,fr,de",
     "defaultLanguage": "en",
     "defaultI18NPropertyFile": "i18n.properties",
@@ -408,8 +408,8 @@
     }
   },
   "hcpdeploy": {
-    "account": "a4769796d",
-    "name": "timesheetadmin",
-    "lastVersionWeTriedToDeploy": "1.0.85"
+    "account": "ac205f4c8",
+    "name": "teamleadtimesheet",
+    "lastVersionWeTriedToDeploy": "1.0.0_SNAPSHOT"
   }
 }

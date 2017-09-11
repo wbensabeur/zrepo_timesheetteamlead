@@ -41,7 +41,9 @@
 					<SearchField  id="EmpSearch"  placeholder="{i18n>searchEmp}" search="onEmployeSearch"/>
 				</contentMiddle>
 				<contentRight>
-					<Button icon="sap-icon://filter" type="Transparent" class="circleIcon" press="onFilterPress"/>
+					<core:Icon src="sap-icon://filter" color="white" size="1.5rem" width="2rem" height="2rem" 
+						press="onFilterPress" class="sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+					<!--<Button icon="sap-icon://filter" type="Transparent" class="circleIcon" press="onFilterPress"/>-->
 					<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" class="sapUiSmallMarginEnd" width="10rem">
 						<items>
 							<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
@@ -270,7 +272,7 @@
 				</contentLeft>
 				<contentRight>
 					<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png"/>
-					<Button id="editPlanning" text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
+					<Button text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
 					<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>
 				</contentRight>
 			</Bar>

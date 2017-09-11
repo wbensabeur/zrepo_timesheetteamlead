@@ -21,8 +21,7 @@ sap.ui.define([
 			this.getRouter().getRoute("home").attachPatternMatched(this._onObjectMatched, this);
 
 			this.successPost = false;
-			var oViewModel, iOriginalBusyDelay, oTable = this.byId("table"),
-				that = this;
+			var oViewModel, iOriginalBusyDelay, oTable = this.byId("table");
 			/// Attach Seeting button from Shell
 			var setting = sap.ui.getCore().byId("shellSettings");
 			if (setting !== null) {
@@ -51,12 +50,11 @@ sap.ui.define([
 			// Make sure, busy indication is showing immediately so there is no
 			// break after functionthe busy indication for loading the view's meta data is
 			// ended (see promise 'oWhenMetadataIsLoaded' in AppController)
-			var that = this;
 			oTable.attachEventOnce("updateFinished", function() {
 				// Restore original busy indicator delay for worklist's table
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
-
+			var that = this;
 			this.getView().byId('tableHeader').onAfterRendering = function(oEvent) {
 				//var comboId =  that.getView().byId('tableColumnCombo').getId() + '-inner';
 				try {
@@ -69,7 +67,7 @@ sap.ui.define([
 				} catch (err) {
 
 				}
-
+				
 			};
 
 			/*	attachEventOnce("updateStarted", function(){
@@ -121,21 +119,6 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
-			var status = undefined;
-			var tableItems = oTable.getItems();
-			for (var j = 0; j < tableItems.length; j++) {
-				var oModel = tableItems[j].getBindingContext().getModel();
-				var oPath = tableItems[j].getBindingContext().getPath();
-				status = oModel.getProperty(oPath).WeekStatus;
-				if (status !== 'NE') {
-					break;
-				}
-			}
-			if (status === 'NE') {
-				this.getView().byId("editPlanning").setEnabled(false);
-			} else {
-				this.getView().byId("editPlanning").setEnabled(true);
-			}
 			if (this.userPref.successMaskEntry) {
 				MessageToast.show(this.getResourceBundle().getText("successPostMsg"));
 				this.userPref.successMaskEntry = false;
