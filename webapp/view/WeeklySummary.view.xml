@@ -272,7 +272,11 @@
 				</contentLeft>
 				<contentRight>
 					<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png"/>
+<<<<<<< HEAD
 					<Button id="editPlanning" text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
+=======
+					<Button text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
+>>>>>>> 8e23b8fe209cee69784b038657a14be6ea431cfb
 					<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>
 				</contentRight>
 			</Bar>

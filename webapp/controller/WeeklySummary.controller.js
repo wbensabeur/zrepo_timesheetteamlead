@@ -67,6 +67,7 @@ sap.ui.define([
 				} catch (err) {
 
 				}
+<<<<<<< HEAD
 
 			};
 
@@ -136,6 +137,60 @@ sap.ui.define([
 				this.getView().byId("editPlanning").setEnabled(true);
 			}
 
+=======
+				
+			};
+
+			/*	attachEventOnce("updateStarted", function(){
+					var comboId = "#"+this.getView().byId('tableColumnCombo').getId()+'-inner';	
+					$(comboId).prop('disabled', true);
+				}
+					);*/
+
+			$(window).resize(function() {
+				var totalH = window.innerHeight - 200;
+				that.getView().byId('TableScroll').setHeight(totalH + 'px');
+			});
+		},
+		/* =========================================================== */
+		/* UI element event handlers                                              */
+		/* =========================================================== */
+		/**
+		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
+		 */
+		onUpdateStart: function() {
+			/*this.getView().byId("table").mBindingInfos.items.filters[0].oValue1 = currentWeekNumber;
+						//WeekNumber
+						this.getView().byId("table").mBindingInfos.items.filters[1].oValue1 = currentYear;
+						//WeekYear
+						this.getView().byId("table").mBindingInfos.items.filters[2].oValue1 = this.isByWeekly;*/ //isByWeekly
+
+			//document.getElementById(comboId).disabled = true;
+		},
+		/**
+		 * Triggered by the table's 'updateFinished' event: after new table
+		 * data is available, this handler method updates the table counter.
+		 * This should only happen if the update was successful, which is
+		 * why this handler is attached to 'updateFinished' and not to the
+		 * table's list binding's 'dataReceived' method.
+		 * @param {sap.ui.base.Event} oEvent the update finished event
+		 * @public
+		 */
+		onUpdateFinished: function(oEvent) {
+			// update the worklist's object counter after the table update
+			var sTitle, oTable = oEvent.getSource(),
+				iTotalItems = oEvent.getParameter("total");
+			// only update the counter if the length is final and
+			// the table is not empty
+			if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
+				sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
+			} else {
+				sTitle = this.getResourceBundle().getText("worklistTableTitle");
+			}
+			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
+			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
+			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
+>>>>>>> 8e23b8fe209cee69784b038657a14be6ea431cfb
 			if (this.userPref.successMaskEntry) {
 				MessageToast.show(this.getResourceBundle().getText("successPostMsg"));
 				this.userPref.successMaskEntry = false;
