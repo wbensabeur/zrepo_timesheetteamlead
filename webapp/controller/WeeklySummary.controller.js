@@ -67,7 +67,7 @@ sap.ui.define([
 				} catch (err) {
 
 				}
-				
+
 			};
 
 			/*	attachEventOnce("updateStarted", function(){
@@ -119,6 +119,23 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
+
+			var status = undefined;
+			var tableItems = oTable.getItems();
+			for (var j = 0; j < tableItems.length; j++) {
+				var oModel = tableItems[j].getBindingContext().getModel();
+				var oPath = tableItems[j].getBindingContext().getPath();
+				status = oModel.getProperty(oPath).WeekStatus;
+				if (status !== 'NE') {
+					break;
+				}
+			}
+			if (status === 'NE') {
+				this.getView().byId("editPlanning").setEnabled(false);
+			} else {
+				this.getView().byId("editPlanning").setEnabled(true);
+			}
+
 			if (this.userPref.successMaskEntry) {
 				MessageToast.show(this.getResourceBundle().getText("successPostMsg"));
 				this.userPref.successMaskEntry = false;
