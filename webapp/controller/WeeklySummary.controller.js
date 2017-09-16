@@ -126,17 +126,16 @@ sap.ui.define([
 			var ofilters = [
 				new Filter("ApplicationName", FilterOperator.EQ, 'TEAMLEAD'),
 				new Filter("HelpType", FilterOperator.EQ, 'BU'),
-				new Filter("FieldValue", FilterOperator.EQ, currentBU)];
-			
+				new Filter("FieldValue", FilterOperator.EQ, currentBU)
+			];
+
 			this.getModel().read('/ValueHelpSet', {
 				success: function(data) {
-					for (var k = 0 ; k < data.results.length ; k++){
-						if(currentBU === data.results[k].FieldValue)
-						{
+					for (var k = 0; k < data.results.length; k++) {
+						if (currentBU === data.results[k].FieldValue) {
 							that.getModel("calendar").setProperty("/data/0/ColumnTxt2", data.results[k].FieldDescription);
 						}
 					}
-					
 
 				},
 				filters: ofilters
@@ -197,7 +196,9 @@ sap.ui.define([
 			this._applyFilters();
 		},
 		OnHourPress: function(oEvent) {
-			//	var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
+			//var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
+			// Edit Enable
+
 			this.currentEmp = oEvent.getSource().getCustomData()[2].getValue();
 			this.currentDate = oEvent.getSource().getCustomData()[3].getValue();
 			var oView = this.getView();
@@ -217,6 +218,7 @@ sap.ui.define([
 				this.getView().setModel(oFooterModel, "footer");
 
 			}
+
 			oDialog.bindElement("/EmployeeSet('" + this.currentEmp + "')");
 
 			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
@@ -236,6 +238,20 @@ sap.ui.define([
 			var table = this.getView().byId('tableDayItems');
 			table.setModel(this.getView().getModel());
 			table.getBinding("items").filter(Filters, "Application");
+
+			var editEnable = oEvent.getSource().data('entryEnable');
+			
+			if (editEnable) {
+				this.getView().byId('AddNewTimeButton').setEnabled(true);
+			} else {
+				this.getView().byId('AddNewTimeButton').setEnabled(false);
+			}
+			
+				var EmpDetail = {
+					enable: editEnable
+				};
+				var oEmpDetailModel = new JSONModel(EmpDetail);
+				this.getView().setModel(oEmpDetailModel, "EmpDetail");
 		},
 
 		OnskipFilterScreen: function(oEvent) {
@@ -263,17 +279,16 @@ sap.ui.define([
 			var that = this;
 			jQuery.each(mParams.filterItems, function(i, oItem) {
 				//var aSplit = oItem.getKey().split(");
-				if(oItem.getParent().getProperty("key") === 'BusinessUnit')
-				{
+				if (oItem.getParent().getProperty("key") === 'BusinessUnit') {
 					that.userPref.defaultBU = oItem.getKey();
 					var oData = {
 						PersoValue: oItem.getKey()
 					};
 					var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + that.getView().getModel("userPreference").getProperty(
-				"/userID") + "',PersoId='BU')";
-				that.getView().getModel().update(url, oData);
-					
-				}	
+						"/userID") + "',PersoId='BU')";
+					that.getView().getModel().update(url, oData);
+
+				}
 				//var sPath1 = oItem.getParent().getProperty("key");
 				//var sOperator = FilterOperator.EQ;
 				//var sValue1 = oItem.getKey();
@@ -456,7 +471,10 @@ sap.ui.define([
 				source: 'Summary'
 			}, true);
 		},
+		OnEditEmpDayitem: function(oEvent) {
+			MessageBox.information(this.getResourceBundle().getText("editMessage"));
 
+		},
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;

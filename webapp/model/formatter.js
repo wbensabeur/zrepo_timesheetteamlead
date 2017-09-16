@@ -241,12 +241,11 @@ sap.ui.define([
 			}
 			return "97%";
 		},
-		editVisibility: function(status) {
-			if (status === 'D' || status === 'W') {
+		editVisibility: function(item,emp) {
+			if(!item && emp)
 				return true;
-			}
-			return false;
-
+			else
+				return false;
 		}
 
 	};

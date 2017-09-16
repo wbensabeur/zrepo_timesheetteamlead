@@ -96,10 +96,10 @@
 										</VBox>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<core:Icon src="sap-icon://edit" color="blue" size="1.3rem" class="sapUiTinyMarginTop" visible="{parts:['Status'],formatter:'.formatter.editVisibility'}"/>
+										<core:Icon src="sap-icon://edit" color="blue" size="1.3rem" class="sapUiTinyMarginTop" press="OnEditEmpDayitem" visible="{parts:['NotEditable','EmpDetail>/enable'],formatter:'.formatter.editVisibility'}"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<core:Icon src="sap-icon://delete" color="red" size="1.3rem" class="sapUiTinyMarginTop" press="OnDeleteEmpDayitem" visible="{parts:['Status'],formatter:'.formatter.editVisibility'}"/>
+										<core:Icon src="sap-icon://delete" color="red" size="1.3rem" class="sapUiTinyMarginTop" press="OnDeleteEmpDayitem" visible="{parts:['NotEditable','EmpDetail>/enable'],formatter:'.formatter.editVisibility'}"/>
 									</VBox>
 								</cells>
 							</ColumnListItem>
@@ -111,9 +111,9 @@
 		</content>
 		<buttons>
 			<Button text="{i18n>cancel}" type="Reject" press="OnCancelEmpDayCheckDialog" visible="{footer>/MainPreviousScreen}"/>
-			<Button text="{i18n>addTime}" icon="sap-icon://add" type="Emphasized" press="OnAddEmpTime" visible="{footer>/MainPreviousScreen}"/>
+			<Button id="AddNewTimeButton" text="{i18n>addTime}" icon="sap-icon://add" type="Emphasized" press="OnAddEmpTime" visible="{footer>/MainPreviousScreen}"/>
 			<Button id="MainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainNewScreen}"/>
-			<Button id="MainAddButton" text="{i18n>addtimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveEntries"/>
+			<Button id="MainAddButton" text="{i18n>addtimedata}"  type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveEntries"/>
 			<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="{footer>/ProjectScreen}" press="onPressProjectCancel"/>
 			<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="{footer>/ProjectScreen}" press="onPressProjectSelect">
 				<customData>
