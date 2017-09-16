@@ -222,6 +222,9 @@ sap.ui.define([
 		onSelectAbsenceEndDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent, this.getView());
 		},
+		onAllowanceIndicator : function(oEvent) {
+			fragment.AddUpdatetime_onAllowanceIndicator(oEvent);
+		},
 		//// **AddUpdateTime Fragment Event End** ///////
 
 		//// **AddKM Fragment Event** ///////

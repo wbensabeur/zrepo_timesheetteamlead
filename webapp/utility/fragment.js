@@ -36,8 +36,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.getItems()[1].setVisible(true);
 			//hideContainer.setVisible(false);
 			container.getItems()[1].addItem(fragment);
-			fragment.getItems()[2].getItems()[0].onAfterRendering  = this._comboKeyboardDisable;
-			fragment.getItems()[2].getItems()[2].onAfterRendering  = this._comboKeyboardDisable;
+			fragment.getItems()[2].getItems()[0].onAfterRendering = this._comboKeyboardDisable;
+			fragment.getItems()[2].getItems()[2].onAfterRendering = this._comboKeyboardDisable;
 
 			selectButton.getCustomData()[0].setValue("");
 
@@ -279,13 +279,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.selectProjectcontext[2].setVisible(true); // ownRefreshButton
 		},
 		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton) {
-
+			this.warning = true;
 			var ownHBox = oEvent.getSource().getParent();
 			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
 			this.SearchProject_init(controler, container, selectButton);
 		},
 		SelectProject_OnProjectRefresh: function(oEvent, controler, selectButton) {
+			this.warning = true;
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
 			this.SearchProject_init(controler, container, selectButton);
 		},
@@ -295,6 +296,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		SelectProject_onPressProjectSelect: function() {
 			var projectfragment = this.SearchProject_getProjectSearchFragment();
+			
 			var projectContext = this.SearchProject_getProjectContext(projectfragment); //oEvent.getSource().getCustomData()[0].getValue();
 			if (projectContext === null || projectContext === "") {
 				MessageBox.alert(this.i18nModel.getText("noprojectselectmessage"));
@@ -307,10 +309,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		SelectProject_OnDailyHrTypeChange2: function(oEvent) {
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
+			this.warning = true;
 			oEvent.getSource().getParent().getParent().getParent().getItems()[2].getItems()[2].getItems()[1].setSelectedKey(selectedKey);
 		},
 		SelectProject_OnDailyHrTypeChange1: function(oEvent) {
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
+			this.warning = true;
 			oEvent.getSource().getParent().getParent().getParent().getItems()[3].getItems()[2].getItems()[3].setSelectedKey(selectedKey);
 		},
 
@@ -319,26 +323,26 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
 				container.addItem(oFragment);
-				oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering  = this._comboKeyboardDisable;
-				oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering  = this._comboKeyboardDisable;
+				oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+				oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering = this._comboKeyboardDisable;
 			}
 
 		},
-		_comboKeyboardDisable: function () {
-				try {
-						var elements = document.getElementsByClassName("SelectCombo"); //
-						for (var k = 0; k < elements.length; k++) {
-							var eleId = elements[k].id + '-inner';
-							document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
-							//	elements[k].disabled = true;
-						}
-					} catch (err) {
+		_comboKeyboardDisable: function() {
+			try {
+				var elements = document.getElementsByClassName("SelectCombo"); //
+				for (var k = 0; k < elements.length; k++) {
+					var eleId = elements[k].id + '-inner';
+					document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
+					//	elements[k].disabled = true;
+				}
+			} catch (err) {
 
-					}
+			}
 		},
 		AddProjectTime_destroy: function(fragmentObject) {
 			fragmentObject.destroy(true);
-			
+
 		},
 		AddProjectTime_OnTimeDelete: function(oEvent, container) {
 			var source = oEvent.getSource();
@@ -356,7 +360,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			//var index = oEvent.getParameter('selectedIndex');
 			var buttons = oEvent.getSource().getButtons();
-
+			this.warning = true;
 			//var sourceId = button.getId();
 
 			var source = oEvent.getSource();
@@ -400,7 +404,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddProjectTime_OnChangeHours: function(oEvent) {
 			var source = oEvent.getSource();
-
+			this.warning = true;
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var newValue = oEvent.getParameter("value");
 
@@ -413,7 +417,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddProjectTime_OnChangeStartTime: function(oEvent) {
 			var source = oEvent.getSource();
-
+			this.warning = true;
 			var endTimer = source.getParent().getItems()[2];
 			endTimer.setEnabled(true);
 			var diffTime = 0;
@@ -444,7 +448,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddProjectTime_OnChangeEndTime: function(oEvent) {
 			var source = oEvent.getSource();
 			var startTimer = source.getParent().getItems()[1];
-
+			this.warning = true;
 			//	var milliSecond = datetime.timeToMilliSec(oEvent.getParameter("value"));
 			var diffTime = datetime.timeToMilliSec(oEvent.getParameter("value")) - datetime.timeToMilliSec(startTimer.getValue());
 			if (diffTime < 0) {
@@ -476,6 +480,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddProjectTime_getOwnAllDayComboBox: function(radioGroup) {
 			var parent = radioGroup.getParent();
+
 			while (parent.getMetadata().getName() !== 'sap.m.HBox') {
 				parent = parent.getParent();
 			}
@@ -493,20 +498,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddKM", controler);
 			container.addItem(oFragment);
-			oFragment.getItems()[3].onAfterRendering  = this._comboKeyboardDisable;
-			
+			oFragment.getItems()[3].onAfterRendering = this._comboKeyboardDisable;
 
 			if (addnew) {
 				var oFragment2 = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddKM", controler);
 				container.addItem(oFragment2);
-				oFragment2.getItems()[3].onAfterRendering  = this._comboKeyboardDisable;
+				oFragment2.getItems()[3].onAfterRendering = this._comboKeyboardDisable;
 			}
-			
 
 		},
 		AddKM_OnChangeStartTimeKM: function(oEvent) {
 			var source = oEvent.getSource();
-
+			this.warning = true;
 			var endTimer = source.getParent().getParent().getItems()[1].getItems()[1];
 			endTimer.setEnabled(true);
 			var diffTime = 0;
@@ -521,8 +524,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			source.setValueState("None");
 			endTimer.setValueState("None");
+
 		},
 		AddKM_OnChangeEndTimeKM: function(oEvent) {
+			this.warning = true;
 			var source = oEvent.getSource();
 			var startTimer = source.getParent().getParent().getItems()[0].getItems()[1];
 
@@ -535,11 +540,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			source.setValueState("None");
 			startTimer.setValueState("None");
+
 		},
 		AddUpdatetime_onSelectAbsenceStartDate: function(oEvent, view) {
 			var startDate = oEvent.getSource();
 			var endDate = view.byId('AbsEndDate');
-
+			this.warning = true;
 			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
@@ -554,7 +560,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var startDate = view.byId('AbsStartDate');
 			var endDate = oEvent.getSource();
-
+			this.warning = true;
 			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
@@ -587,13 +593,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
+			this.warning = false;
+			this.currentView = 'hours';
 			//this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
 			var items = container.getItems();
 			if (items.length > 0) {
 				items[0].setVisible(false);
 			}
 			container.addItem(oFragment);
-			controler.getView().byId('AllowanceZoneType').onAfterRendering  = this._comboKeyboardDisable;
+			controler.getView().byId('AllowanceZoneType').onAfterRendering = this._comboKeyboardDisable;
 			this.oDataModel = odataModel;
 			this.employees = employees;
 
@@ -646,11 +654,39 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_OnTabSelected: function(oEvent) {
 			var key = oEvent.getParameter('key');
+			var source = oEvent.getSource();
+			var that = this;
+			if (this.warning) {
+
+				MessageBox.confirm(this.i18nModel.getText("maskEntryWarningMsg"), {
+					onClose: function(oAction) {
+						if (oAction === sap.m.MessageBox.Action.OK) {
+							that.currentView = key;
+							that.warning = false;
+						}
+						if (oAction === sap.m.MessageBox.Action.CANCEL) {
+							source.setSelectedKey(that.currentView);
+							that.warning = true;
+						}
+					}
+				});
+
+			}
+			else {
+				this.currentView = key;
+				this.warning = false;
+			}
+				
+			
+
 			if (key === 'allowance') {
 				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', true);
 			} else {
 				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', false);
 			}
+		},
+		AddUpdatetime_onAllowanceIndicator: function(oEvent){
+			this.warning = true;
 		},
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;

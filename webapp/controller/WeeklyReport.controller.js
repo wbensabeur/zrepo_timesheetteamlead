@@ -115,7 +115,7 @@ sap.ui.define([
 			//var endDateFilter = new Filter("WorkDate", FilterOperator.LT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date);
 			//var filter2 = new Filter([startDateFilter,endDateFilter],true);
 
-			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'%20and%20WorkDate%20gt%20" + datetime.getODataDateFilter(
+			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'and%20Status%20ne%20'R'%20and%20WorkDate%20gt%20" + datetime.getODataDateFilter(
 				oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
 				oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "&$orderby=ProjectID,EntryType";
 			var mParameters = {
