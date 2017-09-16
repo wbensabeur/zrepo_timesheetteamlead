@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": true,
-    "lastBuildDateTime": "Fri, 08 Sep 2017 16:01:36 GMT"
+    "lastBuildDateTime": "Mon, 11 Sep 2017 14:30:14 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -97,9 +97,10 @@
       "ios": {
         "ios8Iphone": "",
         "ios7Iphone": "",
-        "ios7Ipad": "",
+        "ios7Ipad": "res/android/icon.png",
         "ios61Iphone": "",
-        "ios61Ipad": ""
+        "ios61Ipad": "",
+        "ios7Iphone2x": "res/android/icon.png"
       },
       "android": {
         "ldpi": "res/android/icon.png",
@@ -199,16 +200,16 @@
     },
     "platform": {
       "ios": {
-        "selected": false,
+        "selected": true,
         "preferences": {
-          "Fullscreen": false,
+          "Fullscreen": true,
           "Orientation": "landscape",
           "EnableViewportScale": false,
           "UrlScheme": ""
         }
       },
       "android": {
-        "selected": true,
+        "selected": false,
         "preferences": {
           "Fullscreen": true,
           "Orientation": "landscape",

@@ -118,7 +118,29 @@ sap.ui.define([
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
-			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBU"));
+
+			/*var path = "/ValueHelpSet(ApplicationName='TEAMLEAD',HelpType='BU',FieldValue='" + this.getModel("userPreference").getProperty("/defaultBU") +
+				"')";*/
+			var that = this;
+			var currentBU = this.getModel("userPreference").getProperty("/defaultBU");
+			var ofilters = [
+				new Filter("ApplicationName", FilterOperator.EQ, 'TEAMLEAD'),
+				new Filter("HelpType", FilterOperator.EQ, 'BU'),
+				new Filter("FieldValue", FilterOperator.EQ, currentBU)];
+			
+			this.getModel().read('/ValueHelpSet', {
+				success: function(data) {
+					for (var k = 0 ; k < data.results.length ; k++){
+						if(currentBU === data.results[k].FieldValue)
+						{
+							that.getModel("calendar").setProperty("/data/0/ColumnTxt2", data.results[k].FieldDescription);
+						}
+					}
+					
+
+				},
+				filters: ofilters
+			});
 
 			var status = undefined;
 			var tableItems = oTable.getItems();
@@ -232,7 +254,36 @@ sap.ui.define([
 				oView.addDependent(oDialog);
 
 			}
+			oDialog.setModel(this.getView().getModel());
+			oDialog.setModel(this.getView().getModel('i18n'), 'i18n');
 			oDialog.open();
+		},
+		handleAdvanceSearch: function(oEvent) {
+			var mParams = oEvent.getParameters();
+			var that = this;
+			jQuery.each(mParams.filterItems, function(i, oItem) {
+				//var aSplit = oItem.getKey().split(");
+				if(oItem.getParent().getProperty("key") === 'BusinessUnit')
+				{
+					that.userPref.defaultBU = oItem.getKey();
+					var oData = {
+						PersoValue: oItem.getKey()
+					};
+					var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + that.getView().getModel("userPreference").getProperty(
+				"/userID") + "',PersoId='BU')";
+				that.getView().getModel().update(url, oData);
+					
+				}	
+				//var sPath1 = oItem.getParent().getProperty("key");
+				//var sOperator = FilterOperator.EQ;
+				//var sValue1 = oItem.getKey();
+				//var sValue2 = "";
+				//	var sValue2 = aSplit[3];
+				//var oFilter = new Filter(sPath1, sOperator, sValue1, sValue2);
+
+			});
+			this._applyFilters();
+
 		},
 		onPastPeriodNavPress: function(oEvent) {
 			if (this.twoWeek) {

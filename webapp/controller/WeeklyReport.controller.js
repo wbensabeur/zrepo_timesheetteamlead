@@ -7,6 +7,7 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
+	
 	"com/vinci/timesheet/admin/utility/jspdf"
 ], function(BaseController, JSONModel, formatter, datetime, MessageBox, MessageToast, Filter, FilterOperator, jspdfView) {
 	"use strict";
@@ -346,8 +347,9 @@ sap.ui.define([
 					window.html2canvas($("#shell-container-canvas"), {
 
 						onrendered: function(canvas) {
-
-							//var img = canvas.toDataURL("image/jpg", 0);
+							
+							var img = canvas.toDataURL("image/jpg", 0);
+							sap.m.URLHelper.redirect(img,true);
 							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 							that.onNextEmployeePress();
 							//window.open(img);
