@@ -10,7 +10,7 @@
 		</HBox>
 		<Input type="Number" placeholder="{i18n>noOfKM}" width="10rem"/>
 		<ComboBox placeholder="{i18n>kmType}"
-			items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'KM'}]}" class="SelectCombo">
+			items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'KM'}]}" loadItems="handleKMTypeLoadItems" class="SelectCombo">
 			<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 			<layoutData>
 				<FlexItemData growFactor="1"/>

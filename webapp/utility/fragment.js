@@ -478,6 +478,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent;
 		},
+		AddProjectTime_handleDailyHrsTypeLoadItems: function(oEvent){
+			oEvent.getSource().getBinding("items").resume();
+		},
 		AddProjectTime_getOwnAllDayComboBox: function(radioGroup) {
 			var parent = radioGroup.getParent();
 
@@ -506,6 +509,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oFragment2.getItems()[3].onAfterRendering = this._comboKeyboardDisable;
 			}
 
+		},
+		AddKM_handleKMTypeLoadItems : function(oEvent){
+			oEvent.getSource().getBinding("items").resume();
 		},
 		AddKM_OnChangeStartTimeKM: function(oEvent) {
 			var source = oEvent.getSource();
@@ -698,6 +704,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				parent = parent.getParent();
 			}
 			return parent.getContent()[0];
+		},
+		AddUpdatetime_handleAllowanceZoneTypeLoadItems: function(oEvent){
+			oEvent.getSource().getBinding("items").resume();
 		},
 		AddUpdatetime_saveEntries: function(oView, savepostFuction, ctype, rButton) {
 			/// Get Item Data from view for Daily hour

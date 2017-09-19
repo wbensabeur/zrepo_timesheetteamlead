@@ -240,18 +240,18 @@ sap.ui.define([
 			table.getBinding("items").filter(Filters, "Application");
 
 			var editEnable = oEvent.getSource().data('entryEnable');
-			
+
 			if (editEnable) {
 				this.getView().byId('AddNewTimeButton').setEnabled(true);
 			} else {
 				this.getView().byId('AddNewTimeButton').setEnabled(false);
 			}
-			
-				var EmpDetail = {
-					enable: editEnable
-				};
-				var oEmpDetailModel = new JSONModel(EmpDetail);
-				this.getView().setModel(oEmpDetailModel, "EmpDetail");
+
+			var EmpDetail = {
+				enable: editEnable
+			};
+			var oEmpDetailModel = new JSONModel(EmpDetail);
+			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 		},
 
 		OnskipFilterScreen: function(oEvent) {
@@ -571,6 +571,9 @@ sap.ui.define([
 			fragment.AddProjectTime_OnChangeStartTime(oEvent);
 
 		},
+		handleDailyHrsTypeLoadItems : function (oEvent){
+			fragment.AddProjectTime_handleDailyHrsTypeLoadItems(oEvent);	
+		},
 		OnChangeEndTime: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeEndTime(oEvent);
@@ -592,8 +595,11 @@ sap.ui.define([
 		onSelectAbsenceEndDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent, this.getView());
 		},
-		onAllowanceIndicator : function(oEvent) {
+		onAllowanceIndicator: function(oEvent) {
 			fragment.AddUpdatetime_onAllowanceIndicator(oEvent);
+		},
+		handleAllowanceZoneTypeLoadItems: function(oEvent) {
+			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);
 		},
 
 		//// **AddUpdateTime Fragment Event End** ///////
@@ -602,7 +608,10 @@ sap.ui.define([
 			fragment.AddKM_OnChangeStartTimeKM(oEvent);
 		},
 		OnChangeEndTimeKM: function(oEvent) {
-				fragment.AddKM_OnChangeEndTimeKM(oEvent);
+			fragment.AddKM_OnChangeEndTimeKM(oEvent);
+		},
+		handleKMTypeLoadItems: function(oEvent) {
+				fragment.AddKM_handleKMTypeLoadItems(oEvent);
 			}
 			//// **AddKM Fragment Event End** ///////
 	});

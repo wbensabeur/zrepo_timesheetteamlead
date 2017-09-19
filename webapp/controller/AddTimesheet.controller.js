@@ -27,8 +27,8 @@ sap.ui.define([
 			}];
 			var model = new sap.ui.model.json.JSONModel(data);
 			this.getView().setModel(model, "test");
-			
-				this.getView().byId('PageContent').onAfterRendering = function(oEvent) {
+
+			this.getView().byId('PageContent').onAfterRendering = function(oEvent) {
 				try {
 					var elements = document.getElementsByClassName("SelectCombo"); //
 					for (var k = 0; k < elements.length; k++) {
@@ -39,8 +39,8 @@ sap.ui.define([
 				} catch (err) {
 
 				}
-				
-				};
+
+			};
 
 		},
 		/**
@@ -190,7 +190,7 @@ sap.ui.define([
 			//	var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnchangeTimeSelection(oEvent);
 		},
-		
+
 		OnChangeHours: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeHours(oEvent);
@@ -200,6 +200,9 @@ sap.ui.define([
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeStartTime(oEvent);
 
+		},
+		handleDailyHrsTypeLoadItems: function(oEvent) {
+			fragment.AddProjectTime_handleDailyHrsTypeLoadItems(oEvent);
 		},
 		OnChangeEndTime: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');
@@ -222,8 +225,11 @@ sap.ui.define([
 		onSelectAbsenceEndDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceEndDate(oEvent, this.getView());
 		},
-		onAllowanceIndicator : function(oEvent) {
+		onAllowanceIndicator: function(oEvent) {
 			fragment.AddUpdatetime_onAllowanceIndicator(oEvent);
+		},
+		handleAllowanceZoneTypeLoadItems: function(oEvent) {
+			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);
 		},
 		//// **AddUpdateTime Fragment Event End** ///////
 
@@ -232,7 +238,10 @@ sap.ui.define([
 			fragment.AddKM_OnChangeStartTimeKM(oEvent);
 		},
 		OnChangeEndTimeKM: function(oEvent) {
-				fragment.AddKM_OnChangeEndTimeKM(oEvent);
+			fragment.AddKM_OnChangeEndTimeKM(oEvent);
+		},
+		handleKMTypeLoadItems: function(oEvent) {
+				fragment.AddKM_handleKMTypeLoadItems(oEvent);
 			}
 			//// **AddKM Fragment Event End** ///////
 
