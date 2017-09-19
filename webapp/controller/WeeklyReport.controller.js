@@ -77,7 +77,7 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function(oEvent) {
-			
+
 			this.getView().byId("SignatureFrame").setVisible(false);
 			this.getView().byId("signBtn").setVisible(true);
 			this.getView().byId("timeSubmitBtn").setVisible(false);
@@ -93,13 +93,17 @@ sap.ui.define([
 				var oCalendarModel = new JSONModel(caldenderdata);
 				this.setModel(oCalendarModel, "calendar");
 			} else {
-				this.getRouter().navTo("ReportEmployeeSelection", {source: 'Summary'}, true);
+				this.getRouter().navTo("ReportEmployeeSelection", {
+					source: 'Summary'
+				}, true);
 			}
 			sap.ui.getCore().byId("shell").setHeaderHiding(true);
 		},
 		onPressCancel: function() {
 			sap.ui.getCore().byId("shell").setHeaderHiding(false);
-			this.getRouter().navTo("ReportEmployeeSelection", {source: 'WeeklyReport'}, true);
+			this.getRouter().navTo("ReportEmployeeSelection", {
+				source: 'WeeklyReport'
+			}, true);
 		},
 		_applyEmployeeBinding: function(employee) {
 			var oView = this.getView();
@@ -291,6 +295,39 @@ sap.ui.define([
 			this.dialogPressSignature.open();
 
 		},
+		onUpload: function(e) {
+
+			var fU = this.getView().byId("idfileUploader");
+			var domRef = fU.getFocusDomRef();
+			var file = domRef.files[0];
+			var file = jQuery.sap.domById(this.getView().byId("idfileUploader") + "-fu").files[0];
+			var BASE64_MARKER = 'data:' + file.type + ';base64,';
+
+			var filename = file.name;
+
+			// Create a File Reader object
+			var reader = new FileReader();
+			var t = this;
+
+			reader.onload = function(theFile) {
+				return function(evt) {
+					var base64Index = evt.target.result.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+					var base64 = evt.target.result.substring(base64Index);
+					var imgdata1 = {
+						"Filename": filename,
+						"Filetype": BASE64_MARKER,
+						"Attachment": base64
+
+					};
+					var service_url = window.location.origin + "sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/DocumentSet";
+					var imgdata = JSON.stringify(imgdata1);
+					$.ajaxSetup({
+						cache: false
+					});
+				};
+			};
+			reader.readAsBinaryString(file);
+		},
 		OnTimeSubmit: function() {
 
 			//////
@@ -345,12 +382,10 @@ sap.ui.define([
 			this.getView().getModel().create("/WorkDaySet", requestBody, {
 				success: function() {
 					window.html2canvas($("#shell-container-canvas"), {
-
 						onrendered: function(canvas) {
-							
-							var img = canvas.toDataURL("image/jpg", 0);
-							sap.m.URLHelper.redirect(img,true);
+							var img = canvas.toDataURL("image/png", 0);
 							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+							that.postAttachment(img);
 							that.onNextEmployeePress();
 							//window.open(img);
 						}
@@ -379,6 +414,58 @@ sap.ui.define([
 
 			});*/
 
+		},
+
+		postAttachment: function(img) {
+			var token;
+			var BASE64_MARKER = "data:image/png;base64";
+			var base64Index = BASE64_MARKER.length;
+			var imgData = img.substring(base64Index + 1);
+			var localDate = this.employeeSelected.startDate;
+			if (localDate === null || localDate === undefined) {
+				localDate = new Date();
+			}
+			var weekno = datetime.getWeek(localDate);
+			var week = localDate.getUTCFullYear().toString() + weekno.toString();
+			var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T", "").replace(
+				".", "").substring(0, 14);
+			var country = "XX";
+			var sFileName = locatdatetime + "_" + this.employeId + "_" + week + "_" + country + ".png";
+			jQuery.ajax({
+				url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/$metadata",
+				type: "GET",
+				async: false,
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader("X-CSRF-Token", "Fetch");
+					xhr.setRequestHeader("Content-Type", "image/png");
+					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+				},
+				success: function(data, textStatus, xhrg) {
+					token = xhrg.getResponseHeader("X-CSRF-Token");
+					$.ajaxSetup({
+						cache: false
+					});
+					jQuery.ajax({
+						url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/DocumentSet",
+						asyn: false,
+						cache: false,
+						data: imgData,
+						type: "POST",
+						beforeSend: function(xhrp) {
+							xhrp.setRequestHeader("X-CSRF-Token", token);
+							xhrp.setRequestHeader("Content-Type", "image/png");
+							xhrp.setRequestHeader("SLUG", sFileName);
+						},
+						success: function(odata) {
+							sap.m.MessageToast.show("file successfully uploaded");
+						},
+						error: function(odata) {
+							sap.m.MessageToast.show("file Upload error");
+						}
+					});
+
+				}
+			});
 		}
 	});
 });
