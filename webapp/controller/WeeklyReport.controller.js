@@ -7,7 +7,7 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	
+
 	"com/vinci/timesheet/admin/utility/jspdf"
 ], function(BaseController, JSONModel, formatter, datetime, MessageBox, MessageToast, Filter, FilterOperator, jspdfView) {
 	"use strict";
@@ -119,9 +119,10 @@ sap.ui.define([
 			//var endDateFilter = new Filter("WorkDate", FilterOperator.LT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date);
 			//var filter2 = new Filter([startDateFilter,endDateFilter],true);
 
-			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'and%20Status%20ne%20'R'%20and%20WorkDate%20gt%20" + datetime.getODataDateFilter(
-				oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
-				oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "&$orderby=ProjectID,EntryType";
+			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'and%20Status%20ne%20'R'%20and%20WorkDate%20gt%20" +
+				datetime.getODataDateFilter(
+					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
+					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "&$orderby=ProjectID,EntryType";
 			var mParameters = {
 				urlParameters: urlFilterParam,
 				success: function(oData, oResponse) {
@@ -295,39 +296,6 @@ sap.ui.define([
 			this.dialogPressSignature.open();
 
 		},
-		onUpload: function(e) {
-
-			var fU = this.getView().byId("idfileUploader");
-			var domRef = fU.getFocusDomRef();
-			var file = domRef.files[0];
-			var file = jQuery.sap.domById(this.getView().byId("idfileUploader") + "-fu").files[0];
-			var BASE64_MARKER = 'data:' + file.type + ';base64,';
-
-			var filename = file.name;
-
-			// Create a File Reader object
-			var reader = new FileReader();
-			var t = this;
-
-			reader.onload = function(theFile) {
-				return function(evt) {
-					var base64Index = evt.target.result.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
-					var base64 = evt.target.result.substring(base64Index);
-					var imgdata1 = {
-						"Filename": filename,
-						"Filetype": BASE64_MARKER,
-						"Attachment": base64
-
-					};
-					var service_url = window.location.origin + "sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/DocumentSet";
-					var imgdata = JSON.stringify(imgdata1);
-					$.ajaxSetup({
-						cache: false
-					});
-				};
-			};
-			reader.readAsBinaryString(file);
-		},
 		OnTimeSubmit: function() {
 
 			//////
@@ -421,6 +389,7 @@ sap.ui.define([
 			var BASE64_MARKER = "data:image/png;base64";
 			var base64Index = BASE64_MARKER.length;
 			var imgData = img.substring(base64Index + 1);
+			var localImgData = JSON.stringify(imgData);
 			var localDate = this.employeeSelected.startDate;
 			if (localDate === null || localDate === undefined) {
 				localDate = new Date();
@@ -449,7 +418,7 @@ sap.ui.define([
 						url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/DocumentSet",
 						asyn: false,
 						cache: false,
-						data: imgData,
+						data: localImgData,
 						type: "POST",
 						beforeSend: function(xhrp) {
 							xhrp.setRequestHeader("X-CSRF-Token", token);
