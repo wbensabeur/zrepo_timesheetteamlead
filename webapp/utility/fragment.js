@@ -277,9 +277,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.selectProjectcontext[0].setVisible(true); // Label
 			this.selectProjectcontext[1].setVisible(false); // ownIntialButton
 			this.selectProjectcontext[2].setVisible(true); // ownRefreshButton
+			
+			if(this.selectProjectcontext.length === 4) {
+				this.selectProjectcontext[3].setVisible(true); // ownDeleteButton
+			}
 		},
 		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton) {
 			this.warning = true;
+			
 			var ownHBox = oEvent.getSource().getParent();
 			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
@@ -289,6 +294,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.warning = true;
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
 			this.SearchProject_init(controler, container, selectButton);
+		},
+		SelectProject_OnProjectDelete : function(oEvent) {
+			var btn = oEvent.getSource();
+			var projectContext = btn.getParent().getItems();
+			projectContext[0].unbindElement();
+			projectContext[0].setVisible(false);
+			projectContext[1].setVisible(true); // ownIntialButton
+			projectContext[2].setVisible(false); // ownRefreshButton
+			btn.setVisible(false); // delete Button
+			
+			
+			
 		},
 		SelectProject_onPressProjectCancel: function() {
 			var projectfragment = this.SearchProject_getProjectSearchFragment();

@@ -107,7 +107,7 @@ sap.ui.define([
 		},
 		_applyEmployeeBinding: function(employee) {
 			var oView = this.getView();
-			this.employeId = employee.getCustomData()[1].getValue();
+			this.employeId = employee.data('employee'); //.getCustomData()[1].getValue();
 			oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
 			oView.byId("WeeklyStatus").bindElement(employee.getBindingContextPath());
 			oView.byId("WeeklyAggregation").bindElement(employee.getBindingContextPath());

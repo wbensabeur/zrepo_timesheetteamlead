@@ -171,6 +171,9 @@ sap.ui.define([
 		OnProjectRefresh: function(oEvent) {
 			fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
 		},
+		OnProjectDelete: function(oEvent) {
+			fragment.SelectProject_OnProjectDelete(oEvent);
+		},
 		OnDailyHrTypeChange2: function(oEvent) {
 			fragment.SelectProject_OnDailyHrTypeChange2(oEvent);
 		},

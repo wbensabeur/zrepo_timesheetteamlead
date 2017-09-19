@@ -96,13 +96,13 @@ sap.ui.define([
 				for (var l = 0; l < this.daySelected.length; l++) {
 					var source = this.daySelected[l];
 					var headerSeq = source.getParent().getParent().getInitialOrder();
-					source.getCustomData()[0].setValue("S");
-					source.getParent().getCustomData()[0].setValue("S");
+					source.data('background'); //getCustomData()[0].setValue("S");
+					source.getParent().data('background');//.getCustomData()[0].setValue("S");
 					var Items = this.getView().byId('table').getItems();
 					for (var k1 = 0; k1 < Items.length; k1++) {
 						var button = Items[k1].getCells()[headerSeq];
 						if (button.getEnabled()) {
-							button.getCustomData()[0].setValue("S");
+							button.data('status');//.getCustomData()[0].setValue("S");
 						}
 					}
 				}
@@ -115,11 +115,11 @@ sap.ui.define([
 		},
 		OnHourPress: function(oEvent) {
 			var button = oEvent.getSource();
-			if (button.getCustomData()[0].getValue() === "") {
+			if (button.data('status') === "") {   // getCustomData()[0].getValue()
 				button.getCustomData()[0].setValue("S");
 				this.selectedBox.push(button.getId());
-				var empId = button.getCustomData()[2].getValue();
-				var sDay = button.getCustomData()[3].getValue();
+				var empId = button.data('employee');//.getCustomData()[2].getValue();
+				var sDay = button.data('selectedDate');//.getCustomData()[3].getValue();
 				var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
 				if (index === -1) {
 					var data = {
@@ -135,8 +135,8 @@ sap.ui.define([
 
 			} else {
 				button.getCustomData()[0].setValue("");
-				var empId2 = button.getCustomData()[2].getValue();
-				var sDay2 = button.getCustomData()[3].getValue();
+				var empId2 = button.data('employee');//.getCustomData()[2].getValue();
+				var sDay2 = button.data('selectedDate');//.getCustomData()[3].getValue();
 				var empIndex = this._EmployeeIndexInArray(empId2);
 				var index2 = this.employees[empIndex].Days.indexOf(sDay2);
 				this.employees[empIndex].Days.splice(index2, 1);

@@ -199,8 +199,8 @@ sap.ui.define([
 			//var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
 			// Edit Enable
 
-			this.currentEmp = oEvent.getSource().getCustomData()[2].getValue();
-			this.currentDate = oEvent.getSource().getCustomData()[3].getValue();
+			this.currentEmp = oEvent.getSource().data('employee');
+			this.currentDate = oEvent.getSource().data('selectedDate');//getCustomData()[3].getValue();
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
 			// create dialog lazily
@@ -541,6 +541,9 @@ sap.ui.define([
 		},
 		OnProjectRefresh: function(oEvent) {
 			fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
+		},
+		OnProjectDelete: function(oEvent) {
+			fragment.SelectProject_OnProjectDelete(oEvent);
 		},
 		OnDailyHrTypeChange2: function(oEvent) {
 			fragment.SelectProject_OnDailyHrTypeChange2(oEvent);
