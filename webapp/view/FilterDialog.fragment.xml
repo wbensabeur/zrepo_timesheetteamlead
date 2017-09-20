@@ -3,7 +3,7 @@
 		
 		<filterItems>
 			<ViewSettingsFilterItem text="{i18n>businessUnit}"
-				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}"
+				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BU1'}]}"
 				multiSelect="false" key="BusinessUnit">
 				<items>
 					<ViewSettingsItem text="{FieldDescription}" key="{FieldValue}"/>
