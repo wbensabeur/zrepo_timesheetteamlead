@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Wed, 20 Sep 2017 04:36:32 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Wed, 20 Sep 2017 17:22:09 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -70,7 +70,7 @@
       {
         "hybridOdata": {
           "name": "mainService",
-          "serviceUrl": "https://mobile-a4769796d.hana.ondemand.com:443/com.vinci.timesheet.teamlead/"
+          "serviceUrl": "https://mobile-ac205f4c8.hana.ondemand.com:443/com.vinci.timesheet.teamlead/"
         },
         "originOdata": {
           "name": "mainService",
@@ -95,12 +95,15 @@
       "defaultIcon": "",
       "defaultIconData": "",
       "ios": {
-        "ios8Iphone": "",
-        "ios7Iphone": "",
-        "ios7Ipad": "res/android/icon.png",
-        "ios61Iphone": "",
-        "ios61Ipad": "",
-        "ios7Iphone2x": "res/android/icon.png"
+        "ios8Iphone": "res/iOS/Icon-App-76x76@1x.png",
+        "ios7Iphone": "res/iOS/Icon-App-76x76@2x.png",
+        "ios7Ipad": "res/iOS/Icon-App-76x76@3x.png",
+        "ios61Iphone": "res/iOS/Icon-App-76x76@1x.png",
+        "ios61Ipad": "res/iOS/Icon-App-76x76@3x.png",
+        "ios7Iphone2x": "res/iOS/Icon-App-76x76@1x.png",
+        "ios61Ipad2x": "res/iOS/Icon-App-83.5x83.5@2x.png",
+        "ios61Iphone2x": "res/iOS/Icon-App-76x76@2x.png",
+        "ios7Ipad2x": "res/iOS/Icon-App-83.5x83.5@2x.png"
       },
       "android": {
         "ldpi": "res/android/icon.png",
@@ -192,7 +195,7 @@
     "msType": 0,
     "server": "",
     "port": "",
-    "hcpmsServer": "mobile-a4769796d.hana.ondemand.com",
+    "hcpmsServer": "mobile-ac205f4c8.hana.ondemand.com",
     "hybridRevision": "1",
     "mime": {
       "path": "",
