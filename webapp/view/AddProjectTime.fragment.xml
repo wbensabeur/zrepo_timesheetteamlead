@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="com.vinci.timesheet.admin.utility">
 	<VBox>
 		<FlexBox class="AddHoursDivider" visible="{AddTime>/newTime}"/>
 		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}">
@@ -25,7 +25,7 @@
 			<Label text="Select from and to time" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"/>
 			<HBox alignItems="Start" justifyContent="SpaceBetween">
 				<!--<TimePicker visible='{AddTime>/duration}' value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours"/>-->
-				<StepInput value="0.00" width="9rem" min="0.00" max="24.00" step="0.5" change="OnChangeHours"/>
+				<custom:StepInputCustom displayValuePrecision="2" value="0.00" width="9rem" min="0.00" max="24.00" step="0.5" change="OnChangeHours"/>
 				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}" valueFormat="HH:mm a" displayFormat="HH:mm a"
 					placeholder="Enter Start Time" change="OnChangeStartTime"/>
 				<TimePicker visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}" enabled="false" valueFormat="HH:mm a"

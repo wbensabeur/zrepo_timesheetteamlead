@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Wed, 20 Sep 2017 17:22:09 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Thu, 21 Sep 2017 07:21:03 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -170,7 +170,7 @@
       "logo": "",
       "logoText": "",
       "background": "",
-      "disablePasscode": false,
+      "disablePasscode": true,
       "hideLogoCopyright": false
     },
     "useAppDescriptor4UI5Libs": false,
@@ -203,7 +203,7 @@
     },
     "platform": {
       "ios": {
-        "selected": true,
+        "selected": false,
         "preferences": {
           "Fullscreen": true,
           "Orientation": "landscape",
@@ -414,6 +414,6 @@
   "hcpdeploy": {
     "account": "ac205f4c8",
     "name": "teamleadtimesheet",
-    "lastVersionWeTriedToDeploy": "1.0.6_SNAPSHOT"
+    "lastVersionWeTriedToDeploy": "1.0.8_SNAPSHOT"
   }
 }

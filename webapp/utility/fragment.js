@@ -366,11 +366,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			container.removeItem(sourcePanel);
-			//this.AddProjectTime_destroy(sourcePanel);
+			
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
 			var newTotalhrs = currentTotalhrs - currentValue;
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			this.AddProjectTime_destroy(sourcePanel);
 
 		},
 		AddProjectTime_OnchangeTimeSelection: function(oEvent) {
