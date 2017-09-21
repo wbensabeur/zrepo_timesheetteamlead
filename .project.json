@@ -13,7 +13,7 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": false,
+    "buildRequired": true,
     "lastBuildDateTime": "Wed, 20 Sep 2017 17:22:09 GMT"
   },
   "dataBinding": {
@@ -106,10 +106,10 @@
         "ios7Ipad2x": "res/iOS/Icon-App-83.5x83.5@2x.png"
       },
       "android": {
-        "ldpi": "res/android/icon.png",
-        "mdpi": "",
-        "hdpi": "",
-        "xhdpi": ""
+        "ldpi": "res/android/ic_launcher_idpi.png",
+        "mdpi": "res/android/ic_launcher_mdpi.png",
+        "hdpi": "res/android/ic_launcher_hdpi.png",
+        "xhdpi": "res/android/ic_launcher_xhdpi.png"
       },
       "windows": {
         "s44": "",
@@ -212,7 +212,7 @@
         }
       },
       "android": {
-        "selected": false,
+        "selected": true,
         "preferences": {
           "Fullscreen": true,
           "Orientation": "landscape",
