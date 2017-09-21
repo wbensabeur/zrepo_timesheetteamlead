@@ -21,7 +21,7 @@
 			</HBox>
 		</VBox>
 		<VBox class="sapUiSmallMarginBottom" visible="false">
-			<Label text="Select hours" visible='{AddTime>/duration}'/>
+			<Label text="{i18n>SelectHours}" visible='{AddTime>/duration}'/>
 			<Label text="Select from and to time" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"/>
 			<HBox alignItems="Start" justifyContent="SpaceBetween">
 				<!--<TimePicker visible='{AddTime>/duration}' value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours"/>-->

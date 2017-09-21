@@ -27,7 +27,7 @@
 				<VBox width="100%" height="100%">
 					<VBox>
 						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
-							<Label text="Daily allowances:"/>
+							<Label text="{i18n>DailyAllowances}"/>
 							<HBox alignItems="Center" justifyContent="Start">
 								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator"
 									items="{path:'/ValueHelpSet', suspended: true, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"

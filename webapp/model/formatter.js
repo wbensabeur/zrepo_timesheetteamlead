@@ -161,16 +161,16 @@ sap.ui.define([
 			var status = '';
 			switch (value) {
 				case 'D':
-					status = 'Draft';
+					status = this.getResourceBundle().getText("legend-draft");
 					break;
 				case 'W':
-					status = 'Waiting';
+					status = this.getResourceBundle().getText("legend-waiting");
 					break;
 				case 'V':
-					status = 'Validated';
+					status = this.getResourceBundle().getText("legend-validated");
 					break;
 				case 'R':
-					status = 'Refused';
+					status = this.getResourceBundle().getText("legend-refused");
 					break;
 				default:
 					status = '';

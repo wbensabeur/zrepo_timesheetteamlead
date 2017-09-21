@@ -473,6 +473,10 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     font-size: 1rem;
 }
 
+.TextCBoldText {
+   font-weight: bold;
+}
+
 .EmployeeAttribute {
     color: white;
 }

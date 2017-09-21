@@ -51,8 +51,8 @@
 						<!--<Button icon="sap-icon://arrow-right" type="Transparent" press="onFuturePeriodNavPress" class="circleIcon"/>-->
 						<core:Icon src="sap-icon://arrow-right" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
 							press="onFuturePeriodNavPress" class="circleIcon sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-						<Label text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center"
-							class="sapUiSmallMarginTop sapUiSmallMarginBegin EmployeeName" design="Bold"/>
+						<Text text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}" textAlign="Center"
+							  maxLines="2" class="sapUiSmallMarginTop sapUiSmallMarginBegin EmployeeName TextCBoldText"/>
 						<layoutData>
 							<FlexItemData growFactor="1"/>
 						</layoutData>
