@@ -151,11 +151,12 @@ sap.ui.define([
 					break;
 				}
 			}
-			if (status === 'NE') {
+			// this logic will be enabled later
+			/*if (status === 'NE') {
 				this.getView().byId("editPlanning").setEnabled(false);
 			} else {
 				this.getView().byId("editPlanning").setEnabled(true);
-			}
+			}*/
 
 			if (this.userPref.successMaskEntry) {
 				MessageToast.show(this.getResourceBundle().getText("successPostMsg"));

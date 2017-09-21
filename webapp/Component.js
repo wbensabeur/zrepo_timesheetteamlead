@@ -113,6 +113,7 @@ sap.ui.define([
 						switch (key) {
 							case 'BU':
 								userPreferenceModel.setProperty('/defaultBU', data.results[k].PersoValue);
+								userPreferenceModel.setProperty('/defaultBUT', data.results[k].PersoDesc);
 								break;
 							case 'BW':
 								if (data.results[k].PersoValue === null || data.results[k].PersoValue === undefined || data.results[k].PersoValue === '') {
