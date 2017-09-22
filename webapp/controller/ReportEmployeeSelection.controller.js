@@ -68,7 +68,8 @@ sap.ui.define([
 			
 			if (this.refresh) {
 				
-				this.employeeSelected.employees  = [];                         
+				this.employeeSelected.employees  = [];  
+				this.getView().getModel("employeeSelected").setData(this.employeeSelected);
 				this.refresh = false;
 				
 			}

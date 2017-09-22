@@ -86,10 +86,11 @@ sap.ui.define([
 
 			if (this.refresh) {
 				for (var k = 0; k < this.selectedBox.length; k++) {
-					sap.ui.getCore().byId(this.selectedBox[k]).getCustomData()[0].setValue("");
+					this.selectedBox[k].getCustomData()[0].setValue("");
 				}
 				this.selectedBox = [];
 				this.employees = [];
+				this.getView().getModel("employeeDaysSelected").setData(this.employees);
 				this.refresh = false;
 				this.daySelected = [];
 			} else {
@@ -117,7 +118,7 @@ sap.ui.define([
 			var button = oEvent.getSource();
 			if (button.data('status') === "") {   // getCustomData()[0].getValue()
 				button.getCustomData()[0].setValue("S");
-				this.selectedBox.push(button.getId());
+				this.selectedBox.push(button);
 				var empId = button.data('employee');//.getCustomData()[2].getValue();
 				var sDay = button.data('selectedDate');//.getCustomData()[3].getValue();
 				var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
@@ -140,7 +141,7 @@ sap.ui.define([
 				var empIndex = this._EmployeeIndexInArray(empId2);
 				var index2 = this.employees[empIndex].Days.indexOf(sDay2);
 				this.employees[empIndex].Days.splice(index2, 1);
-				var boxindex = this.selectedBox.indexOf(button.getId());
+				var boxindex = this.selectedBox.indexOf(button);
 				this.selectedBox.splice(boxindex, 1);
 				if (this.employees[empIndex].Days.length === 0) {
 
@@ -163,7 +164,7 @@ sap.ui.define([
 					var button = Items[k].getCells()[headerSeq];
 					if (button.getEnabled()) {
 						button.getCustomData()[0].setValue("S");
-						this.selectedBox.push(button.getId());
+						this.selectedBox.push(button);
 						var sDay = button.getCustomData()[3].getValue();
 						/*var empId = button.getCustomData()[2].getValue();
 						var sDay = button.getCustomData()[3].getValue();
@@ -218,7 +219,7 @@ sap.ui.define([
 					var button1 = Items[j].getCells()[headerSeq];
 					if (button1.getEnabled()) {
 						button1.getCustomData()[0].setValue("");
-						var boxindex = this.selectedBox.indexOf(button1.getId());
+						var boxindex = this.selectedBox.indexOf(button1);
 						this.selectedBox.splice(boxindex, 1);
 						var sDay2 = button1.getCustomData()[3].getValue();
 
@@ -258,9 +259,9 @@ sap.ui.define([
 			var empId = empBox.getCustomData()[1].getValue();
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
-				this.selectedBox.push(empBox.getId());
+				this.selectedBox.push(empBox);
 				empBox.getParent().getCustomData()[0].setValue("S");
-				this.selectedBox.push(empBox.getParent().getId());
+				this.selectedBox.push(empBox.getParent());
 				var index = this._EmployeeIndexInArray(empId);
 				if (index === -1) {
 					var data = {
@@ -276,7 +277,7 @@ sap.ui.define([
 					var button = emphours[k];
 					if (button.getCustomData()[1].getValue() !== "L") {
 						button.getCustomData()[0].setValue("S");
-						this.selectedBox.push(button.getId());
+						this.selectedBox.push(button);
 						sDate.push(button.getCustomData()[3].getValue());
 					}
 				}
@@ -286,7 +287,7 @@ sap.ui.define([
 						var button = emphours[k];
 						if (button.getCustomData()[1].getValue() !== "L") {
 							button.getCustomData()[0].setValue("S");
-							this.selectedBox.push(button.getId());
+							this.selectedBox.push(button);
 							sDate.push(button.getCustomData()[3].getValue());
 						}
 					}
@@ -296,10 +297,10 @@ sap.ui.define([
 				this.employees[index3].Days = sDate;
 			} else {
 				empBox.getCustomData()[0].setValue("");
-				var empindex1 = this.selectedBox.indexOf(empBox.getId());
+				var empindex1 = this.selectedBox.indexOf(empBox);
 				this.selectedBox.splice(empindex1, 1);
 				empBox.getParent().getCustomData()[0].setValue("");
-				var empindex2 = this.selectedBox.indexOf(empBox.getParent().getId());
+				var empindex2 = this.selectedBox.indexOf(empBox.getParent());
 				this.selectedBox.splice(empindex2, 1);
 				var index2 = this._EmployeeIndexInArray(empId);
 				this.employees.splice(index2, 1);
@@ -307,7 +308,7 @@ sap.ui.define([
 				for (var k1 = 1; k1 < 15; k1++) {
 					var button1 = emphours1[k1];
 					if (button1.getCustomData()[1].getValue() !== "L") {
-						var boxindex = this.selectedBox.indexOf(button1.getId());
+						var boxindex = this.selectedBox.indexOf(button1);
 						this.selectedBox.splice(boxindex, 1);
 						button1.getCustomData()[0].setValue("");
 					}

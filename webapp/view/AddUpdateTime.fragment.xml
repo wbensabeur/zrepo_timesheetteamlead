@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="com.vinci.timesheet.admin.utility">
 	<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" expandable="false" class="sapUiResponsiveContentPadding VinciTabBar"
 		selectedKey="hours" select="OnTabSelected">
 		<items>
@@ -13,7 +13,7 @@
 								</layoutData>
 							</Button>
 							<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
-							<StepInput class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem" value="{AddTime>/totalhrs}"/>
+							<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem" value="{AddTime>/totalhrs}"/>
 						</HBox>
 					</VBox>
 					<VBox visible="false">
