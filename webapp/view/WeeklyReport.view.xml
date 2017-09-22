@@ -21,13 +21,13 @@
 							<core:Icon src="sap-icon://arrow-right" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
 								press="onNextEmployeePress" class="circleIcon sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 						</HBox>
-						<VBox id="userInfo" class="sapUiSmallMarginBegin">
+						<VBox id="userInfo" class="sapUiSmallMarginBegin" width="400px">
 							<Label text="{FullName}" class="sapUiTinyMarginTop EmployeeName" design="Bold"/>
 							<HBox>
-								<Label text="{CompanyDesc}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
-								<Label text="{BusinessUnitDesc}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
-								<Label text="{Section}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
-								<Label id="WeeklyStatus" text="{i18n>status}: {parts:['WeekStatus'],formatter:'.formatter.statusFormat'}" class="EmployeeAttribute"/>
+								<Text text="{CompanyDesc} {BusinessUnitDesc} {Section} " class="EmployeeAttribute sapUiTinyMarginEnd"/>
+								<!--<Text text="{BusinessUnitDesc}" class="EmployeeAttribute sapUiTinyMarginEnd"/>
+								<Text text="{Section}" class="EmployeeAttribute sapUiTinyMarginEnd"/>-->
+								<Text width="150px" id="WeeklyStatus" text="{i18n>status}: {parts:['WeekStatus'],formatter:'.formatter.statusFormat'}" class="EmployeeAttribute"/>
 							</HBox>
 						</VBox>
 						<layoutData>
