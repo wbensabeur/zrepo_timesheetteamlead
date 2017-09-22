@@ -103,7 +103,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				buttons[1].setEnabled(false);
 				this.lastProjectFilter = null;
 				oEvent.getSource().getParent().getItems()[2].setVisible(true);
-
+				var defaultBU = oView.getModel('userPreference').getProperty("/defaultBU");
+				this.BUfilter = new Filter("BusinessUnit", FilterOperator.EQ, defaultBU);
 				/*setTimeout(function() {
 					try {
 						var elements = document.getElementsByClassName("SelectCombo"); //

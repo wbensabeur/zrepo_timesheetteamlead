@@ -118,10 +118,11 @@ sap.ui.define([
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
+			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
 
 			/*var path = "/ValueHelpSet(ApplicationName='TEAMLEAD',HelpType='BU',FieldValue='" + this.getModel("userPreference").getProperty("/defaultBU") +
 				"')";*/
-			var that = this;
+			/*var that = this;
 			var currentBU = this.getModel("userPreference").getProperty("/defaultBU");
 			var ofilters = [
 				new Filter("ApplicationName", FilterOperator.EQ, 'TEAMLEAD'),
@@ -139,7 +140,7 @@ sap.ui.define([
 
 				},
 				filters: ofilters
-			});
+			});*/
 
 			var status = undefined;
 			var tableItems = oTable.getItems();

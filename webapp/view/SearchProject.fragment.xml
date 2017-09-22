@@ -10,10 +10,10 @@
 		<HBox class="sapUiSmallMarginBottom" visible="false">
 			<ComboBox placeholder="{i18n>searchBU}" class="SelectCombo"
 				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}"
-				change="onBUFilterChange">
+				change="onBUFilterChange" selectedKey="{userPreference>/defaultBU}">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
-					<FlexItemData growFactor="1"/>
+					<FlexItemData growFactor="0"/>
 				</layoutData>
 			</ComboBox>
 			<SearchField placeholder="{i18n>searchProject}" enableSuggestions="true" search="onProjectDescriptionSearch"
@@ -22,7 +22,7 @@
 					<SuggestionItem text="{ProjectDescription}" description="{ProjectId}" key="{ProjectId}"/>
 				</suggestionItems>
 				<layoutData>
-					<FlexItemData growFactor="1"/>
+					<FlexItemData growFactor="3"/>
 				</layoutData>
 			</SearchField>
 			<!--<ComboBox value="{i18n>projID}">
@@ -34,7 +34,7 @@
 				change="onPositionFilterChange" class="SelectCombo">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
-					<FlexItemData growFactor="1"/>
+					<FlexItemData growFactor="0"/>
 				</layoutData>
 			</ComboBox>
 			<SearchField placeholder="{i18n>searchManager}" enableSuggestions="true" search="onProjectManagerSearch" suggest="onProjectManagerSuggest"
@@ -43,7 +43,7 @@
 					<SuggestionItem text="{FieldDescription}" description="{path:'FieldValue'}" key="{FieldValue}"/>
 				</suggestionItems>
 				<layoutData>
-					<FlexItemData growFactor="1"/>
+					<FlexItemData growFactor="3"/>
 				</layoutData>
 			</SearchField>
 			<!--<ComboBox value="{i18n>manager}">
