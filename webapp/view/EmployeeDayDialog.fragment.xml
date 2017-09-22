@@ -26,7 +26,7 @@
 					</HBox>
 					<HBox id="EmpDayInfo" class="sapUiMediumMarginTop sapUiSmallMarginBegin">
 						<Label text="{parts:['WorkDate'],formatter:'.formatter.dateFormatinEmpDay'}"/>
-						<Label text=" - {i18n>legend-theoritical} : {path:'TargetHours',type:'Float',formatter:'.formatter.numberFormatter'} hours"/>
+						<Label text=" - {i18n>legend-theoritical} : {path:'TargetHours',type:'Float',formatter:'.formatter.numberFormatter'} {i18n>hour}"/>
 					</HBox>
 					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd"
 						items="{ path: '/WorkDayItemSet' }">
