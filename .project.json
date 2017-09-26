@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Fri, 22 Sep 2017 11:43:17 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Tue, 26 Sep 2017 06:19:11 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -89,7 +89,7 @@
     "appname": "teamleadtimesheet",
     "appid": "com.vinci.timesheet.teamlead",
     "appdesc": "Vinci team lead application for Timesheet",
-    "appversion": "0.0.1",
+    "appversion": "R.1.0.0",
     "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
@@ -414,6 +414,6 @@
   "hcpdeploy": {
     "account": "ac205f4c8",
     "name": "teamleadtimesheet",
-    "lastVersionWeTriedToDeploy": "1.0.11_SNAPSHOT"
+    "lastVersionWeTriedToDeploy": "R.1.0.1"
   }
 }

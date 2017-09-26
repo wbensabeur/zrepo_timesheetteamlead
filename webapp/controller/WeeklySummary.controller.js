@@ -27,7 +27,7 @@ sap.ui.define([
 			if (setting !== null) {
 				setting.attachPress(function(oEvent) {
 
-					MessageBox.information("Version - 1.0.81");
+					MessageBox.information("Version - R.1.0.0");
 				});
 			}
 			// Put down worklist table's original value for busy indicator delay,
@@ -202,7 +202,7 @@ sap.ui.define([
 			// Edit Enable
 
 			this.currentEmp = oEvent.getSource().data('employee');
-			this.currentDate = oEvent.getSource().data('selectedDate');//getCustomData()[3].getValue();
+			this.currentDate = oEvent.getSource().data('selectedDate'); //getCustomData()[3].getValue();
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
 			// create dialog lazily
@@ -235,7 +235,7 @@ sap.ui.define([
 
 			/*oDialog.getContent()[0].setVisible(true);
 			oDialog.getContent()[1].setVisible(false);*/ // Invisible Add Information Screen
-
+			this.update = false;
 			oDialog.open();
 			var table = this.getView().byId('tableDayItems');
 			table.setModel(this.getView().getModel());
@@ -325,12 +325,15 @@ sap.ui.define([
 		OnCancelEmpDayCheckDialog: function(oEvent) {
 			var oDialog = this.getView().byId("EmpDayCheckDialog");
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
-			this.getView().byId('table').getBinding("items").refresh();
+			//this.getView().byId('table').getBinding("items").refresh();
+			if (this.update) {
+				this._applyFilters();
+			}
 			oDialog.close();
 		},
 		OnCancelFilterDialog: function(oEvent) {
 			var oDialog = this.getView().byId("filterDialog");
-			this.getView().byId('table').getBinding("items").refresh();
+			//this.getView().byId('table').getBinding("items").refresh();
 			oDialog.close();
 		},
 		onPressSaveEntries: function(oEvent) {
@@ -342,6 +345,7 @@ sap.ui.define([
 
 				that.getView().getModel().read(headerContextPath);
 				oTable.getBinding("items").refresh();
+				that.update = true;
 				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
 			}, this.getView().byId("EmpDayCheckDialog"), oEvent.getSource());
 
@@ -481,7 +485,7 @@ sap.ui.define([
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;
 			var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
-
+			
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
 			//oView.byId('EmpDayInfo').bindElement(urlStr);
@@ -489,6 +493,7 @@ sap.ui.define([
 			this.getView().getModel().remove(binding, {
 				success: function() {
 					that.getView().getModel().read(contextPath);
+					that.update = true;
 					MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
 				}
 			});
@@ -576,8 +581,8 @@ sap.ui.define([
 			fragment.AddProjectTime_OnChangeStartTime(oEvent);
 
 		},
-		handleDailyHrsTypeLoadItems : function (oEvent){
-			fragment.AddProjectTime_handleDailyHrsTypeLoadItems(oEvent);	
+		handleDailyHrsTypeLoadItems: function(oEvent) {
+			fragment.AddProjectTime_handleDailyHrsTypeLoadItems(oEvent);
 		},
 		OnChangeEndTime: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');

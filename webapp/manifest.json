@@ -71,20 +71,17 @@
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
 					"bundleName": "com.vinci.timesheet.admin.i18n.i18n"
-				}
+				},
+				"async": true,
+				"preload": true
 			},
 			"": {
 				"dataSource": "mainService",
 				"preload": true,
 				"settings": {
-					"defaultCountMode": "Inline"
+					"defaultCountMode": "Inline",
+					"defaultOperationMode": "Server"
 				}
-			},
-			"user": {
-				"type": "sap.ui.model.json.JSONModel",
-				"settings": {},
-				"uri": "/services/userapi/currentUser",
-				"preload": true
 			}
 		},
 		"routing": {
