@@ -163,6 +163,11 @@ sap.ui.define([
 				MessageToast.show(this.getResourceBundle().getText("successPostMsg"));
 				this.userPref.successMaskEntry = false;
 			}
+			if(this.userPref.successWeekSubmit)
+			{
+				MessageToast.show(this.getResourceBundle().getText("successWeeklyReportPostMsg"));
+				this.userPref.successWeekSubmit = false; 
+			}
 		},
 		/* =========================================================== */
 		/* User Event methods                                            */

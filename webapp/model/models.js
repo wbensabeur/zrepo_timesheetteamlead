@@ -23,6 +23,7 @@ sap.ui.define([
 				startDate:startDate,
 				userID:null,
 				successMaskEntry : false,
+				successWeekSubmit : false,
 				defaultHours : false,
 				defaultIPD : false,
 				defaultKM : false,

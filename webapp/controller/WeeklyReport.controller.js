@@ -351,12 +351,15 @@ sap.ui.define([
 			this.getView().getModel().create("/WorkDaySet", requestBody, {
 				success: function() {
 					that.getView().setBusy(false);
+					
 					if (that.index === that.noOfEmp - 1) { //Home Page
 						that.getRouter().navTo("home", {}, true);
+						that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 					} else { // Next Employee Weekly Submit 
 						that.onNextEmployeePress();
+						MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 					}
-					window.html2canvas($("#shell-container-canvas"), {
+					/*window.html2canvas($("#shell-container-canvas"), {
 						onrendered: function(canvas) {
 							var img = canvas.toDataURL("image/png", 0);
 							var localDate = that.employeeSelected.startDate;
@@ -370,15 +373,11 @@ sap.ui.define([
 								".", "").substring(0, 14);
 							var country = "XX";
 							var sFileName = locatdatetime + "_" + that.employeId + "_" + week + "_" + country + ".png";
-							// var doc = new jsPDF('l', 'pt', 'a4', true);
-							// doc.addImage(img, 'PNG', 25, 25, 500, 300, '', 'FAST');
-							// doc.save(sFileName);
-							// var string = doc.output('datauristring');
-							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+							
 							that.postAttachment(img, sFileName);
 							//window.open(img);
 						}
-					});
+					});*/
 
 				},
 				error : function () {

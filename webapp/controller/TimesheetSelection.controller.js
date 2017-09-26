@@ -105,7 +105,7 @@ sap.ui.define([
 					for (var k1 = 0; k1 < Items.length; k1++) {
 						var button = Items[k1].getCells()[headerSeq];
 						if (button.getEnabled()) {
-							button.data('status'); //.getCustomData()[0].setValue("S");
+							button.getCustomData()[0].setValue("S");
 						}
 					}
 				}
