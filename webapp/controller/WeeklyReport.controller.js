@@ -347,8 +347,15 @@ sap.ui.define([
 				//	}
 			}
 			var that = this;
+			this.getView().setBusy(true);
 			this.getView().getModel().create("/WorkDaySet", requestBody, {
 				success: function() {
+					that.getView().setBusy(false);
+					if (that.index === that.noOfEmp - 1) { //Home Page
+						that.getRouter().navTo("home", {}, true);
+					} else { // Next Employee Weekly Submit 
+						that.onNextEmployeePress();
+					}
 					window.html2canvas($("#shell-container-canvas"), {
 						onrendered: function(canvas) {
 							var img = canvas.toDataURL("image/png", 0);
@@ -364,17 +371,20 @@ sap.ui.define([
 							var country = "XX";
 							var sFileName = locatdatetime + "_" + that.employeId + "_" + week + "_" + country + ".pdf";
 							var doc = new jsPDF('l', 'pt', 'a4', true);
-							doc.addImage(img, 'PNG', 25, 25, 500, 300,'','FAST');
+							doc.addImage(img, 'PNG', 25, 25, 500, 300, '', 'FAST');
 							doc.save(sFileName);
 							var string = doc.output('datauristring');
 							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 							that.postAttachment(string, sFileName);
-							that.onNextEmployeePress();
+
 							//window.open(img);
 						}
 
 					});
 
+				},
+				error : function () {
+					that.getView().setBusy(false);
 				}
 			});
 
@@ -400,7 +410,7 @@ sap.ui.define([
 		},
 
 		postAttachment: function(img, FileName) {
-			debugger;
+
 			var token;
 			var sFileName = FileName;
 			var BASE64_MARKER = "data:application/pdf;base64,";
