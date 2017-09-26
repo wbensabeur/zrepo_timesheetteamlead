@@ -369,17 +369,15 @@ sap.ui.define([
 								"").replace(
 								".", "").substring(0, 14);
 							var country = "XX";
-							var sFileName = locatdatetime + "_" + that.employeId + "_" + week + "_" + country + ".pdf";
-							var doc = new jsPDF('l', 'pt', 'a4', true);
-							doc.addImage(img, 'PNG', 25, 25, 500, 300, '', 'FAST');
-							doc.save(sFileName);
-							var string = doc.output('datauristring');
+							var sFileName = locatdatetime + "_" + that.employeId + "_" + week + "_" + country + ".png";
+							// var doc = new jsPDF('l', 'pt', 'a4', true);
+							// doc.addImage(img, 'PNG', 25, 25, 500, 300, '', 'FAST');
+							// doc.save(sFileName);
+							// var string = doc.output('datauristring');
 							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
-							that.postAttachment(string, sFileName);
-
+							that.postAttachment(img, sFileName);
 							//window.open(img);
 						}
-
 					});
 
 				},
@@ -410,10 +408,9 @@ sap.ui.define([
 		},
 
 		postAttachment: function(img, FileName) {
-
 			var token;
 			var sFileName = FileName;
-			var BASE64_MARKER = "data:application/pdf;base64,";
+			var BASE64_MARKER = "data:image/png;base64,";
 			var base64Index = BASE64_MARKER.length;
 			var imgData = img.substring(base64Index);
 			jQuery.ajax({
@@ -422,7 +419,7 @@ sap.ui.define([
 				async: false,
 				beforeSend: function(xhr) {
 					xhr.setRequestHeader("X-CSRF-Token", "Fetch");
-					xhr.setRequestHeader("Content-Type", "application/pdf");
+					xhr.setRequestHeader("Content-Type", "image/png");
 					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 				},
 				success: function(data, textStatus, xhrg) {
@@ -438,7 +435,7 @@ sap.ui.define([
 						type: "POST",
 						beforeSend: function(xhrp) {
 							xhrp.setRequestHeader("X-CSRF-Token", token);
-							xhrp.setRequestHeader("Content-Type", "application/pdf");
+							xhrp.setRequestHeader("Content-Type", "image/png");
 							xhrp.setRequestHeader("slug", sFileName);
 						},
 						success: function(odata) {
