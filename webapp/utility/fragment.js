@@ -3,7 +3,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	"sap/m/MessageBox",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-
 ], function(datetime, JSONModel, MessageBox, Filter, FilterOperator) {
 	"use strict";
 
@@ -278,14 +277,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.selectProjectcontext[0].setVisible(true); // Label
 			this.selectProjectcontext[1].setVisible(false); // ownIntialButton
 			this.selectProjectcontext[2].setVisible(true); // ownRefreshButton
-			
-			if(this.selectProjectcontext.length === 4) {
+
+			if (this.selectProjectcontext.length === 4) {
 				this.selectProjectcontext[3].setVisible(true); // ownDeleteButton
 			}
 		},
 		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton) {
 			this.warning = true;
-			
+
 			var ownHBox = oEvent.getSource().getParent();
 			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
@@ -296,7 +295,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
 			this.SearchProject_init(controler, container, selectButton);
 		},
-		SelectProject_OnProjectDelete : function(oEvent) {
+		SelectProject_OnProjectDelete: function(oEvent) {
 			var btn = oEvent.getSource();
 			var projectContext = btn.getParent().getItems();
 			projectContext[0].unbindElement();
@@ -304,9 +303,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			projectContext[1].setVisible(true); // ownIntialButton
 			projectContext[2].setVisible(false); // ownRefreshButton
 			btn.setVisible(false); // delete Button
-			
-			
-			
+
 		},
 		SelectProject_onPressProjectCancel: function() {
 			var projectfragment = this.SearchProject_getProjectSearchFragment();
@@ -314,7 +311,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		SelectProject_onPressProjectSelect: function() {
 			var projectfragment = this.SearchProject_getProjectSearchFragment();
-			
+
 			var projectContext = this.SearchProject_getProjectContext(projectfragment); //oEvent.getSource().getCustomData()[0].getValue();
 			if (projectContext === null || projectContext === "") {
 				MessageBox.alert(this.i18nModel.getText("noprojectselectmessage"));
@@ -367,7 +364,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			container.removeItem(sourcePanel);
-			
+
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
 			var newTotalhrs = currentTotalhrs - currentValue;
@@ -497,7 +494,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent;
 		},
-		AddProjectTime_handleDailyHrsTypeLoadItems: function(oEvent){
+		AddProjectTime_handleDailyHrsTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
 		AddProjectTime_getOwnAllDayComboBox: function(radioGroup) {
@@ -529,7 +526,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 		},
-		AddKM_handleKMTypeLoadItems : function(oEvent){
+		AddKM_handleKMTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
 		AddKM_OnChangeStartTimeKM: function(oEvent) {
@@ -696,13 +693,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					}
 				});
 
-			}
-			else {
+			} else {
 				this.currentView = key;
 				this.warning = false;
 			}
-				
-			
 
 			if (key === 'allowance') {
 				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', true);
@@ -710,7 +704,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', false);
 			}
 		},
-		AddUpdatetime_onAllowanceIndicator: function(oEvent){
+		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
 			this.warning = true;
 		},
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
@@ -724,7 +718,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent.getContent()[0];
 		},
-		AddUpdatetime_handleAllowanceZoneTypeLoadItems: function(oEvent){
+		AddUpdatetime_handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
 		AddUpdatetime_saveEntries: function(oView, savepostFuction, ctype, rButton) {
@@ -894,6 +888,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				rButton.setEnabled(true);
 				return;
 			}
+			Date.prototype.getWeek = function() {
+				var onejan = new Date(this.getFullYear(), 0, 1);
+				return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+			};
 			var data = {
 				"EmployeeId": this.employees[0].employee,
 				"WorkDate": this.employees[0].Days[0],
@@ -901,43 +899,50 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			};
 			for (var l = 0; l < this.employees.length; l++) {
 				var empId = this.employees[l].employee;
-				for (var j = 0; j < this.employees[l].Days.length; j++) {
-					for (var i = 0; i < workDayItems.length; i++) {
-						var item = {
-							"EmployeeId": empId,
-							"WorkDate": this.employees[l].Days[j],
-							"Counter": "0",
-							"ProjectID": workDayItems[i].ProjectID,
-							"ProjectName": "",
-							"EntryType": workDayItems[i].EntryType,
-							"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
-							"EntryTypeDesc": "",
-							"Hours": workDayItems[i].Hours,
-							"KMNumber": workDayItems[i].KMNumber,
-							"StartTime": workDayItems[i].StartTime,
-							"EndTime": workDayItems[i].EndTime,
-							"FullDay": workDayItems[i].FullDay,
-							"Status": "D",
-							"Comment": "",
-							"CreatedBy": "",
-							"CreatedOn": new Date(),
-							"ReleaseOn": null,
-							"ApprovedOn": null,
-							"Reason": "",
-							"AllowancesType": "",
-							"AllowancesName": "",
-							"ZoneType": workDayItems[i].ZoneType,
-							"ZoneName": workDayItems[i].ZoneName,
-							"MealIndicator": workDayItems[i].MealIndicator,
-							"JourneyIndicator": workDayItems[i].JourneyIndicator,
-							"TransportIndicator": workDayItems[i].TransportIndicator,
-							"ApplicationName": "TEAMLEAD"
-						};
-						data.NavWorkDayTimeItems.push(item);
+				var isByWeekly = oView.getModel("calendar").getData().BiWeekly;
+				var WeekYear = oView.getModel("calendar").getData().StartDate.getUTCFullYear();
+				var WeekNumber = (new Date(oView.getModel("calendar").getData().StartDate)).getWeek();
+				var path = "/WeekSummarySet(WeekNumber='" + WeekNumber + "',WeekYear='" + WeekYear + "',isByWeekly=" + isByWeekly + ",EmployeeId='" +
+					empId + "')";
+				var isEntryEnabled = oView.getModel().getProperty(path).isEntryEnabled;
+				if (isEntryEnabled === true) {
+					for (var j = 0; j < this.employees[l].Days.length; j++) {
+						for (var i = 0; i < workDayItems.length; i++) {
+							var item = {
+								"EmployeeId": empId,
+								"WorkDate": this.employees[l].Days[j],
+								"Counter": "0",
+								"ProjectID": workDayItems[i].ProjectID,
+								"ProjectName": "",
+								"EntryType": workDayItems[i].EntryType,
+								"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
+								"EntryTypeDesc": "",
+								"Hours": workDayItems[i].Hours,
+								"KMNumber": workDayItems[i].KMNumber,
+								"StartTime": workDayItems[i].StartTime,
+								"EndTime": workDayItems[i].EndTime,
+								"FullDay": workDayItems[i].FullDay,
+								"Status": "D",
+								"Comment": "",
+								"CreatedBy": "",
+								"CreatedOn": new Date(),
+								"ReleaseOn": null,
+								"ApprovedOn": null,
+								"Reason": "",
+								"AllowancesType": "",
+								"AllowancesName": "",
+								"ZoneType": workDayItems[i].ZoneType,
+								"ZoneName": workDayItems[i].ZoneName,
+								"MealIndicator": workDayItems[i].MealIndicator,
+								"JourneyIndicator": workDayItems[i].JourneyIndicator,
+								"TransportIndicator": workDayItems[i].TransportIndicator,
+								"ApplicationName": "TEAMLEAD"
+							};
+							data.NavWorkDayTimeItems.push(item);
+						}
+
 					}
-
 				}
-
 			}
 			var that = this;
 			ctype.setBusy(true);
