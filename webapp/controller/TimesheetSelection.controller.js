@@ -406,8 +406,8 @@ sap.ui.define([
 					},
 					success: function(odata) {
 						that.allEmps = odata.results;
-						if (that.totalEmp !== odata.results.length)
-							MessageBox.alert(that.getResourceBundle().getText("alertNotAllEmp"));
+						/*if (that.totalEmp !== odata.results.length)
+							MessageBox.alert(that.getResourceBundle().getText("alertNotAllEmp"));*/
 					}
 
 				});
