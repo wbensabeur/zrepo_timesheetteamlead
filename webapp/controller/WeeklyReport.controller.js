@@ -1,6 +1,7 @@
 sap.ui.define([
 	"com/vinci/timesheet/admin/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/v2/ODataModel",
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"sap/m/MessageBox",
@@ -9,7 +10,8 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"com/vinci/timesheet/admin/utility/jspdf",
 	"com/vinci/timesheet/admin/utility/html2canvas"
-], function(BaseController, JSONModel, formatter, datetime, MessageBox, MessageToast, Filter, FilterOperator, jspdfView, html2canvas) {
+], function(BaseController, JSONModel, ODataModel, formatter, datetime, MessageBox, MessageToast, Filter, FilterOperator, jspdfView,
+	html2canvas) {
 	"use strict";
 
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklyReport", {
@@ -380,7 +382,7 @@ sap.ui.define([
 					});*/
 
 				},
-				error : function () {
+				error: function() {
 					that.getView().setBusy(false);
 				}
 			});
@@ -405,13 +407,14 @@ sap.ui.define([
 			});*/
 
 		},
-
+		
 		postAttachment: function(img, FileName) {
 			var token;
 			var sFileName = FileName;
 			var BASE64_MARKER = "data:image/png;base64,";
 			var base64Index = BASE64_MARKER.length;
 			var imgData = img.substring(base64Index);
+			
 			jQuery.ajax({
 				url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/$metadata",
 				type: "GET",
@@ -423,7 +426,7 @@ sap.ui.define([
 				},
 				success: function(data, textStatus, xhrg) {
 					token = xhrg.getResponseHeader("X-CSRF-Token");
-					$.ajaxSetup({
+					jQuery.ajaxSetup({
 						cache: false
 					});
 					jQuery.ajax({
@@ -437,16 +440,71 @@ sap.ui.define([
 							xhrp.setRequestHeader("Content-Type", "image/png");
 							xhrp.setRequestHeader("slug", sFileName);
 						},
-						success: function(odata) {
-							sap.m.MessageToast.show("file successfully uploaded");
+						success: function(odata, response) {
+							//sap.m.MessageToast.show("file successfully uploaded");
 						},
 						error: function(odata) {
-							sap.m.MessageToast.show("file Upload error");
+							//sap.m.MessageToast.show("file Upload error");
 						}
 					});
 
 				}
 			});
+			
+			/*var srvUrl = '/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/';
+			//var srvPathUrl = '/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/DocumentSet';
+			var oModel = new ODataModel(srvUrl, true);*/
+			
+			/*oModel.request({
+					requestUri: srvUrl,
+					method: "GET",
+					headers: {
+						"X-Requested-With": "XMLHttpRequest",
+						"Content-Type": "application/atom+xml",
+						"DataServiceVersion": "2.0",
+						"X-CSRF-Token": "Fetch"
+					},
+				},
+				function(data, response) {
+					var header_xcsrf_token = response.headers['x-csrf-token'];
+					oModel.request({
+							requestUri: srvPathUrl,
+							method: "POST",
+							headers: {
+								"X-Requested-With": "XMLHttpRequest",
+								"Content-Type": "image/png",
+								"slug": sFileName,
+								"DataServiceVersion": "2.0",
+								"X-CSRF-Token": header_xcsrf_token
+							},
+							Data: imgData
+						},
+						function(data, response) {
+							alert("OData call success");
+						},
+						function(err) {
+							alert("OData call Error");
+						});
+				},
+				function(err) {
+					alert("OData X-CSRF-Token Fetch call Error");
+				});*/
+
+			/*oModel.setHeaders({
+				"content-type": "image/png",
+				"Content-Disposition": "inline",
+				"slug": sFileName
+			});
+			var oEntry = imgData;
+			var path = '/DocumentSet';
+			//var path = '/DocumentSet('+sFileName+')/$value';
+			oModel.create(path, oEntry, null, function(odata) {
+				sap.m.MessageToast.show("file successfully uploaded");
+			}, function(odata) {
+				sap.m.MessageToast.show("file Upload error");
+			});*/
+
+			
 		}
 	});
 });
