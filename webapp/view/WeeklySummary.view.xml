@@ -92,11 +92,11 @@
 					<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
 						<cells>
 							<VBox class="EmpWeekStatus">
-								<Label text="{EmployeeName}" class="EmpName">
+								<Text text="{EmployeeName}" class="EmpName">
 									<layoutData>
 										<FlexItemData growFactor="1"/>
 									</layoutData>
-								</Label>
+								</Text>
 								<Label text="{WeekTotalInfo}" class="EmpWeekDetails">
 									<layoutData>
 										<FlexItemData growFactor="1"/>
