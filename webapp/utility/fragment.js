@@ -103,6 +103,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				this.lastProjectFilter = null;
 				oEvent.getSource().getParent().getItems()[2].setVisible(true);
 				var defaultBU = oView.getModel('userPreference').getProperty("/defaultBU");
+				var currentBUInFilter = oEvent.getSource().getParent().getItems()[2].getItems()[0].getSelectedKey();
+				if(currentBUInFilter !== undefined && currentBUInFilter !== null && currentBUInFilter !== '') {
+					defaultBU = currentBUInFilter;
+				}
 				this.BUfilter = new Filter("BusinessUnit", FilterOperator.EQ, defaultBU);
 				/*setTimeout(function() {
 					try {
