@@ -14,6 +14,7 @@
       "test.html"
     ],
 <<<<<<< Upstream, based on 387e1bcd5ef1017472121db4ab81edb3e71c9942
+<<<<<<< Upstream, based on 387e1bcd5ef1017472121db4ab81edb3e71c9942
     "buildRequired": true,
     "lastBuildDateTime": "Tue, 03 Oct 2017 14:55:46 GMT"
   },
@@ -419,6 +420,10 @@
 =======
     "buildRequired": false,
     "lastBuildDateTime": "Tue, 03 Oct 2017 11:19:55 GMT"
+=======
+    "buildRequired": true,
+    "lastBuildDateTime": "Tue, 03 Oct 2017 14:55:46 GMT"
+>>>>>>> 9a2dcdc Changes for Resolving Error in Mass entry screen
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -818,7 +823,11 @@
   "hcpdeploy": {
     "account": "ac205f4c8",
     "name": "teamleadtimesheet",
+<<<<<<< Upstream, based on 387e1bcd5ef1017472121db4ab81edb3e71c9942
     "lastVersionWeTriedToDeploy": "R.1.0.3"
 >>>>>>> 3855c6b Mobile changes 
+=======
+    "lastVersionWeTriedToDeploy": "R.1.0.8"
+>>>>>>> 9a2dcdc Changes for Resolving Error in Mass entry screen
   }
 }
