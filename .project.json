@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Tue, 26 Sep 2017 18:26:35 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Tue, 03 Oct 2017 11:19:55 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -70,7 +70,7 @@
       {
         "hybridOdata": {
           "name": "mainService",
-          "serviceUrl": "https://mobile-ac205f4c8.hana.ondemand.com:443/com.vinci.timesheet.teamlead/"
+          "serviceUrl": "https://mobile-ac205f4c8.hana.ondemand.com:443/com.vinci.ts.teamlead.dev/"
         },
         "originOdata": {
           "name": "mainService",
@@ -86,8 +86,8 @@
       "compass": {},
       "bFacade": false
     },
-    "appname": "teamleadtimesheet",
-    "appid": "com.vinci.timesheet.teamlead",
+    "appname": "TeamLead TS - Dev",
+    "appid": "com.vinci.ts.teamlead.dev",
     "appdesc": "Vinci team lead application for Timesheet",
     "appversion": "R.1.0.0",
     "debugMode": false,
@@ -167,7 +167,7 @@
     },
     "kapselLogon": {
       "type": "enterUsernamePassword",
-      "logo": "",
+      "logo": "res/android/VE-blanc-rouge.png",
       "logoText": "",
       "background": "",
       "disablePasscode": true,

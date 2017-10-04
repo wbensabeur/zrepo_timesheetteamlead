@@ -587,3 +587,33 @@ input {
 .EmpWeekStatus[data-status=""]:hover {
     background: white;
 }
+
+/*step input custom css class needed */
+.customStep.sapMStepInput .sapMStepInputBtn {
+    outline: none;
+    position: absolute;
+    z-index: 1;
+    color: #346187;
+}    
+customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
+    left: 0;
+}
+.customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnIncrease {
+    right: 0;
+}
+.customStep.sapUiIcon {
+    position: relative;
+    cursor: default;
+    text-align: center;
+    display: inline-block;
+    vertical-align: baseline;
+}
+.customStep.sapMStepInput-CTX .sapUiIcon {
+    height: 2.375rem;
+    width: 2.375rem;
+    line-height: 2.375rem;
+    margin-top: 0.3125rem;
+}
+.customStep >div>input {
+    text-align : center !important;
+}
