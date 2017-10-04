@@ -104,7 +104,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oEvent.getSource().getParent().getItems()[2].setVisible(true);
 				var defaultBU = oView.getModel('userPreference').getProperty("/defaultBU");
 				var currentBUInFilter = oEvent.getSource().getParent().getItems()[2].getItems()[0].getSelectedKey();
-				if(currentBUInFilter !== undefined && currentBUInFilter !== null && currentBUInFilter !== '') {
+				if (currentBUInFilter !== undefined && currentBUInFilter !== null && currentBUInFilter !== '') {
 					defaultBU = currentBUInFilter;
 				}
 				this.BUfilter = new Filter("BusinessUnit", FilterOperator.EQ, defaultBU);
@@ -908,7 +908,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var WeekNumber = (new Date(oView.getModel("calendar").getData().StartDate)).getWeek();
 				var path = "/WeekSummarySet(WeekNumber='" + WeekNumber + "',WeekYear='" + WeekYear + "',isByWeekly=" + isByWeekly + ",EmployeeId='" +
 					empId + "')";
-				var isEntryEnabled = oView.getModel().getProperty(path).isEntryEnabled;
+				if (oView.getModel().getProperty(path) !== undefined) {
+					var isEntryEnabled = oView.getModel().getProperty(path).isEntryEnabled;
+				}
 				if (isEntryEnabled === true) {
 					for (var j = 0; j < this.employees[l].Days.length; j++) {
 						for (var i = 0; i < workDayItems.length; i++) {
