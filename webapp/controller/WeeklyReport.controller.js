@@ -361,7 +361,7 @@ sap.ui.define([
 						that.onNextEmployeePress();
 						MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 					}
-					/*window.html2canvas($("#shell-container-canvas"), {
+					window.html2canvas($("#shell-container-canvas"), {
 						onrendered: function(canvas) {
 							var img = canvas.toDataURL("image/png", 0);
 							var localDate = that.employeeSelected.startDate;
@@ -373,13 +373,12 @@ sap.ui.define([
 							var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
 								"").replace(
 								".", "").substring(0, 14);
-							var country = "XX";
-							var sFileName = locatdatetime + "_" + that.employeId + "_" + week + "_" + country + ".png";
+							var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
 							
 							that.postAttachment(img, sFileName);
 							//window.open(img);
 						}
-					});*/
+					});
 
 				},
 				error: function() {
@@ -416,7 +415,7 @@ sap.ui.define([
 			var imgData = img.substring(base64Index);
 			
 			jQuery.ajax({
-				url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/$metadata",
+				url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/",
 				type: "GET",
 				async: true,
 				beforeSend: function(xhr) {
@@ -431,7 +430,7 @@ sap.ui.define([
 					});
 					jQuery.ajax({
 						url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/DocumentSet",
-						asyn: false,
+						asyn: true,
 						cache: false,
 						data: imgData,
 						type: "POST",
