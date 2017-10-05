@@ -903,75 +903,58 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			};
 			for (var l = 0; l < this.employees.length; l++) {
 				var empId = this.employees[l].employee;
-				/*var isByWeekly = oView.getModel("calendar").getData().BiWeekly;
-				var WeekYear = oView.getModel("calendar").getData().StartDate.getUTCFullYear();
-				var WeekNumber = (new Date(oView.getModel("calendar").getData().StartDate)).getWeek();
-				var path = "/WeekSummarySet(WeekNumber='" + WeekNumber + "',WeekYear='" + WeekYear + "',isByWeekly=" + isByWeekly + ",EmployeeId='" +
-<<<<<<< Upstream, based on 387e1bcd5ef1017472121db4ab81edb3e71c9942
-					empId + "')";
-				if (oView.getModel().getProperty(path) !== undefined) {
-					var isEntryEnabled = oView.getModel().getProperty(path).isEntryEnabled;
-				}
-				if (isEntryEnabled === true) {
-=======
-					empId + "')";*/
-				//var isEntryEnabled = oView.getModel().getProperty(path).isEntryEnabled;
-				//if (isEntryEnabled === true) {
->>>>>>> 1f13e42 Fixes on 5 Oct
-					for (var j = 0; j < this.employees[l].Days.length; j++) {
-						for (var i = 0; i < workDayItems.length; i++) {
-							var item = {
-								"EmployeeId": empId,
-								"WorkDate": this.employees[l].Days[j],
-								"Counter": "0",
-								"ProjectID": workDayItems[i].ProjectID,
-								"ProjectName": "",
-								"EntryType": workDayItems[i].EntryType,
-								"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
-								"EntryTypeDesc": "",
-								"Hours": workDayItems[i].Hours,
-								"KMNumber": workDayItems[i].KMNumber,
-								"StartTime": workDayItems[i].StartTime,
-								"EndTime": workDayItems[i].EndTime,
-								"FullDay": workDayItems[i].FullDay,
-								"Status": "D",
-								"Comment": "",
-								"CreatedBy": "",
-								"CreatedOn": new Date(),
-								"ReleaseOn": null,
-								"ApprovedOn": null,
-								"Reason": "",
-								"AllowancesType": "",
-								"AllowancesName": "",
-								"ZoneType": workDayItems[i].ZoneType,
-								"ZoneName": workDayItems[i].ZoneName,
-								"MealIndicator": workDayItems[i].MealIndicator,
-								"JourneyIndicator": workDayItems[i].JourneyIndicator,
-								"TransportIndicator": workDayItems[i].TransportIndicator,
-								"ApplicationName": "TEAMLEAD"
-							};
-							data.NavWorkDayTimeItems.push(item);
-						}
-
+				
+				for (var j = 0; j < this.employees[l].Days.length; j++) {
+					for (var i = 0; i < workDayItems.length; i++) {
+						var item = {
+							"EmployeeId": empId,
+							"WorkDate": this.employees[l].Days[j],
+							"Counter": "0",
+							"ProjectID": workDayItems[i].ProjectID,
+							"ProjectName": "",
+							"EntryType": workDayItems[i].EntryType,
+							"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
+							"EntryTypeDesc": "",
+							"Hours": workDayItems[i].Hours,
+							"KMNumber": workDayItems[i].KMNumber,
+							"StartTime": workDayItems[i].StartTime,
+							"EndTime": workDayItems[i].EndTime,
+							"FullDay": workDayItems[i].FullDay,
+							"Status": "D",
+							"Comment": "",
+							"CreatedBy": "",
+							"CreatedOn": new Date(),
+							"ReleaseOn": null,
+							"ApprovedOn": null,
+							"Reason": "",
+							"AllowancesType": "",
+							"AllowancesName": "",
+							"ZoneType": workDayItems[i].ZoneType,
+							"ZoneName": workDayItems[i].ZoneName,
+							"MealIndicator": workDayItems[i].MealIndicator,
+							"JourneyIndicator": workDayItems[i].JourneyIndicator,
+							"TransportIndicator": workDayItems[i].TransportIndicator,
+							"ApplicationName": "TEAMLEAD"
+						};
+						data.NavWorkDayTimeItems.push(item);
 					}
-			//	}
+
+				}
 			}
 			var that = this;
 			ctype.setBusy(true);
-		//	jQuery.sap.delayedCall(500, this, function() {
-				this.oDataModel.create("/WorkDaySet", data, {
-					success: function() {
-						ctype.setBusy(false);
-						rButton.setEnabled(true);
-						savepostFuction(that);
+			this.oDataModel.create("/WorkDaySet", data, {
+				success: function() {
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					savepostFuction(that);
 
-					},
-					error: function() {
-						ctype.setBusy(false);
-						rButton.setEnabled(true);
-					}
-				});
-		//	});
+				},
+				error: function() {
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+				}
+			});
 		},
 		Common_raiseinputError: function(source, text) {
 			source.setValueStateText(text);
