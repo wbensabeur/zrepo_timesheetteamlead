@@ -418,7 +418,7 @@ sap.ui.define([
 			jQuery.ajax({
 				url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/$metadata",
 				type: "GET",
-				async: false,
+				async: true,
 				beforeSend: function(xhr) {
 					xhr.setRequestHeader("X-CSRF-Token", "Fetch");
 					xhr.setRequestHeader("Content-Type", "image/png");

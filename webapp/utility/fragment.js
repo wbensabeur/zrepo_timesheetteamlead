@@ -727,7 +727,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_saveEntries: function(oView, savepostFuction, ctype, rButton) {
 			/// Get Item Data from view for Daily hour
-			ctype.setBusy(true);
+			//ctype.setBusy(true);
 			rButton.setEnabled(false);
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
@@ -903,15 +903,21 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			};
 			for (var l = 0; l < this.employees.length; l++) {
 				var empId = this.employees[l].employee;
-				var isByWeekly = oView.getModel("calendar").getData().BiWeekly;
+				/*var isByWeekly = oView.getModel("calendar").getData().BiWeekly;
 				var WeekYear = oView.getModel("calendar").getData().StartDate.getUTCFullYear();
 				var WeekNumber = (new Date(oView.getModel("calendar").getData().StartDate)).getWeek();
 				var path = "/WeekSummarySet(WeekNumber='" + WeekNumber + "',WeekYear='" + WeekYear + "',isByWeekly=" + isByWeekly + ",EmployeeId='" +
+<<<<<<< Upstream, based on 387e1bcd5ef1017472121db4ab81edb3e71c9942
 					empId + "')";
 				if (oView.getModel().getProperty(path) !== undefined) {
 					var isEntryEnabled = oView.getModel().getProperty(path).isEntryEnabled;
 				}
 				if (isEntryEnabled === true) {
+=======
+					empId + "')";*/
+				//var isEntryEnabled = oView.getModel().getProperty(path).isEntryEnabled;
+				//if (isEntryEnabled === true) {
+>>>>>>> 1f13e42 Fixes on 5 Oct
 					for (var j = 0; j < this.employees[l].Days.length; j++) {
 						for (var i = 0; i < workDayItems.length; i++) {
 							var item = {
@@ -948,11 +954,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						}
 
 					}
-				}
+			//	}
 			}
 			var that = this;
 			ctype.setBusy(true);
-			jQuery.sap.delayedCall(500, this, function() {
+		//	jQuery.sap.delayedCall(500, this, function() {
 				this.oDataModel.create("/WorkDaySet", data, {
 					success: function() {
 						ctype.setBusy(false);
@@ -965,7 +971,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						rButton.setEnabled(true);
 					}
 				});
-			});
+		//	});
 		},
 		Common_raiseinputError: function(source, text) {
 			source.setValueStateText(text);
