@@ -89,11 +89,7 @@
     "appname": "TeamLead TS",
     "appid": "com.vinci.ts.teamlead",
     "appdesc": "Vinci team lead application for Timesheet",
-<<<<<<< Upstream, based on b431b1bb70982d315bdfda3e337944501042ad2f
     "appversion": "1.0.2",
-=======
-    "appversion": "R.1.0.1",
->>>>>>> 74d4d49 Update project for PRF mobile setting
     "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
