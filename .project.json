@@ -89,7 +89,7 @@
     "appname": "TeamLead TS",
     "appid": "com.vinci.ts.teamlead",
     "appdesc": "Vinci team lead application for Timesheet",
-    "appversion": "R.1.0.1",
+    "appversion": "1.0.2",
     "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
