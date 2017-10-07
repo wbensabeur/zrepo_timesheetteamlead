@@ -414,8 +414,10 @@ sap.ui.define([
 			var base64Index = BASE64_MARKER.length;
 			var imgData = img.substring(base64Index);
 			
+			var serviceURL = this.getView().getModel().sServiceUrl + '/';
+			
 			jQuery.ajax({
-				url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/",
+				url: serviceURL,
 				type: "GET",
 				async: true,
 				beforeSend: function(xhr) {
@@ -429,7 +431,7 @@ sap.ui.define([
 						cache: false
 					});
 					jQuery.ajax({
-						url: "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/DocumentSet",
+						url: serviceURL + "/DocumentSet",
 						asyn: true,
 						cache: false,
 						data: imgData,
