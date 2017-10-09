@@ -163,10 +163,9 @@ sap.ui.define([
 				MessageToast.show(this.getResourceBundle().getText("successPostMsg"));
 				this.userPref.successMaskEntry = false;
 			}
-			if(this.userPref.successWeekSubmit)
-			{
+			if (this.userPref.successWeekSubmit) {
 				MessageToast.show(this.getResourceBundle().getText("successWeeklyReportPostMsg"));
-				this.userPref.successWeekSubmit = false; 
+				this.userPref.successWeekSubmit = false;
 			}
 		},
 		/* =========================================================== */
@@ -467,6 +466,14 @@ sap.ui.define([
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
+		onManageTeamSelection: function() {
+			this.getRouter().navTo("TeamManage", {
+				source: 'Summary'
+			}, true);
+		},
+		/**
+		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
+		 */
 		OnTimesheetSelection: function() {
 			/*	if (this.twoWeek) {
 					MessageBox.alert("Planning is only support for weekly view selection");
@@ -476,7 +483,6 @@ sap.ui.define([
 			}, true);
 			//		}
 		},
-
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
@@ -493,7 +499,7 @@ sap.ui.define([
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;
 			var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
-			
+
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
 			//oView.byId('EmpDayInfo').bindElement(urlStr);
