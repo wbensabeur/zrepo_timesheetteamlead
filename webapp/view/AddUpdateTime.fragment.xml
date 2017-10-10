@@ -11,12 +11,10 @@
 									<FlexItemData growFactor="1"/>
 								</layoutData>
 							</Button>
-							
-							<Button text="{i18n>addEquipment}" type="Emphasized" icon="sap-icon://add" visible="false">
-								
-							</Button>
+							<Button text="{i18n>addEquipment}" type="Emphasized" icon="sap-icon://add" visible="false"></Button>
 							<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
-							<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem" value="{AddTime>/totalhrs}"/>
+							<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
+								value="{AddTime>/totalhrs}"/>
 						</HBox>
 					</VBox>
 					<VBox visible="false">
@@ -56,11 +54,21 @@
 				</VBox>
 				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 			</IconTabFilter>
-			<IconTabFilter key="absence" icon="sap-icon://create-leave-request" visible="{AddTime>/visibleAbsence}" text="{i18n>absence}" design="Horizontal">
+			<IconTabFilter key="absence" icon="sap-icon://create-leave-request" visible="{AddTime>/visibleAbsence}" text="{i18n>absence}"
+				design="Horizontal">
 				<VBox width="100%" height="100%">
 					<VBox>
 						<Label text="{i18n>selectAbsCategory}" class="sapUiSmallMarginBegin"/>
-						<ComboBox id="AbsCat" value="{i18n>selectAbsence}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
+						<Select  id="AbsEmployee" class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+							items="{path:'/ValueHelpSet' , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ABS'}]}"
+							>
+							<core:Item key="{FieldValue}" text="{FieldDescription}"/>
+						</Select>
+						<ComboBox placeholder="{i18n>selectAbsence}" id="AbsCat" class="SelectCombo sapUiSmallMarginTop sapUiSmallMarginBegin"
+							items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ABS'}]}"
+							loadItems="handleAbsTypeLoadItems" change="onAbsenceCatChange">
+							<core:ListItem key="{FieldValue}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>
+						</ComboBox>
 						<Label text="{i18n>selectDates}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 						<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
 							<VBox>

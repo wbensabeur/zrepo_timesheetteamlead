@@ -544,6 +544,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddKM_handleKMTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
+
 		AddKM_OnChangeStartTimeKM: function(oEvent) {
 			var source = oEvent.getSource();
 			this.warning = true;
@@ -616,8 +617,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				totalhrs: 0,
 				visibleHrs: userPrefModel.getProperty('/defaultHours'),
 				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
-				visibleKM: userPrefModel.getProperty('/defaultKM'),
-				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
+				visibleKM: true, //userPrefModel.getProperty('/defaultKM'),
+				//visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
+				visibleAbsence: true,
 				visibleAbsence1: true,
 				visibleAbsence2: false,
 				visibleAbsence3: false,
@@ -736,6 +738,33 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
+		AddUpdatetime_handleAbsTypeLoadItems: function(oEvent) {
+			oEvent.getSource().getBinding("items").resume();
+		},
+		AddUpdateTime_onAbsenceCatChange: function(oEvent, AddUpdatetimeModel ) {
+			var absCat = oEvent.getSource().getSelectedItem();
+			var absViewType = absCat.getAdditionalText();
+			switch (absViewType) {
+				case 'J':
+					AddUpdatetimeModel.setProperty("/visibleAbsence1", true);
+					AddUpdatetimeModel.setProperty("/visibleAbsence2", false);
+					AddUpdatetimeModel.setProperty("/visibleAbsence3", false);
+					break;
+				case 'D':
+					AddUpdatetimeModel.setProperty("/visibleAbsence1", false);
+					AddUpdatetimeModel.setProperty("/visibleAbsence2", true);
+					AddUpdatetimeModel.setProperty("/visibleAbsence3", false);
+					break;
+				case 'H':
+					AddUpdatetimeModel.setProperty("/visibleAbsence1", false);
+					AddUpdatetimeModel.setProperty("/visibleAbsence2", false);
+					AddUpdatetimeModel.setProperty("/visibleAbsence3", true);
+					break;
+				default:
+        				
+
+			}
+		},
 		AddUpdatetime_saveEntries: function(oView, savepostFuction, ctype, rButton) {
 			/// Get Item Data from view for Daily hour
 			//ctype.setBusy(true);
@@ -800,7 +829,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						"ZoneName": "",
 						"MealIndicator": false,
 						"JourneyIndicator": false,
-						"TransportIndicator": false
+						"TransportIndicator": false,
+						"StartDate": null,
+						"EndDate": null,
+						"Comment": null
 
 					};
 
@@ -864,7 +896,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						"ZoneName": "",
 						"MealIndicator": false,
 						"JourneyIndicator": false,
-						"TransportIndicator": false
+						"TransportIndicator": false,
+						"StartDate": null,
+						"EndDate": null,
+						"Comment": null
 
 					};
 					workDayItems.push(workDayItem);
@@ -904,7 +939,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						"ZoneName": zoneName,
 						"MealIndicator": meal,
 						"JourneyIndicator": transport,
-						"TransportIndicator": travel
+						"TransportIndicator": travel,
+						"StartDate": null,
+						"EndDate": null,
+						"Comment": null
 					};
 					workDayItems.push(workDayAllowanceItem);
 				}
@@ -916,6 +954,25 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var startDate = oView.byId('AbsStartDate').getValue();
 				var endDate = oView.byId('AbsEndDate').getValue();
 				var Comments = oView.byId('AbsComment').getText();
+
+				var workDayAllowanceItem = {
+					"ProjectID": null,
+					"EntryType": "ABSENCE",
+					"EntryTypeCatId": absType,
+					"Hours": null,
+					"StartTime": "000000",
+					"EndTime": "000000",
+					"FullDay": false,
+					"ZoneType": null,
+					"ZoneName": null,
+					"MealIndicator": null,
+					"JourneyIndicator": null,
+					"TransportIndicator": null,
+					"StartDate": startDate,
+					"EndDate": endDate,
+					"Comment": Comments
+				};
+				workDayItems.push(workDayAllowanceItem);
 
 			}
 			if (workDayItems.length <= 0) {
@@ -951,8 +1008,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"StartTime": workDayItems[i].StartTime,
 							"EndTime": workDayItems[i].EndTime,
 							"FullDay": workDayItems[i].FullDay,
+							"StartDate": workDayItems[i].StartDate,
+							"EndDate": workDayItems[i].EndDate,
 							"Status": "D",
-							"Comment": "",
+							"Comment": workDayItems[i].Comment,
 							"CreatedBy": "",
 							"CreatedOn": new Date(),
 							"ReleaseOn": null,

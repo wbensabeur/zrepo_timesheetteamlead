@@ -122,11 +122,13 @@ sap.ui.define([
 				button.getCustomData()[0].setValue("S");
 				this.selectedBox.push(button);
 				var empId = button.data('employee'); //.getCustomData()[2].getValue();
+				var empName = button.data('employeeName');
 				var sDay = button.data('selectedDate'); //.getCustomData()[3].getValue();
 				var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
 				if (index === -1) {
 					var data = {
 						employee: empId,
+						employeeName: empName,
 						Days: [sDay]
 					};
 					this.employees.push(data);
@@ -191,11 +193,13 @@ sap.ui.define([
 
 					{
 						var empId = this.allEmps[m].EmployeeId;
+						var empName = this.allEmps[m].FullName;
 
 						var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
 						if (index === -1) {
 							var data = {
 								employee: empId,
+								employeeName : empName,
 								Days: [sDay]
 							};
 							this.employees.push(data);
@@ -258,7 +262,8 @@ sap.ui.define([
 		},
 		OnEmployeePress: function(oEvent) {
 			var empBox = oEvent.getSource();
-			var empId = empBox.getCustomData()[1].getValue();
+			var empId = empBox.data('employee') ; //.getCustomData()[1].getValue();
+			var empName = empBox.data('employeeName');
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
 				this.selectedBox.push(empBox);
@@ -268,6 +273,7 @@ sap.ui.define([
 				if (index === -1) {
 					var data = {
 						employee: empId,
+						employeeName: empName,
 						Days: []
 					};
 					this.employees.push(data);
@@ -402,7 +408,7 @@ sap.ui.define([
 				this.getModel().read("/EmployeeSet", {
 					filters: Filters,
 					urlParameters: {
-						"$select": 'EmployeeId'
+						"$select": 'EmployeeId,FullName'
 					},
 					success: function(odata) {
 						that.allEmps = odata.results;

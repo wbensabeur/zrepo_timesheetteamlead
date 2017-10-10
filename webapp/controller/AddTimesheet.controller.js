@@ -234,6 +234,12 @@ sap.ui.define([
 		handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);
 		},
+		handleAbsTypeLoadItems : function (oEvent){
+			fragment.AddUpdatetime_handleAbsTypeLoadItems(oEvent);
+		},
+		onAbsenceCatChange : function (oEvent) {
+			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'));
+		},
 		//// **AddUpdateTime Fragment Event End** ///////
 
 		//// **AddKM Fragment Event** ///////

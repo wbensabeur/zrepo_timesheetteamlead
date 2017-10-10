@@ -207,6 +207,7 @@ sap.ui.define([
 			// Edit Enable
 
 			this.currentEmp = oEvent.getSource().data('employee');
+			this.currentEmpName = oEvent.getSource().data('employeeName');
 			this.currentDate = oEvent.getSource().data('selectedDate'); //getCustomData()[3].getValue();
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpDayCheckDialog");
@@ -362,6 +363,7 @@ sap.ui.define([
 			var oDialog = oView.byId("EmpDayCheckDialog");
 			this.employees = [{
 				employee: this.currentEmp,
+				employeeName: this.currentEmpName,
 				Days: [this.currentDate]
 			}];
 
@@ -615,6 +617,9 @@ sap.ui.define([
 		},
 		handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);
+		},
+		handleAbsTypeLoadItems : function (oEvent){
+			fragment.AddUpdatetime_handleAbsTypeLoadItems(oEvent);
 		},
 
 		//// **AddUpdateTime Fragment Event End** ///////
