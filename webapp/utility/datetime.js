@@ -135,7 +135,9 @@ sap.ui.define([], function() {
 		},
 		timeToDecimal: function (t) {
 		 var arr = t.split(':');
-    	 return parseFloat(parseInt(arr[0], 10) + '.' + parseInt((arr[1]/6)*10, 10));
+		 var Hrs = parseFloat(parseInt(arr[0], 10));
+		 var mins = parseFloat((arr[1]/60)).toFixed(2);
+    	 return Hrs + parseFloat(mins);
 		} ,
 		timeToMilliSec: function(time) {  // format = 13:00 PM
 			var arr = time.split(':');

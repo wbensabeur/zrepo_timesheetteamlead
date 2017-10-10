@@ -157,6 +157,10 @@ sap.ui.define([
 								if (data.results[k].PersoValue === 'X')
 									userPreferenceModel.setProperty('/defaultCraftCode', true);
 								break;
+							case 'DT':
+								if (data.results[k].PersoValue === 'TIME')
+								userPreferenceModel.setProperty('/durationFlag', true);
+								break;
 
 						}
 					}

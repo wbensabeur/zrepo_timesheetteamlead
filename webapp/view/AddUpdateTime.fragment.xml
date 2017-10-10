@@ -56,11 +56,11 @@
 				</VBox>
 				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 			</IconTabFilter>
-			<IconTabFilter icon="sap-icon://create-leave-request" visible="{AddTime>/visibleAbsence}" text="{i18n>absence}" design="Horizontal">
+			<IconTabFilter key="absence" icon="sap-icon://create-leave-request" visible="{AddTime>/visibleAbsence}" text="{i18n>absence}" design="Horizontal">
 				<VBox width="100%" height="100%">
 					<VBox>
 						<Label text="{i18n>selectAbsCategory}" class="sapUiSmallMarginBegin"/>
-						<ComboBox value="{i18n>selectAbsence}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
+						<ComboBox id="AbsCat" value="{i18n>selectAbsence}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 						<Label text="{i18n>selectDates}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 						<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
 							<VBox>
@@ -85,7 +85,7 @@
 						</HBox>
 						<HBox class="sapUiSmallMarginTop sapUiSmallMarginBegin" alignItems="Start" alignContent="SpaceBetween">
 							<Input type="Number" visible="{AddTime>/visibleAbsence3}" placeholder="{i18n>noOfHrs}" width="10rem" class="sapUiLargeMarginEnd"/>
-							<TextArea width="20rem" growing="true" placeholder="{i18n>comment}" rows="1"/>
+							<TextArea id="AbsComment" width="20rem" growing="true" placeholder="{i18n>comment}" rows="1"/>
 						</HBox>
 					</VBox>
 				</VBox>

@@ -25,6 +25,7 @@ sap.ui.define([
 				successMaskEntry : false,
 				successWeekSubmit : false,
 				defaultHours : false,
+				durationFlag : false,
 				defaultIPD : false,
 				defaultKM : false,
 				defaultAbsence : false,

@@ -453,7 +453,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			source.setValueState("None");
 			endTimer.setValueState("None");
 			var dDate = new Date(diffTime);
-			var duration = dDate.getUTCHours() + ":" + dDate.getUTCMinutes();
+			var min = dDate.getUTCMinutes();
+			if (min < 10) {
+				min = '0' + min;
+			}
+			var duration = dDate.getUTCHours() + ":" + min;
+
 			var newValue = datetime.timeToDecimal(duration);
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
@@ -462,6 +467,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newTotalhrs = currentTotalhrs + deltahrs;
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
+			source.setDateValue(new Date(datetime.timeToMilliSec(oEvent.getParameter("value"))));
 			//endTimer.setValue(source.getValue());
 
 		},
@@ -479,7 +485,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			source.setValueState("None");
 			startTimer.setValueState("None");
 			var dDate = new Date(diffTime);
-			var duration = dDate.getUTCHours() + ":" + dDate.getUTCMinutes();
+			var min = dDate.getUTCMinutes();
+			if (min < 10) {
+				min = '0' + min;
+			}
+			var duration = dDate.getUTCHours() + ":" + min;
 			var newValue = datetime.timeToDecimal(duration);
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
@@ -488,6 +498,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newTotalhrs = currentTotalhrs + deltahrs;
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
+			source.setDateValue(new Date(datetime.timeToMilliSec(oEvent.getParameter("value"))));
 
 		},
 		AddProjectTime__getOwnFrameObject: function(source) {
@@ -614,7 +625,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				visibleSummary: false,
 				visibleProjectOptional: false,
 				newTime: true,
-				duration: true
+				duration: userPrefModel.getProperty('/durationFlag')
 			};
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
@@ -734,11 +745,23 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (selectedTab === 'hours') {
 				var tab = oView.byId('addTimeTab').getItems()[0].getItems();
 				for (var k = 1; k < tab.length; k++) {
+					var startTime = '000000';
+					var endTime = '000000';
 					try {
 						var projectID = undefined;
 						var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
 						var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 						var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+						if (this.AddUpdatetimeModel.getData().duration) {
+							startTime = tab[k].getItems()[3].getItems()[2].getItems()[1].getValue();
+							endTime = tab[k].getItems()[3].getItems()[2].getItems()[2].getValue();
+							if (startTime === '' || endTime === '') {
+								MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							}
+						}
 						var fullDay = false;
 						if (fullDayindex === 0) {
 							fullDay = true;
@@ -770,8 +793,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						"EntryType": "HOURS",
 						"Hours": tab[k].getCustomData()[0].getValue().toString(),
 						"EntryTypeCatId": hrType,
-						"StartTime": "000000",
-						"EndTime": "000000",
+						"StartTime": startTime,
+						"EndTime": endTime,
 						"FullDay": fullDay,
 						"ZoneType": "",
 						"ZoneName": "",
@@ -887,6 +910,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			}
 			////
+			//// Absence ///
+			else if (selectedTab === 'absence') {
+				var absType = oView.byId('AbsCat').getSelectedKey();
+				var startDate = oView.byId('AbsStartDate').getValue();
+				var endDate = oView.byId('AbsEndDate').getValue();
+				var Comments = oView.byId('AbsComment').getText();
+
+			}
 			if (workDayItems.length <= 0) {
 				ctype.setBusy(false);
 				rButton.setEnabled(true);
@@ -903,7 +934,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			};
 			for (var l = 0; l < this.employees.length; l++) {
 				var empId = this.employees[l].employee;
-				
+
 				for (var j = 0; j < this.employees[l].Days.length; j++) {
 					for (var i = 0; i < workDayItems.length; i++) {
 						var item = {
