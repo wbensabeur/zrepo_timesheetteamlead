@@ -355,7 +355,8 @@ sap.ui.define([
 				width: '18.18%',
 				cssClass: 'tableColumnE',
 				Date: null,
-				team: null
+				team: null,
+				isByWeekly: false
 			};
 			oTeamData.data.push(idata);
 			// other Cloumns for Team
@@ -367,7 +368,8 @@ sap.ui.define([
 					cssClass: 'tableColumn',
 					ComboVisible: false,
 					Date: null,
-					team: data.results[i].TeamId
+					team: data.results[i].TeamId,
+					isByWeekly: false
 				};
 				oTeamData.data.push(cData);
 			}
@@ -386,7 +388,8 @@ sap.ui.define([
 				width: '18.18%',
 				cssClass: 'tableColumnE',
 				Date: null,
-				team: null
+				team: null,
+				isByWeekly: false
 			};
 			oTeamData.data.push(idata);
 			// other Cloumns for Team
@@ -399,7 +402,8 @@ sap.ui.define([
 					cssClass: 'tableColumn',
 					ComboVisible: false,
 					Date: null,
-					team: localTeamId
+					team: localTeamId,
+					isByWeekly: false
 				};
 				oTeamData.data.push(cData);
 			}

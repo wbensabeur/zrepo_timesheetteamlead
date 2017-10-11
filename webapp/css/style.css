@@ -94,12 +94,15 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     border-color: #427cac;
 }
 
+
 /*:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
     color: #ffffff;
 }*/
+
 :not(.sapMBtnDisabled) .circleIcon>.sapMBtnTransparent>.sapMBtnIcon {
     color: white;
 }
+
 
 /* CSS for Table*/
 
@@ -266,13 +269,19 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     font-size: 0.875rem;
 }
 
+.teamHourSize>span {
+    background-color: white !important;
+}
+
 .hourSize {
     padding: 0 !important;
     height: 60px;
 }
+
 .hourSize[data-titlelen="Long"] {
     height: 70px;
 }
+
 .hourSize>span {
     height: 100% !important;
     padding-left: 0rem !important;
@@ -289,7 +298,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 .hourSize>span>span {
     padding-top: 10px;
-    color: #3b617e;
+    color: #3b617e !important;
 }
 
 .hourSize[data-status="NE"]>span>span {
@@ -475,7 +484,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .TextCBoldText {
-   font-weight: bold;
+    font-weight: bold;
 }
 
 .EmployeeAttribute {
@@ -589,19 +598,24 @@ input {
     background: white;
 }
 
+
 /*step input custom css class needed */
+
 .customStep.sapMStepInput .sapMStepInputBtn {
     outline: none;
     position: absolute;
     z-index: 1;
     color: #346187;
-}    
+}
+
 customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     left: 0;
 }
+
 .customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnIncrease {
     right: 0;
 }
+
 .customStep.sapUiIcon {
     position: relative;
     cursor: default;
@@ -609,12 +623,14 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     display: inline-block;
     vertical-align: baseline;
 }
+
 .customStep.sapMStepInput-CTX .sapUiIcon {
     height: 2.375rem;
     width: 2.375rem;
     line-height: 2.375rem;
     margin-top: 0.3125rem;
 }
+
 .customStep >div>input {
-    text-align : center !important;
+    text-align: center !important;
 }
