@@ -664,11 +664,30 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			};
 			var oFooterModel = new JSONModel(footerData);
 			this.footerModel = oFooterModel;
+			
+			var empsData = [];
+				for (var l = 0; l < this.employees.length; l++) {
+					var empData = {
+						empId: this.employees[l].employee,
+						empName: this.employees[l].employeeName
+					};
+					empsData.push(empData);
+				}
+				if (empsData.length > 1) {
+					var empData2 = {
+						empId: 'ALL',
+						empName: i18nModel.getText("all")
+					};
+					empsData.push(empData2);
+				}
+			var oEmpsModel = new JSONModel(empsData);
+			this.oEmpsModel = oEmpsModel;	
 
 			var oModelData = {
 				AddTime: oModel,
 				projectSearch: oProjectModel,
-				footer: oFooterModel
+				footer: oFooterModel,
+				Emps : oEmpsModel
 			};
 			return oModelData;
 			//this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0]);
@@ -691,7 +710,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			}
 		},
-		AddUpdatetime_OnTabSelected: function(oEvent) {
+		AddUpdatetime_OnTabSelected: function(oEvent,oView) {
 			var key = oEvent.getParameter('key');
 			var source = oEvent.getSource();
 			var that = this;
@@ -720,6 +739,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', false);
 			}
+
+			if (key === 'absence') {
+				if(this.oEmpsModel.getData().length === 1 ) 
+				{
+					oView.byId('AbsEmployee').setEnabled(false);
+				}
+				else
+				{
+					oView.byId('AbsEmployee').setEnabled(true);
+				}
+			}
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
 			this.warning = true;
@@ -741,7 +771,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_handleAbsTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
-		AddUpdateTime_onAbsenceCatChange: function(oEvent, AddUpdatetimeModel ) {
+		AddUpdateTime_onAbsenceCatChange: function(oEvent, AddUpdatetimeModel) {
 			var absCat = oEvent.getSource().getSelectedItem();
 			var absViewType = absCat.getAdditionalText();
 			switch (absViewType) {
@@ -761,7 +791,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					AddUpdatetimeModel.setProperty("/visibleAbsence3", true);
 					break;
 				default:
-        				
 
 			}
 		},

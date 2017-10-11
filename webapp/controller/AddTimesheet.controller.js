@@ -89,6 +89,8 @@ sap.ui.define([
 				this.getView().setModel(oModel.AddTime, "AddTime");
 				this.getView().setModel(oModel.projectSearch, "projectSearch");
 				this.getView().setModel(oModel.footer, "footer");
+				this.getView().setModel(oModel.Emps, "Emps");
+				
 			} else {
 				this.getRouter().navTo("periodSelection", {
 					source: 'Summary'
@@ -217,7 +219,7 @@ sap.ui.define([
 		//// **AddUpdateTime Fragment Event** ///////
 		OnTabSelected: function(oEvent) {
 			//	var addTimeModel = this.getView().getModel('AddTime');
-			fragment.AddUpdatetime_OnTabSelected(oEvent);
+			fragment.AddUpdatetime_OnTabSelected(oEvent,this.getView());
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);

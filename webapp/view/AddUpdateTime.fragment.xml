@@ -60,9 +60,8 @@
 					<VBox>
 						<Label text="{i18n>selectAbsCategory}" class="sapUiSmallMarginBegin"/>
 						<Select  id="AbsEmployee" class="sapUiSmallMarginTop sapUiSmallMarginBegin"
-							items="{path:'/ValueHelpSet' , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ABS'}]}"
-							>
-							<core:Item key="{FieldValue}" text="{FieldDescription}"/>
+							items="{Emps>/}" >
+							<core:Item key="{Emps>empId}" text="{Emps>empName}"/>
 						</Select>
 						<ComboBox placeholder="{i18n>selectAbsence}" id="AbsCat" class="SelectCombo sapUiSmallMarginTop sapUiSmallMarginBegin"
 							items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ABS'}]}"

@@ -374,6 +374,7 @@ sap.ui.define([
 			this.getView().setModel(oModel.projectSearch, "projectSearch");
 			this.getView().getModel("footer").destroy();
 			this.getView().setModel(oModel.footer, "footer");
+			this.getView().setModel(oModel.Emps, "Emps");
 
 		},
 		/*onPressProjectCancel: function() {
@@ -601,7 +602,7 @@ sap.ui.define([
 		//// **AddUpdateTime Fragment Event** ///////
 		OnTabSelected: function(oEvent) {
 			//	var addTimeModel = this.getView().getModel('AddTime');
-			fragment.AddUpdatetime_OnTabSelected(oEvent);
+			fragment.AddUpdatetime_OnTabSelected(oEvent,this.getView());
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
