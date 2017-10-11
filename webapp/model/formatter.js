@@ -104,7 +104,7 @@ sap.ui.define([
 
 		},
 		leaveFormatter: function(value) {
-			if (value === null) {
+			if (value === null || value === undefined || value === '') {
 				return "";
 			}
 			if (value.getDay() === 0 || value.getDay() === 6) {
@@ -126,6 +126,9 @@ sap.ui.define([
 			}
 			return 'D1';
 		},
+		enableTeamDays: function(IsTimeEntryEnable) {
+			return '';
+		},
 		titleLength: function(empName) {
 			if (empName.length > 17) {
 				return 'Long';
@@ -133,14 +136,20 @@ sap.ui.define([
 				return 'Short';
 			}
 		},
+		disableTeamEmployees: function(IsTimeEntryEnable) {
+			return 'Inactive';
+		},
 		disableEmployees: function(isEntryEnabled) {
 			if (isEntryEnabled) {
 				return 'Active';
 			}
 			return 'Inactive';
 		},
+		DaySelectorTeamFormatter: function(value) {
+			return "Inactive";
+		},
 		DaySelectorFormatter: function(value) {
-			if (value === null) {
+			if (value === null || value === undefined || value === '') {
 				return "Active";
 			}
 			if (value.getDay() === 0 || value.getDay() === 6) {

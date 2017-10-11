@@ -54,6 +54,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     text-shadow: none !important;
     box-shadow: none !important;
     height: 50px !important;
+    position: unset !important;
 }
 
 .VinciLightBar {

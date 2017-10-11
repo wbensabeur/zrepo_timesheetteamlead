@@ -44,7 +44,7 @@ sap.ui.define([
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
 			});
 			var that = this;
-			this.getView().byId('tableHeader').onAfterRendering = function(oEvent) {
+			/*this.getView().byId('tableHeader').onAfterRendering = function(oEvent) {
 				//var comboId =  that.getView().byId('tableColumnCombo').getId() + '-inner';
 				try {
 					var elements = document.getElementsByClassName("tableColumnCombo"); //
@@ -57,7 +57,7 @@ sap.ui.define([
 
 				}
 
-			};
+			};*/
 
 			$(window).resize(function() {
 				var totalH = window.innerHeight - 200;
@@ -81,8 +81,8 @@ sap.ui.define([
 				sTitle = this.getResourceBundle().getText("worklistTableTitle");
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
-			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
-			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
+			this.getModel("teamHeader").setProperty("/data/0/ColumnTxt1", sTitle);
+			this.getModel("teamHeader").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
 
 			if (this.refresh) {
 				for (var k = 0; k < this.selectedBox.length; k++) {
@@ -153,6 +153,7 @@ sap.ui.define([
 			}
 		},
 		OnDatePress: function(oEvent) {
+			return;
 			var source = oEvent.getSource();
 			var headerSeq = source.getParent().getParent().getInitialOrder();
 			//	var Items = source.getParent().getParent().getParent().getItems();
@@ -354,12 +355,86 @@ sap.ui.define([
 			this.currentYear = new Date(monday.getTime()).getFullYear();
 			this._applyFilters();
 		},
+		teamBinding: function() {
+			var thatControl = this;
+			var Filters = [
+				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
+			];
+			var mParameters = {
+				filters: Filters,
+				success: function(oData, oResponse) {
+					thatControl.buildSuccTeamHeader(oData);
+				},
+				error: function(oError) {
+					thatControl.buildErrTeamHeader(thatControl.userPref.userID);
+				}
+			};
+			this.getView().getModel().read("/TeamSet", mParameters);
+		},
+		buildSuccTeamHeader: function(data) {
+			var oTeamData = {
+				data: []
+			};
+			// 1st Cloumn for Employee
+			var idata = {
+				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+				ColumnTxt2: '...',
+				ComboVisible: true,
+				width: '18.18%',
+				cssClass: 'tableColumnE',
+				Date: null
+			};
+			oTeamData.data.push(idata);
+			// other Cloumns for Team
+			for (var i = 0; i < data.results.length; i++) {
+				var cData = {
+					ColumnTxt1: this.getResourceBundle().getText("tablleColTitleTeam"),
+					ColumnTxt2: data.results[i].TeamDescription,
+					width: "auto",
+					cssClass: 'tableColumn',
+					ComboVisible: false,
+					Date: null
+				};
+				oTeamData.data.push(cData);
+			}
+			var oTeamHeaderrModel = new JSONModel(oTeamData);
+			this.setModel(oTeamHeaderrModel, "teamHeader");
+		},
+		buildErrTeamHeader: function(user) {
+			var oTeamData = {
+				data: []
+			};
+			// 1st Cloumn for Employee
+			var idata = {
+				ColumnTxt1: this.getResourceBundle().getText("tableNameColumnTitleEmpName"),
+				ColumnTxt2: '...',
+				ComboVisible: true,
+				width: '18.18%',
+				cssClass: 'tableColumnE',
+				Date: null
+			};
+			oTeamData.data.push(idata);
+			// other Cloumns for Team
+			for (var i = 0; i < 7; i++) {
+				var cData = {
+					ColumnTxt1: this.getResourceBundle().getText("tablleColTitleTeam"),
+					ColumnTxt2: i,
+					width: "auto",
+					cssClass: 'tableColumn',
+					ComboVisible: false,
+					Date: null
+				};
+				oTeamData.data.push(cData);
+			}
+			var oTeamHeaderrModel = new JSONModel(oTeamData);
+			this.setModel(oTeamHeaderrModel, "teamHeader");
+		},
 		_applyFilters: function() {
 			var oTable = this.byId("table");
 			var Filters = [
-				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
-				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
-				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
+				// new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
+				// new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
+				// new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
 			];
 			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
@@ -378,6 +453,7 @@ sap.ui.define([
 				this.twoWeek = true;
 			}
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
+			this.teamBinding();
 			this.employees = this.getView().getModel("employeeDaysSelected").getData();
 			if (argument.source === 'Summary') {
 
