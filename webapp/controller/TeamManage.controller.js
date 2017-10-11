@@ -118,38 +118,10 @@ sap.ui.define([
 		},
 		OnHourPress: function(oEvent) {
 			var button = oEvent.getSource();
-			if (button.data('status') === "") { // getCustomData()[0].getValue()
-				button.getCustomData()[0].setValue("S");
-				this.selectedBox.push(button);
-				var empId = button.data('employee'); //.getCustomData()[2].getValue();
-				var sDay = button.data('selectedDate'); //.getCustomData()[3].getValue();
-				var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
-				if (index === -1) {
-					var data = {
-						employee: empId,
-						Days: [sDay]
-					};
-					this.employees.push(data);
-				} else {
-					if (this.employees[index].Days.indexOf(sDay) === -1) {
-						this.employees[index].Days.push(sDay);
-					}
-				}
-
-			} else {
-				button.getCustomData()[0].setValue("");
-				var empId2 = button.data('employee'); //.getCustomData()[2].getValue();
-				var sDay2 = button.data('selectedDate'); //.getCustomData()[3].getValue();
-				var empIndex = this._EmployeeIndexInArray(empId2);
-				var index2 = this.employees[empIndex].Days.indexOf(sDay2);
-				this.employees[empIndex].Days.splice(index2, 1);
-				var boxindex = this.selectedBox.indexOf(button);
-				this.selectedBox.splice(boxindex, 1);
-				if (this.employees[empIndex].Days.length === 0) {
-
-					this.employees.splice(empIndex, 1);
-
-				}
+			if (button.getIcon() === "sap-icon://border") {
+				button.setIcon("sap-icon://color-fill");
+			} else if (button.getIcon() === "sap-icon://color-fill") {
+				button.setIcon("sap-icon://border");
 			}
 		},
 		OnDatePress: function(oEvent) {
@@ -366,7 +338,7 @@ sap.ui.define([
 					thatControl.buildSuccTeamHeader(oData);
 				},
 				error: function(oError) {
-					thatControl.buildErrTeamHeader(thatControl.userPref.userID);
+					thatControl.buildErrTeamHeader(thatControl.userPref);
 				}
 			};
 			this.getView().getModel().read("/TeamSet", mParameters);
@@ -382,7 +354,8 @@ sap.ui.define([
 				ComboVisible: true,
 				width: '18.18%',
 				cssClass: 'tableColumnE',
-				Date: null
+				Date: null,
+				team: null
 			};
 			oTeamData.data.push(idata);
 			// other Cloumns for Team
@@ -393,14 +366,15 @@ sap.ui.define([
 					width: "auto",
 					cssClass: 'tableColumn',
 					ComboVisible: false,
-					Date: null
+					Date: null,
+					team: data.results[i].TeamId
 				};
 				oTeamData.data.push(cData);
 			}
 			var oTeamHeaderrModel = new JSONModel(oTeamData);
 			this.setModel(oTeamHeaderrModel, "teamHeader");
 		},
-		buildErrTeamHeader: function(user) {
+		buildErrTeamHeader: function(userPref) {
 			var oTeamData = {
 				data: []
 			};
@@ -411,18 +385,21 @@ sap.ui.define([
 				ComboVisible: true,
 				width: '18.18%',
 				cssClass: 'tableColumnE',
-				Date: null
+				Date: null,
+				team: null
 			};
 			oTeamData.data.push(idata);
 			// other Cloumns for Team
-			for (var i = 0; i < 7; i++) {
+			for (var i = 1; i < 8; i++) {
+				var localTeamId = userPref.userID + "_" + userPref.defaultBU + "_" + "TEAM" + "_" + i;
 				var cData = {
 					ColumnTxt1: this.getResourceBundle().getText("tablleColTitleTeam"),
 					ColumnTxt2: i,
 					width: "auto",
 					cssClass: 'tableColumn',
 					ComboVisible: false,
-					Date: null
+					Date: null,
+					team: localTeamId
 				};
 				oTeamData.data.push(cData);
 			}
