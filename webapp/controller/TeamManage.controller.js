@@ -83,7 +83,7 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("teamHeader").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("teamHeader").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
-
+			this.teamItemBinding();
 			if (this.refresh) {
 				for (var k = 0; k < this.selectedBox.length; k++) {
 					if (this.selectedBox[k].getCustomData().length > 0) {
@@ -410,6 +410,25 @@ sap.ui.define([
 			var oTeamHeaderrModel = new JSONModel(oTeamData);
 			this.setModel(oTeamHeaderrModel, "teamHeader");
 		},
+		teamItemBinding: function() {
+			var thatControl = this;
+			var Filters = [
+				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
+			];
+			var mParameters = {
+				filters: Filters,
+				success: function(oData, oResponse) {
+					thatControl.buildSuccTeamItem(oData);
+				},
+				error: function(oError) {
+					//
+				}
+			};
+			this.getView().getModel().read("/TeamEmployeeSet", mParameters);
+		},
+		buildSuccTeamItem: function(data) {
+
+		},
 		_applyFilters: function() {
 			var oTable = this.byId("table");
 			var Filters = [
@@ -480,13 +499,49 @@ sap.ui.define([
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection
 		 */
-		OnAddTimesheet: function() {
-			if (this.employees.length > 0) {
-				this.getView().getModel("employeeDaysSelected").setData(this.employees);
-				this.getRouter().navTo("AddTimesheet", {}, true);
-			} else {
-				MessageBox.alert(this.getResourceBundle().getText("msgNoEmployeeDaySelected"));
+		onManageTeamEntry: function(oEvent) {
+			var requestBody = {
+				"UserId": this.userPref.userID,
+				"BusinessUnit": this.userPref.defaultBU,
+				"TeamId": this.employeId,
+				"TeamName": "Team",
+				"ProcessingMode": "C",
+				"NavTeamEmployees": []
+			};
+			var tableItems = this.byId("table").getItems();
+			for (var i = 0; i < tableItems.length; i++) {
+				var tableItemCells = tableItems[i].getCells();
+				for (var e = 1; e < tableItemCells.length; e++) {
+					if (tableItemCells[e].getIcon() === "sap-icon://color-fill") {
+						var localTeamAssigned = true;
+					} else {
+						localTeamAssigned = false;
+					}
+					var locatData = {
+						UserId: this.userPref.userID,
+						BusinessUnit: this.userPref.defaultBU,
+						TeamId: tableItemCells[e].data().selectedTeam,
+						EmpId: tableItemCells[e].data().employee,
+						TeamAssigned: localTeamAssigned
+					};
+					requestBody.NavTeamEmployees.push(locatData);
+				}
 			}
+			var that = this;
+			this.getView().setBusy(true);
+			this.getView().getModel().create("/TeamSet", requestBody, {
+				success: function() {
+					that.getView().setBusy(false);
+					//Home Page
+					that.getRouter().navTo("home", {}, true);
+					that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+				},
+				error: function() {
+					that.getView().setBusy(false);
+				}
+			});
+		},
+		onManageTeamName: function(oEvent) {
 
 		},
 		_EmployeeIndexInArray: function(empId) {
