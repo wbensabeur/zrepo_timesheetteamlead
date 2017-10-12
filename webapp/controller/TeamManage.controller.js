@@ -172,7 +172,7 @@ sap.ui.define([
 			// other Cloumns for Team
 			for (var i = 0; i < data.results.length; i++) {
 				var cData = {
-					ColumnTxt1: this.getResourceBundle().getText("tablleColTitleTeam"),
+					ColumnTxt1: data.results[i].TeamName,
 					ColumnTxt2: data.results[i].TeamDescription,
 					width: "auto",
 					cssClass: 'tableColumn',
@@ -334,10 +334,10 @@ sap.ui.define([
 			this.getView().getModel().create("/TeamSet", requestBody, {
 				success: function() {
 					that.getView().setBusy(false);
+					MessageToast.show(that.getResourceBundle().getText("successTeamRegisterPostMsg"));
 					//Home Page
 					that.getRouter().navTo("home", {}, true);
 					that.getView().getModel("userPreference").setProperty("/successTeamSubmit", true);
-					MessageToast.show(that.getResourceBundle().getText("successTeamRegisterPostMsg"));
 				},
 				error: function() {
 					that.getView().setBusy(false);
@@ -345,7 +345,9 @@ sap.ui.define([
 			});
 		},
 		onManageTeamName: function(oEvent) {
-
+			this.getRouter().navTo("TeamMaintain", {
+				source: 'TeamManage'
+			}, true);
 		}
 	});
 });

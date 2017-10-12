@@ -126,6 +126,12 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["TeamManage"]
+			}, {
+				"name": "TeamMaintain",
+				"pattern": "TeamMaintain",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["TeamMaintain"]
 			}],
 			"targets": {
 				"home": {
@@ -177,6 +183,14 @@
 					"viewName": "TeamManage",
 					"viewId": "TeamManage",
 					"viewLevel": 2
+				},
+				"TeamMaintain": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "TeamMaintain",
+					"viewId": "TeamMaintain",
+					"viewLevel": 3
 				}
 			}
 		},

@@ -9,7 +9,13 @@
 					<ViewSettingsItem text="{FieldDescription}" key="{FieldValue}"/>
 				</items>
 			</ViewSettingsFilterItem >
-			
+			<ViewSettingsFilterItem text="{i18n>tablleColTitleTeam}"
+				items="{path:'/TeamSet', filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
+				multiSelect="false" key="BusinessUnit">
+				<items>
+					<ViewSettingsItem text="{TeamName}" key="{TeamId}"/>
+				</items>
+			</ViewSettingsFilterItem >
 		</filterItems>
 	</ViewSettingsDialog>
 </core:FragmentDefinition>
