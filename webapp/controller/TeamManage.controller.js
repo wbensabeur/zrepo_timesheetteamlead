@@ -5,8 +5,9 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/m/MessageBox"
-], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/m/MessageToast"
+], function(BaseController, JSONModel, formatter, datetime, Filter, FilterOperator, MessageBox, MessageToast) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.TeamManage", {
 		formatter: formatter,
@@ -335,7 +336,8 @@ sap.ui.define([
 					that.getView().setBusy(false);
 					//Home Page
 					that.getRouter().navTo("home", {}, true);
-					that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+					that.getView().getModel("userPreference").setProperty("/successTeamSubmit", true);
+					MessageToast.show(that.getResourceBundle().getText("successTeamRegisterPostMsg"));
 				},
 				error: function() {
 					that.getView().setBusy(false);
