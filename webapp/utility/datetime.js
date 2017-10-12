@@ -146,11 +146,11 @@ sap.ui.define([], function() {
 			var hour = Number(arr[0]);
 			var min = Number (arr2[0]);
 			
-			if (hour < 12 && arr2[1] === 'PM' )
-				hour = hour + 12;
+			
 			var date = new Date();	
-			var offset = date.getTimezoneOffset() * 60000	;
-			return 	(hour * 60 + min )*60000 + offset; 
+			var oDate = new Date(date.getUTCFullYear(), date.getMonth(), date.getDate(), hour, min, 0 );
+		//	var offset = date.getTimezoneOffset() * 60000	;
+			return oDate.getTime();	//(hour * 60 + min )*60000 + offset; 
 			
 		}
 

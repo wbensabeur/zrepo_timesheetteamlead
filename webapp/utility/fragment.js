@@ -443,9 +443,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var diffTime = 0;
 
 			if (endTimer.getValue() !== null && endTimer.getValue().length > 0) {
-				diffTime = datetime.timeToMilliSec(oEvent.getParameter("value")) - datetime.timeToMilliSec(endTimer.getValue());
+				diffTime =  datetime.timeToMilliSec(endTimer.getValue()) - datetime.timeToMilliSec(oEvent.getParameter("value")) ;
 			}
-			if (diffTime > 0) {
+			if (diffTime < 0) {
 				source.setValueState("Error");
 				this.Common_raiseinputError(source, this.i18nModel.getText("timeValidationErrorMsg"));
 				return;
