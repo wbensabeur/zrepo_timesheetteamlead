@@ -26,10 +26,10 @@
 			<HBox alignItems="Start" justifyContent="SpaceBetween">
 				<!--<TimePicker visible='{AddTime>/duration}' value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours"/>-->
 				<custom:StepInputCustom class="customStep" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}" displayValuePrecision="2" value="0.00" width="9rem" min="0.00" max="24.00" step="0.5" change="OnChangeHours"/>
-				<TimePicker visible='{AddTime>/duration}' valueFormat="HH:mm a" displayFormat="HH:mm a"
-					placeholder="{i18n>startTime}" change="OnChangeStartTime"/>
-				<TimePicker visible='{AddTime>/duration}' enabled="false" valueFormat="HH:mm a"
-					displayFormat="HH:mm a" placeholder="{i18n>endTime}" change="OnChangeEndTime"/>
+				<TimePicker visible='{AddTime>/duration}' valueFormat="HH:mm" displayFormat="HH:mm"
+					placeholder="{i18n>startTime}" change="OnChangeStartTime" />
+				<TimePicker visible='{AddTime>/duration}' enabled="false" valueFormat="HH:mm"
+					displayFormat="HH:mm" placeholder="{i18n>endTime}" change="OnChangeEndTime"/>
 				<ComboBox class="SelectCombo" placeholder="{i18n>hrType}"
 					items="{path:'/ValueHelpSet',  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}"
 					selectionChange="OnDailyHrTypeChange2" >
