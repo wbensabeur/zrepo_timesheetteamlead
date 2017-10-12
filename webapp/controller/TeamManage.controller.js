@@ -278,7 +278,6 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent) {
 			var argument = oEvent.getParameter("arguments");
 			this.refresh = false;
-			this.allEmps = null;
 			this.userPref = this.getView().getModel("userPreference").getData();
 			if (this.userPref.defaultPeriod === 1) {
 				this.twoWeek = false;
