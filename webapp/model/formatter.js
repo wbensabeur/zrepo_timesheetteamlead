@@ -255,6 +255,11 @@ sap.ui.define([
 				return true;
 			else
 				return false;
+		},
+		teamRowHeaderLablel: function(teamid) {
+			var teamidnum = teamid.substring(teamid.search("TEAM")+5);
+			var teamRowHeaderLablelText = this.getResourceBundle().getText("teamRowHeader") + " " + teamidnum + " :";
+			return teamRowHeaderLablelText;
 		}
 
 	};
