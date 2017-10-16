@@ -119,6 +119,15 @@ sap.ui.define([
 				source: 'TeamMaintain'
 			}, true);
 		},
+		OnTeamDetailsReset: function(oEvent) {
+			var localData = this.getView().getModel().getProperty(oEvent.getSource().getBindingContext().getPath());
+			var localCellControl = oEvent.getSource().getParent().getParent().getParent();
+			var localCellDataControl = localCellControl.getItems()[0].getItems()[0].getItems()[1];
+			// Team Name
+			localCellDataControl.getItems()[0].getItems()[0].setValue(localData.TeamName);
+			// Team Description
+			localCellDataControl.getItems()[1].getItems()[0].setValue(localData.TeamDescription);
+		},
 		onPressSaveEntries: function() {
 			var requestBody = {
 				"UserId": this.userPref.userID,
