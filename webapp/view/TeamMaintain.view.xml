@@ -15,8 +15,8 @@
 		<content>
 			<VBox width="100%" height="100%" class="VinciBackgrounGray97">
 				<HBox alignContent="SpaceBetween" justifyContent="End" class="sapUiLargeMarginEnd">
-					<Label textAlign="Center" design="Bold" text="{i18n>totalTeams}" class="sapUiSmallMargin"/>
-					<Input textAlign="Center" value="{teamDetail>/data/0/TotalTeams}" enabled="false"/>
+					<Label textAlign="Center" design="Bold" text="{i18n>totalTeams}" class="sapUiSmallMargin TextCBoldText TextCFontSize1"/>
+					<Input textAlign="Center" value="{teamDetail>/data/0/TotalTeams}" enabled="false" class="TextCFontSize1"/>
 				</HBox>
 				<VBox class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
 					<FlexBox class="AddHoursDivider" visible="true"/>
@@ -37,7 +37,8 @@
 											<HBox width="75%">
 												<VBox width="100%">
 													<HBox class="sapUiSmallMarginBegin">
-														<Label textAlign="Left" design="Bold" text="{path:'TeamId',formatter:'.formatter.teamRowHeaderLablel'}">
+														<Label textAlign="Left" design="Bold" text="{path:'TeamId',formatter:'.formatter.teamRowHeaderLablel'}"
+															class=" TextCBoldText TextCFontSize1">
 															<layoutData>
 																<FlexItemData growFactor="1"/>
 															</layoutData>
@@ -45,16 +46,16 @@
 													</HBox>
 													<HBox class="sapUiSmallMargin">
 														<VBox class="sapUiSmallMarginEnd" width="33%">
-															<Input value="{TeamId}" maxLength="20" enabled="false"></Input>
-															<Text text="{i18n>teamId}"/>
+															<Input value="{TeamId}" maxLength="20" enabled="false" class="TextCFontSize1"></Input>
+															<Text text="{i18n>teamId}" class="TextCFontSize1"/>
 														</VBox>
 														<VBox class="sapUiSmallMarginEnd" width="33%">
-															<Input value="{TeamName}" maxLength="20" class="sapUiSmallMarginStartEnd"></Input>
-															<Text text="{i18n>teamName}"/>
+															<Input value="{TeamName}" maxLength="20" class="sapUiSmallMarginStartEnd TextCFontSize1"></Input>
+															<Text text="{i18n>teamName}" class="TextCFontSize1"/>
 														</VBox>
 														<VBox class="sapUiSmallMarginEnd" width="33%">
-															<Input value="{TeamDescription}" maxLength="30"></Input>
-															<Text text="{i18n>teamDesc}"/>
+															<Input value="{TeamDescription}" maxLength="30" class="TextCFontSize1"></Input>
+															<Text text="{i18n>teamDesc}" class="TextCFontSize1"/>
 														</VBox>
 													</HBox>
 												</VBox>

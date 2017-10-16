@@ -128,7 +128,7 @@ sap.ui.define([
 			var tableItems = this.byId("table").getItems();
 			for (var i = 0; i < tableItems.length; i++) {
 				var tableItemCells = tableItems[i].getCells();
-				for (var e = 1; e < tableItemCells.length; e++) {
+				for (var e = 0; e < tableItemCells.length; e++) {
 					var Items = tableItemCells[0].getItems()[0].getItems()[0].getItems()[0].getItems()[1].getItems();
 					var localTeamId = Items[0].getItems()[0].getValue();
 					var localTeamName = Items[1].getItems()[0].getValue();

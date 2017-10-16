@@ -65,7 +65,7 @@
 											<core:CustomData key="status" value="{path:'IsTimeEntryEnable', formatter:'.formatter.enableTeamDays'}" writeToDom="true"/>
 										</customData>
 									</VBox>
-									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnHourPress" enabled="true">
+									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnTeamSelActionPress" enabled="true">
 										<customData>
 											<core:CustomData key="status" value="{path:'IsTimeEntryEnable', formatter:'.formatter.enableTeamDays'}" writeToDom="true"/>
 											<core:CustomData key="background" value="" writeToDom="true"/>
@@ -75,7 +75,7 @@
 											<core:CustomData key="titlelen" value="{path:'FullName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 										</customData>
 									</Button>
-									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnHourPress" enabled="true">
+									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnTeamSelActionPress" enabled="true">
 										<customData>
 											<core:CustomData key="status" value="{path:'IsTimeEntryEnable', formatter:'.formatter.enableTeamDays'}" writeToDom="true"/>
 											<core:CustomData key="background" value="" writeToDom="true"/>
@@ -85,7 +85,7 @@
 											<core:CustomData key="titlelen" value="{path:'FullName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 										</customData>
 									</Button>
-									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnHourPress" enabled="true">
+									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnTeamSelActionPress" enabled="true">
 										<customData>
 											<core:CustomData key="status" value="{path:'IsTimeEntryEnable', formatter:'.formatter.enableTeamDays'}" writeToDom="true"/>
 											<core:CustomData key="background" value="" writeToDom="true"/>
@@ -95,7 +95,7 @@
 											<core:CustomData key="titlelen" value="{path:'FullName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 										</customData>
 									</Button>
-									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnHourPress" enabled="true">
+									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnTeamSelActionPress" enabled="true">
 										<customData>
 											<core:CustomData key="status" value="{path:'IsTimeEntryEnable', formatter:'.formatter.enableTeamDays'}" writeToDom="true"/>
 											<core:CustomData key="background" value="" writeToDom="true"/>
@@ -105,7 +105,7 @@
 											<core:CustomData key="titlelen" value="{path:'FullName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 										</customData>
 									</Button>
-									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnHourPress" enabled="true">
+									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnTeamSelActionPress" enabled="true">
 										<customData>
 											<core:CustomData key="status" value="{path:'IsTimeEntryEnable', formatter:'.formatter.enableTeamDays'}" writeToDom="true"/>
 											<core:CustomData key="background" value="" writeToDom="true"/>
@@ -115,7 +115,7 @@
 											<core:CustomData key="titlelen" value="{path:'FullName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 										</customData>
 									</Button>
-									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnHourPress" enabled="true">
+									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnTeamSelActionPress" enabled="true">
 										<customData>
 											<core:CustomData key="status" value="{path:'IsTimeEntryEnable', formatter:'.formatter.enableTeamDays'}" writeToDom="true"/>
 											<core:CustomData key="background" value="" writeToDom="true"/>
@@ -125,7 +125,7 @@
 											<core:CustomData key="titlelen" value="{path:'FullName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 										</customData>
 									</Button>
-									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnHourPress" enabled="true">
+									<Button text="" type="Transparent" width="100%" class="hourSize teamHourSize" icon="sap-icon://border" press="OnTeamSelActionPress" enabled="true">
 										<customData>
 											<core:CustomData key="status" value="{path:'IsTimeEntryEnable', formatter:'.formatter.enableTeamDays'}" writeToDom="true"/>
 											<core:CustomData key="background" value="" writeToDom="true"/>

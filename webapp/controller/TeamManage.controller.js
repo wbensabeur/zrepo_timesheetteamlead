@@ -24,9 +24,7 @@ sap.ui.define([
 			// taken care of by the table itself.
 			iOriginalBusyDelay = oTable.getBusyIndicatorDelay();
 			// keeps the search state
-			this._oTableSearchState = [];
-			this.selectedBox = [];
-			this.daySelected = [];
+			this.teamsSelected = [];
 			// Model used to manipulate control states
 			oViewModel = new JSONModel({
 				worklistTableTitle: this.getResourceBundle().getText("worklistTableTitle"),
@@ -86,12 +84,32 @@ sap.ui.define([
 			this.getModel("teamHeader").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
 			this.teamItemBinding();
 		},
-		OnHourPress: function(oEvent) {
+		OnTeamSelActionPress: function(oEvent) {
 			var button = oEvent.getSource();
+			var localTeamAssigned, entryFount = false;
 			if (button.getIcon() === "sap-icon://border") {
 				button.setIcon("sap-icon://color-fill");
+				localTeamAssigned = true;
 			} else if (button.getIcon() === "sap-icon://color-fill") {
 				button.setIcon("sap-icon://border");
+				localTeamAssigned = false;
+			}
+			var localData = {
+				employee: button.data().employee,
+				selectedTeam: button.data().selectedTeam,
+				teamAssigned: localTeamAssigned
+			};
+			// if entry already exist then replace it
+			for (var i = 0; i < this.teamsSelected.length; i++) {
+				if (this.teamsSelected[i].employee === button.data().employee &&
+					this.teamsSelected[i].selectedTeam === button.data().selectedTeam) {
+					this.teamsSelected[i] = localData;
+					entryFount = true;
+					break;
+				}
+			}
+			if (entryFount === false) {
+				this.teamsSelected.push(localData);
 			}
 		},
 		OnDatePress: function(oEvent) {
@@ -248,7 +266,11 @@ sap.ui.define([
 					var path = "/TeamEmployeeSet(UserId='" + localUserId +
 						"',BusinessUnit='" + localBusinessUnit +
 						"',TeamId='" + localTeamId + "',EmpId='" + localEmpId + "')";
-					var localTeamAssigned = this.getView().getModel().getProperty(path).TeamAssigned;
+					try {
+						var localTeamAssigned = this.getView().getModel().getProperty(path).TeamAssigned;
+					} catch (e) {
+						localTeamAssigned = false;
+					}
 					if (localTeamAssigned === true) {
 						tableItemCells[e].setIcon("sap-icon://color-fill");
 					} else {
@@ -279,6 +301,7 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent) {
 			var argument = oEvent.getParameter("arguments");
 			this.refresh = false;
+			this.teamsSelected = [];
 			this.userPref = this.getView().getModel("userPreference").getData();
 			if (this.userPref.defaultPeriod === 1) {
 				this.twoWeek = false;
@@ -303,6 +326,9 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.TeamManage
 		 */
 		onManageTeamEntry: function(oEvent) {
+			if (this.teamsSelected.length === 0) {
+
+			}
 			var requestBody = {
 				"UserId": this.userPref.userID,
 				"BusinessUnit": this.userPref.defaultBU,
@@ -310,24 +336,15 @@ sap.ui.define([
 				"ProcessingMode": "TIC", // TIC :- Team  Item Create
 				"NavTeamEmployees": []
 			};
-			var tableItems = this.byId("table").getItems();
-			for (var i = 0; i < tableItems.length; i++) {
-				var tableItemCells = tableItems[i].getCells();
-				for (var e = 1; e < tableItemCells.length; e++) {
-					if (tableItemCells[e].getIcon() === "sap-icon://color-fill") {
-						var localTeamAssigned = true;
-					} else {
-						localTeamAssigned = false;
-					}
-					var locatData = {
-						UserId: this.userPref.userID,
-						BusinessUnit: this.userPref.defaultBU,
-						TeamId: tableItemCells[e].data().selectedTeam,
-						EmpId: tableItemCells[e].data().employee,
-						TeamAssigned: localTeamAssigned
-					};
-					requestBody.NavTeamEmployees.push(locatData);
-				}
+			for (var i = 0; i < this.teamsSelected.length; i++) {
+				var locatData = {
+					UserId: this.userPref.userID,
+					BusinessUnit: this.userPref.defaultBU,
+					TeamId: this.teamsSelected[i].selectedTeam,
+					EmpId: this.teamsSelected[i].employee,
+					TeamAssigned: this.teamsSelected[i].teamAssigned
+				};
+				requestBody.NavTeamEmployees.push(locatData);
 			}
 			var that = this;
 			this.getView().setBusy(true);
