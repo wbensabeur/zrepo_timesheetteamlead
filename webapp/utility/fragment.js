@@ -443,7 +443,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var diffTime = 0;
 
 			if (endTimer.getValue() !== null && endTimer.getValue().length > 0) {
-				diffTime =  datetime.timeToMilliSec(endTimer.getValue()) - datetime.timeToMilliSec(oEvent.getParameter("value")) ;
+				diffTime = datetime.timeToMilliSec(endTimer.getValue()) - datetime.timeToMilliSec(oEvent.getParameter("value"));
 			}
 			if (diffTime < 0) {
 				source.setValueState("Error");
@@ -664,30 +664,30 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			};
 			var oFooterModel = new JSONModel(footerData);
 			this.footerModel = oFooterModel;
-			
+
 			var empsData = [];
-				for (var l = 0; l < this.employees.length; l++) {
-					var empData = {
-						empId: this.employees[l].employee,
-						empName: this.employees[l].employeeName
-					};
-					empsData.push(empData);
-				}
-				if (empsData.length > 1) {
-					var empData2 = {
-						empId: 'ALL',
-						empName: i18nModel.getText("all")
-					};
-					empsData.push(empData2);
-				}
+			for (var l = 0; l < this.employees.length; l++) {
+				var empData = {
+					empId: this.employees[l].employee,
+					empName: this.employees[l].employeeName
+				};
+				empsData.push(empData);
+			}
+			if (empsData.length > 1) {
+				var empData2 = {
+					empId: 'ALL',
+					empName: i18nModel.getText("all")
+				};
+				empsData.push(empData2);
+			}
 			var oEmpsModel = new JSONModel(empsData);
-			this.oEmpsModel = oEmpsModel;	
+			this.oEmpsModel = oEmpsModel;
 
 			var oModelData = {
 				AddTime: oModel,
 				projectSearch: oProjectModel,
 				footer: oFooterModel,
-				Emps : oEmpsModel
+				Emps: oEmpsModel
 			};
 			return oModelData;
 			//this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0]);
@@ -710,7 +710,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			}
 		},
-		AddUpdatetime_OnTabSelected: function(oEvent,oView) {
+		AddUpdatetime_OnTabSelected: function(oEvent, oView) {
 			var key = oEvent.getParameter('key');
 			var source = oEvent.getSource();
 			var that = this;
@@ -741,12 +741,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 			if (key === 'absence') {
-				if(this.oEmpsModel.getData().length === 1 ) 
-				{
+				if (this.oEmpsModel.getData().length === 1) {
 					oView.byId('AbsEmployee').setEnabled(false);
-				}
-				else
-				{
+				} else {
 					oView.byId('AbsEmployee').setEnabled(true);
 				}
 			}
@@ -800,266 +797,340 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			rButton.setEnabled(false);
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
-			if (selectedTab === 'hours') {
-				var tab = oView.byId('addTimeTab').getItems()[0].getItems();
-				for (var k = 1; k < tab.length; k++) {
-					var startTime = '000000';
-					var endTime = '000000';
-					try {
-						var projectID = undefined;
-						var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
-						var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
-						var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
-						if (this.AddUpdatetimeModel.getData().duration) {
-							startTime = tab[k].getItems()[3].getItems()[2].getItems()[1].getValue();
-							endTime = tab[k].getItems()[3].getItems()[2].getItems()[2].getValue();
-							if (startTime === '' || endTime === '') {
+			
+			var data = {
+					"EmployeeId": this.employees[0].employee,
+					"WorkDate": this.employees[0].Days[0],
+					"NavWorkDayTimeItems": []
+				};
+
+			//// Absence ///
+			if (selectedTab === 'absence') {
+				var empId = oView.byId('AbsEmployee').getSelectedKey();
+				var absType = oView.byId('AbsCat').getSelectedKey();
+				var startDate = oView.byId('AbsStartDate').getDateValue();
+				var endDate = oView.byId('AbsEndDate').getDateValue();
+				var Comments = oView.byId('AbsComment').getValue();
+				var dayType = null;
+				var noOfHrs = null;
+				try {
+					dayType = oView.byId('dayType').getSelectedIndex();
+					noOfHrs = oView.byId('NoofHrs').getText();
+				} catch (err) {}
+
+				if (empId === 'ALL') {
+					for (var l = 0; l < this.employees.length; l++) {
+					var empId2 = this.employees[l].employee;
+					var workDayAllowanceItem = {
+						"EmployeeId": empId2,
+						"WorkDate": new Date(),
+						"Counter": "0",
+						"ProjectID": "",
+						"ProjectName": "",
+						"EntryType": "ABSENCE",
+						"EntryTypeCatId": absType,
+						"EntryTypeDesc": "",
+						"Hours": noOfHrs,
+						"KMNumber":null,
+						"HourUnit": dayType,
+						"StartTime": "000000",
+						"EndTime": "000000",
+						"FullDay": false,
+						"Status": "D",
+						"ZoneType": null,
+						"ZoneName": null,
+						"MealIndicator": null,
+						"JourneyIndicator": null,
+						"TransportIndicator": null,
+						"CreatedBy": "",
+						"CreatedOn": new Date(),
+						"ReleaseOn": null,
+						"ApprovedOn": null,
+						"Reason": "",
+						"AllowancesType": "",
+						"AllowancesName": "",
+						"StartDate": startDate,
+						"EndDate": endDate,
+						"Comment": Comments,
+						"ApplicationName": "TEAMLEAD"
+					};
+					data.NavWorkDayTimeItems.push(workDayAllowanceItem);
+						
+					}
+
+				} else {
+
+					var workDayAllowanceItem = {
+						"EmployeeId": empId,
+						"WorkDate": new Date(),
+						"Counter": "0",
+						"ProjectID": "",
+						"ProjectName": "",
+						"EntryType": "ABSENCE",
+						"EntryTypeCatId": absType,
+						"EntryTypeDesc": "",
+						"Hours": noOfHrs,
+						"KMNumber":null,
+						"HourUnit": dayType,
+						"StartTime": "000000",
+						"EndTime": "000000",
+						"FullDay": false,
+						"Status": "D",
+						"ZoneType": null,
+						"ZoneName": null,
+						"MealIndicator": null,
+						"JourneyIndicator": null,
+						"TransportIndicator": null,
+						"CreatedBy": "",
+						"CreatedOn": new Date(),
+						"ReleaseOn": null,
+						"ApprovedOn": null,
+						"Reason": "",
+						"AllowancesType": "",
+						"AllowancesName": "",
+						"StartDate": startDate,
+						"EndDate": endDate,
+						"Comment": Comments,
+						"ApplicationName": "TEAMLEAD"
+					};
+					data.NavWorkDayTimeItems.push(workDayAllowanceItem);
+				}
+				
+
+			} else {
+
+				if (selectedTab === 'hours') {
+					var tab = oView.byId('addTimeTab').getItems()[0].getItems();
+					for (var k = 1; k < tab.length; k++) {
+						var startTime = '000000';
+						var endTime = '000000';
+						try {
+							var projectID = undefined;
+							var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+							var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+							var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+							if (this.AddUpdatetimeModel.getData().duration) {
+								startTime = tab[k].getItems()[3].getItems()[2].getItems()[1].getValue();
+								endTime = tab[k].getItems()[3].getItems()[2].getItems()[2].getValue();
+								if (startTime === '' || endTime === '') {
+									MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+									ctype.setBusy(false);
+									rButton.setEnabled(true);
+									return;
+								}
+							}
+							var fullDay = false;
+							if (fullDayindex === 0) {
+								fullDay = true;
+							}
+							projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+						} catch (err) {
+							if (projectID === undefined && hrType === "") {
+								continue;
+							} else {
+								//MessageBox.alert("All Items are not selected");
 								MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;
 							}
 						}
-						var fullDay = false;
-						if (fullDayindex === 0) {
-							fullDay = true;
-						}
-						projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
-					} catch (err) {
 						if (projectID === undefined && hrType === "") {
 							continue;
-						} else {
+						} else if (projectID === undefined || hrType === "") {
 							//MessageBox.alert("All Items are not selected");
 							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
 							ctype.setBusy(false);
 							rButton.setEnabled(true);
 							return;
 						}
-					}
-					if (projectID === undefined && hrType === "") {
-						continue;
-					} else if (projectID === undefined || hrType === "") {
-						//MessageBox.alert("All Items are not selected");
-						MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
-						ctype.setBusy(false);
-						rButton.setEnabled(true);
-						return;
-					}
 
-					var workDayItem = {
-						"ProjectID": projectID,
-						"EntryType": "HOURS",
-						"Hours": tab[k].getCustomData()[0].getValue().toString(),
-						"EntryTypeCatId": hrType,
-						"StartTime": startTime,
-						"EndTime": endTime,
-						"FullDay": fullDay,
-						"ZoneType": "",
-						"ZoneName": "",
-						"MealIndicator": false,
-						"JourneyIndicator": false,
-						"TransportIndicator": false,
-						"StartDate": null,
-						"EndDate": null,
-						"Comment": null
+						var workDayItem = {
+							"ProjectID": projectID,
+							"EntryType": "HOURS",
+							"Hours": tab[k].getCustomData()[0].getValue().toString(),
+							"EntryTypeCatId": hrType,
+							"StartTime": startTime,
+							"EndTime": endTime,
+							"FullDay": fullDay,
+							"ZoneType": "",
+							"ZoneName": "",
+							"MealIndicator": false,
+							"JourneyIndicator": false,
+							"TransportIndicator": false,
+							"StartDate": null,
+							"EndDate": null,
+							"Comment": null
 
-					};
-
-					workDayItems.push(workDayItem);
-
-				}
-			} else if (selectedTab === 'KM') {
-				/// Get Item Data from view for KM Hours
-				var kmtab = oView.byId('addKM').getItems()[0].getItems();
-				for (var km = 2; km < kmtab.length; km++) {
-					try {
-						var kmprojectID = undefined;
-						var kmhrType = undefined;
-						var kmprojectBindingPath = oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].getBindingContext().getPath();
-						var StartTime = kmtab[km].getItems()[0].getItems()[1].getValue();
-						var EndTime = kmtab[km].getItems()[1].getItems()[1].getValue();
-						var KMNumber = kmtab[km].getItems()[2].getValue();
-						kmhrType = kmtab[km].getItems()[3].getSelectedKey();
-						kmprojectID = oView.getModel().getProperty(kmprojectBindingPath).ProjectId;
-						if ((kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) &&
-							(kmhrType === "" || kmhrType === undefined || kmhrType === null) &&
-							(StartTime === "" || StartTime === undefined || StartTime === null) &&
-							(EndTime === "" || EndTime === undefined || EndTime === null) &&
-							(KMNumber === "" || KMNumber === undefined || KMNumber === null)) {
-							continue;
-						} else if (kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) {
-							//MessageBox.alert("Project is not selected");
-							MessageBox.alert(this.i18nModel.getText("projectIsNotSelected"));
-							ctype.setBusy(false);
-							rButton.setEnabled(true);
-							return;
-						} else if (kmhrType === "" || kmhrType === undefined || kmhrType === null) {
-							//MessageBox.alert("Kilometer Type is not selected");
-							MessageBox.alert(this.i18nModel.getText("kmTypeIsNotSelected"));
-							ctype.setBusy(false);
-							rButton.setEnabled(true);
-							return;
-						}
-					} catch (err) {
-						if ((kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) &&
-							(kmhrType === "" || kmhrType === undefined || kmhrType === null)) {
-							continue;
-						} else {
-							//MessageBox.alert("All Items are not selected");
-							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
-							ctype.setBusy(false);
-							rButton.setEnabled(true);
-							return;
-						}
-					}
-					workDayItem = {
-						"ProjectID": kmprojectID,
-						"EntryType": "KM",
-						"Hours": "",
-						"EntryTypeCatId": kmhrType,
-						"KMNumber": KMNumber,
-						"StartTime": StartTime,
-						"EndTime": EndTime,
-						"FullDay": false,
-						"ZoneType": "",
-						"ZoneName": "",
-						"MealIndicator": false,
-						"JourneyIndicator": false,
-						"TransportIndicator": false,
-						"StartDate": null,
-						"EndDate": null,
-						"Comment": null
-
-					};
-					workDayItems.push(workDayItem);
-				}
-			} else if (selectedTab === 'allowance') {
-				/// Get Item Data from view for Daily Allowances
-				var meal = oView.byId('AllowanceMealIndicator').getPressed();
-				var transport = oView.byId('AllowanceTransportIndicator').getPressed();
-				var travel = oView.byId('AllowanceTravelIndicator').getPressed();
-				if (meal || transport || travel) {
-					var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
-					var zoneName = oView.byId('AllowanceZoneType').getValue();
-					if (zoneName === undefined || zoneName === "" || zoneName === null) {
-						//MessageBox.alert("Zone type is not selected");
-						MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
-						ctype.setBusy(false);
-						rButton.setEnabled(true);
-						return;
-					}
-					var allwProjectID = null;
-					try {
-						var allwProject = oView.byId('AllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
-						allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
-					} catch (err) {
-						allwProjectID = "";
-					}
-
-					var workDayAllowanceItem = {
-						"ProjectID": allwProjectID,
-						"EntryType": "IPD",
-						"EntryTypeCatId": null,
-						"Hours": "1",
-						"StartTime": "000000",
-						"EndTime": "000000",
-						"FullDay": false,
-						"ZoneType": zonetype,
-						"ZoneName": zoneName,
-						"MealIndicator": meal,
-						"JourneyIndicator": transport,
-						"TransportIndicator": travel,
-						"StartDate": null,
-						"EndDate": null,
-						"Comment": null
-					};
-					workDayItems.push(workDayAllowanceItem);
-				}
-			}
-			////
-			//// Absence ///
-			else if (selectedTab === 'absence') {
-				var absType = oView.byId('AbsCat').getSelectedKey();
-				var startDate = oView.byId('AbsStartDate').getValue();
-				var endDate = oView.byId('AbsEndDate').getValue();
-				var Comments = oView.byId('AbsComment').getText();
-
-				var workDayAllowanceItem = {
-					"ProjectID": null,
-					"EntryType": "ABSENCE",
-					"EntryTypeCatId": absType,
-					"Hours": null,
-					"StartTime": "000000",
-					"EndTime": "000000",
-					"FullDay": false,
-					"ZoneType": null,
-					"ZoneName": null,
-					"MealIndicator": null,
-					"JourneyIndicator": null,
-					"TransportIndicator": null,
-					"StartDate": startDate,
-					"EndDate": endDate,
-					"Comment": Comments
-				};
-				workDayItems.push(workDayAllowanceItem);
-
-			}
-			if (workDayItems.length <= 0) {
-				ctype.setBusy(false);
-				rButton.setEnabled(true);
-				return;
-			}
-			Date.prototype.getWeek = function() {
-				var onejan = new Date(this.getFullYear(), 0, 1);
-				return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
-			};
-			var data = {
-				"EmployeeId": this.employees[0].employee,
-				"WorkDate": this.employees[0].Days[0],
-				"NavWorkDayTimeItems": []
-			};
-			for (var l = 0; l < this.employees.length; l++) {
-				var empId = this.employees[l].employee;
-
-				for (var j = 0; j < this.employees[l].Days.length; j++) {
-					for (var i = 0; i < workDayItems.length; i++) {
-						var item = {
-							"EmployeeId": empId,
-							"WorkDate": this.employees[l].Days[j],
-							"Counter": "0",
-							"ProjectID": workDayItems[i].ProjectID,
-							"ProjectName": "",
-							"EntryType": workDayItems[i].EntryType,
-							"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
-							"EntryTypeDesc": "",
-							"Hours": workDayItems[i].Hours,
-							"KMNumber": workDayItems[i].KMNumber,
-							"StartTime": workDayItems[i].StartTime,
-							"EndTime": workDayItems[i].EndTime,
-							"FullDay": workDayItems[i].FullDay,
-							"StartDate": workDayItems[i].StartDate,
-							"EndDate": workDayItems[i].EndDate,
-							"Status": "D",
-							"Comment": workDayItems[i].Comment,
-							"CreatedBy": "",
-							"CreatedOn": new Date(),
-							"ReleaseOn": null,
-							"ApprovedOn": null,
-							"Reason": "",
-							"AllowancesType": "",
-							"AllowancesName": "",
-							"ZoneType": workDayItems[i].ZoneType,
-							"ZoneName": workDayItems[i].ZoneName,
-							"MealIndicator": workDayItems[i].MealIndicator,
-							"JourneyIndicator": workDayItems[i].JourneyIndicator,
-							"TransportIndicator": workDayItems[i].TransportIndicator,
-							"ApplicationName": "TEAMLEAD"
 						};
-						data.NavWorkDayTimeItems.push(item);
-					}
 
+						workDayItems.push(workDayItem);
+
+					}
+				} else if (selectedTab === 'KM') {
+					/// Get Item Data from view for KM Hours
+					var kmtab = oView.byId('addKM').getItems()[0].getItems();
+					for (var km = 2; km < kmtab.length; km++) {
+						try {
+							var kmprojectID = undefined;
+							var kmhrType = undefined;
+							var kmprojectBindingPath = oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].getBindingContext().getPath();
+							var StartTime = kmtab[km].getItems()[0].getItems()[1].getValue();
+							var EndTime = kmtab[km].getItems()[1].getItems()[1].getValue();
+							var KMNumber = kmtab[km].getItems()[2].getValue();
+							kmhrType = kmtab[km].getItems()[3].getSelectedKey();
+							kmprojectID = oView.getModel().getProperty(kmprojectBindingPath).ProjectId;
+							if ((kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) &&
+								(kmhrType === "" || kmhrType === undefined || kmhrType === null) &&
+								(StartTime === "" || StartTime === undefined || StartTime === null) &&
+								(EndTime === "" || EndTime === undefined || EndTime === null) &&
+								(KMNumber === "" || KMNumber === undefined || KMNumber === null)) {
+								continue;
+							} else if (kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) {
+								//MessageBox.alert("Project is not selected");
+								MessageBox.alert(this.i18nModel.getText("projectIsNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							} else if (kmhrType === "" || kmhrType === undefined || kmhrType === null) {
+								//MessageBox.alert("Kilometer Type is not selected");
+								MessageBox.alert(this.i18nModel.getText("kmTypeIsNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							}
+						} catch (err) {
+							if ((kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) &&
+								(kmhrType === "" || kmhrType === undefined || kmhrType === null)) {
+								continue;
+							} else {
+								//MessageBox.alert("All Items are not selected");
+								MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							}
+						}
+						workDayItem = {
+							"ProjectID": kmprojectID,
+							"EntryType": "KM",
+							"Hours": "",
+							"EntryTypeCatId": kmhrType,
+							"KMNumber": KMNumber,
+							"StartTime": StartTime,
+							"EndTime": EndTime,
+							"FullDay": false,
+							"ZoneType": "",
+							"ZoneName": "",
+							"MealIndicator": false,
+							"JourneyIndicator": false,
+							"TransportIndicator": false,
+							"StartDate": null,
+							"EndDate": null,
+							"Comment": null
+
+						};
+						workDayItems.push(workDayItem);
+					}
+				} else if (selectedTab === 'allowance') {
+					/// Get Item Data from view for Daily Allowances
+					var meal = oView.byId('AllowanceMealIndicator').getPressed();
+					var transport = oView.byId('AllowanceTransportIndicator').getPressed();
+					var travel = oView.byId('AllowanceTravelIndicator').getPressed();
+					if (meal || transport || travel) {
+						var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
+						var zoneName = oView.byId('AllowanceZoneType').getValue();
+						if (zoneName === undefined || zoneName === "" || zoneName === null) {
+							//MessageBox.alert("Zone type is not selected");
+							MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
+							ctype.setBusy(false);
+							rButton.setEnabled(true);
+							return;
+						}
+						var allwProjectID = null;
+						try {
+							var allwProject = oView.byId('AllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
+							allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
+						} catch (err) {
+							allwProjectID = "";
+						}
+
+						var workDayAllowanceItem = {
+							"ProjectID": allwProjectID,
+							"EntryType": "IPD",
+							"EntryTypeCatId": null,
+							"Hours": "1",
+							"StartTime": "000000",
+							"EndTime": "000000",
+							"FullDay": false,
+							"ZoneType": zonetype,
+							"ZoneName": zoneName,
+							"MealIndicator": meal,
+							"JourneyIndicator": transport,
+							"TransportIndicator": travel,
+							"StartDate": null,
+							"EndDate": null,
+							"Comment": null
+						};
+						workDayItems.push(workDayAllowanceItem);
+					}
+				}
+				////
+
+				if (workDayItems.length <= 0) {
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					return;
+				}
+				Date.prototype.getWeek = function() {
+					var onejan = new Date(this.getFullYear(), 0, 1);
+					return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+				};
+				
+				for (var l = 0; l < this.employees.length; l++) {
+					var empId = this.employees[l].employee;
+
+					for (var j = 0; j < this.employees[l].Days.length; j++) {
+						for (var i = 0; i < workDayItems.length; i++) {
+							var item = {
+								"EmployeeId": empId,
+								"WorkDate": this.employees[l].Days[j],
+								"Counter": "0",
+								"ProjectID": workDayItems[i].ProjectID,
+								"ProjectName": "",
+								"EntryType": workDayItems[i].EntryType,
+								"EntryTypeCatId": workDayItems[i].EntryTypeCatId,
+								"EntryTypeDesc": "",
+								"Hours": workDayItems[i].Hours,
+								"KMNumber": workDayItems[i].KMNumber,
+								"StartTime": workDayItems[i].StartTime,
+								"EndTime": workDayItems[i].EndTime,
+								"FullDay": workDayItems[i].FullDay,
+								"StartDate": workDayItems[i].StartDate,
+								"EndDate": workDayItems[i].EndDate,
+								"Status": "D",
+								"Comment": workDayItems[i].Comment,
+								"CreatedBy": "",
+								"CreatedOn": new Date(),
+								"ReleaseOn": null,
+								"ApprovedOn": null,
+								"Reason": "",
+								"AllowancesType": "",
+								"AllowancesName": "",
+								"ZoneType": workDayItems[i].ZoneType,
+								"ZoneName": workDayItems[i].ZoneName,
+								"MealIndicator": workDayItems[i].MealIndicator,
+								"JourneyIndicator": workDayItems[i].JourneyIndicator,
+								"TransportIndicator": workDayItems[i].TransportIndicator,
+								"ApplicationName": "TEAMLEAD"
+							};
+							data.NavWorkDayTimeItems.push(item);
+						}
+
+					}
 				}
 			}
+
 			var that = this;
 			ctype.setBusy(true);
 			this.oDataModel.create("/WorkDaySet", data, {

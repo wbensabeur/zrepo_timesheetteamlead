@@ -59,7 +59,7 @@
 				<VBox width="100%" height="100%">
 					<VBox>
 						
-						<Select  id="AbsEmployee" class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+						<Select  id="AbsEmployee"  class="sapUiSmallMarginTop sapUiSmallMarginBegin"
 							items="{Emps>/}" >
 							<core:Item key="{Emps>empId}" text="{Emps>empName}"/>
 						</Select>
@@ -79,21 +79,21 @@
 								</HBox>
 								<HBox alignContent="Center">
 									<Label text="{i18n>endDay}" class="sapUiSmallMarginTop"/>
-									<DatePicker id="AbsEndDate" displayFormat="long" class="sapUiSmallMarginBegin" placeholder="{i18n>select} {i18n>endDay}"
+									<DatePicker id="AbsEndDate"  displayFormat="long" class="sapUiSmallMarginBegin" placeholder="{i18n>select} {i18n>endDay}"
 										change="onSelectAbsenceEndDate"/>
 								</HBox>
 							</VBox>
-							<RadioButtonGroup columns="1" visible="{AddTime>/visibleAbsence2}" class="sapUiMediumMarginBegin">
+							<RadioButtonGroup id="dayType" columns="1" visible="{AddTime>/visibleAbsence2}" class="sapUiMediumMarginBegin" >
 								<buttons>
-									<RadioButton id="dayType1" text="{i18n>fullDay}"/>
-									<RadioButton id="dayType2" text="{i18n>morning}"/>
-									<RadioButton id="dayType3" text="{i18n>afternoon}"/>
+									<RadioButton text="{i18n>fullDay}"/>
+									<RadioButton text="{i18n>morning}"/>
+									<RadioButton text="{i18n>afternoon}"/>
 								</buttons>
 							</RadioButtonGroup>
 						</HBox>
 						<HBox class="sapUiSmallMarginTop sapUiSmallMarginBegin" >
 						<!--	<Input type="Number" visible="{AddTime>/visibleAbsence3}" placeholder="{i18n>noOfHrs}"  class="sapUiLargeMarginEnd"/>-->
-							<TextArea visible="{AddTime>/visibleAbsence3}" width="10rem" placeholder="{i18n>noOfHrs}" rows="1" class="sapUiLargeMarginEnd"/>
+							<TextArea id="NoofHrs" visible="{AddTime>/visibleAbsence3}" width="10rem" placeholder="{i18n>noOfHrs}" rows="1" class="sapUiLargeMarginEnd"/>
 							<TextArea id="AbsComment" width="20rem" growing="true" placeholder="{i18n>comment}" rows="1"/>
 						</HBox>
 					</VBox>
