@@ -654,3 +654,11 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .VinciBackgrounGray97 {
 	background-color: #f7f7f7 !important;
 }
+
+.VinciBackgrounGray97>div {
+	background-color: #f7f7f7 !important;
+}
+
+.VinciBackgrounGray97>div>div {
+	background-color: #f7f7f7 !important;
+}
