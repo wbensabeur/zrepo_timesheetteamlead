@@ -284,26 +284,31 @@ sap.ui.define([
 		handleAdvanceSearch: function(oEvent) {
 			var mParams = oEvent.getParameters();
 			var that = this;
-			jQuery.each(mParams.filterItems, function(i, oItem) {
-				//var aSplit = oItem.getKey().split(");
-				if (oItem.getParent().getProperty("key") === 'BusinessUnit') {
-					that.userPref.defaultBU = oItem.getKey();
-					var oData = {
-						PersoValue: oItem.getKey()
-					};
-					var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + that.getView().getModel("userPreference").getProperty(
-						"/userID") + "',PersoId='BU')";
-					that.getView().getModel().update(url, oData);
+			if (mParams.filterItems.length > 0) {
+				jQuery.each(mParams.filterItems, function(i, oItem) {
+					//var aSplit = oItem.getKey().split(");
+					if (oItem.getParent().getProperty("key") === 'BusinessUnit') {
+						that.userPref.defaultBU = oItem.getKey();
+						var oData = {
+							PersoValue: oItem.getKey()
+						};
+						var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + that.getView().getModel("userPreference").getProperty(
+							"/userID") + "',PersoId='BU')";
+						that.getView().getModel().update(url, oData);
+					} else if (oItem.getParent().getProperty("key") === 'Team') {
+						that.userPref.teamFilter = oItem.getKey();
+					}
+					//var sPath1 = oItem.getParent().getProperty("key");
+					//var sOperator = FilterOperator.EQ;
+					//var sValue1 = oItem.getKey();
+					//var sValue2 = "";
+					//	var sValue2 = aSplit[3];
+					//var oFilter = new Filter(sPath1, sOperator, sValue1, sValue2);
 
-				}
-				//var sPath1 = oItem.getParent().getProperty("key");
-				//var sOperator = FilterOperator.EQ;
-				//var sValue1 = oItem.getKey();
-				//var sValue2 = "";
-				//	var sValue2 = aSplit[3];
-				//var oFilter = new Filter(sPath1, sOperator, sValue1, sValue2);
-
-			});
+				});
+			} else {
+				this.userPref.teamFilter = null;
+			}
 			this._applyFilters();
 
 		},
@@ -608,7 +613,7 @@ sap.ui.define([
 		//// **AddUpdateTime Fragment Event** ///////
 		OnTabSelected: function(oEvent) {
 			//	var addTimeModel = this.getView().getModel('AddTime');
-			fragment.AddUpdatetime_OnTabSelected(oEvent,this.getView());
+			fragment.AddUpdatetime_OnTabSelected(oEvent, this.getView());
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
@@ -625,7 +630,7 @@ sap.ui.define([
 		handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);
 		},
-		handleAbsTypeLoadItems : function (oEvent){
+		handleAbsTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAbsTypeLoadItems(oEvent);
 		},
 
