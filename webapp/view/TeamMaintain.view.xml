@@ -45,10 +45,9 @@
 														</Label>
 													</HBox>
 													<HBox class="sapUiSmallMargin">
-														<!--<VBox class="sapUiSmallMarginEnd" width="33%">
-															<Input value="{TeamId}" maxLength="20" enabled="false" class="TextCFontSize1"></Input>
+														<VBox class="sapUiSmallMarginEnd" width="0%" visible="false">															<Input value="{TeamId}" maxLength="20" enabled="false" class="TextCFontSize1"></Input>
 															<Text text="{i18n>teamId}" class="TextCFontSize1"/>
-														</VBox>-->
+														</VBox>
 														<VBox class="sapUiSmallMarginEnd" width="50%">
 															<Input value="{TeamName}" placeholder="{i18n>max20char}" maxLength="20" class="sapUiSmallMarginStartEnd TextCFontSize1"></Input>
 															<Text text="{i18n>teamName}" class="TextCFontSize1"/>
