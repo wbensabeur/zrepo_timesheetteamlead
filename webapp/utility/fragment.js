@@ -584,7 +584,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var startDate = oEvent.getSource();
 			var endDate = view.byId('AbsEndDate');
 			this.warning = true;
-			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
+			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() <= endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 			} else {
@@ -599,7 +599,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var startDate = view.byId('AbsStartDate');
 			var endDate = oEvent.getSource();
 			this.warning = true;
-			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
+			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() <= endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 			} else {
@@ -797,15 +797,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			rButton.setEnabled(false);
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
-			
+
 			var data = {
-					"EmployeeId": this.employees[0].employee,
-					"WorkDate": this.employees[0].Days[0],
-					"NavWorkDayTimeItems": []
-				};
+				"EmployeeId": this.employees[0].employee,
+				"WorkDate": this.employees[0].Days[0],
+				"Status": null,
+				"NavWorkDayTimeItems": []
+			};
 
 			//// Absence ///
 			if (selectedTab === 'absence') {
+				data.Status = 'ABSCENCE';
 				var empId = oView.byId('AbsEmployee').getSelectedKey();
 				var absType = oView.byId('AbsCat').getSelectedKey();
 				var startDate = oView.byId('AbsStartDate').getDateValue();
@@ -814,48 +816,48 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var dayType = null;
 				var noOfHrs = null;
 				try {
-					dayType = oView.byId('dayType').getSelectedIndex();
+					dayType = oView.byId('dayType').getSelectedIndex().toString();
 					noOfHrs = oView.byId('NoofHrs').getText();
 				} catch (err) {}
 
 				if (empId === 'ALL') {
 					for (var l = 0; l < this.employees.length; l++) {
-					var empId2 = this.employees[l].employee;
-					var workDayAllowanceItem = {
-						"EmployeeId": empId2,
-						"WorkDate": new Date(),
-						"Counter": "0",
-						"ProjectID": "",
-						"ProjectName": "",
-						"EntryType": "ABSENCE",
-						"EntryTypeCatId": absType,
-						"EntryTypeDesc": "",
-						"Hours": noOfHrs,
-						"KMNumber":null,
-						"HourUnit": dayType,
-						"StartTime": "000000",
-						"EndTime": "000000",
-						"FullDay": false,
-						"Status": "D",
-						"ZoneType": null,
-						"ZoneName": null,
-						"MealIndicator": null,
-						"JourneyIndicator": null,
-						"TransportIndicator": null,
-						"CreatedBy": "",
-						"CreatedOn": new Date(),
-						"ReleaseOn": null,
-						"ApprovedOn": null,
-						"Reason": "",
-						"AllowancesType": "",
-						"AllowancesName": "",
-						"StartDate": startDate,
-						"EndDate": endDate,
-						"Comment": Comments,
-						"ApplicationName": "TEAMLEAD"
-					};
-					data.NavWorkDayTimeItems.push(workDayAllowanceItem);
-						
+						var empId2 = this.employees[l].employee;
+						var workDayAllowanceItem = {
+							"EmployeeId": empId2,
+							"WorkDate": this.employees[0].Days[0], //new Date(),
+							"Counter": "0",
+							"ProjectID": "",
+							"ProjectName": "",
+							"EntryType": "ABSENCE",
+							"EntryTypeCatId": absType,
+							"EntryTypeDesc": "",
+							"Hours": noOfHrs,
+							"KMNumber": null,
+							"HourUnit": dayType,
+							"StartDate": startDate,
+							"EndDate": endDate,
+							"StartTime": "000000",
+							"EndTime": "000000",
+							"FullDay": false,
+							"Status": "D",
+							"ZoneType": null,
+							"ZoneName": null,
+							"MealIndicator": null,
+							"JourneyIndicator": null,
+							"TransportIndicator": null,
+							"CreatedBy": "",
+							"CreatedOn": new Date(),
+							"ReleaseOn": null,
+							"ApprovedOn": null,
+							"Reason": "",
+							"AllowancesType": "",
+							"AllowancesName": "",
+							"Comment": Comments,
+							"ApplicationName": "TEAMLEAD"
+						};
+						data.NavWorkDayTimeItems.push(workDayAllowanceItem);
+
 					}
 
 				} else {
@@ -870,7 +872,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						"EntryTypeCatId": absType,
 						"EntryTypeDesc": "",
 						"Hours": noOfHrs,
-						"KMNumber":null,
+						"KMNumber": null,
 						"HourUnit": dayType,
 						"StartTime": "000000",
 						"EndTime": "000000",
@@ -895,8 +897,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					};
 					data.NavWorkDayTimeItems.push(workDayAllowanceItem);
 				}
-				
-
 			} else {
 
 				if (selectedTab === 'hours') {
@@ -1086,7 +1086,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					var onejan = new Date(this.getFullYear(), 0, 1);
 					return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
 				};
-				
+
 				for (var l = 0; l < this.employees.length; l++) {
 					var empId = this.employees[l].employee;
 
