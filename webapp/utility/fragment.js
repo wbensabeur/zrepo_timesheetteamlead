@@ -810,14 +810,50 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				data.Status = 'ABSCENCE';
 				var empId = oView.byId('AbsEmployee').getSelectedKey();
 				var absType = oView.byId('AbsCat').getSelectedKey();
+				if (absType === '' || absType === null || absType === undefined) {
+					MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					return;
+				}
 				var startDate = oView.byId('AbsStartDate').getDateValue();
+				if (startDate === '' || startDate === null || startDate === undefined) {
+					MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					return;
+				}
 				var endDate = oView.byId('AbsEndDate').getDateValue();
+				if (endDate === '' || endDate === null || endDate === undefined) {
+					MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					return;
+				}
 				var Comments = oView.byId('AbsComment').getValue();
 				var dayType = null;
 				var noOfHrs = null;
 				try {
-					dayType = oView.byId('dayType').getSelectedIndex().toString();
-					noOfHrs = oView.byId('NoofHrs').getText();
+					if (oView.byId('dayType').getVisible === true) {
+						dayType = oView.byId('dayType').getSelectedIndex().toString();
+						if (dayType === '' || dayType === null || dayType === undefined) {
+							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+							ctype.setBusy(false);
+							rButton.setEnabled(true);
+							return;
+						}
+					}
+				} catch (err) {}
+				try {
+					if (oView.byId('NoofHrs').getVisible === true) {
+						noOfHrs = oView.byId('NoofHrs').getText().toString();
+						if (noOfHrs === '' || noOfHrs === null || noOfHrs === undefined) {
+							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+							ctype.setBusy(false);
+							rButton.setEnabled(true);
+							return;
+						}
+					}
 				} catch (err) {}
 
 				if (empId === 'ALL') {
