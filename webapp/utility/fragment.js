@@ -584,7 +584,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var startDate = oEvent.getSource();
 			var endDate = view.byId('AbsEndDate');
 			this.warning = true;
-			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
+			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() <= endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 			} else {
@@ -599,7 +599,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var startDate = view.byId('AbsStartDate');
 			var endDate = oEvent.getSource();
 			this.warning = true;
-			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
+			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() <= endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 			} else {
@@ -831,7 +831,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					return;
 				}
 				var Comments = oView.byId('AbsComment').getValue();
-				var dayType = null;
+				var dayType = null,
+					localDayType = null;
 				var noOfHrs = null;
 				try {
 					if (oView.byId('dayType').getVisible === true) {
@@ -841,6 +842,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							ctype.setBusy(false);
 							rButton.setEnabled(true);
 							return;
+						} else {
+							if (dayType === '0') {
+								localDayType = 'FULL';
+							} else if (dayType === '1') {
+								localDayType = 'AM';
+							} else if (dayType === '2') {
+								localDayType = 'PM';
+							}
 						}
 					}
 				} catch (err) {}
@@ -870,7 +879,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"EntryTypeDesc": "",
 							"Hours": noOfHrs,
 							"KMNumber": null,
-							"HourUnit": dayType,
+							"HourUnit": localDayType,
 							"StartDate": startDate,
 							"EndDate": endDate,
 							"StartTime": "000000",
@@ -909,7 +918,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						"EntryTypeDesc": "",
 						"Hours": noOfHrs,
 						"KMNumber": null,
-						"HourUnit": dayType,
+						"HourUnit": localDayType,
 						"StartTime": "000000",
 						"EndTime": "000000",
 						"FullDay": false,
