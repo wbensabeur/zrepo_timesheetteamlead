@@ -584,7 +584,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var startDate = oEvent.getSource();
 			var endDate = view.byId('AbsEndDate');
 			this.warning = true;
-			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() <= endDate.getDateValue().getTime()) {
+			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 			} else {
@@ -599,7 +599,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var startDate = view.byId('AbsStartDate');
 			var endDate = oEvent.getSource();
 			this.warning = true;
-			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() <= endDate.getDateValue().getTime()) {
+			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 			} else {
