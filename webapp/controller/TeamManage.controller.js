@@ -271,10 +271,22 @@ sap.ui.define([
 					} catch (e) {
 						localTeamAssigned = false;
 					}
-					if (localTeamAssigned === true) {
-						tableItemCells[e].setIcon("sap-icon://color-fill");
-					} else {
-						tableItemCells[e].setIcon("sap-icon://border");
+					// for handling refresh issue
+					var recordFound = false;
+					for (var k = 0; k < data.results.length; k++) {
+						if (data.results[k].EmpId === localEmpId &&
+							data.results[k].BusinessUnit === localBusinessUnit &&
+							data.results[k].TeamId === localTeamId) {
+							recordFound = true;
+							break;
+						}
+					}
+					if (recordFound === true) {
+						if (localTeamAssigned === true) {
+							tableItemCells[e].setIcon("sap-icon://color-fill");
+						} else {
+							tableItemCells[e].setIcon("sap-icon://border");
+						}
 					}
 				}
 			}

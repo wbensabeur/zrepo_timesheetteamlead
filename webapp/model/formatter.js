@@ -260,8 +260,21 @@ sap.ui.define([
 			var teamidnum = teamid.substring(teamid.search("TEAM")+5);
 			var teamRowHeaderLablelText = this.getResourceBundle().getText("teamRowHeader") + " " + teamidnum + " :";
 			return teamRowHeaderLablelText;
+		},
+		buFilterSelected: function(buValue) {
+			if(this.userPref.defaultBU === buValue) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		teamFilterSelected: function(teamID) {
+			if(this.userPref.teamFilter === teamID) {
+				return true;
+			} else {
+				return false;
+			}
 		}
-
 	};
 
 });

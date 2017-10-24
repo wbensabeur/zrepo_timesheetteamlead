@@ -582,28 +582,61 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_onSelectAbsenceStartDate: function(oEvent, view) {
 			var startDate = oEvent.getSource();
+			var NoofHrs = view.byId('NoofHrs');
 			var endDate = view.byId('AbsEndDate');
+			// To set the default end date
+			if (endDate.getDateValue() === null || endDate.getDateValue() === undefined) {
+				endDate.setDateValue(startDate.getDateValue());
+			}
 			this.warning = true;
-			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() <= endDate.getDateValue().getTime()) {
+			if (!(endDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(true);
+				}
+			} else if (startDate.getDateValue().getTime() === endDate.getDateValue().getTime()) {
+				startDate.setValueState("None");
+				endDate.setValueState("None");
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(true);
+				}
 			} else {
 				startDate.setValueState("Error");
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(false);
+				}
 				this.Common_raiseinputError(startDate, this.i18nModel.getText("dateValidationErrorMsg"));
 				return;
 			}
-
 		},
 		AddUpdatetime_onSelectAbsenceEndDate: function(oEvent, view) {
-
 			var startDate = view.byId('AbsStartDate');
+			var NoofHrs = view.byId('NoofHrs');
+			NoofHrs.setEnabled(false);
 			var endDate = oEvent.getSource();
 			this.warning = true;
-			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() <= endDate.getDateValue().getTime()) {
+			// To set the default Start date
+			if (startDate.getDateValue() === null || startDate.getDateValue() === undefined) {
+				startDate.setDateValue(endDate.getDateValue());
+			}
+			if (!(startDate.getDateValue() instanceof Date) || startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(false);
+				}
+			} else if (startDate.getDateValue().getTime() === endDate.getDateValue().getTime()) {
+				startDate.setValueState("None");
+				endDate.setValueState("None");
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(true);
+				}
 			} else {
 				endDate.setValueState("Error");
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(false);
+				}
 				this.Common_raiseinputError(endDate, this.i18nModel.getText("dateValidationErrorMsg"));
 				return;
 			}
@@ -864,7 +897,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						}
 					}
 				} catch (err) {}
-
+				//Handle StartDate and EndDate
+				var TZOffsetMs = new Date(0).getTimezoneOffset() * 60 * 1000;
+				if (TZOffsetMs < 0) {
+					var localStartDate = new Date(startDate.getTime() - TZOffsetMs);
+					var localEndDate = new Date(endDate.getTime() - TZOffsetMs);
+				} else if (TZOffsetMs > 0) {
+					var localStartDate = new Date(startDate.getTime() + TZOffsetMs);
+					var localEndDate = new Date(endDate.getTime() + TZOffsetMs);
+				}
 				if (empId === 'ALL') {
 					for (var l = 0; l < this.employees.length; l++) {
 						var empId2 = this.employees[l].employee;
@@ -880,8 +921,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"Hours": noOfHrs,
 							"KMNumber": null,
 							"HourUnit": localDayType,
-							"StartDate": startDate,
-							"EndDate": endDate,
+							"StartDate": localStartDate,
+							"EndDate": localEndDate,
 							"StartTime": "000000",
 							"EndTime": "000000",
 							"FullDay": false,
@@ -935,8 +976,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						"Reason": "",
 						"AllowancesType": "",
 						"AllowancesName": "",
-						"StartDate": startDate,
-						"EndDate": endDate,
+						"StartDate": localStartDate,
+						"EndDate": localEndDate,
 						"Comment": Comments,
 						"ApplicationName": "TEAMLEAD"
 					};
@@ -957,11 +998,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							if (this.AddUpdatetimeModel.getData().duration) {
 								startTime = tab[k].getItems()[3].getItems()[2].getItems()[1].getValue();
 								endTime = tab[k].getItems()[3].getItems()[2].getItems()[2].getValue();
-								if (startTime === '' || endTime === '') {
-									MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
-									ctype.setBusy(false);
-									rButton.setEnabled(true);
-									return;
+								if (fullDayindex !== 0) {
+									if (startTime === '' || endTime === '') {
+										MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+										ctype.setBusy(false);
+										rButton.setEnabled(true);
+										return;
+									}
 								}
 							}
 							var fullDay = false;

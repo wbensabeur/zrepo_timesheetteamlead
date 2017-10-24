@@ -6,14 +6,14 @@
 				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BU1'}]}"
 				multiSelect="false" key="BusinessUnit">
 				<items>
-					<ViewSettingsItem text="{FieldDescription}" key="{FieldValue}"/>
+					<ViewSettingsItem text="{FieldDescription}" key="{FieldValue}" selected="{path: 'FieldValue', formatter:'.formatter.buFilterSelected'}"/>
 				</items>
 			</ViewSettingsFilterItem >
 			<ViewSettingsFilterItem text="{i18n>tablleColTitleTeam}"
 				items="{path:'/TeamSet', filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
 				multiSelect="false" key="Team">
 				<items>
-					<ViewSettingsItem text="{TeamName}" key="{TeamId}"/>
+					<ViewSettingsItem text="{TeamName}" key="{TeamId}" selected="{path: 'TeamId', formatter:'.formatter.teamFilterSelected'}"/>
 				</items>
 			</ViewSettingsFilterItem >
 		</filterItems>
