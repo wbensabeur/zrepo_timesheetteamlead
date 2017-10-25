@@ -868,7 +868,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					localDayType = null;
 				var noOfHrs = null;
 				try {
-					if (oView.byId('dayType').getVisible === true) {
+					if (oView.byId('dayType').getVisible() === true) {
 						dayType = oView.byId('dayType').getSelectedIndex().toString();
 						if (dayType === '' || dayType === null || dayType === undefined) {
 							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
@@ -887,7 +887,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					}
 				} catch (err) {}
 				try {
-					if (oView.byId('NoofHrs').getVisible === true) {
+					if (oView.byId('NoofHrs').getVisible() === true) {
 						noOfHrs = oView.byId('NoofHrs').getText().toString();
 						if (noOfHrs === '' || noOfHrs === null || noOfHrs === undefined) {
 							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
@@ -899,13 +899,36 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				} catch (err) {}
 				//Handle StartDate and EndDate
 				var TZOffsetMs = new Date(0).getTimezoneOffset() * 60 * 1000;
-				if (TZOffsetMs < 0) {
-					var localStartDate = new Date(startDate.getTime() - TZOffsetMs);
-					var localEndDate = new Date(endDate.getTime() - TZOffsetMs);
-				} else if (TZOffsetMs > 0) {
-					var localStartDate = new Date(startDate.getTime() + TZOffsetMs);
-					var localEndDate = new Date(endDate.getTime() + TZOffsetMs);
+				// get the daylight saving active / inactive
+				var dlsactive = false;
+				var today = new Date();
+				Date.prototype.stdTimezoneOffset = function() {
+					var jan = new Date(this.getFullYear(), 0, 1);
+					var jul = new Date(this.getFullYear(), 6, 1);
+					return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+				};
+				Date.prototype.dst = function() {
+					return this.getTimezoneOffset() < this.stdTimezoneOffset();
+				};
+				Date.prototype.dstdifference = function() {
+					return this.getTimezoneOffset() - this.stdTimezoneOffset();
+				};
+				if (today.dst()) {
+					dlsactive = true;
 				}
+				if(dlsactive === true) {
+					var dlsTZOffsetMs = today.dstdifference() * 60 * 1000;
+				} else {
+					dlsTZOffsetMs = 0;
+				}
+				// if (TZOffsetMs < 0) {
+				var localStartDate = new Date(startDate.getTime() - TZOffsetMs - dlsTZOffsetMs);
+				var localEndDate = new Date(endDate.getTime() - TZOffsetMs - dlsTZOffsetMs);
+				// } else if (TZOffsetMs > 0) {
+				// 	var localStartDate = new Date(startDate.getTime() + TZOffsetMs);
+				// 	var localEndDate = new Date(endDate.getTime() + TZOffsetMs);
+				// }
+				
 				if (empId === 'ALL') {
 					for (var l = 0; l < this.employees.length; l++) {
 						var empId2 = this.employees[l].employee;
