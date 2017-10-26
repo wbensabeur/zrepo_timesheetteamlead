@@ -23,7 +23,7 @@
 				</VBox>
 				<VBox>
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/TeamSet' , suspended: true }"
-						columns="{ path: 'teamDetail>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+						noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
 						growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="15" showSeparators="None" inset="false"
 						class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
 						<columns>
@@ -33,8 +33,8 @@
 							<ColumnListItem id="columnList" vAlign="Middle" class="sapUiTableTr">
 								<cells>
 									<VBox class="sapUiSmallMargin">
-										<HBox>
-											<HBox width="75%">
+										<HBox >
+											<HBox width="90%">
 												<VBox width="100%">
 													<HBox class="sapUiSmallMarginBegin">
 														<Label textAlign="Left" design="Bold" text="{path:'TeamId',formatter:'.formatter.teamRowHeaderLablel'}"
@@ -45,28 +45,30 @@
 														</Label>
 													</HBox>
 													<HBox class="sapUiSmallMargin">
-														<VBox class="sapUiSmallMarginEnd" width="0%" visible="false">															<Input value="{TeamId}" maxLength="20" enabled="false" class="TextCFontSize1"></Input>
+														<VBox class="sapUiSmallMarginEnd" width="0%" visible="false">	
+														<Input value="{TeamId}" enabled="false" class="TextCFontSize1"></Input>
 															<Text text="{i18n>teamId}" class="TextCFontSize1"/>
 														</VBox>
 														<VBox class="sapUiSmallMarginEnd" width="50%">
 															<Input value="{TeamName}" placeholder="{i18n>max20char}" maxLength="20" class="sapUiSmallMarginStartEnd TextCFontSize1"></Input>
-															<Text text="{i18n>teamName}" class="TextCFontSize1"/>
+															<!--<Text text="{i18n>teamName}" class="TextCFontSize1"/>-->
 														</VBox>
 														<VBox class="sapUiSmallMarginEnd" width="50%">
 															<Input value="{TeamDescription}" placeholder="{i18n>max30char}" maxLength="30" class="TextCFontSize1"></Input>
-															<Text text="{i18n>teamDesc}" class="TextCFontSize1"/>
+															<!--<Text text="{i18n>teamDesc}" class="TextCFontSize1"/>-->
 														</VBox>
 													</HBox>
 												</VBox>
 											</HBox>
-											<HBox width="15%">
+										<!--	<HBox width="15%">
 												<VBox alignItems="Center" justifyContent="Center">
 													<Button text="{i18n>teamVAM}" type="Emphasized" width="100%" press="OnTeamDetailsReset" enabled="false"/>
 												</VBox>
-											</HBox>
+											</HBox>-->
 											<HBox width="10%">
-												<VBox alignItems="Start" justifyContent="Start">
-													<Button text="{i18n>reset}" type="Reject" icon="sap-icon://reset" width="100%" press="OnTeamDetailsReset" enabled="true"/>
+												<VBox alignItems="Center" justifyContent="Center">
+													<!--<Button text="{i18n>reset}" type="Reject" icon="sap-icon://reset" width="100%" press="OnTeamDetailsReset" enabled="true"/>-->
+													<Button class="DeleteButton" icon="sap-icon://reset" type="Transparent" press="OnTeamDetailsReset"/>
 												</VBox>
 											</HBox>
 										</HBox>

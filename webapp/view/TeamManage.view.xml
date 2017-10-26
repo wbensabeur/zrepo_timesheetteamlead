@@ -29,9 +29,9 @@
 									<FlexItemData growFactor="1"/>
 								</layoutData>
 							</StandardListItem>
-							<customData>
+						<!--	<customData>
 								<core:CustomData key="background" value="{path:'teamHeader>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
-							</customData>
+							</customData>-->
 						</VBox>
 					</Column>
 				</columns>
@@ -158,8 +158,8 @@
 		<footer>
 			<Bar>
 				<contentRight>
-					<Button text="{i18n>cancel}" id="cancelBtn" type="Reject" press="onPressCancel"/>
-					<Button text="{i18n>manageTeamEntry}" type="Emphasized" press="onManageTeamEntry"/>
+					<Button text="{i18n>back}" id="cancelBtn" type="Reject" press="onPressCancel"/>
+					<!--<Button text="{i18n>manageTeamEntry}" type="Emphasized" press="onManageTeamEntry"/>-->
 					<Button text="{i18n>manageTeamName}" type="Emphasized" press="onManageTeamName"/>
 				</contentRight>
 			</Bar>

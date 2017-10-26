@@ -108,6 +108,7 @@ sap.ui.define([
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
 			];
 			oTable.getBinding("items").filter(Filters, "Application");
+			oTable.getBinding("items").resume();
 		},
 		_onObjectMatched: function(oEvent) {
 			this.refresh = false;
@@ -160,7 +161,10 @@ sap.ui.define([
 					that.getView().setBusy(false);
 					MessageToast.show(that.getResourceBundle().getText("successTeamRegisterPostMsg"));
 					//Home Page
-					that.getRouter().navTo("home", {}, true);
+					that.getRouter().navTo("TeamManage", {
+						source: 'TeamMaintain'
+					}, true);
+					//	that.getRouter().navTo("TeamManage", {}, true);
 					that.getView().getModel("userPreference").setProperty("/successTeamSubmit", true);
 				},
 				error: function() {
