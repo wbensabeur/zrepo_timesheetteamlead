@@ -264,7 +264,6 @@ sap.ui.define([
 					var localBusinessUnit = this.userPref.defaultBU;
 					var localUserId = this.userPref.userID;
 					var path = "/TeamEmployeeSet(UserId='" + localUserId +
-						"',BusinessUnit='" + localBusinessUnit +
 						"',TeamId='" + localTeamId + "',EmpId='" + localEmpId + "')";
 					try {
 						var localTeamAssigned = this.getView().getModel().getProperty(path).TeamAssigned;
