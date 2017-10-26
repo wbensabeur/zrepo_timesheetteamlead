@@ -33,7 +33,8 @@ sap.ui.define([
 				defaultOvernight : false,
 				defaultBonus: false,
 				defaultCraftCode: false,
-				teamFilter: null
+				teamFilter: null,
+				teamName:null
 			};
 			var oModel = new JSONModel(userPref);
 			oModel.setDefaultBindingMode("OneWay");

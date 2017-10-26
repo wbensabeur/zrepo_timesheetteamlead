@@ -111,10 +111,21 @@ sap.ui.define([
 				iTotalItems = oEvent.getParameter("total");
 			// only update the counter if the length is final and
 			// the table is not empty
+			
 			if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
+				if(this.userPref.teamName === null) {
 				sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
+				}
+				else {
+					sTitle = "(" + iTotalItems + ") " + this.userPref.teamName; 
+				}
 			} else {
+				if(this.userPref.teamName === null) {
 				sTitle = this.getResourceBundle().getText("worklistTableTitle");
+				}
+				else {
+					sTitle = this.userPref.teamName ;
+				}
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
@@ -297,6 +308,10 @@ sap.ui.define([
 						that.getView().getModel().update(url, oData);
 					} else if (oItem.getParent().getProperty("key") === 'Team') {
 						that.userPref.teamFilter = oItem.getKey();
+						that.userPref.teamName = oItem.getText();       
+						
+						
+							
 					}
 					//var sPath1 = oItem.getParent().getProperty("key");
 					//var sOperator = FilterOperator.EQ;
@@ -308,6 +323,7 @@ sap.ui.define([
 				});
 			} else {
 				this.userPref.teamFilter = null;
+				this.userPref.teamName = null;
 			}
 			this._applyFilters();
 

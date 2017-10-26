@@ -58,9 +58,19 @@ sap.ui.define([
 			// only update the counter if the length is final and
 			// the table is not empty
 			if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
+				if(this.userPref.teamName === null) {
 				sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
+				}
+				else {
+					sTitle = "(" + iTotalItems + ") " + this.userPref.teamName; 
+				}
 			} else {
+				if(this.userPref.teamName === null) {
 				sTitle = this.getResourceBundle().getText("worklistTableTitle");
+				}
+				else {
+					sTitle = this.userPref.teamName ;
+				}
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
