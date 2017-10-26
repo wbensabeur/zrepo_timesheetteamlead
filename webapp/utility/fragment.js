@@ -584,6 +584,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var startDate = oEvent.getSource();
 			var NoofHrs = view.byId('NoofHrs');
 			var endDate = view.byId('AbsEndDate');
+			var dayType = view.byId('dayType');
 			// To set the default end date
 			if (endDate.getDateValue() === null || endDate.getDateValue() === undefined) {
 				endDate.setDateValue(startDate.getDateValue());
@@ -593,7 +594,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 				if (NoofHrs.getVisible() === true) {
-					NoofHrs.setEnabled(true);
+					NoofHrs.setEnabled(false);
+				}
+				if (dayType.getVisible() === true) {
+					dayType.dayType.getButtons()[1].setEnabled(false);
+					dayType.dayType.getButtons()[1].setEnabled(false);
 				}
 			} else if (startDate.getDateValue().getTime() === endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
@@ -601,10 +606,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(true);
 				}
+				if (dayType.getVisible() === true) {
+					dayType.dayType.getButtons()[1].setEnabled(true);
+					dayType.dayType.getButtons()[1].setEnabled(true);
+				}
 			} else {
 				startDate.setValueState("Error");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(false);
+				}
+				if (dayType.getVisible() === true) {
+					dayType.dayType.getButtons()[1].setEnabled(false);
+					dayType.dayType.getButtons()[1].setEnabled(false);
 				}
 				this.Common_raiseinputError(startDate, this.i18nModel.getText("dateValidationErrorMsg"));
 				return;
@@ -613,6 +626,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_onSelectAbsenceEndDate: function(oEvent, view) {
 			var startDate = view.byId('AbsStartDate');
 			var NoofHrs = view.byId('NoofHrs');
+			var dayType = view.byId('dayType');
 			NoofHrs.setEnabled(false);
 			var endDate = oEvent.getSource();
 			this.warning = true;
@@ -626,16 +640,28 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(false);
 				}
+				if (dayType.getVisible() === true) {
+					dayType.dayType.getButtons()[1].setEnabled(false);
+					dayType.dayType.getButtons()[1].setEnabled(false);
+				}
 			} else if (startDate.getDateValue().getTime() === endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(true);
 				}
+				if (dayType.getVisible() === true) {
+					dayType.dayType.getButtons()[1].setEnabled(true);
+					dayType.dayType.getButtons()[1].setEnabled(true);
+				}
 			} else {
 				endDate.setValueState("Error");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(false);
+				}
+				if (dayType.getVisible() === true) {
+					dayType.dayType.getButtons()[1].setEnabled(false);
+					dayType.dayType.getButtons()[1].setEnabled(false);
 				}
 				this.Common_raiseinputError(endDate, this.i18nModel.getText("dateValidationErrorMsg"));
 				return;
@@ -888,7 +914,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				} catch (err) {}
 				try {
 					if (oView.byId('NoofHrs').getVisible() === true) {
-						noOfHrs = oView.byId('NoofHrs').getText().toString();
+						noOfHrs = oView.byId('NoofHrs').getValue().toString();
 						if (noOfHrs === '' || noOfHrs === null || noOfHrs === undefined) {
 							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
 							ctype.setBusy(false);
