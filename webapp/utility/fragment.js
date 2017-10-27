@@ -595,29 +595,35 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				endDate.setValueState("None");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(false);
+					NoofHrs.setValue("");
 				}
 				if (dayType.getVisible() === true) {
-					dayType.dayType.getButtons()[1].setEnabled(false);
-					dayType.dayType.getButtons()[1].setEnabled(false);
+					dayType.setSelectedIndex(0);
+					dayType.getButtons()[1].setEnabled(false);
+					dayType.getButtons()[2].setEnabled(false);
 				}
 			} else if (startDate.getDateValue().getTime() === endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(true);
+					NoofHrs.setValue("");
 				}
 				if (dayType.getVisible() === true) {
-					dayType.dayType.getButtons()[1].setEnabled(true);
-					dayType.dayType.getButtons()[1].setEnabled(true);
+					dayType.setSelectedIndex(0);        
+					dayType.getButtons()[1].setEnabled(true);
+					dayType.getButtons()[2].setEnabled(true);
 				}
 			} else {
 				startDate.setValueState("Error");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(false);
+					NoofHrs.setValue("");
 				}
 				if (dayType.getVisible() === true) {
-					dayType.dayType.getButtons()[1].setEnabled(false);
-					dayType.dayType.getButtons()[1].setEnabled(false);
+					dayType.setSelectedIndex(0);
+					dayType.getButtons()[1].setEnabled(false);
+					dayType.getButtons()[2].setEnabled(false);
 				}
 				this.Common_raiseinputError(startDate, this.i18nModel.getText("dateValidationErrorMsg"));
 				return;
@@ -628,6 +634,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var NoofHrs = view.byId('NoofHrs');
 			var dayType = view.byId('dayType');
 			NoofHrs.setEnabled(false);
+			NoofHrs.setValue("");
 			var endDate = oEvent.getSource();
 			this.warning = true;
 			// To set the default Start date
@@ -639,29 +646,35 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				endDate.setValueState("None");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(false);
+					NoofHrs.setValue("");
 				}
 				if (dayType.getVisible() === true) {
-					dayType.dayType.getButtons()[1].setEnabled(false);
-					dayType.dayType.getButtons()[1].setEnabled(false);
+					dayType.setSelectedIndex(0);
+					dayType.getButtons()[1].setEnabled(false);
+					dayType.getButtons()[2].setEnabled(false);
 				}
 			} else if (startDate.getDateValue().getTime() === endDate.getDateValue().getTime()) {
 				startDate.setValueState("None");
 				endDate.setValueState("None");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(true);
+					NoofHrs.setValue("");
 				}
 				if (dayType.getVisible() === true) {
-					dayType.dayType.getButtons()[1].setEnabled(true);
-					dayType.dayType.getButtons()[1].setEnabled(true);
+					dayType.setSelectedIndex(0);
+					dayType.getButtons()[1].setEnabled(true);
+					dayType.getButtons()[2].setEnabled(true);
 				}
 			} else {
 				endDate.setValueState("Error");
 				if (NoofHrs.getVisible() === true) {
 					NoofHrs.setEnabled(false);
+					NoofHrs.setValue("");
 				}
 				if (dayType.getVisible() === true) {
-					dayType.dayType.getButtons()[1].setEnabled(false);
-					dayType.dayType.getButtons()[1].setEnabled(false);
+					dayType.setSelectedIndex(0);
+					dayType.getButtons()[1].setEnabled(false);
+					dayType.getButtons()[2].setEnabled(false);
 				}
 				this.Common_raiseinputError(endDate, this.i18nModel.getText("dateValidationErrorMsg"));
 				return;

@@ -83,11 +83,11 @@
 										change="onSelectAbsenceEndDate"/>
 								</HBox>
 							</VBox>
-							<RadioButtonGroup id="dayType" columns="1" visible="{AddTime>/visibleAbsence2}" class="sapUiMediumMarginBegin" >
+							<RadioButtonGroup id="dayType" columns="1" selectedIndex="0" visible="{AddTime>/visibleAbsence2}" class="sapUiMediumMarginBegin" >
 								<buttons>
-									<RadioButton text="{i18n>fullDay}"/>
-									<RadioButton text="{i18n>morning}"/>
-									<RadioButton text="{i18n>afternoon}"/>
+									<RadioButton text="{i18n>fullDay}" />
+									<RadioButton text="{i18n>morning}" />
+									<RadioButton text="{i18n>afternoon}" />
 								</buttons>
 							</RadioButtonGroup>
 						</HBox>
