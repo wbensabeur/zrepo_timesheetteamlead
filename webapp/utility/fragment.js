@@ -586,7 +586,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var endDate = view.byId('AbsEndDate');
 			var dayType = view.byId('dayType');
 			// To set the default end date
-			if (endDate.getDateValue() === null || endDate.getDateValue() === undefined) {
+			this.AddUpdatetime_updateView(startDate, NoofHrs, endDate, dayType, 'start');
+			/*if (endDate.getDateValue() === null || endDate.getDateValue() === undefined) {
 				endDate.setDateValue(startDate.getDateValue());
 			}
 			this.warning = true;
@@ -610,7 +611,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					NoofHrs.setValue("");
 				}
 				if (dayType.getVisible() === true) {
-					dayType.setSelectedIndex(0);        
+					dayType.setSelectedIndex(0);
 					dayType.getButtons()[1].setEnabled(true);
 					dayType.getButtons()[2].setEnabled(true);
 				}
@@ -627,6 +628,63 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 				this.Common_raiseinputError(startDate, this.i18nModel.getText("dateValidationErrorMsg"));
 				return;
+			}*/
+		},
+		AddUpdatetime_updateView: function(startDate, NoofHrs, endDate, dayType, type) {
+
+			if (endDate.getDateValue() === null && startDate.getDateValue() === null) {
+				return ;
+			}
+			// To set the default end date
+			else if (endDate.getDateValue() === null) {
+				endDate.setDateValue(startDate.getDateValue());
+			} else if (startDate.getDateValue() === null) {
+				startDate.setDateValue(endDate.getDateValue());
+			}
+			this.warning = true;
+			if (startDate.getDateValue().getTime() < endDate.getDateValue().getTime()) {
+				startDate.setValueState("None");
+				endDate.setValueState("None");
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(false);
+					NoofHrs.setValue("");
+				}
+				if (dayType.getVisible() === true) {
+					dayType.setSelectedIndex(0);
+					dayType.getButtons()[1].setEnabled(false);
+					dayType.getButtons()[2].setEnabled(false);
+				}
+			} else if (startDate.getDateValue().getTime() === endDate.getDateValue().getTime()) {
+				startDate.setValueState("None");
+				endDate.setValueState("None");
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(true);
+					NoofHrs.setValue("");
+				}
+				if (dayType.getVisible() === true) {
+					dayType.setSelectedIndex(0);
+					dayType.getButtons()[1].setEnabled(true);
+					dayType.getButtons()[2].setEnabled(true);
+				}
+			} else {
+				if (type === 'start') {
+					startDate.setValueState("Error");
+					this.Common_raiseinputError(startDate, this.i18nModel.getText("dateValidationErrorMsg"));
+				} else if (type === 'end') {
+					endDate.setValueState("Error");
+					this.Common_raiseinputError(endDate, this.i18nModel.getText("dateValidationErrorMsg"));
+				}
+				if (NoofHrs.getVisible() === true) {
+					NoofHrs.setEnabled(false);
+					NoofHrs.setValue("");
+				}
+				if (dayType.getVisible() === true) {
+					dayType.setSelectedIndex(0);
+					dayType.getButtons()[1].setEnabled(false);
+					dayType.getButtons()[2].setEnabled(false);
+				}
+
+				return;
 			}
 		},
 		AddUpdatetime_onSelectAbsenceEndDate: function(oEvent, view) {
@@ -636,7 +694,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			NoofHrs.setEnabled(false);
 			NoofHrs.setValue("");
 			var endDate = oEvent.getSource();
-			this.warning = true;
+			this.AddUpdatetime_updateView(startDate, NoofHrs, endDate, dayType, 'start');
+			
+			/*this.warning = true;
 			// To set the default Start date
 			if (startDate.getDateValue() === null || startDate.getDateValue() === undefined) {
 				startDate.setDateValue(endDate.getDateValue());
@@ -678,7 +738,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 				this.Common_raiseinputError(endDate, this.i18nModel.getText("dateValidationErrorMsg"));
 				return;
-			}
+			}*/
 		},
 
 		//////**Add Update Time** ////
@@ -841,7 +901,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_handleAbsTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
-		AddUpdateTime_onAbsenceCatChange: function(oEvent, AddUpdatetimeModel) {
+		AddUpdateTime_onAbsenceCatChange: function(oEvent, AddUpdatetimeModel, view) {
 			var absCat = oEvent.getSource().getSelectedItem();
 			var absViewType = absCat.getAdditionalText();
 			switch (absViewType) {
@@ -863,6 +923,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				default:
 
 			}
+			var startDate = view.byId('AbsStartDate');;
+			var NoofHrs = view.byId('NoofHrs');
+			var endDate = view.byId('AbsEndDate');
+			var dayType = view.byId('dayType');
+			// To set the default end date
+			this.AddUpdatetime_updateView(startDate, NoofHrs, endDate, dayType);
 		},
 		AddUpdatetime_saveEntries: function(oView, savepostFuction, ctype, rButton) {
 			/// Get Item Data from view for Daily hour
@@ -927,7 +993,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					}
 				} catch (err) {}
 				try {
-					if (oView.byId('NoofHrs').getVisible() === true) {
+					if (oView.byId('NoofHrs').getVisible() === true && oView.byId('NoofHrs').getEnabled() === true) {
 						noOfHrs = oView.byId('NoofHrs').getValue().toString();
 						if (noOfHrs === '' || noOfHrs === null || noOfHrs === undefined) {
 							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
@@ -956,7 +1022,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (today.dst()) {
 					dlsactive = true;
 				}
-				if(dlsactive === true) {
+				if (dlsactive === true) {
 					var dlsTZOffsetMs = today.dstdifference() * 60 * 1000;
 				} else {
 					dlsTZOffsetMs = 0;
@@ -968,7 +1034,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				// 	var localStartDate = new Date(startDate.getTime() + TZOffsetMs);
 				// 	var localEndDate = new Date(endDate.getTime() + TZOffsetMs);
 				// }
-				
+
 				if (empId === 'ALL') {
 					for (var l = 0; l < this.employees.length; l++) {
 						var empId2 = this.employees[l].employee;
@@ -1189,42 +1255,42 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					var transport = oView.byId('AllowanceTransportIndicator').getPressed();
 					var travel = oView.byId('AllowanceTravelIndicator').getPressed();
 					//if (meal || transport || travel) {
-						var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
-						var zoneName = oView.byId('AllowanceZoneType').getValue();
-						if (zoneName === undefined || zoneName === "" || zoneName === null) {
-							//MessageBox.alert("Zone type is not selected");
-							MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
-							ctype.setBusy(false);
-							rButton.setEnabled(true);
-							return;
-						}
-						var allwProjectID = null;
-						try {
-							var allwProject = oView.byId('AllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
-							allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
-						} catch (err) {
-							allwProjectID = "";
-						}
+					var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
+					var zoneName = oView.byId('AllowanceZoneType').getValue();
+					if (zoneName === undefined || zoneName === "" || zoneName === null) {
+						//MessageBox.alert("Zone type is not selected");
+						MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
+						ctype.setBusy(false);
+						rButton.setEnabled(true);
+						return;
+					}
+					var allwProjectID = null;
+					try {
+						var allwProject = oView.byId('AllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
+						allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
+					} catch (err) {
+						allwProjectID = "";
+					}
 
-						var workDayAllowanceItem = {
-							"ProjectID": allwProjectID,
-							"EntryType": "IPD",
-							"EntryTypeCatId": null,
-							"Hours": "1",
-							"StartTime": "000000",
-							"EndTime": "000000",
-							"FullDay": false,
-							"ZoneType": zonetype,
-							"ZoneName": zoneName,
-							"MealIndicator": meal,
-							"JourneyIndicator": transport,
-							"TransportIndicator": travel,
-							"StartDate": null,
-							"EndDate": null,
-							"Comment": null
-						};
-						workDayItems.push(workDayAllowanceItem);
-				//	}
+					var workDayAllowanceItem = {
+						"ProjectID": allwProjectID,
+						"EntryType": "IPD",
+						"EntryTypeCatId": null,
+						"Hours": "1",
+						"StartTime": "000000",
+						"EndTime": "000000",
+						"FullDay": false,
+						"ZoneType": zonetype,
+						"ZoneName": zoneName,
+						"MealIndicator": meal,
+						"JourneyIndicator": transport,
+						"TransportIndicator": travel,
+						"StartDate": null,
+						"EndDate": null,
+						"Comment": null
+					};
+					workDayItems.push(workDayAllowanceItem);
+					//	}
 				}
 				////
 

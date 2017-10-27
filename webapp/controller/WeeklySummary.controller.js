@@ -644,7 +644,7 @@ sap.ui.define([
 			fragment.AddUpdatetime_onAllowanceIndicator(oEvent);
 		},
 		onAbsenceCatChange : function (oEvent) {
-			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'));
+			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'),this.getView());
 		},
 		handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);

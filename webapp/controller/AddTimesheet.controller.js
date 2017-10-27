@@ -240,7 +240,7 @@ sap.ui.define([
 			fragment.AddUpdatetime_handleAbsTypeLoadItems(oEvent);
 		},
 		onAbsenceCatChange : function (oEvent) {
-			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'));
+			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'),this.getView());
 		},
 		//// **AddUpdateTime Fragment Event End** ///////
 
