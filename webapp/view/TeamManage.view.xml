@@ -19,7 +19,9 @@
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
 							<ComboBox class="tableColumnCombo CustomRatioBtn" visible="{teamHeader>ComboVisible}" value="{teamHeader>ColumnTxt1}" enabled="false"/>
 							<Label class="tableBULabel" visible="{teamHeader>ComboVisible}" text="{teamHeader>ColumnTxt2}"/>
-							<StandardListItem class="DaySelectionStatus" type="{path:'teamHeader>Date', formatter:'.formatter.DaySelectorTeamFormatter'}"
+							<Text text="{teamHeader>ColumnTxt1}" visible="{path:'teamHeader>ComboVisible',formatter:'.formatter.booleanNot'}" class="TeamName"/>
+							<!--<Text text=" {teamHeader>ColumnTxt2}" visible="{path:'teamHeader>ComboVisible',formatter:'.formatter.booleanNot'}"/>-->
+						<!--	<StandardListItem class="DaySelectionStatus" type="{path:'teamHeader>Date', formatter:'.formatter.DaySelectorTeamFormatter'}"
 								title="{teamHeader>ColumnTxt1}" press="OnDatePress" visible="{path:'teamHeader>ComboVisible',formatter:'.formatter.booleanNot'}">
 								<customData>
 									<core:CustomData key="background" value="{path:'teamHeader>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
@@ -28,7 +30,7 @@
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
-							</StandardListItem>
+							</StandardListItem>-->
 						<!--	<customData>
 								<core:CustomData key="background" value="{path:'teamHeader>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 							</customData>-->

@@ -666,6 +666,11 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .VinciBackgrounGray97>div>div {
 	background-color: #f7f7f7 !important;
 }
-.SelectCombo>div>input {
+
+.SelectCombo>input {
     opacity: 1;
+}
+.TeamName{
+	color: #3b617e !important;
+    font-weight: bold !important;
 }

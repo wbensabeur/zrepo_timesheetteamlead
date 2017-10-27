@@ -1174,7 +1174,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					var meal = oView.byId('AllowanceMealIndicator').getPressed();
 					var transport = oView.byId('AllowanceTransportIndicator').getPressed();
 					var travel = oView.byId('AllowanceTravelIndicator').getPressed();
-					if (meal || transport || travel) {
+					//if (meal || transport || travel) {
 						var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
 						var zoneName = oView.byId('AllowanceZoneType').getValue();
 						if (zoneName === undefined || zoneName === "" || zoneName === null) {
@@ -1210,7 +1210,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"Comment": null
 						};
 						workDayItems.push(workDayAllowanceItem);
-					}
+				//	}
 				}
 				////
 
