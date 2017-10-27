@@ -713,6 +713,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			container.addItem(oFragment);
 			controler.getView().byId('AllowanceZoneType').onAfterRendering = this._comboKeyboardDisable;
+			controler.getView().byId('AbsCat').onAfterRendering = this._comboKeyboardDisable;
 			this.oDataModel = odataModel;
 			this.employees = employees;
 
