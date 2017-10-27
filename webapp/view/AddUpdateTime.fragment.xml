@@ -73,12 +73,12 @@
 						<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
 							<VBox alignItems="Start" justifyContent="SpaceBetween">
 								<HBox alignContent="Center">
-									<Label text="{i18n>startDay}" class="sapUiSmallMarginTop"/>
+									<Label text="{i18n>startDay}" class="sapUiSmallMarginTop" width="8rem"/>
 									<DatePicker id="AbsStartDate" displayFormat="long" class="sapUiSmallMarginBegin" placeholder="{i18n>select} {i18n>startDay}"
 										change="onSelectAbsenceStartDate"/>
 								</HBox>
 								<HBox alignContent="Center">
-									<Label text="{i18n>endDay}" class="sapUiSmallMarginTop"/>
+									<Label text="{i18n>endDay}" class="sapUiSmallMarginTop" width="8rem"/>
 									<DatePicker id="AbsEndDate"  displayFormat="long" class="sapUiSmallMarginBegin" placeholder="{i18n>select} {i18n>endDay}"
 										change="onSelectAbsenceEndDate"/>
 								</HBox>
@@ -93,7 +93,7 @@
 						</HBox>
 						<HBox class="sapUiSmallMarginTop sapUiSmallMarginBegin" >
 						<!--	<Input type="Number" visible="{AddTime>/visibleAbsence3}" placeholder="{i18n>noOfHrs}"  class="sapUiLargeMarginEnd"/>-->
-							<TextArea id="NoofHrs" visible="{AddTime>/visibleAbsence3}" width="10rem" placeholder="{i18n>noOfHrs}" rows="1" class="sapUiLargeMarginEnd"/>
+							<TextArea  id="NoofHrs" visible="{AddTime>/visibleAbsence3}" width="10rem" placeholder="{i18n>noOfHrs}" rows="1" class="sapUiLargeMarginEnd"/>
 							<TextArea id="AbsComment" width="20rem" growing="true" placeholder="{i18n>comment}" rows="1"/>
 						</HBox>
 					</VBox>

@@ -216,11 +216,11 @@ sap.ui.define([
 			var valueInNum = Number(value); //.toString();
 			return oFloatFormat.format(valueInNum);
 		},
-		getUnit: function(type, zone) {
-			if (type === 'HOURS')
-				return 'H';
-			else if (type === "IPD")
-				return "Q";
+		getUnit: function(type, hrUnit) {
+			if (type === "IPD")
+				return 'Q';
+			else 
+				return hrUnit;
 		},
 		getQuantity: function(type, hrs) {
 			return Number(hrs);

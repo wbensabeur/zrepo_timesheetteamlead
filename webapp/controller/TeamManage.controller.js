@@ -87,12 +87,24 @@ sap.ui.define([
 		OnTeamSelActionPress: function(oEvent) {
 			var button = oEvent.getSource();
 			var localTeamAssigned, entryFount = false;
+			var localData = {
+				UserId: this.userPref.userID,
+				BusinessUnit : this.userPref.defaultBU,       
+				TeamId: button.data().selectedTeam,
+				EmpId : button.data().employee,
+				TeamAssigned: true
+			};
 			if (button.getIcon() === "sap-icon://border") {
 				button.setIcon("sap-icon://color-fill");
-				localTeamAssigned = true;
+				this.getView().getModel().create('/TeamEmployeeSet',localData);
+				//localTeamAssigned = true;
 			} else if (button.getIcon() === "sap-icon://color-fill") {
 				button.setIcon("sap-icon://border");
-				localTeamAssigned = false;
+				var path = "/TeamEmployeeSet(UserId='" + this.userPref.userID +
+						"',TeamId='" + button.data().selectedTeam + "',EmpId='" + button.data().employee + "')";
+				this.getView().getModel().remove(path);   		
+				//localTeamAssigned = false;
+				
 			}
 			/*var localData = {
 				UserId: this.userPref.userID,
@@ -100,18 +112,17 @@ sap.ui.define([
 				selectedTeam: button.data().selectedTeam,
 				teamAssigned: localTeamAssigned
 			};*/
-			var localData = {
+		/*	var localData = {
 				UserId: this.userPref.userID,
 				BusinessUnit : this.userPref.defaultBU,       
 				TeamId: button.data().selectedTeam,
 				EmpId : button.data().employee,
 				TeamAssigned: localTeamAssigned
-			};
+			};*/
 			
-			var path = "/TeamEmployeeSet(UserId='" + this.userPref.userID +
-						"',TeamId='" + button.data().selectedTeam + "',EmpId='" + button.data().employee + "')";
 			
-			this.getView().getModel().update(path, localData);       			
+			
+		//	this.getView().getModel().update(path, localData);       			
 					
 			// if entry already exist then replace it
 			/*for (var i = 0; i < this.teamsSelected.length; i++) {

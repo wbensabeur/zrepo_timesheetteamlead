@@ -82,7 +82,7 @@
 										<Text text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{parts:['EntryType','ZoneType'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>
+										<Text text="{parts:['EntryType','HourUnit'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Text text="{parts:['EntryType','Hours'],type:'Float',formatter:'.formatter.getQuantity'}" class="sapUiTinyMarginTop"/>
