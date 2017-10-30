@@ -13,8 +13,9 @@
 							</Button>
 							<Button text="{i18n>addEquipment}" type="Emphasized" icon="sap-icon://add" visible="false"></Button>
 							<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
-							<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
-								value="{AddTime>/totalhrs}"/>
+							<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
+							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
+								value="{AddTime>/totalhrs}"/>-->
 						</HBox>
 					</VBox>
 					<VBox visible="false">

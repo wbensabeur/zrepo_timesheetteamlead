@@ -674,3 +674,7 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 	color: #3b617e !important;
     font-weight: bold !important;
 }
+.totalHrs {
+	font-weight: bold;
+    font-size: 1rem;
+}
