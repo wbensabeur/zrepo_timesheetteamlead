@@ -46,6 +46,9 @@
     							new ShellHeadItem({
     							icon : "sap-icon://log",
     							press: function (oEvent) {
+    								        if(sap.hybrid !== undefined) {
+    											sap.hybrid.kapsel.doDeleteRegistration();
+    										}
     								        if (document.execCommand("ClearAuthenticationCache", "false")) {
                                                          window.location.assign("./logout.html");
                                               } else {
