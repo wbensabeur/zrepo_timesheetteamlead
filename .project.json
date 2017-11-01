@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": true,
-    "lastBuildDateTime": "Thu, 26 Oct 2017 06:42:53 GMT"
+    "lastBuildDateTime": "Wed, 01 Nov 2017 14:03:26 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -86,30 +86,30 @@
       "compass": {},
       "bFacade": false
     },
-    "appname": "TeamLead TS - Dev",
+    "appname": "Mobi Time (Dev)",
     "appid": "com.vinci.ts.teamlead.dev",
     "appdesc": "Vinci team lead application for Timesheet",
-    "appversion": "R.1.0.0",
+    "appversion": "2.0.1",
     "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
       "defaultIconData": "",
       "ios": {
-        "ios8Iphone": "res/iOS/Icon-App-76x76@1x.png",
-        "ios7Iphone": "res/iOS/Icon-App-76x76@2x.png",
-        "ios7Ipad": "res/iOS/Icon-App-76x76@3x.png",
-        "ios61Iphone": "res/iOS/Icon-App-76x76@1x.png",
-        "ios61Ipad": "res/iOS/Icon-App-76x76@3x.png",
-        "ios7Iphone2x": "res/iOS/Icon-App-76x76@1x.png",
-        "ios61Ipad2x": "res/iOS/Icon-App-83.5x83.5@2x.png",
-        "ios61Iphone2x": "res/iOS/Icon-App-76x76@2x.png",
-        "ios7Ipad2x": "res/iOS/Icon-App-83.5x83.5@2x.png"
+        "ios8Iphone": "res/iOS/Icon-180.png",
+        "ios7Iphone": "res/iOS/Icon-60.png",
+        "ios7Ipad": "res/iOS/Icon-76.png",
+        "ios61Iphone": "res/iOS/Icon-57.png",
+        "ios61Ipad": "res/iOS/Icon-72.png",
+        "ios7Iphone2x": "res/iOS/Icon-120.png",
+        "ios61Ipad2x": "res/iOS/Icon-144.png",
+        "ios61Iphone2x": "res/iOS/Icon-114.png",
+        "ios7Ipad2x": "res/iOS/Icon-152.png"
       },
       "android": {
-        "ldpi": "res/android/ic_launcher_idpi.png",
-        "mdpi": "res/android/ic_launcher_mdpi.png",
-        "hdpi": "res/android/ic_launcher_hdpi.png",
-        "xhdpi": "res/android/ic_launcher_xhdpi.png"
+        "ldpi": "res/android/Icon-96.png",
+        "mdpi": "res/android/Icon-144.png",
+        "hdpi": "res/android/Icon-192.png",
+        "xhdpi": "res/android/Icon-512.png"
       },
       "windows": {
         "s44": "",
@@ -413,7 +413,7 @@
   },
   "hcpdeploy": {
     "account": "ac205f4c8",
-    "name": "teamleadtimesheet",
-    "lastVersionWeTriedToDeploy": "R.1.0.23"
+    "name": "timesheetadminrct",
+    "lastVersionWeTriedToDeploy": "2.0.1"
   }
 }

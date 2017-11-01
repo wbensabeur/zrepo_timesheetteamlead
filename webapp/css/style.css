@@ -168,6 +168,13 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: #3b617e;
 }
 
+.tableColumnCombo>input {
+    background: transparent !important;
+    padding: 0 0.5rem;
+    font-weight: bold;
+    color: #3b617e;
+}
+
 .sapUiTableTr>td {
     border-right: .1rem solid rgba(0, 0, 0, 0.29) !important;
     border-bottom: .1rem solid rgba(0, 0, 0, 0.29) !important;
