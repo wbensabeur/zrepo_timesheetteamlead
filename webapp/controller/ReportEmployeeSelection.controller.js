@@ -24,6 +24,7 @@ sap.ui.define([
 			iOriginalBusyDelay = oTable.getBusyIndicatorDelay();
 			// keeps the search state
 			this._oTableSearchState = [];
+			this.selectedBox = [];
 			// Model used to manipulate control states
 			oViewModel = new JSONModel({
 				worklistTableTitle: this.getResourceBundle().getText("worklistTableTitle"),
@@ -78,6 +79,12 @@ sap.ui.define([
 			
 			if (this.refresh) {
 				
+				for (var k = 0; k < this.selectedBox.length; k++) {
+					if (this.selectedBox[k].getCustomData().length > 0) {
+						this.selectedBox[k].getCustomData()[0].setValue("");
+					}
+				}
+				this.selectedBox = [];
 				this.employeeSelected.employees  = [];  
 				this.getView().getModel("employeeSelected").setData(this.employeeSelected);
 				this.refresh = false;
@@ -92,13 +99,19 @@ sap.ui.define([
 			//var empID = empBox.getCustomData()[1].getValue();
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
+				this.selectedBox.push(empBox);
 				empBox.getParent().getCustomData()[0].setValue("S");
+				this.selectedBox.push(empBox.getParent());
 				this.employeeSelected.employees.push(empBox);
 				// employee ID
 
 			} else {
 				empBox.getCustomData()[0].setValue("");
+				var boxindex = this.selectedBox.indexOf(empBox);
+				this.selectedBox.splice(boxindex, 1);
 				empBox.getParent().getCustomData()[0].setValue("");
+				boxindex = this.selectedBox.indexOf(empBox.getParent());
+				this.selectedBox.splice(boxindex, 1);
 				var index = this.employeeSelected.employees.indexOf(empBox);
 				this.employeeSelected.employees.splice(index, 1);
 

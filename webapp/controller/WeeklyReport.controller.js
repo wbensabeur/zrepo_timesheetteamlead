@@ -41,6 +41,7 @@ sap.ui.define([
 			}
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
 		//	this.getView().byId("SignatureFrame").setVisible(false);
+			this.getView().byId("imageSignature").setSrc("");
 			this.getView().byId("signBtn").setVisible(true);
 			this.getView().byId("timeSubmitBtn").setVisible(false);
 		},
@@ -81,6 +82,7 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent) {
 
 		//	this.getView().byId("SignatureFrame").setVisible(false);
+			this.getView().byId("imageSignature").setSrc("");
 			this.getView().byId("signBtn").setVisible(true);
 			this.getView().byId("timeSubmitBtn").setVisible(false);
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
