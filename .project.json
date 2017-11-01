@@ -13,7 +13,7 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": false,
+    "buildRequired": true,
     "lastBuildDateTime": "Wed, 01 Nov 2017 16:03:45 GMT"
   },
   "dataBinding": {
@@ -95,21 +95,21 @@
       "defaultIcon": "",
       "defaultIconData": "",
       "ios": {
-        "ios8Iphone": "res/iOS/Icon-180.png",
+        "ios8Iphone": "res/iOS/Icon-60@3x.png",
         "ios7Iphone": "res/iOS/Icon-60.png",
         "ios7Ipad": "res/iOS/Icon-76.png",
         "ios61Iphone": "res/iOS/Icon-57.png",
         "ios61Ipad": "res/iOS/Icon-72.png",
-        "ios7Iphone2x": "res/iOS/Icon-120.png",
-        "ios61Ipad2x": "res/iOS/Icon-144.png",
-        "ios61Iphone2x": "res/iOS/Icon-114.png",
-        "ios7Ipad2x": "res/iOS/Icon-152.png"
+        "ios7Iphone2x": "res/iOS/Icon-60@2x.png",
+        "ios61Ipad2x": "res/iOS/Icon-72@2x.png",
+        "ios61Iphone2x": "res/iOS/Icon-Small-50@2x.png",
+        "ios7Ipad2x": "res/iOS/Icon-76@2x.png"
       },
       "android": {
-        "ldpi": "res/android/Icon-96.png",
-        "mdpi": "res/android/Icon-144.png",
-        "hdpi": "res/android/Icon-192.png",
-        "xhdpi": "res/android/Icon-512.png"
+        "ldpi": "res/android/Icon-ldpi.png",
+        "mdpi": "res/android/Icon-mdpi.png",
+        "hdpi": "res/android/Icon-hdpi.png",
+        "xhdpi": "res/android/Icon-xhdpi.png"
       },
       "windows": {
         "s44": "",

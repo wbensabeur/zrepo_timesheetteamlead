@@ -173,6 +173,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     padding: 0 0.5rem;
     font-weight: bold;
     color: #3b617e;
+    opacity: 1;
 }
 
 .sapUiTableTr>td {
