@@ -40,7 +40,7 @@ sap.ui.define([
 				this.index = this.index + 1;
 			}
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
-			this.getView().byId("SignatureFrame").setVisible(false);
+		//	this.getView().byId("SignatureFrame").setVisible(false);
 			this.getView().byId("signBtn").setVisible(true);
 			this.getView().byId("timeSubmitBtn").setVisible(false);
 		},
@@ -80,7 +80,7 @@ sap.ui.define([
 		//	}
 		_onObjectMatched: function(oEvent) {
 
-			this.getView().byId("SignatureFrame").setVisible(false);
+		//	this.getView().byId("SignatureFrame").setVisible(false);
 			this.getView().byId("signBtn").setVisible(true);
 			this.getView().byId("timeSubmitBtn").setVisible(false);
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
@@ -280,7 +280,7 @@ sap.ui.define([
 			this.dialogPressSignature.close();
 			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
 			this.getView().byId("imageSignature").setSrc(srcImg);
-			this.getView().byId("SignatureFrame").setVisible(true);
+		//	this.getView().byId("SignatureFrame").setVisible(true);
 			this.getView().byId("signBtn").setVisible(false);
 			this.getView().byId("timeSubmitBtn").setVisible(true);
 		},
@@ -350,18 +350,40 @@ sap.ui.define([
 			}
 			var that = this;
 			this.getView().setBusy(true);
+			
+			////test
+			/*var elements = document.getElementsByClassName("WeeklyReportDetail");
+			var copy_ele = elements[0].cloneNode(true);
+			var canvas_handler = document.getElementById("canvas_handler");
+			canvas_handler.appendChild(copy_ele);
+			canvas_handler.style.height = elements[0].scrollHeight;
+			canvas_handler.style.width = elements[0].scrollWidth;
+			
+		
+			var eleID = '#' + elements[0].id;
+			var schHeight = $(eleID)[0].scrollHeight;
+			var h = $(eleID)[0].ownerDocument.defaultView.innerHeight;
+			$(eleID)[0].ownerDocument.defaultView.innerHeight = $(eleID).height();	
+					window.html2canvas($('#'+copy_ele), {
+						onrendered: function(canvas) {
+							var img = canvas.toDataURL("image/png", 0);
+							$(eleID)[0].ownerDocument.defaultView.innerHeight = h;
+							
+							
+						},
+					  height: schHeight ,
+					  background : '#14235e'
+					});*/
+			////
+			
+			
 			this.getView().getModel().create("/WorkDaySet", requestBody, {
 				success: function() {
 					that.getView().setBusy(false);
-					
-					if (that.index === that.noOfEmp - 1) { //Home Page
-						that.getRouter().navTo("home", {}, true);
-						that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
-					} else { // Next Employee Weekly Submit 
-						that.onNextEmployeePress();
-						MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
-					}
-					window.html2canvas($("#shell-container-canvas"), {
+					var elements = document.getElementsByClassName("WeeklyReportDetail");  
+					var eleID = '#' + elements[0].id;
+					var schHeight = $(eleID)[0].scrollHeight;
+					window.html2canvas($(eleID), {
 						onrendered: function(canvas) {
 							var img = canvas.toDataURL("image/png", 0);
 							var localDate = that.employeeSelected.startDate;
@@ -374,10 +396,20 @@ sap.ui.define([
 								"").replace(
 								".", "").substring(0, 14);
 							var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
-							
+
+							if (that.index === that.noOfEmp - 1) { //Home Page
+								that.getRouter().navTo("home", {}, true);
+								that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+							} else { // Next Employee Weekly Submit 
+								that.onNextEmployeePress();
+								MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+							}
+
 							that.postAttachment(img, sFileName);
 							//window.open(img);
-						}
+						},
+					  height: schHeight,
+					  background : '#14235e'
 					});
 
 				},
@@ -406,16 +438,16 @@ sap.ui.define([
 			});*/
 
 		},
-		
+
 		postAttachment: function(img, FileName) {
 			var token;
 			var sFileName = FileName;
 			var BASE64_MARKER = "data:image/png;base64,";
 			var base64Index = BASE64_MARKER.length;
 			var imgData = img.substring(base64Index);
-			
+
 			var serviceURL = this.getView().getModel().sServiceUrl + '/';
-			
+
 			jQuery.ajax({
 				url: serviceURL,
 				type: "GET",
@@ -451,61 +483,7 @@ sap.ui.define([
 
 				}
 			});
-			
-			/*var srvUrl = '/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/';
-			//var srvPathUrl = '/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/DocumentSet';
-			var oModel = new ODataModel(srvUrl, true);*/
-			
-			/*oModel.request({
-					requestUri: srvUrl,
-					method: "GET",
-					headers: {
-						"X-Requested-With": "XMLHttpRequest",
-						"Content-Type": "application/atom+xml",
-						"DataServiceVersion": "2.0",
-						"X-CSRF-Token": "Fetch"
-					},
-				},
-				function(data, response) {
-					var header_xcsrf_token = response.headers['x-csrf-token'];
-					oModel.request({
-							requestUri: srvPathUrl,
-							method: "POST",
-							headers: {
-								"X-Requested-With": "XMLHttpRequest",
-								"Content-Type": "image/png",
-								"slug": sFileName,
-								"DataServiceVersion": "2.0",
-								"X-CSRF-Token": header_xcsrf_token
-							},
-							Data: imgData
-						},
-						function(data, response) {
-							alert("OData call success");
-						},
-						function(err) {
-							alert("OData call Error");
-						});
-				},
-				function(err) {
-					alert("OData X-CSRF-Token Fetch call Error");
-				});*/
 
-			/*oModel.setHeaders({
-				"content-type": "image/png",
-				"Content-Disposition": "inline",
-				"slug": sFileName
-			});
-			var oEntry = imgData;
-			var path = '/DocumentSet';
-			//var path = '/DocumentSet('+sFileName+')/$value';
-			oModel.create(path, oEntry, null, function(odata) {
-				sap.m.MessageToast.show("file successfully uploaded");
-			}, function(odata) {
-				sap.m.MessageToast.show("file Upload error");
-			});*/
-
-			
 		}
 	});
 });

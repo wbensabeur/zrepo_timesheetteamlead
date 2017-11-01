@@ -16,7 +16,7 @@ sap.ui.define(["sap/ui/core/Control"
 					},
 					"thickness": {
 						type: "int",
-						defaultValue: 3
+						defaultValue: 10
 					},
 					"bgcolor": {
 						type: "sap.ui.core.CSSColor",

@@ -678,3 +678,10 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 	font-weight: bold;
     font-size: 1rem;
 }
+.WeeklyReportDetail {
+    background-color: rgba(20, 35, 94, 1) !important;
+}
+#canvas_handler {
+   position:absolute;
+   left: -10000px;
+ }
