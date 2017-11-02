@@ -70,7 +70,7 @@
       {
         "hybridOdata": {
           "name": "mainService",
-          "serviceUrl": "https://mobile-ac205f4c8.hana.ondemand.com:443/com.vinci.ts.teamlead.dev/"
+          "serviceUrl": "https://mobile-ab32c52db.hana.ondemand.com:443/com.vinci.ts.teamlead.rct/"
         },
         "originOdata": {
           "name": "mainService",
@@ -86,8 +86,8 @@
       "compass": {},
       "bFacade": false
     },
-    "appname": "Mobi Time (Dev)",
-    "appid": "com.vinci.ts.teamlead.dev",
+    "appname": "Mobi Time (RCT)",
+    "appid": "com.vinci.ts.teamlead.rct",
     "appdesc": "Vinci team lead application for Timesheet",
     "appversion": "2.0.1",
     "debugMode": false,
@@ -195,7 +195,7 @@
     "msType": 0,
     "server": "",
     "port": "",
-    "hcpmsServer": "mobile-ac205f4c8.hana.ondemand.com",
+    "hcpmsServer": "mobile-ab32c52db.hana.ondemand.com",
     "hybridRevision": "1",
     "mime": {
       "path": "",
