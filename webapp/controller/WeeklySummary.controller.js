@@ -513,7 +513,22 @@ sap.ui.define([
 			}, true);
 		},
 		OnEditEmpDayitem: function(oEvent) {
-			MessageBox.information(this.getResourceBundle().getText("editMessage"));
+			//MessageBox.information(this.getResourceBundle().getText("editMessage"));
+			var oDialog = this.getView().byId("EmpDayCheckDialog");
+			this.employees = [{
+				employee: this.currentEmp,
+				employeeName: this.currentEmpName,
+				Days: [this.currentDate]
+			}];
+
+			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "Update", this.getResourceBundle(), this.employees, this.getView()
+				.getModel(),oEvent.getSource().getBindingContext().getPath());
+
+			this.getView().setModel(oModel.AddTime, "AddTime");
+			this.getView().setModel(oModel.projectSearch, "projectSearch");
+			this.getView().getModel("footer").destroy();
+			this.getView().setModel(oModel.footer, "footer");
+			this.getView().setModel(oModel.Emps, "Emps");
 
 		},
 		OnDeleteEmpDayitem: function(oEvent) {

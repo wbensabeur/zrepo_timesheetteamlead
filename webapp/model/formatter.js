@@ -274,6 +274,12 @@ sap.ui.define([
 			} else {
 				return false;
 			}
+		},
+		allDaySelection: function (addTime) {
+			if(addTime)
+				return 0;
+			else
+				return 1;
 		}
 	};
 
