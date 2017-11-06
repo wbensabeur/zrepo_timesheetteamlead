@@ -296,6 +296,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		SelectProject_OnProjectRefresh: function(oEvent, controler, selectButton) {
 			this.warning = true;
+			var ownHBox = oEvent.getSource().getParent();
+			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
 			this.SearchProject_init(controler, container, selectButton);
 		},
@@ -633,7 +635,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_updateView: function(startDate, NoofHrs, endDate, dayType, type) {
 
 			if (endDate.getDateValue() === null && startDate.getDateValue() === null) {
-				return ;
+				return;
 			}
 			// To set the default end date
 			else if (endDate.getDateValue() === null) {
@@ -695,7 +697,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			NoofHrs.setValue("");
 			var endDate = oEvent.getSource();
 			this.AddUpdatetime_updateView(startDate, NoofHrs, endDate, dayType, 'start');
-			
+
 			/*this.warning = true;
 			// To set the default Start date
 			if (startDate.getDateValue() === null || startDate.getDateValue() === undefined) {
@@ -742,30 +744,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		//////**Add Update Time** ////
-		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel) {
+		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel, updateKeyPath) {
 
 			var userPrefModel = controler.getModel('userPreference');
-			var odata = {
-				totalhrs: 0,
-				visibleHrs: userPrefModel.getProperty('/defaultHours'),
-				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
-				visibleKM: userPrefModel.getProperty('/defaultKM'),
-				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
-				//visibleAbsence: true,
-				visibleAbsence1: true,
-				visibleAbsence2: false,
-				visibleAbsence3: false,
-				visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
-				visibleSummary: false,
-				visibleProjectOptional: false,
-				newTime: true,
-				duration: userPrefModel.getProperty('/durationFlag')
-			};
-
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
-			this.warning = false;
-			this.currentView = 'hours';
+			var odata;
+
 			//this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
 			var items = container.getItems();
 			if (items.length > 0) {
@@ -777,7 +762,82 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.oDataModel = odataModel;
 			this.employees = employees;
 
+			if (type === 'New') {
+
+				this.warning = false;
+				this.currentView = 'hours';
+				odata = {
+					totalhrs: 0,
+					visibleHrs: userPrefModel.getProperty('/defaultHours'),
+					visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
+					visibleKM: userPrefModel.getProperty('/defaultKM'),
+					visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
+					//visibleAbsence: true,
+					visibleAbsence1: true,
+					visibleAbsence2: false,
+					visibleAbsence3: false,
+					visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
+					visibleSummary: false,
+					visibleProjectOptional: false,
+					newTime: true,
+					duration: userPrefModel.getProperty('/durationFlag')
+				};
+
+			} else if (type === 'Update') {
+
+				odata = {
+					totalhrs: 0,
+					visibleHrs: false,
+					visibleDailyAllow: false,
+					visibleKM: false,
+					visibleAbsence: false,
+					//visibleAbsence: true,
+					visibleAbsence1: true,
+					visibleAbsence2: false,
+					visibleAbsence3: false,
+					visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
+					visibleSummary: false,
+					visibleProjectOptional: false,
+					newTime: false,
+					duration: userPrefModel.getProperty('/durationFlag')
+				};
+				var updateType = odataModel.getProperty(updateKeyPath).EntryType;
+				oFragment.bindElement(updateKeyPath);
+				switch (updateType) {
+					case 'HOURS':
+						odata.visibleHrs = true;
+
+						var source = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2].getItems()[0];
+						var buttons = source.getButtons();
+						var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
+						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
+						
+						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[1];
+						var projectContext = "/ProjectSet('"+odataModel.getProperty(updateKeyPath).ProjectID+"')";
+						projectView.bindElement(projectContext);
+
+						buttons[0].setEnabled(true);
+						buttons[1].setEnabled(false);
+						allDayCombo.setVisible(false);
+						selecthrsCombo.setVisible(true);
+						
+						
+						break;
+					case 'IPD':
+						odata.visibleDailyAllow = true;
+						break;
+					case 'KM':
+						odata.visibleKM = true;
+						break;
+					case 'ABSENCE':
+						odata.visibleAbsence = true;
+						break;
+				}
+
+			}
+
 			var oModel = new JSONModel(odata);
+			oModel.setDefaultBindingMode("OneWay");
 			this.AddUpdatetimeModel = oModel;
 
 			var projectdata = {
