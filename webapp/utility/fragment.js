@@ -752,6 +752,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
 			var odata;
+			var footerData;
 
 			//this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
 			var items = container.getItems();
@@ -782,7 +783,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					newTime: true,
-					duration: userPrefModel.getProperty('/durationFlag')
+					duration: true//userPrefModel.getProperty('/durationFlag')
+				};
+
+				footerData = {
+					MainNewScreen: true,
+					MainUpdateScreen: false,
+					ProjectScreen: false,
+					MainPreviousScreen: false
 				};
 
 			} else if (type === 'Update') {
@@ -801,7 +809,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					newTime: false,
-					duration: userPrefModel.getProperty('/durationFlag')
+					duration: true//userPrefModel.getProperty('/durationFlag')
+				};
+				footerData = {
+					MainNewScreen: false,
+					MainUpdateScreen: true,
+					ProjectScreen: false,
+					MainPreviousScreen: false
 				};
 				var updateType = odataModel.getProperty(updateKeyPath).EntryType;
 				oFragment.bindElement(updateKeyPath);
@@ -813,17 +827,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var buttons = source.getButtons();
 						var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
 						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
-						
+
 						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[1];
-						var projectContext = "/ProjectSet('"+odataModel.getProperty(updateKeyPath).ProjectID+"')";
+						var projectContext = "/ProjectSet('" + odataModel.getProperty(updateKeyPath).ProjectID + "')";
 						projectView.bindElement(projectContext);
 
 						buttons[0].setEnabled(true);
 						buttons[1].setEnabled(false);
 						allDayCombo.setVisible(false);
 						selecthrsCombo.setVisible(true);
-						
-						
+
 						break;
 					case 'IPD':
 						odata.visibleDailyAllow = true;
@@ -851,12 +864,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var oProjectModel = new JSONModel(projectdata);
 			this.projectModel = oProjectModel;
 
-			var footerData = {
-				MainNewScreen: true,
-				MainUpdateScreen: false,
-				ProjectScreen: false,
-				MainPreviousScreen: false
-			};
 			var oFooterModel = new JSONModel(footerData);
 			this.footerModel = oFooterModel;
 
@@ -991,6 +998,78 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var dayType = view.byId('dayType');
 			// To set the default end date
 			this.AddUpdatetime_updateView(startDate, NoofHrs, endDate, dayType);
+		},
+		AddUpdatetime_updateEntries: function(oView, savepostFuction, ctype, rButton) {
+			rButton.setEnabled(false);
+			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
+			var workDayItem;
+			if (selectedTab === 'hours') {
+			var tab = oView.byId('addTimeTab').getItems()[0].getItems()[0];
+			var startTime = '00:00';
+			var endTime = '00:00';
+			var projectID;
+						try {
+							
+							var hrType = tab.getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+							var projectBindingPath = tab.getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+							var fullDayindex = tab.getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+							if (this.AddUpdatetimeModel.getData().duration) {
+								startTime = tab.getItems()[3].getItems()[2].getItems()[1].getValue();
+								endTime = tab.getItems()[3].getItems()[2].getItems()[2].getValue();
+								if (fullDayindex !== 0) {
+									if (startTime === '' || endTime === '') {
+										MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+										ctype.setBusy(false);
+										rButton.setEnabled(true);
+										return;
+									}
+								}
+							}
+							var fullDay = false;
+							if (fullDayindex === 0) {
+								fullDay = true;
+							}
+							projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+						} catch (err) {
+							
+								//MessageBox.alert("All Items are not selected");
+								MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							
+						}
+						
+
+						workDayItem = {
+							"ProjectID": projectID,
+							"EntryType": "HOURS",
+							"Hours": tab.getCustomData()[0].getValue().toString(),
+							"EntryTypeCatId": hrType,
+							"StartTime": startTime,
+							"EndTime": endTime,
+							"FullDay": fullDay
+							
+						};
+				}
+				
+				///Update Model
+				
+			var that = this;
+			ctype.setBusy(true);
+			this.oDataModel.update('', workDayItem, {
+				success: function() {
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					savepostFuction(that);
+
+				},
+				error: function() {
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+				}
+			});
+			
 		},
 		AddUpdatetime_saveEntries: function(oView, savepostFuction, ctype, rButton) {
 			/// Get Item Data from view for Daily hour
@@ -1425,6 +1504,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			});
 		},
+		
 		Common_raiseinputError: function(source, text) {
 			source.setValueStateText(text);
 			source.setShowValueStateMessage(true);
