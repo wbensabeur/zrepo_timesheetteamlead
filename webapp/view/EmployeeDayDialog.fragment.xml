@@ -121,7 +121,7 @@
 				</customData>
 			</Button>
 			<Button id="MainUpdateCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainUpdateScreen}"/>
-			<Button id="MainUpdateButton" text="{i18n>addtimedata}" type="Accept" visible="{footer>/MainUpdateScreen}"/>
+			<Button id="MainUpdateButton" text="{i18n>updatetimedata}" type="Accept" visible="{footer>/MainUpdateScreen}" press="onPressUpdateEntries"/>
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>
