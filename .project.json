@@ -15,10 +15,20 @@
     ],
     "buildRequired": true,
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
     "lastBuildDateTime": "Thu, 16 Nov 2017 06:43:06 GMT"
 =======
+=======
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
+>>>>>>> 0686bf9 Fiori launchpad issue fixed 
     "lastBuildDateTime": "Thu, 23 Nov 2017 13:16:17 GMT"
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> 7a46c02 For Filter Error Resolution on Week Summary: Added id to dialog
+=======
+=======
+    "lastBuildDateTime": "Fri, 10 Nov 2017 12:29:01 GMT"
+>>>>>>> c6aab81 Fiori launchpad issue fixed 
+>>>>>>> 0686bf9 Fiori launchpad issue fixed 
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -418,6 +428,7 @@
   "hcpdeploy": {
     "account": "ac205f4c8",
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
     "name": "timesheetadminrct",
     "lastVersionWeTriedToDeploy": "2.0.1"
   },
@@ -425,8 +436,22 @@
     "destination": "vesidgwci_pva",
     "name": "ZTS_TL_WA_TEMP"
 =======
+=======
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
+>>>>>>> 0686bf9 Fiori launchpad issue fixed 
     "name": "teamleadtimesheet",
     "lastVersionWeTriedToDeploy": "2.0.11"
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> 7a46c02 For Filter Error Resolution on Week Summary: Added id to dialog
+=======
+=======
+    "name": "timesheetadminrct",
+    "lastVersionWeTriedToDeploy": "2.0.1"
+  },
+  "deploy": {
+    "destination": "vesidgwci_pva",
+    "name": "Z_TS_TL_TEMP"
+>>>>>>> c6aab81 Fiori launchpad issue fixed 
+>>>>>>> 0686bf9 Fiori launchpad issue fixed 
   }
 }

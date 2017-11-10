@@ -236,7 +236,11 @@
 		"_version": "1.1.0"
 	},
 	"sap.platform.abap": {
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 		"uri": "/sap/bc/ui5_ui5/sap/zts_tl_wa_temp/webapp",
+=======
+		"uri": "/sap/bc/ui5_ui5/sap/z_ts_tl_temp/webapp",
+>>>>>>> 0686bf9 Fiori launchpad issue fixed 
 		"_version": "1.1.0"
 	}
 }
