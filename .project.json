@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": true,
-    "lastBuildDateTime": "Wed, 01 Nov 2017 16:03:45 GMT"
+    "lastBuildDateTime": "Fri, 10 Nov 2017 12:29:01 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -415,5 +415,9 @@
     "account": "ac205f4c8",
     "name": "timesheetadminrct",
     "lastVersionWeTriedToDeploy": "2.0.1"
+  },
+  "deploy": {
+    "destination": "vesidgwci_pva",
+    "name": "Z_TS_TL_TEMP"
   }
 }

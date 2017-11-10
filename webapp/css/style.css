@@ -243,11 +243,16 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 .EmpWeekStatus[data-status="S"] {
     background-color: #39a9db !important;
 }
+.tableColumnCombo>button.sapMComboBoxTextFieldArrow{
+	background:rgb(247, 247, 247) !important;
+}
 
 .EmpWeekStatus[data-status="D1"] {
     background-color: #e6e7e8 !important;
 }
-
+.EmpWeekStatus[data-status=""] {
+    background-color: white !important;
+}
 .EmpWeekStatus[data-status="D"] {
     background-color: #e6e7e8 !important;
 }
