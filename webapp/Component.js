@@ -50,7 +50,7 @@ sap.ui.define([
 			var userPreferenceModel = this.getModel("userPreference");
 			this._updateUserPreference(this.getModel(), userPreferenceModel);
 
-			var userBox = sap.ui.getCore().byId('shellUser');
+		/*	var userBox = sap.ui.getCore().byId('shellUser');
 			var that = this;
 			this.getModel().read('/TimeAdminSet', {
 					urlParameters:{
@@ -64,7 +64,7 @@ sap.ui.define([
 					that.getRouter().initialize();
 
 				}
-			});
+			});*/
 			
 
 		},
@@ -164,7 +164,7 @@ sap.ui.define([
 
 						}
 					}
-
+				that.getRouter().initialize();
 				}
 			});
 

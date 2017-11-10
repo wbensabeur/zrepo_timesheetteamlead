@@ -23,13 +23,13 @@ sap.ui.define([
 			this.successPost = false;
 			var oViewModel, iOriginalBusyDelay, oTable = this.byId("table");
 			/// Attach Seeting button from Shell
-			var setting = sap.ui.getCore().byId("shellSettings");
+		/*	var setting = sap.ui.getCore().byId("shellSettings");
 			if (setting !== null) {
 				setting.attachPress(function(oEvent) {
 
 					MessageBox.information("Version - 2.0.0");
 				});
-			}
+			}*/
 			// Put down worklist table's original value for busy indicator delay,
 			// so it can be restored later on. Busy handling on the table is
 			// taken care of by the table itself.
