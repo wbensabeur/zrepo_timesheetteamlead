@@ -52,13 +52,13 @@
 			"id": "app"
 		},
 		"dependencies": {
-			"minUI5Version": "1.42.0",
+			"minUI5Version": "1.38.9",
 			"libs": {
 				"sap.m": {
-					"minVersion": "1.42.0"
+					"minVersion": "1.38.9"
 				},
 				"sap.ui.core": {
-					"minVersion": "1.42.0"
+					"minVersion": "1.38.9"
 				}
 			}
 		},
@@ -72,7 +72,6 @@
 				"settings": {
 					"bundleName": "com.vinci.timesheet.admin.i18n.i18n"
 				},
-				"async": true,
 				"preload": true
 			},
 			"": {
