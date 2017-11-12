@@ -304,12 +304,25 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     padding-left: 0rem !important;
     padding-right: 0rem !important;
 }
+.hourSize>div {
+    height: 100% !important;
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
 
 .hourSize[data-selectedView="7"]>span>span {
     font-size: 30px !important;
 }
 
+.hourSize[data-selectedView="7"]>div>span {
+    font-size: 30px !important;
+}
+
 .hourSize[data-selectedView="14"]>span>span {
+    font-size: 22px !important;
+}
+
+.hourSize[data-selectedView="14"]>div>span {
     font-size: 22px !important;
 }
 
@@ -318,11 +331,23 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     color: #3b617e !important;
 }
 
+.hourSize>div>span {
+    padding-top: 10px;
+    color: #3b617e !important;
+}
+
 .hourSize[data-status="NE"]>span>span {
     background-color: #e6e7e8;
 }
 
+.hourSize[data-status="NE"]>div>span {
+    background-color: #e6e7e8;
+}
+
 .hourSize[data-status="S"]>span>span {
+    color: white;
+}
+.hourSize[data-status="S"]>div>span {
     color: white;
 }
 
@@ -454,6 +479,10 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 
 .EmpWeekStatus[data-status="S"]>div>div>div>div {
     color: white;
+}
+
+.EmpWeekStatus[data-status="E"]>div {
+    background-color: white;
 }
 
 .DaySelectionStatus[data-background="S"] {

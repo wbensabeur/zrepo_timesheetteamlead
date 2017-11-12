@@ -122,7 +122,7 @@ sap.ui.define([
 		},
 		disableDays: function(isEntryEnabled) {
 			if (isEntryEnabled) {
-				return '';
+				return 'E';
 			}
 			return 'D1';
 		},
