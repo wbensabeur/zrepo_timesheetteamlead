@@ -485,6 +485,10 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     background-color: white;
 }
 
+.EmpWeekStatus[data-status="E"]>div {
+    background-color: white;
+}
+
 .DaySelectionStatus[data-background="S"] {
     background-color: #39a9db !important;
     height: 100% !important;
@@ -729,6 +733,7 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
    position:absolute;
    left: -10000px;
  }
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
  .whiteColoumCell {
 	background-color: white;
 }
@@ -786,6 +791,11 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     border: 1px solid #2b7d2b;
 }
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> e799506 Allowance Idicator
 =======
 >>>>>>> 0686bf9 Fiori launchpad issue fixed 
+=======
+=======
+>>>>>>> 5ed8bb8 Change for Home Screen
+>>>>>>> 9014876 Change for Home Screen
