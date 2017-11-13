@@ -186,10 +186,21 @@ sap.ui.define([
 
 		//// **AddProjectTime Fragment Event** ///////
 		OnTimeDelete: function(oEvent) {
-			//var timeModel = this.getView().getModel('AddTime');
-			var container = this.getView().byId('addTimeTab').getItems()[0];
-			fragment.AddProjectTime_OnTimeDelete(oEvent, container);
-
+			var that = this;
+			MessageBox.confirm(
+			that.getResourceBundle().getText("confirmDeleteMsg"), 
+			{
+				title: that.getResourceBundle().getText("deletecnfm"),
+				onClose: function fnCallbackConfirm(oAction) {
+					if (oAction==='OK') {
+						//var timeModel = this.getView().getModel('AddTime');
+						var container = that.getView().byId('addTimeTab').getItems()[0];
+						fragment.AddProjectTime_OnTimeDelete(oEvent, container);	
+					} else {
+						return;
+					}
+				}
+			});
 		},
 		OnchangeTimeSelection: function(oEvent) {
 			//	var timeModel = this.getView().getModel('AddTime');
