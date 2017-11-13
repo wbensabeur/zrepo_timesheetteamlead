@@ -553,15 +553,25 @@ sap.ui.define([
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
 			//oView.byId('EmpDayInfo').bindElement(urlStr);
-
-			this.getView().getModel().remove(binding, {
-				success: function() {
-					that.getView().getModel().read(contextPath);
-					that.update = true;
-					MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+			
+			MessageBox.confirm(
+			that.getResourceBundle().getText("confirmDeleteMsg"), 
+			{
+				title: that.getResourceBundle().getText("deletecnfm"),
+				onClose: function fnCallbackConfirm(oAction) {
+					if (oAction==='OK') {
+						that.getView().getModel().remove(binding, {
+							success: function() {
+								that.getView().getModel().read(contextPath);
+								that.update = true;
+								MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+							}
+						});		
+					} else {
+						return;
+					}
 				}
 			});
-
 		},
 
 		//// **SearchProject Fragment Event** ///////
@@ -626,10 +636,21 @@ sap.ui.define([
 
 		//// **AddProjectTime Fragment Event** ///////
 		OnTimeDelete: function(oEvent) {
-			//var timeModel = this.getView().getModel('AddTime');
-			var container = this.getView().byId('addTimeTab').getItems()[0];
-			fragment.AddProjectTime_OnTimeDelete(oEvent, container);
-
+			var that = this;
+			MessageBox.confirm(
+			that.getResourceBundle().getText("confirmDeleteMsg"), 
+			{
+				title: that.getResourceBundle().getText("deletecnfm"),
+				onClose: function fnCallbackConfirm(oAction) {
+					if (oAction==='OK') {
+						//var timeModel = this.getView().getModel('AddTime');
+						var container = that.getView().byId('addTimeTab').getItems()[0];
+						fragment.AddProjectTime_OnTimeDelete(oEvent, container);	
+					} else {
+						return;
+					}
+				}
+			});	
 		},
 		OnchangeTimeSelection: function(oEvent) {
 			//	var timeModel = this.getView().getModel('AddTime');
