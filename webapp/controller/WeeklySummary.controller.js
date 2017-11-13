@@ -636,7 +636,7 @@ sap.ui.define([
 
 		//// **AddProjectTime Fragment Event** ///////
 		OnTimeDelete: function(oEvent) {
-			var that = this;
+			/*var that = this;
 			MessageBox.confirm(
 			that.getResourceBundle().getText("confirmDeleteMsg"), 
 			{
@@ -650,7 +650,10 @@ sap.ui.define([
 						return;
 					}
 				}
-			});	
+			});*/
+			//var timeModel = this.getView().getModel('AddTime');
+			var container = this.getView().byId('addTimeTab').getItems()[0];
+			fragment.AddProjectTime_OnTimeDelete(oEvent, container);
 		},
 		OnchangeTimeSelection: function(oEvent) {
 			//	var timeModel = this.getView().getModel('AddTime');
