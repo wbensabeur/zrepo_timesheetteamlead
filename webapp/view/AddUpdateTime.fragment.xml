@@ -26,21 +26,21 @@
 			</IconTabFilter>
 			<IconTabFilter key="allowance" icon="sap-icon://multiselect-none" text="{i18n>dailyAllowance}" visible="{AddTime>/visibleDailyAllow}"
 				design="Horizontal">
-				<VBox width="100%" height="100%">
+				<VBox width="100%" height="100%" id="addAllowance">
 					<VBox>
 						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
 							<Label text="{i18n>DailyAllowances}"/>
 							<HBox alignItems="Center" justifyContent="Start">
-								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator"
+								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator"  selectedKey="{ZoneType}"
 									items="{path:'/ValueHelpSet', suspended: true, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"
 									loadItems="handleAllowanceZoneTypeLoadItems" class="SelectCombo">
-									<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
+									<core:ListItem key="{FieldDescription}" text="{FieldDescription}"/>
 								</ComboBox>
 								<!--<SegmentedButton class="sapUiLargeMarginBegin sapUiLargeMarginEnd" width="20rem">
 									<items>-->
-								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" class="sapUiLargeMarginBegin" width="7rem" press="onAllowanceIndicator"/>
-								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://shipping-status" width="7rem" press="onAllowanceIndicator"/>
-								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" press="onAllowanceIndicator"/>
+								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" class="sapUiLargeMarginBegin" width="7rem" press="onAllowanceIndicator" pressed="{MealIndicator}"/>
+								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://shipping-status" width="7rem" press="onAllowanceIndicator"  pressed="{TransportIndicator}"/>
+								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" press="onAllowanceIndicator"  pressed="{JourneyIndicator}"/>
 								<!--</items>
 								</SegmentedButton>-->
 							</HBox>

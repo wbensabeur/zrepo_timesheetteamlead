@@ -379,6 +379,7 @@ sap.ui.define([
 		onPressUpdateEntries : function(oEvent) {
 			var that = this;
 			var headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
+			var dialogContextPath = this.getView().byId('idIconTabBarMulti').getBindingContext().getPath();
 			var oTable = this.getView().byId('tableDayItems');
 			fragment.AddUpdatetime_updateEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
@@ -387,7 +388,7 @@ sap.ui.define([
 				oTable.getBinding("items").refresh();
 				that.update = true;
 				MessageToast.show(that.getResourceBundle().getText("successUpdateMsg"));
-			}, this.getView().byId("EmpDayCheckDialog"), oEvent.getSource());
+			}, this.getView().byId("EmpDayCheckDialog"), oEvent.getSource(),dialogContextPath);
 
 		},
 

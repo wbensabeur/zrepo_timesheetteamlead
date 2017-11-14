@@ -3,10 +3,12 @@
 		<Label text="{i18n>LProjectSelect}"/>
 		<Label text="{i18n>ifNecessary}" visible="{AddTime>/visibleProjectOptional}" class="sapUiSmallMarginBegin"/>
 	</HBox>
-	<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
-		<Link text="{ProjectDescription}" class="sapUiSmallMarginTop ProjectLabel" visible="false"/>
-		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch"/>
-		<Button text="{i18n>projectRefrsh}" visible="false" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
-		<Button text="{i18n>projectDelete}" visible="false" press="OnProjectDelete" icon="sap-icon://delete" class="sapUiSmallMarginBegin"/>
-	</HBox>
+	<VBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
+		<Link text="{ProjectDescription} ({ProjectId}) - {ResponsiblePMName} ({i18n>manager})" class="sapUiSmallMarginTop ProjectLabel" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}"/>
+		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" visible="{AddTime>/newTime}"/>
+		<Button text="{i18n>projectRefrsh}" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
+		<Button text="{i18n>projectDelete}" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" press="OnProjectDelete" icon="sap-icon://delete" />
+	</VBox>
 </core:FragmentDefinition>
+
+

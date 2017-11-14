@@ -781,7 +781,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					newTime: true,
-					duration: true//userPrefModel.getProperty('/durationFlag')
+					duration: userPrefModel.getProperty('/durationFlag')
 				};
 
 				footerData = {
@@ -807,7 +807,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					newTime: false,
-					duration: true//userPrefModel.getProperty('/durationFlag')
+					duration: userPrefModel.getProperty('/durationFlag')
 				};
 				footerData = {
 					MainNewScreen: false,
@@ -838,6 +838,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						break;
 					case 'IPD':
 						odata.visibleDailyAllow = true;
+						controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
+
+						var projectView = controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1];
+						var projectContext = "/ProjectSet('" + odataModel.getProperty(updateKeyPath).ProjectID + "')";
+						projectView.bindElement(projectContext);
+
 						break;
 					case 'KM':
 						odata.visibleKM = true;
@@ -997,65 +1003,89 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			// To set the default end date
 			this.AddUpdatetime_updateView(startDate, NoofHrs, endDate, dayType);
 		},
-		AddUpdatetime_updateEntries: function(oView, savepostFuction, ctype, rButton) {
+		AddUpdatetime_updateEntries: function(oView, savepostFuction, ctype, rButton, bindingPath) {
 			rButton.setEnabled(false);
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItem;
 			if (selectedTab === 'hours') {
-			var tab = oView.byId('addTimeTab').getItems()[0].getItems()[0];
-			var startTime = '00:00';
-			var endTime = '00:00';
-			var projectID;
-						try {
-							
-							var hrType = tab.getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
-							var projectBindingPath = tab.getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
-							var fullDayindex = tab.getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
-							if (this.AddUpdatetimeModel.getData().duration) {
-								startTime = tab.getItems()[3].getItems()[2].getItems()[1].getValue();
-								endTime = tab.getItems()[3].getItems()[2].getItems()[2].getValue();
-								if (fullDayindex !== 0) {
-									if (startTime === '' || endTime === '') {
-										MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
-										ctype.setBusy(false);
-										rButton.setEnabled(true);
-										return;
-									}
-								}
-							}
-							var fullDay = false;
-							if (fullDayindex === 0) {
-								fullDay = true;
-							}
-							projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
-						} catch (err) {
-							
-								//MessageBox.alert("All Items are not selected");
-								MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
-								ctype.setBusy(false);
-								rButton.setEnabled(true);
-								return;
-							
-						}
-						
+				var tab = oView.byId('addTimeTab').getItems()[0].getItems()[1];
+				var startTime = '00:00';
+				var endTime = '00:00';
+				var projectID;
+				try {
 
-						workDayItem = {
-							"ProjectID": projectID,
-							"EntryType": "HOURS",
-							"Hours": tab.getCustomData()[0].getValue().toString(),
-							"EntryTypeCatId": hrType,
-							"StartTime": startTime,
-							"EndTime": endTime,
-							"FullDay": fullDay
-							
-						};
+					var hrType = tab.getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+					var projectBindingPath = tab.getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+					var fullDayindex = tab.getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+					if (this.AddUpdatetimeModel.getData().duration) {
+						startTime = tab.getItems()[3].getItems()[2].getItems()[1].getValue();
+						endTime = tab.getItems()[3].getItems()[2].getItems()[2].getValue();
+
+					}
+					var fullDay = false;
+					if (fullDayindex === 0) {
+						fullDay = true;
+					}
+					projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+				} catch (err) {
+
+					//MessageBox.alert("All Items are not selected");
+					MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					return;
+
 				}
-				
-				///Update Model
-				
+
+				workDayItem = {
+					"ProjectID": projectID,
+					"EntryType": "HOURS",
+					"Hours": tab.getCustomData()[0].getValue().toString(),
+					"EntryTypeCatId": hrType,
+					"StartTime": startTime,
+					"EndTime": endTime,
+					"FullDay": fullDay
+
+				};
+			} else if (selectedTab === 'allowance') {
+				var meal = oView.byId('AllowanceMealIndicator').getPressed();
+				var transport = oView.byId('AllowanceTransportIndicator').getPressed();
+				var travel = oView.byId('AllowanceTravelIndicator').getPressed();
+				//if (meal || transport || travel) {
+				var zonetype = oView.byId('AllowanceZoneType').getSelectedKey();
+				var zoneName = oView.byId('AllowanceZoneType').getValue();
+				if (zoneName === undefined || zoneName === "" || zoneName === null) {
+					//MessageBox.alert("Zone type is not selected");
+					MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					return;
+				}
+				var allwProjectID = null;
+				try {
+					var allwProject = oView.byId('AllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
+					allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
+				} catch (err) {
+					allwProjectID = "";
+				}
+
+				workDayItem = {
+					"ProjectID": allwProjectID,
+					"EntryType": "IPD",
+					"ZoneType": zonetype,
+					"ZoneName": zoneName,
+					"MealIndicator": meal,
+					"JourneyIndicator": transport,
+					"TransportIndicator": travel
+
+				};
+			}
+
+			///Update Model
+
 			var that = this;
 			ctype.setBusy(true);
-			this.oDataModel.update('', workDayItem, {
+			this.oDataModel.update(bindingPath, workDayItem, {
 				success: function() {
 					ctype.setBusy(false);
 					rButton.setEnabled(true);
@@ -1067,7 +1097,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					rButton.setEnabled(true);
 				}
 			});
-			
+
 		},
 		AddUpdatetime_saveEntries: function(oView, savepostFuction, ctype, rButton) {
 			/// Get Item Data from view for Daily hour
@@ -1502,7 +1532,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			});
 		},
-		
+
 		Common_raiseinputError: function(source, text) {
 			source.setValueStateText(text);
 			source.setShowValueStateMessage(true);
