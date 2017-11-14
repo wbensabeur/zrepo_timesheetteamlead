@@ -13,6 +13,7 @@
     "excludedFiles": [
       "test.html"
     ],
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
     "buildRequired": true,
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
@@ -28,7 +29,14 @@
 =======
     "lastBuildDateTime": "Fri, 10 Nov 2017 12:29:01 GMT"
 >>>>>>> c6aab81 Fiori launchpad issue fixed 
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> 0686bf9 Fiori launchpad issue fixed 
+=======
+=======
+    "buildRequired": false,
+    "lastBuildDateTime": "Tue, 14 Nov 2017 15:20:32 GMT"
+>>>>>>> 94dd11a delployment Changes
+>>>>>>> cc1f403 delployment Changes
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -450,8 +458,15 @@
   },
   "deploy": {
     "destination": "vesidgwci_pva",
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
     "name": "Z_TS_TL_TEMP"
 >>>>>>> c6aab81 Fiori launchpad issue fixed 
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> 0686bf9 Fiori launchpad issue fixed 
+=======
+=======
+    "name": "ZTS_TL_WA_TEMP"
+>>>>>>> 94dd11a delployment Changes
+>>>>>>> cc1f403 delployment Changes
   }
 }
