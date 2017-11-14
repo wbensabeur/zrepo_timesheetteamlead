@@ -117,6 +117,13 @@ sap.ui.define([
 
 			}
 		},
+		OnTableTeamChange : function(oEvent) {
+			var oItem = oEvent.getParameter('selectedItem');
+			this.userPref.teamFilter = oItem.getKey();
+			this.userPref.teamName = oItem.getText(); 
+			
+			this._applyFilters();
+		},
 		onPressCancel: function() {
 			this.getRouter().navTo("home", {}, true);
 			var boxes = this.employeeSelected.employees;
