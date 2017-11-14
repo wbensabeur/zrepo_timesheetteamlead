@@ -236,7 +236,7 @@
 		"_version": "1.1.0"
 	},
 	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/sap/z_ts_tl_temp/webapp",
+		"uri": "/sap/bc/ui5_ui5/sap/zts_tl_wa_temp/webapp",
 		"_version": "1.1.0"
 	}
 }

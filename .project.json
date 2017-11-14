@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Fri, 10 Nov 2017 12:29:01 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Tue, 14 Nov 2017 15:20:32 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -418,6 +418,6 @@
   },
   "deploy": {
     "destination": "vesidgwci_pva",
-    "name": "Z_TS_TL_TEMP"
+    "name": "ZTS_TL_WA_TEMP"
   }
 }
