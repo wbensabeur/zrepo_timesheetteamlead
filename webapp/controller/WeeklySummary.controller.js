@@ -292,6 +292,13 @@ sap.ui.define([
 			oDialog.setModel(this.getView().getModel('i18n'), 'i18n');
 			oDialog.open();
 		},
+		OnTableTeamChange : function(oEvent) {
+			var oItem = oEvent.getParameter('selectedItem');
+			this.userPref.teamFilter = oItem.getKey();
+			this.userPref.teamName = oItem.getText(); 
+			
+			this._applyFilters();
+		},
 		handleAdvanceSearch: function(oEvent) {
 			var mParams = oEvent.getParameters();
 			var that = this;

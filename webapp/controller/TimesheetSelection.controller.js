@@ -437,6 +437,13 @@ sap.ui.define([
 
 			this.getRouter().navTo("home", {}, true);
 		},
+		OnTableTeamChange : function(oEvent) {
+			var oItem = oEvent.getParameter('selectedItem');
+			this.userPref.teamFilter = oItem.getKey();
+			this.userPref.teamName = oItem.getText(); 
+			
+			this._applyFilters();
+		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelection
 		 */

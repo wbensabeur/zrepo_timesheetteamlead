@@ -13,7 +13,12 @@
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<ComboBox class="tableColumnCombo CustomRatioBtn" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}" enabled="false"/>
+							<!--<ComboBox class="tableColumnCombo CustomRatioBtn" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}" enabled="false"/>-->
+							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" placeholder="{i18n>hrType}" value="{calendar>ColumnTxt1}"
+								items="{path:'/TeamSet', filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
+								selectionChange="OnTableTeamChange">
+								<core:ListItem key="{TeamId}" text="{TeamName}"/>
+							</ComboBox>
 							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
 							<!--<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" press="OnDatePress" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
 								<customData>
