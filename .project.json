@@ -14,6 +14,7 @@
       "test.html"
     ],
 <<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
     "buildRequired": true,
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
@@ -34,6 +35,9 @@
 =======
 =======
     "buildRequired": false,
+=======
+    "buildRequired": true,
+>>>>>>> 814d1a2 White Background Issue
     "lastBuildDateTime": "Tue, 14 Nov 2017 15:20:32 GMT"
 >>>>>>> 94dd11a delployment Changes
 >>>>>>> cc1f403 delployment Changes

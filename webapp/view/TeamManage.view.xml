@@ -42,7 +42,11 @@
 				<content>
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/EmployeeSet' , suspended: true }"
 						columns="{ path: 'teamHeader>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
 						growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="15" showSeparators="None" inset="false"
+=======
+						growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="12" showSeparators="None" inset="false"
+>>>>>>> 814d1a2 White Background Issue
 						class="employeeListTable whiteColoumCell sapUiSmallMarginBegin" updateStarted="onUpdateStart">
 						<columns>
 							<Column width="{teamHeader>width}" hAlign="Center"/>

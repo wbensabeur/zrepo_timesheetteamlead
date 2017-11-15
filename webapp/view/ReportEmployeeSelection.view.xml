@@ -39,7 +39,11 @@
 			</Table>	
 			<ScrollContainer id="TableScroll" width="auto" height="100%" vertical="true" horizontal="false" focusable="true">
 				<content>
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
 			<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="15" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin whiteColoumCell" updateStarted="onUpdateStart">
+=======
+			<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin whiteColoumCell" updateStarted="onUpdateStart">
+>>>>>>> 814d1a2 White Background Issue
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						

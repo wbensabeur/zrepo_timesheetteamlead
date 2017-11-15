@@ -77,6 +77,7 @@
 				<content>
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true  }" columns="{ path: 'calendar>/data' }"
 				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
 				updateFinished="onUpdateFinished"  growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin whiteColoumCell"
@@ -87,6 +88,9 @@
 =======
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true }"
 =======
+=======
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
+>>>>>>> 1eaefa2 White Background Issue
 				<!--	, ,parameters: { 'select':'EmployeeId,EmployeeName,WeekTotalTargetHours,WeekTotalHours,WeekTotalAllowances,WeekTotalKms,isEntryEnabled,WeekStatus,WeekDate1Date,WeekDate1TargetHours,WeekDate1Hours,WeekDate1Status,WeekDate2Date,WeekDate2TargetHours,WeekDate2Hours,WeekDate2Status,WeekDate3Date,WeekDate3TargetHours,WeekDate3Hours,WeekDate3Status,WeekDate4Date,WeekDate4TargetHours,WeekDate4Hours,WeekDate4Status,WeekDate5Date,WeekDate5TargetHours,WeekDate5Hours,WeekDate5Status,WeekDate6Date,WeekDate6TargetHours,WeekDate6Hours,WeekDate6Status,WeekDate7Date,WeekDate7TargetHours,WeekDate7Hours,WeekDate7Status,NotEditable'}-->
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true  }"
 >>>>>>> ad45616 Issue # 18 Remove "select from and to time" text hardcoded
@@ -96,7 +100,19 @@
 						<columns>
 							<Column width="{calendar>width}" hAlign="Center">
 								<!--<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> d1c6ada Filter by team : available on the table header (cell on top-left) 
+=======
+=======
+					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true  }" columns="{ path: 'calendar>/data' }"
+				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished"  growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin whiteColoumCell"
+				updateStarted="onUpdateStart">
+				<columns>
+					<Column width="{calendar>width}" hAlign="Center">
+						<!--<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
+>>>>>>> 814d1a2 White Background Issue
+>>>>>>> 1eaefa2 White Background Issue
 							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>
 							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
 							<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
