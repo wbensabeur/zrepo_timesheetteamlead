@@ -50,21 +50,20 @@ sap.ui.define([
 			var userPreferenceModel = this.getModel("userPreference");
 			this._updateUserPreference(this.getModel(), userPreferenceModel);
 
-		/*	var userBox = sap.ui.getCore().byId('shellUser');
+		/*	var userBox = sap.ui.getCore().byId('shellUser');*/
 			var that = this;
 			this.getModel().read('/TimeAdminSet', {
 					urlParameters:{
-						"$select" :"UserId,FullName"
+						"$select" :"UserId"
 					},
 				success: function(data) {
 					var results = data.results;
 					var usrName = results[0].FullName;
-					userBox.setUsername(usrName);
 					userPreferenceModel.setProperty('/userID', results[0].UserId);
 					that.getRouter().initialize();
 
 				}
-			});*/
+			});
 			
 
 		},
