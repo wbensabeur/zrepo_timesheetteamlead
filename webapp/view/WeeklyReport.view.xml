@@ -135,7 +135,7 @@
 							</Column>
 						</columns>
 					</Table>
-					<Table width="97%" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+					<Table width="97%" class="sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell">
 						<columns>
 							<Column width="auto"/>
 							<Column width="6%"/>
@@ -275,7 +275,7 @@
 							</ColumnListItem>
 						</items>
 					</Table>
-					<Table width="97%" items="{itemData>/}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+					<Table width="97%" items="{itemData>/}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell">
 						<columns>
 							<Column width="12%"/>
 							<Column width="auto"/>

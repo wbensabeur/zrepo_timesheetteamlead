@@ -727,3 +727,6 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
    position:absolute;
    left: -10000px;
  }
+.whiteColoumCell {
+	background-color: white;
+}
