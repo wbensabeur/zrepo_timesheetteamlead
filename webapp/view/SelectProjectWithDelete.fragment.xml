@@ -5,6 +5,7 @@
 	</HBox>
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 	<HBox width="100%" alignItems="Start" justifyContent="Start">
 		<Link text="{ProjectDescription}" class="sapUiSmallMarginTop sapUiLargeMarginEnd ProjectLabel" visible="false"/>
 		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" class="sapUiLargeMarginEnd"/>
@@ -19,6 +20,9 @@
 		<Button text="{i18n>projectRefrsh}" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
 		<Button text="{i18n>projectDelete}" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" press="OnProjectDelete" icon="sap-icon://delete" />
 =======
+=======
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
+>>>>>>> 5699930 select project button alignment issue fixed
 	<VBox width="100%" alignItems="Start" justifyContent="Start">
 		<Link text="{ProjectDescription} ({ProjectId}) - {ResponsiblePMName} ({i18n>manager})" class="sapUiSmallMarginTop sapUiLargeMarginEnd ProjectLabel" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}"/>
 		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" visible="{AddTime>/newTime}" class="sapUiLargeMarginEnd"/>
@@ -29,4 +33,16 @@
 </core:FragmentDefinition>
 
 
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> 97797bd Allwance Update
+=======
+=======
+	<HBox width="100%" alignItems="Start" justifyContent="Start">
+		<Link text="{ProjectDescription}" class="sapUiSmallMarginTop sapUiLargeMarginEnd ProjectLabel" visible="false"/>
+		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" class="sapUiLargeMarginEnd"/>
+		<Button text="{i18n>projectRefrsh}" visible="false" press="OnProjectRefresh" class="sapUiLargeMarginEnd" icon="sap-icon://synchronize"/>
+		<Button text="{i18n>projectDelete}" visible="false" press="OnProjectDelete" icon="sap-icon://delete" class="sapUiSmallMarginBegin"/>
+	</HBox>
+</core:FragmentDefinition>
+>>>>>>> 77d4bb0 select project button alignment issue fixed
+>>>>>>> 5699930 select project button alignment issue fixed
