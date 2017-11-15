@@ -3,9 +3,9 @@
 		<Label text="{i18n>LProjectSelect}"/>
 		<Label text="{i18n>ifNecessary}" visible="{AddTime>/visibleProjectOptional}" class="sapUiSmallMarginBegin"/>
 	</HBox>
-	<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
-		<Link text="{ProjectDescription}" class="sapUiSmallMarginTop ProjectLabel" visible="false"/>
-		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch"/>
+	<HBox width="100%" alignItems="Start" justifyContent="Start">
+		<Link text="{ProjectDescription}" class="sapUiSmallMarginTop sapUiLargeMarginEnd ProjectLabel" visible="false"/>
+		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" class="sapUiLargeMarginEnd"/>
 		<Button text="{i18n>projectRefrsh}" visible="false" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
 		
 	</HBox>
