@@ -51,10 +51,14 @@ sap.ui.define([
 			this._updateUserPreference(this.getModel(), userPreferenceModel);
 
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 		/*	var userBox = sap.ui.getCore().byId('shellUser');*/
 =======
 		/*	var userBox = sap.ui.getCore().byId('shellUser');
 >>>>>>> 983ef0f changes made to run on fiorilaunch pad
+=======
+		/*	var userBox = sap.ui.getCore().byId('shellUser');*/
+>>>>>>> 5b20025 commented shell part and added userid part
 			var that = this;
 			this.getModel().read('/TimeAdminSet', {
 					urlParameters:{
@@ -67,7 +71,7 @@ sap.ui.define([
 					that.getRouter().initialize();
 
 				}
-			});*/
+			});
 			
 
 		},
