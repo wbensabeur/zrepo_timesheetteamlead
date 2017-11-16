@@ -5,15 +5,15 @@
 			<IconTabFilter key="hours" icon="sap-icon://write-new-document" text="{i18n>hours}" visible="{AddTime>/visibleHrs}" design="Horizontal">
 				<VBox id="addTimeTab" width="100%" height="100%">
 					<VBox>
-						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}" >
-							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewHourPress" icon="sap-icon://add" class="sapUiLargeMarginEnd" >
+						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}">
+							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewHourPress" icon="sap-icon://add" class="sapUiLargeMarginEnd">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
 							</Button>
 							<Button text="{i18n>addEquipment}" type="Emphasized" icon="sap-icon://add" visible="false"></Button>
 							<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
-							<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs" />
+							<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
 							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
 								value="{AddTime>/totalhrs}"/>-->
 						</HBox>
@@ -31,16 +31,37 @@
 						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
 							<Label text="{i18n>DailyAllowances}"/>
 							<HBox alignItems="Center" justifyContent="Start">
-								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator"  selectedKey="{ZoneType}"
+								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator" selectedKey="{ZoneType}"
 									items="{path:'/ValueHelpSet', suspended: true, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"
 									loadItems="handleAllowanceZoneTypeLoadItems" class="SelectCombo">
 									<core:ListItem key="{FieldDescription}" text="{FieldDescription}"/>
 								</ComboBox>
 								<!--<SegmentedButton class="sapUiLargeMarginBegin sapUiLargeMarginEnd" width="20rem">
 									<items>-->
-								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" class="sapUiLargeMarginBegin" width="7rem" press="onAllowanceIndicator" pressed="{MealIndicator}"/>
-								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://shipping-status" width="7rem" press="onAllowanceIndicator"  pressed="{TransportIndicator}"/>
-								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" press="onAllowanceIndicator"  pressed="{JourneyIndicator}"/>
+								<!--<IconTabBar class="AllowanceButton">
+									<items>
+										<IconTabFilter class="AllowanceButtonTab" icon="sap-icon://meal" iconColor="Positive" design="Vertical" text="Repas" key="Repas"/>
+												
+									</items>
+								</IconTabBar>
+								<IconTabBar class="AllowanceButton">
+									<items>
+										<IconTabFilter class="AllowanceButtonTab" icon="sap-icon://shipping-status" iconColor="Positive" design="Vertical" text="Transport" key="Repas2"/>
+												
+									</items>
+								</IconTabBar>
+								<IconTabBar class="AllowanceButton">
+									<items>
+										<IconTabFilter class="AllowanceButtonTab" icon="sap-icon://flight" iconColor="Positive" design="Vertical" text="Trajet" key="Repas3"/>
+												
+									</items>
+								</IconTabBar>-->
+								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" text="Repas" class="AllwanceButton sapUiLargeMarginBegin" width="7rem"
+									press="onAllowanceIndicator" pressed="{MealIndicator}"/>
+								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://shipping-status" text="Transport" class="AllwanceButton" width="7rem"
+									press="onAllowanceIndicator" pressed="{TransportIndicator}"/>
+								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" text="Trajet" class="AllwanceButton"
+									press="onAllowanceIndicator" pressed="{JourneyIndicator}"/>
 								<!--</items>
 								</SegmentedButton>-->
 							</HBox>
@@ -59,9 +80,7 @@
 				design="Horizontal">
 				<VBox width="100%" height="100%">
 					<VBox>
-						
-						<Select  id="AbsEmployee"  class="sapUiSmallMarginTop sapUiSmallMarginBegin"
-							items="{Emps>/}" >
+						<Select id="AbsEmployee" class="sapUiSmallMarginTop sapUiSmallMarginBegin" items="{Emps>/}">
 							<core:Item key="{Emps>empId}" text="{Emps>empName}"/>
 						</Select>
 						<!--<Label text="{i18n>selectAbsCategory}" class="sapUiSmallMarginBegin"/>-->
@@ -80,21 +99,21 @@
 								</HBox>
 								<HBox alignContent="Center">
 									<Label text="{i18n>endDay}" class="sapUiSmallMarginTop" width="8rem"/>
-									<DatePicker id="AbsEndDate"  displayFormat="long" class="sapUiSmallMarginBegin" placeholder="{i18n>select} {i18n>endDay}"
+									<DatePicker id="AbsEndDate" displayFormat="long" class="sapUiSmallMarginBegin" placeholder="{i18n>select} {i18n>endDay}"
 										change="onSelectAbsenceEndDate"/>
 								</HBox>
 							</VBox>
-							<RadioButtonGroup id="dayType" columns="1" selectedIndex="0" visible="{AddTime>/visibleAbsence2}" class="sapUiMediumMarginBegin" >
+							<RadioButtonGroup id="dayType" columns="1" selectedIndex="0" visible="{AddTime>/visibleAbsence2}" class="sapUiMediumMarginBegin">
 								<buttons>
-									<RadioButton text="{i18n>fullDay}" />
-									<RadioButton text="{i18n>morning}" />
-									<RadioButton text="{i18n>afternoon}" />
+									<RadioButton text="{i18n>fullDay}"/>
+									<RadioButton text="{i18n>morning}"/>
+									<RadioButton text="{i18n>afternoon}"/>
 								</buttons>
 							</RadioButtonGroup>
 						</HBox>
-						<HBox class="sapUiSmallMarginTop sapUiSmallMarginBegin" >
-						<!--	<Input type="Number" visible="{AddTime>/visibleAbsence3}" placeholder="{i18n>noOfHrs}"  class="sapUiLargeMarginEnd"/>-->
-							<TextArea  id="NoofHrs" visible="{AddTime>/visibleAbsence3}" width="10rem" placeholder="{i18n>noOfHrs}" rows="1" class="sapUiLargeMarginEnd"/>
+						<HBox class="sapUiSmallMarginTop sapUiSmallMarginBegin">
+							<!--	<Input type="Number" visible="{AddTime>/visibleAbsence3}" placeholder="{i18n>noOfHrs}"  class="sapUiLargeMarginEnd"/>-->
+							<TextArea id="NoofHrs" visible="{AddTime>/visibleAbsence3}" width="10rem" placeholder="{i18n>noOfHrs}" rows="1" class="sapUiLargeMarginEnd"/>
 							<TextArea id="AbsComment" width="20rem" growing="true" placeholder="{i18n>comment}" rows="1"/>
 						</HBox>
 					</VBox>
