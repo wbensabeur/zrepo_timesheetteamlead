@@ -733,3 +733,9 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .customWidthIE > div {
 	width : 100%;
 }
+.customWidthIE > div >div >div {
+	width : 45%;
+}
+.customWidthIE > div >div >div >div{
+	width : 45%;
+}
