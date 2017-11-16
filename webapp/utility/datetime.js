@@ -26,13 +26,13 @@ sap.ui.define([], function() {
 
 		getLastDay: function(cDate, noOfWeeks) {
 
-			var oDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
+			var oDate = new Date(cDate.getFullYear(), cDate.getMonth(), cDate.getDate());
 			var numberOfDaysToAdd = 7 * noOfWeeks;
 			return new Date(oDate.setDate(cDate.getDate() + numberOfDaysToAdd - 1));
 		},
 
 		getWeek: function(cDate) {
-			var oDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
+			var oDate = new Date(cDate.getFullYear(), cDate.getMonth(), cDate.getDate());
 			oDate.setHours(0, 0, 0, 0);
 			// Thursday in current week decides the year.
 			oDate.setDate(oDate.getDate() + 3 - (oDate.getDay() + 6) % 7);
