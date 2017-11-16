@@ -28,7 +28,7 @@
 						<Label text="{parts:['WorkDate'],formatter:'.formatter.dateFormatinEmpDay'}"/>
 						<Label text=" - {i18n>legend-theoritical} : {path:'TargetHours',type:'Float',formatter:'.formatter.numberFormatter'} {i18n>hour}"/>
 					</HBox>
-					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell""
+					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell"
 						items="{ path: '/WorkDayItemSet' }">
 						<columns>
 							<Column width="15%" hAlign="Center" class="EmployeeWeeklyReportColumn">
@@ -76,7 +76,8 @@
 										<Text   text="{ProjectID}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{ProjectName}" class="sapUiTinyMarginTop"/>
+										<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescFirstLine'}" class="sapUiTinyMarginTop"/>
+										<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescSecondLine'}" visible="{parts:['ProjectName'],formatter:'.formatter.IsProjectDescSecondLine'}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Text text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>

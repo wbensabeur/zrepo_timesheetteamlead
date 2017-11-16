@@ -297,7 +297,11 @@
 										<Text text="{itemData>project}"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow_Bottom" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{itemData>projectName}"/>
+										<!--<Text text="{itemData>projectName}"/>-->
+										
+										<Text text="{parts:['itemData>projectName'],formatter:'.formatter.ProjectDescFirstLine'}" />
+										<Text text="{parts:['itemData>projectName'],formatter:'.formatter.ProjectDescSecondLine'}" visible="{parts:['itemData>projectName'],formatter:'.formatter.IsProjectDescSecondLine'}" />
+									
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
 										<Text text="{itemData>type}"/>

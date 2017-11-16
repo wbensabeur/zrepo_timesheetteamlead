@@ -280,6 +280,42 @@ sap.ui.define([
 				return 0;
 			else
 				return 1;
+		},
+		ProjectDescFirstLine: function (text) {
+			if(text === null)
+			{
+				return '';
+			}
+			else if(text.length < 25){
+				return text;
+			}
+			else {
+				return text.substring(0,25);
+			}
+		},
+		ProjectDescSecondLine: function (text) {
+			if(text === null)
+			{
+				return '';
+			}
+			else if(text.length < 25){
+				return "";
+			}
+			else {
+				return text.substring(25);
+			}
+		},
+		IsProjectDescSecondLine: function (text) {
+			if(text === null)
+			{
+				return false;
+			}
+			else if(text.length < 25){
+				return false;
+			}
+			else {
+				return true;
+			}
 		}
 	};
 
