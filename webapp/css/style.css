@@ -612,6 +612,8 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 
 .sapMITBContent {
     background-color: rgba(249, 249, 249, 1) !important;
+    border-bottom: 0;
+    padding: 0 0rem;
 }
 
 .AddHoursDivider {
@@ -727,7 +729,7 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
    position:absolute;
    left: -10000px;
  }
-.whiteColoumCell {
+ .whiteColoumCell {
 	background-color: white;
 }
 .customWidthIE > div {
@@ -737,4 +739,30 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 	width : 45%;
 }.customWidthIE > div >div > div > div {
 	width : 45%;
+}
+ 
+ .AllowanceButton>.sapMITH {
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.AllowanceButton>.sapMITH>.sapMITBScrollContainer {
+    margin: 0 0rem;
+    padding: 0 0px;
+}
+.AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead {
+    margin: 0 0rem;
+    padding: 0 0px;
+}
+.AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead>.sapMITBItem>.sapMITBContentArrow {
+    height: 0rem;
+    border-bottom: 0rem solid transparent;
+   
+}
+.AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead>.sapMITBItem>.sapMITBText {
+    color: #004586;
+}
+.AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead>.sapMITBItem>.sapMITBTab>.sapUiIcon {
+    border: 1px solid #2b7d2b;
 }
