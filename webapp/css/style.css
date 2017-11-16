@@ -243,11 +243,16 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 .EmpWeekStatus[data-status="S"] {
     background-color: #39a9db !important;
 }
+.tableColumnCombo>button.sapMComboBoxTextFieldArrow{
+	background:rgb(247, 247, 247) !important;
+}
 
 .EmpWeekStatus[data-status="D1"] {
     background-color: #e6e7e8 !important;
 }
-
+.EmpWeekStatus[data-status=""] {
+    background-color: white !important;
+}
 .EmpWeekStatus[data-status="D"] {
     background-color: #e6e7e8 !important;
 }
@@ -299,12 +304,25 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     padding-left: 0rem !important;
     padding-right: 0rem !important;
 }
+.hourSize>div {
+    height: 100% !important;
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
 
 .hourSize[data-selectedView="7"]>span>span {
     font-size: 30px !important;
 }
 
+.hourSize[data-selectedView="7"]>div>span {
+    font-size: 30px !important;
+}
+
 .hourSize[data-selectedView="14"]>span>span {
+    font-size: 22px !important;
+}
+
+.hourSize[data-selectedView="14"]>div>span {
     font-size: 22px !important;
 }
 
@@ -313,11 +331,23 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     color: #3b617e !important;
 }
 
+.hourSize>div>span {
+    padding-top: 10px;
+    color: #3b617e !important;
+}
+
 .hourSize[data-status="NE"]>span>span {
     background-color: #e6e7e8;
 }
 
+.hourSize[data-status="NE"]>div>span {
+    background-color: #e6e7e8;
+}
+
 .hourSize[data-status="S"]>span>span {
+    color: white;
+}
+.hourSize[data-status="S"]>div>span {
     color: white;
 }
 
@@ -449,6 +479,10 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 
 .EmpWeekStatus[data-status="S"]>div>div>div>div {
     color: white;
+}
+
+.EmpWeekStatus[data-status="E"]>div {
+    background-color: white;
 }
 
 .DaySelectionStatus[data-background="S"] {
@@ -693,3 +727,9 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
    position:absolute;
    left: -10000px;
  }
+.whiteColoumCell {
+	background-color: white;
+}
+.customWidthIE > div {
+	width : 100%;
+}

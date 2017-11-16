@@ -498,8 +498,8 @@ sap.ui.define([
 				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
 				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
-				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
-			
+				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
+				new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter)
 			];
 			if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
 				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));

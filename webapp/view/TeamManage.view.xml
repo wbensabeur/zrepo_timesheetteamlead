@@ -43,7 +43,7 @@
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/EmployeeSet' , suspended: true }"
 						columns="{ path: 'teamHeader>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
 						growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="12" showSeparators="None" inset="false"
-						class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
+						class="employeeListTable whiteColoumCell sapUiSmallMarginBegin" updateStarted="onUpdateStart">
 						<columns>
 							<Column width="{teamHeader>width}" hAlign="Center"/>
 						</columns>

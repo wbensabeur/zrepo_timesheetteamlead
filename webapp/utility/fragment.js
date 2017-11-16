@@ -331,11 +331,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SelectProject_OnDailyHrTypeChange2: function(oEvent) {
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
 			this.warning = true;
+			oEvent.getSource().setPlaceholder("");
 			oEvent.getSource().getParent().getParent().getParent().getItems()[2].getItems()[2].getItems()[1].setSelectedKey(selectedKey);
 		},
 		SelectProject_OnDailyHrTypeChange1: function(oEvent) {
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
 			this.warning = true;
+			oEvent.getSource().setPlaceholder("");
 			oEvent.getSource().getParent().getParent().getParent().getItems()[3].getItems()[2].getItems()[3].setSelectedKey(selectedKey);
 		},
 
@@ -747,11 +749,29 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel, updateKeyPath) {
 
 			var userPrefModel = controler.getModel('userPreference');
+			var odata = {
+				totalhrs: 0,
+				visibleHrs: userPrefModel.getProperty('/defaultHours'),
+				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
+				visibleKM: userPrefModel.getProperty('/defaultKM'),
+				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
+				//visibleAbsence: true,
+				visibleAbsence1: true,
+				visibleAbsence2: false,
+				visibleAbsence3: false,
+				visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
+				visibleSummary: false,
+				visibleProjectOptional: false,
+				newTime: true,
+				duration: userPrefModel.getProperty('/durationFlag')
+			};
+
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
 			var odata;
 			var footerData;
-
+this.warning = false;
+			this.currentView = 'hours';
 			//this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
 			var items = container.getItems();
 			if (items.length > 0) {

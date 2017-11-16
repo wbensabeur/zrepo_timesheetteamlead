@@ -28,7 +28,7 @@
 						<Label text="{parts:['WorkDate'],formatter:'.formatter.dateFormatinEmpDay'}"/>
 						<Label text=" - {i18n>legend-theoritical} : {path:'TargetHours',type:'Float',formatter:'.formatter.numberFormatter'} {i18n>hour}"/>
 					</HBox>
-					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd"
+					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell""
 						items="{ path: '/WorkDayItemSet' }">
 						<columns>
 							<Column width="15%" hAlign="Center" class="EmployeeWeeklyReportColumn">

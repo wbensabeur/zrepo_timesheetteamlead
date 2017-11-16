@@ -25,7 +25,7 @@
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/TeamSet' , suspended: true }"
 						noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
 						growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="15" showSeparators="None" inset="false"
-						class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
+						class="employeeListTable sapUiSmallMarginBegin whiteColoumCell" updateStarted="onUpdateStart">
 						<columns>
 							<Column width="{teamDetail>width}" hAlign="Left"></Column>
 						</columns>
