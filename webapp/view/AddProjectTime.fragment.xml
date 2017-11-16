@@ -8,6 +8,7 @@
 			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 			<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween" class="customWidthIE">
 				<RadioButtonGroup width="100%" columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="0">
 =======
@@ -15,9 +16,19 @@
 				<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="{path:'AddTime>/newTime',formatter:'.formatter.allDaySelection'}">
 >>>>>>> 3dfa19d Hour Edit
 =======
+=======
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
+>>>>>>> a3b8998 select hour category issue fixed 
 			<HBox width="100%" class="customWidthIE" alignItems="Start" justifyContent="SpaceBetween">
 				<RadioButtonGroup width="100%" columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="{path:'AddTime>/newTime',formatter:'.formatter.allDaySelection'}">
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> 8b87e86 Gateway fiori changes copied to master changes only related to fiori UI issue fix
+=======
+=======
+			<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween" class="customWidthIE">
+				<RadioButtonGroup width="100%" columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="0">
+>>>>>>> 54e2230 select hour category issue fixed 
+>>>>>>> a3b8998 select hour category issue fixed 
 					<buttons>
 						<RadioButton text="{i18n>allDay}" enabled="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" class="CustomRatioBtn"/>
 						<RadioButton text="{i18n>specificTime}" class="CustomRatioBtn"/>

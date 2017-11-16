@@ -806,5 +806,14 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .whiteColoumCell {
 	background-color: white;
 }
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
 >>>>>>> 814d1a2 White Background Issue
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> 1eaefa2 White Background Issue
+=======
+=======
+.customWidthIE > div {
+	width : 100%;
+}
+>>>>>>> 54e2230 select hour category issue fixed 
+>>>>>>> a3b8998 select hour category issue fixed 
