@@ -28,7 +28,11 @@
 						<Label text="{parts:['WorkDate'],formatter:'.formatter.dateFormatinEmpDay'}"/>
 						<Label text=" - {i18n>legend-theoritical} : {path:'TargetHours',type:'Float',formatter:'.formatter.numberFormatter'} {i18n>hour}"/>
 					</HBox>
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell"
+=======
+					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell""
+>>>>>>> 8b87e86 Gateway fiori changes copied to master changes only related to fiori UI issue fix
 						items="{ path: '/WorkDayItemSet' }">
 						<columns>
 							<Column width="15%" hAlign="Center" class="EmployeeWeeklyReportColumn">

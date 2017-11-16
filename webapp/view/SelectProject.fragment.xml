@@ -4,6 +4,7 @@
 		<Label text="{i18n>ifNecessary}" visible="{AddTime>/visibleProjectOptional}" class="sapUiSmallMarginBegin"/>
 	</HBox>
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 	<HBox width="100%" alignItems="Start" justifyContent="Start">
 		<Link text="{ProjectDescription}" class="sapUiSmallMarginTop sapUiLargeMarginEnd ProjectLabel" visible="false"/>
 		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" class="sapUiLargeMarginEnd"/>
@@ -12,6 +13,11 @@
 	<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
 		<Link text="{ProjectDescription} ({ProjectId}) - {ResponsiblePMName} ({i18n>manager})" class="sapUiSmallMarginTop ProjectLabel" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}"/>
 		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" visible="{AddTime>/newTime}"/>
+=======
+	<HBox width="100%" alignItems="Start" justifyContent="Start">
+		<Link text="{ProjectDescription} ({ProjectId}) - {ResponsiblePMName} ({i18n>manager})" class="sapUiSmallMarginTop sapUiLargeMarginEnd ProjectLabel" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}"/>
+		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" class="sapUiLargeMarginEnd" visible="{AddTime>/newTime}"/>
+>>>>>>> 8b87e86 Gateway fiori changes copied to master changes only related to fiori UI issue fix
 		<Button text="{i18n>projectRefrsh}" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
 >>>>>>> 3dfa19d Hour Edit
 		
