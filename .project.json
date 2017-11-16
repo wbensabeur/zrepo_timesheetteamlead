@@ -46,9 +46,16 @@
 =======
 =======
     "buildRequired": false,
+<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
     "lastBuildDateTime": "Thu, 16 Nov 2017 04:58:54 GMT"
 >>>>>>> 54e2230 select hour category issue fixed 
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> a3b8998 select hour category issue fixed 
+=======
+=======
+    "lastBuildDateTime": "Thu, 16 Nov 2017 06:43:06 GMT"
+>>>>>>> f7eea7b Gatewway IE issue with radio buttons fixed
+>>>>>>> 4deedcc Gatewway IE issue with radio buttons fixed
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
