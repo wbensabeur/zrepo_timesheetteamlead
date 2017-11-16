@@ -19,6 +19,7 @@
 			<Bar>
 				<contentRight>
 					<Button id="MainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainNewScreen}"/>
+					<Button id="MainSaveButton" text="{i18n>savetimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressOnlySaveEntries"/>
 					<Button id="MainAddButton" text="{i18n>addtimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveEntries"/>
 					<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="{footer>/ProjectScreen}" press="onPressProjectCancel"/>
 					<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="{footer>/ProjectScreen}" press="onPressProjectSelect">
