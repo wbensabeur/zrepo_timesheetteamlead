@@ -91,7 +91,7 @@
 			<items>
 				<ColumnListItem class="sapUiTableTr textAlignmentStart">
 					<cells>
-						<Text class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="{ProjectDescription}" textAlign="Begin"/>
+						<Text class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="{ProjectDescription}" textAlign="Center"/>
 					</cells>
 					<cells>
 						<Text class="sapUiTinyMarginBegin" text="{BusinessUnit}"/>
