@@ -180,7 +180,7 @@ sap.ui.define([
 								case 6:
 									line.sat = hrs;
 									break;
-								case 7:
+								case 0:
 									line.sun = hrs;
 									break;
 								default:
@@ -212,7 +212,7 @@ sap.ui.define([
 								case 6:
 									line.sat = line.sat + hrs;
 									break;
-								case 7:
+								case 0:
 									line.sun = line.sun + hrs;
 									break;
 								default:
