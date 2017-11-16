@@ -130,6 +130,7 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
+			this.getView().byId('editPlanning').setEnabled(!(this.getModel().getProperty(oTable.getItems()[0].getBindingContext().getPath()).NotEditable));
 
 			/*var path = "/ValueHelpSet(ApplicationName='TEAMLEAD',HelpType='BU',FieldValue='" + this.getModel("userPreference").getProperty("/defaultBU") +
 				"')";*/
@@ -243,6 +244,8 @@ sap.ui.define([
 			oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			oView.byId('EmpDayInfo').bindElement(urlStr);
+			oView.byId('MainAddButton').bindElement(urlStr);
+			
 
 			var Filters = [
 				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
@@ -256,15 +259,14 @@ sap.ui.define([
 			var table = this.getView().byId('tableDayItems');
 			table.setModel(this.getView().getModel());
 			table.getBinding("items").filter(Filters, "Application");
+			
 
-			var editEnable = oEvent.getSource().data('entryEnable');
-
-			if (editEnable) {
-				this.getView().byId('AddNewTimeButton').setEnabled(true);
-			} else {
-				this.getView().byId('AddNewTimeButton').setEnabled(false);
-			}
-
+			var entryEnable = oEvent.getSource().data('entryEnable');
+			var noEdited = oEvent.getSource().data('noEdited');
+			
+			var editEnable = entryEnable && !noEdited;
+			this.getView().byId('AddNewTimeButton').setEnabled(editEnable);
+			
 			var EmpDetail = {
 				enable: editEnable
 			};
