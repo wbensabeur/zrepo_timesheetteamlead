@@ -732,7 +732,7 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
  .whiteColoumCell {
 	background-color: white;
 }
-.customWidthIE > div {
+/*.customWidthIE > div {
 	width : 100%;
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
@@ -751,10 +751,14 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 	width : 45%;
 }.customWidthIE > div >div > div > div {
 	width : 45%;
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 }
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 >>>>>>> f30e5be Radio button IE changes for FIori
 =======
+=======
+}*/
+>>>>>>> aa747dc Save and close Button option on Mask entries
  
  .AllowanceButton>.sapMITH {
     background-color: transparent;
