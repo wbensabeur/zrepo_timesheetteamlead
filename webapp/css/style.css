@@ -730,3 +730,6 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .whiteColoumCell {
 	background-color: white;
 }
+.customWidthIE > div {
+	width : 100%;
+}

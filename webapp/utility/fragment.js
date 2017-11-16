@@ -329,11 +329,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SelectProject_OnDailyHrTypeChange2: function(oEvent) {
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
 			this.warning = true;
+			oEvent.getSource().setPlaceholder("");
 			oEvent.getSource().getParent().getParent().getParent().getItems()[2].getItems()[2].getItems()[1].setSelectedKey(selectedKey);
 		},
 		SelectProject_OnDailyHrTypeChange1: function(oEvent) {
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
 			this.warning = true;
+			oEvent.getSource().setPlaceholder("");
 			oEvent.getSource().getParent().getParent().getParent().getItems()[3].getItems()[2].getItems()[3].setSelectedKey(selectedKey);
 		},
 

@@ -4,10 +4,10 @@
 		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}">
 			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnTimeDelete"/>
 		</FlexBox>
-		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom">
+		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom" width="100%">
 			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
-			<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
-				<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="0">
+			<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween" class="customWidthIE">
+				<RadioButtonGroup width="100%" columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="0">
 					<buttons>
 						<RadioButton text="{i18n>allDay}" enabled="false" class="CustomRatioBtn"/>
 						<RadioButton text="{i18n>specificTime}" class="CustomRatioBtn"/>
