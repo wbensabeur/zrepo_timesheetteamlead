@@ -337,7 +337,7 @@
 							</ColumnListItem>
 						</items>
 					</Table>
-					<HBox height="10rem" class="sapUiSmallMarginBegin WhiteBG" id="SignatureFrame" visible="true" alignItems="Start" justifyContent="End"
+					<HBox height="10rem" class="sapUiSmallMarginBegin WhiteBG" id="SignatureFrame" visible="{userPreference>/signatureRequired}" alignItems="Start" justifyContent="End"
 						width="97%">
 						<Image id="imageSignature" src="" height="5rem" width="20rem" class="sapUiLargeMarginEnd sapUiSmallMarginTop"/>
 					</HBox>
@@ -353,8 +353,8 @@
 			<Bar>
 				<contentRight>
 					<Button text="{i18n>cancel}" type="Reject" press="onPressCancel"/>
-					<Button id="timeSubmitBtn" text="{i18n>submit}" type="Emphasized" press="OnTimeSubmit" visible="false"/>
-					<Button id="signBtn" text="{i18n>sign}" type="Emphasized" press="OnTimeSignature"/>
+					<Button id="timeSubmitBtn" text="{i18n>submit}" type="Emphasized" press="OnTimeSubmit" visible="{path:'userPreference>/signatureRequired',formatter:'.formatter.booleanNot'}"/> 
+					<Button id="signBtn" text="{i18n>sign}" type="Emphasized" press="OnTimeSignature" visible="{userPreference>/signatureRequired}"/>
 				</contentRight>
 			</Bar>
 		</footer>
