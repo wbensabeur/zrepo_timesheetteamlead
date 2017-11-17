@@ -70,7 +70,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.vinci.timesheet.admin.i18n.i18n_en"
+					"bundleName": "com.vinci.timesheet.admin.i18n.i18n"
 				},
 				"preload": true
 			},
