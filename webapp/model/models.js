@@ -17,6 +17,8 @@ sap.ui.define([
 			var defaultPeriod = null;
 		
 			var userPref = {
+				application:'TEAMLEAD',
+				applicationVersion:'3',
 				defaultBU:defaultBU,
 				defaultPeriod:defaultPeriod,
 				employeeFilter:null,

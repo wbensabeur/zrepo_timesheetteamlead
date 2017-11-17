@@ -58,8 +58,8 @@
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
 							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" placeholder="{i18n>hrType}" value="{calendar>ColumnTxt1}"
-								items="{path:'/TeamSet', filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
-								selectionChange="OnTableTeamChange">
+								items="{path:'/TeamSet', suspended: true, filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
+								loadItems="handleTeamLoadItems" selectionChange="OnTableTeamChange">
 								<core:ListItem key="{TeamId}" text="{TeamName}"/>
 							</ComboBox>
 							<!--<ComboBox  class="tableColumnCombo" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}"/>-->

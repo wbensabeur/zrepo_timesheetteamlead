@@ -111,20 +111,18 @@ sap.ui.define([
 				iTotalItems = oEvent.getParameter("total");
 			// only update the counter if the length is final and
 			// the table is not empty
-			
+
 			if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
-				if(this.userPref.teamName === null) {
-				sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
-				}
-				else {
-					sTitle = "(" + iTotalItems + ") " + this.userPref.teamName; 
+				if (this.userPref.teamName === null) {
+					sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
+				} else {
+					sTitle = "(" + iTotalItems + ") " + this.userPref.teamName;
 				}
 			} else {
-				if(this.userPref.teamName === null) {
-				sTitle = this.getResourceBundle().getText("worklistTableTitle");
-				}
-				else {
-					sTitle = this.userPref.teamName ;
+				if (this.userPref.teamName === null) {
+					sTitle = this.getResourceBundle().getText("worklistTableTitle");
+				} else {
+					sTitle = this.userPref.teamName;
 				}
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
@@ -187,6 +185,7 @@ sap.ui.define([
 			var oKey = oEvent.getParameter("key");
 			var oData = {
 				PersoValue: ''
+
 			};
 			if (oKey === "OneWeek") {
 				this.twoWeek = false;
@@ -199,7 +198,8 @@ sap.ui.define([
 				oData.PersoValue = 'X';
 			}
 
-			var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + this.getView().getModel("userPreference").getProperty(
+			var url = "/PersonalizationSet(ApplicationName='" + this.userPref.application + "',UserId='" + this.getView().getModel(
+				"userPreference").getProperty(
 				"/userID") + "',PersoId='BW')";
 			this.getView().getModel().update(url, oData);
 			this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);
@@ -237,7 +237,12 @@ sap.ui.define([
 				this.getView().setModel(oFooterModel, "footer");
 
 			}
-
+			
+			/*var Filters = [
+				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
+			];*/
+			
 			oDialog.bindElement("/EmployeeSet('" + this.currentEmp + "')");
 
 			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
@@ -245,11 +250,12 @@ sap.ui.define([
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			oView.byId('EmpDayInfo').bindElement(urlStr);
 			oView.byId('MainAddButton').bindElement(urlStr);
-			
 
 			var Filters = [
 				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
-				new Filter("WorkDate", FilterOperator.EQ, this.currentDate)
+				new Filter("WorkDate", FilterOperator.EQ, this.currentDate),
+				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
 
 			/*oDialog.getContent()[0].setVisible(true);
@@ -259,14 +265,13 @@ sap.ui.define([
 			var table = this.getView().byId('tableDayItems');
 			table.setModel(this.getView().getModel());
 			table.getBinding("items").filter(Filters, "Application");
-			
 
 			var entryEnable = oEvent.getSource().data('entryEnable');
 			var noEdited = oEvent.getSource().data('noEdited');
-			
+
 			var editEnable = entryEnable && !noEdited;
 			this.getView().byId('AddNewTimeButton').setEnabled(editEnable);
-			
+
 			var EmpDetail = {
 				enable: editEnable
 			};
@@ -291,15 +296,33 @@ sap.ui.define([
 
 			}
 			oDialog.setModel(this.getView().getModel());
+			oDialog.setModel(this.getView().getModel('userPreference'), 'userPreference');
 			oDialog.setModel(this.getView().getModel('i18n'), 'i18n');
 			oDialog.open();
 		},
-		OnTableTeamChange : function(oEvent) {
+		OnTableTeamChange: function(oEvent) {
 			var oItem = oEvent.getParameter('selectedItem');
 			this.userPref.teamFilter = oItem.getKey();
-			this.userPref.teamName = oItem.getText(); 
-			
+			this.userPref.teamName = oItem.getText();
+
 			this._applyFilters();
+		},
+		filterTabOpened: function(oEvent) {
+
+			if (oEvent.getParameter('parentFilterItem').getKey() === "BusinessUnit") {
+				var buFilterItem = this.getView().byId('BUFilter');
+				var filters = [new Filter('ApplicationName', FilterOperator.EQ, this.userPref.application), new Filter('ApplicationVersion',
+					FilterOperator.EQ, this.userPref.applicationVersion)];
+				buFilterItem.getBinding("items").filter(filters);
+				buFilterItem.getBinding("items").resume();
+
+			} else if (oEvent.getParameter('parentFilterItem').getKey() === "Team") {
+				var teamFilterItem = this.getView().byId('TeamFilter');
+				var filters2 = [new Filter('BusinessUnit', FilterOperator.EQ, this.userPref.defaultBU)];
+				teamFilterItem.getBinding("items").filter(filters2);
+				teamFilterItem.getBinding("items").resume();
+
+			}
 		},
 		handleAdvanceSearch: function(oEvent) {
 			var mParams = oEvent.getParameters();
@@ -312,15 +335,13 @@ sap.ui.define([
 						var oData = {
 							PersoValue: oItem.getKey()
 						};
-						var url = "/PersonalizationSet(ApplicationName='TEAMLEAD',UserId='" + that.getView().getModel("userPreference").getProperty(
+						var url = "/PersonalizationSet(ApplicationName='" + this.userPref.application + "',UserId='" + that.getView().getModel("userPreference").getProperty(
 							"/userID") + "',PersoId='BU')";
 						that.getView().getModel().update(url, oData);
 					} else if (oItem.getParent().getProperty("key") === 'Team') {
 						that.userPref.teamFilter = oItem.getKey();
-						that.userPref.teamName = oItem.getText();       
-						
-						
-							
+						that.userPref.teamName = oItem.getText();
+
 					}
 					//var sPath1 = oItem.getParent().getProperty("key");
 					//var sOperator = FilterOperator.EQ;
@@ -385,7 +406,7 @@ sap.ui.define([
 			}, this.getView().byId("EmpDayCheckDialog"), oEvent.getSource());
 
 		},
-		onPressUpdateEntries : function(oEvent) {
+		onPressUpdateEntries: function(oEvent) {
 			var that = this;
 			var headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 			var dialogContextPath = this.getView().byId('idIconTabBarMulti').getBindingContext().getPath();
@@ -397,7 +418,7 @@ sap.ui.define([
 				oTable.getBinding("items").refresh();
 				that.update = true;
 				MessageToast.show(that.getResourceBundle().getText("successUpdateMsg"));
-			}, this.getView().byId("EmpDayCheckDialog"), oEvent.getSource(),dialogContextPath);
+			}, this.getView().byId("EmpDayCheckDialog"), oEvent.getSource(), dialogContextPath);
 
 		},
 
@@ -441,6 +462,9 @@ sap.ui.define([
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 
+		},
+		handleTeamLoadItems: function(oEvent) {
+			oEvent.getSource().getBinding("items").resume();
 		},
 
 		///////
@@ -501,7 +525,8 @@ sap.ui.define([
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
 				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
-				new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter)
+				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
 			if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
 				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
@@ -549,7 +574,7 @@ sap.ui.define([
 			}];
 
 			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "Update", this.getResourceBundle(), this.employees, this.getView()
-				.getModel(),oEvent.getSource().getBindingContext().getPath());
+				.getModel(), oEvent.getSource().getBindingContext().getPath());
 
 			this.getView().setModel(oModel.AddTime, "AddTime");
 			this.getView().setModel(oModel.projectSearch, "projectSearch");
@@ -566,25 +591,24 @@ sap.ui.define([
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
 			//oView.byId('EmpDayInfo').bindElement(urlStr);
-			
+
 			MessageBox.confirm(
-			that.getResourceBundle().getText("confirmDeleteMsg"), 
-			{
-				title: that.getResourceBundle().getText("deletecnfm"),
-				onClose: function fnCallbackConfirm(oAction) {
-					if (oAction==='OK') {
-						that.getView().getModel().remove(binding, {
-							success: function() {
-								that.getView().getModel().read(contextPath);
-								that.update = true;
-								MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
-							}
-						});		
-					} else {
-						return;
+				that.getResourceBundle().getText("confirmDeleteMsg"), {
+					title: that.getResourceBundle().getText("deletecnfm"),
+					onClose: function fnCallbackConfirm(oAction) {
+						if (oAction === 'OK') {
+							that.getView().getModel().remove(binding, {
+								success: function() {
+									that.getView().getModel().read(contextPath);
+									that.update = true;
+									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+								}
+							});
+						} else {
+							return;
+						}
 					}
-				}
-			});
+				});
 		},
 
 		//// **SearchProject Fragment Event** ///////
@@ -709,8 +733,8 @@ sap.ui.define([
 		onAllowanceIndicator: function(oEvent) {
 			fragment.AddUpdatetime_onAllowanceIndicator(oEvent);
 		},
-		onAbsenceCatChange : function (oEvent) {
-			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'),this.getView());
+		onAbsenceCatChange: function(oEvent) {
+			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'), this.getView());
 		},
 		handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);

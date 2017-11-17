@@ -51,6 +51,9 @@ sap.ui.define([
 		onUpdateStart: function(oEvent) {
 			this.byId("table").setBusy(true);
 		},
+		handleTeamLoadItems: function(oEvent) {
+			oEvent.getSource().getBinding("items").resume();
+		},
 		onUpdateFinished: function(oEvent) {
 			// update the worklist's object counter after the table update
 			this.byId("table").setBusy(false);
@@ -176,7 +179,8 @@ sap.ui.define([
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
 				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
-				new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter)
+				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
 			if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
 				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
