@@ -161,6 +161,11 @@ sap.ui.define([
 								if (data.results[k].PersoValue === 'TIME')
 								userPreferenceModel.setProperty('/durationFlag', true);
 								break;
+							case 'SIGN' :
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/signatureRequired', true);
+								break;
+								
 
 						}
 					}
