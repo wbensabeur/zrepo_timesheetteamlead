@@ -330,7 +330,9 @@ sap.ui.define([
 		_applyFilters: function() {
 			var oTable = this.byId("table");
 			var Filters = [
-				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU)
+				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
+				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
 			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
