@@ -105,7 +105,7 @@ sap.ui.define([
 			var that = this;
 			odataModel.read('/PersonalizationSet', {
 				async: false,
-				filters: [new Filter("ApplicationName", FilterOperator.EQ, 'TEAMLEAD')],
+				filters: [new Filter("ApplicationName", FilterOperator.EQ, userPreferenceModel.getProperty('/application'))],
 				success: function(data) {
 					var results = data.results;
 					for (var k = 0; k < results.length; k++) {

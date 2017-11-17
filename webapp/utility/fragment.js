@@ -1123,6 +1123,7 @@ this.warning = false;
 			/// Get Item Data from view for Daily hour
 			//ctype.setBusy(true);
 			rButton.setEnabled(false);
+			
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
 
@@ -1528,7 +1529,8 @@ this.warning = false;
 								"MealIndicator": workDayItems[i].MealIndicator,
 								"JourneyIndicator": workDayItems[i].JourneyIndicator,
 								"TransportIndicator": workDayItems[i].TransportIndicator,
-								"ApplicationName": "TEAMLEAD"
+								"ApplicationName": oView.getModel('userPreference').getProperty("/application"),
+								"ApplicationVersion":oView.getModel('userPreference').getProperty("/applicationVersion")
 							};
 							data.NavWorkDayTimeItems.push(item);
 						}

@@ -1,16 +1,16 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
-	<ViewSettingsDialog confirm="handleAdvanceSearch"   >
+	<ViewSettingsDialog confirm="handleAdvanceSearch"  filterDetailPageOpened="filterTabOpened" >
 		
 		<filterItems>
-			<ViewSettingsFilterItem text="{i18n>businessUnit}"
-				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BU1'}]}"
+			<ViewSettingsFilterItem id="BUFilter" text="{i18n>businessUnit}"
+				items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU1'}]}"
 				multiSelect="false" key="BusinessUnit">
 				<items>
 					<ViewSettingsItem text="{FieldDescription}" key="{FieldValue}" selected="{path: 'FieldValue', formatter:'.formatter.buFilterSelected'}"/>
 				</items>
 			</ViewSettingsFilterItem >
-			<ViewSettingsFilterItem text="{i18n>tablleColTitleTeam}"
-				items="{path:'/TeamSet', filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
+			<ViewSettingsFilterItem id="TeamFilter" text="{i18n>tablleColTitleTeam}"
+				items="{path:'/TeamSet', suspended: true }"
 				multiSelect="false" key="Team">
 				<items>
 					<ViewSettingsItem text="{TeamName}" key="{TeamId}" selected="{path: 'TeamId', formatter:'.formatter.teamFilterSelected'}"/>

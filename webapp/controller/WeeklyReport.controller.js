@@ -129,7 +129,7 @@ sap.ui.define([
 			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'and%20Status%20ne%20'R'%20and%20WorkDate%20gt%20" +
 				datetime.getODataDateFilter(
 					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
-					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "&$orderby=ProjectID,EntryType";
+					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) +"and%20ApplicationName%20eq%20%27"+this.userPref.application+"%27%20and%20ApplicationVersion%20eq%20%27"+this.userPref.applicationVersion+"%27&$orderby=ProjectID,EntryType";
 			var mParameters = {
 				urlParameters: urlFilterParam,
 				success: function(oData, oResponse) {

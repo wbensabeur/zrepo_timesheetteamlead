@@ -76,18 +76,16 @@ sap.ui.define([
 			// only update the counter if the length is final and
 			// the table is not empty
 			if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
-				if(this.userPref.teamName === null) {
-				sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
-				}
-				else {
-					sTitle = "(" + iTotalItems + ") " + this.userPref.teamName; 
+				if (this.userPref.teamName === null) {
+					sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
+				} else {
+					sTitle = "(" + iTotalItems + ") " + this.userPref.teamName;
 				}
 			} else {
-				if(this.userPref.teamName === null) {
-				sTitle = this.getResourceBundle().getText("worklistTableTitle");
-				}
-				else {
-					sTitle = this.userPref.teamName ;
+				if (this.userPref.teamName === null) {
+					sTitle = this.getResourceBundle().getText("worklistTableTitle");
+				} else {
+					sTitle = this.userPref.teamName;
 				}
 			}
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
@@ -125,6 +123,9 @@ sap.ui.define([
 			/*var col1 = oTable.getColumns()[0].getWidth();
 			alert(col1);*/
 
+		},
+		handleTeamLoadItems: function(oEvent) {
+			oEvent.getSource().getBinding("items").resume();
 		},
 		OnHourPress: function(oEvent) {
 			var button = oEvent.getSource();
@@ -209,7 +210,7 @@ sap.ui.define([
 						if (index === -1) {
 							var data = {
 								employee: empId,
-								employeeName : empName,
+								employeeName: empName,
 								Days: [sDay]
 							};
 							this.employees.push(data);
@@ -272,7 +273,7 @@ sap.ui.define([
 		},
 		OnEmployeePress: function(oEvent) {
 			var empBox = oEvent.getSource();
-			var empId = empBox.data('employee') ; //.getCustomData()[1].getValue();
+			var empId = empBox.data('employee'); //.getCustomData()[1].getValue();
 			var empName = empBox.data('employeeName');
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
@@ -377,7 +378,8 @@ sap.ui.define([
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
 				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
-				new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter)
+				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
 			if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
 				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
@@ -412,7 +414,9 @@ sap.ui.define([
 		storeAllEmployee: function() {
 			if (this.allEmps === null) {
 				var Filters = [new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
-					new Filter("IsTimeEntryEnable", FilterOperator.EQ, true)
+					new Filter("IsTimeEntryEnable", FilterOperator.EQ, true),
+					new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+					new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 				];
 
 				if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
@@ -440,11 +444,11 @@ sap.ui.define([
 
 			this.getRouter().navTo("home", {}, true);
 		},
-		OnTableTeamChange : function(oEvent) {
+		OnTableTeamChange: function(oEvent) {
 			var oItem = oEvent.getParameter('selectedItem');
 			this.userPref.teamFilter = oItem.getKey();
-			this.userPref.teamName = oItem.getText(); 
-			
+			this.userPref.teamName = oItem.getText();
+
 			this._applyFilters();
 		},
 		/**
