@@ -56,11 +56,11 @@
 												
 									</items>
 								</IconTabBar>-->
-								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" text="Repas" class="AllwanceButton sapUiLargeMarginBegin" width="7rem"
+								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" text="{i18n>meal}" class="AllwanceButton sapUiLargeMarginBegin" width="7rem"
 									press="onAllowanceIndicator" pressed="{MealIndicator}"/>
-								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://shipping-status" text="Transport" class="AllwanceButton" width="7rem"
+								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://shipping-status" text="{i18n>transport}" class="AllwanceButton" width="7rem"
 									press="onAllowanceIndicator" pressed="{TransportIndicator}"/>
-								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" text="Trajet" class="AllwanceButton"
+								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" text="{i18n>journey}" class="AllwanceButton"
 									press="onAllowanceIndicator" pressed="{JourneyIndicator}"/>
 								<!--</items>
 								</SegmentedButton>-->
