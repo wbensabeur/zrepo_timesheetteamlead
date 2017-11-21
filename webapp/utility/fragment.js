@@ -859,22 +859,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 				this.warning = false;
 				this.currentView = 'hours';
-				odata = {
-					totalhrs: 0,
-					visibleHrs: userPrefModel.getProperty('/defaultHours'),
-					visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
-					visibleKM: userPrefModel.getProperty('/defaultKM'),
-					visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
-					//visibleAbsence: true,
-					visibleAbsence1: true,
-					visibleAbsence2: false,
-					visibleAbsence3: false,
-					visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
-					visibleSummary: false,
-					visibleProjectOptional: false,
-					newTime: true,
-					duration: true //userPrefModel.getProperty('/durationFlag')
-				};
+				
 
 				footerData = {
 					MainNewScreen: true,
@@ -886,20 +871,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else if (type === 'Update') {
 
 				odata = {
-					totalhrs: 0,
 					visibleHrs: false,
 					visibleDailyAllow: false,
 					visibleKM: false,
-					visibleAbsence: false,
-					//visibleAbsence: true,
-					visibleAbsence1: true,
-					visibleAbsence2: false,
-					visibleAbsence3: false,
-					visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
-					visibleSummary: false,
-					visibleProjectOptional: false,
-					newTime: false,
-					duration: true //userPrefModel.getProperty('/durationFlag')
+					visibleAbsence: false
+					
 				};
 				footerData = {
 					MainNewScreen: false,
