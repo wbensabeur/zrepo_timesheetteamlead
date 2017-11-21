@@ -1,20 +1,26 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<HBox class="sapUiSmallMarginTop" alignItems="Start" justifyContent="SpaceBetween">
-		<HBox>
-			<Label text="{i18n>from}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
-			<TimePicker valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="{i18n>startTime}" change="OnChangeStartTimeKM"/>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="com.vinci.timesheet.admin.utility">
+	<VBox>
+		<Label text="{i18n>SelectHours}" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"/>
+		<Label text="Select from and to time" visible="{AddTime>/duration}"/>
+		<HBox class="sapUiSmallMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+			<custom:StepInputCustom class="customStep sapUiSmallMarginBegin" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"
+				displayValuePrecision="2" value="{Hours}" width="9rem" min="0.00" max="24.00" step="0.5" change="OnChangeKMHours"/>
+			<TimePicker visible='{AddTime>/duration}' class="sapUiSmallMarginBegin" valueFormat="HH:mm" displayFormat="HH:mm" value="{StartTime}"
+				placeholder="{i18n>startTime}" change="OnChangeStartTimeKM"/>
+			<TimePicker visible='{AddTime>/duration}' class="sapUiSmallMarginBegin" enabled="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" valueFormat="HH:mm" displayFormat="HH:mm" value="{EndTime}"
+				placeholder="{i18n>endTime}" change="OnChangeEndTimeKM"/>
+			<Input type="Number" class="sapUiSmallMarginBegin" value="{KMNumber}" placeholder="{i18n>noOfKM}" width="10rem"/>
+			<ComboBox placeholder="{i18n>kmType}"
+				items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'KM'}]}"
+				selectedKey="{EntryTypeCatId}" loadItems="handleKMTypeLoadItems" class="SelectCombo sapUiSmallMarginBegin">
+				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</ComboBox>
 		</HBox>
-		<HBox>
-			<Label text="{i18n>to}" class="sapUiSmallMarginTop sapUiTinyMarginEnd"/>
-			<TimePicker enabled="false" valueFormat="HH:mm a" displayFormat="HH:mm a" placeholder="{i18n>endTime}" change="OnChangeEndTimeKM"/>
-		</HBox>
-		<Input type="Number" placeholder="{i18n>noOfKM}" width="10rem"/>
-		<ComboBox placeholder="{i18n>kmType}"
-			items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'KM'}]}" loadItems="handleKMTypeLoadItems" class="SelectCombo">
-			<core:Item key="{FieldValue}" text="{FieldDescription}"/>
-			<layoutData>
-				<FlexItemData growFactor="1"/>
-			</layoutData>
-		</ComboBox>
-	</HBox>
+		<customData>
+			<core:CustomData key="hrs" value="{Hours}"/>
+		</customData>
+	</VBox>
 </core:FragmentDefinition>

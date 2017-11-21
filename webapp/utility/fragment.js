@@ -63,9 +63,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.getItems()[1].setVisible(false);
 			//	hideContainer.setVisible(true);
 			fragmentObject.destroy(true);
-
+			if(this.type === 'Update') {
+				this.footerModel.setProperty("/MainNewScreen", false);
+			this.footerModel.setProperty("/MainUpdateScreen", true);	
+			}else {
 			this.footerModel.setProperty("/MainNewScreen", true);
 			this.footerModel.setProperty("/MainUpdateScreen", false);
+			}
 			this.footerModel.setProperty("/MainPreviousScreen", false);
 			this.footerModel.setProperty("/ProjectScreen", false);
 
@@ -513,6 +517,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return parent;
 		},
+		AddKMTime__getOwnFrameObject: function(source) {
+			var parent = source.getParent();
+
+			while (parent.getCustomData().length === 0) {
+				parent = parent.getParent();
+			}
+			return parent;
+		},
 		AddProjectTime_handleDailyHrsTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
@@ -548,9 +560,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddKM_handleKMTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
-
-		AddKM_OnChangeStartTimeKM: function(oEvent) {
+		AddKM_OnChangeKMHours: function(oEvent) {
 			var source = oEvent.getSource();
+			this.warning = true;
+			var sourcePanel = this.AddKMTime__getOwnFrameObject(source);
+			var newValue = oEvent.getParameter("value");
+			sourcePanel.getCustomData()[0].setValue(newValue);
+
+		},
+		AddKM_OnChangeStartTimeKM: function(oEvent) {
+			/*var source = oEvent.getSource();
 			this.warning = true;
 			var endTimer = source.getParent().getParent().getItems()[1].getItems()[1];
 			endTimer.setEnabled(true);
@@ -565,11 +584,41 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				return;
 			}
 			source.setValueState("None");
+			endTimer.setValueState("None");*/
+			
+			
+			////
+			var source = oEvent.getSource();
+			this.warning = true;
+			var endTimer = source.getParent().getItems()[2];
+			endTimer.setEnabled(true);
+			var diffTime = 0;
+
+			if (endTimer.getValue() !== null && endTimer.getValue().length > 0) {
+				diffTime = datetime.timeToMilliSec(endTimer.getValue()) - datetime.timeToMilliSec(oEvent.getParameter("value"));
+			}
+			if (diffTime < 0) {
+				source.setValueState("Error");
+				this.Common_raiseinputError(source, this.i18nModel.getText("timeValidationErrorMsg"));
+				return;
+			}
+			source.setValueState("None");
 			endTimer.setValueState("None");
+			var dDate = new Date(diffTime);
+			var min = dDate.getUTCMinutes();
+			if (min < 10) {
+				min = '0' + min;
+			}
+			var duration = dDate.getUTCHours() + ":" + min;
+
+			var newValue = datetime.timeToDecimal(duration);
+			var sourcePanel = this.AddKMTime__getOwnFrameObject(source);
+			sourcePanel.getCustomData()[0].setValue(newValue);
+			source.setDateValue(new Date(datetime.timeToMilliSec(oEvent.getParameter("value"))));
 
 		},
 		AddKM_OnChangeEndTimeKM: function(oEvent) {
-			this.warning = true;
+			/*this.warning = true;
 			var source = oEvent.getSource();
 			var startTimer = source.getParent().getParent().getItems()[0].getItems()[1];
 
@@ -581,7 +630,30 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				return;
 			}
 			source.setValueState("None");
+			startTimer.setValueState("None");*/
+			/////
+			var source = oEvent.getSource();
+			var startTimer = source.getParent().getItems()[1];
+			this.warning = true;
+			//	var milliSecond = datetime.timeToMilliSec(oEvent.getParameter("value"));
+			var diffTime = datetime.timeToMilliSec(oEvent.getParameter("value")) - datetime.timeToMilliSec(startTimer.getValue());
+			if (diffTime < 0) {
+				source.setValueState("Error");
+				this.Common_raiseinputError(source, this.i18nModel.getText("timeValidationErrorMsg"));
+				return;
+			}
+			source.setValueState("None");
 			startTimer.setValueState("None");
+			var dDate = new Date(diffTime);
+			var min = dDate.getUTCMinutes();
+			if (min < 10) {
+				min = '0' + min;
+			}
+			var duration = dDate.getUTCHours() + ":" + min;
+			var newValue = datetime.timeToDecimal(duration);
+			var sourcePanel = this.AddKMTime__getOwnFrameObject(source);
+			sourcePanel.getCustomData()[0].setValue(newValue);
+			source.setDateValue(new Date(datetime.timeToMilliSec(oEvent.getParameter("value"))));
 
 		},
 		AddUpdatetime_onSelectAbsenceStartDate: function(oEvent, view) {
@@ -747,7 +819,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 		//////**Add Update Time** ////
 		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel, updateKeyPath) {
-
+			this.type  = type;
 			var userPrefModel = controler.getModel('userPreference');
 			var odata = {
 				totalhrs: 0,
@@ -770,7 +842,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
 			var odata;
 			var footerData;
-this.warning = false;
+			this.warning = false;
 			this.currentView = 'hours';
 			//this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
 			var items = container.getItems();
@@ -801,7 +873,7 @@ this.warning = false;
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					newTime: true,
-					duration: userPrefModel.getProperty('/durationFlag')
+					duration: true //userPrefModel.getProperty('/durationFlag')
 				};
 
 				footerData = {
@@ -827,7 +899,7 @@ this.warning = false;
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					newTime: false,
-					duration: userPrefModel.getProperty('/durationFlag')
+					duration: true //userPrefModel.getProperty('/durationFlag')
 				};
 				footerData = {
 					MainNewScreen: false,
@@ -847,7 +919,7 @@ this.warning = false;
 						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
 
 						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[1];
-						var projectContext = "/ProjectSet('" + odataModel.getProperty(updateKeyPath).ProjectID + "')";
+						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='')";
 						projectView.bindElement(projectContext);
 
 						buttons[0].setEnabled(true);
@@ -861,12 +933,20 @@ this.warning = false;
 						controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
 
 						var projectView = controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1];
-						var projectContext = "/ProjectSet('" + odataModel.getProperty(updateKeyPath).ProjectID + "')";
+						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='')";
 						projectView.bindElement(projectContext);
 
 						break;
 					case 'KM':
 						odata.visibleKM = true;
+						controler.getView().byId('addKM').getItems()[0].getItems()[2].getItems()[2].getItems()[4].getBinding("items").resume();
+
+						var projectView = controler.getView().byId('addKM').getItems()[0].getItems()[1];
+						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='')";
+						projectView.bindElement(projectContext);
+
+						controler.getView().byId('addKM').getItems()[0].getItems()[3].setVisible(false);
+
 						break;
 					case 'ABSENCE':
 						odata.visibleAbsence = true;
@@ -1099,6 +1179,28 @@ this.warning = false;
 					"TransportIndicator": travel
 
 				};
+			} else if (selectedTab === 'KM') {
+				var kmtab = oView.byId('addKM').getItems()[0].getItems()[2];
+				var startTime = '000000';
+				var endTime = '000000';
+				if (this.AddUpdatetimeModel.getData().duration) {
+					startTime = kmtab.getItems()[2].getItems()[1].getValue();
+					endTime = kmtab.getItems()[2].getItems()[2].getValue();
+				}
+				var KMNumber = kmtab.getItems()[2].getItems()[3].getValue();
+				var kmhrType = kmtab.getItems()[2].getItems()[4].getSelectedKey();
+				var kmprojectBindingPath = oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].getBindingContext().getPath();
+				var kmprojectID = oView.getModel().getProperty(kmprojectBindingPath).ProjectId;
+
+				workDayItem = {
+					"ProjectID": kmprojectID,
+					"Hours": kmtab.data('hrs').toString(),
+					"EntryTypeCatId": kmhrType,
+					"KMNumber": KMNumber,
+					"StartTime": startTime,
+					"EndTime": endTime
+				};
+
 			}
 
 			///Update Model
@@ -1123,14 +1225,14 @@ this.warning = false;
 			/// Get Item Data from view for Daily hour
 			//ctype.setBusy(true);
 			rButton.setEnabled(false);
-			
+
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
 
 			var data = {
 				"EmployeeId": this.employees[0].employee,
 				"WorkDate": this.employees[0].Days[0],
-				"ApplicationName" : oView.getModel('userPreference').getProperty("/application"),
+				"ApplicationName": oView.getModel('userPreference').getProperty("/application"),
 				"Status": null,
 				"NavWorkDayTimeItems": []
 			};
@@ -1379,29 +1481,43 @@ this.warning = false;
 					/// Get Item Data from view for KM Hours
 					var kmtab = oView.byId('addKM').getItems()[0].getItems();
 					for (var km = 2; km < kmtab.length; km++) {
+						var startTime = '000000';
+						var endTime = '000000';
 						try {
 							var kmprojectID = undefined;
 							var kmhrType = undefined;
+
+							if (this.AddUpdatetimeModel.getData().duration) {
+								startTime = kmtab[km].getItems()[2].getItems()[1].getValue();
+								endTime = kmtab[km].getItems()[2].getItems()[2].getValue();
+							}
+
+							//	var StartTime = kmtab[km].getItems()[0].getItems()[1].getValue();
+							//	var EndTime = kmtab[km].getItems()[1].getItems()[1].getValue();
+							var KMNumber = kmtab[km].getItems()[2].getItems()[3].getValue();
+							kmhrType = kmtab[km].getItems()[2].getItems()[4].getSelectedKey();
 							var kmprojectBindingPath = oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].getBindingContext().getPath();
-							var StartTime = kmtab[km].getItems()[0].getItems()[1].getValue();
-							var EndTime = kmtab[km].getItems()[1].getItems()[1].getValue();
-							var KMNumber = kmtab[km].getItems()[2].getValue();
-							kmhrType = kmtab[km].getItems()[3].getSelectedKey();
 							kmprojectID = oView.getModel().getProperty(kmprojectBindingPath).ProjectId;
 							if ((kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) &&
 								(kmhrType === "" || kmhrType === undefined || kmhrType === null) &&
-								(StartTime === "" || StartTime === undefined || StartTime === null) &&
-								(EndTime === "" || EndTime === undefined || EndTime === null) &&
+								(startTime === "" || startTime === undefined || startTime === null) &&
+								(endTime === "" || endTime === undefined || endTime === null) &&
 								(KMNumber === "" || KMNumber === undefined || KMNumber === null)) {
 								continue;
 							} else if (kmprojectID === "" || kmprojectID === undefined || kmprojectID === null) {
 								//MessageBox.alert("Project is not selected");
+								if (km === 3) {
+									continue;
+								}
 								MessageBox.alert(this.i18nModel.getText("projectIsNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;
 							} else if (kmhrType === "" || kmhrType === undefined || kmhrType === null) {
 								//MessageBox.alert("Kilometer Type is not selected");
+								if (km === 3) {
+									continue;
+								}
 								MessageBox.alert(this.i18nModel.getText("kmTypeIsNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
@@ -1413,6 +1529,9 @@ this.warning = false;
 								continue;
 							} else {
 								//MessageBox.alert("All Items are not selected");
+								if (km === 3) {
+									continue;
+								}
 								MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
@@ -1422,11 +1541,11 @@ this.warning = false;
 						workDayItem = {
 							"ProjectID": kmprojectID,
 							"EntryType": "KM",
-							"Hours": "",
+							"Hours": kmtab[km].data('hrs').toString(),
 							"EntryTypeCatId": kmhrType,
 							"KMNumber": KMNumber,
-							"StartTime": StartTime,
-							"EndTime": EndTime,
+							"StartTime": startTime,
+							"EndTime": endTime,
 							"FullDay": false,
 							"ZoneType": "",
 							"ZoneName": "",
@@ -1531,7 +1650,7 @@ this.warning = false;
 								"JourneyIndicator": workDayItems[i].JourneyIndicator,
 								"TransportIndicator": workDayItems[i].TransportIndicator,
 								"ApplicationName": oView.getModel('userPreference').getProperty("/application"),
-								"ApplicationVersion":oView.getModel('userPreference').getProperty("/applicationVersion")
+								"ApplicationVersion": oView.getModel('userPreference').getProperty("/applicationVersion")
 							};
 							data.NavWorkDayTimeItems.push(item);
 						}
