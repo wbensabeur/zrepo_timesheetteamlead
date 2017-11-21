@@ -749,6 +749,9 @@ sap.ui.define([
 		OnChangeStartTimeKM: function(oEvent) {
 			fragment.AddKM_OnChangeStartTimeKM(oEvent);
 		},
+		OnChangeKMHours: function(oEvent) {
+			fragment.AddKM_OnChangeKMHours(oEvent);
+		},
 		OnChangeEndTimeKM: function(oEvent) {
 			fragment.AddKM_OnChangeEndTimeKM(oEvent);
 		},
