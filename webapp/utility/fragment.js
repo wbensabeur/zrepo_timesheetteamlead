@@ -1130,6 +1130,7 @@ this.warning = false;
 			var data = {
 				"EmployeeId": this.employees[0].employee,
 				"WorkDate": this.employees[0].Days[0],
+				"ApplicationName" : oView.getModel('userPreference').getProperty("/application"),
 				"Status": null,
 				"NavWorkDayTimeItems": []
 			};
