@@ -243,9 +243,10 @@ sap.ui.define([
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];*/
 			
-			oDialog.bindElement("/EmployeeSet('" + this.currentEmp + "')");
+			oDialog.bindElement("/EmployeeSet(EmployeeId='" + this.currentEmp +"'," + "ApplicationName='" + this.userPref.application + "')");
 
-			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
+			//var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
+			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate)+ "," + "ApplicationName='" + this.userPref.application + "')";
 			oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			oView.byId('EmpDayInfo').bindElement(urlStr);

@@ -309,6 +309,7 @@ sap.ui.define([
 
 			var requestBody = {
 				"EmployeeId": this.employeId,
+				"ApplicationName" : this.userPref.application,
 				"WorkDate": new Date(),
 				"Status": "RELEASE",
 				"NavWorkDayTimeItems": []
@@ -348,7 +349,7 @@ sap.ui.define([
 					MealIndicator: listWKDidLocalItemData.MealIndicator,
 					JourneyIndicator: listWKDidLocalItemData.JourneyIndicator,
 					TransportIndicator: listWKDidLocalItemData.TransportIndicator,
-					ApplicationName: 'TEAMLEAD'
+					ApplicationName: this.userPref.application
 				};
 				requestBody.NavWorkDayTimeItems.push(locatData);
 				//	}

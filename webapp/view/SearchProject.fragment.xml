@@ -17,7 +17,7 @@
 				</layoutData>
 			</ComboBox>
 			<SearchField placeholder="{i18n>searchProject}" enableSuggestions="true" search="onProjectDescriptionSearch"
-				suggest="onProjectDescriptionSuggest" suggestionItems="{ path: '/ProjectSet', length: 5, sorter: { path: 'ProjectDescription' } }">
+				suggest="onProjectDescriptionSuggest" suggestionItems="{ path: '/ProjectSet' , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'}], length: 5, sorter: { path: 'ProjectDescription' } }">
 				<suggestionItems>
 					<SuggestionItem text="{ProjectDescription}" description="{ProjectId}" key="{ProjectId}"/>
 				</suggestionItems>
@@ -53,7 +53,7 @@
 			</ComboBox>-->
 		</HBox>
 		<Label class="sapUiTinyMarginBottom" text="{projectSearch>/worklistTableTitle}" design="Bold"/>
-		<Table items="{ path: '/ProjectSet' }" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" modeAnimationOn="false"
+		<Table items="{ path: '/ProjectSet' , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'}] }" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" modeAnimationOn="false"
 			updateFinished="onProjectSearchFinished" growingThreshold="10" selectionChange="OnProjectSelected">
 			<columns>
 				<Column width="auto" hAlign="Center">
