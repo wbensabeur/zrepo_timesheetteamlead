@@ -357,7 +357,6 @@ sap.ui.define([
 				this.userPref.teamName = null;
 			}
 			this._applyFilters();
-			this.getView().getDependents()[1].destroy();
 		},
 		onPastPeriodNavPress: function(oEvent) {
 			if (this.twoWeek) {

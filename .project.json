@@ -14,7 +14,11 @@
       "test.html"
     ],
     "buildRequired": true,
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
     "lastBuildDateTime": "Thu, 16 Nov 2017 06:43:06 GMT"
+=======
+    "lastBuildDateTime": "Thu, 23 Nov 2017 13:16:17 GMT"
+>>>>>>> 7a46c02 For Filter Error Resolution on Week Summary: Added id to dialog
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -413,11 +417,16 @@
   },
   "hcpdeploy": {
     "account": "ac205f4c8",
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
     "name": "timesheetadminrct",
     "lastVersionWeTriedToDeploy": "2.0.1"
   },
   "deploy": {
     "destination": "vesidgwci_pva",
     "name": "ZTS_TL_WA_TEMP"
+=======
+    "name": "teamleadtimesheet",
+    "lastVersionWeTriedToDeploy": "2.0.11"
+>>>>>>> 7a46c02 For Filter Error Resolution on Week Summary: Added id to dialog
   }
 }
