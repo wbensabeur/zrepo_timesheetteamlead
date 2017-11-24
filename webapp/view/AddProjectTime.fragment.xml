@@ -32,7 +32,7 @@
 		</VBox>
 		<VBox class="sapUiSmallMarginBottom" visible="false">
 			<Label text="{i18n>SelectHours}" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"/>
-			<Label text="Select from and to time" visible="{AddTime>/duration}"/>
+			<Label text="Select from and to time" visible="false"/>
 			<HBox alignItems="Start" justifyContent="SpaceBetween">
 				<!--<TimePicker visible='{AddTime>/duration}' value="00:00" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Enter Number of Hours and Minutes" change="OnChangeHours"/>-->
 				<custom:StepInputCustom class="customStep" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}" displayValuePrecision="2"  value="{Hours}" width="9rem" min="0.00" max="24.00" step="0.5" change="OnChangeHours"/>

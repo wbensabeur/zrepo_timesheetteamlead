@@ -76,6 +76,7 @@
 			<ScrollContainer id="TableScroll" width="auto" height="100%" vertical="true" horizontal="false" focusable="true">
 				<content>
 <<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
+<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true  }" columns="{ path: 'calendar>/data' }"
 				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
 				updateFinished="onUpdateFinished"  growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin whiteColoumCell"
@@ -85,6 +86,10 @@
 						<!--<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
 =======
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true }"
+=======
+				<!--	, ,parameters: { 'select':'EmployeeId,EmployeeName,WeekTotalTargetHours,WeekTotalHours,WeekTotalAllowances,WeekTotalKms,isEntryEnabled,WeekStatus,WeekDate1Date,WeekDate1TargetHours,WeekDate1Hours,WeekDate1Status,WeekDate2Date,WeekDate2TargetHours,WeekDate2Hours,WeekDate2Status,WeekDate3Date,WeekDate3TargetHours,WeekDate3Hours,WeekDate3Status,WeekDate4Date,WeekDate4TargetHours,WeekDate4Hours,WeekDate4Status,WeekDate5Date,WeekDate5TargetHours,WeekDate5Hours,WeekDate5Status,WeekDate6Date,WeekDate6TargetHours,WeekDate6Hours,WeekDate6Status,WeekDate7Date,WeekDate7TargetHours,WeekDate7Hours,WeekDate7Status,NotEditable'}-->
+					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true  }"
+>>>>>>> ad45616 Issue # 18 Remove "select from and to time" text hardcoded
 						columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
 						growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="15" showSeparators="None" inset="false"
 						class="employeeListTable sapUiSmallMarginBegin" updateStarted="onUpdateStart">
