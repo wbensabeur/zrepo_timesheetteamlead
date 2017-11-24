@@ -336,7 +336,7 @@ sap.ui.define([
 						var oData = {
 							PersoValue: oItem.getKey()
 						};
-						var url = "/PersonalizationSet(ApplicationName='" + this.userPref.application + "',UserId='" + that.getView().getModel("userPreference").getProperty(
+						var url = "/PersonalizationSet(ApplicationName='" + that.userPref.application + "',UserId='" + that.getView().getModel("userPreference").getProperty(
 							"/userID") + "',PersoId='BU')";
 						that.getView().getModel().update(url, oData);
 					} else if (oItem.getParent().getProperty("key") === 'Team') {

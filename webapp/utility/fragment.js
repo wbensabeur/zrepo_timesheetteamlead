@@ -840,7 +840,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
-			var odata;
+			
 			var footerData;
 			this.warning = false;
 			this.currentView = 'hours';
@@ -870,13 +870,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			} else if (type === 'Update') {
 
-				odata = {
-					visibleHrs: false,
-					visibleDailyAllow: false,
-					visibleKM: false,
-					visibleAbsence: false
+				
+				odata.newTime = false;
+				odata.visibleHrs = false;
+				odata.visibleDailyAllow = false;
+				odata.visibleKM = false;
+				odata.visibleAbsence = false;
 					
-				};
+				
 				footerData = {
 					MainNewScreen: false,
 					MainUpdateScreen: true,
