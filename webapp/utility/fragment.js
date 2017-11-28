@@ -1431,11 +1431,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							rButton.setEnabled(true);
 							return;
 						}
-
+						var localHours = tab[k].getCustomData()[0].getValue();
+						if(localHours !== null && localHours !== undefined) {
+							var localHoursText = localHours.toString();
+						} else {
+							localHoursText = localHours;
+						}
 						var workDayItem = {
 							"ProjectID": projectID,
 							"EntryType": "HOURS",
-							"Hours": tab[k].getCustomData()[0].getValue().toString(),
+							"Hours": localHoursText,
 							"EntryTypeCatId": hrType,
 							"StartTime": startTime,
 							"EndTime": endTime,
