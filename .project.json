@@ -13,49 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
-<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
-<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
     "buildRequired": true,
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
-    "lastBuildDateTime": "Thu, 16 Nov 2017 06:43:06 GMT"
-=======
-=======
-<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
->>>>>>> 0686bf9 Fiori launchpad issue fixed 
     "lastBuildDateTime": "Thu, 23 Nov 2017 13:16:17 GMT"
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
->>>>>>> 7a46c02 For Filter Error Resolution on Week Summary: Added id to dialog
-=======
-=======
-    "lastBuildDateTime": "Fri, 10 Nov 2017 12:29:01 GMT"
->>>>>>> c6aab81 Fiori launchpad issue fixed 
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
->>>>>>> 0686bf9 Fiori launchpad issue fixed 
-=======
-=======
-    "buildRequired": false,
-=======
-    "buildRequired": true,
->>>>>>> 814d1a2 White Background Issue
-    "lastBuildDateTime": "Tue, 14 Nov 2017 15:20:32 GMT"
->>>>>>> 94dd11a delployment Changes
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
->>>>>>> cc1f403 delployment Changes
-=======
-=======
-    "buildRequired": false,
-<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
-    "lastBuildDateTime": "Thu, 16 Nov 2017 04:58:54 GMT"
->>>>>>> 54e2230 select hour category issue fixed 
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
->>>>>>> a3b8998 select hour category issue fixed 
-=======
-=======
-    "lastBuildDateTime": "Thu, 16 Nov 2017 06:43:06 GMT"
->>>>>>> f7eea7b Gatewway IE issue with radio buttons fixed
->>>>>>> 4deedcc Gatewway IE issue with radio buttons fixed
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -454,38 +413,11 @@
   },
   "hcpdeploy": {
     "account": "ac205f4c8",
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
-    "name": "timesheetadminrct",
-    "lastVersionWeTriedToDeploy": "2.0.1"
-  },
-  "deploy": {
-    "destination": "vesidgwci_pva",
-    "name": "ZTS_TL_WA_TEMP"
-=======
-=======
-<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
->>>>>>> 0686bf9 Fiori launchpad issue fixed 
     "name": "teamleadtimesheet",
     "lastVersionWeTriedToDeploy": "2.0.11"
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
->>>>>>> 7a46c02 For Filter Error Resolution on Week Summary: Added id to dialog
-=======
-=======
-    "name": "timesheetadminrct",
-    "lastVersionWeTriedToDeploy": "2.0.1"
   },
   "deploy": {
     "destination": "vesidgwci_pva",
-<<<<<<< Upstream, based on 3cf9139abd99475e6d73d9c6d9ad94476b96eeed
-    "name": "Z_TS_TL_TEMP"
->>>>>>> c6aab81 Fiori launchpad issue fixed 
-<<<<<<< Upstream, based on f7eea7bd45c183a7bd4af2bfac8820c79ca8c936
->>>>>>> 0686bf9 Fiori launchpad issue fixed 
-=======
-=======
-    "name": "ZTS_TL_WA_TEMP"
->>>>>>> 94dd11a delployment Changes
->>>>>>> cc1f403 delployment Changes
+    "name": "Z_HR_TS_TL"
   }
 }
