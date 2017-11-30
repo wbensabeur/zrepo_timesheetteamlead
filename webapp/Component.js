@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"com/vinci/timesheet/admin/model/models",
 	"com/vinci/timesheet/admin/utility/datetime",
-	"com/vinci/timesheet/admin/controller/ErrorHandler"
-], function(UIComponent, Device, Filter, FilterOperator, models, datetime, ErrorHandler) {
+	"com/vinci/timesheet/admin/controller/ErrorHandler",
+	"sap/m/MessageBox"
+], function(UIComponent, Device, Filter, FilterOperator, models, datetime, ErrorHandler,MessageBox) {
 	"use strict";
 
 	return UIComponent.extend("com.vinci.timesheet.admin.Component", {
@@ -44,28 +45,82 @@ sap.ui.define([
 
 			//set EmployeeDaySelection Model
 			this.setModel(models.createEmployeeDaySelection(), "employeeDaysSelected");
+			var that = this;
+			if (sap.hybrid !== undefined) {
+				window.console.log("platfrom:" + sap.hybrid.getPlatform());
+				window.console.log("Version:" + window.AppVersion.version);
+				var platformType = sap.hybrid.getPlatform();
+				var appVersion = window.AppVersion.version;
+				if(platformType === undefined)
+				{
+					platformType = 'ios';
+				}
+
+
+				var url = "https://mobile.vinci-energies.net/app-version-middleware/services/isUpToDate/teamlead/" + platformType + "/" +
+					appVersion;
+				window.console.log("URL:" + url);
+
+				jQuery.ajax({
+					url: url,
+					type: "GET",
+					async: false,
+					success: function(data) {
+						if (data.upToDate) {
+							var userPreferenceModel = that.getModel("userPreference");
+							that._updateUserPreference(that.getModel(), userPreferenceModel);
+
+							var userBox = sap.ui.getCore().byId('shellUser');
+
+							that.getModel().read('/TimeAdminSet', {
+								urlParameters: {
+									"$select": "UserId,FullName"
+								},
+								success: function(data) {
+									var results = data.results;
+									var usrName = results[0].FullName;
+									userBox.setUsername(usrName);
+									userPreferenceModel.setProperty('/userID', results[0].UserId);
+									that.getRouter().initialize();
+
+								}
+							});
+						}
+						else {
+							MessageBox.alert(that.getModel("i18n").getResourceBundle().getText("versionIssue", [appVersion]));
+							
+						}
+
+					},
+					error: function(odata) {
+						window.console.log(odata);
+					}
+
+				});
+
+			} else {
+				var userPreferenceModel = that.getModel("userPreference");
+				that._updateUserPreference(that.getModel(), userPreferenceModel);
+
+				var userBox = sap.ui.getCore().byId('shellUser');
+
+				that.getModel().read('/TimeAdminSet', {
+					urlParameters: {
+						"$select": "UserId,FullName"
+					},
+					success: function(data) {
+						var results = data.results;
+						var usrName = results[0].FullName;
+						userBox.setUsername(usrName);
+						userPreferenceModel.setProperty('/userID', results[0].UserId);
+						that.getRouter().initialize();
+
+					}
+				});
+			}
 
 			// create the views based on the url/hash
 			//this.getRouter().initialize(); done under  _updateUserPreference
-			var userPreferenceModel = this.getModel("userPreference");
-			this._updateUserPreference(this.getModel(), userPreferenceModel);
-
-			var userBox = sap.ui.getCore().byId('shellUser');
-			var that = this;
-			this.getModel().read('/TimeAdminSet', {
-					urlParameters:{
-						"$select" :"UserId,FullName"
-					},
-				success: function(data) {
-					var results = data.results;
-					var usrName = results[0].FullName;
-					userBox.setUsername(usrName);
-					userPreferenceModel.setProperty('/userID', results[0].UserId);
-					that.getRouter().initialize();
-
-				}
-			});
-			
 
 		},
 
@@ -159,7 +214,7 @@ sap.ui.define([
 								break;
 							case 'DT':
 								if (data.results[k].PersoValue === 'TIME')
-								userPreferenceModel.setProperty('/durationFlag', true);
+									userPreferenceModel.setProperty('/durationFlag', true);
 								break;
 							case 'SIGNATURE' :
 								if (data.results[k].PersoValue === 'X')

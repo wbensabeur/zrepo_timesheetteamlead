@@ -89,7 +89,7 @@
     "appname": "Mobi Time (Dev)",
     "appid": "com.vinci.ts.teamlead.dev",
     "appdesc": "Vinci team lead application for Timesheet",
-    "appversion": "2.0.1",
+    "appversion": "3.0.0",
     "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
@@ -408,7 +408,14 @@
           "localBuild": true
         }
       },
-      "custom": {}
+      "custom": {
+        "cordova-plugin-appversion": {
+          "selected": true,
+          "registry": "cordova-plugin-appversion",
+          "localBuild": true,
+          "registered": true
+        }
+      }
     }
   },
   "hcpdeploy": {
