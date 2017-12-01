@@ -339,6 +339,8 @@ sap.ui.define([
 						var url = "/PersonalizationSet(ApplicationName='" + that.userPref.application + "',UserId='" + that.getView().getModel("userPreference").getProperty(
 							"/userID") + "',PersoId='BU')";
 						that.getView().getModel().update(url, oData);
+						that.userPref.teamFilter = null;
+						that.userPref.teamName = null;
 					} else if (oItem.getParent().getProperty("key") === 'Team') {
 						that.userPref.teamFilter = oItem.getKey();
 						that.userPref.teamName = oItem.getText();
