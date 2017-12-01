@@ -308,6 +308,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SelectProject_OnProjectDelete: function(oEvent) {
 			var btn = oEvent.getSource();
 			var projectContext = btn.getParent().getItems();
+			btn.getParent().unbindElement();
 			projectContext[0].unbindElement();
 			projectContext[0].setVisible(false);
 			projectContext[1].setVisible(true); // ownIntialButton
@@ -908,10 +909,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					case 'IPD':
 						odata.visibleDailyAllow = true;
 						controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
-
+						if(odataModel.getProperty(updateKeyPath).ProjectID !== "" && odataModel.getProperty(updateKeyPath).ProjectID !== undefined ) {
 						var projectView = controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1];
 						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='')";
 						projectView.bindElement(projectContext);
+						}
+						else {
+							odata.newTime = true;
+							/*newTime
+							var projectview =  controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1].getItems();
+							projectview[0].setVisible(false);
+							projectview[1].setVisible(true);
+							projectview[2].setVisible(false);
+							projectview[3].setVisible(false);*/
+						}
 
 						break;
 					case 'KM':
@@ -1143,6 +1154,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					var allwProject = oView.byId('AllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
 					allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
 				} catch (err) {
+					allwProjectID = "";
+				}
+				if(allwProjectID === null || allwProjectID === undefined)
+				{
 					allwProjectID = "";
 				}
 
