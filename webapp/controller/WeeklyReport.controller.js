@@ -43,6 +43,7 @@ sap.ui.define([
 			//	this.getView().byId("SignatureFrame").setVisible(false);
 			if (this.userPref.signatureRequired) {
 				this.getView().byId("imageSignature").setSrc("");
+				this.srcImg = undefined;
 				this.getView().byId("signBtn").setVisible(true);
 				this.getView().byId("timeSubmitBtn").setVisible(false);
 			}
@@ -85,6 +86,7 @@ sap.ui.define([
 
 			//	this.getView().byId("SignatureFrame").setVisible(false);
 			this.getView().byId("imageSignature").setSrc("");
+			this.srcImg = undefined;
 			//	this.getView().byId("signBtn").setVisible(true);
 			//	this.getView().byId("timeSubmitBtn").setVisible(false);
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
@@ -286,6 +288,7 @@ sap.ui.define([
 			this.dialogPressSignature.close();
 			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
 			this.getView().byId("imageSignature").setSrc(srcImg);
+			this.srcImg = srcImg;
 			//	this.getView().byId("SignatureFrame").setVisible(true);
 			this.getView().byId("signBtn").setVisible(false);
 			this.getView().byId("timeSubmitBtn").setVisible(true);
@@ -403,8 +406,8 @@ sap.ui.define([
 								var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
 									"").replace(
 									".", "").substring(0, 14);
-								var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
-
+								var sFileName = locatdatetime + "_" + that.employeId + "_" + that.userPref.defaultBU + "_" + week + ".pdf";
+								console.log(sFileName);
 								if (that.index === that.noOfEmp - 1) { //Home Page
 									that.getRouter().navTo("home", {}, true);
 									that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
@@ -413,7 +416,9 @@ sap.ui.define([
 									MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 								}
 
-								that.postAttachment(img, sFileName);
+								//that.postAttachment(img, sFileName);
+								var srcImg = that.srcImg;
+								that.postSignAttachment(srcImg, sFileName);
 								//window.open(img);
 							},
 							height: schHeight,
@@ -501,6 +506,53 @@ sap.ui.define([
 				}
 			});
 
-		}
+		},
+		
+		postSignAttachment: function(img, FileName) {
+			var token;
+			var sFileName = FileName;
+			var BASE64_MARKER = "data:image/png;base64,";
+			var base64Index = BASE64_MARKER.length;
+			var imgData = img.substring(base64Index);
+
+			var serviceURL = this.getView().getModel().sServiceUrl + '/';
+
+			jQuery.ajax({
+				url: serviceURL,
+				type: "GET",
+				async: true,
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader("X-CSRF-Token", "Fetch");
+					xhr.setRequestHeader("Content-Type", "image/png");
+					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+				},
+				success: function(data, textStatus, xhrg) {
+					token = xhrg.getResponseHeader("X-CSRF-Token");
+					jQuery.ajaxSetup({
+						cache: false
+					});
+					jQuery.ajax({
+						url: serviceURL + "/DocumentPDFSet",
+						asyn: true,
+						cache: false,
+						data: imgData,
+						type: "POST",
+						beforeSend: function(xhrp) {
+							xhrp.setRequestHeader("X-CSRF-Token", token);
+							xhrp.setRequestHeader("Content-Type", "image/png");
+							xhrp.setRequestHeader("slug", sFileName);
+						},
+						success: function(odata, response) {
+							//sap.m.MessageToast.show("file successfully uploaded");
+						},
+						error: function(odata) {
+							//sap.m.MessageToast.show("file Upload error");
+						}
+					});
+
+				}
+			});
+
+		}		
 	});
 });
