@@ -128,7 +128,7 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
-			this.getView().byId('editPlanning').setEnabled(!(this.getModel().getProperty(oTable.getItems()[0].getBindingContext().getPath()).NotEditable));
+		//	this.getView().byId('editPlanning').setEnabled(!(this.getModel().getProperty(oTable.getItems()[0].getBindingContext().getPath()).NotEditable));
 
 			/*var path = "/ValueHelpSet(ApplicationName='TEAMLEAD',HelpType='BU',FieldValue='" + this.getModel("userPreference").getProperty("/defaultBU") +
 				"')";*/
