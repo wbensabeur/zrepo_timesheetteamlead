@@ -242,11 +242,12 @@ sap.ui.define([
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];*/
-			
-			oDialog.bindElement("/EmployeeSet(EmployeeId='" + this.currentEmp +"'," + "ApplicationName='" + this.userPref.application + "')");
+
+			oDialog.bindElement("/EmployeeSet(EmployeeId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')");
 
 			//var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
-			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate)+ "," + "ApplicationName='" + this.userPref.application + "')";
+			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + "," +
+				"ApplicationName='" + this.userPref.application + "')";
 			oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			oView.byId('EmpDayInfo').bindElement(urlStr);
@@ -312,12 +313,14 @@ sap.ui.define([
 
 			if (oEvent.getParameter('parentFilterItem').getKey() === "BusinessUnit") {
 				var buFilterItem = this.getView().byId('BUFilter');
+				this.BuFilter = true;
 				var filters = [new Filter('ApplicationName', FilterOperator.EQ, this.userPref.application), new Filter('ApplicationVersion',
 					FilterOperator.EQ, this.userPref.applicationVersion)];
 				buFilterItem.getBinding("items").filter(filters);
 				buFilterItem.getBinding("items").resume();
 
 			} else if (oEvent.getParameter('parentFilterItem').getKey() === "Team") {
+				this.BuFilter = false;
 				var teamFilterItem = this.getView().byId('TeamFilter');
 				var filters2 = [new Filter('BusinessUnit', FilterOperator.EQ, this.userPref.defaultBU)];
 				teamFilterItem.getBinding("items").filter(filters2);
@@ -328,22 +331,31 @@ sap.ui.define([
 		handleAdvanceSearch: function(oEvent) {
 			var mParams = oEvent.getParameters();
 			var that = this;
+
 			if (mParams.filterItems.length > 0) {
 				jQuery.each(mParams.filterItems, function(i, oItem) {
 					//var aSplit = oItem.getKey().split(");
 					if (oItem.getParent().getProperty("key") === 'BusinessUnit') {
 						that.userPref.defaultBU = oItem.getKey();
+						that.getModel("userPreference").setProperty("/defaultBUT",oItem.getText());
 						var oData = {
 							PersoValue: oItem.getKey()
 						};
-						var url = "/PersonalizationSet(ApplicationName='" + that.userPref.application + "',UserId='" + that.getView().getModel("userPreference").getProperty(
+						var url = "/PersonalizationSet(ApplicationName='" + that.userPref.application + "',UserId='" + that.getView().getModel(
+							"userPreference").getProperty(
 							"/userID") + "',PersoId='BU')";
 						that.getView().getModel().update(url, oData);
 						that.userPref.teamFilter = null;
 						that.userPref.teamName = null;
 					} else if (oItem.getParent().getProperty("key") === 'Team') {
-						that.userPref.teamFilter = oItem.getKey();
-						that.userPref.teamName = oItem.getText();
+						if (that.BuFilter) {
+							that.userPref.teamFilter = null;
+							that.userPref.teamName = null;
+						} else {
+							that.userPref.teamFilter = oItem.getKey();
+							that.userPref.teamName = oItem.getText();
+
+						}
 
 					}
 					//var sPath1 = oItem.getParent().getProperty("key");
