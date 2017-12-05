@@ -353,12 +353,9 @@ sap.ui.define([
 							that.userPref.teamName = null;
 							var index2 = mParams.filterItems.indexOf(oItem);
 							mParams.filterItems[index2].setSelected(false);
-							
 						} else {
 							that.userPref.teamFilter = oItem.getKey();
 							that.userPref.teamName = oItem.getText();
-							
-							
 						}
 
 					}
