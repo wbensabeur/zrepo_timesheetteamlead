@@ -63,12 +63,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.getItems()[1].setVisible(false);
 			//	hideContainer.setVisible(true);
 			fragmentObject.destroy(true);
-			if(this.type === 'Update') {
+			if (this.type === 'Update') {
 				this.footerModel.setProperty("/MainNewScreen", false);
-			this.footerModel.setProperty("/MainUpdateScreen", true);	
-			}else {
-			this.footerModel.setProperty("/MainNewScreen", true);
-			this.footerModel.setProperty("/MainUpdateScreen", false);
+				this.footerModel.setProperty("/MainUpdateScreen", true);
+			} else {
+				this.footerModel.setProperty("/MainNewScreen", true);
+				this.footerModel.setProperty("/MainUpdateScreen", false);
 			}
 			this.footerModel.setProperty("/MainPreviousScreen", false);
 			this.footerModel.setProperty("/ProjectScreen", false);
@@ -585,8 +585,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			source.setValueState("None");
 			endTimer.setValueState("None");*/
-			
-			
+
 			////
 			var source = oEvent.getSource();
 			this.warning = true;
@@ -819,7 +818,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 		//////**Add Update Time** ////
 		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel, updateKeyPath) {
-			this.type  = type;
+			this.type = type;
 			var userPrefModel = controler.getModel('userPreference');
 			var odata = {
 				totalhrs: 0,
@@ -840,7 +839,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
-			
+
 			var footerData;
 			this.warning = false;
 			this.currentView = 'hours';
@@ -859,7 +858,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 				this.warning = false;
 				this.currentView = 'hours';
-				
 
 				footerData = {
 					MainNewScreen: true,
@@ -870,14 +868,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			} else if (type === 'Update') {
 
-				
 				odata.newTime = false;
 				odata.visibleHrs = false;
 				odata.visibleDailyAllow = false;
 				odata.visibleKM = false;
 				odata.visibleAbsence = false;
-					
-				
+
 				footerData = {
 					MainNewScreen: false,
 					MainUpdateScreen: true,
@@ -1220,21 +1216,21 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var empId = oView.byId('AbsEmployee').getSelectedKey();
 				var absType = oView.byId('AbsCat').getSelectedKey();
 				if (absType === '' || absType === null || absType === undefined) {
-					MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+					MessageBox.alert(this.i18nModel.getText("absenceCatNotSelected"));
 					ctype.setBusy(false);
 					rButton.setEnabled(true);
 					return;
 				}
 				var startDate = oView.byId('AbsStartDate').getDateValue();
 				if (startDate === '' || startDate === null || startDate === undefined) {
-					MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+					MessageBox.alert(this.i18nModel.getText("startTimeNotSelected"));
 					ctype.setBusy(false);
 					rButton.setEnabled(true);
 					return;
 				}
 				var endDate = oView.byId('AbsEndDate').getDateValue();
 				if (endDate === '' || endDate === null || endDate === undefined) {
-					MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+					MessageBox.alert(this.i18nModel.getText("endTimeNotSelected"));
 					ctype.setBusy(false);
 					rButton.setEnabled(true);
 					return;
@@ -1247,7 +1243,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					if (oView.byId('dayType').getVisible() === true) {
 						dayType = oView.byId('dayType').getSelectedIndex().toString();
 						if (dayType === '' || dayType === null || dayType === undefined) {
-							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+							MessageBox.alert(this.i18nModel.getText("dayTypeNotSelected"));
 							ctype.setBusy(false);
 							rButton.setEnabled(true);
 							return;
@@ -1266,7 +1262,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					if (oView.byId('NoofHrs').getVisible() === true && oView.byId('NoofHrs').getEnabled() === true) {
 						noOfHrs = oView.byId('NoofHrs').getValue().toString();
 						if (noOfHrs === '' || noOfHrs === null || noOfHrs === undefined) {
-							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+							MessageBox.alert(this.i18nModel.getText("noOfHrsNotSelected"));
 							ctype.setBusy(false);
 							rButton.setEnabled(true);
 							return;
@@ -1399,7 +1395,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								endTime = tab[k].getItems()[3].getItems()[2].getItems()[2].getValue();
 								if (fullDayindex !== 0) {
 									if (startTime === '' || endTime === '') {
-										MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+										if (startTime === '')
+											MessageBox.alert(this.i18nModel.getText("startTimeNotSelected"));
+										else if (endTime === '')
+											MessageBox.alert(this.i18nModel.getText("endTimeNotSelected"));
 										ctype.setBusy(false);
 										rButton.setEnabled(true);
 										return;
@@ -1416,7 +1415,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								continue;
 							} else {
 								//MessageBox.alert("All Items are not selected");
-								MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+								if (hrType === "")
+									MessageBox.alert(this.i18nModel.getText("hrTypeNotSelected"));
+								else if (projectID === undefined)
+									MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;
@@ -1426,13 +1428,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							continue;
 						} else if (projectID === undefined || hrType === "") {
 							//MessageBox.alert("All Items are not selected");
-							MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+							if (hrType === "")
+								MessageBox.alert(this.i18nModel.getText("hrTypeNotSelected"));
+							else if (projectID === undefined)
+								MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
 							ctype.setBusy(false);
 							rButton.setEnabled(true);
 							return;
 						}
 						var localHours = tab[k].getCustomData()[0].getValue();
-						if(localHours !== null && localHours !== undefined) {
+						if (localHours !== null && localHours !== undefined) {
 							var localHoursText = localHours.toString();
 						} else {
 							localHoursText = localHours;
@@ -1514,7 +1519,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								if (km === 3) {
 									continue;
 								}
-								MessageBox.alert(this.i18nModel.getText("allItemsAreNotSelected"));
+								if (kmprojectID === "" || kmprojectID === undefined || kmprojectID === null)
+									MessageBox.alert(this.i18nModel.getText("projectIsNotSelected"));
+								else if (kmhrType === "" || kmhrType === undefined || kmhrType === null)
+									MessageBox.alert(this.i18nModel.getText("kmTypeIsNotSelected"));
+
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;
