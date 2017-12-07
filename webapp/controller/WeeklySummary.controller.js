@@ -128,7 +128,7 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
-		//	this.getView().byId('editPlanning').setEnabled(!(this.getModel().getProperty(oTable.getItems()[0].getBindingContext().getPath()).NotEditable));
+			//	this.getView().byId('editPlanning').setEnabled(!(this.getModel().getProperty(oTable.getItems()[0].getBindingContext().getPath()).NotEditable));
 
 			/*var path = "/ValueHelpSet(ApplicationName='TEAMLEAD',HelpType='BU',FieldValue='" + this.getModel("userPreference").getProperty("/defaultBU") +
 				"')";*/
@@ -237,7 +237,7 @@ sap.ui.define([
 				this.getView().setModel(oFooterModel, "footer");
 
 			}
-			
+
 			/*var Filters = [
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
@@ -250,7 +250,26 @@ sap.ui.define([
 				"ApplicationName='" + this.userPref.application + "')";
 			oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
-			oView.byId('EmpDayInfo').bindElement(urlStr);
+			var that = this;
+			var EmpEntryEnable = oEvent.getSource().data('entryEnable');
+			oView.byId('EmpDayInfo').bindElement({
+				path: urlStr,
+				events: {
+					dataReceived: function(rData) {
+						//var entryEnable = rData.getParameter('data').isEntryEnabled;
+						var noEdited = rData.getParameter('data').NotEditable;
+
+						var editEnable =  !noEdited && EmpEntryEnable;
+						that.getView().byId('AddNewTimeButton').setEnabled(editEnable);
+
+						var EmpDetail = {
+							enable: editEnable
+						};
+						var oEmpDetailModel = new JSONModel(EmpDetail);
+						that.getView().setModel(oEmpDetailModel, "EmpDetail");
+					}
+				}
+			});
 			oView.byId('MainAddButton').bindElement(urlStr);
 
 			var Filters = [
@@ -268,8 +287,8 @@ sap.ui.define([
 			table.setModel(this.getView().getModel());
 			table.getBinding("items").filter(Filters, "Application");
 
-			var entryEnable = oEvent.getSource().data('entryEnable');
-			var noEdited = oEvent.getSource().data('noEdited');
+			
+			/*var noEdited = oEvent.getSource().data('noEdited');
 
 			var editEnable = entryEnable && !noEdited;
 			this.getView().byId('AddNewTimeButton').setEnabled(editEnable);
@@ -278,7 +297,7 @@ sap.ui.define([
 				enable: editEnable
 			};
 			var oEmpDetailModel = new JSONModel(EmpDetail);
-			this.getView().setModel(oEmpDetailModel, "EmpDetail");
+			this.getView().setModel(oEmpDetailModel, "EmpDetail");*/
 		},
 
 		OnskipFilterScreen: function(oEvent) {
@@ -337,7 +356,7 @@ sap.ui.define([
 					//var aSplit = oItem.getKey().split(");
 					if (oItem.getParent().getProperty("key") === 'BusinessUnit') {
 						that.userPref.defaultBU = oItem.getKey();
-						that.getModel("userPreference").setProperty("/defaultBUT",oItem.getText());
+						that.getModel("userPreference").setProperty("/defaultBUT", oItem.getText());
 						var oData = {
 							PersoValue: oItem.getKey()
 						};
