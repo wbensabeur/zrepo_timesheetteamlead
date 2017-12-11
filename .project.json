@@ -422,5 +422,9 @@
     "account": "ac205f4c8",
     "name": "teamleadtimesheet",
     "lastVersionWeTriedToDeploy": "2.0.11"
+  },
+  "deploy": {
+    "destination": "vesidgwci_pva",
+    "name": "Z_HR_TS_TL"
   }
 }
