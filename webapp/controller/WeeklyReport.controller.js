@@ -457,6 +457,7 @@ sap.ui.define([
 		},
 
 		postAttachment: function(img, FileName) {
+			var that = this;
 			var token;
 			var sFileName = FileName;
 			var BASE64_MARKER = "data:image/png;base64,";
@@ -500,6 +501,14 @@ sap.ui.define([
 
 				}
 			});
+			
+			if (that.index === that.noOfEmp - 1) { //Home Page
+					that.getRouter().navTo("home", {}, true);
+					that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+			} else { // Next Employee Weekly Submit 
+					that.onNextEmployeePress();
+					MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+			}
 
 		}
 	});

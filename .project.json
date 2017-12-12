@@ -83,8 +83,7 @@
     "FacadeConfig": {
       "cordova-plugin-device-orientation": false,
       "accelerometer": {},
-      "compass": {},
-      "bFacade": false
+      "compass": {}
     },
     "appname": "Mobi Time (Dev)",
     "appid": "com.vinci.ts.teamlead.dev",
