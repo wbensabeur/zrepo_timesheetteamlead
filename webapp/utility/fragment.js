@@ -892,7 +892,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
 
 						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[1];
-						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='')";
+						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
 
 						buttons[0].setEnabled(true);
@@ -906,7 +906,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
 
 						var projectView = controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1];
-						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='')";
+						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
 
 						break;
@@ -915,7 +915,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						controler.getView().byId('addKM').getItems()[0].getItems()[2].getItems()[2].getItems()[4].getBinding("items").resume();
 
 						var projectView = controler.getView().byId('addKM').getItems()[0].getItems()[1];
-						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='')";
+						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
 
 						controler.getView().byId('addKM').getItems()[0].getItems()[3].setVisible(false);
