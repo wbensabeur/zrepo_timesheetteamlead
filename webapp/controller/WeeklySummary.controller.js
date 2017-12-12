@@ -257,11 +257,13 @@ sap.ui.define([
 				events: {
 					dataReceived: function(rData) {
 						//var entryEnable = rData.getParameter('data').isEntryEnabled;
+					try {	
 						var noEdited = rData.getParameter('data').NotEditable;
-
 						var editEnable =  !noEdited && EmpEntryEnable;
 						that.getView().byId('AddNewTimeButton').setEnabled(editEnable);
-
+					} catch(e) {
+						// do nothing
+					}
 						var EmpDetail = {
 							enable: editEnable
 						};
@@ -271,7 +273,14 @@ sap.ui.define([
 				}
 			});
 			oView.byId('MainAddButton').bindElement(urlStr);
-
+			try {
+			var noEdited = oView.getModel().getProperty(urlStr).NotEditable;
+			var editEnable =  !noEdited && EmpEntryEnable;
+			that.getView().byId('AddNewTimeButton').setEnabled(editEnable);
+			} catch(e) {
+				// do nothing
+			}
+			
 			var Filters = [
 				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
 				new Filter("WorkDate", FilterOperator.EQ, this.currentDate),
