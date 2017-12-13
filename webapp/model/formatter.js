@@ -85,7 +85,7 @@ sap.ui.define([
 			}
 			return true;
 		},
-		booleanNotPRJL: function(ProjectId,value) {
+		booleanNotPRJL: function(value,ProjectId) {
 			if (value) {
 				return false;
 			} else {
