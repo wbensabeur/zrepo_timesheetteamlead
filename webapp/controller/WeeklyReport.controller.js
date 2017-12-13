@@ -405,13 +405,13 @@ sap.ui.define([
 									".", "").substring(0, 14);
 								var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
 
-								if (that.index === that.noOfEmp - 1) { //Home Page
+								/*if (that.index === that.noOfEmp - 1) { //Home Page
 									that.getRouter().navTo("home", {}, true);
 									that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 								} else { // Next Employee Weekly Submit 
 									that.onNextEmployeePress();
 									MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
-								}
+								}*/
 
 								that.postAttachment(img, sFileName);
 								//window.open(img);
