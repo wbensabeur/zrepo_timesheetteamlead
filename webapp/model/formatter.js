@@ -85,6 +85,16 @@ sap.ui.define([
 			}
 			return true;
 		},
+		booleanNotPRJL: function(ProjectId,value) {
+			if (value) {
+				return false;
+			} else {
+				if(ProjectId === null || ProjectId === undefined || ProjectId === '') {
+					return false;
+				}	
+			}
+			return true;
+		},
 		weekendFormatter: function(number) {
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
 			var oFormatOptions = {
