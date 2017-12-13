@@ -280,6 +280,11 @@ sap.ui.define([
 			} catch(e) {
 				// do nothing
 			}
+			var EmpDetail = {
+							enable: editEnable
+						};
+			var oEmpDetailModel = new JSONModel(EmpDetail);
+			that.getView().setModel(oEmpDetailModel, "EmpDetail");
 			
 			var Filters = [
 				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
