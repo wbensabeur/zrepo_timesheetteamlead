@@ -89,6 +89,11 @@ sap.ui.define([
 			this.getView().byId("timeSubmitBtn").setVisible(false);
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
 			this.userPref = this.getView().getModel("userPreference").getData();
+			if(this.userPref.signatureRequired === false) {
+				this.getView().byId("imageSignature").setSrc("");
+				this.getView().byId("signBtn").setVisible(false);
+				this.getView().byId("timeSubmitBtn").setVisible(true);
+			}
 			if (this.employeeSelected.employees.length > 0) {
 				this._applyEmployeeBinding(this.employeeSelected.employees[0]);
 				this.index = 0;
