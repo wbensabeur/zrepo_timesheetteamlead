@@ -7,7 +7,7 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/utility/datetime",
 	"com/vinci/timesheet/admin/controller/ErrorHandler",
 	"sap/m/MessageBox"
-], function(UIComponent, Device, Filter, FilterOperator, models, datetime, ErrorHandler,MessageBox) {
+], function(UIComponent, Device, Filter, FilterOperator, models, datetime, ErrorHandler, MessageBox) {
 	"use strict";
 
 	return UIComponent.extend("com.vinci.timesheet.admin.Component", {
@@ -51,12 +51,9 @@ sap.ui.define([
 				window.console.log("Version:" + window.AppVersion.version);
 				var platformType = sap.hybrid.getPlatform();
 				var appVersion = window.AppVersion.version;
-				if(platformType === undefined)
-				{
+				if (platformType === undefined) {
 					platformType = 'ios';
 				}
-
-
 				var url = "https://mobile.vinci-energies.net/app-version-middleware/services/isUpToDate/teamlead/" + platformType + "/" +
 					appVersion;
 				window.console.log("URL:" + url);
@@ -85,10 +82,9 @@ sap.ui.define([
 
 								}
 							});
-						}
-						else {
+						} else {
 							MessageBox.alert(that.getModel("i18n").getResourceBundle().getText("versionIssue", [appVersion]));
-							
+
 						}
 
 					},
@@ -216,11 +212,10 @@ sap.ui.define([
 								if (data.results[k].PersoValue === 'TIME')
 									userPreferenceModel.setProperty('/durationFlag', true);
 								break;
-							case 'SIGNATURE' :
+							case 'SIGNATURE':
 								if (data.results[k].PersoValue === 'X')
 									userPreferenceModel.setProperty('/signatureRequired', true);
 								break;
-								
 
 						}
 					}

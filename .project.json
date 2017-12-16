@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Wed, 13 Dec 2017 17:39:30 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Sat, 16 Dec 2017 17:24:05 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -88,7 +88,7 @@
     "appname": "Mobi Time (Dev)",
     "appid": "com.vinci.ts.teamlead.dev",
     "appdesc": "Vinci team lead application for Timesheet",
-    "appversion": "3.0.2",
+    "appversion": "3.0.3",
     "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
@@ -213,7 +213,7 @@
       "android": {
         "selected": true,
         "preferences": {
-          "Fullscreen": true,
+          "Fullscreen": false,
           "Orientation": "landscape",
           "ShowTitle": true,
           "LogLevel": "VERBOSE",
