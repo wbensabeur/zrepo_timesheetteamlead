@@ -257,13 +257,13 @@ sap.ui.define([
 				events: {
 					dataReceived: function(rData) {
 						//var entryEnable = rData.getParameter('data').isEntryEnabled;
-					try {	
-						var noEdited = rData.getParameter('data').NotEditable;
-						var editEnable =  !noEdited && EmpEntryEnable;
-						that.getView().byId('AddNewTimeButton').setEnabled(editEnable);
-					} catch(e) {
-						// do nothing
-					}
+						try {
+							var noEdited = rData.getParameter('data').NotEditable;
+							var editEnable = !noEdited && EmpEntryEnable;
+							that.getView().byId('AddNewTimeButton').setEnabled(editEnable);
+						} catch (e) {
+							// do nothing
+						}
 						var EmpDetail = {
 							enable: editEnable
 						};
@@ -274,18 +274,18 @@ sap.ui.define([
 			});
 			oView.byId('MainAddButton').bindElement(urlStr);
 			try {
-			var noEdited = oView.getModel().getProperty(urlStr).NotEditable;
-			var editEnable =  !noEdited && EmpEntryEnable;
-			that.getView().byId('AddNewTimeButton').setEnabled(editEnable);
-			} catch(e) {
+				var noEdited = oView.getModel().getProperty(urlStr).NotEditable;
+				var editEnable = !noEdited && EmpEntryEnable;
+				that.getView().byId('AddNewTimeButton').setEnabled(editEnable);
+			} catch (e) {
 				// do nothing
 			}
 			var EmpDetail = {
-							enable: editEnable
-						};
+				enable: editEnable
+			};
 			var oEmpDetailModel = new JSONModel(EmpDetail);
 			that.getView().setModel(oEmpDetailModel, "EmpDetail");
-			
+
 			var Filters = [
 				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
 				new Filter("WorkDate", FilterOperator.EQ, this.currentDate),
@@ -301,7 +301,6 @@ sap.ui.define([
 			table.setModel(this.getView().getModel());
 			table.getBinding("items").filter(Filters, "Application");
 
-			
 			/*var noEdited = oEvent.getSource().data('noEdited');
 
 			var editEnable = entryEnable && !noEdited;
@@ -328,7 +327,20 @@ sap.ui.define([
 				// create dialog via fragment factory
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.FilterDialog", this);
 				oView.addDependent(oDialog);
-
+				var buFilterItem = this.getView().byId('BUFilter');
+				/*var filters = [new Filter('ApplicationName', FilterOperator.EQ, this.userPref.application), new Filter('ApplicationVersion',
+					FilterOperator.EQ, this.userPref.applicationVersion)];*/
+				var oldFilter = buFilterItem.getBinding("items").sFilterParams;
+				var newFilter = oldFilter + "%20and%20ApplicationName%20eq%20%27"+this.userPref.application+"%27%20and%20ApplicationVersion%20eq%20%27"+this.userPref.applicationVersion+"%27%20";
+				buFilterItem.getBinding("items").sFilterParams = newFilter;
+				buFilterItem.getBinding("items").resume();
+				var teamFilterItem = this.getView().byId('TeamFilter');
+				if(teamFilterItem.getBinding("items") === undefined)
+				{
+					var newFilter2 = "$filter=BusinessUnit%20eq%20%27"+this.userPref.defaultBU+"%27";
+				}
+				teamFilterItem.getBinding("items").sFilterParams = newFilter2;
+				teamFilterItem.getBinding("items").resume();
 			}
 			oDialog.setModel(this.getView().getModel());
 			oDialog.setModel(this.getView().getModel('userPreference'), 'userPreference');
@@ -345,19 +357,20 @@ sap.ui.define([
 		filterTabOpened: function(oEvent) {
 
 			if (oEvent.getParameter('parentFilterItem').getKey() === "BusinessUnit") {
-				var buFilterItem = this.getView().byId('BUFilter');
+
 				this.BuFilter = true;
+				/*var buFilterItem = this.getView().byId('BUFilter');
 				var filters = [new Filter('ApplicationName', FilterOperator.EQ, this.userPref.application), new Filter('ApplicationVersion',
 					FilterOperator.EQ, this.userPref.applicationVersion)];
 				buFilterItem.getBinding("items").filter(filters);
-				buFilterItem.getBinding("items").resume();
+				buFilterItem.getBinding("items").resume();*/
 
 			} else if (oEvent.getParameter('parentFilterItem').getKey() === "Team") {
 				this.BuFilter = false;
-				var teamFilterItem = this.getView().byId('TeamFilter');
+				/*var teamFilterItem = this.getView().byId('TeamFilter');
 				var filters2 = [new Filter('BusinessUnit', FilterOperator.EQ, this.userPref.defaultBU)];
 				teamFilterItem.getBinding("items").filter(filters2);
-				teamFilterItem.getBinding("items").resume();
+				teamFilterItem.getBinding("items").resume();*/
 
 			}
 		},

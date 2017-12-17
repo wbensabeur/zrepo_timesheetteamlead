@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": false,
-    "lastBuildDateTime": "Sat, 16 Dec 2017 17:24:05 GMT"
+    "lastBuildDateTime": "Sat, 16 Dec 2017 21:18:32 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -202,16 +202,16 @@
     },
     "platform": {
       "ios": {
-        "selected": false,
+        "selected": true,
         "preferences": {
-          "Fullscreen": true,
+          "Fullscreen": false,
           "Orientation": "landscape",
           "EnableViewportScale": false,
           "UrlScheme": ""
         }
       },
       "android": {
-        "selected": true,
+        "selected": false,
         "preferences": {
           "Fullscreen": false,
           "Orientation": "landscape",
