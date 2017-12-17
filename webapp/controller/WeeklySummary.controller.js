@@ -327,25 +327,29 @@ sap.ui.define([
 				// create dialog via fragment factory
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.FilterDialog", this);
 				oView.addDependent(oDialog);
-				var buFilterItem = this.getView().byId('BUFilter');
-				/*var filters = [new Filter('ApplicationName', FilterOperator.EQ, this.userPref.application), new Filter('ApplicationVersion',
-					FilterOperator.EQ, this.userPref.applicationVersion)];*/
+				var buFilterItem = oDialog.getFilterItems()[0]; //this.getView().byId('BUFilter');
 				var oldFilter = buFilterItem.getBinding("items").sFilterParams;
-				var newFilter = oldFilter + "%20and%20ApplicationName%20eq%20%27"+this.userPref.application+"%27%20and%20ApplicationVersion%20eq%20%27"+this.userPref.applicationVersion+"%27%20";
+				var newFilter = oldFilter + "%20and%20ApplicationName%20eq%20%27" + this.userPref.application +
+					"%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27%20";
 				buFilterItem.getBinding("items").sFilterParams = newFilter;
-				buFilterItem.getBinding("items").resume();
-				var teamFilterItem = this.getView().byId('TeamFilter');
-				if(teamFilterItem.getBinding("items") === undefined)
-				{
-					var newFilter2 = "$filter=BusinessUnit%20eq%20%27"+this.userPref.defaultBU+"%27";
+
+				var teamFilterItem = oDialog.getFilterItems()[1]; //this.getView().byId('TeamFilter');
+				if (teamFilterItem.getBinding("items") === undefined) {
+					var newFilter2 = "$filter=BusinessUnit%20eq%20%27" + this.userPref.defaultBU + "%27";
 				}
 				teamFilterItem.getBinding("items").sFilterParams = newFilter2;
+				buFilterItem.getBinding("items").resume();
 				teamFilterItem.getBinding("items").resume();
+				teamFilterItem.getBinding("items").attachEventOnce('dataReceived', function() {
+					oDialog.open();
+				});
+
+				oDialog.setModel(this.getView().getModel());
+				oDialog.setModel(this.getView().getModel('userPreference'), 'userPreference');
+				oDialog.setModel(this.getView().getModel('i18n'), 'i18n');
+			} else {
+				oDialog.open();
 			}
-			oDialog.setModel(this.getView().getModel());
-			oDialog.setModel(this.getView().getModel('userPreference'), 'userPreference');
-			oDialog.setModel(this.getView().getModel('i18n'), 'i18n');
-			oDialog.open();
 		},
 		OnTableTeamChange: function(oEvent) {
 			var oItem = oEvent.getParameter('selectedItem');
