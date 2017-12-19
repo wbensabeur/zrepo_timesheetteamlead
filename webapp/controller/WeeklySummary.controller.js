@@ -265,7 +265,7 @@ sap.ui.define([
 							// do nothing
 						}
 						var EmpDetail = {
-							enable: editEnable
+							enable: EmpEntryEnable
 						};
 						var oEmpDetailModel = new JSONModel(EmpDetail);
 						that.getView().setModel(oEmpDetailModel, "EmpDetail");
