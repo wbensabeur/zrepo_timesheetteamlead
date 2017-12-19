@@ -88,7 +88,7 @@
     "appname": "Mobi Time (Dev)",
     "appid": "com.vinci.ts.teamlead.dev",
     "appdesc": "Vinci team lead application for Timesheet",
-    "appversion": "3.0.3",
+    "appversion": "3.0.4",
     "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
