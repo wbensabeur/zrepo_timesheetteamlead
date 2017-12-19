@@ -307,6 +307,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		SelectProject_OnProjectDelete: function(oEvent) {
 			var btn = oEvent.getSource();
+			btn.getParent().unbindElement();
 			var projectContext = btn.getParent().getItems();
 			projectContext[0].unbindElement();
 			projectContext[0].setVisible(false);
@@ -904,10 +905,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					case 'IPD':
 						odata.visibleDailyAllow = true;
 						controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
-
+						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
 						var projectView = controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1];
-						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
-						projectView.bindElement(projectContext);
+						if (projectId !== null && projectId !== '' && projectId !== undefined) {
+							var projectContext = "/ProjectSet(ProjectId='" + projectId + "',ApplicationName='TEAMLEAD')";
+							projectView.bindElement(projectContext);
+						}
+						
 
 						break;
 					case 'KM':
@@ -915,7 +919,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						controler.getView().byId('addKM').getItems()[0].getItems()[2].getItems()[2].getItems()[4].getBinding("items").resume();
 
 						var projectView = controler.getView().byId('addKM').getItems()[0].getItems()[1];
-						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
+						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID +
+							"',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
 
 						controler.getView().byId('addKM').getItems()[0].getItems()[3].setVisible(false);
@@ -1141,7 +1146,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				} catch (err) {
 					allwProjectID = "";
 				}
-
+				if (allwProjectID === undefined || allwProjectID === null) {
+					allwProjectID = "";
+				}
 				workDayItem = {
 					"ProjectID": allwProjectID,
 					"EntryType": "IPD",
