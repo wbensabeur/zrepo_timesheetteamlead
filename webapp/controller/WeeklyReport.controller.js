@@ -42,6 +42,7 @@ sap.ui.define([
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
 			//	this.getView().byId("SignatureFrame").setVisible(false);
 			if (this.userPref.signatureRequired) {
+				this.getView().byId("SignatureFrame").setVisible(false);
 				this.getView().byId("imageSignature").setSrc("");
 				this.getView().byId("signBtn").setVisible(true);
 				this.getView().byId("timeSubmitBtn").setVisible(false);
@@ -83,7 +84,7 @@ sap.ui.define([
 		//	}
 		_onObjectMatched: function(oEvent) {
 
-			//	this.getView().byId("SignatureFrame").setVisible(false);
+			this.getView().byId("SignatureFrame").setVisible(false);
 			this.getView().byId("imageSignature").setSrc("");
 			this.getView().byId("signBtn").setVisible(true);
 			this.getView().byId("timeSubmitBtn").setVisible(false);
@@ -291,7 +292,7 @@ sap.ui.define([
 			this.dialogPressSignature.close();
 			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
 			this.getView().byId("imageSignature").setSrc(srcImg);
-			//	this.getView().byId("SignatureFrame").setVisible(true);
+			this.getView().byId("SignatureFrame").setVisible(true);
 			this.getView().byId("signBtn").setVisible(false);
 			this.getView().byId("timeSubmitBtn").setVisible(true);
 		},

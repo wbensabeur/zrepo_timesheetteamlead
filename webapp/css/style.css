@@ -192,9 +192,9 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     border-bottom: .1rem solid rgba(0, 0, 0, 0.29);
 }
 
-html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-child(2) {
+/*html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-child(2) {
     border-right: .1rem solid rgba(0, 0, 0, 0.29) !important;
-}
+}*/
 
 .employeeListTable>table>thead>.sapMListTblHeader th:nth-child(1) {
     border-right: .1rem solid rgba(0, 0, 0, 0.29) !important;

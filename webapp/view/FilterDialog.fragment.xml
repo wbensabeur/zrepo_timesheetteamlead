@@ -2,15 +2,15 @@
 	<ViewSettingsDialog id="filterDialog" confirm="handleAdvanceSearch"  filterDetailPageOpened="filterTabOpened" >
 		
 		<filterItems>
-			<ViewSettingsFilterItem id="BUFilter" text="{i18n>businessUnit}"
-				items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU1'}]}"
+			<ViewSettingsFilterItem text="{i18n>businessUnit}"
+				items="{path:'/ValueHelpSet',  suspended: true , templateShareable:false, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU1'}]}"
 				multiSelect="false" key="BusinessUnit">
 				<items>
 					<ViewSettingsItem text="{FieldDescription}" key="{FieldValue}" selected="{path: 'FieldValue', formatter:'.formatter.buFilterSelected'}"/>
 				</items>
 			</ViewSettingsFilterItem >
-			<ViewSettingsFilterItem id="TeamFilter" text="{i18n>tablleColTitleTeam}"
-				items="{path:'/TeamSet', suspended: true }"
+			<ViewSettingsFilterItem text="{i18n>tablleColTitleTeam}"
+				items="{path:'/TeamSet', suspended: true , templateShareable:false }"
 				multiSelect="false" key="Team">
 				<items>
 					<ViewSettingsItem text="{TeamName}" key="{TeamId}" selected="{path: 'TeamId', formatter:'.formatter.teamFilterSelected'}"/>
