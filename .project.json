@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Thu, 23 Nov 2017 13:16:17 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Sun, 17 Dec 2017 08:25:08 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -83,13 +83,12 @@
     "FacadeConfig": {
       "cordova-plugin-device-orientation": false,
       "accelerometer": {},
-      "compass": {},
-      "bFacade": false
+      "compass": {}
     },
     "appname": "Mobi Time (Dev)",
     "appid": "com.vinci.ts.teamlead.dev",
     "appdesc": "Vinci team lead application for Timesheet",
-    "appversion": "3.0.0",
+    "appversion": "3.0.4",
     "debugMode": false,
     "appIcon": {
       "defaultIcon": "",
@@ -205,7 +204,7 @@
       "ios": {
         "selected": false,
         "preferences": {
-          "Fullscreen": true,
+          "Fullscreen": false,
           "Orientation": "landscape",
           "EnableViewportScale": false,
           "UrlScheme": ""
@@ -214,7 +213,7 @@
       "android": {
         "selected": true,
         "preferences": {
-          "Fullscreen": true,
+          "Fullscreen": false,
           "Orientation": "landscape",
           "ShowTitle": true,
           "LogLevel": "VERBOSE",
@@ -421,6 +420,10 @@
   "hcpdeploy": {
     "account": "ac205f4c8",
     "name": "teamleadtimesheet",
-    "lastVersionWeTriedToDeploy": "2.0.11"
+    "lastVersionWeTriedToDeploy": "3.0.15"
+  },
+  "deploy": {
+    "destination": "vesidgwci_pva",
+    "name": "Z_HR_TS_TL"
   }
 }

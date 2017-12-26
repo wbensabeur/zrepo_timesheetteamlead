@@ -418,9 +418,11 @@ sap.ui.define([
 					new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 					new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 				];
-
 				if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
 					Filters.push(new Filter("FullName", FilterOperator.Contains, this.userPref.employeeFilter));
+				}
+				if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
+					Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
 				}
 				var that = this;
 				this.getModel().read("/EmployeeSet", {
