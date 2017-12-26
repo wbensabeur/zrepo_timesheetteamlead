@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<HBox>
-		<Label text="{i18n>LProjectSelect}"/>
-		<Label text="{i18n>ifNecessary}" visible="{AddTime>/visibleProjectOptional}" class="sapUiSmallMarginBegin"/>
+		<!--<Label text="{i18n>LProjectSelect}"/>
+		<Label text="{i18n>ifNecessary}" visible="{AddTime>/visibleProjectOptional}" class="sapUiSmallMarginBegin"/>-->
 	</HBox>
 	<VBox width="100%" alignItems="Start" justifyContent="Start">
 		<Link text="{ProjectDescription} ({ProjectId}) - {ResponsiblePMName} ({i18n>manager})" class="sapUiSmallMarginTop sapUiLargeMarginEnd ProjectLabel" visible="{parts:[{path:'AddTime>/newTime'},{path:'ProjectId'}],formatter:'.formatter.booleanNotPRJL'}"/>

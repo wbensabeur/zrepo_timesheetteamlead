@@ -766,3 +766,8 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead>.sapMITBItem>.sapMITBTab>.sapUiIcon {
     border: 1px solid #2b7d2b;
 }
+
+/*** Release 4**/
+.sapMLIB.sapMLIBSelected {
+    background: rgb(188, 210, 229);
+}
