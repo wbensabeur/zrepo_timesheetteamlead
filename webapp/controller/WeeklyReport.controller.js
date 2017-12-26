@@ -92,7 +92,7 @@ sap.ui.define([
 			this.getView().byId("timeSubmitBtn").setVisible(false);
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
 			this.userPref = this.getView().getModel("userPreference").getData();
-			if(this.userPref.signatureRequired === false) {
+			if (this.userPref.signatureRequired === false) {
 				this.getView().byId("imageSignature").setSrc("");
 				this.getView().byId("signBtn").setVisible(false);
 				this.getView().byId("timeSubmitBtn").setVisible(true);
@@ -124,7 +124,8 @@ sap.ui.define([
 			var oView = this.getView();
 			this.employeId = employee.data('employee'); //.getCustomData()[1].getValue();
 			//oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
-			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId +"'," + "ApplicationName='" + this.userPref.application + "')");
+			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId + "'," + "ApplicationName='" + this.userPref.application +
+				"')");
 			oView.byId("WeeklyStatus").bindElement(employee.getBindingContextPath());
 			oView.byId("WeeklyAggregation").bindElement(employee.getBindingContextPath());
 			oView.byId("WeeklyArregatedFilledData").bindElement(employee.getBindingContextPath());
@@ -138,7 +139,8 @@ sap.ui.define([
 			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'and%20Status%20ne%20'R'%20and%20WorkDate%20gt%20" +
 				datetime.getODataDateFilter(
 					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
-					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) +"and%20ApplicationName%20eq%20%27"+this.userPref.application+"%27%20and%20ApplicationVersion%20eq%20%27"+this.userPref.applicationVersion+"%27&$orderby=ProjectID,EntryType";
+					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "and%20ApplicationName%20eq%20%27" + this.userPref
+				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27&$orderby=ProjectID,EntryType";
 			var mParameters = {
 				urlParameters: urlFilterParam,
 				success: function(oData, oResponse) {
@@ -319,7 +321,7 @@ sap.ui.define([
 
 			var requestBody = {
 				"EmployeeId": this.employeId,
-				"ApplicationName" : this.userPref.application,
+				"ApplicationName": this.userPref.application,
 				"WorkDate": new Date(),
 				"Status": "RELEASE",
 				"NavWorkDayTimeItems": []
@@ -397,7 +399,20 @@ sap.ui.define([
 					that.getView().setBusy(false);
 					if (that.userPref.signatureRequired) {
 
-						var elements = document.getElementsByClassName("WeeklyReportDetail");
+						var localDate = that.employeeSelected.startDate;
+						if (localDate === null || localDate === undefined) {
+							localDate = new Date();
+						}
+						var weekno = datetime.getWeek(localDate);
+						var week = localDate.getUTCFullYear().toString() + weekno.toString();
+						var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
+							"").replace(
+							".", "").substring(0, 14);
+						var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
+						var srcImg = that.srcImg;
+						that.postSignAttachment(srcImg, sFileName);
+
+						/*var elements = document.getElementsByClassName("WeeklyReportDetail");
 						var eleID = '#' + elements[0].id;
 						var schHeight = $(eleID)[0].scrollHeight;
 						window.html2canvas($(eleID), {
@@ -414,13 +429,13 @@ sap.ui.define([
 									".", "").substring(0, 14);
 								var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
 
-								/*if (that.index === that.noOfEmp - 1) { //Home Page
+								if (that.index === that.noOfEmp - 1) { //Home Page
 									that.getRouter().navTo("home", {}, true);
 									that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 								} else { // Next Employee Weekly Submit 
 									that.onNextEmployeePress();
 									MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
-								}*/
+								}
 
 								//that.postAttachment(img, sFileName);
 								var srcImg = that.srcImg;
@@ -429,7 +444,7 @@ sap.ui.define([
 							},
 							height: schHeight,
 							background: '#14235e'
-						});
+						});*/
 					} else {
 						if (that.index === that.noOfEmp - 1) { //Home Page
 							that.getRouter().navTo("home", {}, true);
@@ -512,25 +527,26 @@ sap.ui.define([
 
 				}
 			});
-			
+
 			if (that.index === that.noOfEmp - 1) { //Home Page
-					that.getRouter().navTo("home", {}, true);
-					that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+				that.getRouter().navTo("home", {}, true);
+				that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 			} else { // Next Employee Weekly Submit 
-					that.onNextEmployeePress();
-					MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+				that.onNextEmployeePress();
+				MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 			}
 
 		},
-		
+
 		postSignAttachment: function(img, FileName) {
+			var that = this;
 			var token;
 			var sFileName = FileName;
 			var BASE64_MARKER = "data:image/png;base64,";
 			var base64Index = BASE64_MARKER.length;
 			var imgData = img.substring(base64Index);
 
-			var serviceURL = this.getView().getModel().sServiceUrl + '/';
+			var serviceURL = this.getView().getModel().sServiceUrl;
 
 			jQuery.ajax({
 				url: serviceURL,
@@ -567,7 +583,14 @@ sap.ui.define([
 
 				}
 			});
+			if (that.index === that.noOfEmp - 1) { //Home Page
+				that.getRouter().navTo("home", {}, true);
+				that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+			} else { // Next Employee Weekly Submit 
+				that.onNextEmployeePress();
+				MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+			}
 
-		}		
+		}
 	});
 });
