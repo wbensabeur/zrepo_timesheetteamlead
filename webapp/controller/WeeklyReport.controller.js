@@ -42,6 +42,7 @@ sap.ui.define([
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
 			//	this.getView().byId("SignatureFrame").setVisible(false);
 			if (this.userPref.signatureRequired) {
+				this.getView().byId("SignatureFrame").setVisible(false);
 				this.getView().byId("imageSignature").setSrc("");
 				this.srcImg = undefined;
 				this.getView().byId("signBtn").setVisible(true);
@@ -84,13 +85,18 @@ sap.ui.define([
 		//	}
 		_onObjectMatched: function(oEvent) {
 
-			//	this.getView().byId("SignatureFrame").setVisible(false);
+			this.getView().byId("SignatureFrame").setVisible(false);
 			this.getView().byId("imageSignature").setSrc("");
 			this.srcImg = undefined;
-			//	this.getView().byId("signBtn").setVisible(true);
-			//	this.getView().byId("timeSubmitBtn").setVisible(false);
+			this.getView().byId("signBtn").setVisible(true);
+			this.getView().byId("timeSubmitBtn").setVisible(false);
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
 			this.userPref = this.getView().getModel("userPreference").getData();
+			if(this.userPref.signatureRequired === false) {
+				this.getView().byId("imageSignature").setSrc("");
+				this.getView().byId("signBtn").setVisible(false);
+				this.getView().byId("timeSubmitBtn").setVisible(true);
+			}
 			if (this.employeeSelected.employees.length > 0) {
 				this._applyEmployeeBinding(this.employeeSelected.employees[0]);
 				this.index = 0;
@@ -289,7 +295,7 @@ sap.ui.define([
 			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
 			this.getView().byId("imageSignature").setSrc(srcImg);
 			this.srcImg = srcImg;
-			//	this.getView().byId("SignatureFrame").setVisible(true);
+			this.getView().byId("SignatureFrame").setVisible(true);
 			this.getView().byId("signBtn").setVisible(false);
 			this.getView().byId("timeSubmitBtn").setVisible(true);
 		},
@@ -406,15 +412,15 @@ sap.ui.define([
 								var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
 									"").replace(
 									".", "").substring(0, 14);
-								var sFileName = locatdatetime + "_" + that.employeId + "_" + that.userPref.defaultBU + "_" + week + ".pdf";
-								console.log(sFileName);
-								if (that.index === that.noOfEmp - 1) { //Home Page
+								var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
+
+								/*if (that.index === that.noOfEmp - 1) { //Home Page
 									that.getRouter().navTo("home", {}, true);
 									that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 								} else { // Next Employee Weekly Submit 
 									that.onNextEmployeePress();
 									MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
-								}
+								}*/
 
 								//that.postAttachment(img, sFileName);
 								var srcImg = that.srcImg;
@@ -462,6 +468,7 @@ sap.ui.define([
 		},
 
 		postAttachment: function(img, FileName) {
+			var that = this;
 			var token;
 			var sFileName = FileName;
 			var BASE64_MARKER = "data:image/png;base64,";
@@ -505,6 +512,14 @@ sap.ui.define([
 
 				}
 			});
+			
+			if (that.index === that.noOfEmp - 1) { //Home Page
+					that.getRouter().navTo("home", {}, true);
+					that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+			} else { // Next Employee Weekly Submit 
+					that.onNextEmployeePress();
+					MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+			}
 
 		},
 		
