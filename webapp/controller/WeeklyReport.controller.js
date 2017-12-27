@@ -409,7 +409,7 @@ sap.ui.define([
 								var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
 									"").replace(
 									".", "").substring(0, 14);
-								var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
+								var sFileName = locatdatetime + "_" + that.employeId + "_" + that.userPref.defaultBU + "_" + week + ".png";
 
 								/*if (that.index === that.noOfEmp - 1) { //Home Page
 									that.getRouter().navTo("home", {}, true);
