@@ -8,7 +8,6 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-
 	"com/vinci/timesheet/admin/utility/html2canvas"
 ], function(BaseController, JSONModel, ODataModel, formatter, datetime, MessageBox, MessageToast, Filter, FilterOperator,
 	html2canvas) {
@@ -408,7 +407,7 @@ sap.ui.define([
 						var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
 							"").replace(
 							".", "").substring(0, 14);
-						var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
+						var sFileName = locatdatetime + "_" + that.employeId + "_" + that.userPref.defaultBU + "_" + week + ".pdf";
 						var srcImg = that.srcImg;
 						that.postSignAttachment(srcImg, sFileName);
 
@@ -427,7 +426,7 @@ sap.ui.define([
 								var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
 									"").replace(
 									".", "").substring(0, 14);
-								var sFileName = locatdatetime + "_" + that.employeId + "_" + week + ".png";
+								var sFileName = locatdatetime + "_" + that.employeId + "_" + that.userPref.defaultBU + "_"  + week + ".png";
 
 								if (that.index === that.noOfEmp - 1) { //Home Page
 									that.getRouter().navTo("home", {}, true);
