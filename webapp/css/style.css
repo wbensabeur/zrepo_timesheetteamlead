@@ -771,3 +771,6 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .sapMLIB.sapMLIBSelected {
     background: rgb(188, 210, 229);
 }
+.customStep>.sapMStepInputBtn {
+    font-size: 1.5rem;
+}
