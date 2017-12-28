@@ -11,7 +11,7 @@
 		},
 		"dataSources": {
 			"mainService": {
-				"uri": "/sap/opu/odata/sap/ZHR_MOB_TIMESHEET_SRV/",
+				"uri": "/sap/opu/odata/sap/ZHR_MOB_TS_EXT_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
