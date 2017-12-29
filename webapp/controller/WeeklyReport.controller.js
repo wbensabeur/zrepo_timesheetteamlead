@@ -7,10 +7,9 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
-	"com/vinci/timesheet/admin/utility/html2canvas"
-], function(BaseController, JSONModel, ODataModel, formatter, datetime, MessageBox, MessageToast, Filter, FilterOperator,
-	html2canvas) {
+	"sap/ui/model/FilterOperator"
+	//"com/vinci/timesheet/admin/utility/html2canvas"
+], function(BaseController, JSONModel, ODataModel, formatter, datetime, MessageBox, MessageToast, Filter, FilterOperator) {
 	"use strict";
 
 	return BaseController.extend("com.vinci.timesheet.admin.controller.WeeklyReport", {
