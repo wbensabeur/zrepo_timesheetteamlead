@@ -313,8 +313,8 @@ sap.ui.define([
 					'WorkDate')) + "," +
 				"ApplicationName='" + this.userPref.application + "')";
 
-			var theorHrs = oContext.getModel().getProperty(urlStr).TargetHours;
-			var filledHrs = oContext.getModel().getProperty(urlStr).FilledHours;
+			var theorHrs = 8 ; //oContext.getModel().getProperty(urlStr).TargetHours;
+			var filledHrs = 8; //oContext.getModel().getProperty(urlStr).FilledHours;
 
 			return formatter.dateFormatinEmpDay(oContext.getProperty('WorkDate')) + " - " + this.getResourceBundle().getText(
 					"legend-theoritical") + " : " + theorHrs + " " + this.getResourceBundle().getText("hour") + " / " + filledHrs + " " + this.getResourceBundle()

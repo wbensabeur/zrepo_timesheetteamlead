@@ -138,7 +138,7 @@ sap.ui.define([
 				datetime.getODataDateFilter(
 					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
 					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "and%20ApplicationName%20eq%20%27" + this.userPref
-				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27&$orderby=ProjectID,EntryType";
+				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27&$orderby=EntryType,ProjectID";
 			var mParameters = {
 				urlParameters: urlFilterParam,
 				success: function(oData, oResponse) {
@@ -162,7 +162,7 @@ sap.ui.define([
 								project: results[k].ProjectID,
 								projectName: results[k].ProjectName,
 								type: results[k].EntryTypeDesc,
-								unit: formatter.getUnit(results[k].EntryType, results[k].ZoneType),
+								unit: formatter.getUnit(results[k].EntryType, results[k].HourUnit),
 								total: hrs,
 								mon: 0,
 								tue: 0,
@@ -237,6 +237,10 @@ sap.ui.define([
 					if (line !== null) {
 						oData1.push(line);
 					}
+					
+					/// Sorting of Result ## SP6-06
+					
+					//// End of ## SP6-06
 					var oModel = new JSONModel(oData1);
 					oView.setModel(oModel, "itemData");
 				},

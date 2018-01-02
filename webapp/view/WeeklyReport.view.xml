@@ -216,56 +216,56 @@
 										<Label text="{i18n>timeUnit}"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'WeekTotalHours',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Label text="{path:'WeekTotalHours',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold"/>
 										<customData>
 											<core:CustomData key="background" value="{parts:['WeekTotalHours','WeekTotalTargetHours'],formatter:'.formatter.theoritecalHourFormat'}"
 												writeToDom="true"/>
 										</customData>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Label text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold"/>
 										<customData>
 											<core:CustomData key="background" value="{parts:['WeekDate1Hours','WeekDate1TargetHours'],formatter:'.formatter.theoritecalHourFormat'}"
 												writeToDom="true"/>
 										</customData>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'WeekDate2Hours',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Label text="{path:'WeekDate2Hours',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold"/>
 										<customData>
 											<core:CustomData key="background" value="{parts:['WeekDate2Hours','WeekDate2TargetHours'],formatter:'.formatter.theoritecalHourFormat'}"
 												writeToDom="true"/>
 										</customData>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'WeekDate3Hours',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Label text="{path:'WeekDate3Hours',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold"/>
 										<customData>
 											<core:CustomData key="background" value="{parts:['WeekDate3Hours','WeekDate3TargetHours'],formatter:'.formatter.theoritecalHourFormat'}"
 												writeToDom="true"/>
 										</customData>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'WeekDate4Hours',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Label text="{path:'WeekDate4Hours',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold"/>
 										<customData>
 											<core:CustomData key="background" value="{parts:['WeekDate4Hours','WeekDate4TargetHours'],formatter:'.formatter.theoritecalHourFormat'}"
 												writeToDom="true"/>
 										</customData>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'WeekDate5Hours',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Label text="{path:'WeekDate5Hours',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold"/>
 										<customData>
 											<core:CustomData key="background" value="{parts:['WeekDate5Hours','WeekDate5TargetHours'],formatter:'.formatter.theoritecalHourFormat'}"
 												writeToDom="true"/>
 										</customData>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'WeekDate6Hours',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Label text="{path:'WeekDate6Hours',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold"/>
 										<customData>
 											<core:CustomData key="background" value="{parts:['WeekDate6Hours','WeekDate6TargetHours'],formatter:'.formatter.theoritecalHourFormat'}"
 												writeToDom="true"/>
 										</customData>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'WeekDate7Hours',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Label text="{path:'WeekDate7Hours',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold"/>
 										<customData>
 											<core:CustomData key="background" value="{parts:['WeekDate7Hours','WeekDate7TargetHours'],formatter:'.formatter.theoritecalHourFormat'}"
 												writeToDom="true"/>
