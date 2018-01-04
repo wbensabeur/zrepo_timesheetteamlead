@@ -219,6 +219,12 @@ sap.ui.define([
 		OnEmployeePress: function(oEvent) {
 			this.currentEmp = oEvent.getSource().data('employee');
 			this.currentEmpName = oEvent.getSource().data('employeeName');
+			
+
+			var caldenderdata = datetime.getCalenderDateOnlyData(this.userPref.startDate, 1, this.getResourceBundle());
+			var oCalendarModel = new JSONModel(caldenderdata);
+			this.setModel(oCalendarModel, "calendarOnly");
+			
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpWeekCheckDialog");
 			if (!oDialog) {
@@ -241,6 +247,19 @@ sap.ui.define([
 			oView.byId('employeeBU').bindElement(empBinding);
 			oView.byId('employeeSection').bindElement(empBinding);
 			oDialog.open();
+			
+			var oTable = this.byId("employeeWeekTable");
+			var Filters = [
+				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
+				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
+				new Filter("isByWeekly", FilterOperator.EQ, false),
+				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
+				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
+				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
+			];
+			
+			oTable.getBinding("items").filter(Filters, "Application");
 
 			/*var Filters1 = [
 					new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
@@ -298,7 +317,7 @@ sap.ui.define([
 				and: true
 			});*/
 
-			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.currentEmp + "'and%20WorkDate%20gt%20" +
+/*			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.currentEmp + "'and%20WorkDate%20gt%20" +
 				datetime.getODataDateFilter(oEvent.getSource().data('weekDay1')) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(oEvent.getSource()
 					.data('weekDay7')) + "and%20ApplicationName%20eq%20%27" + this.userPref
 				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27%20";
@@ -306,7 +325,7 @@ sap.ui.define([
 			this.getView().getModel().read('/WorkDaySet', {
 				urlParameters: urlFilterParam
 			});
-
+*/
 		},
 		getCounty: function(oContext) {
 			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(oContext.getProperty(
