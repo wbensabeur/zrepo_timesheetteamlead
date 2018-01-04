@@ -217,14 +217,14 @@ sap.ui.define([
 			this._applyFilters();
 		},
 		OnEmployeePress: function(oEvent) {
+			this.Filters1 = [];
 			this.currentEmp = oEvent.getSource().data('employee');
 			this.currentEmpName = oEvent.getSource().data('employeeName');
-			
 
 			var caldenderdata = datetime.getCalenderDateOnlyData(this.userPref.startDate, 1, this.getResourceBundle());
 			var oCalendarModel = new JSONModel(caldenderdata);
 			this.setModel(oCalendarModel, "calendarOnly");
-			
+
 			var oView = this.getView();
 			var oDialog = oView.byId("EmpWeekCheckDialog");
 			if (!oDialog) {
@@ -241,13 +241,21 @@ sap.ui.define([
 				this.getView().setModel(oFooterModel, "footer");
 
 			}
+			
+			var EmpEntryEnable = oEvent.getSource().data('entryEnable');
+
+			var EmpDetail = {
+				enable: EmpEntryEnable
+			};
+			var oEmpDetailModel = new JSONModel(EmpDetail);
+			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 			oDialog.bindElement(oEvent.getSource().getBindingContext().getPath());
 			var empBinding = "/EmployeeSet(EmployeeId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')";
 			oView.byId('employeeCompany').bindElement(empBinding);
 			oView.byId('employeeBU').bindElement(empBinding);
 			oView.byId('employeeSection').bindElement(empBinding);
 			oDialog.open();
-			
+
 			var oTable = this.byId("employeeWeekTable");
 			var Filters = [
 				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
@@ -258,24 +266,78 @@ sap.ui.define([
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
-			
-			oTable.getBinding("items").filter(Filters, "Application");
 
-			/*var Filters1 = [
-					new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
-					new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
-					new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
-				];*/
-			var Filters1 = new Filter({
-				filters: [new Filter("WorkDate", FilterOperator.GT, oEvent.getSource().data('weekDay1')),
-					new Filter("WorkDate", FilterOperator.LT, oEvent.getSource().data('weekDay7'))
-				],
-				and: true
+			oTable.getBinding("items").filter(Filters, "Application");
+			var table = this.getView().byId('tableWeekItems');
+			table.setModel(this.getView().getModel('calender'));
+
+			
+		},
+		getCounty: function(oContext) {
+			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(oContext.getProperty(
+					'WorkDate')) + "," +
+				"ApplicationName='" + this.userPref.application + "')";
+
+			var theorHrs = 8; //oContext.getModel().getProperty(urlStr).TargetHours;
+			var filledHrs = 8; //oContext.getModel().getProperty(urlStr).FilledHours;
+
+			return formatter.dateFormatinEmpDay(oContext.getProperty('WorkDate')) + " - " + this.getResourceBundle().getText(
+					"legend-theoritical") + " : " + theorHrs + " " + this.getResourceBundle().getText("hour") + " / " + filledHrs + " " + this.getResourceBundle()
+				.getText("hour");
+		},
+
+		getGroupHeader: function(oGroup) {
+			return new GroupHeaderListItem({
+				title: oGroup.key,
+				upperCase: false
 			});
+		},
+		EmployeeHourSize: function(oEvent) {
+			var button = oEvent.getSource();
+			var Filters1 = this.Filters1;
+			if (button.data('status') !== "S") { // getCustomData()[0].getValue()
+				button.getCustomData()[0].setValue("S");
+				var urlFilterParam = "$filter=EmployeeId%20eq%20'" + button.data('employee') + "'and%20WorkDate%20eq%20" +
+					datetime.getODataDateFilter(button.data('selectedDate')) + "and%20ApplicationName%20eq%20%27" + this.userPref
+					.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27%20";
+
+				this.getView().getModel().read('/WorkDaySet', {
+					urlParameters: urlFilterParam
+				});
+
+				Filters1.push(button.data('selectedDate'));
+
+			} else {
+				button.getCustomData()[0].setValue(button.data('status2'));
+				var boxindex = Filters1.indexOf(button.data('selectedDate'));
+				Filters1.splice(boxindex, 1);
+			}
+
+			var orFilter = [];
+			var table = this.getView().byId('tableWeekItems');
+			if (Filters1.length === 0) {
+				table.setModel(this.getView().getModel('calender'));
+				orFilter = new Filter("WorkDate", FilterOperator.EQ, new Date("1971-01-01"));
+
+			} else if (Filters1.length === 1) {
+				table.setModel(this.getView().getModel());
+				orFilter = new Filter("WorkDate", FilterOperator.EQ, Filters1[0]);
+			} else {
+				table.setModel(this.getView().getModel());
+				orFilter = new Filter("WorkDate", FilterOperator.EQ, Filters1[0]);
+				for (var k = 1; k < Filters1.length; k++) {
+					orFilter = new Filter({
+						filters: [new Filter("WorkDate", FilterOperator.EQ, Filters1[k]),
+							orFilter
+						],
+						and: false
+					});
+				}
+			}
 
 			var Filters2 = new Filter({
-				filters: [new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
-					Filters1
+				filters: [new Filter("EmployeeId", FilterOperator.EQ, button.data('employee')),
+					orFilter
 				],
 				and: true
 			});
@@ -292,63 +354,16 @@ sap.ui.define([
 				and: true
 			});
 
-			var table = this.getView().byId('tableWeekItems');
-			table.setModel(this.getView().getModel());
+			
+
 			table.getBinding("items").filter(Filters, "Application");
 			table.getBinding("items").resume();
 
-			/*var Filters11 = new Filter({
-				filters: [new Filter("WorkDate", FilterOperator.GT, oEvent.getSource().data('weekDay1')),
-					new Filter("WorkDate", FilterOperator.LT, oEvent.getSource().data('weekDay7'))
-				],
-				and: true
-			});
-
-			var Filters12 = new Filter({
-				filters: [new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
-					Filters11
-				],
-				and: true
-			});
-			var Filters13 = new Filter({
-				filters: [new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
-					Filters12
-				],
-				and: true
-			});*/
-
-/*			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.currentEmp + "'and%20WorkDate%20gt%20" +
-				datetime.getODataDateFilter(oEvent.getSource().data('weekDay1')) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(oEvent.getSource()
-					.data('weekDay7')) + "and%20ApplicationName%20eq%20%27" + this.userPref
-				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27%20";
-
-			this.getView().getModel().read('/WorkDaySet', {
-				urlParameters: urlFilterParam
-			});
-*/
-		},
-		getCounty: function(oContext) {
-			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(oContext.getProperty(
-					'WorkDate')) + "," +
-				"ApplicationName='" + this.userPref.application + "')";
-
-			var theorHrs = 8 ; //oContext.getModel().getProperty(urlStr).TargetHours;
-			var filledHrs = 8; //oContext.getModel().getProperty(urlStr).FilledHours;
-
-			return formatter.dateFormatinEmpDay(oContext.getProperty('WorkDate')) + " - " + this.getResourceBundle().getText(
-					"legend-theoritical") + " : " + theorHrs + " " + this.getResourceBundle().getText("hour") + " / " + filledHrs + " " + this.getResourceBundle()
-				.getText("hour");
-		},
-
-		getGroupHeader: function(oGroup) {
-			return new GroupHeaderListItem({
-				title: oGroup.key,
-				upperCase: false
-			});
+			this.Filters1 = Filters1;
 		},
 		OnHourPress: function(oEvent) {
 			//var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
-						// Edit Enable
+			// Edit Enable
 			this.dailyDetail = true;
 			this.currentEmp = oEvent.getSource().data('employee');
 			this.currentEmpName = oEvent.getSource().data('employeeName');
@@ -662,18 +677,18 @@ sap.ui.define([
 		},
 		onPressSaveEntries: function(oEvent) {
 			var that = this;
-			var headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
+			//var headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 			var oTable = this.getView().byId('tableDayItems');
 			var dailog = null;
-			if(this.dailyDetail)
+			if (this.dailyDetail)
 				dailog = this.getView().byId("EmpDayCheckDialog");
 			else
 				dailog = this.getView().byId("EmpWeekCheckDialog");
-			
+
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
 
-				that.getView().getModel().read(headerContextPath);
+				//that.getView().getModel().read(headerContextPath);
 				oTable.getBinding("items").refresh();
 				that.update = true;
 				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
@@ -686,7 +701,7 @@ sap.ui.define([
 			var dialogContextPath = this.getView().byId('idIconTabBarMulti').getBindingContext().getPath();
 			var oTable = this.getView().byId('tableDayItems');
 			var dailog = null;
-			if(this.dailyDetail)
+			if (this.dailyDetail)
 				dailog = this.getView().byId("EmpDayCheckDialog");
 			else
 				dailog = this.getView().byId("EmpWeekCheckDialog");
@@ -702,14 +717,42 @@ sap.ui.define([
 		},
 
 		////*** Add New Time  **///
+		
+		OnAddEmpWeekTime: function(oEvent) {
+			
+			var oDialog = null;
+			oDialog = this.getView().byId("EmpWeekCheckDialog");
+
+			this.employees = [{
+				employee: this.currentEmp,
+				employeeName: this.currentEmpName,
+				Days: []
+			}];
+			for(var k = 0 ; k < this.Filters1.length; k++)
+			{
+				this.employees[0].Days.push(this.Filters1[k]);
+			}
+			
+
+			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle(), this.employees, this.getView()
+				.getModel());
+
+			this.getView().setModel(oModel.AddTime, "AddTime");
+			this.getView().setModel(oModel.projectSearch, "projectSearch");
+			this.getView().getModel("footer").destroy();
+			this.getView().setModel(oModel.footer, "footer");
+			this.getView().setModel(oModel.Emps, "Emps");
+
+		},
+		
 		OnAddEmpTime: function(oEvent) {
 			var oView = this.getView();
 			var oDialog = null;
-			if(this.dailyDetail)
+			if (this.dailyDetail)
 				oDialog = this.getView().byId("EmpDayCheckDialog");
 			else
 				oDialog = this.getView().byId("EmpWeekCheckDialog");
-			
+
 			this.employees = [{
 				employee: this.currentEmp,
 				employeeName: this.currentEmpName,
@@ -875,7 +918,7 @@ sap.ui.define([
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;
-		//	var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
+			//	var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
@@ -888,7 +931,7 @@ sap.ui.define([
 						if (oAction === 'OK') {
 							that.getView().getModel().remove(binding, {
 								success: function() {
-								//	that.getView().getModel().read(contextPath);
+									//	that.getView().getModel().read(contextPath);
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
 								}
@@ -902,7 +945,13 @@ sap.ui.define([
 
 		//// **SearchProject Fragment Event** ///////
 		OnProjectSelected: function(oEvent) {
-			var selectButton = this.getView().byId('ProjectSelectButton');
+			var selectButton;
+			if (this.dailyDetail) {
+				selectButton = this.getView().byId('ProjectSelectButton');
+			} else {
+				selectButton = this.getView().byId('WeekProjectSelectButton');
+			}
+			
 			fragment.SearchProject_OnProjectSelected(oEvent, selectButton);
 		},
 		OnFavoriteChange: function(oEvent) {
@@ -944,10 +993,20 @@ sap.ui.define([
 
 		//// **SelectProject Fragment Event** ///////
 		OnProjectSearch: function(oEvent) {
-			fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'));
+			if (this.dailyDetail) {
+				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'));
+			} else {
+				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('WeekProjectSelectButton'));
+			}
+			
 		},
 		OnProjectRefresh: function(oEvent) {
-			fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
+			if (this.dailyDetail) {
+				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
+			} else {
+				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('WeekProjectSelectButton'));
+			}
+			
 		},
 		OnProjectDelete: function(oEvent) {
 			fragment.SelectProject_OnProjectDelete(oEvent);
