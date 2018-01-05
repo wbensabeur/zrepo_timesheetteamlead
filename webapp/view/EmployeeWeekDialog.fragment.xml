@@ -15,7 +15,7 @@
 				<VBox>
 					<HBox class="sapUiMediumMarginTop sapUiSmallMarginBegin">
 						<Label text="{EmployeeName}" design="Bold"/>
-						<Label class="sapUiLargeMarginBegin EmpDayDetails" design="Bold" text="{WeekTotalInfo}"/>
+						<Label id="EmpWeekTotal" class="sapUiLargeMarginBegin EmpDayDetails" design="Bold" text="{WeekTotalInfo}"/>
 					</HBox>
 					<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
 						<Label text="{CompanyDesc}" design="Bold" id="employeeCompany" class="EmpDayDetails"/>
@@ -149,7 +149,7 @@
 					</Table>
 					<Table width="780px" id="tableWeekItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell"
 						items="{ path: '/WorkDayItemSet' , suspended: true , sorter : {path : 'WorkDate', descending: false, group:'.getCounty'}, groupHeaderFactory: '.getGroupHeader'}"
-						mode="MultiSelect">
+						mode="MultiSelect" updateFinished="onemployeeWeekItemLoad">
 						<columns>
 							<Column width="15%" hAlign="Center" class="EmployeeWeeklyReportColumn">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -189,7 +189,7 @@
 							</Column>
 						</columns >
 						<items >
-							<ColumnListItem class="textAlignmentStart">
+							<ColumnListItem class="textAlignmentStart" >
 								<cells>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Text text="{ProjectID}" class="sapUiTinyMarginTop"/>
@@ -234,6 +234,7 @@
 		</content>
 		<buttons>
 			<Button text="{i18n>cancel}" type="Reject" press="OnCancelEmpWeekCheckDialog" visible="{footer>/MainPreviousScreen}"/>
+			<Button id="WeekAddDeleteButton" text="{i18n>deleteSelected}"  type="Reject" visible="{footer>/MainPreviousScreen}" press="onPressSelectDeleteEntries"/>
 			<Button id="WeekAddNewTimeButton" text="{i18n>addTime}" icon="sap-icon://add" type="Emphasized" press="OnAddEmpWeekTime"
 				visible="{footer>/MainPreviousScreen}"/>
 			<Button id="WeekMainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainNewScreen}"/>

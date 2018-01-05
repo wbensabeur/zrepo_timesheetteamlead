@@ -109,6 +109,7 @@
 												<core:CustomData key="employeeName" value="{EmployeeName}"/>
 												<core:CustomData key="titlelen" value="{path:'EmployeeName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 												<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
+												<core:CustomData key="notEditable" value="{NotEditable}"/>
 											</customData>
 											<layoutData>
 												<FlexItemData growFactor="1"/>

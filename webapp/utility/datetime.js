@@ -201,8 +201,16 @@ sap.ui.define([], function() {
 		},
 		getODataDateKey: function (date) {
 			if (date && typeof date.toISOString === "function") {
-			
-				return "datetime'" + date.getUTCFullYear()+"-"+(date.getMonth() + 1)+"-"+date.getDate() + "T00%3A00%3A00'";
+				var dd = date.getDate();
+				if (dd < 10) {
+					dd = '0' + dd;
+				}
+				var mm = date.getMonth() + 1;
+				if (mm < 10) {
+					mm = '0' + mm;
+				}
+				
+				return "datetime'" + date.getUTCFullYear()+"-"+mm+"-"+dd + "T00%3A00%3A00'";
 			}
 			return "";
 		},
