@@ -30,6 +30,11 @@ sap.ui.define([
 				this.index = this.index - 1;
 			}
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
+			if (this.userPref.signatureRequired) {
+				this.getView().byId("SignatureFrame").setVisible(false);
+				this.getView().byId("imageSignature").setSrc("");
+				this.srcImg = undefined;
+			}
 		},
 		onNextEmployeePress: function(oEvent) {
 			if (this.index === this.noOfEmp - 1) {
@@ -43,8 +48,6 @@ sap.ui.define([
 				this.getView().byId("SignatureFrame").setVisible(false);
 				this.getView().byId("imageSignature").setSrc("");
 				this.srcImg = undefined;
-				this.getView().byId("signBtn").setVisible(true);
-				this.getView().byId("timeSubmitBtn").setVisible(false);
 			}
 		},
 		onPastPeriodNavPress: function(oEvent) {
@@ -95,7 +98,12 @@ sap.ui.define([
 				this.getView().byId("signBtn").setVisible(false);
 				this.getView().byId("timeSubmitBtn").setVisible(true);
 			}
+			
+			
+			
 			if (this.employeeSelected.employees.length > 0) {
+				this.showSign = this.getView().byId("signBtn").getVisible();
+				this.showSubmit = this.getView().byId("timeSubmitBtn").getVisible();
 				this._applyEmployeeBinding(this.employeeSelected.employees[0]);
 				this.index = 0;
 				this.noOfEmp = this.employeeSelected.employees.length;
@@ -119,7 +127,18 @@ sap.ui.define([
 			}, true);
 		},
 		_applyEmployeeBinding: function(employee) {
+			/// SP6-21 check for noEdit Flag
 			var oView = this.getView();
+			var noEdit = oView.getModel().getProperty(employee.getBindingContextPath()).NotEditable;
+			if(noEdit) {
+				this.getView().byId("signBtn").setVisible(false);
+				this.getView().byId("timeSubmitBtn").setVisible(false);
+			}
+			else {
+				this.getView().byId("signBtn").setVisible(this.showSign);
+				this.getView().byId("timeSubmitBtn").setVisible(this.showSubmit);
+			}
+			
 			this.employeId = employee.data('employee'); //.getCustomData()[1].getValue();
 			//oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
 			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId + "'," + "ApplicationName='" + this.userPref.application +
