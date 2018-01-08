@@ -277,14 +277,28 @@ sap.ui.define([
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
-
+			var that = this;
 			oTable.getBinding("items").filter(Filters, "Application");
+			oTable.getBinding("items").attachEventOnce("dataReceived",function() {
+				var oCells = oTable.getItems()[0].getCells();
+				var isSelected = false;
+				for (var j=0;j < oCells.length;j++){
+					if(oCells[j].data('status') === "S")
+						{
+							isSelected = true;
+							break;
+						}
+				}
+				
+				if (!table.getBinding("items").isSuspended() && !isSelected) {
+					var itemFilters = [new Filter("ApplicationName", FilterOperator.EQ, that.userPref.application),
+						new Filter("ApplicationVersion", FilterOperator.EQ, that.userPref.applicationVersion)
+					];
 
-			var itemFilters = [new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
-				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
-			];
+					table.getBinding("items").filter(itemFilters, "Application");
+				}
 
-			table.getBinding("items").filter(itemFilters, "Application");
+			});
 
 		},
 		getCounty: function(oContext) {
