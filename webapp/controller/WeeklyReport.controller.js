@@ -318,9 +318,10 @@ sap.ui.define([
 			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
 			this.getView().byId("imageSignature").setSrc(srcImg);
 			this.srcImg = srcImg;
-			this.getView().byId("SignatureFrame").setVisible(true);
+			/*this.getView().byId("SignatureFrame").setVisible(true);
 			this.getView().byId("signBtn").setVisible(false);
-			this.getView().byId("timeSubmitBtn").setVisible(true);
+			this.getView().byId("timeSubmitBtn").setVisible(true);*/
+			this.OnTimeSubmit();
 		},
 		onPressClear: function() {
 			sap.ui.getCore().getControl("mySignaturePad").clear();
