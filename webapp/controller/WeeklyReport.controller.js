@@ -406,7 +406,12 @@ sap.ui.define([
 							localDate = new Date();
 						}
 						var weekno = datetime.getWeek(localDate);
-						var week = localDate.getUTCFullYear().toString() + ("0" + weekno.toString().slice(-2));
+						if(weekno.toString().lenght === 1) {
+						var localweekno = ("0" + weekno.toString().slice(-2));
+						} else {
+							localweekno = weekno.toString().slice(-2);
+						}
+						var week = localDate.getUTCFullYear().toString() + localweekno;
 						var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
 							"").replace(
 							".", "").substring(0, 14);
