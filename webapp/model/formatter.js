@@ -140,11 +140,17 @@ sap.ui.define([
 			}
 			return days;
 		},
-		disableDays: function(isEntryEnabled) {
-			if (isEntryEnabled) {
+		disableDays: function(isEntryEnabled,noEditFlag) {
+			if (isEntryEnabled && !noEditFlag) {
 				return '';
 			}
 			return 'D1';
+		},
+		disableDaysBoolean: function(isEntryEnabled,noEditFlag) {
+			if (isEntryEnabled && !noEditFlag) {
+				return true;
+			}
+			return false;
 		},
 		enableTeamDays: function(IsTimeEntryEnable) {
 			return '';
@@ -159,8 +165,8 @@ sap.ui.define([
 		disableTeamEmployees: function(IsTimeEntryEnable) {
 			return 'Inactive';
 		},
-		disableEmployees: function(isEntryEnabled) {
-			if (isEntryEnabled) {
+		disableEmployees: function(isEntryEnabled,noEditFlag) {
+			if (isEntryEnabled && !noEditFlag) {
 				return 'Active';
 			}
 			return 'Inactive';
