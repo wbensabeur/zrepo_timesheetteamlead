@@ -516,6 +516,7 @@ sap.ui.define([
 
 			});
 
+
 			/*var noEdited = oEvent.getSource().data('noEdited');
 
 			var editEnable = entryEnable && !noEdited;

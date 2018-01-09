@@ -46,7 +46,7 @@ sap.ui.define([
 			//set EmployeeDaySelection Model
 			this.setModel(models.createEmployeeDaySelection(), "employeeDaysSelected");
 			var that = this;
-			if (sap.hybrid !== undefined) {
+			/*if (sap.hybrid !== undefined) {
 				window.console.log("platfrom:" + sap.hybrid.getPlatform());
 				window.console.log("Version:" + window.AppVersion.version);
 				var platformType = sap.hybrid.getPlatform();
@@ -94,7 +94,7 @@ sap.ui.define([
 
 				});
 
-			} else {
+			} else {*/
 				var userPreferenceModel = that.getModel("userPreference");
 				that._updateUserPreference(that.getModel(), userPreferenceModel);
 
@@ -113,7 +113,7 @@ sap.ui.define([
 
 					}
 				});
-			}
+		//	}
 
 			// create the views based on the url/hash
 			//this.getRouter().initialize(); done under  _updateUserPreference
