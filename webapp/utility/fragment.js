@@ -356,6 +356,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 		},
+		AddProjectBonus_init: function(controler, container, addNew) {
+			if (addNew) {
+				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
+				container.addItem(oFragment);
+				oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+				oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering = this._comboKeyboardDisable;
+			}
+
+		},
 		_comboKeyboardDisable: function() {
 			try {
 				var elements = document.getElementsByClassName("SelectCombo"); //
@@ -825,6 +834,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				totalhrs: 0,
 				visibleHrs: userPrefModel.getProperty('/defaultHours'),
 				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
+				visibleBonus: userPrefModel.getProperty('/defaultBonus'),
 				visibleKM: userPrefModel.getProperty('/defaultKM'),
 				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
 				//visibleAbsence: true,
@@ -1038,6 +1048,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
 			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0], addNew);
+		},
+		AddUpdatetime_OnaddNewBonusPress: function(controller) {
+			var addNew = this.AddUpdatetimeModel.getData().newTime;
+			this.AddProjectBonus_init(controller, controller.getView().byId('addBonusTab').getItems()[0], addNew);
 		},
 		AddUpdatetime_getOwnIconTabObject: function(source) {
 			var parent = source.getParent();

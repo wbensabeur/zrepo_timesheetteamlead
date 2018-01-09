@@ -253,6 +253,9 @@ sap.ui.define([
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
 		},
+		OnaddNewBonusPress: function(oEvent) {
+			fragment.AddUpdatetime_OnaddNewBonusPress(this);
+		},
 		onSelectAbsenceStartDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceStartDate(oEvent, this.getView());
 		},
