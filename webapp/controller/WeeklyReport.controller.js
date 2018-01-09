@@ -93,11 +93,14 @@ sap.ui.define([
 			this.getView().byId("timeSubmitBtn").setVisible(false);
 			this.employeeSelected = this.getView().getModel("employeeSelected").getData();
 			this.userPref = this.getView().getModel("userPreference").getData();
-			if(this.userPref.signatureRequired === false) {
+			if (this.userPref.signatureRequired === false) {
 				this.getView().byId("imageSignature").setSrc("");
 				this.getView().byId("signBtn").setVisible(false);
 				this.getView().byId("timeSubmitBtn").setVisible(true);
 			}
+			
+			
+			
 			if (this.employeeSelected.employees.length > 0) {
 				this.showSign = this.getView().byId("signBtn").getVisible();
 				this.showSubmit = this.getView().byId("timeSubmitBtn").getVisible();
@@ -315,6 +318,9 @@ sap.ui.define([
 			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
 			this.getView().byId("imageSignature").setSrc(srcImg);
 			this.srcImg = srcImg;
+			/*this.getView().byId("SignatureFrame").setVisible(true);
+			this.getView().byId("signBtn").setVisible(false);
+			this.getView().byId("timeSubmitBtn").setVisible(true);*/
 			this.OnTimeSubmit();
 		},
 		onPressClear: function() {
@@ -450,13 +456,13 @@ sap.ui.define([
 									".", "").substring(0, 14);
 								var sFileName = locatdatetime + "_" + that.employeId + "_" + that.userPref.defaultBU + "_"  + week + ".png";
 
-								/*if (that.index === that.noOfEmp - 1) { //Home Page
+								if (that.index === that.noOfEmp - 1) { //Home Page
 									that.getRouter().navTo("home", {}, true);
 									that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 								} else { // Next Employee Weekly Submit 
 									that.onNextEmployeePress();
 									MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
-								}*/
+								}
 
 								//that.postAttachment(img, sFileName);
 								var srcImg = that.srcImg;
@@ -465,7 +471,7 @@ sap.ui.define([
 							},
 							height: schHeight,
 							background: '#14235e'
-						});
+						});*/
 					} else {
 						if (that.index === that.noOfEmp - 1) { //Home Page
 							that.getRouter().navTo("home", {}, true);
