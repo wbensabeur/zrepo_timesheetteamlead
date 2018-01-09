@@ -426,7 +426,7 @@ sap.ui.define([
 							localDate = new Date();
 						}
 						var weekno = datetime.getWeek(localDate);
-						if(weekno.toString().lenght === 1) {
+						if(weekno.toString().length === 1) {
 						var localweekno = ("0" + weekno.toString().slice(-2));
 						} else {
 							localweekno = weekno.toString().slice(-2);

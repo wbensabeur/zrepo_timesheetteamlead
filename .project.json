@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": true,
-    "lastBuildDateTime": "Sun, 17 Dec 2017 08:25:08 GMT"
+    "lastBuildDateTime": "Tue, 09 Jan 2018 09:27:30 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -420,7 +420,7 @@
   "hcpdeploy": {
     "account": "ac205f4c8",
     "name": "teamleadtimesheet",
-    "lastVersionWeTriedToDeploy": "3.0.15"
+    "lastVersionWeTriedToDeploy": "3.0.31"
   },
   "deploy": {
     "destination": "vesidgwci_pva",
