@@ -105,6 +105,16 @@ sap.ui.define([
 			}, true);
 
 		},
+		onPressChkSelection: function(oEvent) {
+			var that = this;
+			var oView = this.getView();
+			var oDialog = oView.byId("ChkSelectionDialog");
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.ChkSelectionDialog", this);
+				oView.addDependent(oDialog);
+			}
+		}, 
 		onPressOnlySaveEntries: function (oEvent){
 			var that = this;
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {

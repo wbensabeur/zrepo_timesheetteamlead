@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="EmpDayCheckDialog" title="{i18n>empDayHeader}" contentHeight="600px" contentWidth="800px" draggable="false">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label id="chkSelectionTitle" text="{i18n>empDayHeader}" design="Bold" class="sapUiSmallMarginBegin BiggerText"/>
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox>
+				
+			</VBox>
+			<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddUpdateTime' type='XML' />-->
+		</content>
+		<buttons>
+			<Button text="{i18n>close}" type="Reject" press="OnCloseChkSelctionDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
