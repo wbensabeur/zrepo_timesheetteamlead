@@ -197,6 +197,12 @@ sap.ui.define([
 		OnDailyHrTypeChange1: function(oEvent) {
 			fragment.SelectProject_OnDailyHrTypeChange1(oEvent);
 		},
+		OnOthAllownaceTypeChange: function(oEvent) {
+			fragment.SelectProject_OnOthAllownaceTypeChange(oEvent);
+		},
+		OnOthAllownaceEntryChange: function(oEvent) {
+			fragment.SelectProject_OnOthAllownaceEntryChange(oEvent);
+		},
 		//// **SelectProject Fragment Event End** ///////
 
 		//// **AddProjectTime Fragment Event** ///////
@@ -219,6 +225,10 @@ sap.ui.define([
 			//var timeModel = this.getView().getModel('AddTime');
 			var container = this.getView().byId('addTimeTab').getItems()[0];
 			fragment.AddProjectTime_OnTimeDelete(oEvent, container);
+		},
+		OnBonusDelete: function(oEvent) {
+			var container = this.getView().byId('addBonusTab').getItems()[0];
+			fragment.AddProjectTime_OnBonusDelete(oEvent, container);
 		},
 		OnchangeTimeSelection: function(oEvent) {
 			//	var timeModel = this.getView().getModel('AddTime');
@@ -248,7 +258,7 @@ sap.ui.define([
 		//// **AddUpdateTime Fragment Event** ///////
 		OnTabSelected: function(oEvent) {
 			//	var addTimeModel = this.getView().getModel('AddTime');
-			fragment.AddUpdatetime_OnTabSelected(oEvent,this.getView());
+			fragment.AddUpdatetime_OnTabSelected(oEvent,this.getView(),this);
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
