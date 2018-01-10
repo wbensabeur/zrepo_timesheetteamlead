@@ -503,14 +503,18 @@ sap.ui.define([
 				that.getView().byId('MainAddDeleteButton').setEnabled(EmpEntryEnable);
 
 				if (EmpEntryEnable) {
-					var results = oData.getParameter('data').results;
-					that.getView().byId('MainAddDeleteButton').setEnabled(false);
-					for (var i = 0; i < results.length; i++) {
+					try {
+						var results = oData.getParameter('data').results;
+						that.getView().byId('MainAddDeleteButton').setEnabled(false);
+						for (var i = 0; i < results.length; i++) {
 
-						if (results[i].NotEditable === false) {
-							that.getView().byId('MainAddDeleteButton').setEnabled(true);
-							break;
+							if (results[i].NotEditable === false) {
+								that.getView().byId('MainAddDeleteButton').setEnabled(true);
+								break;
+							}
 						}
+					} catch (e) {
+						// do nothing
 					}
 				}
 
