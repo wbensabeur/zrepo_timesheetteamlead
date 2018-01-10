@@ -539,6 +539,10 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     font-weight: bold;
 }
 
+.TextCBoldTextImpl {
+    font-weight: bold !important;;
+}
+
 .TextCFontSize1 {
 	color: #3b617e !important;
 	font-size: 1.25rem !important;

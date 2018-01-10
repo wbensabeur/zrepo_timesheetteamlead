@@ -279,17 +279,16 @@ sap.ui.define([
 			];
 			var that = this;
 			oTable.getBinding("items").filter(Filters, "Application");
-			oTable.getBinding("items").attachEventOnce("dataReceived",function() {
+			oTable.getBinding("items").attachEventOnce("dataReceived", function() {
 				var oCells = oTable.getItems()[0].getCells();
 				var isSelected = false;
-				for (var j=0;j < oCells.length;j++){
-					if(oCells[j].data('status') === "S")
-						{
-							isSelected = true;
-							break;
-						}
+				for (var j = 0; j < oCells.length; j++) {
+					if (oCells[j].data('status') === "S") {
+						isSelected = true;
+						break;
+					}
 				}
-				
+
 				if (!table.getBinding("items").isSuspended() && !isSelected) {
 					var itemFilters = [new Filter("ApplicationName", FilterOperator.EQ, that.userPref.application),
 						new Filter("ApplicationVersion", FilterOperator.EQ, that.userPref.applicationVersion)
@@ -517,7 +516,34 @@ sap.ui.define([
 						// do nothing
 					}
 				}
-
+				// Logic for hiding table column if no data
+				var showStartTime = false;
+				var showEndTime = false;
+				var showKM = false;
+				for (i = 0; i < results.length; i++) {
+					if(showStartTime === false) {
+						if(results[i].StartTime !== undefined && results[i].StartTime !== null && 
+						   results[i].StartTime !== "" && results[i].StartTime !== "00:00") {
+							showStartTime = true;
+						}
+					}
+					if(showEndTime === false) {
+						if(results[i].EndTime !== undefined && results[i].EndTime !== null && 
+						   results[i].EndTime !== "" && results[i].EndTime !== "00:00") {
+							showEndTime = true;
+						}
+					}
+					if(showKM === false) {
+						if(results[i].KMNumber !== undefined && results[i].KMNumber !== null && 
+						   results[i].KMNumber !== "" && results[i].KMNumber !== "0") {
+							showKM = true;
+						}
+					}
+				}
+				var localTable = that.getView().byId('tableDayItems');
+				localTable.getColumns()[3].setVisible(showStartTime);
+				localTable.getColumns()[4].setVisible(showEndTime);
+				localTable.getColumns()[5].setVisible(showKM);
 			});
 
 			/*var noEdited = oEvent.getSource().data('noEdited');
