@@ -279,17 +279,16 @@ sap.ui.define([
 			];
 			var that = this;
 			oTable.getBinding("items").filter(Filters, "Application");
-			oTable.getBinding("items").attachEventOnce("dataReceived",function() {
+			oTable.getBinding("items").attachEventOnce("dataReceived", function() {
 				var oCells = oTable.getItems()[0].getCells();
 				var isSelected = false;
-				for (var j=0;j < oCells.length;j++){
-					if(oCells[j].data('status') === "S")
-						{
-							isSelected = true;
-							break;
-						}
+				for (var j = 0; j < oCells.length; j++) {
+					if (oCells[j].data('status') === "S") {
+						isSelected = true;
+						break;
+					}
 				}
-				
+
 				if (!table.getBinding("items").isSuspended() && !isSelected) {
 					var itemFilters = [new Filter("ApplicationName", FilterOperator.EQ, that.userPref.application),
 						new Filter("ApplicationVersion", FilterOperator.EQ, that.userPref.applicationVersion)
@@ -503,19 +502,22 @@ sap.ui.define([
 				that.getView().byId('MainAddDeleteButton').setEnabled(EmpEntryEnable);
 
 				if (EmpEntryEnable) {
-					var results = oData.getParameter('data').results;
-					that.getView().byId('MainAddDeleteButton').setEnabled(false);
-					for (var i = 0; i < results.length; i++) {
+					try {
+						var results = oData.getParameter('data').results;
+						that.getView().byId('MainAddDeleteButton').setEnabled(false);
+						for (var i = 0; i < results.length; i++) {
 
-						if (results[i].NotEditable === false) {
-							that.getView().byId('MainAddDeleteButton').setEnabled(true);
-							break;
+							if (results[i].NotEditable === false) {
+								that.getView().byId('MainAddDeleteButton').setEnabled(true);
+								break;
+							}
 						}
+					} catch (e) {
+						// do nothing
 					}
 				}
 
 			});
-
 
 			/*var noEdited = oEvent.getSource().data('noEdited');
 
