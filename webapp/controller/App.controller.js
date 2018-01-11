@@ -36,13 +36,15 @@ sap.ui.define([
 					myPopup.onload = function() {
 						logoutpage = true;
 						myPopup.close();
-						window.location.reload(true);
+						var redirect = hostname + '/mobitime';
+						sap.m.URLHelper.redirect(redirect, false);
 					}
 				}
 				setTimeout(function() {
 					if (!logoutpage) {
 						myPopup.close();
-						window.location.reload(true);
+						var redirect = hostname + '/mobitime';
+						sap.m.URLHelper.redirect(redirect, false);
 					}
 				}, 1500);
 			});
