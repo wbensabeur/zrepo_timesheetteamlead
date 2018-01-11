@@ -90,8 +90,9 @@
 										<Text   text="{ProjectID}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescFirstLine'}" class="sapUiTinyMarginTop"/>
-										<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescSecondLine'}" visible="{parts:['ProjectName'],formatter:'.formatter.IsProjectDescSecondLine'}" class="sapUiTinyMarginTop"/>
+										<!--<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescFirstLine'}" class="sapUiTinyMarginTop"/>
+										<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescSecondLine'}" visible="{parts:['ProjectName'],formatter:'.formatter.IsProjectDescSecondLine'}" class="sapUiTinyMarginTop"/>-->
+										<Text text="{ProjectName}" textAlign="Center" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Text text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>
