@@ -242,6 +242,9 @@ sap.ui.define([
 			var valueInNum = Number(value); //.toString();
 			return oFloatFormat.format(valueInNum);
 		},
+		numEmptyFormatter: function(value) {
+			return '';
+		},
 		getUnit: function(type, hrUnit) {
 			if (type === "IPD")
 				return 'Q';

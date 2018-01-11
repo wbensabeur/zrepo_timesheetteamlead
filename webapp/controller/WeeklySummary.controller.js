@@ -406,6 +406,42 @@ sap.ui.define([
 
 			table.getBinding("items").filter(Filters, "Application");
 			table.getBinding("items").resume();
+			table.getBinding("items").attachEvent('dataReceived', function(oData) {
+
+				
+				try {
+					var results = oData.getParameter('data').results;
+					var showStartTime = false;
+					var showEndTime = false;
+					var showKM = false;
+					for (var i = 0; i < results.length; i++) {
+						if (showStartTime === false) {
+							if (results[i].StartTime !== undefined && results[i].StartTime !== null &&
+								results[i].StartTime !== "" && results[i].StartTime !== "00:00") {
+								showStartTime = true;
+							}
+						}
+						if (showEndTime === false) {
+							if (results[i].EndTime !== undefined && results[i].EndTime !== null &&
+								results[i].EndTime !== "" && results[i].EndTime !== "00:00") {
+								showEndTime = true;
+							}
+						}
+						if (showKM === false) {
+							if (results[i].KMNumber !== undefined && results[i].KMNumber !== null &&
+								results[i].KMNumber !== "" && results[i].KMNumber !== "0") {
+								showKM = true;
+							}
+						}
+					}
+					
+					table.getColumns()[3].setVisible(showStartTime);
+					table.getColumns()[4].setVisible(showEndTime);
+					table.getColumns()[5].setVisible(showKM);
+				} catch (e) {
+					// do nothing
+				}
+			});
 
 			this.Filters1 = Filters1;
 		},
@@ -517,33 +553,37 @@ sap.ui.define([
 					}
 				}
 				// Logic for hiding table column if no data
-				var showStartTime = false;
-				var showEndTime = false;
-				var showKM = false;
-				for (i = 0; i < results.length; i++) {
-					if(showStartTime === false) {
-						if(results[i].StartTime !== undefined && results[i].StartTime !== null && 
-						   results[i].StartTime !== "" && results[i].StartTime !== "00:00") {
-							showStartTime = true;
+				try {
+					var showStartTime = false;
+					var showEndTime = false;
+					var showKM = false;
+					for (i = 0; i < results.length; i++) {
+						if (showStartTime === false) {
+							if (results[i].StartTime !== undefined && results[i].StartTime !== null &&
+								results[i].StartTime !== "" && results[i].StartTime !== "00:00") {
+								showStartTime = true;
+							}
+						}
+						if (showEndTime === false) {
+							if (results[i].EndTime !== undefined && results[i].EndTime !== null &&
+								results[i].EndTime !== "" && results[i].EndTime !== "00:00") {
+								showEndTime = true;
+							}
+						}
+						if (showKM === false) {
+							if (results[i].KMNumber !== undefined && results[i].KMNumber !== null &&
+								results[i].KMNumber !== "" && results[i].KMNumber !== "0") {
+								showKM = true;
+							}
 						}
 					}
-					if(showEndTime === false) {
-						if(results[i].EndTime !== undefined && results[i].EndTime !== null && 
-						   results[i].EndTime !== "" && results[i].EndTime !== "00:00") {
-							showEndTime = true;
-						}
-					}
-					if(showKM === false) {
-						if(results[i].KMNumber !== undefined && results[i].KMNumber !== null && 
-						   results[i].KMNumber !== "" && results[i].KMNumber !== "0") {
-							showKM = true;
-						}
-					}
+					var localTable = that.getView().byId('tableDayItems');
+					localTable.getColumns()[3].setVisible(showStartTime);
+					localTable.getColumns()[4].setVisible(showEndTime);
+					localTable.getColumns()[5].setVisible(showKM);
+				} catch (e) {
+					// do nothing
 				}
-				var localTable = that.getView().byId('tableDayItems');
-				localTable.getColumns()[3].setVisible(showStartTime);
-				localTable.getColumns()[4].setVisible(showEndTime);
-				localTable.getColumns()[5].setVisible(showKM);
 			});
 
 			/*var noEdited = oEvent.getSource().data('noEdited');

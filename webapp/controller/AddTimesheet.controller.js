@@ -4,9 +4,11 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/model/formatter",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"com/vinci/timesheet/admin/utility/fragment",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast"
-], function(BaseController, JSONModel, formatter, datetime, fragment, MessageBox, MessageToast) {
+], function(BaseController, JSONModel, formatter, datetime, fragment, Filter, FilterOperator, MessageBox, MessageToast) {
 	"use strict";
 	return BaseController.extend("com.vinci.timesheet.admin.controller.AddTimesheet", {
 		formatter: formatter,
@@ -96,14 +98,67 @@ sap.ui.define([
 					source: 'Summary'
 				}, true);
 			}
-
+			
 		},
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			this.getRouter().navTo("periodSelection", {
 				source: 'AddTime'
 			}, true);
-
+		},
+		_applyFiltersCS: function() {
+			var that = this;
+			this.userPref = this.getView().getModel("userPreference").getData();
+			if (this.userPref.defaultPeriod === 1) {
+				this.twoWeek = false;
+			} else {
+				this.twoWeek = true;
+			}
+			
+			var startDate = this.userPref.startDate;
+			var noOfWeek = this.userPref.defaultPeriod;
+			var caldenderdata = datetime.getCalenderData(startDate, noOfWeek, this.getResourceBundle());
+			var oCalendarModel = new JSONModel(caldenderdata);
+			this.setModel(oCalendarModel, "calendar");
+			// Change Table OData Binding
+			var monday = datetime.getMonday(startDate);
+			this.currentWeekNumber = datetime.getWeek(monday);
+			this.currentYear = new Date(monday.getTime()).getFullYear();
+	
+			this.employees = this.getView().getModel("employeeDaysSelected").getData();
+			
+			var oTable = this.byId("tableCS");
+			var Filters = [
+				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
+				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
+				new Filter("isByWeekly", FilterOperator.EQ, this.twoWeek),
+				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
+				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
+				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
+			];
+			if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
+				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
+			}
+			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
+				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
+			}
+			oTable.getBinding("items").filter(Filters, "Application");
+		},
+		onPressChkSelection: function(oEvent) {
+			var that = this;
+			var oView = this.getView();
+			var oDialog = oView.byId("ChkSelectionDialog");
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.ChkSelectionDialog", this);
+				oView.addDependent(oDialog);
+			}
+			this._applyFiltersCS();
+			oDialog.open();
+		}, 
+		OnCloseChkSelctionDialog: function() {
+			var oDialog = this.getView().byId("ChkSelectionDialog");
+			oDialog.close();
 		},
 		onPressOnlySaveEntries: function (oEvent){
 			var that = this;
