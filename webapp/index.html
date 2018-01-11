@@ -43,80 +43,10 @@
     							icon : "./image/externalURL.png"
     							
     							}),
-    							new ShellHeadItem({
-    							icon : "sap-icon://log",
-    							press: function (oEvent) {
-    								        /*if(sap.hybrid !== undefined) {
-    											sap.hybrid.kapsel.doDeleteRegistration();
-    										}
-    								        if (document.execCommand("ClearAuthenticationCache", "false")) {
-                                                         window.location.assign("./logout.html");
-                                              } else {
-                                                  sap.m.URLHelper.redirect("./logout.html", false);
-                                           }*/
-                                           /*jQuery.ajax({
-												url: "/sap/saml2/sp/slo/300",
-												type: "GET",
-												success: function(odata, response) {
-													sap.m.URLHelper.redirect("./logout.html", false);
-												},
-												error: function(odata) {
-													sap.m.URLHelper.redirect("./logout.html", false);
-												}
-									});*/
-									jQuery.ajax({
-										type: "GET",
-										url: "/sap/public/bc/icf/logoff", //Clear SSO cookies: SAP Provided service to do that
-										success: function(odata, response) {
-											if (!document.execCommand("ClearAuthenticationCache")) {
-										//"ClearAuthenticationCache" will work only for IE. Below code for other browsers 
-											$.ajax({
-												type: "GET",
-												url: "/sap/opu/odata/sap/ZHR_MOB_TS_EXT_SRV", //any URL to a Gateway service 
-												username: 'dummy', //dummy credentials: when request fails, will clear the authentication header 
-												password: 'dummy',
-												statusCode: {
-													401: function() {
-														//This empty handler function will prevent authentication pop-up in chrome/firefox 
-													}
-												},
-												error: function() {
-													sap.m.URLHelper.redirect("./logout.html", false); 
-												}
-											});
-										}
-										else{
-											sap.m.URLHelper.redirect("./logout.html", false);
-										}
-										},
-										error: function(odata) {
-											if (!document.execCommand("ClearAuthenticationCache")) {
-										//"ClearAuthenticationCache" will work only for IE. Below code for other browsers 
-												$.ajax({
-													type: "GET",
-													url: "/sap/opu/odata/sap/ZHR_MOB_TS_EXT_SRV", //any URL to a Gateway service 
-													username: 'dummy', //dummy credentials: when request fails, will clear the authentication header 
-													password: 'dummy',
-													statusCode: {
-														401: function() {
-															//This empty handler function will prevent authentication pop-up in chrome/firefox 
-														}
-													},
-													error: function() {
-														sap.m.URLHelper.redirect("./logout.html", false); 
-													}
-												});
-											}
-											else{
-												sap.m.URLHelper.redirect("./logout.html", false);
-											}
-											}
-										}).done(function(data) { //Now clear the authentication header stored in the browser 
-										
-										
-									})
-    							}
+    							new ShellHeadItem('shellLogout',{
+    							icon : "sap-icon://log"
     							})
+
     						],
     					content : new ComponentContainer({name :"com.vinci.timesheet.admin"})
 					}).placeAt('content');
