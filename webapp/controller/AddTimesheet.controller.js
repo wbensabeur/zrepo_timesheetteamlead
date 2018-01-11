@@ -103,7 +103,6 @@ sap.ui.define([
 			this.getRouter().navTo("periodSelection", {
 				source: 'AddTime'
 			}, true);
-
 		},
 		onPressChkSelection: function(oEvent) {
 			var that = this;
@@ -114,7 +113,12 @@ sap.ui.define([
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.ChkSelectionDialog", this);
 				oView.addDependent(oDialog);
 			}
+			oDialog.open();
 		}, 
+		OnCloseChkSelctionDialog: function() {
+			var oDialog = this.getView().byId("ChkSelectionDialog");
+			oDialog.close();
+		},
 		onPressOnlySaveEntries: function (oEvent){
 			var that = this;
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {

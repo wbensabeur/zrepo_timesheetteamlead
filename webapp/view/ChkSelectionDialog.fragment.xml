@@ -1,9 +1,9 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Dialog id="EmpDayCheckDialog" title="{i18n>empDayHeader}" contentHeight="600px" contentWidth="800px" draggable="false">
+	<Dialog id="ChkSelectionDialog" title="{i18n>empDayHeader}" contentHeight="600px" contentWidth="800px" draggable="false">
 		<customHeader>
 			<Bar>
 				<contentLeft>
-					<Label id="chkSelectionTitle" text="{i18n>empDayHeader}" design="Bold" class="sapUiSmallMarginBegin BiggerText"/>
+					<Label id="ChkSelectionTitle" design="Bold" class="sapUiSmallMarginBegin BiggerText"/>
 				</contentLeft>
 			</Bar>
 		</customHeader>
