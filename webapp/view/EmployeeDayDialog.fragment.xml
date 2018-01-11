@@ -44,7 +44,21 @@
 							<Column width="25%" hAlign="Center">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<Label text="{i18n>timeType}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
-									
+								</VBox>
+							</Column>
+							<Column width="6%" hAlign="Center" visible="false">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Text text="{i18n>timeStart}" textAlign="Center" class="sapUiSmallMarginTop sapUiSmallMarginBottom TextCBoldTextImpl" maxLines="2"/>
+								</VBox>
+							</Column>
+							<Column width="6%" hAlign="Center" visible="false">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Text text="{i18n>timeEnd}" textAlign="Center" class="sapUiSmallMarginTop sapUiSmallMarginBottom TextCBoldTextImpl" maxLines="2"/>
+								</VBox>
+							</Column>
+							<Column width="6%" hAlign="Center" visible="false">
+								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
+									<Label text="{i18n>kmText}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
 							<Column width="6%" hAlign="Center">
@@ -81,6 +95,15 @@
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Text text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<Text text="{StartTime}" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<Text text="{EndTime}" class="sapUiTinyMarginTop"/>
+									</VBox>
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+										<Text text="{KMNumber}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Text text="{parts:['EntryType','HourUnit'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>
