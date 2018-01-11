@@ -345,7 +345,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			oEvent.getSource().setPlaceholder("");
 			oEvent.getSource().getParent().getParent().getParent().getItems()[3].getItems()[2].getItems()[3].setSelectedKey(selectedKey);
 		},
-
+		SelectProject_OnOthAllownaceTypeChange: function(oEvent) {
+			var selectedKey = oEvent.getParameter('selectedItem').getKey();
+			this.warning = true;
+			oEvent.getSource().setPlaceholder("");
+			oEvent.getSource().getParent().getParent().getParent().getItems()[0].getItems()[0].getItems()[1].setSelectedKey(selectedKey);			
+		},
+		SelectProject_OnOthAllownaceEntryChange: function(oEvent) {
+			if(oEvent.getParameters().value.length > 4) {
+				var setText = oEvent.getParameters().value.slice(0, 4);
+				oEvent.getSource().setValue(setText);
+			}
+		},
 		//////**Add Project Time** ////
 		AddProjectTime_init: function(controler, container, addNew) {
 			if (addNew) {
@@ -353,6 +364,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				container.addItem(oFragment);
 				oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 				oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering = this._comboKeyboardDisable;
+			}
+
+		},
+		AddProjectBonus_init: function(controler, container, addNew) {
+			if (addNew) {
+				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
+				container.addItem(oFragment);
+				oFragment.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 			}
 
 		},
@@ -370,7 +389,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddProjectTime_destroy: function(fragmentObject) {
 			fragmentObject.destroy(true);
-
 		},
 		AddProjectTime_OnTimeDelete: function(oEvent, container) {
 			var source = oEvent.getSource();
@@ -384,6 +402,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			this.AddProjectTime_destroy(sourcePanel);
 
+		},
+		AddProjectTime_OnBonusDelete: function(oEvent, container) {
+			var source = oEvent.getSource();
+			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
+			container.removeItem(sourcePanel);
+			sourcePanel.destroy(true);
 		},
 		AddProjectTime_OnchangeTimeSelection: function(oEvent) {
 
@@ -825,6 +849,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				totalhrs: 0,
 				visibleHrs: userPrefModel.getProperty('/defaultHours'),
 				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
+				visibleBonus: userPrefModel.getProperty('/defaultBonus'),
 				visibleKM: userPrefModel.getProperty('/defaultKM'),
 				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
 				//visibleAbsence: true,
@@ -835,11 +860,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				visibleSummary: false,
 				visibleProjectOptional: false,
 				newTime: true,
+				newBonus: true,
 				duration: userPrefModel.getProperty('/durationFlag')
 			};
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
+			
+			//this.AddProjectBonus_init(controler, controler.getView().byId('addBonusTab').getItems()[0], true)
 
 			var footerData;
 			this.warning = false;
@@ -870,6 +898,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else if (type === 'Update') {
 
 				odata.newTime = false;
+				odata.newBonus = false;
 				odata.visibleHrs = false;
 				odata.visibleDailyAllow = false;
 				odata.visibleKM = false;
@@ -994,7 +1023,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			}
 		},
-		AddUpdatetime_OnTabSelected: function(oEvent, oView) {
+		AddUpdatetime_OnTabSelected: function(oEvent, oView, controler) {
 			var key = oEvent.getParameter('key');
 			var source = oEvent.getSource();
 			var that = this;
@@ -1031,6 +1060,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					oView.byId('AbsEmployee').setEnabled(true);
 				}
 			}
+			
+			if (key === 'bonus') {
+				if(oView.byId("addBonusTab").getItems()[0].getItems().length === 1) {
+					var container = oView.byId("addBonusTab").getItems()[0];
+					var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
+					container.addItem(oFragment);
+					oFragment.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+				}
+			}
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
 			this.warning = true;
@@ -1038,6 +1076,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
 			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0], addNew);
+		},
+		AddUpdatetime_OnaddNewBonusPress: function(controller) {
+			var addNew = this.AddUpdatetimeModel.getData().newBonus;
+			this.AddProjectBonus_init(controller, controller.getView().byId('addBonusTab').getItems()[0], addNew);
 		},
 		AddUpdatetime_getOwnIconTabObject: function(source) {
 			var parent = source.getParent();

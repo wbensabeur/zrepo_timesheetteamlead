@@ -1140,7 +1140,12 @@ sap.ui.define([
 			fragment.SelectProject_OnDailyHrTypeChange1(oEvent);
 		},
 		//// **SelectProject Fragment Event End** ///////
-
+		OnOthAllownaceTypeChange: function(oEvent) {
+			fragment.SelectProject_OnOthAllownaceTypeChange(oEvent);
+		},
+		OnOthAllownaceEntryChange: function(oEvent) {
+			fragment.SelectProject_OnOthAllownaceEntryChange(oEvent);
+		},
 		//// **AddProjectTime Fragment Event** ///////
 		OnTimeDelete: function(oEvent) {
 			/*var that = this;
@@ -1161,6 +1166,10 @@ sap.ui.define([
 			//var timeModel = this.getView().getModel('AddTime');
 			var container = this.getView().byId('addTimeTab').getItems()[0];
 			fragment.AddProjectTime_OnTimeDelete(oEvent, container);
+		},
+		OnBonusDelete: function(oEvent) {
+			var container = this.getView().byId('addBonusTab').getItems()[0];
+			fragment.AddProjectTime_OnBonusDelete(oEvent, container);
 		},
 		OnchangeTimeSelection: function(oEvent) {
 			//	var timeModel = this.getView().getModel('AddTime');
@@ -1189,10 +1198,13 @@ sap.ui.define([
 		//// **AddUpdateTime Fragment Event** ///////
 		OnTabSelected: function(oEvent) {
 			//	var addTimeModel = this.getView().getModel('AddTime');
-			fragment.AddUpdatetime_OnTabSelected(oEvent, this.getView());
+			fragment.AddUpdatetime_OnTabSelected(oEvent, this.getView(), this);
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
+		},
+		OnaddNewBonusPress: function(oEvent) {
+			fragment.AddUpdatetime_OnaddNewBonusPress(this);
 		},
 		onSelectAbsenceStartDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceStartDate(oEvent, this.getView());

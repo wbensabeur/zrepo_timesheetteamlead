@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="com.vinci.timesheet.admin.utility">
+	<VBox>
+		<FlexBox class="AddHoursDivider" visible="{AddTime>/newBonus}"/>
+		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newBonus}">
+			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnBonusDelete"/>
+		</FlexBox>
+		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom" width="100%">
+			<HBox width="100%" class="customWidthIE" alignItems="Start">
+				<VBox class="sapUiSmallMarginBottom">
+					<Label text="{i18n>typeAllowance}" />
+					<ComboBox class="SelectCombo" selectedKey="{EntryTypeCatId}" visible="{AddTime>/newBonus}"
+						items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BNS'}]}"
+						selectionChange="OnOthAllownaceTypeChange">
+						<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
+					</ComboBox>
+				</VBox>
+				<VBox class="sapUiSmallMarginBottom">
+					<Label class="sapUiSmallMarginBegin" text="{i18n>quantity}" />
+					<Input type="Number" class="sapUiSmallMarginBegin" value="{Hours}" valueLiveUpdate="true" liveChange="OnOthAllownaceEntryChange" width="7rem"/>
+				</VBox>
+			</HBox>
+			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
+		</VBox>
+		<customData>
+			<core:CustomData key="hrs" value="{Hours}"/>
+		</customData>
+	</VBox>
+</core:FragmentDefinition>
