@@ -14,11 +14,8 @@
       "test.html"
     ],
     "buildRequired": true,
-<<<<<<< HEAD
-    "lastBuildDateTime": "Thu, 04 Jan 2018 11:54:21 GMT"
-=======
     "lastBuildDateTime": "Tue, 09 Jan 2018 09:27:30 GMT"
->>>>>>> 840684e165a5d453c5c2885c8882b09811eaeb70
+
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
