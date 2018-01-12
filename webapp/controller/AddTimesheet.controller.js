@@ -92,19 +92,41 @@ sap.ui.define([
 				this.getView().setModel(oModel.projectSearch, "projectSearch");
 				this.getView().setModel(oModel.footer, "footer");
 				this.getView().setModel(oModel.Emps, "Emps");
-				
+
 			} else {
 				this.getRouter().navTo("periodSelection", {
 					source: 'Summary'
 				}, true);
 			}
-			
+
 		},
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			this.getRouter().navTo("periodSelection", {
 				source: 'AddTime'
 			}, true);
+		},
+		onUpdateStart: function(oEvent) {
+			this.byId("tableCS").setBusy(true);
+		},
+		onUpdateFinished: function(oEvent) {
+			// update the worklist's object counter after the table update
+			this.byId("tableCS").setBusy(false);
+			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
+
+			/*for (var l = 0; l < this.employees.length; l++) {
+				var source = this.employees[l];
+				var headerSeq = source.getParent().getParent().getInitialOrder();
+				source.data('background'); //getCustomData()[0].setValue("S");
+				source.getParent().data('background'); //.getCustomData()[0].setValue("S");
+				var Items = this.getView().byId('table').getItems();
+				for (var k1 = 0; k1 < Items.length; k1++) {
+					var button = Items[k1].getCells()[headerSeq];
+					if (button.getEnabled()) {
+						button.getCustomData()[0].setValue("S");
+					}
+				}
+			}*/
 		},
 		_applyFiltersCS: function() {
 			var that = this;
@@ -114,7 +136,7 @@ sap.ui.define([
 			} else {
 				this.twoWeek = true;
 			}
-			
+
 			var startDate = this.userPref.startDate;
 			var noOfWeek = this.userPref.defaultPeriod;
 			var caldenderdata = datetime.getCalenderData(startDate, noOfWeek, this.getResourceBundle());
@@ -124,9 +146,9 @@ sap.ui.define([
 			var monday = datetime.getMonday(startDate);
 			this.currentWeekNumber = datetime.getWeek(monday);
 			this.currentYear = new Date(monday.getTime()).getFullYear();
-	
+
 			this.employees = this.getView().getModel("employeeDaysSelected").getData();
-			
+
 			var oTable = this.byId("tableCS");
 			var Filters = [
 				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
@@ -155,12 +177,12 @@ sap.ui.define([
 			}
 			this._applyFiltersCS();
 			oDialog.open();
-		}, 
+		},
 		OnCloseChkSelctionDialog: function() {
 			var oDialog = this.getView().byId("ChkSelectionDialog");
 			oDialog.close();
 		},
-		onPressOnlySaveEntries: function (oEvent){
+		onPressOnlySaveEntries: function(oEvent) {
 			var that = this;
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
@@ -171,8 +193,8 @@ sap.ui.define([
 				that.getView().setModel(oModel.projectSearch, "projectSearch");
 				that.getView().setModel(oModel.footer, "footer");
 				that.getView().setModel(oModel.Emps, "Emps");
-				
-				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));	 
+
+				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
 			}, this.getView(), oEvent.getSource());
 		},
 		onPressSaveEntries: function(oEvent) {
@@ -313,7 +335,7 @@ sap.ui.define([
 		//// **AddUpdateTime Fragment Event** ///////
 		OnTabSelected: function(oEvent) {
 			//	var addTimeModel = this.getView().getModel('AddTime');
-			fragment.AddUpdatetime_OnTabSelected(oEvent,this.getView(),this);
+			fragment.AddUpdatetime_OnTabSelected(oEvent, this.getView(), this);
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
@@ -333,11 +355,11 @@ sap.ui.define([
 		handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);
 		},
-		handleAbsTypeLoadItems : function (oEvent){
+		handleAbsTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAbsTypeLoadItems(oEvent);
 		},
-		onAbsenceCatChange : function (oEvent) {
-			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'),this.getView());
+		onAbsenceCatChange: function(oEvent) {
+			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'), this.getView());
 		},
 		//// **AddUpdateTime Fragment Event End** ///////
 

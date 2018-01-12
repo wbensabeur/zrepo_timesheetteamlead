@@ -290,6 +290,10 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     background-color: white !important;
 }
 
+.chkSelectionBtnText>span>span {
+	color: white !important;
+}
+
 .hourSize {
     padding: 0 !important;
     height: 60px;
