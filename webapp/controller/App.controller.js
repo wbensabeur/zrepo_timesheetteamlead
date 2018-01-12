@@ -1,7 +1,8 @@
 sap.ui.define([
 	"com/vinci/timesheet/admin/controller/BaseController",
-	"sap/ui/model/json/JSONModel"
-], function(BaseController, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/m/MessageBox"
+], function(BaseController, JSONModel,MessageBox) {
 	"use strict";
 
 	return BaseController.extend("com.vinci.timesheet.admin.controller.App", {
@@ -26,12 +27,25 @@ sap.ui.define([
 			then(fnSetAppNotBusy);
 
 			var logout = sap.ui.getCore().byId("shellLogout");
+			var that = this; 
 			logout.attachPress(function(oEvent) {
+				
+				MessageBox.confirm(
+				that.getResourceBundle().getText("confirmLogoffMsg"), {
+					title: that.getResourceBundle().getText("logoutcnfm"),
+					onClose: function fnCallbackConfirm(oAction) {
+						if (oAction === 'OK') {
+								var hostname = window.location.origin;
+								var SAMLLogoffURL = hostname + '/sap/public/bc/icf/logoff?redirectURL='+hostname+'/mobitime';
+								sap.m.URLHelper.redirect(SAMLLogoffURL, false);
+						} else {
+							return;
+						}
+					}
+				});
 
-				var hostname = window.location.origin;
-				var logoutpage = false;
-				var SAMLLogoffURL = hostname + '/sap/saml2/sp/slo/300';
-				var myPopup = window.open(SAMLLogoffURL, 'logoff', 'left=20,top=20,width=100,height=100,resizable=0');
+			
+				/*var myPopup = window.open(SAMLLogoffURL, 'logoff', 'left=20,top=20,width=100,height=100,resizable=0');
 				if (!sap.ui.Device.browser.msie) {
 					myPopup.onload = function() {
 						logoutpage = true;
@@ -44,7 +58,7 @@ sap.ui.define([
 						myPopup.close();
 						window.location.reload(true);
 					}
-				}, 1500);
+				}, 1500);*/
 			});
 
 			// apply content density mode to root view
