@@ -8,16 +8,10 @@
 			</Bar>
 		</customHeader>
 		<content>
-			<Table id ="tableHeaderCS" showNoData="false" width="97%" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable whiteColoumCell sapUiSmallMarginBegin" >
+			<Table id ="tableHeaderCS" showNoData="false" width="98%" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable whiteColoumCell sapUiSmallMarginBegin" >
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" placeholder="{i18n>hrType}" value="{calendar>ColumnTxt1}"
-								items="{path:'/TeamSet' , templateShareable:false, suspended: true , filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
-								loadItems="handleTeamLoadItems" selectionChange="OnTableTeamChange">
-								<core:ListItem key="{TeamId}" text="{TeamName}"/>
-							</ComboBox>
-							<!--<ComboBox class="tableColumnCombo CustomRatioBtn" visible="{calendar>ComboVisible}" value="{calendar>ColumnTxt1}" enabled="false"/>-->
 							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
 							<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" press="OnDatePress" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
 								<customData>
@@ -28,8 +22,6 @@
 										<FlexItemData growFactor="1"/>
 									</layoutData>
 							</StandardListItem>
-							<!--<Label text="{calendar>ColumnTxt1}" visible={path:'calendar>Date', formatter:'.formatter.datetotimestamp'}"{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
-							<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>-->
 							<customData>
 								<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 							</customData>
@@ -42,29 +34,12 @@
 			<Table id="tableCS" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="15" showSeparators="None" inset="false" class="employeeListTable  sapUiSmallMarginBegin whiteColoumCell" updateStarted="onUpdateStart">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center"/>
-						
-					
 				</columns>
 				<items>
 					<ColumnListItem id="columnListCS" vAlign="Middle" class="sapUiTableTr EmpWeekStatus">
 						<cells>
-							<!--<VBox class="EmpWeekStatus">
-										<Label text="{EmployeeName}" class="EmpName">
-											<layoutData>
-												<FlexItemData growFactor="1"/>
-											</layoutData>
-										</Label>
-										<Label text="{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM" class="EmpWeekDetails">
-											<layoutData>
-												<FlexItemData growFactor="1"/>
-											</layoutData>
-										</Label>
-										<customData>
-											<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
-										</customData>
-									</VBox>-->
 							<VBox class="EmpWeekStatus" width="100%">
-								<StandardListItem class="EmpWeekStatus" type="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="{WeekTotalInfo}" press="OnEmployeePress"> <!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
+								<StandardListItem class="EmpWeekStatus" type="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="" press="OnEmployeePress">
 									<customData>
 										<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
 										<core:CustomData key="employee" value="{EmployeeId}"/>

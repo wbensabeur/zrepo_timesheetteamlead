@@ -6,7 +6,7 @@
 				<contentLeft>
 					<Button icon="sap-icon://arrow-left" type="Transparent" press="onPressCancel" class="circleIcon"/>
 					<Label text="{i18n>backPlanning}" textAlign="Center" class="monthLabelPadding sapUiSmallMarginEnd"/>
-					<Button text="{i18n>chkSelection}" icon="sap-icon://check-availability" type="Transparent" press="onPressChkSelection" class="sapUiSmallMarginBeginEnd"/>
+					<Button text="{i18n>chkSelection}" icon="sap-icon://check-availability" type="Transparent" press="onPressChkSelection" class="sapUiSmallMarginBeginEnd chkSelectionBtnText"/>
 				</contentLeft>
 				<contentRight>
 					<Label text="{parts:['calendar>/StartDate'],formatter:'.formatter.periodFormat'}" textAlign="Center" class="monthLabelPadding"/>
