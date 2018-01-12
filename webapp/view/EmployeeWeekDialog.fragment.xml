@@ -147,7 +147,8 @@
 							</ColumnListItem>
 						</items>
 					</Table>
-					<Table width="780px" id="tableWeekItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell"
+					<Label id="employeeWeekLabel" text="{i18n>weekViewBlankSelection}" class="sapUiMediumMarginTop sapUiSmallMarginBegin BoldBuleLabel"/>
+					<Table width="780px" id="tableWeekItems" visible="false" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell"
 						items="{ path: '/WorkDayItemSet' , suspended: true , sorter : {path : 'WorkDate', descending: false, group:'.getCounty'}, groupHeaderFactory: '.getGroupHeader'}"
 						mode="MultiSelect" updateFinished="onemployeeWeekItemLoad">
 						<columns>

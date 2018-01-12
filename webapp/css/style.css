@@ -783,3 +783,9 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .customStep>.sapMStepInputBtn {
     font-size: 1.5rem;
 }
+
+.BoldBuleLabel {
+    color: #3b617e;
+    font-weight: bold;
+    font-size: 0.875rem;
+}
