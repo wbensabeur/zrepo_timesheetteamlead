@@ -295,6 +295,8 @@ sap.ui.define([
 					];
 
 					table.getBinding("items").filter(itemFilters, "Application");
+					table.setVisible(false);
+					that.getView().byId('employeeWeekLabel').setVisible(true);
 				}
 
 			});
@@ -366,8 +368,12 @@ sap.ui.define([
 				//table.setModel(this.getView().getModel('calender'));
 				orFilter = new Filter("WorkDate", FilterOperator.EQ, new Date("1971-01-01"));
 				dataExist = false;
+				table.setVisible(false);
+				this.getView().byId('employeeWeekLabel').setVisible(true);
 
 			} else if (Filters1.length === 1) {
+				table.setVisible(true);
+				this.getView().byId('employeeWeekLabel').setVisible(false);
 				table.setModel(this.getView().getModel());
 				orFilter = new Filter("WorkDate", FilterOperator.EQ, Filters1[0]);
 			} else {
