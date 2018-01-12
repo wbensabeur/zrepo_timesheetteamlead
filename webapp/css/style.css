@@ -161,6 +161,12 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: #3b617e;
 }
 
+.tableBULabelCS {
+    font-size: 1rem !important;
+    font-style: italic !important;
+    color: #3b617e !important;;
+}
+
 .tableColumnCombo>div>input {
     background: transparent !important;
     padding: 0 0.5rem;
@@ -214,6 +220,11 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 
 .EmpWeekStatus>div>div>div>.sapMSLITitle {
     white-space: initial;
+}
+
+.EmpWeekStatus>div>div>div {
+    white-space: initial !important;
+    color: #3b617e !important;
 }
 
 .EmpWeekStatus[data-titlelen="Long"] {
@@ -292,6 +303,7 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 
 .chkSelectionBtnText>span>span {
 	color: white !important;
+	font-size: 1rem !important;
 }
 
 .hourSize {

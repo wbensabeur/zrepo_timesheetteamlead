@@ -11,9 +11,14 @@
 			<Table id ="tableHeaderCS" showNoData="false" width="98%" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" growingThreshold="12" showSeparators="None" inset="false" class="employeeListTable whiteColoumCell sapUiSmallMarginBegin" >
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
-						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
-							<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" press="OnDatePress" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
+						<VBox class="tableColumn tableColumnCombo" alignItems="Center" justifyContent="Center" height="50px">
+							<ComboBox class="tableColumnCombo" visible="false" placeholder="{i18n>hrType}" value="{calendar>ColumnTxt1}"
+								items="{path:'/TeamSet' , templateShareable:false, suspended: true , filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
+								loadItems="handleTeamLoadItems" selectionChange="OnTableTeamChange">
+								<core:ListItem key="{TeamId}" text="{TeamName}"/>
+							</ComboBox>
+							<Text class="tableBULabelCS DaySelectionStatus" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}" />
+							<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
 								<customData>
 										<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 										<core:CustomData key="Date" value="{calendar>Date}" />
@@ -39,7 +44,7 @@
 					<ColumnListItem id="columnListCS" vAlign="Middle" class="sapUiTableTr EmpWeekStatus">
 						<cells>
 							<VBox class="EmpWeekStatus" width="100%">
-								<StandardListItem class="EmpWeekStatus" type="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="" press="OnEmployeePress">
+								<StandardListItem class="EmpWeekStatus" type="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="">
 									<customData>
 										<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
 										<core:CustomData key="employee" value="{EmployeeId}"/>
