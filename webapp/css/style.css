@@ -789,3 +789,6 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     font-weight: bold;
     font-size: 0.875rem;
 }
+.sapMListBGTranslucent .sapMLIB {
+    background: white;
+}

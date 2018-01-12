@@ -31,11 +31,7 @@
 				</layoutData>
 			</ComboBox>-->
 			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}"
-<<<<<<< HEAD
-				selectionChange="onPositionFilterChange" >
-=======
 				selectionChange="onPositionFilterChange" class="SelectCombo">
->>>>>>> 0a2b00632bb0afeb107a1658a07aaec4fcd71779
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
 					<FlexItemData growFactor="0"/>
