@@ -132,6 +132,9 @@ sap.ui.define([
 			}
 			return "";
 		},
+		chkSelectedFormatter: function(value) {
+			return "";
+		},
 		byWeeklyFormattre: function(isByWeekly) {
 			if (isByWeekly) {
 				var days = '14';

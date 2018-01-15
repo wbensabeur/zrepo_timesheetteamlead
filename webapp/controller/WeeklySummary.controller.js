@@ -281,15 +281,13 @@ sap.ui.define([
 			oTable.getBinding("items").filter(Filters, "Application");
 			oTable.getBinding("items").attachEventOnce("dataReceived", function() {
 				var oCells = oTable.getItems()[0].getCells();
-				var isSelected = false;
 				for (var j = 0; j < oCells.length; j++) {
 					if (oCells[j].data('status') === "S") {
-						isSelected = true;
-						break;
+						oCells[j].getCustomData()[0].setValue(oCells[j].data('status2'));
 					}
 				}
 
-				if (!table.getBinding("items").isSuspended() && !isSelected) {
+				if (!table.getBinding("items").isSuspended() ) {
 					var itemFilters = [new Filter("ApplicationName", FilterOperator.EQ, that.userPref.application),
 						new Filter("ApplicationVersion", FilterOperator.EQ, that.userPref.applicationVersion)
 					];

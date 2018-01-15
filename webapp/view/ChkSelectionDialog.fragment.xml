@@ -12,8 +12,13 @@
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
-							<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" press="OnDatePress" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
+							<ComboBox class="tableColumnCombo" visible="false" placeholder="{i18n>hrType}" value="{calendar>ColumnTxt1}"
+								items="{path:'/TeamSet' , templateShareable:false, suspended: true , filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
+								loadItems="handleTeamLoadItems" selectionChange="OnTableTeamChange">
+								<core:ListItem key="{TeamId}" text="{TeamName}"/>
+							</ComboBox>
+							<Text class="tableBULabelCS DaySelectionStatus tableColumnCombo" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}" />
+							<StandardListItem class="DaySelectionStatus" type="{path:'calendar>Date', formatter:'.formatter.DaySelectorFormatter'}" title="{calendar>ColumnTxt1}" description="{calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}">
 								<customData>
 										<core:CustomData key="background" value="{path:'calendar>Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 										<core:CustomData key="Date" value="{calendar>Date}" />
@@ -36,12 +41,12 @@
 					<Column width="{calendar>width}" hAlign="Center"/>
 				</columns>
 				<items>
-					<ColumnListItem id="columnListCS" vAlign="Middle" class="sapUiTableTr EmpWeekStatus">
+					<ColumnListItem id="columnListCS" type="Inactive" vAlign="Middle" class="sapUiTableTr ">
 						<cells>
-							<VBox class="EmpWeekStatus" width="100%">
-								<StandardListItem class="EmpWeekStatus" type="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableEmployees'}" title="{EmployeeName}" description="" press="OnEmployeePress">
+						<VBox  width="100%">
+								<StandardListItem class="EmpWeekStatus sapUiTinyMarginTop" type="Inactive" title="{EmployeeName}" description=""> <!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
 									<customData>
-										<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+										<core:CustomData key="status" value="" writeToDom="true"/>
 										<core:CustomData key="employee" value="{EmployeeId}"/>
 										<core:CustomData key="employeeName" value="{EmployeeName}"/>
 										<core:CustomData key="titlelen" value="{path:'EmployeeName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
@@ -51,12 +56,12 @@
 									</layoutData>
 								</StandardListItem>
 								<customData>
-										<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+										<core:CustomData key="status" value="" writeToDom="true"/>
 								</customData>
 							</VBox>
-							<Button text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" >
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate1Date}"/>
@@ -65,9 +70,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate2Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate2Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate2Date}"/>
@@ -76,9 +81,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate3Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate3Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate3Date}"/>
@@ -87,9 +92,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate4Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate4Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate4Date}"/>
@@ -98,9 +103,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate5Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate5Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" >
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate5Date}"/>
@@ -109,9 +114,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate6Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate6Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate6Date}"/>
@@ -120,9 +125,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate7Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate7Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate7Date}"/>
@@ -131,9 +136,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate8Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate8Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate8Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate8Date}"/>
@@ -142,9 +147,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate9Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate9Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate9Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate9Date}"/>
@@ -153,9 +158,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate10Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate10Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate10Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate10Date}"/>
@@ -164,9 +169,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate11Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate11Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate11Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate11Date}"/>
@@ -175,9 +180,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate12Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate12Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate12Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate12Date}"/>
@@ -186,9 +191,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate13Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate13Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate13Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate13Date}"/>
@@ -197,9 +202,9 @@
 									<core:CustomData key="employeeName" value="{EmployeeName}"/>
 								</customData>
 							</Button>
-							<Button text="{path:'WeekDate14Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDaysBoolean'}">
+							<Button text="{path:'WeekDate14Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
 								<customData>
-									<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
+									<core:CustomData key="status" value="" writeToDom="true"/>
 									<core:CustomData key="background" value="{path:'WeekDate14Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="employee" value="{EmployeeId}"/>
 									<core:CustomData key="selectedDate" value="{WeekDate14Date}"/>
