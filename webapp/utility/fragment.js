@@ -1250,6 +1250,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					"TransportIndicator": travel
 
 				};
+			} else if (selectedTab === 'bonus') {
+				
 			} else if (selectedTab === 'KM') {
 				var kmtab = oView.byId('addKM').getItems()[0].getItems()[2];
 				var startTime = '000000';
@@ -1647,6 +1649,30 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 						};
 						workDayItems.push(workDayItem);
+					}
+				} else if (selectedTab === 'bonus') {
+					var tabBns = oView.byId('addBonusTab').getItems()[0].getItems();
+					
+					for (var k = 1; k < tabBns.length; k++) {
+					try {
+						var bnsType = tabBns[k].getItems()[2].getItems()[0].getItems()[0].getItems()[1].getSelectedKey();
+						var bnsQty = tabBns[k].getItems()[2].getItems()[0].getItems()[1].getItems()[1].getValue();
+						var bnsProjectBindingPath = tabBns[k].getItems()[2].getItems()[2].getItems()[0].getBindingContext().getPath();
+						var bnsProjectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+					} catch (err) {
+						if (bnsProjectID === undefined && bnsType === "") {
+								continue;
+							} else {
+								//MessageBox.alert("All Items are not selected");
+								if (bnsType === "")
+									MessageBox.alert(this.i18nModel.getText("hrTypeNotSelected"));
+								else if (bnsProjectID === undefined)
+									MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							}
+					}
 					}
 				} else if (selectedTab === 'allowance') {
 					/// Get Item Data from view for Daily Allowances

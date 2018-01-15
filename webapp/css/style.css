@@ -371,6 +371,10 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     background-color: rgb(232, 241, 246);
 }
 
+.hourSize[data-background="SL"] {
+    background-color: #5496cd;
+}
+
 .hourSize[data-status="S"] {
     background-color: #39a9db;
 }
