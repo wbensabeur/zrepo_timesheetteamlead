@@ -113,6 +113,21 @@ sap.ui.define([
 			// update the worklist's object counter after the table update
 			this.byId("tableCS").setBusy(false);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
+			var oTable = this.byId("tableCS");
+			var oItems = oTable.getItems();
+			for (var i = 0; i < oItems.length; i++) {
+				var cells = oItems[i].getCells();
+				for (var c = 1; c < cells.length; c++) {
+					try{
+					if (this.currentEmplSelection[cells[c].data("employee") + cells[c].data("selectedDate").toString()] === 'X') {
+						cells[c].getCustomData()[0].setValue('S');
+					}
+					}
+					catch(error) {
+						cells[c].getCustomData()[0].setValue('');
+					}
+				}
+			}
 
 			/*for (var l = 0; l < this.employees.length; l++) {
 				var source = this.employees[l];
@@ -165,34 +180,48 @@ sap.ui.define([
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
+			// Logic for showing selection screen
+			var oItems = oTable.getItems();
+			for (var i = 0; i < oItems.length; i++) {
+
+			}
 		},
 		onPressChkSelection: function(oEvent) {
 			var that = this;
 			var oView = this.getView();
 			var oDialog = oView.byId("ChkSelectionDialog");
+			this.currentEmplSelection = [];
+			for (var k = 0; k < this.employees.length; k++) {
+				for (var j = 0; j < this.employees[k].Days.length; j++) {
+					this.currentEmplSelection[this.employees[k].employee + this.employees[k].Days[j].toString()] = 'X';
+				}
+				var oModel1 = new JSONModel(this.currentEmplSelection);
+				this.getView().setModel(oModel1, "selectData");
+			}
 			if (!oDialog) {
 				// create dialog via fragment factory
 				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.ChkSelectionDialog", this);
 				oView.addDependent(oDialog);
 				var oTable = this.getView().byId("tableCS");
+
 				var iOriginalBusyDelay = oTable.getBusyIndicatorDelay();
 				this.getView().byId('tableHeaderCS').onAfterRendering = function(oEvent) {
-				//var comboId =  that.getView().byId('tableColumnCombo').getId() + '-inner';
-				try {
-					var elements = document.getElementsByClassName("tableColumnCombo"); //
-					for (var k = 0; k < elements.length; k++) {
-						var eleId = elements[k].id + '-inner';
-						document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
-						//	elements[k].disabled = true;
-					}
-				} catch (err) {
+					//var comboId =  that.getView().byId('tableColumnCombo').getId() + '-inner';
+					try {
+						var elements = document.getElementsByClassName("tableColumnCombo"); //
+						for (var k = 0; k < elements.length; k++) {
+							var eleId = elements[k].id + '-inner';
+							document.getElementById(eleId).disabled = true; // .get.("tableColumnCombo")
+							//	elements[k].disabled = true;
+						}
+					} catch (err) {
 
-				}
-			};
-			$(window).resize(function() {
-				var totalH = window.innerHeight - 200;
-				that.getView().byId('TableScroll').setHeight(totalH + 'px');
-			});
+					}
+				};
+				$(window).resize(function() {
+					var totalH = window.innerHeight - 200;
+					that.getView().byId('TableScroll').setHeight(totalH + 'px');
+				});
 			}
 			this._applyFiltersCS();
 			oDialog.open();
