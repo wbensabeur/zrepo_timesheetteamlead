@@ -850,7 +850,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				visibleHrs: userPrefModel.getProperty('/defaultHours'),
 				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
 				visibleBonus: userPrefModel.getProperty('/defaultBonus'),
-				visibleKM: userPrefModel.getProperty('/defaultKM'),
+				visibleKM: true,//userPrefModel.getProperty('/defaultKM'),
 				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
 				//visibleAbsence: true,
 				visibleAbsence1: true,
@@ -1048,26 +1048,75 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 			if (key === 'allowance') {
-				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', true);
-			} else {
+				//this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', true);
+				oView.byId('AllowanceZoneType').setSelectedKey(null);
+				oView.byId('AllowanceMealIndicator').setPressed(false);
+				oView.byId('AllowanceTransportIndicator').setPressed(false);
+				oView.byId('AllowanceTravelIndicator').setPressed(false);
+				
+				oView.byId('AllowanceProject').getItems()[1].getItems()[0].unbindElement();
+				oView.byId('AllowanceProject').getItems()[1].getItems()[0].setVisible(false); // Label
+				oView.byId('AllowanceProject').getItems()[1].getItems()[1].setVisible(true); // ownIntialButton
+				oView.byId('AllowanceProject').getItems()[1].getItems()[2].setVisible(false);
+				oView.byId('AllowanceProject').getItems()[1].getItems()[3].setVisible(false);
+				
+				
+			} /*else {
 				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', false);
-			}
+			}*/
 
-			if (key === 'absence') {
+			else if (key === 'absence') {
 				if (this.oEmpsModel.getData().length === 1) {
 					oView.byId('AbsEmployee').setEnabled(false);
 				} else {
 					oView.byId('AbsEmployee').setEnabled(true);
 				}
+				
+				oView.byId('AbsCat').setSelectedKey(null);
+				oView.byId('AbsStartDate').setValue(null);
+				oView.byId('AbsEndDate').setValue(null);
+				oView.byId('NoofHrs').setValue(null);
+				oView.byId('AbsComment').setValue(null);
 			}
 			
-			if (key === 'bonus') {
-				if(oView.byId("addBonusTab").getItems()[0].getItems().length === 1) {
+			
+			else if (key === 'hours') {
+				var header = oView.byId('addTimeTab').getItems()[0].getItems()[0];
+				oView.getModel('AddTime').setProperty('/totalhrs',0);
+				oView.byId('addTimeTab').getItems()[0].removeAllItems();
+				oView.byId('addTimeTab').getItems()[0].insertItem(header);
+				var addNew = this.AddUpdatetimeModel.getData().newTime;
+				this.AddProjectTime_init(controler, oView.byId('addTimeTab').getItems()[0], addNew);
+			}
+			
+			else if (key === 'bonus') {
+			//	if(oView.byId("addBonusTab").getItems()[0].getItems().length === 1) {
 					var container = oView.byId("addBonusTab").getItems()[0];
+					var header2 = container.getItems()[0];
+					container.removeAllItems();
+					container.insertItem(header2);
 					var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
 					container.addItem(oFragment);
 					oFragment.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+			//	}
+			}
+			else if(key === 'KM') {
+				// project refresh
+				oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].unbindElement();
+				oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].setVisible(false); // Label
+				oView.byId('addKM').getItems()[0].getItems()[1].getItems()[1].setVisible(true); // ownIntialButton
+				oView.byId('addKM').getItems()[0].getItems()[1].getItems()[2].setVisible(false);
+				
+				for (var i = 2 ; i < oView.byId('addKM').getItems()[0].getItems().length ; i++ )
+				{
+					var kmContainer = oView.byId('addKM').getItems()[0].getItems()[i];
+					kmContainer.getItems()[2].getItems()[0].setValue(0);
+					kmContainer.getItems()[2].getItems()[1].setValue(null);
+					kmContainer.getItems()[2].getItems()[2].setValue(null);
+					kmContainer.getItems()[2].getItems()[3].setValue(null);
+					kmContainer.getItems()[2].getItems()[4].setSelectedKey(null);
 				}
+				
 			}
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
