@@ -800,3 +800,10 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     font-weight: bold;
     font-size: 0.875rem;
 }
+.EmpWeekStatus>div>div>.sapMSLITitleOnly {
+	font-size: .875rem;
+    color: #3b617e;
+    font-weight: bold;
+    padding-top: .75rem;
+    padding-left: 5px;
+}

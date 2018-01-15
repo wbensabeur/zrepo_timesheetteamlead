@@ -118,12 +118,13 @@ sap.ui.define([
 			for (var i = 0; i < oItems.length; i++) {
 				var cells = oItems[i].getCells();
 				for (var c = 1; c < cells.length; c++) {
-					try{
-					if (this.currentEmplSelection[cells[c].data("employee") + cells[c].data("selectedDate").toString()] === 'X') {
-						cells[c].getCustomData()[0].setValue('S');
-					}
-					}
-					catch(error) {
+					try {
+						if (this.currentEmplSelection[cells[c].data("employee") + cells[c].data("selectedDate").toString()] === 'X') {
+							cells[c].getCustomData()[0].setValue('S');
+						} else {
+							cells[c].getCustomData()[0].setValue('');
+						}
+					} catch (error) {
 						cells[c].getCustomData()[0].setValue('');
 					}
 				}
@@ -195,8 +196,7 @@ sap.ui.define([
 				for (var j = 0; j < this.employees[k].Days.length; j++) {
 					this.currentEmplSelection[this.employees[k].employee + this.employees[k].Days[j].toString()] = 'X';
 				}
-				var oModel1 = new JSONModel(this.currentEmplSelection);
-				this.getView().setModel(oModel1, "selectData");
+
 			}
 			if (!oDialog) {
 				// create dialog via fragment factory
