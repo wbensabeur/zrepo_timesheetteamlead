@@ -37,11 +37,16 @@ sap.ui.define([
 			}
 		},
 		onNextEmployeePress: function(oEvent) {
+			if(oEvent === true) {
+				this.getView().getModel().getProperty(this.employeeSelected.employees[this.index].getBindingContextPath()).NotEditable = true;
+			}
 			if (this.index === this.noOfEmp - 1) {
 				this.index = 0;
 			} else {
 				this.index = this.index + 1;
 			}
+			
+			
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
 			//	this.getView().byId("SignatureFrame").setVisible(false);
 			if (this.userPref.signatureRequired) {
@@ -477,7 +482,7 @@ sap.ui.define([
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
-							that.onNextEmployeePress();
+							that.onNextEmployeePress(true);
 							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 						}
 					}
@@ -559,7 +564,7 @@ sap.ui.define([
 				that.getRouter().navTo("home", {}, true);
 				that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 			} else { // Next Employee Weekly Submit 
-				that.onNextEmployeePress();
+				that.onNextEmployeePress(true);
 				MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 			}
 
@@ -614,7 +619,7 @@ sap.ui.define([
 				that.getRouter().navTo("home", {}, true);
 				that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 			} else { // Next Employee Weekly Submit 
-				that.onNextEmployeePress();
+				that.onNextEmployeePress(true);
 				MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 			}
 
