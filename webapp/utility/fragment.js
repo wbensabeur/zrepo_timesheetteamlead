@@ -1669,13 +1669,19 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							continue;
 						} else {
 							//MessageBox.alert("All Items are not selected");
-							if (bnsType === "")
+							var localreturn = false;
+							if (bnsType === "") {
 								MessageBox.alert(this.i18nModel.getText("bnsTypeNotSelected"));
-							else if (bnsProjectID === undefined)
+								localreturn = true;
+							} else if (bnsProjectID === undefined) {
 								MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
-							ctype.setBusy(false);
-							rButton.setEnabled(true);
-							return;
+								localreturn = true;
+							}
+							if (localreturn === true) {
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							}
 						}
 						// bonus quanitity
 						if (bnsQty !== null && bnsQty !== undefined) {
