@@ -349,10 +349,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
 			this.warning = true;
 			oEvent.getSource().setPlaceholder("");
-			oEvent.getSource().getParent().getParent().getParent().getItems()[0].getItems()[0].getItems()[1].setSelectedKey(selectedKey);			
+			oEvent.getSource().getParent().getParent().getParent().getItems()[0].getItems()[0].getItems()[1].setSelectedKey(selectedKey);
 		},
 		SelectProject_OnOthAllownaceEntryChange: function(oEvent) {
-			if(oEvent.getParameters().value.length > 4) {
+			if (oEvent.getParameters().value.length > 4) {
 				var setText = oEvent.getParameters().value.slice(0, 4);
 				oEvent.getSource().setValue(setText);
 			}
@@ -850,7 +850,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				visibleHrs: userPrefModel.getProperty('/defaultHours'),
 				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
 				visibleBonus: userPrefModel.getProperty('/defaultBonus'),
-				visibleKM: true,//userPrefModel.getProperty('/defaultKM'),
+				visibleKM: true, //userPrefModel.getProperty('/defaultKM'),
 				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
 				//visibleAbsence: true,
 				visibleAbsence1: true,
@@ -866,7 +866,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
-			
+
 			//this.AddProjectBonus_init(controler, controler.getView().byId('addBonusTab').getItems()[0], true)
 
 			var footerData;
@@ -940,7 +940,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							var projectContext = "/ProjectSet(ProjectId='" + projectId + "',ApplicationName='TEAMLEAD')";
 							projectView.bindElement(projectContext);
 						}
-						
 
 						break;
 					case 'KM':
@@ -1053,62 +1052,54 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oView.byId('AllowanceMealIndicator').setPressed(false);
 				oView.byId('AllowanceTransportIndicator').setPressed(false);
 				oView.byId('AllowanceTravelIndicator').setPressed(false);
-				
+
 				oView.byId('AllowanceProject').getItems()[1].getItems()[0].unbindElement();
 				oView.byId('AllowanceProject').getItems()[1].getItems()[0].setVisible(false); // Label
 				oView.byId('AllowanceProject').getItems()[1].getItems()[1].setVisible(true); // ownIntialButton
 				oView.byId('AllowanceProject').getItems()[1].getItems()[2].setVisible(false);
 				oView.byId('AllowanceProject').getItems()[1].getItems()[3].setVisible(false);
-				
-				
-			} /*else {
+
+			}
+			/*else {
 				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', false);
 			}*/
-
 			else if (key === 'absence') {
 				if (this.oEmpsModel.getData().length === 1) {
 					oView.byId('AbsEmployee').setEnabled(false);
 				} else {
 					oView.byId('AbsEmployee').setEnabled(true);
 				}
-				
+
 				oView.byId('AbsCat').setSelectedKey(null);
 				oView.byId('AbsStartDate').setValue(null);
 				oView.byId('AbsEndDate').setValue(null);
 				oView.byId('NoofHrs').setValue(null);
 				oView.byId('AbsComment').setValue(null);
-			}
-			
-			
-			else if (key === 'hours') {
+			} else if (key === 'hours') {
 				var header = oView.byId('addTimeTab').getItems()[0].getItems()[0];
-				oView.getModel('AddTime').setProperty('/totalhrs',0);
+				oView.getModel('AddTime').setProperty('/totalhrs', 0);
 				oView.byId('addTimeTab').getItems()[0].removeAllItems();
 				oView.byId('addTimeTab').getItems()[0].insertItem(header);
 				var addNew = this.AddUpdatetimeModel.getData().newTime;
 				this.AddProjectTime_init(controler, oView.byId('addTimeTab').getItems()[0], addNew);
-			}
-			
-			else if (key === 'bonus') {
-			//	if(oView.byId("addBonusTab").getItems()[0].getItems().length === 1) {
-					var container = oView.byId("addBonusTab").getItems()[0];
-					var header2 = container.getItems()[0];
-					container.removeAllItems();
-					container.insertItem(header2);
-					var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
-					container.addItem(oFragment);
-					oFragment.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
-			//	}
-			}
-			else if(key === 'KM') {
+			} else if (key === 'bonus') {
+				//	if(oView.byId("addBonusTab").getItems()[0].getItems().length === 1) {
+				var container = oView.byId("addBonusTab").getItems()[0];
+				var header2 = container.getItems()[0];
+				container.removeAllItems();
+				container.insertItem(header2);
+				var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
+				container.addItem(oFragment);
+				oFragment.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+				//	}
+			} else if (key === 'KM') {
 				// project refresh
 				oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].unbindElement();
 				oView.byId('addKM').getItems()[0].getItems()[1].getItems()[0].setVisible(false); // Label
 				oView.byId('addKM').getItems()[0].getItems()[1].getItems()[1].setVisible(true); // ownIntialButton
 				oView.byId('addKM').getItems()[0].getItems()[1].getItems()[2].setVisible(false);
-				
-				for (var i = 2 ; i < oView.byId('addKM').getItems()[0].getItems().length ; i++ )
-				{
+
+				for (var i = 2; i < oView.byId('addKM').getItems()[0].getItems().length; i++) {
 					var kmContainer = oView.byId('addKM').getItems()[0].getItems()[i];
 					kmContainer.getItems()[2].getItems()[0].setValue(0);
 					kmContainer.getItems()[2].getItems()[1].setValue(null);
@@ -1116,7 +1107,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					kmContainer.getItems()[2].getItems()[3].setValue(null);
 					kmContainer.getItems()[2].getItems()[4].setSelectedKey(null);
 				}
-				
+
 			}
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
@@ -1251,7 +1242,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 				};
 			} else if (selectedTab === 'bonus') {
-				
+
 			} else if (selectedTab === 'KM') {
 				var kmtab = oView.byId('addKM').getItems()[0].getItems()[2];
 				var startTime = '000000';
@@ -1550,6 +1541,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"StartTime": startTime,
 							"EndTime": endTime,
 							"FullDay": fullDay,
+							"AllowancesName": "",
 							"ZoneType": "",
 							"ZoneName": "",
 							"MealIndicator": false,
@@ -1638,6 +1630,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							"StartTime": startTime,
 							"EndTime": endTime,
 							"FullDay": false,
+							"AllowancesName": "",
 							"ZoneType": "",
 							"ZoneName": "",
 							"MealIndicator": false,
@@ -1652,27 +1645,71 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					}
 				} else if (selectedTab === 'bonus') {
 					var tabBns = oView.byId('addBonusTab').getItems()[0].getItems();
-					
+
 					for (var k = 1; k < tabBns.length; k++) {
-					try {
-						var bnsType = tabBns[k].getItems()[2].getItems()[0].getItems()[0].getItems()[1].getSelectedKey();
-						var bnsQty = tabBns[k].getItems()[2].getItems()[0].getItems()[1].getItems()[1].getValue();
-						var bnsProjectBindingPath = tabBns[k].getItems()[2].getItems()[2].getItems()[0].getBindingContext().getPath();
-						var bnsProjectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
-					} catch (err) {
-						if (bnsProjectID === undefined && bnsType === "") {
+						try {
+							var bnsType = tabBns[k].getItems()[2].getItems()[0].getItems()[0].getItems()[1].getSelectedKey();
+							var bnsDesc = tabBns[k].getItems()[2].getItems()[0].getItems()[0].getItems()[1]._getSelectedItemText();
+							var bnsQty = tabBns[k].getItems()[2].getItems()[0].getItems()[1].getItems()[1].getValue();
+							var bnsProjectBindingPath = tabBns[k].getItems()[2].getItems()[2].getItems()[0].getBindingContext().getPath();
+							var bnsProjectID = oView.getModel().getProperty(bnsProjectBindingPath).ProjectId;
+						} catch (err) {
+							if (bnsProjectID === undefined && bnsType === "") {
 								continue;
 							} else {
 								//MessageBox.alert("All Items are not selected");
 								if (bnsType === "")
-									MessageBox.alert(this.i18nModel.getText("hrTypeNotSelected"));
+									MessageBox.alert(this.i18nModel.getText("bnsTypeNotSelected"));
 								else if (bnsProjectID === undefined)
 									MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;
 							}
-					}
+						}
+						if (bnsProjectID === undefined && bnsType === "") {
+							continue;
+						} else {
+							//MessageBox.alert("All Items are not selected");
+							var localreturn = false;
+							if (bnsType === "") {
+								MessageBox.alert(this.i18nModel.getText("bnsTypeNotSelected"));
+								localreturn = true;
+							} else if (bnsProjectID === undefined) {
+								MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
+								localreturn = true;
+							}
+							if (localreturn === true) {
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							}
+						}
+						// bonus quanitity
+						if (bnsQty !== null && bnsQty !== undefined) {
+							var bnsQtyText = bnsQty.toString();
+						} else {
+							bnsQtyText = bnsQty;
+						}
+						workDayItem = {
+							"ProjectID": bnsProjectID,
+							"EntryType": "PREMIUM",
+							"Hours": bnsQtyText,
+							"EntryTypeCatId": bnsType,
+							"StartTime": "000000",
+							"EndTime": "000000",
+							"FullDay": false,
+							"AllowancesName": bnsDesc,
+							"ZoneType": "",
+							"ZoneName": "",
+							"MealIndicator": false,
+							"JourneyIndicator": false,
+							"TransportIndicator": false,
+							"StartDate": null,
+							"EndDate": null,
+							"Comment": null
+						};
+						workDayItems.push(workDayItem);
 					}
 				} else if (selectedTab === 'allowance') {
 					/// Get Item Data from view for Daily Allowances
@@ -1705,6 +1742,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						"StartTime": "000000",
 						"EndTime": "000000",
 						"FullDay": false,
+						"AllowancesName": "",
 						"ZoneType": zonetype,
 						"ZoneName": zoneName,
 						"MealIndicator": meal,
@@ -1758,7 +1796,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								"ApprovedOn": null,
 								"Reason": "",
 								"AllowancesType": "",
-								"AllowancesName": "",
+								"AllowancesName": workDayItems[i].AllowancesName,
 								"ZoneType": workDayItems[i].ZoneType,
 								"ZoneName": workDayItems[i].ZoneName,
 								"MealIndicator": workDayItems[i].MealIndicator,
