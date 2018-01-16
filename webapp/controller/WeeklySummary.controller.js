@@ -29,7 +29,7 @@ sap.ui.define([
 			if (setting !== null) {
 				setting.attachPress(function(oEvent) {
 
-					MessageBox.information("Version - 2.0.0");
+					MessageBox.information("Version - 4.0.0");
 				});
 			}
 			// Put down worklist table's original value for busy indicator delay,
