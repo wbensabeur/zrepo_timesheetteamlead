@@ -36,7 +36,7 @@
 				</Table>
 			<ScrollContainer id="TableScrollCS" width="auto" height="100%" vertical="true" horizontal="false" focusable="true">
 				<content>
-			<Table id="tableCS" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="10" showSeparators="None" inset="false" class="employeeListTable  sapUiSmallMarginBegin whiteColoumCell" updateStarted="onUpdateStart">
+			<Table id="tableCS" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}" items="{ path: '/WeekSummarySet' , suspended: true }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" growingThreshold="9" showSeparators="None" inset="false" class="employeeListTable  sapUiSmallMarginBegin whiteColoumCell" updateStarted="onUpdateStart">
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center"/>
 				</columns>

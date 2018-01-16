@@ -811,6 +811,6 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .chkSelectionBtnText>.sapMBtnInner>.sapMBtnIcon {
     color: white;
 }
-.chkSelectionBtnText>.sapMBtnInner>.sapMBtnIcon {
+.chkSelectionBtnText>.sapMBtnInner>.sapMBtnContent {
     color: white;
 }
