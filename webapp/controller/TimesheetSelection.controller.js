@@ -107,8 +107,8 @@ sap.ui.define([
 				for (var l = 0; l < this.daySelected.length; l++) {
 					var source = this.daySelected[l];
 					var headerSeq = source.getParent().getParent().getInitialOrder();
-					source.data('background'); //getCustomData()[0].setValue("S");
-					source.getParent().data('background'); //.getCustomData()[0].setValue("S");
+					source.getCustomData()[0].setValue("S");
+					source.getParent().getCustomData()[0].setValue("S");
 					var Items = this.getView().byId('table').getItems();
 					for (var k1 = 0; k1 < Items.length; k1++) {
 						var button = Items[k1].getCells()[headerSeq];

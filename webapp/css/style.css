@@ -344,12 +344,12 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 
 .hourSize>span>span {
     padding-top: 10px;
-    color: #3b617e !important;
+    color: #3b617e ;
 }
 
 .hourSize>div>span {
     padding-top: 10px;
-    color: #3b617e !important;
+    color: #3b617e ;
 }
 
 .hourSize[data-status="NE"]>span>span {
