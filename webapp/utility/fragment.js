@@ -900,6 +900,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				odata.newTime = false;
 				odata.newBonus = false;
 				odata.visibleHrs = false;
+				odata.visibleBonus = false;
 				odata.visibleDailyAllow = false;
 				odata.visibleKM = false;
 				odata.visibleAbsence = false;
@@ -956,6 +957,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						break;
 					case 'ABSENCE':
 						odata.visibleAbsence = true;
+						break;
+					case 'PREMIUM':
+						odata.visibleBonus = true;
 						break;
 				}
 
