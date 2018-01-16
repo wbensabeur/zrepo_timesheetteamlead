@@ -811,3 +811,10 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     padding-top: .75rem;
     padding-left: 5px;
 }
+
+.chkSelectionBtnText>.sapMBtnInner>.sapMBtnIcon {
+    color: white;
+}
+.chkSelectionBtnText>.sapMBtnInner>.sapMBtnIcon {
+    color: white;
+}
