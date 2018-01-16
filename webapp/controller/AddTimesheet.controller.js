@@ -110,6 +110,7 @@ sap.ui.define([
 			this.byId("tableCS").setBusy(true);
 		},
 		onUpdateFinished: function(oEvent) {
+			var that = this;
 			// update the worklist's object counter after the table update
 			this.byId("tableCS").setBusy(false);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
@@ -129,20 +130,6 @@ sap.ui.define([
 					}
 				}
 			}
-
-			/*for (var l = 0; l < this.employees.length; l++) {
-				var source = this.employees[l];
-				var headerSeq = source.getParent().getParent().getInitialOrder();
-				source.data('background'); //getCustomData()[0].setValue("S");
-				source.getParent().data('background'); //.getCustomData()[0].setValue("S");
-				var Items = this.getView().byId('table').getItems();
-				for (var k1 = 0; k1 < Items.length; k1++) {
-					var button = Items[k1].getCells()[headerSeq];
-					if (button.getEnabled()) {
-						button.getCustomData()[0].setValue("S");
-					}
-				}
-			}*/
 		},
 		_applyFiltersCS: function() {
 			var that = this;
@@ -181,11 +168,6 @@ sap.ui.define([
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
-			// Logic for showing selection screen
-			var oItems = oTable.getItems();
-			for (var i = 0; i < oItems.length; i++) {
-
-			}
 		},
 		onPressChkSelection: function(oEvent) {
 			var that = this;
@@ -218,10 +200,12 @@ sap.ui.define([
 
 					}
 				};
-				$(window).resize(function() {
-					var totalH = window.innerHeight - 200;
-					that.getView().byId('TableScroll').setHeight(totalH + 'px');
-				});
+				// var totalH = window.innerHeight - 86;
+				// that.getView().byId('TableScrollCS').setHeight(totalH + 'px');
+				// $(window).resize(function() {
+				// 	totalH = window.innerHeight - 86;
+				// 	that.getView().byId('TableScrollCS').setHeight(totalH + 'px');
+				// });
 			}
 			this._applyFiltersCS();
 			oDialog.open();
