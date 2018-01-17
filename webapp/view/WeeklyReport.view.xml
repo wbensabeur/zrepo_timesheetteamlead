@@ -304,7 +304,7 @@
 									
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{itemData>type}"/>
+										<Text text="{itemData>type}" textAlign="Center"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
 										<Text text="{itemData>unit}"/>
