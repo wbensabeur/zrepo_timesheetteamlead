@@ -67,7 +67,7 @@
 							</HBox>
 						</VBox>
 						<VBox id="AllowanceProject" alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiSmallMarginBottom">
-							<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
+							<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProjectWithDelete' type='XML'/>
 						</VBox>
 					</VBox>
 					<VBox visible="false">
