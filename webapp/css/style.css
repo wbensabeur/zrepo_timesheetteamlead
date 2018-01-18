@@ -344,7 +344,7 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 
 .hourSize>span>span {
     padding-top: 10px;
-    color: #3b617e ;
+    color: #3b617e !important;
 }
 
 .hourSize>div>span {

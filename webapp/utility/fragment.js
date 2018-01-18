@@ -960,6 +960,24 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						break;
 					case 'PREMIUM':
 						odata.visibleBonus = true;
+						//Add the Fragment
+						var containerbns = controler.getView().byId("addBonusTab").getItems()[0];
+						var header2 = containerbns.getItems()[0];
+						containerbns.removeAllItems();
+						containerbns.insertItem(header2);
+						var oFragmentbns = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
+						oFragmentbns.bindElement(updateKeyPath);
+						containerbns.addItem(oFragmentbns);
+						oFragmentbns.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+						// Display the Update details
+						containerbns.getItems()[0].getItems()[0].setVisible(false);
+						var selectbnsCombo = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[0].getItems()[1];
+						var selectbnsInput = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[1].getItems()[1];
+						projectView = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2];
+						projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
+						projectView.bindElement(projectContext);
+						selectbnsCombo.getBinding("items").resume();
+						selectbnsInput.setValue(odataModel.getProperty(updateKeyPath).Hours);
 						break;
 				}
 
