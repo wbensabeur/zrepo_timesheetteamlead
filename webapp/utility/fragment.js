@@ -1,9 +1,10 @@
 sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
+    "com/vinci/timesheet/admin/model/formatter",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-], function(datetime, JSONModel, MessageBox, Filter, FilterOperator) {
+], function(datetime, formatter, JSONModel, MessageBox, Filter, FilterOperator) {
 	"use strict";
 
 	return {
@@ -977,7 +978,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
 						selectbnsCombo.getBinding("items").resume();
-						selectbnsInput.setValue(odataModel.getProperty(updateKeyPath).Hours);
+						var localHours = formatter.getNumber(odataModel.getProperty(updateKeyPath).Hours);
+						selectbnsInput.setValue(localHours);
 						break;
 				}
 
