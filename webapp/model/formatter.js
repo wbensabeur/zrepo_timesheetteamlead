@@ -264,6 +264,13 @@ sap.ui.define([
 				return Number(hrs);
 			}*/
 		},
+		getNumber: function(Value) {
+			if(Value) {
+			return Number(Value);
+			} else {
+				return '';
+			}
+		},
 		favIcon: function(fav) {
 			if (fav) {
 				return "sap-icon://favorite";
