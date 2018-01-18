@@ -167,6 +167,11 @@ sap.ui.define([
 			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
+			if(this.employees.length > 0) {
+				for (var e = 0; e < this.employees.length; e++) {
+					Filters.push(new Filter("EmployeeId", FilterOperator.EQ, this.employees[e].employee));
+				}
+			}
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
 		onPressChkSelection: function(oEvent) {
