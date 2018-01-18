@@ -649,6 +649,7 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     overflow: visible;
     color: white;
     text-shadow: none;
+    font-size: 0.7rem;
 }
 
 .textAlignmentStart>td {
