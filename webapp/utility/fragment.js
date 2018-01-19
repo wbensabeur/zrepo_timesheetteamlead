@@ -931,7 +931,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						buttons[1].setEnabled(false);
 						allDayCombo.setVisible(false);
 						selecthrsCombo.setVisible(true);
-
+						
+						allDayCombo.setPlaceholder("");
+						selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
 						break;
 					case 'IPD':
 						odata.visibleDailyAllow = true;
@@ -942,7 +944,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							var projectContext = "/ProjectSet(ProjectId='" + projectId + "',ApplicationName='TEAMLEAD')";
 							projectView.bindElement(projectContext);
 						}
-
+						controler.getView().byId('AllowanceZoneType').setPlaceholder("");
 						break;
 					case 'KM':
 						odata.visibleKM = true;
@@ -954,7 +956,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						projectView.bindElement(projectContext);
 
 						controler.getView().byId('addKM').getItems()[0].getItems()[3].setVisible(false);
-
+						controler.getView().byId('addKM').getItems()[0].getItems()[2].getItems()[2].getItems()[4].setPlaceholder("");
 						break;
 					case 'ABSENCE':
 						odata.visibleAbsence = true;
@@ -980,6 +982,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						selectbnsCombo.getBinding("items").resume();
 						var localHours = formatter.getNumber(odataModel.getProperty(updateKeyPath).Hours);
 						selectbnsInput.setValue(localHours);
+						selectbnsCombo.setPlaceholder("");
 						break;
 				}
 
