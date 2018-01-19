@@ -31,17 +31,17 @@
 					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell"
 						items="{ path: '/WorkDayItemSet', suspended: true  }">
 						<columns>
-							<Column width="15%" hAlign="Center" class="EmployeeWeeklyReportColumn">
+							<Column width="33%" hAlign="Center" class="EmployeeWeeklyReportColumn">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-									<Label text="{i18n>projID}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+									<Label text="{i18n>ProjectTitle}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
-							<Column width="auto" hAlign="Center">
+							<Column width="auto" hAlign="Center" visible="false">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<Label text="{i18n>ProjectName}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
-								</VBox>
+							    </VBox>
 							</Column>
-							<Column width="25%" hAlign="Center">
+							<Column width="auto" hAlign="Center">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<Label text="{i18n>timeType}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
@@ -87,9 +87,9 @@
 							<ColumnListItem class="textAlignmentStart">
 								<cells>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text   text="{ProjectID}" class="sapUiTinyMarginTop"/>
+										<Text   text="{ProjectID} / {ProjectName}" class="sapUiTinyMarginTop"/>
 									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+									<VBox alignItems="Center" justifyContent="Center" height="2.5rem" visible="false">
 										<!--<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescFirstLine'}" class="sapUiTinyMarginTop"/>
 										<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescSecondLine'}" visible="{parts:['ProjectName'],formatter:'.formatter.IsProjectDescSecondLine'}" class="sapUiTinyMarginTop"/>-->
 										<Text text="{ProjectName}" textAlign="Center" class="sapUiTinyMarginTop"/>
