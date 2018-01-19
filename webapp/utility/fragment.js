@@ -1710,10 +1710,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							}
 						}
 						// bonus quanitity
-						if (bnsQty !== null && bnsQty !== undefined) {
+						if (bnsQty !== null && bnsQty !== undefined && bnsQty !== "") {
 							var bnsQtyText = bnsQty.toString();
 						} else {
 							bnsQtyText = bnsQty;
+							MessageBox.alert(this.i18nModel.getText("bnsQtyNotEntered"));
+							ctype.setBusy(false);
+							rButton.setEnabled(true);
+							return;
 						}
 						workDayItem = {
 							"ProjectID": bnsProjectID,
