@@ -280,6 +280,9 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
     background-color: #fc6b8a !important;
 }
 
+.EmpDayCheckDialogBG {
+	background-color: #fafafa !important;
+}
 
 /*.hourSize[data-status="D"] {
     background-color: #e6e7e8;
