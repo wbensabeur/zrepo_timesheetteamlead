@@ -9,8 +9,8 @@
 			<HBox width="100%" alignItems="Start" justifyContent="SpaceBetween">
 				<RadioButtonGroup  columns="2" class="sapUiTinyMarginBottom" select="OnchangeTimeSelection" selectedIndex="{path:'AddTime>/newTime',formatter:'.formatter.allDaySelection'}">
 					<buttons>
-						<RadioButton width="10rem" text="{i18n>allDay}" enabled="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" class="CustomRatioBtn"/>
-						<RadioButton width="10rem" text="{i18n>specificTime}" class="CustomRatioBtn"/>
+						<RadioButton width="12rem" text="{i18n>allDay}" enabled="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" class="CustomRatioBtn"/>
+						<RadioButton width="12rem" text="{i18n>specificTime}" class="CustomRatioBtn"/>
 					</buttons>
 					
 				</RadioButtonGroup>

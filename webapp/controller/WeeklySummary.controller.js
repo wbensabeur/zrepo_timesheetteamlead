@@ -588,7 +588,23 @@ sap.ui.define([
 					if(showStartTime === false && showEndTime === false && showKM === false) {
 						localTable.getColumns()[1].setWidth("30%");
 					} else {
-						localTable.getColumns()[1].setWidth("auto");
+						// Determin width display
+						var controlWidth = 0;
+						if(showStartTime === true){
+							controlWidth = controlWidth + 1;
+						} else if(showEndTime === true){
+							controlWidth = controlWidth + 1;
+						} else if(showKM === true){
+							controlWidth = controlWidth + 1;
+						}
+						// apply width display
+						if(controlWidth === 1) {
+							localTable.getColumns()[1].setWidth("24%");
+						} else if(controlWidth === 2) {
+							localTable.getColumns()[1].setWidth("18%");
+						} else if(controlWidth === 3) {
+							localTable.getColumns()[1].setWidth("12%");
+						}
 					}
 				} catch (e) {
 					// do nothing

@@ -15,7 +15,6 @@
     ],
     "buildRequired": true,
     "lastBuildDateTime": "Tue, 09 Jan 2018 09:27:30 GMT"
-
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
