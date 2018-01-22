@@ -585,6 +585,11 @@ sap.ui.define([
 					localTable.getColumns()[3].setVisible(showStartTime);
 					localTable.getColumns()[4].setVisible(showEndTime);
 					localTable.getColumns()[5].setVisible(showKM);
+					if(showStartTime === false && showEndTime === false && showKM === false) {
+						localTable.getColumns()[1].setWidth("30%");
+					} else {
+						localTable.getColumns()[1].setWidth("auto");
+					}
 				} catch (e) {
 					// do nothing
 				}
