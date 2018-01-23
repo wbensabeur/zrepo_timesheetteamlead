@@ -284,6 +284,10 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 	background-color: #fafafa !important;
 }
 
+.EmpDayCheckDialogBG>section.sapMDialogSection {
+	background-color: #fafafa !important;	
+}
+
 /*.hourSize[data-status="D"] {
     background-color: #e6e7e8;
 }*/
