@@ -519,6 +519,7 @@ sap.ui.define([
 				},
 				error: function() {
 					that.getView().setBusy(false);
+					MessageToast.show(that.getResourceBundle().getText("errorWeeklyReportPostMsg"));
 					that.postSignAttachmentDel(DocName);
 				}
 			});
@@ -586,7 +587,7 @@ sap.ui.define([
 							that.OnTimeSubmit(localDocName);
 						},
 						error: function(odata) {
-							//sap.m.MessageToast.show("file Upload error");
+							MessageToast.show(that.getResourceBundle().getText("errorWeeklyReportPostMsg"));
 						}
 					});
 
@@ -645,7 +646,7 @@ sap.ui.define([
 							that.OnTimeSubmit(localDocName);
 						},
 						error: function(odata) {
-							//sap.m.MessageToast.show("file Upload error");
+							MessageToast.show(that.getResourceBundle().getText("errorWeeklyReportPostMsg"));
 						}
 					});
 
@@ -662,7 +663,44 @@ sap.ui.define([
 		},
 		
 		postSignAttachmentDel: function(FileName) {
-			
+			var that = this;
+			var token;
+			var sFileName = FileName;
+			var serviceURL = this.getView().getModel().sServiceUrl;
+			jQuery.ajax({
+				url: serviceURL,
+				type: "GET",
+				async: true,
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader("X-CSRF-Token", "Fetch");
+					xhr.setRequestHeader("Content-Type", "image/png");
+					xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+				},
+				success: function(data, textStatus, xhrg) {
+					token = xhrg.getResponseHeader("X-CSRF-Token");
+					jQuery.ajaxSetup({
+						cache: false
+					});
+					jQuery.ajax({
+						url: serviceURL + "/DocumentPDFSet('"+sFileName+"')/$value",
+						asyn: true,
+						cache: false,
+						type: "DELETE",
+						beforeSend: function(xhrp) {
+							xhrp.setRequestHeader("X-CSRF-Token", token);
+							xhrp.setRequestHeader("Content-Type", "image/png");
+							xhrp.setRequestHeader("slug", sFileName);
+						},
+						success: function(odata, response) {
+							//sap.m.MessageToast.show("file successfully Deleted");
+						},
+						error: function(odata) {
+							//sap.m.MessageToast.show("error in file deletion");
+						}
+					});
+
+				}
+			});
 		}
 	});
 });
