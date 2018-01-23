@@ -87,7 +87,7 @@
 							<ColumnListItem class="textAlignmentStart">
 								<cells>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text   text="{ProjectID} / {ProjectName}" class="sapUiTinyMarginTop"/>
+										<Text   text="{parts:['ProjectID','ProjectName'],formatter:'.formatter.getProject'}" class="sapUiTinyMarginTop" textAlign="Center"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem" visible="false">
 										<!--<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescFirstLine'}" class="sapUiTinyMarginTop"/>

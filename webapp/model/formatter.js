@@ -355,6 +355,11 @@ sap.ui.define([
 			else {
 				return true;
 			}
+		},
+		getProject: function(ProjectID, ProjectName) {
+			if(ProjectID !== undefined && ProjectID !== null && ProjectID && "") {
+				return ProjectID + " / " + ProjectName;
+			}
 		}
 	};
 
