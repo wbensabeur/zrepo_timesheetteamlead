@@ -325,7 +325,7 @@ sap.ui.define([
 			this.getView().byId("signBtn").setVisible(false);
 			this.getView().byId("timeSubmitBtn").setVisible(true);*/
 			this.OnDocGenerate();
-			this.OnTimeSubmit();
+			//this.OnTimeSubmit();
 		},
 		onPressClear: function() {
 			sap.ui.getCore().getControl("mySignaturePad").clear();
@@ -363,7 +363,7 @@ sap.ui.define([
 				that.postSignAttachment(srcImg, sFileName);
 			}
 		},
-		OnTimeSubmit: function() {
+		OnTimeSubmit: function(DocName) {
 
 			//////
 
@@ -519,6 +519,7 @@ sap.ui.define([
 				},
 				error: function() {
 					that.getView().setBusy(false);
+					that.postSignAttachmentDel(DocName);
 				}
 			});
 
@@ -580,6 +581,9 @@ sap.ui.define([
 						},
 						success: function(odata, response) {
 							//sap.m.MessageToast.show("file successfully uploaded");
+							var localDocName = odata.children[0].children[6].children[0].innerHTML;
+							console.log(localDocName);
+							that.OnTimeSubmit(localDocName);
 						},
 						error: function(odata) {
 							//sap.m.MessageToast.show("file Upload error");
@@ -636,6 +640,9 @@ sap.ui.define([
 						},
 						success: function(odata, response) {
 							//sap.m.MessageToast.show("file successfully uploaded");
+							var localDocName = odata.children[0].children[6].children[0].innerHTML;
+							console.log(localDocName);
+							that.OnTimeSubmit(localDocName);
 						},
 						error: function(odata) {
 							//sap.m.MessageToast.show("file Upload error");
@@ -652,6 +659,10 @@ sap.ui.define([
 				MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
 			}*/
 
+		},
+		
+		postSignAttachmentDel: function(FileName) {
+			
 		}
 	});
 });
