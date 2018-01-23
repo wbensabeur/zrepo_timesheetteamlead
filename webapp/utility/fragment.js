@@ -944,6 +944,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						if (projectId !== null && projectId !== '' && projectId !== undefined) {
 							var projectContext = "/ProjectSet(ProjectId='" + projectId + "',ApplicationName='TEAMLEAD')";
 							projectView.bindElement(projectContext);
+						} else if (projectId === '') {
+							projectView.getItems()[0].setText("");
 						}
 						controler.getView().byId('AllowanceZoneType').setPlaceholder("");
 						break;

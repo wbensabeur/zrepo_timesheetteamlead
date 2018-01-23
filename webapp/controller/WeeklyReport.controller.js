@@ -37,7 +37,7 @@ sap.ui.define([
 			}
 		},
 		onNextEmployeePress: function(oEvent) {
-			if(oEvent === true) {
+			if (oEvent === true) {
 				this.getView().getModel().getProperty(this.employeeSelected.employees[this.index].getBindingContextPath()).NotEditable = true;
 			}
 			if (this.index === this.noOfEmp - 1) {
@@ -45,8 +45,7 @@ sap.ui.define([
 			} else {
 				this.index = this.index + 1;
 			}
-			
-			
+
 			this._applyEmployeeBinding(this.employeeSelected.employees[this.index]);
 			//	this.getView().byId("SignatureFrame").setVisible(false);
 			if (this.userPref.signatureRequired) {
@@ -103,9 +102,7 @@ sap.ui.define([
 				this.getView().byId("signBtn").setVisible(false);
 				this.getView().byId("timeSubmitBtn").setVisible(true);
 			}
-			
-			
-			
+
 			if (this.employeeSelected.employees.length > 0) {
 				this.showSign = this.getView().byId("signBtn").getVisible();
 				this.showSubmit = this.getView().byId("timeSubmitBtn").getVisible();
@@ -135,15 +132,14 @@ sap.ui.define([
 			/// SP6-21 check for noEdit Flag
 			var oView = this.getView();
 			var noEdit = oView.getModel().getProperty(employee.getBindingContextPath()).NotEditable;
-			if(noEdit) {
+			if (noEdit) {
 				this.getView().byId("signBtn").setVisible(false);
 				this.getView().byId("timeSubmitBtn").setVisible(false);
-			}
-			else {
+			} else {
 				this.getView().byId("signBtn").setVisible(this.showSign);
 				this.getView().byId("timeSubmitBtn").setVisible(this.showSubmit);
 			}
-			
+
 			this.employeId = employee.data('employee'); //.getCustomData()[1].getValue();
 			//oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
 			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId + "'," + "ApplicationName='" + this.userPref.application +
@@ -261,9 +257,9 @@ sap.ui.define([
 					if (line !== null) {
 						oData1.push(line);
 					}
-					
+
 					/// Sorting of Result ## SP6-06
-					
+
 					//// End of ## SP6-06
 					var oModel = new JSONModel(oData1);
 					oView.setModel(oModel, "itemData");
@@ -326,6 +322,7 @@ sap.ui.define([
 			/*this.getView().byId("SignatureFrame").setVisible(true);
 			this.getView().byId("signBtn").setVisible(false);
 			this.getView().byId("timeSubmitBtn").setVisible(true);*/
+			this.OnDocGenerate();
 			this.OnTimeSubmit();
 		},
 		onPressClear: function() {
@@ -341,6 +338,28 @@ sap.ui.define([
 			this.getView().addDependent(this.dialogPressSignature);
 			this.dialogPressSignature.open();
 
+		},
+		OnDocGenerate: function() {
+			var that = this;
+			if (that.userPref.signatureRequired) {
+				var localDate = that.employeeSelected.startDate;
+				if (localDate === null || localDate === undefined) {
+					localDate = new Date();
+				}
+				var weekno = datetime.getWeek(localDate);
+				if (weekno.toString().length === 1) {
+					var localweekno = ("0" + weekno.toString().slice(-2));
+				} else {
+					localweekno = weekno.toString().slice(-2);
+				}
+				var week = localDate.getUTCFullYear().toString() + localweekno;
+				var locatdatetime = localDate.toJSON().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace("T",
+					"").replace(
+					".", "").substring(0, 14);
+				var sFileName = locatdatetime + "_" + that.employeId + "_" + that.userPref.defaultBU + "_" + week + ".pdf";
+				var srcImg = that.srcImg;
+				that.postSignAttachment(srcImg, sFileName);
+			}
 		},
 		OnTimeSubmit: function() {
 
@@ -426,13 +445,13 @@ sap.ui.define([
 					that.getView().setBusy(false);
 					if (that.userPref.signatureRequired) {
 
-						var localDate = that.employeeSelected.startDate;
+						/*var localDate = that.employeeSelected.startDate;
 						if (localDate === null || localDate === undefined) {
 							localDate = new Date();
 						}
 						var weekno = datetime.getWeek(localDate);
-						if(weekno.toString().length === 1) {
-						var localweekno = ("0" + weekno.toString().slice(-2));
+						if (weekno.toString().length === 1) {
+							var localweekno = ("0" + weekno.toString().slice(-2));
 						} else {
 							localweekno = weekno.toString().slice(-2);
 						}
@@ -442,7 +461,15 @@ sap.ui.define([
 							".", "").substring(0, 14);
 						var sFileName = locatdatetime + "_" + that.employeId + "_" + that.userPref.defaultBU + "_" + week + ".pdf";
 						var srcImg = that.srcImg;
-						that.postSignAttachment(srcImg, sFileName);
+						that.postSignAttachment(srcImg, sFileName);*/
+
+						if (that.index === that.noOfEmp - 1) { //Home Page
+							that.getRouter().navTo("home", {}, true);
+							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+						} else { // Next Employee Weekly Submit 
+							that.onNextEmployeePress(true);
+							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+						}
 
 						/*var elements = document.getElementsByClassName("WeeklyReportDetail");
 						var eleID = '#' + elements[0].id;
@@ -615,13 +642,13 @@ sap.ui.define([
 
 				}
 			});
-			if (that.index === that.noOfEmp - 1) { //Home Page
+			/*if (that.index === that.noOfEmp - 1) { //Home Page
 				that.getRouter().navTo("home", {}, true);
 				that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 			} else { // Next Employee Weekly Submit 
 				that.onNextEmployeePress(true);
 				MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
-			}
+			}*/
 
 		}
 	});
