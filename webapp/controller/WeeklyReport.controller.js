@@ -158,7 +158,7 @@ sap.ui.define([
 				datetime.getODataDateFilter(
 					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
 					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "and%20ApplicationName%20eq%20%27" + this.userPref
-				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27&$orderby=EntryType,ProjectID";
+				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27&$orderby=EntryType,ProjectID,EntryTypeDesc";
 			var mParameters = {
 				urlParameters: urlFilterParam,
 				success: function(oData, oResponse) {
@@ -167,13 +167,14 @@ sap.ui.define([
 					var oData1 = [];
 					var projectId = null;
 					var entryType = null;
+					var entryTypeDesc = null;
 					var line = null;
 					for (var k = 0; k < results.length; k++) {
 						var uri = results[k].__metadata.uri;
 						var contextBinding = uri.substring((uri.indexOf('WorkDayItemSet') - 1));
 						that.EmplWeekContext.push(contextBinding);
 						var hrs = formatter.getQuantity(results[k].EntryType, results[k].Hours);
-						if (projectId !== results[k].ProjectID || entryType !== results[k].EntryType) /// New Line
+						if (projectId !== results[k].ProjectID || entryType !== results[k].EntryType || entryTypeDesc !== results[k].EntryTypeDesc) /// New Line
 						{
 							if (line !== null) {
 								oData1.push(line);
@@ -252,6 +253,7 @@ sap.ui.define([
 						}
 						projectId = results[k].ProjectID;
 						entryType = results[k].EntryType;
+						entryTypeDesc = results[k].EntryTypeDesc;
 
 					}
 					if (line !== null) {
