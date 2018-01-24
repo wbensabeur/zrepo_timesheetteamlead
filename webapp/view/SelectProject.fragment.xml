@@ -4,10 +4,9 @@
 		<Label text="{i18n>ifNecessary}" visible="{AddTime>/visibleProjectOptional}" class="sapUiSmallMarginBegin"/>-->
 	</HBox>
 	<VBox width="100%" alignItems="Start" justifyContent="Start">
-		<Text width="25rem" text="{i18n>IPDPrjSelectionMsg}" class="sapUiSmallMarginTop sapUiLargeMarginEnd BoldBuleLabel"/>
 		<Text width="25rem" text="{ProjectDescription} ({ProjectId}) - {ResponsiblePMName} ({i18n>manager})" class="sapUiSmallMarginTop sapUiLargeMarginEnd BoldBuleLabel" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}"/>
 		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" class="sapUiLargeMarginEnd" visible="{AddTime>/newTime}"/>
 		<Button text="{i18n>projectRefrsh}" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
-		
+		<Text width="25rem" text="{i18n>IPDPrjSelectionMsg}" class="sapUiSmallMarginTop sapUiLargeMarginEnd BoldBuleLabel"/>
 	</VBox>
 </core:FragmentDefinition>

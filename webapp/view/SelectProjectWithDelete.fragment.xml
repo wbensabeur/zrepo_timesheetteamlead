@@ -5,10 +5,10 @@
 	</HBox>
 	<VBox width="100%" alignItems="Start" justifyContent="Start">
 		<!--<Link text="{ProjectDescription} ({ProjectId}) - {ResponsiblePMName} ({i18n>manager})" class="sapUiSmallMarginTop sapUiLargeMarginEnd ProjectLabel" visible="{parts:[{path:'AddTime>/newTime'},{path:'ProjectId'}],formatter:'.formatter.booleanNotPRJL'}"/>-->
-		<Text width="25rem" text="{i18n>IPDPrjSelectionMsg}" class="sapUiSmallMarginTop sapUiLargeMarginEnd BoldBuleLabel"/>
 		<Text width="25rem" text="{ProjectDescription} ({ProjectId}) - {ResponsiblePMName} ({i18n>manager})" class="sapUiSmallMarginTop sapUiLargeMarginEnd BoldBuleLabel" visible="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}"/>
 		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" visible="{parts:[{path:'AddTime>/newTime'},{path:'ProjectId'}],formatter:'.formatter.booleanNotPRJLForNew'}" class="sapUiLargeMarginEnd"/>
 		<Button text="{i18n>projectRefrsh}" visible="{parts:[{path:'AddTime>/newTime'},{path:'ProjectId'}],formatter:'.formatter.booleanNotPRJL'}" class="sapUiLargeMarginEnd" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
 		<Button text="{i18n>projectDelete}" visible="{parts:[{path:'AddTime>/newTime'},{path:'ProjectId'}],formatter:'.formatter.booleanNotPRJL'}" press="OnProjectDelete" icon="sap-icon://delete" class="sapUiSmallMarginBegin" />
+		<Text width="25rem" text="{i18n>IPDPrjSelectionMsg}" class="sapUiSmallMarginTop sapUiLargeMarginEnd BoldBuleLabel"/>
 	</VBox>
 </core:FragmentDefinition>
