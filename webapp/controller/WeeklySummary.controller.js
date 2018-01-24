@@ -296,6 +296,12 @@ sap.ui.define([
 					table.setVisible(false);
 					that.getView().byId('employeeWeekLabel').setVisible(true);
 				}
+				// for employee week selection view
+				that.employees = [{
+				employee: that.currentEmp,
+				employeeName: that.currentEmpName,
+				Days: []
+			}];
 
 			});
 
@@ -922,15 +928,15 @@ sap.ui.define([
 		////*** Add New Time  **///
 
 		OnAddEmpWeekTime: function(oEvent) {
-
+			var that = this;
 			var oDialog = null;
 			oDialog = this.getView().byId("EmpWeekCheckDialog");
-
-			this.employees = [{
-				employee: this.currentEmp,
-				employeeName: this.currentEmpName,
-				Days: []
-			}];
+			
+			if(this.employees[0].Days.length <= 0) {
+				MessageToast.show(that.getResourceBundle().getText("selectAtleastOneDay"));
+				return;
+			}
+			
 			for (var k = 0; k < this.Filters1.length; k++) {
 				this.employees[0].Days.push(this.Filters1[k]);
 			}
