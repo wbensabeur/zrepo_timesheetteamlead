@@ -158,7 +158,8 @@ sap.ui.define([
 				datetime.getODataDateFilter(
 					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
 					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "and%20ApplicationName%20eq%20%27" + this.userPref
-				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27&$orderby=EntryType,ProjectID,EntryTypeDesc";
+				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion +
+				"%27&$orderby=EntryType,ProjectID,EntryTypeDesc";
 			var mParameters = {
 				urlParameters: urlFilterParam,
 				success: function(oData, oResponse) {
@@ -582,7 +583,19 @@ sap.ui.define([
 						},
 						success: function(odata, response) {
 							//sap.m.MessageToast.show("file successfully uploaded");
-							var localDocName = odata.children[0].children[6].children[0].innerHTML;
+							try {
+								var localDocName = odata.children[0].children[6].children[0].innerHTML;
+							} catch (e) {
+								// do nothing	
+							}
+							// for IE Read
+							if (localDocName === undefined || localDocName === null || localDocName === "") {
+								try {
+									localDocName = odata.documentElement.childNodes[6].childNodes[0].childNodes[0];
+								} catch (e) {
+									// do nothing	
+								}
+							}
 							console.log(localDocName);
 							that.OnTimeSubmit(localDocName);
 						},
@@ -661,7 +674,7 @@ sap.ui.define([
 			}*/
 
 		},
-		
+
 		postSignAttachmentDel: function(FileName) {
 			var that = this;
 			var token;
@@ -682,7 +695,7 @@ sap.ui.define([
 						cache: false
 					});
 					jQuery.ajax({
-						url: serviceURL + "/DocumentPDFSet('"+sFileName+"')/$value",
+						url: serviceURL + "/DocumentPDFSet('" + sFileName + "')/$value",
 						asyn: true,
 						cache: false,
 						type: "DELETE",
