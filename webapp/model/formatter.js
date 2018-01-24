@@ -46,9 +46,15 @@ sap.ui.define([
 			var currentYear = oDate.getFullYear();
 			var oString = null;
 			if (biweekly) {
+				if(currentWeekNumber < 52) {
 				oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + " " + this.getResourceBundle().getText("and") + " " +
 					(currentWeekNumber + 1) + ', ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
 					.getText("from") + ' ';
+				}
+				else {
+					oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + " " + this.getResourceBundle().getText("and") +  ' 1, ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
+					.getText("from") + ' ';	
+				}
 			} else {
 				oString = this.getResourceBundle().getText("week") + " " + currentWeekNumber + ', ' + month + ' ' + currentYear + ' - ' + this.getResourceBundle()
 					.getText("from") + ' ';
