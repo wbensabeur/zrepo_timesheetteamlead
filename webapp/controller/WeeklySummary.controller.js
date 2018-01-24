@@ -454,6 +454,18 @@ sap.ui.define([
 			});
 
 			this.Filters1 = Filters1;
+			
+			var localDaysRecordFound = false;
+			for (var e = 0; e < this.employees[0].Days.length; e++) {
+				if(oEvent.getSource().data('selectedDate') === this.employees[0].Days[e]) {
+					localDaysRecordFound = true;
+					this.employees[0].Days.splice(e, 1);
+				}
+			}
+			if(localDaysRecordFound === false) {
+			this.employees[0].Days.push(oEvent.getSource().data('selectedDate'));
+			}
+			
 		},
 		OnHourPress: function(oEvent) {
 			//var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
