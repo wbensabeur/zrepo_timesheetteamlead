@@ -287,7 +287,7 @@ sap.ui.define([
 					}
 				}
 
-				if (!table.getBinding("items").isSuspended() ) {
+				if (!table.getBinding("items").isSuspended()) {
 					var itemFilters = [new Filter("ApplicationName", FilterOperator.EQ, that.userPref.application),
 						new Filter("ApplicationVersion", FilterOperator.EQ, that.userPref.applicationVersion)
 					];
@@ -298,10 +298,10 @@ sap.ui.define([
 				}
 				// for employee week selection view
 				that.employees = [{
-				employee: that.currentEmp,
-				employeeName: that.currentEmpName,
-				Days: []
-			}];
+					employee: that.currentEmp,
+					employeeName: that.currentEmpName,
+					Days: []
+				}];
 
 			});
 
@@ -418,7 +418,6 @@ sap.ui.define([
 			table.getBinding("items").resume();
 			table.getBinding("items").attachEvent('dataReceived', function(oData) {
 
-				
 				try {
 					var results = oData.getParameter('data').results;
 					var showStartTime = false;
@@ -444,7 +443,7 @@ sap.ui.define([
 							}
 						}
 					}
-					
+
 					table.getColumns()[3].setVisible(showStartTime);
 					table.getColumns()[4].setVisible(showEndTime);
 					table.getColumns()[5].setVisible(showKM);
@@ -454,18 +453,18 @@ sap.ui.define([
 			});
 
 			this.Filters1 = Filters1;
-			
+
 			var localDaysRecordFound = false;
 			for (var e = 0; e < this.employees[0].Days.length; e++) {
-				if(oEvent.getSource().data('selectedDate') === this.employees[0].Days[e]) {
+				if (oEvent.getSource().data('selectedDate') === this.employees[0].Days[e]) {
 					localDaysRecordFound = true;
 					this.employees[0].Days.splice(e, 1);
 				}
 			}
-			if(localDaysRecordFound === false) {
-			this.employees[0].Days.push(oEvent.getSource().data('selectedDate'));
+			if (localDaysRecordFound === false) {
+				this.employees[0].Days.push(oEvent.getSource().data('selectedDate'));
 			}
-			
+
 		},
 		OnHourPress: function(oEvent) {
 			//var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
@@ -603,24 +602,24 @@ sap.ui.define([
 					localTable.getColumns()[3].setVisible(showStartTime);
 					localTable.getColumns()[4].setVisible(showEndTime);
 					localTable.getColumns()[5].setVisible(showKM);
-					if(showStartTime === false && showEndTime === false && showKM === false) {
+					if (showStartTime === false && showEndTime === false && showKM === false) {
 						localTable.getColumns()[1].setWidth("30%");
 					} else {
 						// Determin width display
 						var controlWidth = 0;
-						if(showStartTime === true){
+						if (showStartTime === true) {
 							controlWidth = controlWidth + 1;
-						} else if(showEndTime === true){
+						} else if (showEndTime === true) {
 							controlWidth = controlWidth + 1;
-						} else if(showKM === true){
+						} else if (showKM === true) {
 							controlWidth = controlWidth + 1;
 						}
 						// apply width display
-						if(controlWidth === 1) {
+						if (controlWidth === 1) {
 							localTable.getColumns()[1].setWidth("24%");
-						} else if(controlWidth === 2) {
+						} else if (controlWidth === 2) {
 							localTable.getColumns()[1].setWidth("18%");
-						} else if(controlWidth === 3) {
+						} else if (controlWidth === 3) {
 							localTable.getColumns()[1].setWidth("12%");
 						}
 					}
@@ -943,14 +942,21 @@ sap.ui.define([
 			var that = this;
 			var oDialog = null;
 			oDialog = this.getView().byId("EmpWeekCheckDialog");
-			
-			if(this.employees[0].Days.length <= 0) {
+
+			if (this.employees[0].Days.length <= 0) {
 				MessageToast.show(that.getResourceBundle().getText("selectAtleastOneDay"));
 				return;
-			}
-			
-			for (var k = 0; k < this.Filters1.length; k++) {
-				this.employees[0].Days.push(this.Filters1[k]);
+			} else {
+				if (this.Filters1.length <= 0) {
+					this.employees = [{
+						employee: this.currentEmp,
+						employeeName: this.currentEmpName,
+						Days: []
+					}];
+					for (var k = 0; k < this.Filters1.length; k++) {
+						this.employees[0].Days.push(this.Filters1[k]);
+					}
+				}
 			}
 
 			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle(), this.employees, this.getView()
