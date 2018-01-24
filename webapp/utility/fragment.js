@@ -1272,7 +1272,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 				};
 			} else if (selectedTab === 'bonus') {
-
+				var bnstab = oView.byId('addBonusTab').getItems()[0].getItems()[1];
+				var bnsType = bnstab.getItems()[2].getItems()[0].getItems()[0].getItems()[1].getSelectedKey();
+				var bnsDesc = bnstab.getItems()[2].getItems()[0].getItems()[0].getItems()[1]._getSelectedItemText();
+				var bnsQty = bnstab.getItems()[2].getItems()[0].getItems()[1].getItems()[1].getValue();
+				var bnsProjectBindingPath = bnstab.getItems()[2].getItems()[2].getItems()[0].getBindingContext().getPath();
+				var bnsProjectID = oView.getModel().getProperty(bnsProjectBindingPath).ProjectId;
+				workDayItem = {
+					"ProjectID": bnsProjectID,
+					"Hours": bnsQty.toString(),
+					"EntryTypeCatId": bnsType,
+					"AllowancesName": bnsDesc
+				};
 			} else if (selectedTab === 'KM') {
 				var kmtab = oView.byId('addKM').getItems()[0].getItems()[2];
 				var startTime = '000000';
