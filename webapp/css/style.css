@@ -611,6 +611,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 
 .VinciTabBar>div {
     background-color: rgba(20, 35, 94, 1) !important;
+    border-bottom: 0rem;
 }
 
 .sapContrastPlus.sapMITBFilterDefault,
@@ -826,9 +827,6 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .chkSelectionBtnText>.sapMBtnInner>.sapMBtnContent {
     color: white;
 }
-<<<<<<< HEAD
-=======
 .sapMITBContainerContent {
     border-bottom: 0rem solid #e2e2e2;
 }
->>>>>>> 428aa0c016ae425a8e398dffa66189d321a3b523
