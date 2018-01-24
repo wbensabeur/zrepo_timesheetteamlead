@@ -611,6 +611,7 @@ html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-chil
 
 .VinciTabBar>div {
     background-color: rgba(20, 35, 94, 1) !important;
+    border-bottom: 0rem;
 }
 
 .sapContrastPlus.sapMITBFilterDefault,
