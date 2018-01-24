@@ -3,8 +3,8 @@
 		<Label text="{i18n>filterBy} :"/>
 		<RadioButtonGroup columns="2" class="sapUiTinyMarginBottom sapUiTinyMarginTop" select="OnProjectFilterchange" selectedIndex="0">
 			<buttons>
-				<RadioButton text="{i18n>projectFav}" enabled="false" class="CustomRatioBtn"/>
-				<RadioButton text="{i18n>allProject}" class="CustomRatioBtn"/>
+				<RadioButton width="20rem" text="{i18n>projectFav}" enabled="false" class="CustomRatioBtn"/>
+				<RadioButton width="18rem" text="{i18n>allProject}" class="CustomRatioBtn"/>
 			</buttons>
 		</RadioButtonGroup>
 		<HBox class="sapUiSmallMarginBottom" visible="false">
