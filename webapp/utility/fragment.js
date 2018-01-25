@@ -1,5 +1,5 @@
 sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
-    "com/vinci/timesheet/admin/model/formatter",
+	"com/vinci/timesheet/admin/model/formatter",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
 	"sap/ui/model/Filter",
@@ -445,6 +445,30 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				buttons[0].setEnabled(false);
 				buttons[1].setEnabled(true);
 
+			}
+			// for IE 
+			if (sap.ui.Device.browser.name === sap.ui.Device.browser.BROWSER.INTERNET_EXPLORER) {
+				var localComboKey = undefined;
+				if (selecthrsCombo.getVisible() === true) {
+					try {
+						var localComboKey = selecthrsCombo.getItems()[2].getItems()[3].getSelectedKey();
+					} catch (e) {
+						localComboKey = undefined;
+					}
+					if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
+						selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
+					}
+				} else if (allDayCombo.getVisible() === true) {
+					localComboKey = undefined;
+					try {
+						localComboKey = allDayCombo.getSelectedKey();
+					} catch (e) {
+						localComboKey = undefined;
+					}
+					if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
+						allDayCombo.setPlaceholder("");
+					}
+				}
 			}
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
@@ -932,7 +956,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						buttons[1].setEnabled(false);
 						allDayCombo.setVisible(false);
 						selecthrsCombo.setVisible(true);
-						
+
 						allDayCombo.setPlaceholder("");
 						selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
 						break;
@@ -977,8 +1001,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						oFragmentbns.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 						// Display the Update details
 						containerbns.getItems()[0].getItems()[0].setVisible(false);
-						var selectbnsCombo = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[0].getItems()[1];
-						var selectbnsInput = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[1].getItems()[1];
+						var selectbnsCombo = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[0]
+							.getItems()[1];
+						var selectbnsInput = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[1]
+							.getItems()[1];
 						projectView = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2];
 						projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
