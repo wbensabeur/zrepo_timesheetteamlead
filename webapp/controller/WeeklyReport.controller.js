@@ -654,7 +654,19 @@ sap.ui.define([
 						},
 						success: function(odata, response) {
 							//sap.m.MessageToast.show("file successfully uploaded");
-							var localDocName = odata.children[0].children[6].children[0].innerHTML;
+							try {
+								var localDocName = odata.children[0].children[6].children[0].innerHTML;
+							} catch (e) {
+								// do nothing	
+							}
+							// for IE Read
+							if (localDocName === undefined || localDocName === null || localDocName === "") {
+								try {
+									localDocName = odata.documentElement.childNodes[6].childNodes[0].childNodes[0];
+								} catch (e) {
+									// do nothing	
+								}
+							}
 							console.log(localDocName);
 							that.OnTimeSubmit(localDocName);
 						},
