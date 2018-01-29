@@ -373,7 +373,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
 				container.addItem(oFragment);
-				oFragment.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+				oFragment.getItems()[2].getItems()[0].getItems()[0].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 			}
 
 		},
@@ -1146,7 +1146,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				container.insertItem(header2);
 				var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
 				container.addItem(oFragment);
-				oFragment.getItems()[2].getItems()[0].getItems()[1].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+				oFragment.getItems()[2].getItems()[0].getItems()[0].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 				//	}
 			} else if (key === 'KM') {
 				// project refresh
