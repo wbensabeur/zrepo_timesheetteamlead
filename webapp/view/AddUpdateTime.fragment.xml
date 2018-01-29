@@ -105,7 +105,7 @@
 						<!--<Label text="{i18n>selectAbsCategory}" class="sapUiSmallMarginBegin"/>-->
 						<ComboBox placeholder="{i18n>selectAbsence}" id="AbsCat" class="SelectCombo sapUiSmallMarginTop sapUiSmallMarginBegin"
 							items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ABS'}]}"
-							loadItems="handleAbsTypeLoadItems" change="onAbsenceCatChange">
+							loadItems="handleAbsTypeLoadItems" selectionChange="onAbsenceCatChange" change="onAbsenceCatChange">
 							<core:ListItem key="{FieldValue}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>
 						</ComboBox>
 						<Label text="{i18n>selectDates}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
