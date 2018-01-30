@@ -50,16 +50,17 @@
 							<Column width="{calendar>width}" hAlign="Center"/>
 						</columns>
 						<items>
-							<ColumnListItem id="columnListCS" type="Inactive" vAlign="Middle" class="sapUiTableTr ">
+							<ColumnListItem id="columnList" type="Inactive" vAlign="Middle" class="sapUiTableTr ">
 								<cells>
 									<VBox width="100%">
-										<StandardListItem class="EmpWeekStatus sapUiTinyMarginTop" type="Inactive" title="{EmployeeName}" description="">
+										<StandardListItem class="EmpWeekStatusCS sapUiTinyMarginTop" type="Inactive" title="{EmployeeName}" description="">
 											<!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
 											<customData>
 												<core:CustomData key="status" value="" writeToDom="true"/>
 												<core:CustomData key="employee" value="{EmployeeId}"/>
 												<core:CustomData key="employeeName" value="{EmployeeName}"/>
 												<core:CustomData key="titlelen" value="{path:'EmployeeName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
+												<core:CustomData key="browser" value="{path:'EmployeeName', formatter:'.formatter.browserType'}" writeToDom="true"/>
 											</customData>
 											<layoutData>
 												<FlexItemData growFactor="1"/>
