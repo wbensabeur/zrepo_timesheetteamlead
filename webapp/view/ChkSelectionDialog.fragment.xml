@@ -53,7 +53,7 @@
 							<ColumnListItem id="columnList" type="Inactive" vAlign="Middle" class="sapUiTableTr ">
 								<cells>
 									<VBox width="100%">
-										<StandardListItem class="EmpWeekStatusCS sapUiTinyMarginTop" type="Inactive" title="{EmployeeName}" description="">
+										<StandardListItem class="EmpWeekStatus sapUiTinyMarginTop" type="Inactive" title="{EmployeeName}" description="">
 											<!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
 											<customData>
 												<core:CustomData key="status" value="" writeToDom="true"/>
