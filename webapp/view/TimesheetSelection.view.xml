@@ -71,6 +71,7 @@
 										<core:CustomData key="employee" value="{EmployeeId}"/>
 										<core:CustomData key="employeeName" value="{EmployeeName}"/>
 										<core:CustomData key="titlelen" value="{path:'EmployeeName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
+										<core:CustomData key="browser" value="{path:'EmployeeName', formatter:'.formatter.browserType'}" writeToDom="true"/>
 									</customData>
 									<layoutData>
 										<FlexItemData growFactor="1"/>

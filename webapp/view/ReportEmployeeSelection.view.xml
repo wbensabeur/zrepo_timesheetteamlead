@@ -53,6 +53,7 @@
 									<customData>
 										<core:CustomData key="status" value="{path:'isEntryEnabled', formatter:'.formatter.disableDays'}" writeToDom="true"/>
 										<core:CustomData key="employee" value="{EmployeeId}"/>
+										<core:CustomData key="browser" value="{path:'EmployeeName', formatter:'.formatter.browserType'}" writeToDom="true"/>
 									</customData>
 									<layoutData>
 										<FlexItemData growFactor="1"/>
