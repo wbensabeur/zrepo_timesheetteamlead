@@ -172,7 +172,6 @@ sap.ui.define([
 			}
 		},
 		browserType: function(empName) {
-			debugger;
 			if(sap.ui.Device.browser.name === sap.ui.Device.browser.BROWSER.INTERNET_EXPLORER) {
 				return 'ie';
 			}
