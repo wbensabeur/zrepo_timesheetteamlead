@@ -227,6 +227,15 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     white-space: initial !important;
 }
 
+.EmpWeekStatus[data-browser='ie'] > div > div > div > .sapMSLIDescription {
+	width: 15rem !important;
+	white-space: normal !important;
+}
+
+.EmpWeekStatus[data-browser='nie'] > div > div > div > .sapMSLIDescription {
+    white-space: initial !important;
+}
+
 .EmpWeekStatus>div>div>div>.sapMSLITitle {
     white-space: initial;
 }
