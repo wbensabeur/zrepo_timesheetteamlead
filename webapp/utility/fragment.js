@@ -873,7 +873,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var userPrefModel = controler.getModel('userPreference');
 			var odata = {
 				totalhrs: 0,
-				visibleHrs: userPrefModel.getProperty('/defaultHours'),
+				visibleHrs: true,//userPrefModel.getProperty('/defaultHours'),
 				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
 				visibleBonus: userPrefModel.getProperty('/defaultBonus'),
 				visibleKM: userPrefModel.getProperty('/defaultKM'),

@@ -714,6 +714,7 @@ sap.ui.define([
 					//var aSplit = oItem.getKey().split(");
 					if (oItem.getParent().getProperty("key") === 'BusinessUnit') {
 						that.userPref.defaultBU = oItem.getKey();
+						
 						that.getModel("userPreference").setProperty("/defaultBUT", oItem.getText());
 						var oData = {
 							PersoValue: oItem.getKey()
@@ -721,7 +722,9 @@ sap.ui.define([
 						var url = "/PersonalizationSet(ApplicationName='" + that.userPref.application + "',UserId='" + that.getView().getModel(
 							"userPreference").getProperty(
 							"/userID") + "',PersoId='BU')";
-						that.getView().getModel().update(url, oData);
+						that.getView().getModel().update(url, oData, {success: function () {
+							formatter.updateUserPreference(that.getModel(), that.getModel("userPreference"));
+						}});
 						that.userPref.teamFilter = null;
 						that.userPref.teamName = null;
 					} else if (oItem.getParent().getProperty("key") === 'Team') {
