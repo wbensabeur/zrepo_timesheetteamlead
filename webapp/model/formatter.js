@@ -1,7 +1,9 @@
 sap.ui.define([
 	"com/vinci/timesheet/admin/utility/datetime",
-	"sap/ui/core/format/NumberFormat"
-], function(datetime, NumberFormat) {
+	"sap/ui/core/format/NumberFormat",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function(datetime, NumberFormat,Filter,FilterOperator) {
 	"use strict";
 
 	return {
@@ -373,6 +375,98 @@ sap.ui.define([
 				return ProjectID + " / " + ProjectName;
 			}
 			return ProjectID + " " + ProjectName;
+		},
+		updateUserPreference: function (odataModel, userPreferenceModel) {
+		
+		odataModel.read('/PersonalizationSet', {
+				async: false,
+				filters: [new Filter("ApplicationName", FilterOperator.EQ, userPreferenceModel.getProperty('/application'))],
+				success: function(data) {
+					var results = data.results;
+					for (var k = 0; k < results.length; k++) {
+						var key = data.results[k].PersoId;
+						switch (key) {
+							case 'BU':
+								userPreferenceModel.setProperty('/defaultBU', data.results[k].PersoValue);
+								userPreferenceModel.setProperty('/defaultBUT', data.results[k].PersoDesc);
+								break;
+							case 'BW':
+								if (data.results[k].PersoValue === null || data.results[k].PersoValue === undefined || data.results[k].PersoValue === '') {
+									userPreferenceModel.setProperty('/defaultPeriod', 1);
+									userPreferenceModel.setProperty('/startDate', new Date());
+
+								} else {
+									userPreferenceModel.setProperty('/defaultPeriod', 2);
+									userPreferenceModel.setProperty('/startDate', datetime.getLastWeek(new Date()));
+								}
+								break;
+							case 'HOURS':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultHours', true);
+								else
+									userPreferenceModel.setProperty('/defaultHours', false);
+								break;
+							case 'IPD':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultIPD', true);
+								else
+									userPreferenceModel.setProperty('/defaultIPD', false);
+								break;
+							case 'KM':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultKM', true);
+								else
+									userPreferenceModel.setProperty('/defaultKM', false);
+								break;
+							case 'ABSENCE':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultAbsence', true);
+								else
+									userPreferenceModel.setProperty('/defaultAbsence', false);
+								break;
+							case 'EQUIPMENT':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultEquipment', true);
+								else
+									userPreferenceModel.setProperty('/defaultEquipment', false);
+								break;
+							case 'OVERNIGHT':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultOvernight', true);
+								else
+									userPreferenceModel.setProperty('/defaultOvernight', false);
+								break;
+							case 'BONUS':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultBonus', true);
+								else
+									userPreferenceModel.setProperty('/defaultBonus', false);
+								break;
+							case 'CRAFTCODE':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/defaultCraftCode', true);
+								else
+									userPreferenceModel.setProperty('/defaultCraftCode', false);
+								break;
+							case 'DT':
+								if (data.results[k].PersoValue === 'TIME')
+									userPreferenceModel.setProperty('/durationFlag', true);
+								else
+									userPreferenceModel.setProperty('/durationFlag', false);
+								break;
+							case 'SIGNATURE':
+								if (data.results[k].PersoValue === 'X')
+									userPreferenceModel.setProperty('/signatureRequired', true);
+								else
+									userPreferenceModel.setProperty('/signatureRequired', false);
+								break;
+
+						}
+					}
+
+				}
+			});	
+		
 		}
 	};
 

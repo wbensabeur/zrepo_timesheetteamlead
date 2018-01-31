@@ -6,12 +6,13 @@ sap.ui.define([
 	"com/vinci/timesheet/admin/model/models",
 	"com/vinci/timesheet/admin/utility/datetime",
 	"com/vinci/timesheet/admin/controller/ErrorHandler",
-	"sap/m/MessageBox"
-], function(UIComponent, Device, Filter, FilterOperator, models, datetime, ErrorHandler, MessageBox) {
+	"sap/m/MessageBox",
+	"com/vinci/timesheet/admin/model/formatter"
+], function(UIComponent, Device, Filter, FilterOperator, models, datetime, ErrorHandler, MessageBox,formatter) {
 	"use strict";
 
 	return UIComponent.extend("com.vinci.timesheet.admin.Component", {
-
+		formatter: formatter,
 		metadata: {
 			manifest: "json"
 		},
@@ -96,7 +97,8 @@ sap.ui.define([
 
 			} else {*/
 				var userPreferenceModel = that.getModel("userPreference");
-				that._updateUserPreference(that.getModel(), userPreferenceModel);
+				//that._updateUserPreference(that.getModel(), userPreferenceModel);
+				formatter.updateUserPreference(that.getModel(), userPreferenceModel);
 
 				var userBox = sap.ui.getCore().byId('shellUser');
 
@@ -153,7 +155,7 @@ sap.ui.define([
 			return this._sContentDensityClass;
 		},
 		_updateUserPreference: function(odataModel, userPreferenceModel) {
-			var that = this;
+			
 			odataModel.read('/PersonalizationSet', {
 				async: false,
 				filters: [new Filter("ApplicationName", FilterOperator.EQ, userPreferenceModel.getProperty('/application'))],

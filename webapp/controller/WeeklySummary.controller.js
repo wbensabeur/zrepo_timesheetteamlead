@@ -714,6 +714,7 @@ sap.ui.define([
 					//var aSplit = oItem.getKey().split(");
 					if (oItem.getParent().getProperty("key") === 'BusinessUnit') {
 						that.userPref.defaultBU = oItem.getKey();
+						
 						that.getModel("userPreference").setProperty("/defaultBUT", oItem.getText());
 						var oData = {
 							PersoValue: oItem.getKey()
@@ -721,7 +722,9 @@ sap.ui.define([
 						var url = "/PersonalizationSet(ApplicationName='" + that.userPref.application + "',UserId='" + that.getView().getModel(
 							"userPreference").getProperty(
 							"/userID") + "',PersoId='BU')";
-						that.getView().getModel().update(url, oData);
+						that.getView().getModel().update(url, oData, {success: function () {
+							formatter.updateUserPreference(that.getModel(), that.getModel("userPreference"));
+						}});
 						that.userPref.teamFilter = null;
 						that.userPref.teamName = null;
 					} else if (oItem.getParent().getProperty("key") === 'Team') {
@@ -1163,6 +1166,8 @@ sap.ui.define([
 					title: that.getResourceBundle().getText("deletecnfm"),
 					onClose: function fnCallbackConfirm(oAction) {
 						if (oAction === 'OK') {
+							that.employees[0].Days = [];
+							that.employees[0].Days.push(that.getView().getModel().getProperty(binding).WorkDate);
 							that.getView().getModel().remove(binding, {
 								success: function() {
 									that.getView().getModel().read(headerContextPath);
@@ -1172,6 +1177,7 @@ sap.ui.define([
 									}
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+									fragment.refresh_workdaySet(that.employees,that.getView());
 								}
 							});
 						} else {

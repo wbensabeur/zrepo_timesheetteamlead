@@ -873,7 +873,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var userPrefModel = controler.getModel('userPreference');
 			var odata = {
 				totalhrs: 0,
-				visibleHrs: userPrefModel.getProperty('/defaultHours'),
+				visibleHrs: true,//userPrefModel.getProperty('/defaultHours'),
 				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
 				visibleBonus: userPrefModel.getProperty('/defaultBonus'),
 				visibleKM: userPrefModel.getProperty('/defaultKM'),
@@ -1221,6 +1221,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_updateEntries: function(oView, savepostFuction, ctype, rButton, bindingPath) {
 			rButton.setEnabled(false);
+			this.employees[0].Days = [];
+			this.employees[0].Days.push(oView.getModel().getProperty(bindingPath).WorkDate);
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItem;
 			if (selectedTab === 'hours') {
@@ -1337,13 +1339,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			///Update Model
 
 			var that = this;
+
 			ctype.setBusy(true);
 			this.oDataModel.update(bindingPath, workDayItem, {
 				success: function() {
 					ctype.setBusy(false);
 					rButton.setEnabled(true);
 					savepostFuction(that);
-
+					that.refresh_workdaySet(that.employees, oView);
 				},
 				error: function() {
 					ctype.setBusy(false);
@@ -1890,12 +1893,41 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					ctype.setBusy(false);
 					rButton.setEnabled(true);
 					savepostFuction(that);
-
+					that.refresh_workdaySetforAdd(that.employees, oView);
 				},
 				error: function() {
 					ctype.setBusy(false);
 					rButton.setEnabled(true);
 				}
+			});
+		},
+
+		refresh_workdaySet: function(employees, oView) {
+			var userPref = oView.getModel("userPreference").getData();
+			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20WorkDate%20eq%20" +
+				datetime.getODataDateFilter(employees[0].Days[0]) + "and%20ApplicationName%20eq%20%27" + userPref
+				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + userPref.applicationVersion + "%27%20";
+			oView.getModel().read('/WorkDaySet', {
+				urlParameters: urlFilterParam
+			});
+		},
+
+		refresh_workdaySetforAdd: function(employees, oView) {
+			var userPref = oView.getModel("userPreference").getData();
+			if (employees[0].Days.length === 1) {
+				var urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20WorkDate%20eq%20" +
+					datetime.getODataDateFilter(employees[0].Days[0]) + "and%20ApplicationName%20eq%20%27" + userPref
+					.application + "%27%20and%20ApplicationVersion%20eq%20%27" + userPref.applicationVersion + "%27%20";
+			} else {
+				var fromDay = employees[0].Days[0];
+				var toDay = employees[0].Days[employees[0].Days.length-1];
+				urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20WorkDate%20ge%20" +
+					datetime.getODataDateFilter(fromDay) +  "'and%20WorkDate%20le%20" + datetime.getODataDateFilter(toDay) 
+					+ "and%20ApplicationName%20eq%20%27" + userPref.application + "%27%20and%20ApplicationVersion%20eq%20%27" 
+					+ userPref.applicationVersion + "%27%20";
+			}
+			oView.getModel().read('/WorkDaySet', {
+				urlParameters: urlFilterParam
 			});
 		},
 
