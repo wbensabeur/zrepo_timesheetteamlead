@@ -112,7 +112,7 @@ sap.ui.define([
 					var Items = this.getView().byId('table').getItems();
 					for (var k1 = 0; k1 < Items.length; k1++) {
 						var button = Items[k1].getCells()[headerSeq];
-						if (button.getEnabled()) {
+						if (button.getEnabled() && button.data('isEvaluvated') === "false") {
 							button.getCustomData()[0].setValue("S");
 						}
 					}
@@ -129,6 +129,7 @@ sap.ui.define([
 		},
 		OnHourPress: function(oEvent) {
 			var button = oEvent.getSource();
+			button.getCustomData()[7].setValue("true");
 			if (button.data('status') === "") { // getCustomData()[0].getValue()
 				button.getCustomData()[0].setValue("S");
 				this.selectedBox.push(button);
