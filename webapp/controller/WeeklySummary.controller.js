@@ -1163,6 +1163,8 @@ sap.ui.define([
 					title: that.getResourceBundle().getText("deletecnfm"),
 					onClose: function fnCallbackConfirm(oAction) {
 						if (oAction === 'OK') {
+							that.employees[0].Days = [];
+							that.employees[0].Days.push(that.getView().getModel().getProperty(binding).WorkDate);
 							that.getView().getModel().remove(binding, {
 								success: function() {
 									that.getView().getModel().read(headerContextPath);
@@ -1172,6 +1174,7 @@ sap.ui.define([
 									}
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+									fragment.refresh_workdaySet(that.employees,that.getView());
 								}
 							});
 						} else {
