@@ -659,7 +659,7 @@ sap.ui.define([
 				var newFilter = oldFilter + "%20and%20ApplicationName%20eq%20%27" + this.userPref.application +
 					"%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27%20";
 				buFilterItem.getBinding("items").sFilterParams = newFilter;
-
+				buFilterItem.getModel().setSizeLimit(5000);
 				var teamFilterItem = oDialog.getFilterItems()[1]; //this.getView().byId('TeamFilter');
 				if (teamFilterItem.getBinding("items") === undefined) {
 					var newFilter2 = "$filter=BusinessUnit%20eq%20%27" + this.userPref.defaultBU + "%27";
