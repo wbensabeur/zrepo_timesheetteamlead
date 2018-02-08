@@ -1156,7 +1156,11 @@ sap.ui.define([
 				headerContextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
 
 			}
-
+			this.employees = [{
+				employee: this.currentEmp,
+				employeeName: this.currentEmpName,
+				Days: [this.currentDate]
+			}];
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
 			//oView.byId('EmpDayInfo').bindElement(urlStr);
@@ -1177,7 +1181,8 @@ sap.ui.define([
 									}
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
-									fragment.refresh_workdaySet(that.employees,that.getView());
+									//fragment.refresh_workdaySet(that.employees,that.getView());
+									that.getView().getModel().refresh();
 								}
 							});
 						} else {
