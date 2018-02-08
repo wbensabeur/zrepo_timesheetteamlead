@@ -582,6 +582,8 @@ sap.ui.define([
 							xhrp.setRequestHeader("slug", sFileName);
 						},
 						success: function(odata, response) {
+							var localNoOfEmp = that.noOfEmp - 1;
+							that.noOfEmp = localNoOfEmp;
 							//sap.m.MessageToast.show("file successfully uploaded");
 							try {
 								var localDocName = odata.children[0].children[6].children[0].innerHTML;
