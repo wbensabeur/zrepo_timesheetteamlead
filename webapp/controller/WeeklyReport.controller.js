@@ -469,7 +469,7 @@ sap.ui.define([
 						that.postSignAttachment(srcImg, sFileName);*/
 
 						//if (that.index === that.noOfEmp - 1) { //Home Page
-						if (that.noOfEmp === 0) { //Home Page
+						if (that.noOfEmp === 0 || that.index === localNoOfEmp) { //Home Page
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
@@ -512,7 +512,7 @@ sap.ui.define([
 						});*/
 					} else {
 						//if (that.index === that.noOfEmp - 1) { //Home Page
-						if (that.noOfEmp === 0) { //Home Page
+						if (that.noOfEmp === 0 || that.index === localNoOfEmp) { //Home Page
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
