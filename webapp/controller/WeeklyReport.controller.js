@@ -466,7 +466,8 @@ sap.ui.define([
 						var srcImg = that.srcImg;
 						that.postSignAttachment(srcImg, sFileName);*/
 
-						if (that.index === that.noOfEmp - 1) { //Home Page
+						//if (that.index === that.noOfEmp - 1) { //Home Page
+						if (that.noOfEmp === 0) { //Home Page
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
@@ -508,7 +509,8 @@ sap.ui.define([
 							background: '#14235e'
 						});*/
 					} else {
-						if (that.index === that.noOfEmp - 1) { //Home Page
+						//if (that.index === that.noOfEmp - 1) { //Home Page
+						if (that.noOfEmp === 0) { //Home Page
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
