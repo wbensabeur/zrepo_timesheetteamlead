@@ -446,6 +446,8 @@ sap.ui.define([
 			this.getView().getModel().create("/WorkDaySet", requestBody, {
 				success: function() {
 					that.getView().setBusy(false);
+					var localNoOfEmp = that.noOfEmp - 1;
+					that.noOfEmp = localNoOfEmp;
 					if (that.userPref.signatureRequired) {
 
 						/*var localDate = that.employeeSelected.startDate;
@@ -584,8 +586,6 @@ sap.ui.define([
 							xhrp.setRequestHeader("slug", sFileName);
 						},
 						success: function(odata, response) {
-							var localNoOfEmp = that.noOfEmp - 1;
-							that.noOfEmp = localNoOfEmp;
 							//sap.m.MessageToast.show("file successfully uploaded");
 							try {
 								var localDocName = odata.children[0].children[6].children[0].innerHTML;
