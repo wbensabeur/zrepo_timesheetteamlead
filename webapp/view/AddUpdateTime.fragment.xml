@@ -24,7 +24,7 @@
 				</VBox>
 				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 			</IconTabFilter>
-			<IconTabFilter key="allowance" icon="sap-icon://map-3" text="{i18n>dailyAllowance}" visible="{AddTime>/visibleDailyAllow}"
+			<IconTabFilter key="allowance" icon="sap-icon://multiselect-none" text="{i18n>dailyAllowance}" visible="{AddTime>/visibleDailyAllow}"
 				design="Horizontal">
 				<VBox width="100%" height="100%" id="addAllowance">
 					<VBox>
@@ -76,7 +76,7 @@
 				</VBox>
 				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 			</IconTabFilter>
-			<IconTabFilter key="bonus" icon="sap-icon://travel-expense-report" text="{i18n>bonus}" visible="{AddTime>/visibleBonus}" design="Horizontal">
+			<IconTabFilter key="bonus" icon="sap-icon://multi-select" text="{i18n>bonus}" visible="{AddTime>/visibleBonus}" design="Horizontal">
 				<VBox id="addBonusTab" width="100%" height="100%">
 					<VBox>
 						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/visibleBonus}">
