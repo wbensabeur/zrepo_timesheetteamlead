@@ -4,21 +4,25 @@ sap.ui.define([], function() {
 	return {
 
 		getMonday: function(cDate) {
-			cDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
+			//cDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
+			cDate = new Date(cDate.getFullYear(), cDate.getMonth(), cDate.getDate());
 			var day = cDate.getDay(),
 				diff = cDate.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
 			return new Date(cDate.setDate(diff));
 		},
 		getLastWeek: function(cDate) {
-			var lastWeek = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate() - 7);
+			//var lastWeek = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate() - 7);
+			var lastWeek = new Date(cDate.getFullYear(), cDate.getMonth(), cDate.getDate() - 7);
 			return lastWeek;
 		},
 		getNextWeek: function(cDate) {
-			var nextWeek = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate() + 7);
+			//var nextWeek = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate() + 7);
+			var nextWeek = new Date(cDate.getFullYear(), cDate.getMonth(), cDate.getDate() + 7);
 			return nextWeek;
 		},
 		getLastMonday: function(cDate) {
-			cDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
+			//cDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
+			cDate = new Date(cDate.getFullYear(), cDate.getMonth(), cDate.getDate());
 			var day = cDate.getDay(),
 				diff = cDate.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
 			return new Date(cDate.setDate(diff));
@@ -37,13 +41,15 @@ sap.ui.define([], function() {
 			// Thursday in current week decides the year.
 			oDate.setDate(oDate.getDate() + 3 - (oDate.getDay() + 6) % 7);
 			// January 4 is always in week 1.
-			var week1 = new Date(oDate.getUTCFullYear(), 0, 4);
+			//var week1 = new Date(oDate.getUTCFullYear(), 0, 4);
+			var week1 = new Date(oDate.getFullYear(), 0, 4);
 			// Adjust to Thursday in week 1 and count number of weeks from date to week1.
 			return 1 + Math.round(((oDate.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
 
 		},
 		getTodayDate: function(cDate) {
-			var oDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
+			//var oDate = new Date(cDate.getUTCFullYear(), cDate.getMonth(), cDate.getDate());
+			var oDate = new Date(cDate.getFullYear(), cDate.getMonth(), cDate.getDate());
 			return oDate;
 		},
 		getCalenderDateOnlyData: function(startDate, noOfWeek,resourceBundle) {
@@ -210,7 +216,8 @@ sap.ui.define([], function() {
 					mm = '0' + mm;
 				}
 				
-				return "datetime'" + date.getUTCFullYear()+"-"+mm+"-"+dd + "T00%3A00%3A00'";
+				//return "datetime'" + date.getUTCFullYear()+"-"+mm+"-"+dd + "T00%3A00%3A00'";
+				return "datetime'" + date.getFullYear()+"-"+mm+"-"+dd + "T00%3A00%3A00'";
 			}
 			return "";
 		},
@@ -229,7 +236,8 @@ sap.ui.define([], function() {
 			
 			
 			var date = new Date();	
-			var oDate = new Date(date.getUTCFullYear(), date.getMonth(), date.getDate(), hour, min, 0 );
+			//var oDate = new Date(date.getUTCFullYear(), date.getMonth(), date.getDate(), hour, min, 0 );
+			var oDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, min, 0 );
 		//	var offset = date.getTimezoneOffset() * 60000	;
 			return oDate.getTime();	//(hour * 60 + min )*60000 + offset; 
 			
