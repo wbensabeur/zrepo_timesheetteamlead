@@ -141,6 +141,9 @@ sap.ui.define([
 			}
 
 			this.employeId = employee.data('employee'); //.getCustomData()[1].getValue();
+			if(this.employeId === null || this.employeId === undefined || this.employeId === "") {
+				this.employeId = employee.getModel().getProperty(employee.getBindingContextPath()).EmployeeId;
+			}
 			//oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
 			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId + "'," + "ApplicationName='" + this.userPref.application +
 				"')");
