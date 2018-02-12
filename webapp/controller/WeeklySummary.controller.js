@@ -678,6 +678,11 @@ sap.ui.define([
 				oDialog.open();
 			}
 		},
+		OnEquipmentOn : function (oEvent) {
+				this.getRouter().navTo("WSEquipment", {
+				source: 'Summary'
+			}, true);
+		},
 		OnTableTeamChange: function(oEvent) {
 			var oItem = oEvent.getParameter('selectedItem');
 			this.userPref.teamFilter = oItem.getKey();
