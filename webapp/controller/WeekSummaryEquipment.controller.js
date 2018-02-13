@@ -207,8 +207,8 @@ sap.ui.define([
 		onEquipmentSearch: function(oEvent) {
 
 			var sQuery = oEvent.getParameter("query");
-			this.userPref.employeeFilter = sQuery;
-			this.getView().getModel("userPreference").setProperty("/employeeFilter", this.userPref.employeeFilter);
+			this.userPref.equipmentFilter = sQuery;
+			this.getView().getModel("userPreference").setProperty("/equipmentFilter", this.userPref.equipmentFilter);
 			this._applyFilters();
 		},
 		OnEmployeePress: function(oEvent) {
@@ -221,10 +221,10 @@ sap.ui.define([
 			this.setModel(oCalendarModel, "calendarOnly");
 
 			var oView = this.getView();
-			var oDialog = oView.byId("EmpWeekCheckDialog");
+			var oDialog = oView.byId("EqupmentWeekCheckDialog");
 			if (!oDialog) {
 				// create dialog via fragment factory
-				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.EmployeeWeekDialog", this);
+				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.EquipmentWeekDialog", this);
 				oView.addDependent(oDialog);
 				var footerData = {
 					MainNewScreen: false,
@@ -241,8 +241,8 @@ sap.ui.define([
 			var noEdited = oEvent.getSource().data('notEditable');
 			var editEnable = !noEdited && EmpEntryEnable;
 			this.editEnable = editEnable;
-			this.getView().byId('WeekAddNewTimeButton').setEnabled(editEnable);
-			this.getView().byId('WeekAddDeleteButton').setEnabled(editEnable);
+			/*this.getView().byId('WeekAddNewTimeButton').setEnabled(editEnable);
+			this.getView().byId('WeekAddDeleteButton').setEnabled(editEnable);*/
 			var table = this.getView().byId('tableWeekItems');
 			if (editEnable) {
 				table.setMode("MultiSelect");
@@ -257,9 +257,19 @@ sap.ui.define([
 			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 			oDialog.bindElement(oEvent.getSource().getBindingContext().getPath());
 			var empBinding = "/EquipmentSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')";
-			oView.byId('employeeCompany').bindElement(empBinding);
+			oView.byId('employeeCompany').bindElement({
+				path: empBinding,
+				events: {
+					dataReceived: function(rData) {
+						oView.byId('employeeBU').bindElement(empBinding);
+						oView.byId('employeeSection').bindElement(empBinding);
+					}
+				}
+			});
+			
+			/*oView.byId('employeeCompany').bindElement(empBinding);
 			oView.byId('employeeBU').bindElement(empBinding);
-			oView.byId('employeeSection').bindElement(empBinding);
+			oView.byId('employeeSection').bindElement(empBinding);*/
 			oDialog.open();
 
 			var oTable = this.byId("employeeWeekTable");
@@ -302,16 +312,14 @@ sap.ui.define([
 
 		},
 		getCounty: function(oContext) {
-			var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(oContext.getProperty(
+			/*var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(oContext.getProperty(
 					'WorkDate')) + "," +
 				"ApplicationName='" + this.userPref.application + "')";
 
 			var theorHrs = oContext.getModel().getProperty(urlStr).TargetHours;
-			var filledHrs = oContext.getModel().getProperty(urlStr).FilledHours;
+			var filledHrs = oContext.getModel().getProperty(urlStr).FilledHours;*/
 
-			return formatter.dateFormatinEmpDay(oContext.getProperty('WorkDate')) + " - " + this.getResourceBundle().getText(
-					"legend-theoritical") + " : " + theorHrs + " " + this.getResourceBundle().getText("hour") + " / " + filledHrs + " " + this.getResourceBundle()
-				.getText("hour");
+			return formatter.dateFormatinEmpDay(oContext.getProperty('WorkDate'));
 		},
 
 		getGroupHeader: function(oGroup) {
@@ -344,13 +352,13 @@ sap.ui.define([
 			var Filters1 = this.Filters1;
 			if (button.data('status') !== "S") { // getCustomData()[0].getValue()
 				button.getCustomData()[0].setValue("S");
-				var urlFilterParam = "$filter=EquipmentId%20eq%20'" + button.data('employee') + "'and%20WorkDate%20eq%20" +
+				/*var urlFilterParam = "$filter=EquipmentId%20eq%20'" + button.data('employee') + "'and%20WorkDate%20eq%20" +
 					datetime.getODataDateFilter(button.data('selectedDate')) + "and%20ApplicationName%20eq%20%27" + this.userPref
 					.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27%20";
 
 				this.getView().getModel().read('/WorkDaySet', {
 					urlParameters: urlFilterParam
-				});
+				});*/
 
 				Filters1.push(button.data('selectedDate'));
 
@@ -461,7 +469,7 @@ sap.ui.define([
 			}
 
 		},
-		OnHourPress: function(oEvent) {
+		OnHourPress1: function(oEvent) {
 			//var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
 			// Edit Enable
 			this.dailyDetail = true;
@@ -491,7 +499,7 @@ sap.ui.define([
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];*/
 
-			oDialog.bindElement("/EmployeeSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')");
+			oDialog.bindElement("/EquipmentSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')");
 
 			//var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
 			var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + "," +
@@ -779,7 +787,7 @@ sap.ui.define([
 			oDialog.close();
 		},
 		OnCancelEmpWeekCheckDialog: function(oEvent) {
-			var oDialog = this.getView().byId("EmpWeekCheckDialog");
+			var oDialog = this.getView().byId("EqupmentWeekCheckDialog");
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			//this.getView().byId('table').getBinding("items").refresh();
 			if (this.update) {
@@ -885,7 +893,7 @@ sap.ui.define([
 				headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableDayItems');
 			} else {
-				dailog = this.getView().byId("EmpWeekCheckDialog");
+				dailog = this.getView().byId("EqupmentWeekCheckDialog");
 				headerContextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableWeekItems');
 			}
@@ -914,7 +922,7 @@ sap.ui.define([
 				headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableDayItems');
 			} else {
-				dailog = this.getView().byId("EmpWeekCheckDialog");
+				dailog = this.getView().byId("EqupmentWeekCheckDialog");
 				headerContextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableWeekItems');
 
@@ -939,7 +947,7 @@ sap.ui.define([
 		OnAddEmpWeekTime: function(oEvent) {
 			var that = this;
 			var oDialog = null;
-			oDialog = this.getView().byId("EmpWeekCheckDialog");
+			oDialog = this.getView().byId("EqupmentWeekCheckDialog");
 
 			if (this.employees[0].Days.length <= 0) {
 				MessageToast.show(that.getResourceBundle().getText("selectAtleastOneDay"));
@@ -958,7 +966,7 @@ sap.ui.define([
 			}
 
 			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle(), this.employees, this.getView()
-				.getModel());
+				.getModel(),null,"Equipment");
 
 			this.getView().setModel(oModel.AddTime, "AddTime");
 			this.getView().setModel(oModel.projectSearch, "projectSearch");
@@ -974,7 +982,7 @@ sap.ui.define([
 			if (this.dailyDetail)
 				oDialog = this.getView().byId("EmpDayCheckDialog");
 			else
-				oDialog = this.getView().byId("EmpWeekCheckDialog");
+				oDialog = this.getView().byId("EqupmentWeekCheckDialog");
 
 			this.employees = [{
 				employee: this.currentEmp,
@@ -983,7 +991,7 @@ sap.ui.define([
 			}];
 
 			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "New", this.getResourceBundle(), this.employees, this.getView()
-				.getModel());
+				.getModel(),null,"Equipment");
 
 			this.getView().setModel(oModel.AddTime, "AddTime");
 			this.getView().setModel(oModel.projectSearch, "projectSearch");
@@ -1079,11 +1087,9 @@ sap.ui.define([
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
-			if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
-				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
-			}
-			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
-				Filters.push(new Filter("EquipmentName", FilterOperator.Contains, this.userPref.employeeFilter));
+			
+			if (this.userPref.equipmentFilter !== null && this.userPref.equipmentFilter.length > 0) {
+				Filters.push(new Filter("EquipmentName", FilterOperator.Contains, this.userPref.equipmentFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
@@ -1124,7 +1130,7 @@ sap.ui.define([
 			if (this.dailyDetail) {
 				oDialog = this.getView().byId("EmpDayCheckDialog");
 			} else {
-				oDialog = this.getView().byId("EmpWeekCheckDialog");
+				oDialog = this.getView().byId("EqupmentWeekCheckDialog");
 			}
 			this.employees = [{
 				employee: this.currentEmp,
@@ -1133,7 +1139,7 @@ sap.ui.define([
 			}];
 
 			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "Update", this.getResourceBundle(), this.employees, this.getView()
-				.getModel(), oEvent.getSource().getBindingContext().getPath());
+				.getModel(), oEvent.getSource().getBindingContext().getPath(),"Equipment");
 
 			this.getView().setModel(oModel.AddTime, "AddTime");
 			this.getView().setModel(oModel.projectSearch, "projectSearch");

@@ -262,9 +262,16 @@ sap.ui.define([
 			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 			oDialog.bindElement(oEvent.getSource().getBindingContext().getPath());
 			var empBinding = "/EmployeeSet(EmployeeId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')";
-			oView.byId('employeeCompany').bindElement(empBinding);
-			oView.byId('employeeBU').bindElement(empBinding);
-			oView.byId('employeeSection').bindElement(empBinding);
+			oView.byId('employeeCompany').bindElement({
+				path: empBinding,
+				events: {
+					dataReceived: function(rData) {
+						oView.byId('employeeBU').bindElement(empBinding);
+						oView.byId('employeeSection').bindElement(empBinding);
+					}
+				}
+			});
+			
 			oDialog.open();
 
 			var oTable = this.byId("employeeWeekTable");
@@ -678,8 +685,8 @@ sap.ui.define([
 				oDialog.open();
 			}
 		},
-		OnEquipmentOn : function (oEvent) {
-				this.getRouter().navTo("WSEquipment", {
+		OnEquipmentOn: function(oEvent) {
+			this.getRouter().navTo("WSEquipment", {
 				source: 'Summary'
 			}, true);
 		},
@@ -719,7 +726,7 @@ sap.ui.define([
 					//var aSplit = oItem.getKey().split(");
 					if (oItem.getParent().getProperty("key") === 'BusinessUnit') {
 						that.userPref.defaultBU = oItem.getKey();
-						
+
 						that.getModel("userPreference").setProperty("/defaultBUT", oItem.getText());
 						var oData = {
 							PersoValue: oItem.getKey()
@@ -727,9 +734,11 @@ sap.ui.define([
 						var url = "/PersonalizationSet(ApplicationName='" + that.userPref.application + "',UserId='" + that.getView().getModel(
 							"userPreference").getProperty(
 							"/userID") + "',PersoId='BU')";
-						that.getView().getModel().update(url, oData, {success: function () {
-							formatter.updateUserPreference(that.getModel(), that.getModel("userPreference"));
-						}});
+						that.getView().getModel().update(url, oData, {
+							success: function() {
+								formatter.updateUserPreference(that.getModel(), that.getModel("userPreference"));
+							}
+						});
 						that.userPref.teamFilter = null;
 						that.userPref.teamName = null;
 					} else if (oItem.getParent().getProperty("key") === 'Team') {

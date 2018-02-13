@@ -373,7 +373,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectEquipment", controler);
 				container.addItem(oFragment);
-				
+
 			}
 
 		},
@@ -876,31 +876,62 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		//////**Add Update Time** ////
-		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel, updateKeyPath) {
+		AddUpdatetime_init: function(controler, container, type, i18nModel, employees, odataModel, updateKeyPath, isEquipment) {
+			if (isEquipment === "Equipment") {
+				this.equipment = true;
+			} else {
+				this.equipment = false;
+			}
+
 			this.type = type;
+			var odata = null;
 			var userPrefModel = controler.getModel('userPreference');
-			var odata = {
-				totalhrs: 0,
-				visibleHrs: true,//userPrefModel.getProperty('/defaultHours'),
-				visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
-				visibleBonus: userPrefModel.getProperty('/defaultBonus'),
-				visibleKM: userPrefModel.getProperty('/defaultKM'),
-				visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
-				//visibleAbsence: true,
-				visibleAbsence1: true,
-				visibleAbsence2: false,
-				visibleAbsence3: false,
-				visibleEquipment: true, //userPrefModel.getProperty('/defaultEquipment'),
-				visibleSummary: false,
-				visibleProjectOptional: false,
-				newTime: true,
-				newBonus: true,
-				duration: userPrefModel.getProperty('/durationFlag')
-			};
+
+			if (this.equipment) {
+				odata = {
+					totalhrs: 0,
+					visibleHrs: false, //userPrefModel.getProperty('/defaultHours'),
+					visibleDailyAllow: false,
+					visibleBonus: false,
+					visibleKM: false,
+					visibleAbsence: false,
+					//visibleAbsence: true,
+					visibleAbsence1: false,
+					visibleAbsence2: false,
+					visibleAbsence3: false,
+					visibleEquipment: true, //userPrefModel.getProperty('/defaultEquipment'),
+					visibleSummary: false,
+					visibleProjectOptional: false,
+					newTime: true,
+					newBonus: true,
+					duration: userPrefModel.getProperty('/durationFlag')
+				};
+			} else {
+				odata = {
+					totalhrs: 0,
+					visibleHrs: true, //userPrefModel.getProperty('/defaultHours'),
+					visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
+					visibleBonus: userPrefModel.getProperty('/defaultBonus'),
+					visibleKM: userPrefModel.getProperty('/defaultKM'),
+					visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
+					//visibleAbsence: true,
+					visibleAbsence1: true,
+					visibleAbsence2: false,
+					visibleAbsence3: false,
+					visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
+					visibleSummary: false,
+					visibleProjectOptional: false,
+					newTime: true,
+					newBonus: true,
+					duration: userPrefModel.getProperty('/durationFlag')
+				};
+			}
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
-			this.AddProjectEquipment_init(controler, controler.getView().byId('addEquipmentTab').getItems()[0], true); // initialse with single hour
+			if (this.equipment) {
+				this.AddProjectEquipment_init(controler, controler.getView().byId('addEquipmentTab').getItems()[0], true); // initialse with single hour
+			}
 
 			//this.AddProjectBonus_init(controler, controler.getView().byId('addBonusTab').getItems()[0], true)
 
@@ -939,6 +970,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				odata.visibleDailyAllow = false;
 				odata.visibleKM = false;
 				odata.visibleAbsence = false;
+				odata.visibleEquipment = false;
 
 				footerData = {
 					MainNewScreen: false,
@@ -1022,6 +1054,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						selectbnsInput.setValue(localHours);
 						selectbnsCombo.setPlaceholder("");
 						break;
+					case 'Equipment':
+						odata.visibleEquipment = true;
 				}
 
 			}
@@ -1933,11 +1967,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					.application + "%27%20and%20ApplicationVersion%20eq%20%27" + userPref.applicationVersion + "%27%20";
 			} else {
 				var fromDay = employees[0].Days[0];
-				var toDay = employees[0].Days[employees[0].Days.length-1];
+				var toDay = employees[0].Days[employees[0].Days.length - 1];
 				urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20WorkDate%20ge%20" +
-					datetime.getODataDateFilter(fromDay) +  "and%20WorkDate%20le%20" + datetime.getODataDateFilter(toDay) 
-					+ "and%20ApplicationName%20eq%20%27" + userPref.application + "%27%20and%20ApplicationVersion%20eq%20%27" 
-					+ userPref.applicationVersion + "%27%20";
+					datetime.getODataDateFilter(fromDay) + "and%20WorkDate%20le%20" + datetime.getODataDateFilter(toDay) +
+					"and%20ApplicationName%20eq%20%27" + userPref.application + "%27%20and%20ApplicationVersion%20eq%20%27" + userPref.applicationVersion +
+					"%27%20";
 			}
 			oView.getModel().read('/WorkDaySet', {
 				urlParameters: urlFilterParam

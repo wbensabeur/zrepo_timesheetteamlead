@@ -22,6 +22,7 @@ sap.ui.define([
 				defaultBU:defaultBU,
 				defaultPeriod:defaultPeriod,
 				employeeFilter:null,
+				equipmentFilter:null,
 				startDate:startDate,
 				userID:null,
 				successMaskEntry : false,
