@@ -112,7 +112,7 @@ sap.ui.define([
 
 			if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
 				if (this.userPref.teamName === null) {
-					sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
+					sTitle = this.getResourceBundle().getText("worklistTableTitleCount2", [iTotalItems]);
 				} else {
 					sTitle = "(" + iTotalItems + ") " + this.userPref.teamName;
 				}
@@ -256,7 +256,7 @@ sap.ui.define([
 			var oEmpDetailModel = new JSONModel(EmpDetail);
 			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 			oDialog.bindElement(oEvent.getSource().getBindingContext().getPath());
-			var empBinding = "/EmployeeSet(EmployeeId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')";
+			var empBinding = "/EquipmentSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')";
 			oView.byId('employeeCompany').bindElement(empBinding);
 			oView.byId('employeeBU').bindElement(empBinding);
 			oView.byId('employeeSection').bindElement(empBinding);
@@ -268,7 +268,7 @@ sap.ui.define([
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
 				new Filter("isByWeekly", FilterOperator.EQ, false),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
-				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
+				new Filter("EquipmentId", FilterOperator.EQ, this.currentEmp),
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
@@ -302,7 +302,7 @@ sap.ui.define([
 
 		},
 		getCounty: function(oContext) {
-			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(oContext.getProperty(
+			var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(oContext.getProperty(
 					'WorkDate')) + "," +
 				"ApplicationName='" + this.userPref.application + "')";
 
@@ -344,7 +344,7 @@ sap.ui.define([
 			var Filters1 = this.Filters1;
 			if (button.data('status') !== "S") { // getCustomData()[0].getValue()
 				button.getCustomData()[0].setValue("S");
-				var urlFilterParam = "$filter=EmployeeId%20eq%20'" + button.data('employee') + "'and%20WorkDate%20eq%20" +
+				var urlFilterParam = "$filter=EquipmentId%20eq%20'" + button.data('employee') + "'and%20WorkDate%20eq%20" +
 					datetime.getODataDateFilter(button.data('selectedDate')) + "and%20ApplicationName%20eq%20%27" + this.userPref
 					.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion + "%27%20";
 
@@ -402,7 +402,7 @@ sap.ui.define([
 			});
 			if (dataExist) {
 				Filters = new Filter({
-					filters: [new Filter("EmployeeId", FilterOperator.EQ, button.data('employee')),
+					filters: [new Filter("EquipmentId", FilterOperator.EQ, button.data('employee')),
 						Filters
 					],
 					and: true
@@ -491,10 +491,10 @@ sap.ui.define([
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];*/
 
-			oDialog.bindElement("/EmployeeSet(EmployeeId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')");
+			oDialog.bindElement("/EmployeeSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')");
 
-			//var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
-			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + "," +
+			//var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
+			var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + "," +
 				"ApplicationName='" + this.userPref.application + "')";
 			oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
@@ -535,7 +535,7 @@ sap.ui.define([
 			that.getView().setModel(oEmpDetailModel, "EmpDetail");
 
 			var Filters = [
-				new Filter("EmployeeId", FilterOperator.EQ, this.currentEmp),
+				new Filter("EquipmentId", FilterOperator.EQ, this.currentEmp),
 				new Filter("WorkDate", FilterOperator.EQ, this.currentDate),
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
@@ -1059,14 +1059,15 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent) {
 
 			this.userPref = this.getView().getModel("userPreference").getData();
-			var oPeriodbutton = this.getView().byId("periodButton");
-			if (this.userPref.defaultPeriod === 1) {
+			this.twoWeek = false;
+			//var oPeriodbutton = this.getView().byId("periodButton");
+			/*if (this.userPref.defaultPeriod === 1) {
 				this.twoWeek = false;
 			} else {
 				this.twoWeek = true;
 				oPeriodbutton.setSelectedKey("twoWeek");
-			}
-			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
+			}*/
+			this._calendarBinding(this.userPref.startDate, 1);
 		},
 		_applyFilters: function() {
 			var oTable = this.byId("table");
@@ -1082,7 +1083,7 @@ sap.ui.define([
 				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
 			}
 			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
-				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
+				Filters.push(new Filter("EquipmentName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
@@ -1327,6 +1328,9 @@ sap.ui.define([
 		},
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
+		},
+		OnaddNewEquipmentPress : function (oEvent) {
+			fragment.AddUpdatetime_OnaddNewEquipmentPress(this);
 		},
 		OnaddNewBonusPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewBonusPress(this);

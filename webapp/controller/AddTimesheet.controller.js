@@ -377,6 +377,9 @@ sap.ui.define([
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
 		},
+		OnaddNewEquipmentPress : function (oEvent) {
+			fragment.AddUpdatetime_OnaddNewEquipmentPress(this);
+		},
 		OnaddNewBonusPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewBonusPress(this);
 		},

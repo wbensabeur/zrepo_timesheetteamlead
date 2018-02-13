@@ -369,6 +369,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 		},
+		AddProjectEquipment_init: function(controler, container, addNew) {
+			if (addNew) {
+				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectEquipment", controler);
+				container.addItem(oFragment);
+				
+			}
+
+		},
 		AddProjectBonus_init: function(controler, container, addNew) {
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
@@ -882,7 +890,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				visibleAbsence1: true,
 				visibleAbsence2: false,
 				visibleAbsence3: false,
-				visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
+				visibleEquipment: true, //userPrefModel.getProperty('/defaultEquipment'),
 				visibleSummary: false,
 				visibleProjectOptional: false,
 				newTime: true,
@@ -892,6 +900,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddUpdateTime", controler);
 			this.AddProjectTime_init(controler, controler.getView().byId('addTimeTab').getItems()[0], true); // initialse with single hour
+			this.AddProjectEquipment_init(controler, controler.getView().byId('addEquipmentTab').getItems()[0], true); // initialse with single hour
 
 			//this.AddProjectBonus_init(controler, controler.getView().byId('addBonusTab').getItems()[0], true)
 
@@ -1172,6 +1181,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
 			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0], addNew);
+		},
+		AddUpdatetime_OnaddNewEquipmentPress: function(controller) {
+			var addNew = this.AddUpdatetimeModel.getData().newTime;
+			this.AddProjectEquipment_init(controller, controller.getView().byId('addEquipmentTab').getItems()[0], addNew);
 		},
 		AddUpdatetime_OnaddNewBonusPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newBonus;

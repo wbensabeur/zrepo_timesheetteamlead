@@ -13,19 +13,9 @@
 						class="monthLabelPadding"/>
 				</contentLeft>
 				<contentMiddle>
-					<SearchField id="EmpSearch" placeholder="{i18n>searchEquipment}" search="onEquipmentSearch"/>
+					<SearchField id="EmpSearch" placeholder="{i18n>searchEquipment}" search="onEquipmentSearch" width="25rem"/>
 				</contentMiddle>
-				<contentRight>
-					<core:Icon src="sap-icon://filter" color="white" size="1.5rem" width="2rem" height="2rem" press="onFilterPress"
-						class="sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-					<!--<Button icon="sap-icon://filter" type="Transparent" class="circleIcon" press="onFilterPress"/>-->
-					<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" class="sapUiSmallMarginEnd" width="10rem">
-						<items>
-							<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
-							<SegmentedButtonItem text="14 {i18n>days}" key="twoWeek"/>
-						</items>
-					</SegmentedButton>
-				</contentRight>
+				
 			</Bar>
 
 			<Table id="tableHeader" showNoData="false" width="97%" columns="{ path: 'calendar>/data', templateShareable:false }"
@@ -36,11 +26,12 @@
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
-							<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" placeholder="{i18n>hrType}" value="{calendar>ColumnTxt1}"
+							<!--<ComboBox class="tableColumnCombo" visible="{calendar>ComboVisible}" placeholder="{i18n>hrType}" value="{calendar>ColumnTxt1}"
 								items="{path:'/TeamSet', templateShareable:false, suspended: true, filters: [{ path: 'BusinessUnit', operator: 'EQ', value1: '{calendar>/data/0/ColumnTxt2}'}]}"
 								loadItems="handleTeamLoadItems" selectionChange="OnTableTeamChange">
 								<core:ListItem key="{TeamId}" text="{TeamName}"/>
-							</ComboBox>
+							</ComboBox>-->
+							<Label class="tableColumnCombo" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt1}"/>
 							<Label class="tableBULabel" visible="{calendar>ComboVisible}" text="{calendar>ColumnTxt2}"/>
 							<Label text="{calendar>ColumnTxt1}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
 							<Label text=" {calendar>ColumnTxt2}" visible="{path:'calendar>ComboVisible',formatter:'.formatter.booleanNot'}"/>
@@ -77,7 +68,7 @@
 							<ColumnListItem vAlign="Middle" class="sapUiTableTr EmpWeekStatus">
 								<cells>
 									<VBox class="EmpWeekStatus" width="100%">
-										<StandardListItem class="EmpWeekStatus" type="Active" title="{EquipmentName}" description="{WeekTotalInfo}" press="OnEmployeePress">
+										<StandardListItem class="EmpWeekStatus" type="Active" title="{EquipmentName}" description="" press="OnEmployeePress">
 											<!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
 											<customData>
 												<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
@@ -318,11 +309,12 @@
 					</HBox>-->
 				</contentLeft>
 				<contentMiddle>
-					<core:Icon src="sap-icon://add-equipment" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
-						press="OnEquipmentOff" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+					<!--<core:Icon src="sap-icon://add-equipment" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
+						press="OnEquipmentOff" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>-->
 						<!--<Button id="EquipmentOff" icon="sap-icon://add-equipment"  press="OnEquipmentOff"/>-->
 				</contentMiddle>
 				<contentRight>
+					<Button text="{i18n>cancel}" id="cancelBtn" type="Reject" press="OnEquipmentOff"/>
 					<!--<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png" press="onManageTeamSelection"/>
 					<Button id="editPlanning" text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
 					<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>-->

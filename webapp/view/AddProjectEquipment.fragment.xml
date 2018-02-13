@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="com.vinci.timesheet.admin.utility">
+	<VBox>
+		<FlexBox class="AddHoursDivider" visible="{AddTime>/newTime}"/>
+		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}">
+			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnTimeDelete"/>
+		</FlexBox>
+		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom" width="100%">
+			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
+			<Label text="{i18n>SelectHours}" class="sapUiMediumMarginTop"  />
+			<custom:StepInputCustom class="customStep" displayValuePrecision="2"  value="{Hours}" width="9rem" min="0.00" max="24.00" step=".5" change="OnChangeHours"/>
+		</VBox>
+		<customData>
+			<core:CustomData key="hrs" value="{Hours}"/>
+		</customData>
+	</VBox>
+</core:FragmentDefinition>
