@@ -57,11 +57,11 @@
 									</items>
 								</IconTabBar>-->
 								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" text="{i18n>meal}" class="AllwanceButton sapUiLargeMarginBegin" width="7rem"
-									press="onAllowanceIndicator" pressed="{MealIndicator}" />
+									press="onAllowanceIndicator" pressed="{MealIndicator}" visible="false" />
 								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://car-rental" text="{i18n>journey}" class="AllwanceButton" width="7rem"
-									press="onAllowanceIndicator" pressed="{JourneyIndicator}" />
+									press="onAllowanceIndicator" pressed="{JourneyIndicator}" visible="false" />
 								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" text="{i18n>transport}" class="AllwanceButton"
-									press="onAllowanceIndicator" pressed="{TransportIndicator}" />
+									press="onAllowanceIndicator" pressed="{TransportIndicator}" visible="false"/>
 								<!--</items>
 								</SegmentedButton>-->
 							</HBox>
