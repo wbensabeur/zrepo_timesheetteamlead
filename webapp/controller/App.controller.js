@@ -63,7 +63,8 @@ sap.ui.define([
 			var help = sap.ui.getCore().byId("shellHelp");
 
 			help.attachPress(function(oEvent) {
-				var helpURL = 'https://help.sap.com';
+				var userData=that.getModel("userPreference").getData();
+				var helpURL = userData.helpLink;
 				window.open(helpURL);
 
 			});

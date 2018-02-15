@@ -460,6 +460,9 @@ sap.ui.define([
 								else
 									userPreferenceModel.setProperty('/signatureRequired', false);
 								break;
+								case 'HL':
+									userPreferenceModel.setProperty('/helpLink', data.results[k].PersoValue);
+								break;
 
 						}
 					}
