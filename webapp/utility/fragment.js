@@ -1021,8 +1021,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							filters: arrParams,
 							success: function(data) {
 								for (var count = 0; count < data.results.length; count++) {
-									if (data.results[0].FieldDescription === controler.getView().byId('AllowanceZoneType').getSelectedKey()) {
-										if (data.results[0].FieldAdditionalValue === "GD") {
+									if (data.results[count].FieldDescription === controler.getView().byId('AllowanceZoneType').getSelectedKey()) {
+										if (data.results[count].FieldAdditionalValue === "GD") {
 											thatPtr.getView().byId("AllowanceMealIndicator").setVisible(false);
 											thatPtr.getView().byId("AllowanceTransportIndicator").setVisible(false);
 											thatPtr.getView().byId("AllowanceTravelIndicator").setVisible(false);
@@ -1034,6 +1034,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 											thatPtr.getView().byId("AllowanceTransportIndicator").setVisible(true);
 											thatPtr.getView().byId("AllowanceTravelIndicator").setVisible(true);
 										}
+										break;
 									}
 								}
 							},
