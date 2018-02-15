@@ -882,7 +882,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 				this.equipment = false;
 			}
-
+			var thatPtr = controler;
 			this.type = type;
 			var odata = null;
 			var userPrefModel = controler.getModel('userPreference');
@@ -1013,6 +1013,34 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							projectView.getItems()[0].setText("");
 						}
 						controler.getView().byId('AllowanceZoneType').setPlaceholder("");
+						var arrParams = [];
+						var urlStr = "/ValueHelpSet";
+						arrParams.push(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD"));
+						arrParams.push(new Filter("HelpType", FilterOperator.EQ, "ZN"));
+						controler.getOwnerComponent().getModel().read(urlStr, {
+							filters: arrParams,
+							success: function(data) {
+								for (var count = 0; count < data.results.length; count++) {
+									if (data.results[0].FieldDescription === controler.getView().byId('AllowanceZoneType').getSelectedKey()) {
+										if (data.results[0].FieldAdditionalValue === "GD") {
+											thatPtr.getView().byId("AllowanceMealIndicator").setVisible(false);
+											thatPtr.getView().byId("AllowanceTransportIndicator").setVisible(false);
+											thatPtr.getView().byId("AllowanceTravelIndicator").setVisible(false);
+											thatPtr.getView().byId("AllowanceMealIndicator").setPressed(false);
+											thatPtr.getView().byId("AllowanceTransportIndicator").setPressed(false);
+											thatPtr.getView().byId("AllowanceTravelIndicator").setPressed(false);
+										} else {
+											thatPtr.getView().byId("AllowanceMealIndicator").setVisible(true);
+											thatPtr.getView().byId("AllowanceTransportIndicator").setVisible(true);
+											thatPtr.getView().byId("AllowanceTravelIndicator").setVisible(true);
+										}
+									}
+								}
+							},
+							error: function(error) {
+								//sap.m.MessageToast.show("Failed");
+							}
+						});
 						break;
 					case 'KM':
 						odata.visibleKM = true;
@@ -1211,6 +1239,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
 			this.warning = true;
+
 		},
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
@@ -1233,6 +1262,21 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
+		},
+		AddUpdatetime_onAllowanceIndicatorData: function(oEvent, that) {
+			var selectedIPD = oEvent.getSource().getSelectedItem().getAdditionalText();
+			if (selectedIPD === "GD") {
+				that.getView().byId("AllowanceMealIndicator").setVisible(false);
+				that.getView().byId("AllowanceTransportIndicator").setVisible(false);
+				that.getView().byId("AllowanceTravelIndicator").setVisible(false);
+				that.getView().byId("AllowanceMealIndicator").setPressed(false);
+				that.getView().byId("AllowanceTransportIndicator").setPressed(false);
+				that.getView().byId("AllowanceTravelIndicator").setPressed(false);
+			} else {
+				that.getView().byId("AllowanceMealIndicator").setVisible(true);
+				that.getView().byId("AllowanceTransportIndicator").setVisible(true);
+				that.getView().byId("AllowanceTravelIndicator").setVisible(true);
+			}
 		},
 		AddUpdatetime_handleAbsTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();

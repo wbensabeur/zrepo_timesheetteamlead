@@ -31,10 +31,10 @@
 						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
 							<Label text="{i18n>DailyAllowances}"/>
 							<HBox alignItems="Center" justifyContent="Start">
-								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator" selectedKey="{ZoneType}"
+								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator" selectionChange="onAllowanceIndicatorData" selectedKey="{ZoneType}"
 									items="{path:'/ValueHelpSet', suspended: true, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"
-									loadItems="handleAllowanceZoneTypeLoadItems" class="SelectCombo">
-									<core:ListItem key="{FieldDescription}" text="{FieldDescription}"/>
+									loadItems="handleAllowanceZoneTypeLoadItems" class="SelectCombo" showSecondaryValues="false">
+									<core:ListItem key="{FieldDescription}" text="{FieldDescription}"  additionalText="{FieldAdditionalValue}"/>
 								</ComboBox>
 								<!--<SegmentedButton class="sapUiLargeMarginBegin sapUiLargeMarginEnd" width="20rem">
 									<items>-->
@@ -57,11 +57,11 @@
 									</items>
 								</IconTabBar>-->
 								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" text="{i18n>meal}" class="AllwanceButton sapUiLargeMarginBegin" width="7rem"
-									press="onAllowanceIndicator" pressed="{MealIndicator}"/>
+									press="onAllowanceIndicator" pressed="{MealIndicator}" />
 								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://car-rental" text="{i18n>journey}" class="AllwanceButton" width="7rem"
-									press="onAllowanceIndicator" pressed="{JourneyIndicator}"/>
+									press="onAllowanceIndicator" pressed="{JourneyIndicator}" />
 								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" text="{i18n>transport}" class="AllwanceButton"
-									press="onAllowanceIndicator" pressed="{TransportIndicator}"/>
+									press="onAllowanceIndicator" pressed="{TransportIndicator}" />
 								<!--</items>
 								</SegmentedButton>-->
 							</HBox>

@@ -1157,6 +1157,9 @@ sap.ui.define([
 			this.getView().setModel(oModel.Emps, "Emps");
 
 		},
+		onAllowanceIndicatorData : function(oEvent){	
+			fragment.AddUpdatetime_onAllowanceIndicatorData(oEvent,this);
+		},
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;

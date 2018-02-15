@@ -100,6 +100,9 @@ sap.ui.define([
 			}
 
 		},
+		onAllowanceIndicatorData : function(oEvent){	
+			fragment.AddUpdatetime_onAllowanceIndicatorData(oEvent,this);
+		},
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			this.getRouter().navTo("periodSelection", {
