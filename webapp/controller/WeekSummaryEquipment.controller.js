@@ -263,6 +263,7 @@ sap.ui.define([
 					dataReceived: function(rData) {
 						oView.byId('employeeBU').bindElement(empBinding);
 						oView.byId('employeeSection').bindElement(empBinding);
+						oView.byId('equipmentType').bindElement(empBinding);
 					}
 				}
 			});
