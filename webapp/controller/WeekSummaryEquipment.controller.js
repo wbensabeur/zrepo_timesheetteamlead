@@ -470,7 +470,7 @@ sap.ui.define([
 			}
 
 		},
-		OnHourPress1: function(oEvent) {
+		OnHourPress: function(oEvent) {
 			//var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
 			// Edit Enable
 			this.dailyDetail = true;
@@ -478,11 +478,11 @@ sap.ui.define([
 			this.currentEmpName = oEvent.getSource().data('employeeName');
 			this.currentDate = oEvent.getSource().data('selectedDate'); //getCustomData()[3].getValue();
 			var oView = this.getView();
-			var oDialog = oView.byId("EmpDayCheckDialog");
+			var oDialog = oView.byId("EquipmentCheckDialog");
 			// create dialog lazily
 			if (!oDialog) {
 				// create dialog via fragment factory
-				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.EmployeeDayDialog", this);
+				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.EquipmentDayDialog", this);
 				oView.addDependent(oDialog);
 				var footerData = {
 					MainNewScreen: false,
@@ -778,7 +778,7 @@ sap.ui.define([
 			this.getView().getModel("userPreference").setProperty("/startDate", this.userPref.startDate);
 		},
 		OnCancelEmpDayCheckDialog: function(oEvent) {
-			var oDialog = this.getView().byId("EmpDayCheckDialog");
+			var oDialog = this.getView().byId("EquipmentCheckDialog");
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			//this.getView().byId('table').getBinding("items").refresh();
 			if (this.update) {
@@ -890,7 +890,7 @@ sap.ui.define([
 			var oTable = null;
 			var dailog = null;
 			if (this.dailyDetail) {
-				dailog = this.getView().byId("EmpDayCheckDialog");
+				dailog = this.getView().byId("EquipmentCheckDialog");
 				headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableDayItems');
 			} else {
@@ -919,7 +919,7 @@ sap.ui.define([
 			var oTable = null;
 			var dailog = null;
 			if (this.dailyDetail) {
-				dailog = this.getView().byId("EmpDayCheckDialog");
+				dailog = this.getView().byId("EquipmentCheckDialog");
 				headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableDayItems');
 			} else {
@@ -981,7 +981,7 @@ sap.ui.define([
 			var oView = this.getView();
 			var oDialog = null;
 			if (this.dailyDetail)
-				oDialog = this.getView().byId("EmpDayCheckDialog");
+				oDialog = this.getView().byId("EquipmentCheckDialog");
 			else
 				oDialog = this.getView().byId("EqupmentWeekCheckDialog");
 
@@ -1129,7 +1129,7 @@ sap.ui.define([
 			//MessageBox.information(this.getResourceBundle().getText("editMessage"));
 			var oDialog = null;
 			if (this.dailyDetail) {
-				oDialog = this.getView().byId("EmpDayCheckDialog");
+				oDialog = this.getView().byId("EquipmentCheckDialog");
 			} else {
 				oDialog = this.getView().byId("EqupmentWeekCheckDialog");
 			}
