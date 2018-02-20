@@ -1186,6 +1186,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oView.byId('AllowanceProject').getItems()[1].getItems()[1].setVisible(true); // ownIntialButton
 				oView.byId('AllowanceProject').getItems()[1].getItems()[2].setVisible(false);
 				oView.byId('AllowanceProject').getItems()[1].getItems()[3].setVisible(false);
+										if (oView.byId('AllowanceZoneType').getSelectedKey() === "GD" || oView.byId('AllowanceZoneType').getSelectedKey() === '') {
+											oView.byId("AllowanceMealIndicator").setVisible(false);
+											oView.byId("AllowanceTransportIndicator").setVisible(false);
+											oView.byId("AllowanceTravelIndicator").setVisible(false);
+											oView.byId("AllowanceMealIndicator").setPressed(false);
+											oView.byId("AllowanceTransportIndicator").setPressed(false);
+											oView.byId("AllowanceTravelIndicator").setPressed(false);
+										} else {
+											oView.byId("AllowanceMealIndicator").setVisible(true);
+											oView.byId("AllowanceTransportIndicator").setVisible(true);
+											oView.byId("AllowanceTravelIndicator").setVisible(true);
+										}
 
 			}
 			/*else {

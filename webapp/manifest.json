@@ -39,7 +39,11 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_belize", "sap_belize_plus"]
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize",
+			"sap_belize_plus"
+		]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -88,57 +92,84 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": ["notFound"]
+					"target": [
+						"notFound"
+					]
 				},
 				"async": true
 			},
-			"routes": [{
-				"pattern": "",
-				"name": "home",
-				"target": ["home"]
-			}, {
-				"name": "periodSelection",
-				"pattern": "periodSelection/{source}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["periodSelection"]
-			}, {
-				"name": "AddTimesheet",
-				"pattern": "AddTimesheet",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["AddTimesheet"]
-			}, {
-				"name": "ReportEmployeeSelection",
-				"pattern": "ReportEmployeeSelection/{source}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["ReportEmployeeSelection"]
-			}, {
-				"name": "WeeklyReport",
-				"pattern": "WeeklyReport",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["WeeklyReport"]
-			}, {
-				"name": "TeamManage",
-				"pattern": "TeamManage",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["TeamManage"]
-			}, {
-				"name": "TeamMaintain",
-				"pattern": "TeamMaintain",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["TeamMaintain"]
-			}, {
-				"name": "WSEquipment",
-				"pattern": "WSEquipment",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["WSEquipment"]
-			}],
+			"routes": [
+				{
+					"pattern": "",
+					"name": "home",
+					"target": [
+						"home"
+					]
+				},
+				{
+					"name": "periodSelection",
+					"pattern": "periodSelection/{source}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"periodSelection"
+					]
+				},
+				{
+					"name": "AddTimesheet",
+					"pattern": "AddTimesheet",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"AddTimesheet"
+					]
+				},
+				{
+					"name": "ReportEmployeeSelection",
+					"pattern": "ReportEmployeeSelection/{source}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"ReportEmployeeSelection"
+					]
+				},
+				{
+					"name": "WeeklyReport",
+					"pattern": "WeeklyReport",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"WeeklyReport"
+					]
+				},
+				{
+					"name": "TeamManage",
+					"pattern": "TeamManage",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"TeamManage"
+					]
+				},
+				{
+					"name": "TeamMaintain",
+					"pattern": "TeamMaintain",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"TeamMaintain"
+					]
+				},
+				{
+					"name": "WSEquipment",
+					"pattern": "WSEquipment",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"WSEquipment"
+					]
+				}
+			],
 			"targets": {
 				"home": {
 					"viewName": "WeeklySummary",
@@ -209,10 +240,12 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css",
-				"id": ""
-			}],
+			"css": [
+				{
+					"uri": "css/style.css",
+					"id": ""
+				}
+			],
 			"js": []
 		}
 	},
