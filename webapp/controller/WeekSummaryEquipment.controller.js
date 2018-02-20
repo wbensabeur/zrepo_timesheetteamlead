@@ -1069,14 +1069,14 @@ sap.ui.define([
 
 			this.userPref = this.getView().getModel("userPreference").getData();
 			this.twoWeek = false;
-			//var oPeriodbutton = this.getView().byId("periodButton");
-			/*if (this.userPref.defaultPeriod === 1) {
+			var oPeriodbutton = this.getView().byId("periodButton");
+			if (this.userPref.defaultPeriod === 1) {
 				this.twoWeek = false;
 			} else {
 				this.twoWeek = true;
 				oPeriodbutton.setSelectedKey("twoWeek");
-			}*/
-			this._calendarBinding(this.userPref.startDate, 1);
+			}
+			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
 		},
 		_applyFilters: function() {
 			var oTable = this.byId("table");

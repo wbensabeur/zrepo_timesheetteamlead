@@ -51,12 +51,10 @@
 					</SegmentedButton>
 				</contentRight>
 			</Bar>
-
 			<Table id="tableHeader" showNoData="false" width="97%" columns="{ path: 'calendar>/data', templateShareable:false }"
 				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
 				updateFinished="onUpdateFinished" growingThreshold="15" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin"
 				updateStarted="onUpdateStart">
-
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -77,7 +75,6 @@
 			</Table>
 			<ScrollContainer id="TableScroll" width="auto" height="100%" vertical="true" horizontal="false" focusable="true">
 				<content>
-
 					<!--	, ,parameters: { 'select':'EmployeeId,EmployeeName,WeekTotalTargetHours,WeekTotalHours,WeekTotalAllowances,WeekTotalKms,isEntryEnabled,WeekStatus,WeekDate1Date,WeekDate1TargetHours,WeekDate1Hours,WeekDate1Status,WeekDate2Date,WeekDate2TargetHours,WeekDate2Hours,WeekDate2Status,WeekDate3Date,WeekDate3TargetHours,WeekDate3Hours,WeekDate3Status,WeekDate4Date,WeekDate4TargetHours,WeekDate4Hours,WeekDate4Status,WeekDate5Date,WeekDate5TargetHours,WeekDate5Hours,WeekDate5Status,WeekDate6Date,WeekDate6TargetHours,WeekDate6Hours,WeekDate6Status,WeekDate7Date,WeekDate7TargetHours,WeekDate7Hours,WeekDate7Status,NotEditable'}-->
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}"
 						items="{ path: '/WeekSummarySet' , suspended: true , templateShareable:false }"
@@ -328,7 +325,35 @@
 			</ScrollContainer>
 		</content>
 		<footer>
-			<Bar>
+			<OverflowToolbar class="vinciFooterBar">
+				<VBox width="100%">
+					<HBox id="legend" visible="false" width="100%">
+						<VBox class="DraftL" alignItems="Center" justifyContent="Center"/>
+						<Label text="{i18n>legend-draft}" class="LLabel"/>
+						<VBox class="WaitingL" alignItems="Center" justifyContent="Center"/>
+						<Label text="{i18n>legend-waiting}" class="LLabel"/>
+						<VBox class="ValidatedL" alignItems="Center" justifyContent="Center"/>
+						<Label text="{i18n>legend-validated}" class="LLabel"/>
+						<VBox class="RefusedL" alignItems="Center" justifyContent="Center"/>
+						<Label text="{i18n>legend-refused}" class="LLabel"/>
+					</HBox>
+					<HBox width="100%">
+						<HBox width="100%" alignItems="Start" justifyContent="Start">
+							<Button icon="sap-icon://drill-up" press="onPressCheckVersion" id="displayLegend"/>
+						</HBox>
+						<HBox width="100%" alignItems="Center" justifyContent="Center">
+							<core:Icon src="sap-icon://add-equipment" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
+								press="OnEquipmentOn" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+						</HBox>
+						<HBox width="100%" alignItems="End" justifyContent="End">
+							<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png" press="onManageTeamSelection"/>
+							<Button id="editPlanning" text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
+							<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>
+						</HBox>
+					</HBox>
+				</VBox>
+			</OverflowToolbar>
+			<!--<Bar>
 				<contentLeft>
 					<HBox>
 						<VBox class="DraftL" alignItems="Center" justifyContent="Center"/>
@@ -344,16 +369,13 @@
 				<contentMiddle>
 					<core:Icon src="sap-icon://add-equipment" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
 						press="OnEquipmentOn" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>
-				<!--	<core:Icon src="sap-icon://add-equipment" color="white" size="1.5rem" width="2rem" height="2rem" press="OnEquipmentOn"
-						class="sapUiTinyMarginTop sapUiTinyMarginBegin"/>-->
-					<!--<Button id="EquipmentOn" icon="sap-icon://add-equipment"  press="OnEquipmentOn"/>-->
 				</contentMiddle>
 				<contentRight>
 					<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png" press="onManageTeamSelection"/>
 					<Button id="editPlanning" text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
 					<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>
 				</contentRight>
-			</Bar>
+			</Bar>-->
 		</footer>
 	</Page>
 </mvc:View>

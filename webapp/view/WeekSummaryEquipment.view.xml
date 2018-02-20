@@ -1,7 +1,6 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	controllerName="com.vinci.timesheet.admin.controller.WeekSummaryEquipment" xmlns:html="http://www.w3.org/1999/xhtml">
-<Page showHeader="false" class="VinciBackground">
-
+	<Page showHeader="false" class="VinciBackground">
 		<content>
 			<Bar design="SubHeader" class="VinciBar">
 				<contentLeft>
@@ -13,16 +12,22 @@
 						class="monthLabelPadding"/>
 				</contentLeft>
 				<contentMiddle>
-					<SearchField id="EmpSearch" placeholder="{i18n>searchEquipment}" search="onEquipmentSearch" width="25rem"/>
+					<SearchField id="EmpSearch" placeholder="{i18n>searchEquipment}" search="onEquipmentSearch" />
 				</contentMiddle>
+				<contentRight>
 				
+					<SegmentedButton id="periodButton" selectedKey="OneWeek" select="onPeriodSelect" class="sapUiSmallMarginEnd" width="10rem">
+						<items>
+							<SegmentedButtonItem text="7 {i18n>days}" key="OneWeek"/>
+							<SegmentedButtonItem text="14 {i18n>days}" key="twoWeek"/>
+						</items>
+					</SegmentedButton>
+				</contentRight>
 			</Bar>
-
 			<Table id="tableHeader" showNoData="false" width="97%" columns="{ path: 'calendar>/data', templateShareable:false }"
 				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true"
 				updateFinished="onUpdateFinished" growingThreshold="15" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin"
 				updateStarted="onUpdateStart">
-
 				<columns>
 					<Column width="{calendar>width}" hAlign="Center">
 						<VBox class="tableColumn" alignItems="Center" justifyContent="Center" height="50px">
@@ -44,7 +49,6 @@
 			</Table>
 			<ScrollContainer id="TableScroll" width="auto" height="100%" vertical="true" horizontal="false" focusable="true">
 				<content>
-
 					<!--	, ,parameters: { 'select':'EquipmentId,EquipmentName,WeekTotalTargetHours,WeekTotalHours,WeekTotalAllowances,WeekTotalKms,isEntryEnabled,WeekStatus,WeekDate1Date,WeekDate1TargetHours,WeekDate1Hours,WeekDate1Status,WeekDate2Date,WeekDate2TargetHours,WeekDate2Hours,WeekDate2Status,WeekDate3Date,WeekDate3TargetHours,WeekDate3Hours,WeekDate3Status,WeekDate4Date,WeekDate4TargetHours,WeekDate4Hours,WeekDate4Status,WeekDate5Date,WeekDate5TargetHours,WeekDate5Hours,WeekDate5Status,WeekDate6Date,WeekDate6TargetHours,WeekDate6Hours,WeekDate6Status,WeekDate7Date,WeekDate7TargetHours,WeekDate7Hours,WeekDate7Status,NotEditable'}-->
 					<Table id="table" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}"
 						items="{ path: '/WeekSummaryEqpmtSet' , suspended: true , templateShareable:false }"
@@ -311,7 +315,7 @@
 				<contentMiddle>
 					<!--<core:Icon src="sap-icon://add-equipment" color="rgba(20, 35, 94, 1)" size="1.5rem" width="2rem" height="2rem" backgroundColor="white"
 						press="OnEquipmentOff" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>-->
-						<!--<Button id="EquipmentOff" icon="sap-icon://add-equipment"  press="OnEquipmentOff"/>-->
+					<!--<Button id="EquipmentOff" icon="sap-icon://add-equipment"  press="OnEquipmentOff"/>-->
 				</contentMiddle>
 				<contentRight>
 					<Button text="{i18n>cancel}" id="cancelBtn" type="Reject" press="OnEquipmentOff"/>

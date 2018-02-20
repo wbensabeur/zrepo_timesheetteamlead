@@ -952,6 +952,18 @@ sap.ui.define([
 			}, dailog, oEvent.getSource(), dialogContextPath);
 
 		},
+		onPressCheckVersion: function(oEvent) {
+			
+			if(	!this.getView().byId("legend").getVisible()){
+				this.getView().byId("displayLegend").setIcon("sap-icon://drill-down");
+			this.getView().byId("legend").setVisible(true);
+			}
+			else{
+			this.getView().byId("legend").setVisible(false);	
+			this.getView().byId("displayLegend").setIcon("sap-icon://drill-up");
+			}
+		
+		},
 
 		////*** Add New Time  **///
 
