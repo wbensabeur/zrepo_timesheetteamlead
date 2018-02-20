@@ -347,7 +347,7 @@
 						</HBox>
 						<HBox width="100%" alignItems="End" justifyContent="End">
 							<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png" press="onManageTeamSelection"/>
-							<Button id="editPlanning" text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection"/>
+							<Button id="editPlanning" text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection" class="sapUiTinyMarginEnd"/>
 							<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>
 						</HBox>
 					</HBox>

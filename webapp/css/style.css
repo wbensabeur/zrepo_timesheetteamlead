@@ -485,6 +485,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .LLabel {
     font-size: 13px !important;
     color: white;
+     margin-top: 1rem;
 }
 
 .BottomButton {
@@ -856,4 +857,12 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 }
 .sapMITBContainerContent {
     border-bottom: 0rem solid #e2e2e2;
+}
+#new footer bar
+.vinciFooterBar {
+    background-color: black !important;
+    height : auto !important;
+}
+.vinciFooterBar.sapMTB{
+	  height : auto !important;
 }
