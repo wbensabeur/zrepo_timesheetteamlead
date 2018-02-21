@@ -241,8 +241,8 @@ sap.ui.define([
 			var noEdited = oEvent.getSource().data('notEditable');
 			var editEnable = !noEdited && EmpEntryEnable;
 			this.editEnable = editEnable;
-			/*this.getView().byId('WeekAddNewTimeButton').setEnabled(editEnable);
-			this.getView().byId('WeekAddDeleteButton').setEnabled(editEnable);*/
+			this.getView().byId('WeekAddNewTimeButton').setEnabled(editEnable);
+			this.getView().byId('WeekAddDeleteButton').setEnabled(editEnable);
 			var table = this.getView().byId('tableWeekItems');
 			if (editEnable) {
 				table.setMode("MultiSelect");
@@ -420,7 +420,7 @@ sap.ui.define([
 
 			table.getBinding("items").filter(Filters, "Application");
 			table.getBinding("items").resume();
-			table.getBinding("items").attachEvent('dataReceived', function(oData) {
+			/*table.getBinding("items").attachEvent('dataReceived', function(oData) {
 
 				try {
 					var results = oData.getParameter('data').results;
@@ -454,7 +454,7 @@ sap.ui.define([
 				} catch (e) {
 					// do nothing
 				}
-			});
+			});*/
 
 			this.Filters1 = Filters1;
 
