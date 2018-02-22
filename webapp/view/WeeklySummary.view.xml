@@ -346,7 +346,7 @@
 								press="OnEquipmentOn" class="circleIcon sapUiTinyMarginTop sapUiSmallMarginBegin"/>
 						</HBox>-->
 						<HBox width="100%" alignItems="End" justifyContent="End">
-							<Button text="{i18n>button-manage-equipment}" icon="sap-icon://add-equipment" press="OnEquipmentOn"/>
+							<Button text="{i18n>button-manage-equipment}" visible="{userPreference>/defaultEquipment}" icon="sap-icon://add-equipment" press="OnEquipmentOn"/>
 							<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png" press="onManageTeamSelection"/>
 							<Button id="editPlanning" text="{i18n>button-edit-planning}" type="Emphasized" press="OnTimesheetSelection" class="sapUiTinyMarginEnd"/>
 							<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>
