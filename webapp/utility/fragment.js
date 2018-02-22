@@ -1508,19 +1508,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var tab = oView.byId('addEquipmentTab').getItems()[0].getItems();
 
 						for (var k = 1; k < tab.length; k++) {
-							try {
-								var projectID = undefined;
-								//var filledHrs = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
-								var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
-								//var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
-								projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
-							} catch (err) {
-								if (projectID === undefined) {
-									MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
-									ctype.setBusy(false);
-									rButton.setEnabled(true);
-									return;
-								}
+
+							var projectID = undefined;
+							//var filledHrs = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+							var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+							//var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+							projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+
+							if (projectID === undefined) {
+								MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
 							}
 
 							var localHours = tab[k].getCustomData()[0].getValue();

@@ -428,7 +428,7 @@ sap.ui.define([
 								if (data.results[k].PersoValue === 'X')
 									userPreferenceModel.setProperty('/defaultEquipment', true);
 								else
-									userPreferenceModel.setProperty('/defaultEquipment', true);
+									userPreferenceModel.setProperty('/defaultEquipment', false);
 								break;
 							case 'OVERNIGHT':
 								if (data.results[k].PersoValue === 'X')
