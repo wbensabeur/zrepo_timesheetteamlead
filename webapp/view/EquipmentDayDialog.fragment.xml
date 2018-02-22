@@ -14,117 +14,74 @@
 			<VBox>
 				<VBox>
 					<HBox class="sapUiMediumMarginTop sapUiSmallMarginBegin">
-						<Label text="{FullName}" design="Bold"/>
-						<Label class="sapUiLargeMarginBegin EmpDayDetails" design="Bold" id="EmpDayTotal"
-							text="{WorkDayInfo}"/>
+						<VBox>
+							<Label text="{EquipmentId}" design="Bold"/>
+							<Label text="{EquipmentName}" design="Bold"/>
+						</VBox>
+						<VBox class="sapUiLargeMarginBegin">
+							<Label  design="Bold" text="{EquipmentType}"/>
+							<!--<Label id="EmpWeekTotal" class="sapUiLargeMarginBegin EmpDayDetails" design="Bold" text="{WeekTotalInfo}"/>-->
+						</VBox>
 					</HBox>
 					<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
-						<Label text="{CompanyDesc}" design="Bold" class="EmpDayDetails"/>
-						<Label class="sapUiSmallMarginBegin EmpDayDetails" text="{BusinessUnitDesc}" design="Bold"/>
-						<Label class="sapUiSmallMarginBegin EmpDayDetails" text="{Section}" design="Bold"/>
-						<Label class="sapUiSmallMarginBegin EmpDayDetails" design="Bold" id="EmpDayStatus" text="{i18n>status}: {parts:['Status'],formatter:'.formatter.statusFormat'}"/>
-					</HBox>
-					<HBox id="EmpDayInfo" class="sapUiMediumMarginTop sapUiSmallMarginBegin">
-						<Label text="{parts:['WorkDate'],formatter:'.formatter.dateFormatinEmpDay'}"/>
-						<Label text=" - {i18n>legend-theoritical} : {path:'TargetHours',type:'Float',formatter:'.formatter.numberFormatter'} {i18n>hour}"/>
+						<Label text="{CompanyDesc}" design="Bold"  class="EmpDayDetails"/>
+						<Label class="sapUiSmallMarginBegin EmpDayDetails"  text="{BusinessUnitDesc}" design="Bold"/>
+						<Label class="sapUiSmallMarginBegin EmpDayDetails"  text="{Section}" design="Bold"/>
+						<!--<Label class="sapUiSmallMarginBegin EmpDayDetails" design="Bold"
+							text="{i18n>status}: {parts:['WeekStatus'],formatter:'.formatter.statusFormat'}"/>-->
 					</HBox>
 					<Table width="780px" id="tableDayItems" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell"
-						items="{ path: '/WorkDayItemSet', suspended: true  }">
+						items="{ path: '/EquipmentTimeSet', suspended: true  }">
 						<columns>
-							<Column width="33%" hAlign="Center" class="EmployeeWeeklyReportColumn">
+							<Column width="auto" hAlign="Center" class="EmployeeWeeklyReportColumn">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<Label text="{i18n>ProjectTitle}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
-							<Column width="auto" hAlign="Center" visible="false">
+							<Column width="15%" hAlign="Center" class="EmployeeWeeklyReportColumn">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-									<Label text="{i18n>ProjectName}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
-							    </VBox>
-							</Column>
-							<Column width="auto" hAlign="Center">
-								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-									<Label text="{i18n>timeType}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+									<Label text="{i18n>EquipmentType}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
-							<Column width="6%" hAlign="Center" visible="false">
-								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-									<Text text="{i18n>timeStart}" textAlign="Center" class="sapUiSmallMarginTop sapUiSmallMarginBottom TextCBoldTextImpl" maxLines="2"/>
-								</VBox>
-							</Column>
-							<Column width="6%" hAlign="Center" visible="false">
-								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-									<Text text="{i18n>timeEnd}" textAlign="Center" class="sapUiSmallMarginTop sapUiSmallMarginBottom TextCBoldTextImpl" maxLines="2"/>
-								</VBox>
-							</Column>
-							<Column width="6%" hAlign="Center" visible="false">
-								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-									<Label text="{i18n>kmText}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
-								</VBox>
-							</Column>
-							<Column width="6%" hAlign="Center">
+							<Column width="6%" hAlign="Center" class="EmployeeWeeklyReportColumn">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<Label text="{i18n>unit}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
-							<Column width="6%">
+							<Column width="6%" hAlign="Center" class="EmployeeWeeklyReportColumn">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<Label text="{i18n>total}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true" width="6%">
-								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
-									<Label text="{i18n>status}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
-								</VBox>
-							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true" width="4%">
+							<Column width="4%">
 								<VBox class="EmployeeWeeklyReportColumn" height="50px"/>
 							</Column>
-							<Column minScreenWidth="Tablet" demandPopin="true" width="4%">
+							<Column width="4%">
 								<VBox class="EmployeeWeeklyReportColumn" height="50px"/>
 							</Column>
 						</columns >
-						<items>
+						<items >
 							<ColumnListItem class="textAlignmentStart">
 								<cells>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text   text="{parts:['ProjectID','ProjectName'],formatter:'.formatter.getProject'}" class="sapUiTinyMarginTop" textAlign="Center"/>
-									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem" visible="false">
-										<!--<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescFirstLine'}" class="sapUiTinyMarginTop"/>
-										<Text text="{parts:['ProjectName'],formatter:'.formatter.ProjectDescSecondLine'}" visible="{parts:['ProjectName'],formatter:'.formatter.IsProjectDescSecondLine'}" class="sapUiTinyMarginTop"/>-->
-										<Text text="{ProjectName}" textAlign="Center" class="sapUiTinyMarginTop"/>
+										<Text text="{parts:['ProjectID','ProjectName'],formatter:'.formatter.getProject'}" class="sapUiTinyMarginTop" textAlign="Center"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{EntryTypeDesc}" class="sapUiTinyMarginTop"/>
+										<Text text="{EquipmentType}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{StartTime}" class="sapUiTinyMarginTop"/>
+										<Text text="{EquipmentUnit}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{EndTime}" class="sapUiTinyMarginTop"/>
+										<Text text="{FilledHours}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{KMNumber}" class="sapUiTinyMarginTop"/>
+										<core:Icon src="sap-icon://edit" color="blue" size="1.3rem" class="sapUiTinyMarginTop" press="OnEditEmpDayitem"
+											visible="{parts:['NotEditable','EmpDetail>/enable'],formatter:'.formatter.editVisibility'}"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{parts:['EntryType','HourUnit'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>
-									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{parts:['EntryType','Hours'],type:'Float',formatter:'.formatter.getQuantity'}" class="sapUiTinyMarginTop"/>
-									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<VBox class="hourSize sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd" height="1rem" width="1rem" alignItems="Center"
-											justifyContent="Center">
-											<customData>
-												<core:CustomData key="status" value="{Status}" writeToDom="true"/>
-											</customData>
-										</VBox>
-									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<core:Icon src="sap-icon://edit" color="blue" size="1.3rem" class="sapUiTinyMarginTop" press="OnEditEmpDayitem" visible="{parts:['NotEditable','EmpDetail>/enable'],formatter:'.formatter.editVisibility'}"/>
-									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<core:Icon src="sap-icon://delete" color="red" size="1.3rem" class="sapUiTinyMarginTop" press="OnDeleteEmpDayitem" visible="{parts:['NotEditable','EmpDetail>/enable'],formatter:'.formatter.editVisibility'}"/>
+										<core:Icon src="sap-icon://delete" color="red" size="1.3rem" class="sapUiTinyMarginTop" press="OnDeleteEmpDayitem"
+											visible="{parts:['NotEditable','EmpDetail>/enable'],formatter:'.formatter.editVisibility'}"/>
 									</VBox>
 								</cells>
 							</ColumnListItem>

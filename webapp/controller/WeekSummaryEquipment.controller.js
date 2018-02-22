@@ -503,9 +503,25 @@ sap.ui.define([
 			oDialog.bindElement("/EquipmentSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')");
 
 			//var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
-			var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + "," +
-				"ApplicationName='" + this.userPref.application + "')";
-			oView.byId('EmpDayTotal').bindElement(urlStr);
+			
+			/*var empBinding = "/EquipmentSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')";
+			oView.byId('employeeCompany').bindElement({
+				path: empBinding,
+				events: {
+					dataReceived: function(rData) {
+						oView.byId('employeeBU').bindElement(empBinding);
+						oView.byId('employeeSection').bindElement(empBinding);
+						oView.byId('equipmentType').bindElement(empBinding);
+					}
+				}
+			});*/
+			
+			
+			
+			
+			
+			
+		/*	oView.byId('EmpDayTotal').bindElement(urlStr);
 			oView.byId('EmpDayStatus').bindElement(urlStr);
 			var that = this;
 			var EmpEntryEnable = oEvent.getSource().data('entryEnable');
@@ -529,19 +545,13 @@ sap.ui.define([
 					}
 				}
 			});
-			oView.byId('MainAddButton').bindElement(urlStr);
-			try {
-				var noEdited = oView.getModel().getProperty(urlStr).NotEditable;
-				var editEnable = !noEdited && EmpEntryEnable;
-				that.getView().byId('AddNewTimeButton').setEnabled(editEnable);
-			} catch (e) {
-				// do nothing
-			}
+			oView.byId('MainAddButton').bindElement(urlStr);*/
+			
 			var EmpDetail = {
-				enable: EmpEntryEnable
+				enable: true
 			};
 			var oEmpDetailModel = new JSONModel(EmpDetail);
-			that.getView().setModel(oEmpDetailModel, "EmpDetail");
+			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 
 			var Filters = [
 				new Filter("EquipmentId", FilterOperator.EQ, this.currentEmp),
@@ -558,90 +568,7 @@ sap.ui.define([
 			table.setModel(this.getView().getModel());
 			table.getBinding("items").filter(Filters, "Application");
 			table.getBinding("items").resume();
-			table.getBinding("items").attachEvent('dataReceived', function(oData) {
 
-				that.getView().byId('MainAddDeleteButton').setEnabled(EmpEntryEnable);
-
-				if (EmpEntryEnable) {
-					try {
-						var results = oData.getParameter('data').results;
-						that.getView().byId('MainAddDeleteButton').setEnabled(false);
-						for (var i = 0; i < results.length; i++) {
-
-							if (results[i].NotEditable === false) {
-								that.getView().byId('MainAddDeleteButton').setEnabled(true);
-								break;
-							}
-						}
-					} catch (e) {
-						// do nothing
-					}
-				}
-				// Logic for hiding table column if no data
-				try {
-					var showStartTime = false;
-					var showEndTime = false;
-					var showKM = false;
-					for (i = 0; i < results.length; i++) {
-						if (showStartTime === false) {
-							if (results[i].StartTime !== undefined && results[i].StartTime !== null &&
-								results[i].StartTime !== "" && results[i].StartTime !== "00:00") {
-								showStartTime = true;
-							}
-						}
-						if (showEndTime === false) {
-							if (results[i].EndTime !== undefined && results[i].EndTime !== null &&
-								results[i].EndTime !== "" && results[i].EndTime !== "00:00") {
-								showEndTime = true;
-							}
-						}
-						if (showKM === false) {
-							if (results[i].KMNumber !== undefined && results[i].KMNumber !== null &&
-								results[i].KMNumber !== "" && results[i].KMNumber !== "0") {
-								showKM = true;
-							}
-						}
-					}
-					var localTable = that.getView().byId('tableDayItems');
-					localTable.getColumns()[3].setVisible(showStartTime);
-					localTable.getColumns()[4].setVisible(showEndTime);
-					localTable.getColumns()[5].setVisible(showKM);
-					if (showStartTime === false && showEndTime === false && showKM === false) {
-						localTable.getColumns()[1].setWidth("30%");
-					} else {
-						// Determin width display
-						var controlWidth = 0;
-						if (showStartTime === true) {
-							controlWidth = controlWidth + 1;
-						} else if (showEndTime === true) {
-							controlWidth = controlWidth + 1;
-						} else if (showKM === true) {
-							controlWidth = controlWidth + 1;
-						}
-						// apply width display
-						if (controlWidth === 1) {
-							localTable.getColumns()[1].setWidth("24%");
-						} else if (controlWidth === 2) {
-							localTable.getColumns()[1].setWidth("18%");
-						} else if (controlWidth === 3) {
-							localTable.getColumns()[1].setWidth("12%");
-						}
-					}
-				} catch (e) {
-					// do nothing
-				}
-			});
-
-			/*var noEdited = oEvent.getSource().data('noEdited');
-
-			var editEnable = entryEnable && !noEdited;
-			this.getView().byId('AddNewTimeButton').setEnabled(editEnable);
-
-			var EmpDetail = {
-				enable: editEnable
-			};
-			var oEmpDetailModel = new JSONModel(EmpDetail);
-			this.getView().setModel(oEmpDetailModel, "EmpDetail");*/
 		},
 
 		OnskipFilterScreen: function(oEvent) {
@@ -804,7 +731,7 @@ sap.ui.define([
 		onPressSelectDeleteEntries: function(oEvent) {
 
 			var that = this;
-			var contextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
+			//var contextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
 			MessageBox.confirm(
 				that.getResourceBundle().getText("confirmSelectDeleteMsg"), {
 					title: that.getResourceBundle().getText("deletecnfm"),
@@ -827,7 +754,7 @@ sap.ui.define([
 							model.submitChanges({
 								groupId: "group1",
 								success: function() {
-									that.getView().getModel().read(contextPath);
+								//	that.getView().getModel().read(contextPath);
 									var oTable2 = that.getView().byId('employeeWeekTable');
 									oTable2.getBinding("items").refresh();
 									that.update = true;
@@ -844,7 +771,7 @@ sap.ui.define([
 		onPressAllDeleteEntries: function(oEvent) {
 			//var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;
-			var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
+			//var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
@@ -873,7 +800,7 @@ sap.ui.define([
 								groupId: "group1",
 								success: function() {
 									that.update = true;
-									that.getView().getModel().read(contextPath);
+									//that.getView().getModel().read(contextPath);
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
 								}
 
@@ -886,22 +813,22 @@ sap.ui.define([
 		},
 		onPressSaveEntries: function(oEvent) {
 			var that = this;
-			var headerContextPath = null;
+			//var headerContextPath = null;
 			var oTable = null;
 			var dailog = null;
 			if (this.dailyDetail) {
 				dailog = this.getView().byId("EquipmentCheckDialog");
-				headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
+				//headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableDayItems');
 			} else {
 				dailog = this.getView().byId("EqupmentWeekCheckDialog");
-				headerContextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
+				//headerContextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableWeekItems');
 			}
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
 
-				that.getView().getModel().read(headerContextPath);
+				//that.getView().getModel().read(headerContextPath);
 				oTable.getBinding("items").refresh();
 				if (!that.dailyDetail) {
 					var oTable2 = that.getView().byId('employeeWeekTable');
@@ -1090,7 +1017,7 @@ sap.ui.define([
 			];
 			
 			if (this.userPref.equipmentFilter !== null && this.userPref.equipmentFilter.length > 0) {
-				Filters.push(new Filter("EquipmentName", FilterOperator.Contains, this.userPref.equipmentFilter));
+				Filters.push(new Filter("EquipmentId", FilterOperator.EQ, this.userPref.equipmentFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
@@ -1126,8 +1053,8 @@ sap.ui.define([
 			this.getRouter().navTo("home", {}, true);
 		},
 		OnEditEmpDayitem: function(oEvent) {
-			//MessageBox.information(this.getResourceBundle().getText("editMessage"));
-			var oDialog = null;
+			MessageBox.information(this.getResourceBundle().getText("editMessage"));
+			/*var oDialog = null;
 			if (this.dailyDetail) {
 				oDialog = this.getView().byId("EquipmentCheckDialog");
 			} else {
@@ -1146,13 +1073,13 @@ sap.ui.define([
 			this.getView().setModel(oModel.projectSearch, "projectSearch");
 			this.getView().getModel("footer").destroy();
 			this.getView().setModel(oModel.footer, "footer");
-			this.getView().setModel(oModel.Emps, "Emps");
+			this.getView().setModel(oModel.Emps, "Emps");*/
 
 		},
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;
-			var headerContextPath = null;
+			/*var headerContextPath = null;
 			if (this.dailyDetail) {
 
 				headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
@@ -1161,7 +1088,7 @@ sap.ui.define([
 
 				headerContextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
 
-			}
+			}*/
 			this.employees = [{
 				employee: this.currentEmp,
 				employeeName: this.currentEmpName,
@@ -1180,7 +1107,7 @@ sap.ui.define([
 							that.employees[0].Days.push(that.getView().getModel().getProperty(binding).WorkDate);
 							that.getView().getModel().remove(binding, {
 								success: function() {
-									that.getView().getModel().read(headerContextPath);
+								//	that.getView().getModel().read(headerContextPath);
 									if (!that.dailyDetail) {
 										var oTable2 = that.getView().byId('employeeWeekTable');
 										oTable2.getBinding("items").refresh();
@@ -1312,6 +1239,9 @@ sap.ui.define([
 			//		var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnChangeHours(oEvent);
 
+		},
+		OnEquipmentChangeQuanity : function(oEvent) {
+			fragment.AddProjectTime_OnEquipmentChangeQuanity(oEvent);	
 		},
 		OnChangeStartTime: function(oEvent) {
 			//		var timeModel = this.getView().getModel('AddTime');

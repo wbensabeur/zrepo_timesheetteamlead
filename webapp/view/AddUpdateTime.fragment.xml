@@ -160,7 +160,7 @@
 								</layoutData>
 							</Button>
 							<Label text="{i18n>total}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
-							<Label text="{AddTime>/totalEquipmentUnit}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
+							<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
 							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
 								value="{AddTime>/totalhrs}"/>-->
 						</HBox>

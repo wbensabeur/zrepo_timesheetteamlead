@@ -48,9 +48,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.footerModel.setProperty("/ProjectScreen", true);
 
 			this.lastProjectFilter = [];
-			for (var k = 0; k < this.employees.length; k++) {
-				var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
-				this.lastProjectFilter.push(filter);
+			if (this.equipment) {
+				var filter0 = new Filter("EmployeeId", FilterOperator.EQ, this.userPrefModel.getProperty('/userID'));
+				this.lastProjectFilter.push(filter0);
+			} else {
+				for (var k = 0; k < this.employees.length; k++) {
+					var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
+					this.lastProjectFilter.push(filter);
+				}
 			}
 			this.lastProjectFilter.push(new Filter("LastUsedProject", FilterOperator.EQ, true));
 			this.lastProjectFilter.push(new Filter("Favorite", FilterOperator.EQ, true));
@@ -91,10 +96,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				buttons[1].setEnabled(true);
 
 				this.lastProjectFilter = [];
-				for (var k = 0; k < this.employees.length; k++) {
-					var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
-					this.lastProjectFilter.push(filter);
+
+				if (this.equipment) {
+					var filter0 = new Filter("EmployeeId", FilterOperator.EQ, this.userPrefModel.getProperty('/userID'));
+					this.lastProjectFilter.push(filter0);
+				} else {
+					for (var k = 0; k < this.employees.length; k++) {
+						var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
+						this.lastProjectFilter.push(filter);
+					}
 				}
+
 				this.lastProjectFilter.push(new Filter("LastUsedProject", FilterOperator.EQ, true));
 				this.lastProjectFilter.push(new Filter("Favorite", FilterOperator.EQ, true));
 
@@ -502,6 +514,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
+
+		AddProjectTime_OnEquipmentChangeQuanity: function(oEvent) {
+			var source = oEvent.getSource();
+			this.warning = true;
+			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
+			var newValue = oEvent.getParameter("value");
+
+			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			var deltahrs = newValue - currentValue;
+			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			var newTotalhrs = currentTotalhrs + deltahrs;
+			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			sourcePanel.getCustomData()[0].setValue(newValue);
+		},
 		AddProjectTime_OnChangeStartTime: function(oEvent) {
 			var source = oEvent.getSource();
 			this.warning = true;
@@ -886,6 +912,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.type = type;
 			var odata = null;
 			var userPrefModel = controler.getModel('userPreference');
+			this.userPrefModel = userPrefModel;
 
 			if (this.equipment) {
 				odata = {
@@ -1186,18 +1213,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oView.byId('AllowanceProject').getItems()[1].getItems()[1].setVisible(true); // ownIntialButton
 				oView.byId('AllowanceProject').getItems()[1].getItems()[2].setVisible(false);
 				oView.byId('AllowanceProject').getItems()[1].getItems()[3].setVisible(false);
-										if (oView.byId('AllowanceZoneType').getSelectedKey() === "GD" || oView.byId('AllowanceZoneType').getSelectedKey() === '') {
-											oView.byId("AllowanceMealIndicator").setVisible(false);
-											oView.byId("AllowanceTransportIndicator").setVisible(false);
-											oView.byId("AllowanceTravelIndicator").setVisible(false);
-											oView.byId("AllowanceMealIndicator").setPressed(false);
-											oView.byId("AllowanceTransportIndicator").setPressed(false);
-											oView.byId("AllowanceTravelIndicator").setPressed(false);
-										} else {
-											oView.byId("AllowanceMealIndicator").setVisible(true);
-											oView.byId("AllowanceTransportIndicator").setVisible(true);
-											oView.byId("AllowanceTravelIndicator").setVisible(true);
-										}
+				if (oView.byId('AllowanceZoneType').getSelectedKey() === "GD" || oView.byId('AllowanceZoneType').getSelectedKey() === '') {
+					oView.byId("AllowanceMealIndicator").setVisible(false);
+					oView.byId("AllowanceTransportIndicator").setVisible(false);
+					oView.byId("AllowanceTravelIndicator").setVisible(false);
+					oView.byId("AllowanceMealIndicator").setPressed(false);
+					oView.byId("AllowanceTransportIndicator").setPressed(false);
+					oView.byId("AllowanceTravelIndicator").setPressed(false);
+				} else {
+					oView.byId("AllowanceMealIndicator").setVisible(true);
+					oView.byId("AllowanceTransportIndicator").setVisible(true);
+					oView.byId("AllowanceTravelIndicator").setVisible(true);
+				}
 
 			}
 			/*else {
@@ -1466,6 +1493,72 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
+			if (selectedTab === 'Equipment') {
+				var data = {
+					"UserId": oView.getModel('userPreference').getProperty("/userID"),
+					"ProcessingMode": "C",
+					"NavEquipmentAction": []
+				};
+
+				for (var l = 0; l < this.employees.length; l++) {
+					var empId = this.employees[l].employee;
+
+					for (var j = 0; j < this.employees[l].Days.length; j++) {
+
+						var tab = oView.byId('addEquipmentTab').getItems()[0].getItems();
+
+						for (var k = 1; k < tab.length; k++) {
+							try {
+								var projectID = undefined;
+								//var filledHrs = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+								var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+								//var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+								projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+							} catch (err) {
+								if (projectID === undefined) {
+									MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
+									ctype.setBusy(false);
+									rButton.setEnabled(true);
+									return;
+								}
+							}
+
+							var localHours = tab[k].getCustomData()[0].getValue();
+							if (localHours !== null && localHours !== undefined) {
+								var localHoursText = localHours.toString();
+							} else {
+								localHoursText = localHours;
+							}
+							var workDayItem = {
+								"EquipmentId": empId,
+								"ProjectID": projectID,
+								"WorkDate": this.employees[l].Days[j],
+								"FilledHours": localHoursText,
+								"ApplicationName": "TEAMLEAD"
+
+							};
+
+							data.NavEquipmentAction.push(workDayItem);
+						}
+					}
+				}
+
+				var that = this;
+				ctype.setBusy(true);
+				this.oDataModel.create("/EquipmentActionSet", data, {
+					success: function() {
+						ctype.setBusy(false);
+						rButton.setEnabled(true);
+						savepostFuction(that);
+						//that.refresh_workdaySetforAdd(that.employees, oView);
+					},
+					error: function() {
+						ctype.setBusy(false);
+						rButton.setEnabled(true);
+					}
+				});
+				return;
+			}
 
 			var data = {
 				"EmployeeId": this.employees[0].employee,
