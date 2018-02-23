@@ -790,6 +790,7 @@ sap.ui.define([
 									oTable2.getBinding("items").refresh();
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+									that.getView().getModel().refresh();
 								},
 								error: function() {
 									//MessageToast.show(that.getResourceBundle().getText("errorText"));

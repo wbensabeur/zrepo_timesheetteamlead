@@ -1549,6 +1549,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						ctype.setBusy(false);
 						rButton.setEnabled(true);
 						savepostFuction(that);
+						oView.getModel().refresh();     
 						//that.refresh_workdaySetforAdd(that.employees, oView);
 					},
 					error: function() {
