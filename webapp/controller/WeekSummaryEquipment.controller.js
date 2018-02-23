@@ -786,7 +786,7 @@ sap.ui.define([
 							}
 							model.create("/EquipmentActionSet", data, {
 								success: function() {
-									var oTable2 = that.getView().byId('employeeWeekTable');
+									var oTable2 = that.getView().byId('tableWeekItems');
 									oTable2.getBinding("items").refresh();
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
