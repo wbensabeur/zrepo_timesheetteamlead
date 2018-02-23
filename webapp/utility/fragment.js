@@ -1490,7 +1490,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			/// Get Item Data from view for Daily hour
 			//ctype.setBusy(true);
 			rButton.setEnabled(false);
-
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItems = [];
 			if (selectedTab === 'Equipment') {
@@ -1499,34 +1498,33 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					"ProcessingMode": "C",
 					"NavEquipmentAction": []
 				};
-
 				for (var l = 0; l < this.employees.length; l++) {
 					var empId = this.employees[l].employee;
-
 					for (var j = 0; j < this.employees[l].Days.length; j++) {
-
 						var tab = oView.byId('addEquipmentTab').getItems()[0].getItems();
-
 						for (var k = 1; k < tab.length; k++) {
-
 							var projectID = undefined;
 							//var filledHrs = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
 							var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 							//var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
 							projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
-
 							if (projectID === undefined) {
 								MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;
 							}
-
 							var localHours = tab[k].getCustomData()[0].getValue();
 							if (localHours !== null && localHours !== undefined) {
 								var localHoursText = localHours.toString();
 							} else {
 								localHoursText = localHours;
+							}
+							if(localHoursText === null || localHoursText === undefined || localHoursText === "0") {
+								MessageBox.alert(this.i18nModel.getText("noOfHrsNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
 							}
 							var workDayItem = {
 								"EquipmentId": empId,
@@ -1534,14 +1532,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								"WorkDate": this.employees[l].Days[j],
 								"FilledHours": localHoursText,
 								"ApplicationName": "TEAMLEAD"
-
 							};
-
 							data.NavEquipmentAction.push(workDayItem);
 						}
 					}
 				}
-
 				var that = this;
 				ctype.setBusy(true);
 				this.oDataModel.create("/EquipmentActionSet", data, {
@@ -1549,7 +1544,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						ctype.setBusy(false);
 						rButton.setEnabled(true);
 						savepostFuction(that);
-						oView.getModel().refresh();     
+						oView.getModel().refresh();
 						//that.refresh_workdaySetforAdd(that.employees, oView);
 					},
 					error: function() {
@@ -1560,7 +1555,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				return;
 			}
 
-			var data = {
+			data = {
 				"EmployeeId": this.employees[0].employee,
 				"WorkDate": this.employees[0].Days[0],
 				"ApplicationName": oView.getModel('userPreference').getProperty("/application"),
