@@ -820,7 +820,7 @@ sap.ui.define([
 						if (oAction === 'OK') {
 							var model = that.getView().getModel();
 							var items = that.getView().byId('tableDayItems').getItems();
-							model.setDeferredGroups(["group1"]);
+							/*model.setDeferredGroups(["group1"]);
 							for (var j = 0; j < items.length; j++) {
 								var binding = items[j].getBindingContext().getPath();
 								if (model.getProperty(binding).NotEditable === false) {
@@ -840,7 +840,44 @@ sap.ui.define([
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
 								}
 
+							});*/
+							var data = {
+								"UserId": that.getView().getModel('userPreference').getProperty("/userID"),
+								"ProcessingMode": "D",
+								"NavEquipmentAction": []
+							};
+							for (var j = 0; j < items.length; j++) {
+								var binding = items[j].getBindingContext().getPath();
+								if (model.getProperty(binding).NotEditable === false) {
+									var localHours = model.getProperty(binding).FilledHours;
+									if (localHours !== null && localHours !== undefined) {
+										var localHoursText = localHours.toString();
+									} else {
+										localHoursText = localHours;
+									}
+									var workDayItem = {
+										"EquipmentId": model.getProperty(binding).EquipmentId,
+										"ProjectID": model.getProperty(binding).ProjectID,
+										"WorkDate": model.getProperty(binding).WorkDate,
+										"FilledHours": localHoursText,
+										"ApplicationName": "TEAMLEAD"
+									};
+									data.NavEquipmentAction.push(workDayItem);
+								}
+							}
+							model.create("/EquipmentActionSet", data, {
+								success: function() {
+									var oTable2 = that.getView().byId('tableDayItems');
+									oTable2.getBinding("items").refresh();
+									that.update = true;
+									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+									that.getView().getModel().refresh();
+								},
+								error: function() {
+									//MessageToast.show(that.getResourceBundle().getText("errorText"));
+								}
 							});
+							return;
 						} else {
 							return;
 						}
