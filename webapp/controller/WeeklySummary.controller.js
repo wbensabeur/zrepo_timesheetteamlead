@@ -842,6 +842,7 @@ sap.ui.define([
 									oTable2.getBinding("items").refresh();
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+									that.getView().getModel().refresh();       
 								}
 
 							});
@@ -885,6 +886,7 @@ sap.ui.define([
 									that.update = true;
 									that.getView().getModel().read(contextPath);
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
+									that.getView().getModel().refresh();
 								}
 
 							});
