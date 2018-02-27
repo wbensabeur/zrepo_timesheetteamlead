@@ -842,7 +842,8 @@ sap.ui.define([
 									oTable2.getBinding("items").refresh();
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
-									that.getView().getModel().refresh();       
+									that.getView().getModel().refresh();    
+									fragment.refresh_workdaySet(that.employees,that.getView());
 								}
 
 							});
@@ -887,6 +888,7 @@ sap.ui.define([
 									that.getView().getModel().read(contextPath);
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
 									that.getView().getModel().refresh();
+									fragment.refresh_workdaySet(that.employees,that.getView());
 								}
 
 							});
@@ -1212,7 +1214,7 @@ sap.ui.define([
 									}
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
-									//fragment.refresh_workdaySet(that.employees,that.getView());
+									fragment.refresh_workdaySet(that.employees,that.getView());
 									that.getView().getModel().refresh();
 								}
 							});

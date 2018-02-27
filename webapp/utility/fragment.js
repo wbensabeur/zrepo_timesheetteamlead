@@ -2133,8 +2133,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 		refresh_workdaySet: function(employees, oView) {
 			var userPref = oView.getModel("userPreference").getData();
-			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20WorkDate%20eq%20" +
-				datetime.getODataDateFilter(employees[0].Days[0]) + "and%20ApplicationName%20eq%20%27" + userPref
+			var datFilter = '';
+			for (var k = 0 ; k < employees[0].Days.length - 1; k++)
+			{
+				datFilter = datFilter + "%20WorkDate%20eq%20" + datetime.getODataDateFilter(employees[0].Days[0]) + "%20or%20";
+			}
+			
+			datFilter =  datFilter + "%20WorkDate%20eq%20" + datetime.getODataDateFilter(employees[0].Days[k]) + "%20";
+			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20" + datFilter +
+				 "and%20ApplicationName%20eq%20%27" + userPref
 				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + userPref.applicationVersion + "%27%20";
 			oView.getModel().read('/WorkDaySet', {
 				urlParameters: urlFilterParam
