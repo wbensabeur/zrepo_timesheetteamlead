@@ -238,13 +238,13 @@ sap.ui.define([
 			}
 
 			var EmpEntryEnable = oEvent.getSource().data('entryEnable');
-			var noEdited = oEvent.getSource().data('notEditable');
-			var editEnable = !noEdited && EmpEntryEnable;
-			this.editEnable = editEnable;
-			this.getView().byId('WeekAddNewTimeButton').setEnabled(editEnable);
-			this.getView().byId('WeekAddDeleteButton').setEnabled(editEnable);
+		//	var noEdited = oEvent.getSource().data('notEditable');
+		//	var editEnable = !noEdited && EmpEntryEnable;
+			this.editEnable = EmpEntryEnable;
+			this.getView().byId('WeekAddNewTimeButton').setEnabled(EmpEntryEnable);
+			this.getView().byId('WeekAddDeleteButton').setEnabled(EmpEntryEnable);
 			var table = this.getView().byId('tableWeekItems');
-			if (editEnable) {
+			if (EmpEntryEnable) {
 				table.setMode("MultiSelect");
 			} else {
 				table.setMode("None");
@@ -337,7 +337,7 @@ sap.ui.define([
 
 				tbl.getItems().forEach(function(r) {
 					var obj = r.getBindingContext().getObject();
-					var noEdit = obj.NotEditable;
+					var noEdit = obj.isEntryEnabled;
 					var cb = r.$().find('.sapMCb');
 					var oCb = sap.ui.getCore().byId(cb.attr('id'));
 					if (noEdit) {
@@ -542,8 +542,15 @@ sap.ui.define([
 				});
 				oView.byId('MainAddButton').bindElement(urlStr);*/
 
+				var EmpEntryEnable = oEvent.getSource().data('entryEnable');
+		//	var noEdited = oEvent.getSource().data('notEditable');
+		//	var editEnable = !noEdited && EmpEntryEnable;
+			this.editEnable = EmpEntryEnable;
+			this.getView().byId('AddNewTimeButton').setEnabled(EmpEntryEnable);
+			this.getView().byId('MainAddDeleteButton').setEnabled(EmpEntryEnable);
+			
 			var EmpDetail = {
-				enable: true
+				enable: EmpEntryEnable
 			};
 			var oEmpDetailModel = new JSONModel(EmpDetail);
 			this.getView().setModel(oEmpDetailModel, "EmpDetail");
@@ -767,7 +774,7 @@ sap.ui.define([
 							};
 							for (var j = 0; j < items.length; j++) {
 								var binding = items[j].getBindingContext().getPath();
-								if (model.getProperty(binding).NotEditable === false) {
+								if (model.getProperty(binding).isEntryEnabled === false) {
 									var localHours = model.getProperty(binding).FilledHours;
 									if (localHours !== null && localHours !== undefined) {
 										var localHoursText = localHours.toString();
@@ -848,7 +855,7 @@ sap.ui.define([
 							};
 							for (var j = 0; j < items.length; j++) {
 								var binding = items[j].getBindingContext().getPath();
-								if (model.getProperty(binding).NotEditable === false) {
+								if (model.getProperty(binding).isEntryEnabled === false) {
 									var localHours = model.getProperty(binding).FilledHours;
 									if (localHours !== null && localHours !== undefined) {
 										var localHoursText = localHours.toString();
