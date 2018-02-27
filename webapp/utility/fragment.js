@@ -52,7 +52,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				fragment.getItems()[0].setVisible(false);
 				fragment.getItems()[1].setVisible(false);
 				fragment.getItems()[2].setVisible(true);
-				
+
 				var defaultBU = controler.getView().getModel('userPreference').getProperty("/defaultBU");
 				var currentBUInFilter = fragment.getItems()[2].getItems()[0].getSelectedKey();
 				if (currentBUInFilter !== undefined && currentBUInFilter !== null && currentBUInFilter !== '') {
@@ -209,15 +209,29 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_onProjectDescriptionSuggest: function(oEvent) {
 			var value = oEvent.getParameter("suggestValue");
 			var source = oEvent.getSource();
-			var filters = [];
+			var filters1 = [];
 
 			if (value.length > 2) {
-				filters = new Filter({
+				var filters = new Filter({
 					filters: [new Filter("ProjectDescription", FilterOperator.Contains, value), new Filter("ProjectId", FilterOperator.Contains,
 						value)],
 					and: true
 				});
-				source.getBinding("suggestionItems").filter(filters);
+
+				if (this.equipment) {
+					filters1 = new Filter({
+						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
+							"EQUIPEMENT")],
+						and: true
+					});
+				} else {
+					filters1 = new Filter({
+						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
+							"TEAMLEAD")],
+						and: true
+					});
+				}
+				source.getBinding("suggestionItems").filter(filters1);
 				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
 					source.suggest();
 				});
@@ -306,6 +320,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					Filters.push(this.positionfilter);
 				}
 			}
+			var appFilter = null;
+			if (this.equipment) {
+				appFilter = new Filter("ApplicationName", FilterOperator.EQ, "EQUIPEMENT");
+			} else {
+				appFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD");
+			}
+			Filters.push(appFilter);
 			var projectfragment = sap.ui.getCore().byId(this.projectSearchFragment);
 			projectfragment.getItems()[4].getBinding("items").filter(Filters, "Application");
 
@@ -320,20 +341,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				this.selectProjectcontext[3].setVisible(true); // ownDeleteButton
 			}
 		},
-		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton,allProject) {
+		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton, allProject) {
 			this.warning = true;
 
 			var ownHBox = oEvent.getSource().getParent();
 			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
-			this.SearchProject_init(controler, container, selectButton,allProject);
+			this.SearchProject_init(controler, container, selectButton, allProject);
 		},
-		SelectProject_OnProjectRefresh: function(oEvent, controler, selectButton,allProject) {
+		SelectProject_OnProjectRefresh: function(oEvent, controler, selectButton, allProject) {
 			this.warning = true;
 			var ownHBox = oEvent.getSource().getParent();
 			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
-			this.SearchProject_init(controler, container, selectButton,allProject);
+			this.SearchProject_init(controler, container, selectButton, allProject);
 		},
 		SelectProject_OnProjectDelete: function(oEvent) {
 			var btn = oEvent.getSource();
