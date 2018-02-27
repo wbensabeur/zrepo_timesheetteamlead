@@ -9,7 +9,7 @@
 		</RadioButtonGroup>
 		<HBox class="sapUiSmallMarginBottom" visible="false">
 			<ComboBox placeholder="{i18n>searchBU}" class="SelectCombo"
-				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}"
+				items="{path:'/ValueHelpSet' ,  suspended: true , filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}"
 				selectionChange="onBUFilterChange" selectedKey="{userPreference>/defaultBU}">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
@@ -31,7 +31,7 @@
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>-->
-			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}"
+			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet' ,  suspended: true , templateShareable:false, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}"
 				selectionChange="onPositionFilterChange" class="SelectCombo">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
@@ -39,7 +39,7 @@
 				</layoutData>
 			</ComboBox>
 			<SearchField placeholder="{i18n>searchManager}" enableSuggestions="true" search="onProjectManagerSearch" suggest="onProjectManagerSuggest"
-				suggestionItems="{ path: '/ValueHelpSet', length: 5, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'PM'}], sorter: { path: 'FieldValue' } }">
+				suggestionItems="{ path: '/ValueHelpSet' ,  suspended: true , templateShareable:false , length: 5, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'PM'}], sorter: { path: 'FieldValue' } }">
 				<suggestionItems>
 					<SuggestionItem text="{FieldDescription}" description="{path:'FieldValue'}" key="{FieldValue}"/>
 				</suggestionItems>

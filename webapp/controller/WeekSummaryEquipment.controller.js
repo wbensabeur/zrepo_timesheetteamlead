@@ -1256,17 +1256,17 @@ sap.ui.define([
 		//// **SelectProject Fragment Event** ///////
 		OnProjectSearch: function(oEvent) {
 			if (this.dailyDetail) {
-				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'),true);
+				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'),false);
 			} else {
-				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('WeekProjectSelectButton'),true);
+				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('WeekProjectSelectButton'),false);
 			}
 
 		},
 		OnProjectRefresh: function(oEvent) {
 			if (this.dailyDetail) {
-				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'),true);
+				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'),false);
 			} else {
-				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('WeekProjectSelectButton'),true);
+				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('WeekProjectSelectButton'),false);
 			}
 
 		},

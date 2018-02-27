@@ -47,6 +47,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.footerModel.setProperty("/MainPreviousScreen", false);
 			this.footerModel.setProperty("/ProjectScreen", true);
 
+			var applicationFilter = null;
+
+			if (this.equipment) {
+				applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "EQUIPEMENT");
+			} else {
+				applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD");
+			}
+			fragment.getItems()[2].getItems()[0].getBinding("items").filter(applicationFilter);
+			fragment.getItems()[2].getItems()[2].getBinding("items").filter(applicationFilter);
+
 			if (allProject) {
 				this.lastProjectFilter = null;
 				fragment.getItems()[0].setVisible(false);
@@ -242,11 +252,25 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_onProjectManagerSuggest: function(oEvent) {
 			var value = oEvent.getParameter("suggestValue");
 			var source = oEvent.getSource();
-			var filters = [];
+			var filters1 = [];
 
 			if (value.length > 2) {
-				filters = [new Filter("FieldDescription", FilterOperator.Contains, value)];
-				source.getBinding("suggestionItems").filter(filters);
+				var filters = new Filter("FieldDescription", FilterOperator.Contains, value);
+
+				if (this.equipment) {
+					filters1 = new Filter({
+						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
+							"EQUIPEMENT")],
+						and: true
+					});
+				} else {
+					filters1 = new Filter({
+						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
+							"TEAMLEAD")],
+						and: true
+					});
+				}
+				source.getBinding("suggestionItems").filter(filters1);
 				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
 					source.suggest();
 				});
@@ -2134,14 +2158,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		refresh_workdaySet: function(employees, oView) {
 			var userPref = oView.getModel("userPreference").getData();
 			var datFilter = '';
-			for (var k = 0 ; k < employees[0].Days.length - 1; k++)
-			{
+			for (var k = 0; k < employees[0].Days.length - 1; k++) {
 				datFilter = datFilter + "%20WorkDate%20eq%20" + datetime.getODataDateFilter(employees[0].Days[0]) + "%20or%20";
 			}
-			
-			datFilter =  datFilter + "%20WorkDate%20eq%20" + datetime.getODataDateFilter(employees[0].Days[k]) + "%20";
+
+			datFilter = datFilter + "%20WorkDate%20eq%20" + datetime.getODataDateFilter(employees[0].Days[k]) + "%20";
 			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20" + datFilter +
-				 "and%20ApplicationName%20eq%20%27" + userPref
+				"and%20ApplicationName%20eq%20%27" + userPref
 				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + userPref.applicationVersion + "%27%20";
 			oView.getModel().read('/WorkDaySet', {
 				urlParameters: urlFilterParam
