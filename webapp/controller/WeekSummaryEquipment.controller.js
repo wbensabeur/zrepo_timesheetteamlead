@@ -1249,17 +1249,17 @@ sap.ui.define([
 		//// **SelectProject Fragment Event** ///////
 		OnProjectSearch: function(oEvent) {
 			if (this.dailyDetail) {
-				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'));
+				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'),true);
 			} else {
-				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('WeekProjectSelectButton'));
+				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('WeekProjectSelectButton'),true);
 			}
 
 		},
 		OnProjectRefresh: function(oEvent) {
 			if (this.dailyDetail) {
-				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'));
+				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'),true);
 			} else {
-				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('WeekProjectSelectButton'));
+				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('WeekProjectSelectButton'),true);
 			}
 
 		},

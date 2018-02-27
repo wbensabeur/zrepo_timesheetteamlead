@@ -8,7 +8,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	"use strict";
 
 	return {
-		SearchProject_init: function(controler, container, selectButton) {
+		SearchProject_init: function(controler, container, selectButton, allProject) {
 
 			var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
 
@@ -47,18 +47,34 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.footerModel.setProperty("/MainPreviousScreen", false);
 			this.footerModel.setProperty("/ProjectScreen", true);
 
-			this.lastProjectFilter = [];
-			if (this.equipment) {
-				var filter0 = new Filter("EmployeeId", FilterOperator.EQ, this.userPrefModel.getProperty('/userID'));
-				this.lastProjectFilter.push(filter0);
-			} else {
-				for (var k = 0; k < this.employees.length; k++) {
-					var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
-					this.lastProjectFilter.push(filter);
+			if (allProject) {
+				this.lastProjectFilter = null;
+				fragment.getItems()[0].setVisible(false);
+				fragment.getItems()[1].setVisible(false);
+				fragment.getItems()[2].setVisible(true);
+				
+				var defaultBU = controler.getView().getModel('userPreference').getProperty("/defaultBU");
+				var currentBUInFilter = fragment.getItems()[2].getItems()[0].getSelectedKey();
+				if (currentBUInFilter !== undefined && currentBUInFilter !== null && currentBUInFilter !== '') {
+					defaultBU = currentBUInFilter;
+					fragment.getItems()[2].getItems()[0].setPlaceholder("");
 				}
+				this.BUfilter = new Filter("BusinessUnit", FilterOperator.EQ, defaultBU);
+
+			} else {
+				this.lastProjectFilter = [];
+				if (this.equipment) {
+					var filter0 = new Filter("EmployeeId", FilterOperator.EQ, this.userPrefModel.getProperty('/userID'));
+					this.lastProjectFilter.push(filter0);
+				} else {
+					for (var k = 0; k < this.employees.length; k++) {
+						var filter = new Filter("EmployeeId", FilterOperator.EQ, this.employees[k].employee);
+						this.lastProjectFilter.push(filter);
+					}
+				}
+				this.lastProjectFilter.push(new Filter("LastUsedProject", FilterOperator.EQ, true));
+				this.lastProjectFilter.push(new Filter("Favorite", FilterOperator.EQ, true));
 			}
-			this.lastProjectFilter.push(new Filter("LastUsedProject", FilterOperator.EQ, true));
-			this.lastProjectFilter.push(new Filter("Favorite", FilterOperator.EQ, true));
 			this.SearchProject_applyFiler();
 
 		},
@@ -304,20 +320,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				this.selectProjectcontext[3].setVisible(true); // ownDeleteButton
 			}
 		},
-		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton) {
+		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton,allProject) {
 			this.warning = true;
 
 			var ownHBox = oEvent.getSource().getParent();
 			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
-			this.SearchProject_init(controler, container, selectButton);
+			this.SearchProject_init(controler, container, selectButton,allProject);
 		},
-		SelectProject_OnProjectRefresh: function(oEvent, controler, selectButton) {
+		SelectProject_OnProjectRefresh: function(oEvent, controler, selectButton,allProject) {
 			this.warning = true;
 			var ownHBox = oEvent.getSource().getParent();
 			this.selectProjectcontext = ownHBox.getItems();
 			var container = this.AddUpdatetime_getOwnIconTabObject(oEvent.getSource());
-			this.SearchProject_init(controler, container, selectButton);
+			this.SearchProject_init(controler, container, selectButton,allProject);
 		},
 		SelectProject_OnProjectDelete: function(oEvent) {
 			var btn = oEvent.getSource();
@@ -1520,7 +1536,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							} else {
 								localHoursText = localHours;
 							}
-							if(localHoursText === null || localHoursText === undefined || localHoursText === "0") {
+							if (localHoursText === null || localHoursText === undefined || localHoursText === "0") {
 								MessageBox.alert(this.i18nModel.getText("noOfHrsNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
