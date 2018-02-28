@@ -54,7 +54,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 				applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD");
 			}
-			fragment.getItems()[2].getItems()[0].getBinding("items").filter(applicationFilter);
+			fragment.getItems()[2].getItems()[0].getBinding("items").filter(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD"));
 			fragment.getItems()[2].getItems()[2].getBinding("items").filter(applicationFilter);
 
 			if (allProject) {
@@ -1582,7 +1582,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								localHoursText = localHours;
 							}
 							if (localHoursText === null || localHoursText === undefined || localHoursText === "0") {
-								MessageBox.alert(this.i18nModel.getText("noOfHrsNotSelected"));
+								MessageBox.alert(this.i18nModel.getText("noOfQuantityNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;

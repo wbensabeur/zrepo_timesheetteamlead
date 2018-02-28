@@ -63,23 +63,23 @@
 						<items >
 							<ColumnListItem class="textAlignmentStart">
 								<cells>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+									<VBox alignItems="Center" justifyContent="Center" >
 										<Text text="{parts:['ProjectID','ProjectName'],formatter:'.formatter.getProject'}" class="sapUiTinyMarginTop" textAlign="Center"/>
 									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+									<VBox alignItems="Center" justifyContent="Center" >
 										<Text text="{EquipmentType}" class="sapUiTinyMarginTop"/>
 									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+									<VBox alignItems="Center" justifyContent="Center" >
 										<Text text="{EquipmentUnit}" class="sapUiTinyMarginTop"/>
 									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+									<VBox alignItems="Center" justifyContent="Center" >
 										<Text text="{FilledHours}" class="sapUiTinyMarginTop"/>
 									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+									<VBox alignItems="Center" justifyContent="Center" >
 										<core:Icon src="sap-icon://edit" color="blue" size="1.3rem" class="sapUiTinyMarginTop" press="OnEditEmpDayitem"
 											visible="{parts:['NotEditable','EmpDetail>/enable'],formatter:'.formatter.editVisibility'}"/>
 									</VBox>
-									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
+									<VBox alignItems="Center" justifyContent="Center" >
 										<core:Icon src="sap-icon://delete" color="red" size="1.3rem" class="sapUiTinyMarginTop" press="OnDeleteEmpDayitem"
 											visible="{parts:['NotEditable','EmpDetail>/enable'],formatter:'.formatter.editVisibility'}"/>
 									</VBox>
