@@ -184,11 +184,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_OnFavoriteChange: function(oEvent, model) {
 			var icon = oEvent.getSource();
 			var currentState = model.getProperty(icon.getBindingContext().getPath() + '/Favorite');
+			var projectTable = icon.getParent().getParent();
 			if (currentState) // to become unfav
 			{
 				model.setProperty(icon.getBindingContext().getPath() + '/Favorite', false);
 				model.update(icon.getBindingContext().getPath(), {
 					Favorite: false
+				}, {
+					success: function() {
+						projectTable.getBinding("items").refresh(true);
+					}
 				});
 
 			} else // to become Fav
@@ -196,6 +201,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				model.setProperty(icon.getBindingContext().getPath() + '/Favorite', true);
 				model.update(icon.getBindingContext().getPath(), {
 					Favorite: true
+				}, {
+					success: function() {
+						projectTable.getBinding("items").refresh(true);
+					}
 				});
 			}
 		},
