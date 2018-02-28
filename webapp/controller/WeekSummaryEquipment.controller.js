@@ -256,7 +256,7 @@ sap.ui.define([
 			var oEmpDetailModel = new JSONModel(EmpDetail);
 			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 			oDialog.bindElement(oEvent.getSource().getBindingContext().getPath());
-			var empBinding = "/EquipmentSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')";
+			var empBinding = "/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "'," + "ApplicationName='" + this.userPref.application + "')";
 			oView.byId('employeeCompany').bindElement({
 				path: empBinding,
 				events: {
@@ -500,7 +500,7 @@ sap.ui.define([
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];*/
 
-			oDialog.bindElement("/EquipmentSet(EquipmentId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')");
+			oDialog.bindElement("/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "'," + "ApplicationName='" + this.userPref.application + "')");
 
 			//var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
 

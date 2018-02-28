@@ -20,6 +20,12 @@ sap.ui.define([
 			}
 			return parseFloat(sValue).toFixed(2);
 		},
+		urlEncoding : function(sValue) {
+			if (sValue === null || sValue === undefined) {
+				return null;
+			}
+			return encodeURIComponent(sValue);
+		},
 		dateFormatinEmpDay: function(oDate) {
 			if (oDate && typeof oDate.toISOString === "function") {
 				var month = oDate.toLocaleString(sap.ui.getCore().getConfiguration().getLocale().toString(), {
