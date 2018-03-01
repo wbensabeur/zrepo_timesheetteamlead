@@ -55,7 +55,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD");
 			}
 			fragment.getItems()[2].getItems()[0].getBinding("items").filter(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD"));
-			fragment.getItems()[2].getItems()[2].getBinding("items").filter(applicationFilter);
+			fragment.getItems()[2].getItems()[2].getBinding("items").filter(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD"));
 
 			if (allProject) {
 				this.lastProjectFilter = null;
@@ -240,7 +240,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (this.equipment) {
 					filters1 = new Filter({
 						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
-							"EQUIPEMENT")],
+							"TEAMLEAD")],
 						and: true
 					});
 				} else {
@@ -269,7 +269,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (this.equipment) {
 					filters1 = new Filter({
 						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
-							"EQUIPEMENT")],
+							"TEAMLEAD")],
 						and: true
 					});
 				} else {
