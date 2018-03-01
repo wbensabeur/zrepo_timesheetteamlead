@@ -774,7 +774,7 @@ sap.ui.define([
 							};
 							for (var j = 0; j < items.length; j++) {
 								var binding = items[j].getBindingContext().getPath();
-								if (model.getProperty(binding).isEntryEnabled === false) {
+								if (model.getProperty(binding).NotEditable === false) {
 									var localHours = model.getProperty(binding).FilledHours;
 									if (localHours !== null && localHours !== undefined) {
 										var localHoursText = localHours.toString();
@@ -855,7 +855,7 @@ sap.ui.define([
 							};
 							for (var j = 0; j < items.length; j++) {
 								var binding = items[j].getBindingContext().getPath();
-								if (model.getProperty(binding).isEntryEnabled === false) {
+								if (model.getProperty(binding).NotEditable === false) {
 									var localHours = model.getProperty(binding).FilledHours;
 									if (localHours !== null && localHours !== undefined) {
 										var localHoursText = localHours.toString();
