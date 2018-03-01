@@ -341,8 +341,8 @@ sap.ui.define([
 					var cb = r.$().find('.sapMCb');
 					var oCb = sap.ui.getCore().byId(cb.attr('id'));
 					if (noEdit) {
-						oCb.setEnabled(false);
-						selectAllCb.remove();
+						// oCb.setEnabled(false);
+						// selectAllCb.remove();
 					}
 				});
 			}
