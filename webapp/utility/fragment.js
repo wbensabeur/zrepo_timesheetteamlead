@@ -54,8 +54,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 				applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD");
 			}
-			fragment.getItems()[2].getItems()[0].getBinding("items").filter(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD"));
-			fragment.getItems()[2].getItems()[2].getBinding("items").filter(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD"));
+			fragment.getItems()[2].getItems()[0].getBinding("items").filter(applicationFilter);
+			fragment.getItems()[2].getItems()[2].getBinding("items").filter(applicationFilter);
 
 			if (allProject) {
 				this.lastProjectFilter = null;
