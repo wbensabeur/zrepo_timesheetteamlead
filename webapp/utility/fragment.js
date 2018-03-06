@@ -1695,7 +1695,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				//Handle StartDate and EndDate
 				var TZOffsetMs = new Date(0).getTimezoneOffset() * 60 * 1000;
 				// get the daylight saving active / inactive
-				var dlsactive = false;
+				var dlsactiveS = false;
+				var dlsactiveE = false;
 				var today = new Date();
 				Date.prototype.stdTimezoneOffset = function() {
 					var jan = new Date(this.getFullYear(), 0, 1);
@@ -1708,17 +1709,25 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				Date.prototype.dstdifference = function() {
 					return this.getTimezoneOffset() - this.stdTimezoneOffset();
 				};
-				if (today.dst()) {
-					dlsactive = true;
+				if (startDate.dst()) {
+					dlsactiveS = true;
 				}
-				if (dlsactive === true) {
-					var dlsTZOffsetMs = today.dstdifference() * 60 * 1000;
+				if (endDate.dst()) {
+					dlsactiveE = true;
+				}
+				if (dlsactiveS === true) {
+					var dlsTZOffsetMsStart = startDate.dstdifference() * 60 * 1000;
 				} else {
-					dlsTZOffsetMs = 0;
+					dlsTZOffsetMsStart = 0;
+				}
+				if (dlsactiveE === true) {
+					var dlsTZOffsetMsEnd = endDate.dstdifference() * 60 * 1000;
+				} else {
+					dlsTZOffsetMsEnd = 0;
 				}
 				// if (TZOffsetMs < 0) {
-				var localStartDate = new Date(startDate.getTime() - TZOffsetMs - dlsTZOffsetMs);
-				var localEndDate = new Date(endDate.getTime() - TZOffsetMs - dlsTZOffsetMs);
+				var localStartDate = new Date(startDate.getTime() - TZOffsetMs - dlsTZOffsetMsStart);
+				var localEndDate = new Date(endDate.getTime() - TZOffsetMs - dlsTZOffsetMsEnd);
 				// } else if (TZOffsetMs > 0) {
 				// 	var localStartDate = new Date(startDate.getTime() + TZOffsetMs);
 				// 	var localEndDate = new Date(endDate.getTime() + TZOffsetMs);
