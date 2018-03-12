@@ -74,7 +74,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 				this.lastProjectFilter = [];
 				if (this.equipment) {
-					var filter0 = new Filter("EmployeeId", FilterOperator.EQ, this.userPrefModel.getProperty('/userID'));
+					var filter0 = new Filter("EmployeeId", FilterOperator.EQ, this.userPrefModel.getProperty('/EmployeeID'));
 					this.lastProjectFilter.push(filter0);
 				} else {
 					for (var k = 0; k < this.employees.length; k++) {
@@ -124,7 +124,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				this.lastProjectFilter = [];
 
 				if (this.equipment) {
-					var filter0 = new Filter("EmployeeId", FilterOperator.EQ, this.userPrefModel.getProperty('/userID'));
+					var filter0 = new Filter("EmployeeId", FilterOperator.EQ, this.userPrefModel.getProperty('/EmployeeID'));
 					this.lastProjectFilter.push(filter0);
 				} else {
 					for (var k = 0; k < this.employees.length; k++) {

@@ -13,8 +13,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true,
-    "lastBuildDateTime": "Tue, 20 Feb 2018 07:50:03 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Mon, 12 Mar 2018 09:03:09 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -420,7 +420,7 @@
   "hcpdeploy": {
     "account": "ac205f4c8",
     "name": "teamleadtimesheet",
-    "lastVersionWeTriedToDeploy": "5.0.3"
+    "lastVersionWeTriedToDeploy": "5.0.5"
   },
   "deploy": {
     "destination": "vesidgwci_pva",

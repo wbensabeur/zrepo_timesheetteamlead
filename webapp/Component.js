@@ -104,13 +104,14 @@ sap.ui.define([
 
 				that.getModel().read('/TimeAdminSet', {
 					urlParameters: {
-						"$select": "UserId,FullName"
+						"$select": "EmployeeId,UserId,FullName"
 					},
 					success: function(data) {
 						var results = data.results;
 						var usrName = results[0].FullName;
 						userBox.setUsername(usrName);
 						userPreferenceModel.setProperty('/userID', results[0].UserId);
+						userPreferenceModel.setProperty('/EmployeeID', results[0].EmployeeId);
 						that.getRouter().initialize();
 
 					}

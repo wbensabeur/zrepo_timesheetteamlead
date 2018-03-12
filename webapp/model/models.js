@@ -39,7 +39,8 @@ sap.ui.define([
 				teamFilter: null,
 				teamName:null,
 				signatureRequired : false,
-				helpLink :null
+				helpLink :null,
+				EmployeeID :null
 			};
 			var oModel = new JSONModel(userPref);
 			oModel.setDefaultBindingMode("OneWay");
