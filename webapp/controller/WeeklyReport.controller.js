@@ -368,9 +368,9 @@ sap.ui.define([
 			}
 		},
 		OnTimeSubmit: function(DocName) {
-
+			var that = this;
 			//////
-
+			that.localDocName = DocName;
 			var requestBody = {
 				"EmployeeId": this.employeId,
 				"ApplicationName": this.userPref.application,
@@ -528,7 +528,7 @@ sap.ui.define([
 				error: function() {
 					that.getView().setBusy(false);
 					MessageToast.show(that.getResourceBundle().getText("errorWeeklyReportPostMsg"));
-					that.postSignAttachmentDel(DocName);
+					that.postSignAttachmentDel(that.localDocName);
 				}
 			});
 

@@ -137,11 +137,14 @@ sap.ui.define([
 			return valueInNum;
 
 		},
-		leaveFormatter: function(value) {
-			if (value === null || value === undefined || value === '') {
+		leaveFormatter: function(dateValue,statusValue) {
+			if (statusValue === 'H') {
+				return "L";
+			}
+			if (dateValue === null || dateValue === undefined || dateValue === '') {
 				return "";
 			}
-			if (value.getDay() === 0 || value.getDay() === 6) {
+			if (dateValue.getDay() === 0 || dateValue.getDay() === 6) {
 				return "L";
 			}
 			return "";

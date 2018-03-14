@@ -164,7 +164,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .tableBULabelCS {
     font-size: 1rem !important;
     font-style: italic !important;
-    color: #3b617e !important;;
+    color: #3b617e !important;
 }
 
 .tableColumnCombo>div>input {
@@ -198,6 +198,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     border-bottom: .1rem solid rgba(0, 0, 0, 0.29);
 }
 
+
 /*html.sap-desktop * .employeeListTable>table>thead>.sapMListTblHeader th:nth-child(2) {
     border-right: .1rem solid rgba(0, 0, 0, 0.29) !important;
 }*/
@@ -219,8 +220,8 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .EmpWeekStatus[data-browser='ie'] > div > div > div > .sapMSLITitle {
-	width: 15rem !important;
-	white-space: normal !important;
+    width: 15rem !important;
+    white-space: normal !important;
 }
 
 .EmpWeekStatus[data-browser='nie'] > div > div > div > .sapMSLITitle {
@@ -228,8 +229,8 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .EmpWeekStatus[data-browser='ie'] > div > div > div > .sapMSLIDescription {
-	width: 15rem !important;
-	white-space: normal !important;
+    width: 15rem !important;
+    white-space: normal !important;
 }
 
 .EmpWeekStatus[data-browser='nie'] > div > div > div > .sapMSLIDescription {
@@ -237,12 +238,12 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .EmpWeekStatus[data-browser='ie']>div>div>.sapMSLITitleOnly {
-	width: 8.5rem !important;
-	white-space: normal !important;
+    width: 8.5rem !important;
+    white-space: normal !important;
 }
 
 .EmpWeekStatus[data-browser='nie']>div>div>.sapMSLITitleOnly {
-	white-space: initial !important;
+    white-space: initial !important;
 }
 
 .EmpWeekStatus>div>div>div>.sapMSLITitle {
@@ -281,16 +282,19 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .EmpWeekStatus[data-status="S"] {
     background-color: #39a9db !important;
 }
-.tableColumnCombo>button.sapMComboBoxTextFieldArrow{
-	background:rgb(247, 247, 247) !important;
+
+.tableColumnCombo>button.sapMComboBoxTextFieldArrow {
+    background: rgb(247, 247, 247) !important;
 }
 
 .EmpWeekStatus[data-status="D1"] {
     background-color: #e6e7e8 !important;
 }
+
 .EmpWeekStatus[data-status=""] {
     background-color: white !important;
 }
+
 .EmpWeekStatus[data-status="D"] {
     background-color: #e6e7e8 !important;
 }
@@ -308,12 +312,13 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .EmpDayCheckDialogBG {
-	background-color: #fafafa !important;
+    background-color: #fafafa !important;
 }
 
 .EmpDayCheckDialogBG>section.sapMDialogSection {
-	background-color: #fafafa !important;	
+    background-color: #fafafa !important;
 }
+
 
 /*.hourSize[data-status="D"] {
     background-color: #e6e7e8;
@@ -336,8 +341,8 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .chkSelectionBtnText>span>span {
-	color: white !important;
-	font-size: 1rem !important;
+    color: white !important;
+    font-size: 1rem !important;
 }
 
 .hourSize {
@@ -354,6 +359,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     padding-left: 0rem !important;
     padding-right: 0rem !important;
 }
+
 .hourSize>div {
     height: 100% !important;
     padding-left: 0rem !important;
@@ -397,6 +403,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .hourSize[data-status="S"]>span>span {
     color: white;
 }
+
 .hourSize[data-status="S"]>div>span {
     color: white;
 }
@@ -485,7 +492,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .LLabel {
     font-size: 13px !important;
     color: white;
-     margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .BottomButton {
@@ -591,17 +598,18 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .TextCBoldTextImpl {
-    font-weight: bold !important;;
+    font-weight: bold !important;
+    ;
 }
 
 .TextCFontSize1 {
-	color: #3b617e !important;
-	font-size: 1.25rem !important;
+    color: #3b617e !important;
+    font-size: 1.25rem !important;
 }
 
 .TextCFontSize1>div>input {
-	color: #3b617e !important;
-	font-size: 1.25rem !important;
+    color: #3b617e !important;
+    font-size: 1.25rem !important;
 }
 
 .EmployeeAttribute {
@@ -626,7 +634,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .EmployeeWeeklyReportAggregateRow[data-background="NT"] {
-    background-color:rgb(217, 150, 148);
+    background-color: rgb(217, 150, 148);
 }
 
 
@@ -757,49 +765,57 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 }
 
 .VinciBackgrounGray97 {
-	background-color: #f7f7f7 !important;
+    background-color: #f7f7f7 !important;
 }
 
 .VinciBackgrounGray97>div {
-	background-color: #f7f7f7 !important;
+    background-color: #f7f7f7 !important;
 }
 
 .VinciBackgrounGray97>div>div {
-	background-color: #f7f7f7 !important;
+    background-color: #f7f7f7 !important;
 }
 
 .SelectCombo>input {
     opacity: 1;
 }
-.TeamName{
-	color: #3b617e !important;
+
+.TeamName {
+    color: #3b617e !important;
     font-weight: bold !important;
 }
+
 .totalHrs {
-	font-weight: bold;
+    font-weight: bold;
     font-size: 1rem;
 }
+
 .WeeklyReportDetail {
     background-color: rgba(20, 35, 94, 1) !important;
 }
+
 #canvas_handler {
-   position:absolute;
-   left: -10000px;
- }
- .whiteColoumCell {
-	background-color: white;
+    position: absolute;
+    left: -10000px;
+}
+
+.whiteColoumCell {
+    background-color: white;
 }
 
 .customWidthIE > div {
-	width : 100%;
+    width: 100%;
 }
+
 .customWidthIE > div > div > div {
-	width : 45%;
-}.customWidthIE > div >div > div > div {
-	width : 45%;
+    width: 45%;
 }
- 
- .AllowanceButton>.sapMITH {
+
+.customWidthIE > div >div > div > div {
+    width: 45%;
+}
+
+.AllowanceButton>.sapMITH {
     background-color: transparent;
     border-bottom: none;
     box-shadow: none;
@@ -809,26 +825,32 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     margin: 0 0rem;
     padding: 0 0px;
 }
+
 .AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead {
     margin: 0 0rem;
     padding: 0 0px;
 }
+
 .AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead>.sapMITBItem>.sapMITBContentArrow {
     height: 0rem;
     border-bottom: 0rem solid transparent;
-   
 }
+
 .AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead>.sapMITBItem>.sapMITBText {
     color: #004586;
 }
+
 .AllowanceButton>.sapMITH>.sapMITBScrollContainer>.sapMITBHead>.sapMITBItem>.sapMITBTab>.sapUiIcon {
     border: 1px solid #2b7d2b;
 }
 
+
 /*** Release 4**/
+
 .sapMLIB.sapMLIBSelected {
     background: rgb(188, 210, 229) !important;
 }
+
 .customStep>.sapMStepInputBtn {
     font-size: 1.5rem;
 }
@@ -838,11 +860,13 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     font-weight: bold;
     font-size: 0.875rem;
 }
+
 .sapMListBGTranslucent .sapMLIB {
     background: white;
 }
+
 .EmpWeekStatus>div>div>.sapMSLITitleOnly {
-	font-size: .875rem;
+    font-size: .875rem;
     color: #3b617e;
     font-weight: bold;
     padding-top: .75rem;
@@ -852,17 +876,20 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .chkSelectionBtnText>.sapMBtnInner>.sapMBtnIcon {
     color: white;
 }
+
 .chkSelectionBtnText>.sapMBtnInner>.sapMBtnContent {
     color: white;
 }
+
 .sapMITBContainerContent {
     border-bottom: 0rem solid #e2e2e2;
 }
-#new footer bar
-.vinciFooterBar {
+
+#new footer bar .vinciFooterBar {
     background-color: black !important;
-    height : auto !important;
+    height: auto !important;
 }
-.vinciFooterBar.sapMTB{
-	  height : auto !important;
+
+.vinciFooterBar.sapMTB {
+    height: auto !important;
 }
