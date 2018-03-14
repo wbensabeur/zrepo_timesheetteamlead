@@ -124,7 +124,7 @@
 										press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate1Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate1Date','WeekDate1Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate1Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -138,7 +138,7 @@
 										press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate2Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate2Date','WeekDate2Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate2Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -152,7 +152,7 @@
 										press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate3Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate3Date','WeekDate3Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate3Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -166,7 +166,7 @@
 										press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate4Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate4Date','WeekDate4Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate4Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -180,7 +180,7 @@
 										press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate5Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate5Date','WeekDate5Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate5Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -194,7 +194,7 @@
 										class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate6Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate6Date','WeekDate6Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate6Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -208,7 +208,7 @@
 										class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate7Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate7Date','WeekDate7Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate7Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -222,7 +222,7 @@
 										press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate8Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate8Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate8Date','WeekDate8Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate8Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -236,7 +236,7 @@
 										press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate9Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate9Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate9Date','WeekDate9Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate9Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -250,7 +250,7 @@
 										class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate10Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate10Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate10Date','WeekDate10Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate10Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -264,7 +264,7 @@
 										class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate11Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate11Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate11Date','WeekDate11Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate11Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -278,7 +278,7 @@
 										class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate12Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate12Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate12Date','WeekDate12Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate12Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -292,7 +292,7 @@
 										class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate13Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate13Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate13Date','WeekDate13Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate13Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
@@ -306,7 +306,7 @@
 										class="hourSize" press="OnHourPress">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate14Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate14Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate14Date','WeekDate14Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate14Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>

@@ -65,43 +65,43 @@
 							</VBox>
 							<Button text="{path:'WeekDate1Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
-									<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="background" value="{parts:['WeekDate1Date','WeekDate1Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="selectedView" value="7" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate2Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
-									<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="background" value="{parts:['WeekDate2Date','WeekDate2Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="selectedView" value="7" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate3Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
-									<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="background" value="{parts:['WeekDate3Date','WeekDate3Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="selectedView" value="7" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate4Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
-									<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="background" value="{parts:['WeekDate4Date','WeekDate4Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="selectedView" value="7" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate5Hours',type:'Float',formatter:'.formatter.numberFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
-									<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="background" value="{parts:['WeekDate5Date','WeekDate5Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="selectedView" value="7" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate6Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
-									<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="background" value="{parts:['WeekDate6Date','WeekDate6Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="selectedView" value="7" writeToDom="true"/>
 								</customData>
 							</Button>
 							<Button text="{path:'WeekDate7Hours', formatter:'.formatter.weekendFormatter'}" type="Transparent" width="100%" class="hourSize" press="OnHourPress" enabled="false">
 								<customData>
-									<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+									<core:CustomData key="background" value="{parts:['WeekDate7Date','WeekDate7Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 									<core:CustomData key="selectedView" value="7" writeToDom="true"/>
 								</customData>
 							</Button>
