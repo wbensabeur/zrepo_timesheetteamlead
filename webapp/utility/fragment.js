@@ -50,7 +50,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var applicationFilter = null;
 
 			if (this.equipment) {
-				applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "EQUIPEMENT");
+				// applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "EQUIPEMENT");
+				applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD_E");
 			} else {
 				applicationFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD");
 			}
@@ -355,7 +356,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			var appFilter = null;
 			if (this.equipment) {
-				appFilter = new Filter("ApplicationName", FilterOperator.EQ, "EQUIPEMENT");
+				// appFilter = new Filter("ApplicationName", FilterOperator.EQ, "EQUIPEMENT");
+				appFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD_E");
 			} else {
 				appFilter = new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD");
 			}
