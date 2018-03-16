@@ -17,7 +17,7 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			var oViewModel, iOriginalBusyDelay, oTable = this.byId("table");
-			this.getRouter().getRoute("periodSelection").attachPatternMatched(this._onObjectMatched, this);
+			this.getRouter().getRoute("periodEqmtSelection").attachPatternMatched(this._onObjectMatched, this);
 			// Put down worklist table's original value for busy indicator delay,
 			// so it can be restored later on. Busy handling on the table is
 			// taken care of by the table itself.
