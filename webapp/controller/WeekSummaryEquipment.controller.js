@@ -1116,7 +1116,7 @@ sap.ui.define([
 			/*	if (this.twoWeek) {
 					MessageBox.alert("Planning is only support for weekly view selection");
 				} else {*/
-			this.getRouter().navTo("periodSelection", {
+			this.getRouter().navTo("periodEqmtSelection", {
 				source: 'Summary'
 			}, true);
 			//		}
