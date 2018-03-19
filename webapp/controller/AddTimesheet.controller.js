@@ -82,9 +82,14 @@ sap.ui.define([
 				try {
 					if (this.employees[0].equipment === 'X') {
 						this.sourcenavto = "periodEqmtSelection";
+						this.isEquipment = "Equipment";                  
+					} else {
+						this.sourcenavto = "periodSelection";
+						this.isEquipment = "";    
 					}
 				} catch (e) {
 					this.sourcenavto = "periodSelection";
+					this.isEquipment = ""; 
 				}
 				this.userPref = this.getView().getModel("userPreference").getData();
 				var caldenderdata = datetime.getCalenderData(this.userPref.startDate, this.userPref.defaultPeriod, this.getResourceBundle());
@@ -92,7 +97,7 @@ sap.ui.define([
 				this.setModel(oCalendarModel, "calendar");
 
 				var oModel = fragment.AddUpdatetime_init(this, this.getView().byId('PageContent'), "New", this.getResourceBundle(), this.employees,
-					this.getView().getModel());
+					this.getView().getModel(),'',this.isEquipment);
 
 				this.getView().setModel(oModel.AddTime, "AddTime");
 				this.getView().setModel(oModel.projectSearch, "projectSearch");

@@ -1095,9 +1095,8 @@ sap.ui.define([
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
-
 			if (this.userPref.equipmentFilter !== null && this.userPref.equipmentFilter.length > 0) {
-				Filters.push(new Filter("EquipmentId", FilterOperator.EQ, this.userPref.equipmentFilter));
+				Filters.push(new Filter("EquipmentName", FilterOperator.Contains, this.userPref.equipmentFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
 		},

@@ -135,6 +135,7 @@ sap.ui.define([
 				this.selectedBox.push(button);
 				var empId = button.data('employee'); //.getCustomData()[2].getValue();
 				var empName = button.data('employeeName');
+				var analyticalUnit = button.data('AnalyticalUnit');
 				var sDay = button.data('selectedDate'); //.getCustomData()[3].getValue();
 				var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
 				if (index === -1) {
@@ -142,6 +143,7 @@ sap.ui.define([
 						employee: empId,
 						employeeName: empName,
 						Days: [sDay],
+						analyticalUnit: analyticalUnit,
 						equipment: 'X'
 					};
 					this.employees.push(data);
@@ -190,6 +192,7 @@ sap.ui.define([
 							var data = {
 								employee: empId,
 								Days: [sDay],
+								analyticalUnit: analyticalUnit,
 								equipment: 'X'
 							};
 							this.employees.push(data);
@@ -208,13 +211,14 @@ sap.ui.define([
 					{
 						var empId = this.allEmps[m].EmployeeId;
 						var empName = this.allEmps[m].FullName;
-
+						// var analyticalUnit = this.allEmps[m].                         ;
 						var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
 						if (index === -1) {
 							var data = {
 								employee: empId,
 								employeeName: empName,
 								Days: [sDay],
+								// analyticalUnit: analyticalUnit,
 								equipment: 'X'
 							};
 							this.employees.push(data);
@@ -279,6 +283,7 @@ sap.ui.define([
 			var empBox = oEvent.getSource();
 			var empId = empBox.data('employee'); //.getCustomData()[1].getValue();
 			var empName = empBox.data('employeeName');
+			var analyticalUnit = empBox.data('AnalyticalUnit');
 			if (empBox.getCustomData()[0].getValue() === "") {
 				empBox.getCustomData()[0].setValue("S");
 				this.selectedBox.push(empBox);
@@ -290,6 +295,7 @@ sap.ui.define([
 						employee: empId,
 						employeeName: empName,
 						Days: [],
+						analyticalUnit: analyticalUnit,
 						equipment: 'X'
 					};
 					this.employees.push(data);
