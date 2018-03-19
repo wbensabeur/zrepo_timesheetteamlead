@@ -118,7 +118,7 @@ sap.ui.define([
 					}
 				}
 			}
-			this.storeAllEmployee();
+			this.storeAllEquipment();
 
 			/*var col1 = oTable.getColumns()[0].getWidth();
 			alert(col1);*/
@@ -209,8 +209,9 @@ sap.ui.define([
 					for (var m = 0; m < this.allEmps.length; m++)
 
 					{
-						var empId = this.allEmps[m].EmployeeId;
-						var empName = this.allEmps[m].FullName;
+						var empId = this.allEmps[m].EquipmentId;
+						var analyticalUnit = this.allEmps[m].AnalyticalUnit;
+						var empName = this.allEmps[m].EquipmentName;
 						// var analyticalUnit = this.allEmps[m].                         ;
 						var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
 						if (index === -1) {
@@ -218,7 +219,7 @@ sap.ui.define([
 								employee: empId,
 								employeeName: empName,
 								Days: [sDay],
-								// analyticalUnit: analyticalUnit,
+								analyticalUnit: analyticalUnit,
 								equipment: 'X'
 							};
 							this.employees.push(data);
@@ -422,24 +423,26 @@ sap.ui.define([
 			this.byId("table").getBinding("items").refresh();*/
 
 		},
-		storeAllEmployee: function() {
+		storeAllEquipment: function() {
 			if (this.allEmps === null) {
 				var Filters = [new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
+					new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
+					new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
 					new Filter("IsTimeEntryEnable", FilterOperator.EQ, true),
 					new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 					new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 				];
-				if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
-					Filters.push(new Filter("FullName", FilterOperator.Contains, this.userPref.employeeFilter));
+				if (this.userPref.equipmentFilter !== null && this.userPref.equipmentFilter.length > 0) {
+					Filters.push(new Filter("EquipmentName", FilterOperator.Contains, this.userPref.equipmentFilter));
 				}
-				if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
-					Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
-				}
+				// if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
+				// 	Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
+				// }
 				var that = this;
-				this.getModel().read("/EmployeeSet", {
+				this.getModel().read("/EquipmentSet", {
 					filters: Filters,
 					urlParameters: {
-						"$select": 'EmployeeId,FullName'
+						"$select": 'EquipmentId,AnalyticalUnit,EquipmentName,BusinessUnit'
 					},
 					success: function(odata) {
 						that.allEmps = odata.results;

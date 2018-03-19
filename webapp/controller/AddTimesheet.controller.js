@@ -82,14 +82,14 @@ sap.ui.define([
 				try {
 					if (this.employees[0].equipment === 'X') {
 						this.sourcenavto = "periodEqmtSelection";
-						this.isEquipment = "Equipment";                  
+						this.isEquipment = "Equipment";
 					} else {
 						this.sourcenavto = "periodSelection";
-						this.isEquipment = "";    
+						this.isEquipment = "";
 					}
 				} catch (e) {
 					this.sourcenavto = "periodSelection";
-					this.isEquipment = ""; 
+					this.isEquipment = "";
 				}
 				this.userPref = this.getView().getModel("userPreference").getData();
 				var caldenderdata = datetime.getCalenderData(this.userPref.startDate, this.userPref.defaultPeriod, this.getResourceBundle());
@@ -97,7 +97,7 @@ sap.ui.define([
 				this.setModel(oCalendarModel, "calendar");
 
 				var oModel = fragment.AddUpdatetime_init(this, this.getView().byId('PageContent'), "New", this.getResourceBundle(), this.employees,
-					this.getView().getModel(),'',this.isEquipment);
+					this.getView().getModel(), '', this.isEquipment);
 
 				this.getView().setModel(oModel.AddTime, "AddTime");
 				this.getView().setModel(oModel.projectSearch, "projectSearch");
@@ -191,18 +191,32 @@ sap.ui.define([
 		onPressChkSelection: function(oEvent) {
 			var that = this;
 			var oView = this.getView();
-			var oDialog = oView.byId("ChkSelectionDialog");
+			if (this.isEquipment === "Equipment") {
+				this.ChkSelectionDialog = "ChkEquipSelectionDialog";
+				this.frgChkSelectionDialog = "com.vinci.timesheet.admin.view.ChkEquipSelectionDialog";
+			} else {
+				this.ChkSelectionDialog = "ChkSelectionDialog";
+				this.frgChkSelectionDialog = "com.vinci.timesheet.admin.view.ChkSelectionDialog";
+			}
+			var oDialog = oView.byId(this.ChkSelectionDialog);
 			// oDialog = oView.byId("ChkEquipSelectionDialog");
 			this.currentEmplSelection = [];
-			for (var k = 0; k < this.employees.length; k++) {
-				for (var j = 0; j < this.employees[k].Days.length; j++) {
-					this.currentEmplSelection[this.employees[k].employee + this.employees[k].Days[j].toString()] = 'X';
+			if (this.isEquipment === "Equipment") {
+				for (var k = 0; k < this.employees.length; k++) {
+					for (var j = 0; j < this.employees[k].Days.length; j++) {
+						this.currentEmplSelection[this.employees[k].employee + this.employees[k].AnalyticalUnit + this.employees[k].Days[j].toString()] = 'X';
+					}
 				}
-
+			} else {
+				for (k = 0; k < this.employees.length; k++) {
+					for (j = 0; j < this.employees[k].Days.length; j++) {
+						this.currentEmplSelection[this.employees[k].employee + this.employees[k].Days[j].toString()] = 'X';
+					}
+				}
 			}
 			if (!oDialog) {
 				// create dialog via fragment factory
-				oDialog = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.ChkSelectionDialog", this);
+				oDialog = sap.ui.xmlfragment(oView.getId(), this.frgChkSelectionDialog, this);
 				oView.addDependent(oDialog);
 				var oTable = this.getView().byId("tableCS");
 
@@ -231,7 +245,7 @@ sap.ui.define([
 			oDialog.open();
 		},
 		OnCloseChkSelctionDialog: function() {
-			var oDialog = this.getView().byId("ChkSelectionDialog");
+			var oDialog = this.getView().byId(this.ChkSelectionDialog);
 			oDialog.close();
 		},
 		onPressOnlySaveEntries: function(oEvent) {
