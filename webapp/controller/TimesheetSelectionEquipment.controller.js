@@ -444,8 +444,9 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.TimesheetSelectionEquipment
 		 */
 		onPressCancel: function() {
-
-			this.getRouter().navTo("home", {}, true);
+			this.getRouter().navTo("WSEquipment", {
+				source: 'periodEqmtSelection'
+			}, true);
 		},
 		OnTableTeamChange: function(oEvent) {
 			var oItem = oEvent.getParameter('selectedItem');
