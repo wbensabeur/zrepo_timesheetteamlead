@@ -134,10 +134,18 @@ sap.ui.define([
 				var cells = oItems[i].getCells();
 				for (var c = 1; c < cells.length; c++) {
 					try {
-						if (this.currentEmplSelection[cells[c].data("employee") + cells[c].data("selectedDate").toString()] === 'X') {
-							cells[c].getCustomData()[0].setValue('S');
+						if (this.isEquipment === "Equipment") {
+							if (this.currentEmplSelection[cells[c].data("employee") + cells[c].data("AnalyticalUnit") + cells[c].data("selectedDate").toString()] === 'X') {
+								cells[c].getCustomData()[0].setValue('S');
+							} else {
+								cells[c].getCustomData()[0].setValue('');
+							}
 						} else {
-							cells[c].getCustomData()[0].setValue('');
+							if (this.currentEmplSelection[cells[c].data("employee") + cells[c].data("selectedDate").toString()] === 'X') {
+								cells[c].getCustomData()[0].setValue('S');
+							} else {
+								cells[c].getCustomData()[0].setValue('');
+							}
 						}
 					} catch (error) {
 						cells[c].getCustomData()[0].setValue('');
@@ -175,15 +183,26 @@ sap.ui.define([
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
-			if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
-				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
-			}
-			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
-				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
-			}
-			if (this.employees.length > 0) {
-				for (var e = 0; e < this.employees.length; e++) {
-					Filters.push(new Filter("EmployeeId", FilterOperator.EQ, this.employees[e].employee));
+			if (this.isEquipment === "Equipment") {
+				if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
+					Filters.push(new Filter("EquipmentName", FilterOperator.Contains, this.userPref.employeeFilter));
+				}
+				if (this.employees.length > 0) {
+					for (var e = 0; e < this.employees.length; e++) {
+						Filters.push(new Filter("EquipmentId", FilterOperator.EQ, this.employees[e].employee));
+					}
+				}
+			} else {
+				if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
+					Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
+				}
+				if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
+					Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
+				}
+				if (this.employees.length > 0) {
+					for (e = 0; e < this.employees.length; e++) {
+						Filters.push(new Filter("EmployeeId", FilterOperator.EQ, this.employees[e].employee));
+					}
 				}
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
@@ -204,7 +223,8 @@ sap.ui.define([
 			if (this.isEquipment === "Equipment") {
 				for (var k = 0; k < this.employees.length; k++) {
 					for (var j = 0; j < this.employees[k].Days.length; j++) {
-						this.currentEmplSelection[this.employees[k].employee + this.employees[k].AnalyticalUnit + this.employees[k].Days[j].toString()] = 'X';
+						this.currentEmplSelection[this.employees[k].employee + this.employees[k].AnalyticalUnit + this.employees[k].Days[j].toString()] =
+							'X';
 					}
 				}
 			} else {

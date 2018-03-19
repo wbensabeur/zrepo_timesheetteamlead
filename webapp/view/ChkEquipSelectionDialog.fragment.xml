@@ -42,7 +42,7 @@
 			<ScrollContainer id="TableScrollCS" width="auto" height="90%" vertical="true" horizontal="false" focusable="true">
 				<content>
 					<Table id="tableCS" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}"
-						items="{ path: '/WeekSummarySet' , suspended: true }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
+						items="{ path: '/WeekSummaryEqpmtSet' , suspended: true }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
 						busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
 						growingThreshold="15" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin whiteColoumCell"
 						updateStarted="onUpdateStart">
@@ -61,6 +61,7 @@
 												<core:CustomData key="employeeName" value="{EquipmentName}"/>
 												<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 												<core:CustomData key="browser" value="{path:'EquipmentName', formatter:'.formatter.browserType'}" writeToDom="true"/>
+												<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 											</customData>
 											<layoutData>
 												<FlexItemData growFactor="1"/>
@@ -80,6 +81,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate2Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -92,6 +94,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate3Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -104,6 +107,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate4Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -116,6 +120,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate5Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -128,6 +133,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate6Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
@@ -139,6 +145,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate7Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
@@ -150,6 +157,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate8Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -162,6 +170,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate9Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -174,6 +183,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate10Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -186,6 +196,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate11Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -198,6 +209,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate12Hours',type:'Float',formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%"
@@ -210,6 +222,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate13Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
@@ -221,6 +234,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 									<Button text="{path:'WeekDate14Hours', formatter:'.formatter.numEmptyFormatter'}" type="Transparent" width="100%" class="hourSize">
@@ -232,6 +246,7 @@
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="employeeName" value="{EquipmentName}"/>
+											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										</customData>
 									</Button>
 								</cells>
