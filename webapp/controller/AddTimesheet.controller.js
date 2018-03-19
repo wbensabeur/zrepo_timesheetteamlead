@@ -77,9 +77,15 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.AddTimesheet
 		 */
 		_onObjectMatched: function(oEvent) {
-
 			this.employees = this.getView().getModel("employeeDaysSelected").getData();
 			if (this.employees.length > 0) {
+				try {
+					if (this.employees[0].equipment === 'X') {
+						this.sourcenavto = "periodEqmtSelection";
+					}
+				} catch (e) {
+					this.sourcenavto = "periodSelection";
+				}
 				this.userPref = this.getView().getModel("userPreference").getData();
 				var caldenderdata = datetime.getCalenderData(this.userPref.startDate, this.userPref.defaultPeriod, this.getResourceBundle());
 				var oCalendarModel = new JSONModel(caldenderdata);
@@ -94,18 +100,18 @@ sap.ui.define([
 				this.getView().setModel(oModel.Emps, "Emps");
 
 			} else {
-				this.getRouter().navTo("periodSelection", {
+				this.getRouter().navTo("home", {
 					source: 'Summary'
 				}, true);
 			}
 
 		},
-		onAllowanceIndicatorData : function(oEvent){	
-			fragment.AddUpdatetime_onAllowanceIndicatorData(oEvent,this);
+		onAllowanceIndicatorData: function(oEvent) {
+			fragment.AddUpdatetime_onAllowanceIndicatorData(oEvent, this);
 		},
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
-			this.getRouter().navTo("periodSelection", {
+			this.getRouter().navTo(this.sourcenavto, {
 				source: 'AddTime'
 			}, true);
 		},
@@ -170,7 +176,7 @@ sap.ui.define([
 			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
 				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
 			}
-			if(this.employees.length > 0) {
+			if (this.employees.length > 0) {
 				for (var e = 0; e < this.employees.length; e++) {
 					Filters.push(new Filter("EmployeeId", FilterOperator.EQ, this.employees[e].employee));
 				}
@@ -181,6 +187,7 @@ sap.ui.define([
 			var that = this;
 			var oView = this.getView();
 			var oDialog = oView.byId("ChkSelectionDialog");
+			// oDialog = oView.byId("ChkEquipSelectionDialog");
 			this.currentEmplSelection = [];
 			for (var k = 0; k < this.employees.length; k++) {
 				for (var j = 0; j < this.employees[k].Days.length; j++) {
@@ -380,7 +387,7 @@ sap.ui.define([
 		OnaddNewHourPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewHourPress(this);
 		},
-		OnaddNewEquipmentPress : function (oEvent) {
+		OnaddNewEquipmentPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewEquipmentPress(this);
 		},
 		OnaddNewBonusPress: function(oEvent) {

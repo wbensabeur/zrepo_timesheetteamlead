@@ -141,7 +141,8 @@ sap.ui.define([
 					var data = {
 						employee: empId,
 						employeeName: empName,
-						Days: [sDay]
+						Days: [sDay],
+						equipment: 'X'
 					};
 					this.employees.push(data);
 				} else {
@@ -188,7 +189,8 @@ sap.ui.define([
 						if (index === -1) {
 							var data = {
 								employee: empId,
-								Days: [sDay]
+								Days: [sDay],
+								equipment: 'X'
 							};
 							this.employees.push(data);
 
@@ -212,7 +214,8 @@ sap.ui.define([
 							var data = {
 								employee: empId,
 								employeeName: empName,
-								Days: [sDay]
+								Days: [sDay],
+								equipment: 'X'
 							};
 							this.employees.push(data);
 
@@ -286,7 +289,8 @@ sap.ui.define([
 					var data = {
 						employee: empId,
 						employeeName: empName,
-						Days: []
+						Days: [],
+						equipment: 'X'
 					};
 					this.employees.push(data);
 				}
