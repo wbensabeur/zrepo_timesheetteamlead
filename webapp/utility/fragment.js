@@ -1572,6 +1572,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				};
 				for (var l = 0; l < this.employees.length; l++) {
 					var empId = this.employees[l].employee;
+					var empAU = this.employees[l].analyticalUnit;
 					for (var j = 0; j < this.employees[l].Days.length; j++) {
 						var tab = oView.byId('addEquipmentTab').getItems()[0].getItems();
 						for (var k = 1; k < tab.length; k++) {
@@ -1588,6 +1589,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							}
 							var localHours = tab[k].getCustomData()[0].getValue();
 							if (localHours !== null && localHours !== undefined) {
+								localHours = tab[k].getItems()[2].getItems()[3].getValue();
+							}
+							if (localHours !== null && localHours !== undefined) {
 								var localHoursText = localHours.toString();
 							} else {
 								localHoursText = localHours;
@@ -1600,6 +1604,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							}
 							var workDayItem = {
 								"EquipmentId": empId,
+								"AnalyticalUnit":empAU,
 								"ProjectID": projectID,
 								"WorkDate": this.employees[l].Days[j],
 								"FilledHours": localHoursText,
