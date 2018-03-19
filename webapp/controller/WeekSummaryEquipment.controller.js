@@ -214,6 +214,7 @@ sap.ui.define([
 		OnEmployeePress: function(oEvent) {
 			this.Filters1 = [];
 			this.currentEmp = oEvent.getSource().data('employee');
+			this.currentAU = oEvent.getSource().data('AnalyticalUnit');
 			this.currentEmpName = oEvent.getSource().data('employeeName');
 
 			var caldenderdata = datetime.getCalenderDateOnlyData(this.userPref.startDate, 1, this.getResourceBundle());
@@ -256,7 +257,8 @@ sap.ui.define([
 			var oEmpDetailModel = new JSONModel(EmpDetail);
 			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 			oDialog.bindElement(oEvent.getSource().getBindingContext().getPath());
-			var empBinding = "/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "'," + "ApplicationName='" + this.userPref.application + "')";
+			var empBinding = "/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "',AnalyticalUnit='" + 
+			                 encodeURIComponent(this.currentAU) +"',ApplicationName='" + this.userPref.application + "')";
 			oView.byId('employeeCompany').bindElement({
 				path: empBinding,
 				events: {
@@ -475,6 +477,7 @@ sap.ui.define([
 			// Edit Enable
 			this.dailyDetail = true;
 			this.currentEmp = oEvent.getSource().data('employee');
+			this.currentAU = oEvent.getSource().data('AnalyticalUnit');
 			this.currentEmpName = oEvent.getSource().data('employeeName');
 			this.currentDate = oEvent.getSource().data('selectedDate'); //getCustomData()[3].getValue();
 			var oView = this.getView();
@@ -500,7 +503,8 @@ sap.ui.define([
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];*/
 
-			oDialog.bindElement("/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "'," + "ApplicationName='" + this.userPref.application + "')");
+			oDialog.bindElement("/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "',AnalyticalUnit='" + 
+			                 encodeURIComponent(this.currentAU) +"',ApplicationName='" + this.userPref.application + "')");
 
 			//var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
 

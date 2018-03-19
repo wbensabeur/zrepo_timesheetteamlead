@@ -392,11 +392,11 @@ sap.ui.define([
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
-			if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
-				Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
-			}
-			if (this.userPref.employeeFilter !== null && this.userPref.employeeFilter.length > 0) {
-				Filters.push(new Filter("EmployeeName", FilterOperator.Contains, this.userPref.employeeFilter));
+			// if (this.userPref.teamFilter !== null && this.userPref.teamFilter.length > 0) {
+			// 	Filters.push(new Filter("TeamID", FilterOperator.EQ, this.userPref.teamFilter));
+			// }
+			if (this.userPref.equipmentFilter !== null && this.userPref.equipmentFilter.length > 0) {
+				Filters.push(new Filter("EquipmentName", FilterOperator.Contains, this.userPref.equipmentFilter));
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
 		},

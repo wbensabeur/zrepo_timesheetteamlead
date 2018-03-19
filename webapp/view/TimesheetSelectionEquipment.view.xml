@@ -73,6 +73,7 @@
 										<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 										<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 										<core:CustomData key="browser" value="{path:'EquipmentName', formatter:'.formatter.browserType'}" writeToDom="true"/>
+										<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
 									</customData>
 									<layoutData>
 										<FlexItemData growFactor="1"/>
