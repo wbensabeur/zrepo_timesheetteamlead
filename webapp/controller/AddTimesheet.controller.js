@@ -223,7 +223,7 @@ sap.ui.define([
 			if (this.isEquipment === "Equipment") {
 				for (var k = 0; k < this.employees.length; k++) {
 					for (var j = 0; j < this.employees[k].Days.length; j++) {
-						this.currentEmplSelection[this.employees[k].employee + this.employees[k].AnalyticalUnit + this.employees[k].Days[j].toString()] =
+						this.currentEmplSelection[this.employees[k].employee + this.employees[k].analyticalUnit + this.employees[k].Days[j].toString()] =
 							'X';
 					}
 				}
