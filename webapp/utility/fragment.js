@@ -1588,7 +1588,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								return;
 							}
 							var localHours = tab[k].getCustomData()[0].getValue();
-							if (localHours !== null && localHours !== undefined) {
+							if (localHours === null || localHours === undefined) {
 								localHours = tab[k].getItems()[2].getItems()[3].getValue();
 							}
 							if (localHours !== null && localHours !== undefined) {
