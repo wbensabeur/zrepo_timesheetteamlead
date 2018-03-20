@@ -8,6 +8,10 @@
     color: white;
 }
 
+.sapUiUfdShellHeadUsrItmExp {
+	display: none;
+}
+
 .sapUiUfdShellHeadItm:hover>span {
     background-color: #004586 !important;
 }
