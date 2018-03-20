@@ -335,7 +335,7 @@
 				<contentRight>
 					<Button text="{i18n>cancel}" id="cancelBtn" type="Reject" press="OnEquipmentOff"/>
 					<!--<Button text="{i18n>button-manage-team}" icon="sap-icon://manager" activeIcon="./image/team.png" press="onManageTeamSelection"/>-->
-					<Button id="editPlanning" text="{i18n>button-manage-equipment}" type="Emphasized" press="OnTimesheetSelection"/>
+					<Button id="editPlanning" text="{i18n>button-edit-equipment}" type="Emphasized" press="OnTimesheetSelection"/>
 					<!--<Button text="{i18n>button-weekly-report}" type="Emphasized" press="OnWeeklyReportSelection"/>-->
 				</contentRight>
 			</Bar>
