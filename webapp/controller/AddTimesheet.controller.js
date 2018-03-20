@@ -471,6 +471,9 @@ sap.ui.define([
 		//// **AddUpdateTime Fragment Event End** ///////
 
 		//// **AddKM Fragment Event** ///////
+		OnEquipmentChangeQuanity: function(oEvent) {
+			fragment.AddProjectTime_OnEquipmentChangeQuanity(oEvent);
+		},
 		OnChangeStartTimeKM: function(oEvent) {
 			fragment.AddKM_OnChangeStartTimeKM(oEvent);
 		},
