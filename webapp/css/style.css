@@ -689,6 +689,10 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
     color: red;
 }
 
+:not(.sapMBtnDisabled) .AddButton>.sapMBtnTransparent>.sapMBtnIcon {
+    color: #5496cd;
+}
+
 .sapMITBFilter .sapMITBText {
     overflow: visible;
     color: white;

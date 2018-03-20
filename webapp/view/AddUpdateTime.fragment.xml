@@ -6,7 +6,7 @@
 				<VBox id="addTimeTab" width="100%" height="100%">
 					<VBox>
 						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}">
-							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewHourPress" icon="sap-icon://add" class="sapUiLargeMarginEnd">
+							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewHourPress" icon="sap-icon://add" class="sapUiLargeMarginEnd" visible="false">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
@@ -80,7 +80,7 @@
 				<VBox id="addBonusTab" width="100%" height="100%">
 					<VBox>
 						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/visibleBonus}">
-							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewBonusPress" icon="sap-icon://add" class="sapUiLargeMarginEnd">
+							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewBonusPress" icon="sap-icon://add" class="sapUiLargeMarginEnd" visible="false">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
@@ -154,7 +154,7 @@
 				<VBox id="addEquipmentTab" width="100%" height="100%">
 					<VBox>
 						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}">
-							<Button text="{i18n>addEquipment}" type="Emphasized" press="OnaddNewEquipmentPress" icon="sap-icon://add" class="sapUiLargeMarginEnd">
+							<Button text="{i18n>addEquipment}" type="Emphasized" press="OnaddNewEquipmentPress" icon="sap-icon://add" class="sapUiLargeMarginEnd" visible="false">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>

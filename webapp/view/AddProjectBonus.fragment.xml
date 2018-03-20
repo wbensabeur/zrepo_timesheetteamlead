@@ -24,5 +24,8 @@
 		<customData>
 			<core:CustomData key="hrs" value="{Hours}"/>
 		</customData>
+		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}">
+			<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewBonusPress"/>
+		</FlexBox>
 	</VBox>
 </core:FragmentDefinition>
