@@ -63,17 +63,7 @@ sap.ui.define([
 					errorDesc = sDetails.responseText;
 				}
 			}
-			MessageBox.error(
-				this._sErrorText, {
-					id: "serviceErrorMessageBox",
-					details: errorDesc,
-					styleClass: this._oComponent.getContentDensityClass(),
-					actions: [MessageBox.Action.CLOSE],
-					onClose: function() {
-						this._bMessageOpen = false;
-					}.bind(this)
-				}
-			);
+			MessageBox.error(	errorDesc);
 		}
 	});
 });
