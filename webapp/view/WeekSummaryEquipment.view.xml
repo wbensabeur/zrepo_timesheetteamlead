@@ -77,10 +77,9 @@
 											<customData>
 												<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
 												<core:CustomData key="employee" value="{EquipmentId}"/>
-												<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+												<core:CustomData key="employeeName" value="{EquipmentName}"/>
 												<core:CustomData key="weekDay1" value="{WeekDate1Date}"/>
 												<core:CustomData key="weekDay7" value="{WeekDate7Date}"/>
-												<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
 												<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 												<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
 												<core:CustomData key="notEditable" value="{NotEditable}"/>
@@ -104,7 +103,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate1Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -119,7 +118,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate2Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -134,7 +133,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate3Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -149,7 +148,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate4Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -164,7 +163,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate5Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -179,7 +178,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate6Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -194,7 +193,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate7Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -209,7 +208,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate8Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -224,7 +223,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate9Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -239,7 +238,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate10Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -254,7 +253,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate11Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -269,7 +268,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate12Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -284,7 +283,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate13Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>
@@ -299,7 +298,7 @@
 											<core:CustomData key="selectedDate" value="{WeekDate14Date}"/>
 											<core:CustomData key="selectedView" value="{path:'isByWeekly', formatter:'.formatter.byWeeklyFormattre'}" writeToDom="true"/>
 											<core:CustomData key="entryEnable" value="{isEntryEnabled}"/>
-											<core:CustomData key="EquipmentName" value="{EquipmentName}"/>
+											<core:CustomData key="employeeName" value="{EquipmentName}"/>
 											<core:CustomData key="noEdited" value="{NotEditable}"/>
 											<core:CustomData key="titlelen" value="{path:'EquipmentName', formatter:'.formatter.titleLength'}" writeToDom="true"/>
 											<core:CustomData key="AnalyticalUnit" value="{AnalyticalUnit}"/>

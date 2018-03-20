@@ -969,6 +969,7 @@ sap.ui.define([
 					this.employees = [{
 						employee: this.currentEmp,
 						employeeName: this.currentEmpName,
+						analyticalUnit: this.currentAU,
 						Days: []
 					}];
 					for (var k = 0; k < this.Filters1.length; k++) {
@@ -999,6 +1000,7 @@ sap.ui.define([
 			this.employees = [{
 				employee: this.currentEmp,
 				employeeName: this.currentEmpName,
+				analyticalUnit: this.currentAU,
 				Days: [this.currentDate]
 			}];
 
