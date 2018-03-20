@@ -303,9 +303,13 @@ sap.ui.define([
 		},
 		onPressSaveEntries: function(oEvent) {
 			var that = this;
+			var localNavTo = "Summary";
+			if (this.isEquipment === "Equipment") {
+				localNavTo = "WSEquipment";
+			}
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
-				that.getRouter().navTo("Summary", {}, true);
+				that.getRouter().navTo(localNavTo, {}, true);
 				that.getView().getModel("userPreference").setProperty("/successMaskEntry", true);
 				//MessageToast.show(that.getResourceBundle().getText("successPostMsg"),{duration:10000});	 
 			}, this.getView(), oEvent.getSource());
