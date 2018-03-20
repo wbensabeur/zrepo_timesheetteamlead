@@ -924,7 +924,10 @@ sap.ui.define([
 				that.update = true;
 				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
 			}, dailog, oEvent.getSource());
-
+		},
+		onPressSaveWREntries: function(oEvent) {
+			this.onPressSaveEntries(oEvent);
+			this.OnWeeklyReportSelection();
 		},
 		onPressUpdateEntries: function(oEvent) {
 			var that = this;

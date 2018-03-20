@@ -140,6 +140,7 @@
 			<Button id="AddNewTimeButton" text="{i18n>addTime}" icon="sap-icon://add" type="Emphasized" press="OnAddEmpTime" visible="{footer>/MainPreviousScreen}"/>
 			<Button id="MainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainNewScreen}"/>
 			<!--<Button id="MainAddDeleteButton" text="{i18n>addtimedata}"  type="Reject" visible="{footer>/MainNewScreen}" press="onPressAllDEntries"/>-->
+			<Button id="MainSaveWRButton" text="{i18n>savewrtimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveWREntries"/>
 			<Button id="MainAddButton" text="{i18n>addtimedata}"  type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveEntries"/>
 			<Button id="ProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="{footer>/ProjectScreen}" press="onPressProjectCancel"/>
 			<Button id="ProjectSelectButton" text="{i18n>select}" type="Accept" visible="{footer>/ProjectScreen}" press="onPressProjectSelect">
