@@ -4,13 +4,13 @@
 		<customHeader>
 			<Bar>
 				<contentLeft>
-					<Label id="ChkSelectionTitle" design="Bold" text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}"
+					<Label id="ChkEquipSelectionTitle" design="Bold" text="{parts:['calendar>/StartDate','calendar>/BiWeekly'],formatter:'.formatter.periodFormat'}"
 						textAlign="Center" class="monthLabelPadding sapUiSmallMarginBegin BiggerText"/>
 				</contentLeft>
 			</Bar>
 		</customHeader>
 		<content>
-			<Table id="tableHeaderCS" showNoData="false" width="98%" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
+			<Table id="tableHeaderEquipCS" showNoData="false" width="98%" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
 				busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" growingThreshold="12" showSeparators="None"
 				inset="false" class="employeeListTable whiteColoumCell sapUiSmallMarginBegin">
 				<columns>
@@ -39,9 +39,9 @@
 					</Column>
 				</columns>
 			</Table>
-			<ScrollContainer id="TableScrollCS" width="auto" height="90%" vertical="true" horizontal="false" focusable="true">
+			<ScrollContainer id="TableScrollEquipCS" width="auto" height="90%" vertical="true" horizontal="false" focusable="true">
 				<content>
-					<Table id="tableCS" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}"
+					<Table id="tableEquipCS" width="{path:'device>/system' , formatter:'.formatter.tableWidth'}"
 						items="{ path: '/WeekSummaryEqpmtSet' , suspended: true }" columns="{ path: 'calendar>/data' }" noDataText="{worklistView>/tableNoDataText}"
 						busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished"
 						growingThreshold="15" showSeparators="None" inset="false" class="employeeListTable sapUiSmallMarginBegin whiteColoumCell"
@@ -50,7 +50,7 @@
 							<Column width="{calendar>width}" hAlign="Center"/>
 						</columns>
 						<items>
-							<ColumnListItem id="columnList" type="Inactive" vAlign="Middle" class="sapUiTableTr ">
+							<ColumnListItem id="columnEquipList" type="Inactive" vAlign="Middle" class="sapUiTableTr ">
 								<cells>
 									<VBox width="100%">
 										<StandardListItem class="EmpWeekStatus sapUiTinyMarginTop" type="Inactive" title="{EquipmentName}" description="">

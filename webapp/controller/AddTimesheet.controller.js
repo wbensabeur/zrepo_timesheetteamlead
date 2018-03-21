@@ -121,14 +121,14 @@ sap.ui.define([
 			}, true);
 		},
 		onUpdateStart: function(oEvent) {
-			this.byId("tableCS").setBusy(true);
+			this.byId(this.ChkSelectionDialog_tableCS).setBusy(true);
 		},
 		onUpdateFinished: function(oEvent) {
 			var that = this;
 			// update the worklist's object counter after the table update
-			this.byId("tableCS").setBusy(false);
+			this.byId(this.ChkSelectionDialog_tableCS).setBusy(false);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
-			var oTable = this.byId("tableCS");
+			var oTable = this.byId(this.ChkSelectionDialog_tableCS);
 			var oItems = oTable.getItems();
 			for (var i = 0; i < oItems.length; i++) {
 				var cells = oItems[i].getCells();
@@ -174,7 +174,7 @@ sap.ui.define([
 
 			this.employees = this.getView().getModel("employeeDaysSelected").getData();
 
-			var oTable = this.byId("tableCS");
+			var oTable = this.byId(this.ChkSelectionDialog_tableCS);
 			var Filters = [
 				new Filter("WeekNumber", FilterOperator.EQ, this.currentWeekNumber),
 				new Filter("WeekYear", FilterOperator.EQ, this.currentYear),
@@ -213,9 +213,13 @@ sap.ui.define([
 			if (this.isEquipment === "Equipment") {
 				this.ChkSelectionDialog = "ChkEquipSelectionDialog";
 				this.frgChkSelectionDialog = "com.vinci.timesheet.admin.view.ChkEquipSelectionDialog";
+				this.ChkSelectionDialog_tableCS = "tableEquipCS";
+				this.ChkSelectionDialog_tableHeaderCS = "tableHeaderEquipCS";
 			} else {
 				this.ChkSelectionDialog = "ChkSelectionDialog";
 				this.frgChkSelectionDialog = "com.vinci.timesheet.admin.view.ChkSelectionDialog";
+				this.ChkSelectionDialog_tableCS = "tableCS";
+				this.ChkSelectionDialog_tableHeaderCS = "tableHeaderCS";
 			}
 			var oDialog = oView.byId(this.ChkSelectionDialog);
 			// oDialog = oView.byId("ChkEquipSelectionDialog");
@@ -238,10 +242,10 @@ sap.ui.define([
 				// create dialog via fragment factory
 				oDialog = sap.ui.xmlfragment(oView.getId(), this.frgChkSelectionDialog, this);
 				oView.addDependent(oDialog);
-				var oTable = this.getView().byId("tableCS");
+				var oTable = this.getView().byId(this.ChkSelectionDialog_tableCS);
 
 				var iOriginalBusyDelay = oTable.getBusyIndicatorDelay();
-				this.getView().byId('tableHeaderCS').onAfterRendering = function(oEvent) {
+				this.getView().byId(this.ChkSelectionDialog_tableHeaderCS).onAfterRendering = function(oEvent) {
 					//var comboId =  that.getView().byId('tableColumnCombo').getId() + '-inner';
 					try {
 						var elements = document.getElementsByClassName("tableColumnCombo"); //

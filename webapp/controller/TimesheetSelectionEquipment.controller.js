@@ -413,12 +413,20 @@ sap.ui.define([
 			}
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
 			this.employees = this.getView().getModel("employeeDaysSelected").getData();
-			if (argument.source === 'Summary') {
-
+			if (argument.source === 'WSEquipment') {
 				this.refresh = true;
-
 			}
-
+			if (this.employees.length > 0) {
+				for (var k = 0; k < this.employees.length; k++) {
+					if (this.employees[k].analyticalUnit !== undefined)
+						this.refresh = true;
+						break;
+				}
+			}
+			if(this.refresh === true) {
+				this.employees = [];
+				this.getView().getModel("employeeDaysSelected").setData(this.employees);
+			}
 			/*this.employees = [];
 			this.byId("table").getBinding("items").refresh();*/
 
