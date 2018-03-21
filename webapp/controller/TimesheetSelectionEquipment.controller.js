@@ -91,9 +91,20 @@ sap.ui.define([
 			this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt1", sTitle);
 			this.getModel("calendar").setProperty("/data/0/ColumnTxt2", this.getModel("userPreference").getProperty("/defaultBUT"));
-
+			this.employees = this.getView().getModel("employeeDaysSelected").getData();
+			if (this.employees.length > 0) {
+				for (var k = 0; k < this.employees.length; k++) {
+					if (this.employees[k].equipment === undefined)
+						this.refresh = true;
+						break;
+				}
+			}
+			if(this.refresh === true) {
+				this.employees = [];
+				this.getView().getModel("employeeDaysSelected").setData(this.employees);
+			}
 			if (this.refresh) {
-				for (var k = 0; k < this.selectedBox.length; k++) {
+				for (k = 0; k < this.selectedBox.length; k++) {
 					if (this.selectedBox[k].getCustomData().length > 0) {
 						this.selectedBox[k].getCustomData()[0].setValue("");
 					}
@@ -418,7 +429,7 @@ sap.ui.define([
 			}
 			if (this.employees.length > 0) {
 				for (var k = 0; k < this.employees.length; k++) {
-					if (this.employees[k].analyticalUnit !== undefined)
+					if (this.employees[k].equipment === undefined)
 						this.refresh = true;
 						break;
 				}

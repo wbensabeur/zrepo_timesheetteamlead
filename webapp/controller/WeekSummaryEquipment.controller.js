@@ -1121,6 +1121,8 @@ sap.ui.define([
 			/*	if (this.twoWeek) {
 					MessageBox.alert("Planning is only support for weekly view selection");
 				} else {*/
+			this.employees = [];
+			this.getView().getModel("employeeDaysSelected").setData(this.employees);	
 			this.getRouter().navTo("periodEqmtSelection", {
 				source: 'Summary'
 			}, true);
