@@ -89,7 +89,6 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function(oEvent) {
-
 			this.getView().byId("SignatureFrame").setVisible(false);
 			this.getView().byId("imageSignature").setSrc("");
 			this.srcImg = undefined;
@@ -117,21 +116,35 @@ sap.ui.define([
 				this.setModel(oCalendarModel, "calendar");
 			} else {
 				this.getRouter().navTo("ReportEmployeeSelection", {
-					source: 'Summary'
+					source: 'WeeklyReport'
 				}, true);
 			}
 			sap.ui.getCore().byId("shell").setHeaderHiding(true);
 		},
 		onPressCancel: function() {
 			sap.ui.getCore().byId("shell").setHeaderHiding(false);
-			this.getRouter().navTo("ReportEmployeeSelection", {
-				source: 'WeeklyReport'
-			}, true);
+			if (this.employeeSelected.sourceView === 'Summary') {
+				this.getRouter().navTo("Summary", {
+					source: 'WeeklyReport'
+				}, true);
+			} else {
+				this.getRouter().navTo("ReportEmployeeSelection", {
+					source: 'WeeklyReport'
+				}, true);
+			}
 		},
 		_applyEmployeeBinding: function(employee) {
 			/// SP6-21 check for noEdit Flag
 			var oView = this.getView();
-			var noEdit = oView.getModel().getProperty(employee.getBindingContextPath()).NotEditable;
+			try {
+				var noEdit = oView.getModel().getProperty(employee.getBindingContextPath()).NotEditable;
+				this.localBindingContextPath = employee.getBindingContextPath();
+			} catch (e) {
+				if (this.employeeSelected.sourceView === 'Summary') {
+					noEdit = oView.getModel().getProperty(employee.getBindingContext().getPath()).NotEditable;
+					this.localBindingContextPath = employee.getBindingContext().getPath();
+				}
+			}
 			if (noEdit) {
 				this.getView().byId("signBtn").setVisible(false);
 				this.getView().byId("timeSubmitBtn").setVisible(false);
@@ -141,16 +154,16 @@ sap.ui.define([
 			}
 
 			this.employeId = employee.data('employee'); //.getCustomData()[1].getValue();
-			if(this.employeId === null || this.employeId === undefined || this.employeId === "") {
-				this.employeId = employee.getModel().getProperty(employee.getBindingContextPath()).EmployeeId;
+			if (this.employeId === null || this.employeId === undefined || this.employeId === "") {
+				this.employeId = employee.getModel().getProperty(this.localBindingContextPath).EmployeeId;
 			}
 			//oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
 			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId + "'," + "ApplicationName='" + this.userPref.application +
 				"')");
-			oView.byId("WeeklyStatus").bindElement(employee.getBindingContextPath());
-			oView.byId("WeeklyAggregation").bindElement(employee.getBindingContextPath());
-			oView.byId("WeeklyArregatedFilledData").bindElement(employee.getBindingContextPath());
-			oView.byId("WeeklyArregatedTargetData").bindElement(employee.getBindingContextPath());
+			oView.byId("WeeklyStatus").bindElement(this.localBindingContextPath);
+			oView.byId("WeeklyAggregation").bindElement(this.localBindingContextPath);
+			oView.byId("WeeklyArregatedFilledData").bindElement(this.localBindingContextPath);
+			oView.byId("WeeklyArregatedTargetData").bindElement(this.localBindingContextPath);
 			this.EmplWeekContext = [];
 			var that = this;
 			//var startDateFilter = new Filter("WorkDate", FilterOperator.GT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date);
@@ -159,8 +172,8 @@ sap.ui.define([
 
 			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'and%20Status%20ne%20'R'%20and%20WorkDate%20gt%20" +
 				datetime.getODataDateFilter(
-					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
-					oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date) + "and%20ApplicationName%20eq%20%27" + this.userPref
+					oView.getModel().getProperty(this.localBindingContextPath).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
+					oView.getModel().getProperty(this.localBindingContextPath).WeekDate7Date) + "and%20ApplicationName%20eq%20%27" + this.userPref
 				.application + "%27%20and%20ApplicationVersion%20eq%20%27" + this.userPref.applicationVersion +
 				"%27&$orderby=EntryType,ProjectID,EntryTypeDesc";
 			var mParameters = {

@@ -217,6 +217,12 @@ sap.ui.define([
 			this._applyFilters();
 		},
 		OnEmployeePress: function(oEvent) {
+			if (this.employeeSelected === undefined || this.employeeSelected === null) {
+				this.employeeSelected = {};
+			}
+			this.employeeSelected.employees = [];
+			var empBox = oEvent.getSource();
+			this.employeeSelected.employees.push(empBox);
 			this.Filters1 = [];
 			this.currentEmp = oEvent.getSource().data('employee');
 			this.currentEmpName = oEvent.getSource().data('employeeName');
@@ -271,7 +277,7 @@ sap.ui.define([
 					}
 				}
 			});
-			
+
 			oDialog.open();
 
 			var oTable = this.byId("employeeWeekTable");
@@ -476,6 +482,12 @@ sap.ui.define([
 		OnHourPress: function(oEvent) {
 			//var currentBindingPath = oEvent.getSource().getBindingContext().getPath();
 			// Edit Enable
+			if (this.employeeSelected === undefined || this.employeeSelected === null) {
+				this.employeeSelected = {};
+			}
+			this.employeeSelected.employees = [];
+			var empBox = oEvent.getSource();
+			this.employeeSelected.employees.push(empBox);
 			this.dailyDetail = true;
 			this.currentEmp = oEvent.getSource().data('employee');
 			this.currentEmpName = oEvent.getSource().data('employeeName');
@@ -842,8 +854,8 @@ sap.ui.define([
 									oTable2.getBinding("items").refresh();
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
-									that.getView().getModel().refresh();    
-									fragment.refresh_workdaySet(that.employees,that.getView());
+									that.getView().getModel().refresh();
+									fragment.refresh_workdaySet(that.employees, that.getView());
 								}
 
 							});
@@ -888,7 +900,7 @@ sap.ui.define([
 									that.getView().getModel().read(contextPath);
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
 									that.getView().getModel().refresh();
-									fragment.refresh_workdaySet(that.employees,that.getView());
+									fragment.refresh_workdaySet(that.employees, that.getView());
 								}
 
 							});
@@ -926,8 +938,28 @@ sap.ui.define([
 			}, dailog, oEvent.getSource());
 		},
 		onPressSaveWREntries: function(oEvent) {
-			this.onPressSaveEntries(oEvent);
-			this.OnWeeklyReportSelection();
+			var that = this;
+			var headerContextPath = null;
+			var oTable = null;
+			var dailog = null;
+			if (this.dailyDetail) {
+				dailog = this.getView().byId("EmpDayCheckDialog");
+				headerContextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
+				oTable = this.getView().byId('tableDayItems');
+			} else {
+				dailog = this.getView().byId("EmpWeekCheckDialog");
+				headerContextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
+				oTable = this.getView().byId('tableWeekItems');
+			}
+			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
+				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
+				that.employeeSelected.startDate = that.userPref.startDate;
+				that.employeeSelected.sourceView = 'Summary';
+				that.getView().getModel("employeeSelected").setData(that.employeeSelected);
+				that.getRouter().navTo("WeeklyReport", {
+					source: 'Summary'
+				}, true);
+			}, dailog, oEvent.getSource());
 		},
 		onPressUpdateEntries: function(oEvent) {
 			var that = this;
@@ -960,16 +992,15 @@ sap.ui.define([
 
 		},
 		onPressCheckVersion: function(oEvent) {
-			
-			if(	!this.getView().byId("legend").getVisible()){
+
+			if (!this.getView().byId("legend").getVisible()) {
 				this.getView().byId("displayLegend").setIcon("sap-icon://drill-down");
-			this.getView().byId("legend").setVisible(true);
+				this.getView().byId("legend").setVisible(true);
+			} else {
+				this.getView().byId("legend").setVisible(false);
+				this.getView().byId("displayLegend").setIcon("sap-icon://drill-up");
 			}
-			else{
-			this.getView().byId("legend").setVisible(false);	
-			this.getView().byId("displayLegend").setIcon("sap-icon://drill-up");
-			}
-		
+
 		},
 
 		////*** Add New Time  **///
@@ -1176,8 +1207,8 @@ sap.ui.define([
 			this.getView().setModel(oModel.Emps, "Emps");
 
 		},
-		onAllowanceIndicatorData : function(oEvent){	
-			fragment.AddUpdatetime_onAllowanceIndicatorData(oEvent,this);
+		onAllowanceIndicatorData: function(oEvent) {
+			fragment.AddUpdatetime_onAllowanceIndicatorData(oEvent, this);
 		},
 		OnDeleteEmpDayitem: function(oEvent) {
 			var binding = oEvent.getSource().getBindingContext().getPath();
@@ -1217,7 +1248,7 @@ sap.ui.define([
 									}
 									that.update = true;
 									MessageToast.show(that.getResourceBundle().getText("successDeleteMsg"));
-									fragment.refresh_workdaySet(that.employees,that.getView());
+									fragment.refresh_workdaySet(that.employees, that.getView());
 									that.getView().getModel().refresh();
 								}
 							});

@@ -286,20 +286,11 @@ sap.ui.define([
 		onPressSaveWREntries: function(oEvent) {
 			var that = this;
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
-				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
-				var oModel = fragment.AddUpdatetime_init(that, that.getView().byId('PageContent'), "New", that.getResourceBundle(), that.employees,
-					that.getView().getModel());
-
-				that.getView().setModel(oModel.AddTime, "AddTime");
-				that.getView().setModel(oModel.projectSearch, "projectSearch");
-				that.getView().setModel(oModel.footer, "footer");
-				that.getView().setModel(oModel.Emps, "Emps");
-
 				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
-			}, this.getView(), oEvent.getSource());
-			this.getRouter().navTo("ReportEmployeeSelection", {
+				that.getRouter().navTo("ReportEmployeeSelection", {
 				source: 'AddTime'
 			}, true);
+			}, this.getView(), oEvent.getSource());
 		},
 		onPressSaveEntries: function(oEvent) {
 			var that = this;
