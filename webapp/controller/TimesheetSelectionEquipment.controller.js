@@ -98,10 +98,8 @@ sap.ui.define([
 						this.refresh = true;
 						break;
 				}
-			}
-			if(this.refresh === true) {
-				this.employees = [];
-				this.getView().getModel("employeeDaysSelected").setData(this.employees);
+			} else {
+				this.refresh = true;
 			}
 			if (this.refresh) {
 				for (k = 0; k < this.selectedBox.length; k++) {
@@ -202,6 +200,7 @@ sap.ui.define([
 						if (index === -1) {
 							var data = {
 								employee: empId,
+								employeeName: empName,
 								Days: [sDay],
 								analyticalUnit: analyticalUnit,
 								equipment: 'X'
@@ -433,6 +432,8 @@ sap.ui.define([
 						this.refresh = true;
 						break;
 				}
+			} else {
+				this.refresh = true;
 			}
 			if(this.refresh === true) {
 				this.employees = [];
