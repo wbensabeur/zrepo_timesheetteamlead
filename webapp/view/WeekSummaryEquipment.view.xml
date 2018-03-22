@@ -72,7 +72,7 @@
 							<ColumnListItem vAlign="Middle" class="sapUiTableTr EmpWeekStatus">
 								<cells>
 									<VBox class="EmpWeekStatus" width="100%">
-										<StandardListItem class="EmpWeekStatus" type="Active" title="{EquipmentName}" description="" press="OnEmployeePress">
+										<StandardListItem class="EmpWeekStatus" type="Active" title="{EquipmentName}" description="{EquipmentId} / {AnalyticalUnit}" press="OnEmployeePress">
 											<!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
 											<customData>
 												<core:CustomData key="status" value="{WeekStatus}" writeToDom="true"/>
