@@ -413,7 +413,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .hourSize[data-background="L"] {
-    background-color: rgb(232, 241, 246);
+    background-color: rgb(165, 201, 220);
 }
 
 .hourSize[data-status="S"] {
