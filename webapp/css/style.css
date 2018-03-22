@@ -152,7 +152,8 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .tableColumn[data-background="L"] {
-    background-color: rgb(232, 241, 246);
+    /*background-color: rgb(232, 241, 246);*/
+    background-color: rgb(165, 201, 220);
 }
 
 .tableColumn[data-background="S"] {
@@ -553,7 +554,8 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .DaySelectionStatus[data-background="L"] {
-    background-color: rgb(232, 241, 246) !important;
+	background-color: rgb(165, 201, 220) !important;
+    /*background-color: rgb(232, 241, 246) !important;*/
     height: 100% !important;
 }
 
