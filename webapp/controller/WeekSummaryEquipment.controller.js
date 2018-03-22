@@ -787,6 +787,7 @@ sap.ui.define([
 									}
 									var workDayItem = {
 										"EquipmentId": model.getProperty(binding).EquipmentId,
+										"AnalyticalUnit": model.getProperty(binding).AnalyticalUnit,
 										"ProjectID": model.getProperty(binding).ProjectID,
 										"WorkDate": model.getProperty(binding).WorkDate,
 										"FilledHours": localHoursText,
@@ -868,6 +869,7 @@ sap.ui.define([
 									}
 									var workDayItem = {
 										"EquipmentId": model.getProperty(binding).EquipmentId,
+										"AnalyticalUnit": model.getProperty(binding).AnalyticalUnit,
 										"ProjectID": model.getProperty(binding).ProjectID,
 										"WorkDate": model.getProperty(binding).WorkDate,
 										"FilledHours": localHoursText,
