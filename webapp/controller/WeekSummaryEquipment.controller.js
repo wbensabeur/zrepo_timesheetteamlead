@@ -282,6 +282,7 @@ sap.ui.define([
 				new Filter("isByWeekly", FilterOperator.EQ, false),
 				new Filter("BusinessUnit", FilterOperator.EQ, this.userPref.defaultBU),
 				new Filter("EquipmentId", FilterOperator.EQ, this.currentEmp),
+				new Filter("AnalyticalUnit", FilterOperator.EQ, this.currentAU),
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];
