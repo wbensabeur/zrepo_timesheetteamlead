@@ -561,6 +561,7 @@ sap.ui.define([
 
 			var Filters = [
 				new Filter("EquipmentId", FilterOperator.EQ, this.currentEmp),
+				new Filter("AnalyticalUnit", FilterOperator.EQ, this.currentAU),
 				new Filter("WorkDate", FilterOperator.EQ, this.currentDate),
 				new Filter("ApplicationName", FilterOperator.EQ, this.userPref.application),
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)

@@ -65,7 +65,7 @@
 										</customData>
 									</VBox>-->
 							<VBox class="EmpWeekStatus" width="100%">
-								<StandardListItem class="EmpWeekStatus" type="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableEmployees'}" title="{EquipmentName}" description="{EquipmentId} / {AnalyticalUnit}" press="OnEmployeePress"> <!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
+								<StandardListItem class="EmpWeekStatus" type="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableEmployees'}" title="{EquipmentName}" description="{AnalyticalUnit}" press="OnEmployeePress"> <!--//{WeekTotalHours}H - {WeekTotalAllowances} IPD - {WeekTotalKms}KM-->
 									<customData>
 										<core:CustomData key="status" value="{parts: ['isEntryEnabled','NotEditable'], formatter:'.formatter.disableDays'}" writeToDom="true"/>
 										<core:CustomData key="employee" value="{EquipmentId}"/>
