@@ -277,7 +277,7 @@ sap.ui.define([
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
 				var oModel = fragment.AddUpdatetime_init(that, that.getView().byId('PageContent'), "New", that.getResourceBundle(), that.employees,
-					that.getView().getModel());
+					that.getView().getModel(),null,that.isEquipment);
 
 				that.getView().setModel(oModel.AddTime, "AddTime");
 				that.getView().setModel(oModel.projectSearch, "projectSearch");
