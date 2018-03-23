@@ -264,8 +264,8 @@
 			<Button id="WeekAddNewTimeButton" text="{i18n>addTime}" icon="sap-icon://add" type="Emphasized" press="OnAddEmpWeekTime"
 				visible="{footer>/MainPreviousScreen}"/>
 			<Button id="WeekMainCancelButton" text="{i18n>cancel}" type="Reject" press="onPressCancel" visible="{footer>/MainNewScreen}"/>
+			<Button id="MainSaveWRButton" text="{i18n>savewrtimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveWREntries"/>			
 			<Button id="WeekMainAddButton" text="{i18n>addtimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveEntries"/>
-			<Button id="MainSaveWRButton" text="{i18n>savewrtimedata}" type="Accept" visible="{footer>/MainNewScreen}" press="onPressSaveWREntries"/>
 			<Button id="WeekProjectCancelButton" text="{i18n>cancel}" type="Reject" visible="{footer>/ProjectScreen}" press="onPressProjectCancel"/>
 			<Button id="WeekProjectSelectButton" text="{i18n>select}" type="Accept" visible="{footer>/ProjectScreen}" press="onPressProjectSelect">
 				<customData>
