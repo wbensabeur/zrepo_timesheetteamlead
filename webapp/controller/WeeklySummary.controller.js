@@ -953,6 +953,7 @@ sap.ui.define([
 			}
 			fragment.AddUpdatetime_saveEntries(this.getView(), function() {
 				MessageToast.show(that.getResourceBundle().getText("successPostMsg"));
+				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
 				that.employeeSelected.startDate = that.userPref.startDate;
 				that.employeeSelected.sourceView = 'Summary';
 				that.getView().getModel("employeeSelected").setData(that.employeeSelected);
