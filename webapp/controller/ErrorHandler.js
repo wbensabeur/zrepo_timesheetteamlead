@@ -48,6 +48,7 @@ sap.ui.define([
 		 * @private
 		 */
 		_showServiceError: function(sDetails) {
+			var that = this;
 			if (this._bMessageOpen) {
 				return;
 			}
@@ -63,7 +64,7 @@ sap.ui.define([
 					errorDesc = sDetails.responseText;
 				}
 			}
-			MessageBox.error(	errorDesc);
+			MessageBox.error(errorDesc,{onClose : function(){ that._bMessageOpen = false; }});
 		}
 	});
 });
