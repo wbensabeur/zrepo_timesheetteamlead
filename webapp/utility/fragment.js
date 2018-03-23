@@ -241,7 +241,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (this.equipment) {
 					filters1 = new Filter({
 						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
-							"TEAMLEAD")],
+							"TEAMLEAD_E")],
 						and: true
 					});
 				} else {
@@ -270,7 +270,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (this.equipment) {
 					filters1 = new Filter({
 						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
-							"TEAMLEAD")],
+							"TEAMLEAD_E")],
 						and: true
 					});
 				} else {
