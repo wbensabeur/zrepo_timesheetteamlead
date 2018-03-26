@@ -549,7 +549,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (sap.ui.Device.browser.name === sap.ui.Device.browser.BROWSER.INTERNET_EXPLORER) {
 				var localComboKey = undefined;
 				try {
-					var localComboKey = selecthrsCombo.getParent().getItems()[4].getItems()[0].getSelectedKey();
+					localComboKey = selecthrsCombo.getParent().getItems()[4].getItems()[0].getSelectedKey();
 				} catch (e) {
 					localComboKey = undefined;
 				}
