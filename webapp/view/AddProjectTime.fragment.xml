@@ -14,11 +14,11 @@
 					</buttons>
 					
 				</RadioButtonGroup>
-				<ComboBox class="SelectCombo" placeholder="{i18n>hrType}" selectedKey="{EntryTypeCatId}" visible="{AddTime>/newTime}"
-					items="{path:'/ValueHelpSet',  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}"
-					selectionChange="OnDailyHrTypeChange1" >
-					<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
-				</ComboBox>
+				<!--<ComboBox class="SelectCombo" placeholder="{i18n>hrType}" selectedKey="{EntryTypeCatId}" visible="{AddTime>/newTime}"-->
+				<!--	items="{path:'/ValueHelpSet',  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}"-->
+				<!--	selectionChange="OnDailyHrTypeChange1" >-->
+				<!--	<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>-->
+				<!--</ComboBox>-->
 			</HBox>
 		</VBox>
 		<VBox class="sapUiSmallMarginBottom" visible="false">
@@ -31,16 +31,23 @@
 					placeholder="{i18n>startTime}" change="OnChangeStartTime" />
 				<TimePicker visible='{AddTime>/duration}' enabled="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" valueFormat="HH:mm" value="{EndTime}"
 					displayFormat="HH:mm" placeholder="{i18n>endTime}" change="OnChangeEndTime"/>
-				<ComboBox class="SelectCombo" placeholder="{i18n>hrType}" selectedKey="{EntryTypeCatId}" 
-					items="{path:'/ValueHelpSet',  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}"
-					selectionChange="OnDailyHrTypeChange2" >
-					<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
-				</ComboBox>
+				<!--<ComboBox class="SelectCombo" placeholder="{i18n>hrType}" selectedKey="{EntryTypeCatId}" -->
+				<!--	items="{path:'/ValueHelpSet',  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}"-->
+				<!--	selectionChange="OnDailyHrTypeChange2" >-->
+				<!--	<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>-->
+				<!--</ComboBox>-->
 			</HBox>
 		</VBox>
 		<customData>
 			<core:CustomData key="hrs" value="{Hours}"/>
 		</customData>
+		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom" width="100%">
+			<ComboBox class="SelectCombo" placeholder="{i18n>hrType}" selectedKey="{EntryTypeCatId}" 
+					items="{path:'/ValueHelpSet',  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}"
+					selectionChange="OnDailyHrTypeChange" >
+					<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
+				</ComboBox>
+		</VBox>
 		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}">
 			<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewHourPress"/>
 		</FlexBox>

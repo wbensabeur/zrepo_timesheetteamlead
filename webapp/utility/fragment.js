@@ -419,6 +419,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			}
 		},
+		SelectProject_OnDailyHrTypeChange: function(oEvent) {
+			var selectedKey = oEvent.getParameter('selectedItem').getKey();
+			this.warning = true;
+			oEvent.getSource().setPlaceholder("");
+			oEvent.getSource().getParent().getParent().getItems()[4].getItems()[0].setSelectedKey(selectedKey);
+		},
 		SelectProject_OnDailyHrTypeChange2: function(oEvent) {
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
 			this.warning = true;
@@ -448,8 +454,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
 				container.addItem(oFragment);
-				oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
-				oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering = this._comboKeyboardDisable;
+				// oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
+				// oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering = this._comboKeyboardDisable;
+				oFragment.getItems()[4].getItems()[0].onAfterRendering = this._comboKeyboardDisable;
 			}
 
 		},
@@ -513,7 +520,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var source = oEvent.getSource();
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var newValue = 0;
-			var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
+			// var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
 			var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3]; //this._getOwnSelectedHrContent(source);
 			var timepicker = selecthrsCombo.getItems()[2].getItems()[0];
 			//	var timepickerFrom = selecthrsCombo.getItems()[2].getItems()[1];
@@ -526,13 +533,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				//newValue = 0;
 				buttons[0].setEnabled(true);
 				buttons[1].setEnabled(false);
-				allDayCombo.setVisible(false);
+				// allDayCombo.setVisible(false);
 				selecthrsCombo.setVisible(true);
 				timepicker.setValue("0.00");
 				timepickerTo.setEnabled(false);
 
 			} else { // For all day Selection
-				allDayCombo.setVisible(true);
+				// allDayCombo.setVisible(true);
 				selecthrsCombo.setVisible(false);
 				buttons[0].setEnabled(false);
 				buttons[1].setEnabled(true);
@@ -541,26 +548,34 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			// for IE 
 			if (sap.ui.Device.browser.name === sap.ui.Device.browser.BROWSER.INTERNET_EXPLORER) {
 				var localComboKey = undefined;
-				if (selecthrsCombo.getVisible() === true) {
-					try {
-						var localComboKey = selecthrsCombo.getItems()[2].getItems()[3].getSelectedKey();
-					} catch (e) {
-						localComboKey = undefined;
-					}
-					if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
-						selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
-					}
-				} else if (allDayCombo.getVisible() === true) {
+				try {
+					var localComboKey = selecthrsCombo.getParent().getItems()[4].getItems()[0].getSelectedKey();
+				} catch (e) {
 					localComboKey = undefined;
-					try {
-						localComboKey = allDayCombo.getSelectedKey();
-					} catch (e) {
-						localComboKey = undefined;
-					}
-					if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
-						allDayCombo.setPlaceholder("");
-					}
 				}
+				if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
+					selecthrsCombo.getParent().getItems()[4].getItems()[0].setPlaceholder("");
+				}
+				// if (selecthrsCombo.getVisible() === true) {
+				// 	try {
+				// 		var localComboKey = selecthrsCombo.getItems()[2].getItems()[3].getSelectedKey();
+				// 	} catch (e) {
+				// 		localComboKey = undefined;
+				// 	}
+				// 	if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
+				// 		selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
+				// 	}
+				// } else if (allDayCombo.getVisible() === true) {
+				// 	localComboKey = undefined;
+				// 	try {
+				// 		localComboKey = allDayCombo.getSelectedKey();
+				// 	} catch (e) {
+				// 		localComboKey = undefined;
+				// 	}
+				// 	if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
+				// 		allDayCombo.setPlaceholder("");
+				// 	}
+				// }
 			}
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
@@ -1604,7 +1619,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							}
 							var workDayItem = {
 								"EquipmentId": empId,
-								"AnalyticalUnit":empAU,
+								"AnalyticalUnit": empAU,
 								"ProjectID": projectID,
 								"WorkDate": this.employees[l].Days[j],
 								"FilledHours": localHoursText,

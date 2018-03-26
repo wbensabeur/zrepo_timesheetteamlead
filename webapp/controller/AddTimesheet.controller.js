@@ -377,6 +377,9 @@ sap.ui.define([
 		OnDailyHrTypeChange1: function(oEvent) {
 			fragment.SelectProject_OnDailyHrTypeChange1(oEvent);
 		},
+		OnDailyHrTypeChange: function(oEvent) {
+			fragment.SelectProject_OnDailyHrTypeChange(oEvent);
+		},
 		OnOthAllownaceTypeChange: function(oEvent) {
 			fragment.SelectProject_OnOthAllownaceTypeChange(oEvent);
 		},
