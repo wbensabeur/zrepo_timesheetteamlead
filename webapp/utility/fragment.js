@@ -1100,7 +1100,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 						var source = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2].getItems()[0];
 						var buttons = source.getButtons();
-						var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
+						// var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
 						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
 
 						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[1];
@@ -1109,11 +1109,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 						buttons[0].setEnabled(true);
 						buttons[1].setEnabled(false);
-						allDayCombo.setVisible(false);
+						// allDayCombo.setVisible(false);
 						selecthrsCombo.setVisible(true);
 
-						allDayCombo.setPlaceholder("");
-						selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
+						// allDayCombo.setPlaceholder("");
+						//selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
+						selecthrsCombo.getParent().getItems()[4].getItems()[0].setPlaceholder("");
 						break;
 					case 'IPD':
 						odata.visibleDailyAllow = true;
@@ -1450,7 +1451,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var projectID;
 				try {
 
-					var hrType = tab.getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+					// var hrType = tab.getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+					var hrType = tab.getItems()[4].getItems()[0].getSelectedKey();
 					var projectBindingPath = tab.getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 					var fullDayindex = tab.getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
 					if (this.AddUpdatetimeModel.getData().duration) {
@@ -1835,14 +1837,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 
 				if (selectedTab === 'hours') {
-					var tab = oView.byId('addTimeTab').getItems()[0].getItems();
-					for (var k = 1; k < tab.length; k++) {
+					tab = oView.byId('addTimeTab').getItems()[0].getItems();
+					for (k = 1; k < tab.length; k++) {
 						var startTime = '000000';
 						var endTime = '000000';
 						try {
-							var projectID = undefined;
-							var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
-							var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+							projectID = undefined;
+							//var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
+							var hrType = tab[k].getItems()[4].getItems()[0].getSelectedKey();
+							projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 							var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
 							if (this.AddUpdatetimeModel.getData().duration) {
 								startTime = tab[k].getItems()[3].getItems()[2].getItems()[1].getValue();
