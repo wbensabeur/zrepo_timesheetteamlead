@@ -344,6 +344,10 @@ sap.ui.define([
 			this.OnDocGenerate();
 			//this.OnTimeSubmit();
 		},
+		OnCancelSignatureDialog: function() {
+			sap.ui.getCore().getControl("mySignaturePad").clear();
+			this.dialogPressSignature.close();
+		},
 		onPressClear: function() {
 			sap.ui.getCore().getControl("mySignaturePad").clear();
 		},
