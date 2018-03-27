@@ -146,7 +146,7 @@ sap.ui.define([
 				var empName = button.data('employeeName');
 				var analyticalUnit = button.data('AnalyticalUnit');
 				var sDay = button.data('selectedDate'); //.getCustomData()[3].getValue();
-				var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
+				var index = this._EmployeeIndexInArray(empId,analyticalUnit); //this.employees.indexOf(empId);
 				if (index === -1) {
 					var data = {
 						employee: empId,
@@ -165,8 +165,9 @@ sap.ui.define([
 			} else {
 				button.getCustomData()[0].setValue("");
 				var empId2 = button.data('employee'); //.getCustomData()[2].getValue();
+				var analyticalUnit2 = button.data('AnalyticalUnit');
 				var sDay2 = button.data('selectedDate'); //.getCustomData()[3].getValue();
-				var empIndex = this._EmployeeIndexInArray(empId2);
+				var empIndex = this._EmployeeIndexInArray(empId2,analyticalUnit2);
 				var index2 = this.employees[empIndex].Days.indexOf(sDay2);
 				this.employees[empIndex].Days.splice(index2, 1);
 				var boxindex = this.selectedBox.indexOf(button);
@@ -223,7 +224,7 @@ sap.ui.define([
 						var analyticalUnit = this.allEmps[m].AnalyticalUnit;
 						var empName = this.allEmps[m].EquipmentName;
 						// var analyticalUnit = this.allEmps[m].                         ;
-						var index = this._EmployeeIndexInArray(empId); //this.employees.indexOf(empId);
+						var index = this._EmployeeIndexInArray(empId,analyticalUnit); //this.employees.indexOf(empId);
 						if (index === -1) {
 							var data = {
 								employee: empId,
@@ -275,8 +276,8 @@ sap.ui.define([
 				if (this.allEmps !== null) {
 					for (var n = 0; n < this.allEmps.length; n++) {
 						var empId2 = this.allEmps[n].EmployeeId;
-
-						var empIndex = this._EmployeeIndexInArray(empId2);
+						var analyticalUnit2 = this.allEmps[n].AnalyticalUnit;
+						var empIndex = this._EmployeeIndexInArray(empId2,analyticalUnit2);
 						var index2 = this.employees[empIndex].Days.indexOf(sDay2);
 						this.employees[empIndex].Days.splice(index2, 1);
 						if (this.employees[empIndex].Days.length === 0) {
@@ -300,7 +301,7 @@ sap.ui.define([
 				this.selectedBox.push(empBox);
 				empBox.getParent().getCustomData()[0].setValue("S");
 				this.selectedBox.push(empBox.getParent());
-				var index = this._EmployeeIndexInArray(empId);
+				var index = this._EmployeeIndexInArray(empId,analyticalUnit);
 				if (index === -1) {
 					var data = {
 						employee: empId,
@@ -334,7 +335,7 @@ sap.ui.define([
 					}
 				}
 
-				var index3 = this._EmployeeIndexInArray(empId);
+				var index3 = this._EmployeeIndexInArray(empId,analyticalUnit);
 				this.employees[index3].Days = sDate;
 			} else {
 				empBox.getCustomData()[0].setValue("");
@@ -343,7 +344,7 @@ sap.ui.define([
 				empBox.getParent().getCustomData()[0].setValue("");
 				var empindex2 = this.selectedBox.indexOf(empBox.getParent());
 				this.selectedBox.splice(empindex2, 1);
-				var index2 = this._EmployeeIndexInArray(empId);
+				var index2 = this._EmployeeIndexInArray(empId,analyticalUnit);
 				this.employees.splice(index2, 1);
 				var emphours1 = empBox.getParent().getParent().getCells();
 				for (var k1 = 1; k1 < 15; k1++) {
@@ -500,9 +501,9 @@ sap.ui.define([
 			}
 
 		},
-		_EmployeeIndexInArray: function(empId) {
+		_EmployeeIndexInArray: function(empId,analyticalUnit) {
 			for (var k = 0; k < this.employees.length; k++) {
-				if (this.employees[k].employee === empId)
+				if (this.employees[k].employee === empId && this.employees[k].analyticalUnit === analyticalUnit)
 					return k;
 			}
 			return -1;
