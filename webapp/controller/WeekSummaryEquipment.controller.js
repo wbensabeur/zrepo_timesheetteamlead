@@ -742,6 +742,10 @@ sap.ui.define([
 
 			var that = this;
 			//var contextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
+			if (this.getView().byId('tableWeekItems').getSelectedItems().length <= 0) {
+				MessageToast.show(that.getResourceBundle().getText("noItemsSelDelete"));
+				return;
+			}
 			MessageBox.confirm(
 				that.getResourceBundle().getText("confirmSelectDeleteMsg"), {
 					title: that.getResourceBundle().getText("deletecnfm"),
@@ -822,7 +826,10 @@ sap.ui.define([
 			//var binding = oEvent.getSource().getBindingContext().getPath();
 			var that = this;
 			//var contextPath = this.getView().byId('EmpDayTotal').getBindingContext().getPath();
-
+			if (this.getView().byId('tableDayItems').getItems().length <= 0) {
+				MessageToast.show(that.getResourceBundle().getText("noItemsfndDelete"));
+				return;
+			}
 			//this.getView().byId('EmpDayTotal').getBinding('text').refresh();
 			//oView.byId('EmpDayStatus').bindElement(urlStr);
 			//oView.byId('EmpDayInfo').bindElement(urlStr);
