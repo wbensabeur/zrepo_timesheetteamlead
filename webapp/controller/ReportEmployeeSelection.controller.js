@@ -216,16 +216,16 @@ sap.ui.define([
 				this.refresh = true;
 
 			}
-
 			this.employeeSelected.startDate = this.userPref.startDate;
 			if (this.userPref.defaultPeriod === 1) {
 				this.twoWeek = false;
 			} else {
 				this.twoWeek = false;
-				this.userPref.defaultPeriod = 1;
+				// this.userPref.defaultPeriod = 1;
 				this.userPref.startDate = datetime.getNextWeek(this.userPref.startDate);
 			}
-			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
+			// this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
+			this._calendarBinding(this.userPref.startDate, 1);
 		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.ReportEmployeeSelection
