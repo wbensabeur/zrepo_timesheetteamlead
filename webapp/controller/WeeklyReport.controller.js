@@ -158,7 +158,11 @@ sap.ui.define([
 				this.employeId = employee.getModel().getProperty(this.localBindingContextPath).EmployeeId;
 			}
 			//oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
-			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId + "'," + "ApplicationName='" + this.userPref.application +
+			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId + "',StartDate=datetime'" + encodeURIComponent(
+					datetime.getODataDateFilter(
+						oView.getModel().getProperty(this.localBindingContextPath).WeekDate1Date)) + "',EndDate=datetime'" + encodeURIComponent(
+					datetime.getODataDateFilter(
+						oView.getModel().getProperty(this.localBindingContextPath).WeekDate7Date)) + "',ApplicationName='" + this.userPref.application +
 				"')");
 			oView.byId("WeeklyStatus").bindElement(this.localBindingContextPath);
 			oView.byId("WeeklyAggregation").bindElement(this.localBindingContextPath);

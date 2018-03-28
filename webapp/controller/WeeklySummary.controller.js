@@ -267,7 +267,16 @@ sap.ui.define([
 			var oEmpDetailModel = new JSONModel(EmpDetail);
 			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 			oDialog.bindElement(oEvent.getSource().getBindingContext().getPath());
-			var empBinding = "/EmployeeSet(EmployeeId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')";
+			var localStartDate = encodeURIComponent(datetime.getODataDateFilter(oView.getModel().getProperty(oEvent.getSource().getBindingContext()
+				.getPath()).WeekDate1Date));
+			var localEndDate = encodeURIComponent(datetime.getODataDateFilter(oView.getModel().getProperty(oEvent.getSource().getBindingContext()
+				.getPath()).WeekDate14Date));
+			if (this.twoWeek === true) {
+				localEndDate = encodeURIComponent(datetime.getODataDateFilter(oView.getModel().getProperty(oEvent.getSource().getBindingContext().getPath())
+					.WeekDate14Date));
+			}
+			var empBinding = "/EmployeeSet(EmployeeId='" + this.currentEmp + "',StartDate=datetime'" + localStartDate + "',EndDate=datetime'" +
+				localEndDate + "',ApplicationName='" + this.userPref.application + "')";
 			oView.byId('employeeCompany').bindElement({
 				path: empBinding,
 				events: {
@@ -515,7 +524,8 @@ sap.ui.define([
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];*/
 
-			oDialog.bindElement("/EmployeeSet(EmployeeId='" + this.currentEmp + "'," + "ApplicationName='" + this.userPref.application + "')");
+			oDialog.bindElement("/EmployeeSet(EmployeeId='" + this.currentEmp + "',StartDate=datetime'" + encodeURIComponent(this.currentDate) +
+				"',EndDate=datetime'" + encodeURIComponent(this.currentDate) + "',ApplicationName='" + this.userPref.application + "')");
 
 			//var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
 			var urlStr = "/WorkDaySet(EmployeeId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + "," +
