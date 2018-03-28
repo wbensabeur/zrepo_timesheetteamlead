@@ -1595,9 +1595,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						for (var k = 1; k < tab.length; k++) {
 							var projectID = undefined;
 							//var filledHrs = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
-							var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 							//var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
+							try {
+							var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 							projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+							} catch(e) {
+								projectID = undefined;
+							}
 							if (projectID === undefined) {
 								MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
 								ctype.setBusy(false);

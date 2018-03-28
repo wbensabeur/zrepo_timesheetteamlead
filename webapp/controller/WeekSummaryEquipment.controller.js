@@ -309,6 +309,7 @@ sap.ui.define([
 				that.employees = [{
 					employee: that.currentEmp,
 					employeeName: that.currentEmpName,
+					analyticalUnit: that.currentAU,
 					Days: []
 				}];
 
