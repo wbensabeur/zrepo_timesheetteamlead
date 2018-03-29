@@ -1916,7 +1916,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							}
 						}
 						if (projectID === undefined && hrType === "") {
-							continue;
+							if (tab.length <= 2) {
+								if (hrType === "")
+									MessageBox.alert(this.i18nModel.getText("hrTypeNotSelected"));
+								else if (projectID === undefined)
+									MessageBox.alert(this.i18nModel.getText("projectNotSelected"));
+								ctype.setBusy(false);
+								rButton.setEnabled(true);
+								return;
+							} else {
+								continue;
+							}
 						} else if (projectID === undefined || hrType === "") {
 							//MessageBox.alert("All Items are not selected");
 							if (hrType === "")
