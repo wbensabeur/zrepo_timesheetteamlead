@@ -503,12 +503,22 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			this.AddProjectTime_destroy(sourcePanel);
 
+			if (container.getItems().length === 1) {
+				container.getItems()[0].getItems()[2].getItems()[0].setVisible(true);
+			} else {
+				container.getItems()[0].getItems()[2].getItems()[0].setVisible(false);
+			}
 		},
 		AddProjectTime_OnBonusDelete: function(oEvent, container) {
 			var source = oEvent.getSource();
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			container.removeItem(sourcePanel);
 			sourcePanel.destroy(true);
+			if (container.getItems().length === 1) {
+				container.getItems()[0].getItems()[1].getItems()[0].setVisible(true);
+			} else {
+				container.getItems()[0].getItems()[1].getItems()[0].setVisible(false);
+			}
 		},
 		AddProjectTime_OnchangeTimeSelection: function(oEvent) {
 
@@ -1367,19 +1377,39 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
 			this.warning = true;
-
 		},
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
 			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0], addNew);
+			if (controller.getView().byId('addTimeTab').getItems()[0].getItems().length === 1) {
+				controller.getView().byId('addTimeTab').getItems()[0].getItems()[0].getItems()[2].getItems()[0].setVisible(true);
+			} else if (controller.getView().byId('addTimeTab').getItems()[0].getItems().length > 1) {
+				controller.getView().byId('addTimeTab').getItems()[0].getItems()[0].getItems()[2].getItems()[0].setVisible(false);
+			} else {
+				controller.getView().byId('addTimeTab').getItems()[0].getItems()[0].getItems()[2].getItems()[0].setVisible(true);
+			}
 		},
 		AddUpdatetime_OnaddNewEquipmentPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
 			this.AddProjectEquipment_init(controller, controller.getView().byId('addEquipmentTab').getItems()[0], addNew);
+			if (controller.getView().byId('addEquipmentTab').getItems()[0].getItems().length === 1) {
+				controller.getView().byId('addEquipmentTab').getItems()[0].getItems()[0].getItems()[2].getItems()[0].setVisible(true);
+			} else if (controller.getView().byId('addEquipmentTab').getItems()[0].getItems().length > 1) {
+				controller.getView().byId('addEquipmentTab').getItems()[0].getItems()[0].getItems()[2].getItems()[0].setVisible(false);
+			} else {
+				controller.getView().byId('addEquipmentTab').getItems()[0].getItems()[0].getItems()[2].getItems()[0].setVisible(true);
+			}
 		},
 		AddUpdatetime_OnaddNewBonusPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newBonus;
 			this.AddProjectBonus_init(controller, controller.getView().byId('addBonusTab').getItems()[0], addNew);
+			if (controller.getView().byId('addBonusTab').getItems()[0].getItems().length === 1) {
+				controller.getView().byId('addBonusTab').getItems()[0].getItems()[0].getItems()[1].getItems()[0].setVisible(true);
+			} else if (controller.getView().byId('addBonusTab').getItems()[0].getItems().length > 1) {
+				controller.getView().byId('addBonusTab').getItems()[0].getItems()[0].getItems()[1].getItems()[0].setVisible(false);
+			} else {
+				controller.getView().byId('addBonusTab').getItems()[0].getItems()[0].getItems()[1].getItems()[0].setVisible(true);
+			}
 		},
 		AddUpdatetime_getOwnIconTabObject: function(source) {
 			var parent = source.getParent();
@@ -1597,9 +1627,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							//var filledHrs = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
 							//var fullDayindex = tab[k].getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
 							try {
-							var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
-							projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
-							} catch(e) {
+								var projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
+								projectID = oView.getModel().getProperty(projectBindingPath).ProjectId;
+							} catch (e) {
 								projectID = undefined;
 							}
 							if (projectID === undefined) {

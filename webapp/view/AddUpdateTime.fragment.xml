@@ -17,7 +17,7 @@
 								<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
 							</FlexBox>
 							<FlexBox alignContent="End" justifyContent="End">
-								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewHourPress"/>
+								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewHourPress" visible="false"/>
 							</FlexBox>
 							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
 								value="{AddTime>/totalhrs}"/>-->
@@ -93,7 +93,7 @@
 								</layoutData>
 							</Button>
 							<FlexBox alignContent="End" justifyContent="End">
-								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewBonusPress"/>
+								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewBonusPress" visible="false"/>
 							</FlexBox>
 							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
 								value="{AddTime>/totalhrs}"/>-->
@@ -176,7 +176,7 @@
 							<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
 							</FlexBox>
 							<FlexBox alignContent="End" justifyContent="End">
-								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewEquipmentPress"/>
+								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewEquipmentPress" visible="false"/>
 							</FlexBox>
 							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
 								value="{AddTime>/totalhrs}"/>-->
