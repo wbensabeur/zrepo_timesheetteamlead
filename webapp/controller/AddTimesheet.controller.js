@@ -390,6 +390,10 @@ sap.ui.define([
 		//// **SelectProject Fragment Event End** ///////
 
 		//// **AddProjectTime Fragment Event** ///////
+		OnEquipmentDelete: function(oEvent) {
+			var container = this.getView().byId('addEquipmentTab').getItems()[0];
+			fragment.AddProjectTime_OnTimeDelete(oEvent, container);
+		},
 		OnTimeDelete: function(oEvent) {
 			/*var that = this;
 			MessageBox.confirm(

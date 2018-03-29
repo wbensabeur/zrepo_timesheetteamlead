@@ -2,7 +2,7 @@
 	<VBox>
 		<FlexBox class="AddHoursDivider" visible="{AddTime>/newTime}"/>
 		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}">
-			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnTimeDelete"/>
+			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnEquipmentDelete"/>
 		</FlexBox>
 		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom" width="100%">
 			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
