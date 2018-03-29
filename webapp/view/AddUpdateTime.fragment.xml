@@ -5,15 +5,20 @@
 			<IconTabFilter key="hours" icon="sap-icon://write-new-document" text="{i18n>hours}" visible="{AddTime>/visibleHrs}" design="Horizontal">
 				<VBox id="addTimeTab" width="100%" height="100%">
 					<VBox>
-						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}">
-							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewHourPress" icon="sap-icon://add" class="sapUiLargeMarginEnd" visible="false">
+						<HBox alignItems="Start" justifyContent="SpaceBetween" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}">
+							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewHourPress" icon="sap-icon://add" class="sapUiLargeMarginEnd"
+								visible="false">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
 							</Button>
-							<Button text="{i18n>addEquipment}" type="Emphasized" icon="sap-icon://add" visible="false"></Button>
-							<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
-							<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
+							<FlexBox alignContent="Start" justifyContent="Start">
+								<Label text="{i18n>totalHrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
+								<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
+							</FlexBox>
+							<FlexBox alignContent="End" justifyContent="End">
+								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewHourPress"/>
+							</FlexBox>
 							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
 								value="{AddTime>/totalhrs}"/>-->
 						</HBox>
@@ -31,10 +36,11 @@
 						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
 							<Label text="{i18n>DailyAllowances}"/>
 							<HBox alignItems="Center" justifyContent="Start">
-								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator" selectionChange="onAllowanceIndicatorData" selectedKey="{ZoneType}"
+								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator" selectionChange="onAllowanceIndicatorData"
+									selectedKey="{ZoneType}"
 									items="{path:'/ValueHelpSet', suspended: true, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"
 									loadItems="handleAllowanceZoneTypeLoadItems" class="SelectCombo" showSecondaryValues="false">
-									<core:ListItem key="{FieldDescription}" text="{FieldDescription}"  additionalText="{FieldAdditionalValue}"/>
+									<core:ListItem key="{FieldDescription}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>
 								</ComboBox>
 								<!--<SegmentedButton class="sapUiLargeMarginBegin sapUiLargeMarginEnd" width="20rem">
 									<items>-->
@@ -56,10 +62,10 @@
 												
 									</items>
 								</IconTabBar>-->
-								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" text="{i18n>meal}" class="AllwanceButton sapUiLargeMarginBegin" width="7rem"
-									press="onAllowanceIndicator" pressed="{MealIndicator}" visible="false" />
+								<ToggleButton id="AllowanceMealIndicator" icon="sap-icon://meal" text="{i18n>meal}" class="AllwanceButton sapUiLargeMarginBegin"
+									width="7rem" press="onAllowanceIndicator" pressed="{MealIndicator}" visible="false"/>
 								<ToggleButton id="AllowanceTransportIndicator" icon="sap-icon://car-rental" text="{i18n>journey}" class="AllwanceButton" width="7rem"
-									press="onAllowanceIndicator" pressed="{JourneyIndicator}" visible="false" />
+									press="onAllowanceIndicator" pressed="{JourneyIndicator}" visible="false"/>
 								<ToggleButton id="AllowanceTravelIndicator" icon="sap-icon://flight" width="7rem" text="{i18n>transport}" class="AllwanceButton"
 									press="onAllowanceIndicator" pressed="{TransportIndicator}" visible="false"/>
 								<!--</items>
@@ -79,12 +85,16 @@
 			<IconTabFilter key="bonus" icon="sap-icon://travel-expense-report" text="{i18n>bonus}" visible="{AddTime>/visibleBonus}" design="Horizontal">
 				<VBox id="addBonusTab" width="100%" height="100%">
 					<VBox>
-						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/visibleBonus}">
-							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewBonusPress" icon="sap-icon://add" class="sapUiLargeMarginEnd" visible="false">
+						<HBox alignItems="End" justifyContent="End" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/visibleBonus}">
+							<Button text="{i18n>addNewEntry}" type="Emphasized" press="OnaddNewBonusPress" icon="sap-icon://add" class="sapUiLargeMarginEnd"
+								visible="false">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
 							</Button>
+							<FlexBox alignContent="End" justifyContent="End">
+								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewBonusPress"/>
+							</FlexBox>
 							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
 								value="{AddTime>/totalhrs}"/>-->
 						</HBox>
@@ -150,17 +160,24 @@
 					</VBox>
 				</VBox>
 			</IconTabFilter>
-			<IconTabFilter key="Equipment" icon="sap-icon://add-equipment" text="{i18n>equipment}" visible="{AddTime>/visibleEquipment}" design="Horizontal">
+			<IconTabFilter key="Equipment" icon="sap-icon://add-equipment" text="{i18n>equipment}" visible="{AddTime>/visibleEquipment}"
+				design="Horizontal">
 				<VBox id="addEquipmentTab" width="100%" height="100%">
 					<VBox>
-						<HBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}">
-							<Button text="{i18n>addEquipment}" type="Emphasized" press="OnaddNewEquipmentPress" icon="sap-icon://add" class="sapUiLargeMarginEnd" visible="false">
+						<HBox alignItems="Start" justifyContent="SpaceBetween" class="sapUiSmallMarginTop sapUiTinyMarginBottom" visible="{AddTime>/newTime}">
+							<Button text="{i18n>addEquipment}" type="Emphasized" press="OnaddNewEquipmentPress" icon="sap-icon://add" class="sapUiLargeMarginEnd"
+								visible="false">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
 							</Button>
+							<FlexBox alignContent="Start" justifyContent="Start">
 							<Label text="{i18n>total}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 							<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
+							</FlexBox>
+							<FlexBox alignContent="End" justifyContent="End">
+								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewEquipmentPress"/>
+							</FlexBox>
 							<!--<custom:StepInputCustom displayValuePrecision="2" class="sapUiSmallMarginBegin" enabled="false" editable="false" max="24" width="8rem"
 								value="{AddTime>/totalhrs}"/>-->
 						</HBox>
