@@ -190,6 +190,7 @@ sap.ui.define([
 				if (this.employees.length > 0) {
 					for (var e = 0; e < this.employees.length; e++) {
 						Filters.push(new Filter("EquipmentId", FilterOperator.EQ, this.employees[e].employee));
+						Filters.push(new Filter("AnalyticalUnit", FilterOperator.EQ, this.employees[e].analyticalUnit));
 					}
 				}
 			} else {
