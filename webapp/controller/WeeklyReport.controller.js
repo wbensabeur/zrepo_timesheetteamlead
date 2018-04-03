@@ -468,8 +468,8 @@ sap.ui.define([
 			this.getView().getModel().create("/WorkDaySet", requestBody, {
 				success: function() {
 					that.getView().setBusy(false);
-					var localNoOfEmp = that.noOfEmp - 1;
-					that.noOfEmp = localNoOfEmp;
+					// var localNoOfEmp = that.noOfEmp - 1;
+					// that.noOfEmp = localNoOfEmp;
 					if (that.userPref.signatureRequired) {
 
 						/*var localDate = that.employeeSelected.startDate;
@@ -490,8 +490,8 @@ sap.ui.define([
 						var srcImg = that.srcImg;
 						that.postSignAttachment(srcImg, sFileName);*/
 
-						//if (that.index === that.noOfEmp - 1) { //Home Page
-						if (that.noOfEmp === 0 || that.index === localNoOfEmp) { //Home Page
+						if (that.index === that.noOfEmp - 1) { //Home Page
+						// if (that.noOfEmp === 0 || that.index === localNoOfEmp) { //Home Page
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
@@ -533,8 +533,8 @@ sap.ui.define([
 							background: '#14235e'
 						});*/
 					} else {
-						//if (that.index === that.noOfEmp - 1) { //Home Page
-						if (that.noOfEmp === 0 || that.index === localNoOfEmp) { //Home Page
+						if (that.index === that.noOfEmp - 1) { //Home Page
+						// if (that.noOfEmp === 0 || that.index === localNoOfEmp) { //Home Page
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
