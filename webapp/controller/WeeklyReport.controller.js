@@ -718,6 +718,10 @@ sap.ui.define([
 			var token;
 			var sFileName = FileName;
 			var serviceURL = this.getView().getModel().sServiceUrl;
+			var localDelServiceURL = serviceURL + "/DocumentPDFSet('" + sFileName + "')/$value";
+			if(sap.ui.Device.browser.msie === true) {
+				localDelServiceURL = serviceURL + "/DocumentPDFSet('" + sFileName.textContent + "')/$value";
+			}
 			jQuery.ajax({
 				url: serviceURL,
 				type: "GET",
@@ -733,7 +737,7 @@ sap.ui.define([
 						cache: false
 					});
 					jQuery.ajax({
-						url: serviceURL + "/DocumentPDFSet('" + sFileName + "')/$value",
+						url: localDelServiceURL,
 						asyn: true,
 						cache: false,
 						type: "DELETE",
