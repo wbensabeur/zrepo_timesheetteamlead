@@ -336,7 +336,10 @@ sap.ui.define([
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklyReport
 		 */
 		onPressSignature: function() {
-			this.dialogPressSignature.close();
+			if(sap.ui.getCore().getControl("mySignaturePad").isEmpty() === true) {
+				MessageToast.show(this.getResourceBundle().getText("requiredSign"));
+				return;
+			}
 			var srcImg = sap.ui.getCore().getControl("mySignaturePad").save();
 			this.getView().byId("imageSignature").setSrc(srcImg);
 			this.srcImg = srcImg;
@@ -354,7 +357,6 @@ sap.ui.define([
 			sap.ui.getCore().getControl("mySignaturePad").clear();
 		},
 		OnTimeSignature: function() {
-
 			if (!this.dialogPressSignature) {
 				this.dialogPressSignature = sap.ui.xmlfragment("com.vinci.timesheet.admin.view.Signature", this);
 				this.dialogPressSignature.setModel(this.getView().getModel());
@@ -362,7 +364,6 @@ sap.ui.define([
 			//jQuery.sap.syncStyleClass("sapUISizeCompact", this.getView(), this.dialogPressSignature);
 			this.getView().addDependent(this.dialogPressSignature);
 			this.dialogPressSignature.open();
-
 		},
 		OnDocGenerate: function() {
 			var that = this;

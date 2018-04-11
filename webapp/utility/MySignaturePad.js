@@ -64,6 +64,9 @@ sap.ui.define(["sap/ui/core/Control"
 			},
 			save: function() {
 				return this.signaturePad.toDataURL();
+			},
+			isEmpty: function() {
+				return this.signaturePad.isEmpty();
 			}
 		});
 	});
