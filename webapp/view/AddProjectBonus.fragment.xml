@@ -16,7 +16,7 @@
 				</VBox>
 				<VBox class="sapUiSmallMarginBottom">
 					<Label class="sapUiSmallMarginBegin" text="{i18n>quantity}" />
-					<Input type="Number" class="sapUiSmallMarginBegin" value="{Hours}" placeholder="{i18n>enterQuantity}" valueLiveUpdate="true" liveChange="OnOthAllownaceEntryChange" width="7rem"/>
+					<Input class="sapUiSmallMarginBegin" value="{Hours}" placeholder="{i18n>enterQuantity}" valueLiveUpdate="true" liveChange="OnOthAllownaceEntryChange" width="7rem"/>
 				</VBox>
 			</HBox>
 			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>

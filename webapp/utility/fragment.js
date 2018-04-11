@@ -444,10 +444,35 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			oEvent.getSource().getParent().getParent().getParent().getItems()[0].getItems()[0].getItems()[1].setSelectedKey(selectedKey);
 		},
 		SelectProject_OnOthAllownaceEntryChange: function(oEvent) {
-			if (oEvent.getParameters().value.length > 4) {
-				var setText = oEvent.getParameters().value.slice(0, 4);
-				oEvent.getSource().setValue(setText);
+			// if (oEvent.getParameters().value.length > 4) {
+			// 	var setText = oEvent.getParameters().value.slice(0, 4);
+			// 	oEvent.getSource().setValue(setText);
+			// }
+			var setText = oEvent.getParameters().value;
+			if(this.i18nModel.sLocale === "fr_FR" ||  this.i18nModel.sLocale === "de_DE" ||
+			   this.i18nModel.sLocale.search("fr") !== -1 || this.i18nModel.sLocale.search("de") !== -1){
+				var localSetText = setText.replace(/[^\d,]/g, '');
+				var arr = localSetText.split(",");
+				var ans = arr.splice(0,2).join(',') + arr.join('');
+				var localarr = ans.split(",");
+				if(localarr.length > 1) {
+					var loaclFinalStr =  localarr[0].slice(0, 4)+","+localarr[1].slice(0, 2);
+				} else {
+					loaclFinalStr =  ans.slice(0, 4);
+				}
+			} else {
+				localSetText = setText.replace(/[^\d.]/g, '');
+				arr = localSetText.split(".");
+				ans = arr.splice(0,2).join('.') + arr.join('');
+				localarr = ans.split(".");
+				if(localarr.length > 1) {
+					loaclFinalStr =  localarr[0].slice(0, 4)+"."+localarr[1].slice(0, 2);
+				} else {
+					loaclFinalStr =  ans.slice(0, 4);
+				}
 			}
+			
+			oEvent.getSource().setValue(loaclFinalStr);
 		},
 		//////**Add Project Time** ////
 		AddProjectTime_init: function(controler, container, addNew) {

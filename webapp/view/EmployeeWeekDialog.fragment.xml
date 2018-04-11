@@ -63,7 +63,7 @@
 										press="EmployeeHourSize">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate1Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate1Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate1Date','WeekDate1Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate1Date}"/>
 											<core:CustomData key="titlelen" value="Short" writeToDom="true"/>
@@ -75,7 +75,7 @@
 										press="EmployeeHourSize">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate2Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate2Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate2Date','WeekDate2Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate2Date}"/>
 											<core:CustomData key="titlelen" value="Short" writeToDom="true"/>
@@ -87,7 +87,7 @@
 										press="EmployeeHourSize">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate3Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate3Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate3Date','WeekDate3Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate3Date}"/>
 											<core:CustomData key="titlelen" value="Short" writeToDom="true"/>
@@ -99,7 +99,7 @@
 										press="EmployeeHourSize">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate4Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate4Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate4Date','WeekDate4Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate4Date}"/>
 											<core:CustomData key="titlelen" value="Short" writeToDom="true"/>
@@ -111,7 +111,7 @@
 										press="EmployeeHourSize">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate5Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate5Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate5Date','WeekDate5Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate5Date}"/>
 											<core:CustomData key="titlelen" value="Short" writeToDom="true"/>
@@ -123,7 +123,7 @@
 										class="hourSize" press="EmployeeHourSize">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate6Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate6Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate6Date','WeekDate6Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate6Date}"/>
 											<core:CustomData key="titlelen" value="Short" writeToDom="true"/>
@@ -135,7 +135,7 @@
 										class="hourSize" press="EmployeeHourSize">
 										<customData>
 											<core:CustomData key="status" value="{WeekDate7Status}" writeToDom="true"/>
-											<core:CustomData key="background" value="{path:'WeekDate7Date', formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
+											<core:CustomData key="background" value="{parts:['WeekDate7Date','WeekDate7Status'], formatter:'.formatter.leaveFormatter'}" writeToDom="true"/>
 											<core:CustomData key="employee" value="{EmployeeId}"/>
 											<core:CustomData key="selectedDate" value="{WeekDate7Date}"/>
 											<core:CustomData key="titlelen" value="Short" writeToDom="true"/>

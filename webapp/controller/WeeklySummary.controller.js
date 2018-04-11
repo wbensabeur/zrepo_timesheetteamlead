@@ -814,7 +814,7 @@ sap.ui.define([
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			//this.getView().byId('table').getBinding("items").refresh();
 			if (this.update) {
-				this._applyFilters();
+				this._applyFiltersAfterUpdate(this.currentEmp);
 			}
 			this.dailyDetail = false;
 			oDialog.close();
@@ -824,7 +824,7 @@ sap.ui.define([
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			//this.getView().byId('table').getBinding("items").refresh();
 			if (this.update) {
-				this._applyFilters();
+				this._applyFiltersAfterUpdate(this.currentEmp);
 			}
 			oDialog.close();
 		},
@@ -1091,7 +1091,6 @@ sap.ui.define([
 		},*/
 		onPressCancel: function() {
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
-
 		},
 		handleTeamLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
@@ -1166,6 +1165,20 @@ sap.ui.define([
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
+		_applyFiltersAfterUpdate: function(currentEmp) {
+			var sUrl = "/WeekSummarySet(WeekNumber='" + this.currentWeekNumber + "',WeekYear='" + this.currentYear + "',isByWeekly=" + this.twoWeek +
+				",EmployeeId='" + currentEmp + "',ApplicationName='TEAMLEAD')";
+			var oModel = this.byId("table").getModel();
+			oModel.read(sUrl, {
+				method: "GET",
+				success: function(data) {
+					//
+				},
+				error: function() {
+					//
+				}
+			});
+		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
@@ -1208,7 +1221,8 @@ sap.ui.define([
 				Days: [this.currentDate]
 			}];
 
-			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "Update", this.getResourceBundle(), this.employees, this.getView()
+			var oModel = fragment.AddUpdatetime_init(this, oDialog.getContent()[0], "Update", this.getResourceBundle(), this.employees, this
+				.getView()
 				.getModel(), oEvent.getSource().getBindingContext().getPath());
 
 			this.getView().setModel(oModel.AddTime, "AddTime");

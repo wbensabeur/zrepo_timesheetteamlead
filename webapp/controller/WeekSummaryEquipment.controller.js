@@ -239,8 +239,8 @@ sap.ui.define([
 			}
 
 			var EmpEntryEnable = oEvent.getSource().data('entryEnable');
-		//	var noEdited = oEvent.getSource().data('notEditable');
-		//	var editEnable = !noEdited && EmpEntryEnable;
+			//	var noEdited = oEvent.getSource().data('notEditable');
+			//	var editEnable = !noEdited && EmpEntryEnable;
 			this.editEnable = EmpEntryEnable;
 			this.getView().byId('WeekAddNewTimeButton').setEnabled(EmpEntryEnable);
 			this.getView().byId('WeekAddDeleteButton').setEnabled(EmpEntryEnable);
@@ -257,8 +257,8 @@ sap.ui.define([
 			var oEmpDetailModel = new JSONModel(EmpDetail);
 			this.getView().setModel(oEmpDetailModel, "EmpDetail");
 			oDialog.bindElement(oEvent.getSource().getBindingContext().getPath());
-			var empBinding = "/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "',AnalyticalUnit='" + 
-			                 encodeURIComponent(this.currentAU) +"',ApplicationName='" + this.userPref.application + "')";
+			var empBinding = "/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "',AnalyticalUnit='" +
+				encodeURIComponent(this.currentAU) + "',ApplicationName='" + this.userPref.application + "')";
 			oView.byId('employeeCompany').bindElement({
 				path: empBinding,
 				events: {
@@ -505,8 +505,8 @@ sap.ui.define([
 				new Filter("ApplicationVersion", FilterOperator.EQ, this.userPref.applicationVersion)
 			];*/
 
-			oDialog.bindElement("/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "',AnalyticalUnit='" + 
-			                 encodeURIComponent(this.currentAU) +"',ApplicationName='" + this.userPref.application + "')");
+			oDialog.bindElement("/EquipmentSet(EquipmentId='" + encodeURIComponent(this.currentEmp) + "',AnalyticalUnit='" +
+				encodeURIComponent(this.currentAU) + "',ApplicationName='" + this.userPref.application + "')");
 
 			//var urlStr = "/WorkDaySet(EquipmentId='" + this.currentEmp + "'," + "WorkDate=" + datetime.getODataDateKey(this.currentDate) + ")";
 
@@ -548,13 +548,13 @@ sap.ui.define([
 				});
 				oView.byId('MainAddButton').bindElement(urlStr);*/
 
-				var EmpEntryEnable = oEvent.getSource().data('entryEnable');
-		//	var noEdited = oEvent.getSource().data('notEditable');
-		//	var editEnable = !noEdited && EmpEntryEnable;
+			var EmpEntryEnable = oEvent.getSource().data('entryEnable');
+			//	var noEdited = oEvent.getSource().data('notEditable');
+			//	var editEnable = !noEdited && EmpEntryEnable;
 			this.editEnable = EmpEntryEnable;
 			this.getView().byId('AddNewTimeButton').setEnabled(EmpEntryEnable);
 			this.getView().byId('MainAddDeleteButton').setEnabled(EmpEntryEnable);
-			
+
 			var EmpDetail = {
 				enable: EmpEntryEnable
 			};
@@ -1118,6 +1118,20 @@ sap.ui.define([
 			}
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
+		_applyFiltersAfterUpdate: function(currentEmp, currentAU) {
+			var sUrl = "/WeekSummarySet(WeekNumber='" + this.currentWeekNumber + "',WeekYear='" + this.currentYear + "',isByWeekly=" + this.twoWeek +
+				",EquipmentId='" + currentEmp + "',AnalyticalUnit='" + currentAU + "',ApplicationName='TEAMLEAD')";
+			var oModel = this.byId("table").getModel();
+			oModel.read(sUrl, {
+				method: "GET",
+				success: function(data) {
+					//
+				},
+				error: function() {
+					//
+				}
+			});
+		},
 		/**
 		 *@memberOf com.vinci.timesheet.admin.controller.WeeklySummary
 		 */
@@ -1134,7 +1148,7 @@ sap.ui.define([
 					MessageBox.alert("Planning is only support for weekly view selection");
 				} else {*/
 			this.employees = [];
-			this.getView().getModel("employeeDaysSelected").setData(this.employees);	
+			this.getView().getModel("employeeDaysSelected").setData(this.employees);
 			this.getRouter().navTo("periodEqmtSelection", {
 				source: 'Summary'
 			}, true);
@@ -1275,17 +1289,17 @@ sap.ui.define([
 		//// **SelectProject Fragment Event** ///////
 		OnProjectSearch: function(oEvent) {
 			if (this.dailyDetail) {
-				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'),false);
+				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('ProjectSelectButton'), false);
 			} else {
-				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('WeekProjectSelectButton'),false);
+				fragment.SelectProject_OnProjectSearch(oEvent, this, this.getView().byId('WeekProjectSelectButton'), false);
 			}
 
 		},
 		OnProjectRefresh: function(oEvent) {
 			if (this.dailyDetail) {
-				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'),false);
+				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('ProjectSelectButton'), false);
 			} else {
-				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('WeekProjectSelectButton'),false);
+				fragment.SelectProject_OnProjectRefresh(oEvent, this, this.getView().byId('WeekProjectSelectButton'), false);
 			}
 
 		},
