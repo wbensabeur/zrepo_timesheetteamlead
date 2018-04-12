@@ -449,29 +449,36 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			// 	oEvent.getSource().setValue(setText);
 			// }
 			var setText = oEvent.getParameters().value;
-			if(this.i18nModel.sLocale === "fr_FR" ||  this.i18nModel.sLocale === "de_DE" ||
-			   this.i18nModel.sLocale.search("fr") !== -1 || this.i18nModel.sLocale.search("de") !== -1){
+			// Find the first seperator used "," / "."
+			if (setText.search(",") !== -1) {
+				var sep = ",";
+			} else if (setText.search(".") !== -1) {
+				sep = ".";
+			} else {
+				sep = ".";
+			}
+			// Logic to evaluate
+			if (sep === ",") {
 				var localSetText = setText.replace(/[^\d,]/g, '');
 				var arr = localSetText.split(",");
-				var ans = arr.splice(0,2).join(',') + arr.join('');
+				var ans = arr.splice(0, 2).join(',') + arr.join('');
 				var localarr = ans.split(",");
-				if(localarr.length > 1) {
-					var loaclFinalStr =  localarr[0].slice(0, 4)+","+localarr[1].slice(0, 2);
+				if (localarr.length > 1) {
+					var loaclFinalStr = localarr[0].slice(0, 4) + "," + localarr[1].slice(0, 2);
 				} else {
-					loaclFinalStr =  ans.slice(0, 4);
+					loaclFinalStr = ans.slice(0, 4);
 				}
 			} else {
 				localSetText = setText.replace(/[^\d.]/g, '');
 				arr = localSetText.split(".");
-				ans = arr.splice(0,2).join('.') + arr.join('');
+				ans = arr.splice(0, 2).join('.') + arr.join('');
 				localarr = ans.split(".");
-				if(localarr.length > 1) {
-					loaclFinalStr =  localarr[0].slice(0, 4)+"."+localarr[1].slice(0, 2);
+				if (localarr.length > 1) {
+					loaclFinalStr = localarr[0].slice(0, 4) + "." + localarr[1].slice(0, 2);
 				} else {
-					loaclFinalStr =  ans.slice(0, 4);
+					loaclFinalStr = ans.slice(0, 4);
 				}
 			}
-			
 			oEvent.getSource().setValue(loaclFinalStr);
 		},
 		//////**Add Project Time** ////
