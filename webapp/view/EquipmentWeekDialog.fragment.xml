@@ -19,7 +19,7 @@
 							<Label text="{EquipmentName}" design="Bold"/>
 						</VBox>
 						<VBox class="sapUiLargeMarginBegin">
-							<Label design="Bold" text="{EquipmentType}"/>
+							<Label id="equipmentType" design="Bold" text="{EquipmentType}"/>
 							<Label design="Bold" text="{EquipmentUnit}"/>
 							<!--<Label id="EmpWeekTotal" class="sapUiLargeMarginBegin EmpDayDetails" design="Bold" text="{WeekTotalInfo}"/>-->
 						</VBox>
