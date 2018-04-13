@@ -275,7 +275,7 @@ sap.ui.define([
 				}
 				if (this.allEmps !== null) {
 					for (var n = 0; n < this.allEmps.length; n++) {
-						var empId2 = this.allEmps[n].EmployeeId;
+						var empId2 = this.allEmps[n].EquipmentId;
 						var analyticalUnit2 = this.allEmps[n].AnalyticalUnit;
 						var empIndex = this._EmployeeIndexInArray(empId2,analyticalUnit2);
 						var index2 = this.employees[empIndex].Days.indexOf(sDay2);
