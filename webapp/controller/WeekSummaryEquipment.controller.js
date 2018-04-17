@@ -1119,7 +1119,7 @@ sap.ui.define([
 			oTable.getBinding("items").filter(Filters, "Application");
 		},
 		_applyFiltersAfterUpdate: function(currentEmp, currentAU) {
-			var sUrl = "/WeekSummarySet(WeekNumber='" + this.currentWeekNumber + "',WeekYear='" + this.currentYear + "',isByWeekly=" + this.twoWeek +
+			var sUrl = "/WeekSummaryEqpmtSet(WeekNumber='" + this.currentWeekNumber + "',WeekYear='" + this.currentYear + "',isByWeekly=" + this.twoWeek +
 				",EquipmentId='" + currentEmp + "',AnalyticalUnit='" + currentAU + "',ApplicationName='TEAMLEAD')";
 			var oModel = this.byId("table").getModel();
 			oModel.read(sUrl, {
