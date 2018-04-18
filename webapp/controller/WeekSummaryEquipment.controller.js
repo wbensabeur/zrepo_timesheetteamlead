@@ -1120,7 +1120,7 @@ sap.ui.define([
 		},
 		_applyFiltersAfterUpdate: function(currentEmp, currentAU) {
 			var sUrl = "/WeekSummaryEqpmtSet(WeekNumber='" + this.currentWeekNumber + "',WeekYear='" + this.currentYear + "',isByWeekly=" + this.twoWeek +
-				",EquipmentId='" + currentEmp + "',AnalyticalUnit='" + currentAU + "',ApplicationName='TEAMLEAD')";
+				",EquipmentId='" + encodeURIComponent(currentEmp) + "',AnalyticalUnit='" + currentAU + "',ApplicationName='TEAMLEAD')";
 			var oModel = this.byId("table").getModel();
 			oModel.read(sUrl, {
 				method: "GET",
