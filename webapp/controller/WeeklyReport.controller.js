@@ -24,6 +24,9 @@ sap.ui.define([
 			this.getRouter().getRoute("WeeklyReport").attachPatternMatched(this._onObjectMatched, this);
 		},
 		onPreviousEmployeePress: function(oEvent) {
+			// Setting current employee report to viewed
+			this.aRepViewed[this.index] = true;
+			
 			if (this.index === 0) {
 				this.index = this.noOfEmp - 1;
 			} else {
@@ -35,8 +38,16 @@ sap.ui.define([
 				this.getView().byId("imageSignature").setSrc("");
 				this.srcImg = undefined;
 			}
+			
+			if(this._getRepAndNavStatus()) { // Navigate back to home screen if all reports have been viewed and signed
+				this.getRouter().navTo("home", {}, true);
+				this.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
+			}
 		},
 		onNextEmployeePress: function(oEvent) {
+			// Setting current employee report to viewed
+			this.aRepViewed[this.index] = true;
+			
 			if (oEvent === true) {
 				this.getView().getModel().getProperty(this.employeeSelected.employees[this.index].getBindingContextPath()).NotEditable = true;
 			}
@@ -52,6 +63,11 @@ sap.ui.define([
 				this.getView().byId("SignatureFrame").setVisible(false);
 				this.getView().byId("imageSignature").setSrc("");
 				this.srcImg = undefined;
+			}
+			
+			if(this._getRepAndNavStatus()) { // Navigate back to home screen if all reports have been viewed and signed
+				this.getRouter().navTo("home", {}, true);
+				this.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 			}
 		},
 		onPastPeriodNavPress: function(oEvent) {
@@ -114,6 +130,14 @@ sap.ui.define([
 				var caldenderdata = datetime.getCalenderData(this.employeeSelected.startDate, 1, this.getResourceBundle());
 				var oCalendarModel = new JSONModel(caldenderdata);
 				this.setModel(oCalendarModel, "calendar");
+				
+				// Initialising number of reports to be signed and viewed
+				this.noRepSigned = 0;
+				this.aRepViewed = [];
+				this._setRepAndNavStatus(this.employeeSelected.employees);
+				// Setting current employee report to viewed
+				this.aRepViewed[this.index] = true;
+				
 			} else {
 				this.getRouter().navTo("ReportEmployeeSelection", {
 					source: 'WeeklyReport'
@@ -133,6 +157,29 @@ sap.ui.define([
 				}, true);
 			}
 		},
+		
+		_setRepAndNavStatus: function(aEmployees) {
+			for(var i = 0; i < aEmployees.length; i++) {
+				var bNotEditable = this.getView().getModel().getProperty(this.employeeSelected.employees[i].getBindingContextPath()).NotEditable;
+				if(!bNotEditable) {
+					this.noRepSigned++;
+				}
+				this.aRepViewed[i] = false;
+			}
+		},
+		
+		_getRepAndNavStatus: function() {
+			var bAllRepViewed = true;
+			var bAllRepSigned = (this.noRepSigned === 0) ? true : false;
+			for(var i = 0; i < this.aRepViewed.length; i++) {
+				if(this.aRepViewed[i] === false) {
+					bAllRepViewed = false;
+				}
+			}
+			
+			return (bAllRepViewed && bAllRepSigned);
+		},
+		
 		_applyEmployeeBinding: function(employee) {
 			/// SP6-21 check for noEdit Flag
 			var oView = this.getView();
@@ -471,6 +518,10 @@ sap.ui.define([
 					that.getView().setBusy(false);
 					// var localNoOfEmp = that.noOfEmp - 1;
 					// that.noOfEmp = localNoOfEmp;
+					
+					//Decrementing no of reports to be signed
+					that.noRepSigned -= 1;
+					
 					if (that.userPref.signatureRequired) {
 
 						/*var localDate = that.employeeSelected.startDate;
@@ -491,13 +542,17 @@ sap.ui.define([
 						var srcImg = that.srcImg;
 						that.postSignAttachment(srcImg, sFileName);*/
 
-						if (that.index === that.noOfEmp - 1) { //Home Page
+						//if (that.index === that.noOfEmp - 1) { //Home Page
 						// if (that.noOfEmp === 0 || that.index === localNoOfEmp) { //Home Page
+						
+						// Checking if all reports have been signed and viewed
+						if(that._getRepAndNavStatus()) {
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
 							that.onNextEmployeePress(true);
 							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+							that.dialogPressSignature.close();
 						}
 
 						/*var elements = document.getElementsByClassName("WeeklyReportDetail");
@@ -534,13 +589,17 @@ sap.ui.define([
 							background: '#14235e'
 						});*/
 					} else {
-						if (that.index === that.noOfEmp - 1) { //Home Page
+						//if (that.index === that.noOfEmp - 1) { //Home Page
 						// if (that.noOfEmp === 0 || that.index === localNoOfEmp) { //Home Page
+						
+						// Checking if all reports have been signed and viewed
+						if(that._getRepAndNavStatus()) {
 							that.getRouter().navTo("home", {}, true);
 							that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 						} else { // Next Employee Weekly Submit 
 							that.onNextEmployeePress(true);
 							MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+							that.dialogPressSignature.close();
 						}
 					}
 
@@ -634,12 +693,15 @@ sap.ui.define([
 				}
 			});
 
-			if (that.index === that.noOfEmp - 1) { //Home Page
+			//if (that.index === that.noOfEmp - 1) { //Home Page
+			// Checking if all reports have been signed and viewed
+			if(that._getRepAndNavStatus()) {
 				that.getRouter().navTo("home", {}, true);
 				that.getView().getModel("userPreference").setProperty("/successWeekSubmit", true);
 			} else { // Next Employee Weekly Submit 
 				that.onNextEmployeePress(true);
 				MessageToast.show(that.getResourceBundle().getText("successWeeklyReportPostMsg"));
+				that.dialogPressSignature.close();
 			}
 
 		},
