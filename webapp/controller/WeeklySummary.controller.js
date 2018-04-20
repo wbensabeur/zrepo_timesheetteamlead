@@ -814,6 +814,7 @@ sap.ui.define([
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			//this.getView().byId('table').getBinding("items").refresh();
 			if (this.update) {
+				this._applyFilters();
 				this._applyFiltersAfterUpdate(this.currentEmp);
 			}
 			this.dailyDetail = false;
@@ -824,6 +825,7 @@ sap.ui.define([
 			fragment.AddUpdatetime_destroy(this.getView().byId('idIconTabBarMulti'));
 			//this.getView().byId('table').getBinding("items").refresh();
 			if (this.update) {
+				this._applyFilters();
 				this._applyFiltersAfterUpdate(this.currentEmp);
 			}
 			oDialog.close();
