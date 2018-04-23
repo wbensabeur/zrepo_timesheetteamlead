@@ -148,7 +148,8 @@ sap.ui.define([
 		onPressCancel: function() {
 			sap.ui.getCore().byId("shell").setHeaderHiding(false);
 			if (this.employeeSelected.sourceView === 'Summary') {
-				this.getRouter().navTo("Summary", {
+				//this.getRouter().navTo("Summary", {
+				this.getRouter().navTo("home", {
 					source: 'WeeklyReport'
 				}, true);
 			} else {
@@ -160,7 +161,8 @@ sap.ui.define([
 		
 		_setRepAndNavStatus: function(aEmployees) {
 			for(var i = 0; i < aEmployees.length; i++) {
-				var bNotEditable = this.getView().getModel().getProperty(this.employeeSelected.employees[i].getBindingContextPath()).NotEditable;
+				var sPath = aEmployees[i].getBindingContext().getPath();
+				var bNotEditable = this.getView().getModel().getProperty(sPath).NotEditable;
 				if(!bNotEditable) {
 					this.noRepSigned++;
 				}

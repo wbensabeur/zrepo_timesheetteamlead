@@ -14,7 +14,7 @@
       "test.html"
     ],
     "buildRequired": true,
-    "lastBuildDateTime": "Mon, 12 Mar 2018 09:03:09 GMT"
+    "lastBuildDateTime": "Fri, 20 Apr 2018 09:38:51 GMT"
   },
   "dataBinding": {
     "/webapp/view/App.view.xml": {
@@ -423,7 +423,7 @@
     "lastVersionWeTriedToDeploy": "5.0.5"
   },
   "deploy": {
-    "destination": "vesidgwci_pva",
+    "destination": "vesidgtci_pva",
     "name": "Z_HR_TS_TL"
   }
 }
