@@ -260,8 +260,17 @@ sap.ui.define([
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
 			var oFormatOptions = {
 				minIntegerDigits: 1,
-				maxIntegerDigits: 3,
+				maxIntegerDigits: 4,
 				minFractionDigits: 0,
+				maxFractionDigits: 2
+			};
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			var valueInNum = Number(value); //.toString();
+			return oFloatFormat.format(valueInNum);
+		},
+		totalFormatter: function(value) {
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {
 				maxFractionDigits: 2
 			};
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);

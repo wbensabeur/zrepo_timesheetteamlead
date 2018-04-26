@@ -310,7 +310,7 @@
 										<Text text="{itemData>unit}"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'itemData>total',type:'Float',formatter:'.formatter.numberFormatter'}" design="Bold" />
+										<Label text="{path:'itemData>total',type:'Float',formatter:'.formatter.totalFormatter'}" design="Bold" />
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
 										<Text text="{path:'itemData>mon',type:'Float',formatter:'.formatter.numberFormatter'}"/>
