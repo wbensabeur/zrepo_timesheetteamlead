@@ -422,7 +422,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SelectProject_OnDailyHrTypeChange: function(oEvent) {
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
 			this.warning = true;
-			oEvent.getSource().setPlaceholder("");
+			//oEvent.getSource().setPlaceholder("");
 			oEvent.getSource().getParent().getParent().getItems()[4].getItems()[0].setSelectedKey(selectedKey);
 		},
 		SelectProject_OnDailyHrTypeChange2: function(oEvent) {
@@ -1104,7 +1104,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			controler.getView().byId('AbsCat').onAfterRendering = this._comboKeyboardDisable;
 			this.oDataModel = odataModel;
 			this.employees = employees;
-
+			
 			if (type === 'New') {
 
 				this.warning = false;
