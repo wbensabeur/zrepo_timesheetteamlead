@@ -635,12 +635,34 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.warning = true;
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var newValue = oEvent.getParameter("value");
-
-			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			
+			var aValue = newValue.toString().split(".");
+			var sInt = aValue[0];
+			var sDecimal = aValue[1];
+			if(parseInt(sInt) > 24) {
+				var currentValue = sourcePanel.getCustomData()[0].getValue();
+				sInt = currentValue.toString().split(".")[0];
+			}
+			
+			if (sDecimal) {
+			    if (sInt === "") {
+					sInt = "0";
+			    }
+			    newValue = sInt + "." + sDecimal.slice(0, 2);
+			}else {
+				newValue = sInt;
+			}
+			newValue = parseFloat(newValue);
+			
+			// Changing SAP team implementation
+			// totalhrs in Addtime model is the same as the value of the step input
+			// assigning new value to totalhrs directly
+			/*var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
 			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);*/
+			this.AddUpdatetimeModel.setProperty('/totalhrs', newValue);
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
 
