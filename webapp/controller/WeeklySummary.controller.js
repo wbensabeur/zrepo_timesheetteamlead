@@ -988,7 +988,6 @@ sap.ui.define([
 				dailog = this.getView().byId("EmpWeekCheckDialog");
 				headerContextPath = this.getView().byId('EmpWeekTotal').getBindingContext().getPath();
 				oTable = this.getView().byId('tableWeekItems');
-
 			}
 			fragment.AddUpdatetime_updateEntries(this.getView(), function() {
 				fragment.AddUpdatetime_destroy(that.getView().byId('idIconTabBarMulti'));
@@ -1308,7 +1307,7 @@ sap.ui.define([
 
 		},
 		onPressProjectSelect: function(oEvent) {
-			fragment.SelectProject_onPressProjectSelect();
+			fragment.SelectProject_onPressProjectSelect(this);
 		},
 		onProjectDescriptionSuggest: function(oEvent) {
 			fragment.SearchProject_onProjectDescriptionSuggest(oEvent);
@@ -1439,11 +1438,17 @@ sap.ui.define([
 		onAllowanceIndicator: function(oEvent) {
 			fragment.AddUpdatetime_onAllowanceIndicator(oEvent);
 		},
+		onPressOvernightInd: function(oEvent) {
+			fragment.AddUpdatetime_onOvernightIndicator(oEvent);
+		},
 		onAbsenceCatChange: function(oEvent) {
 			fragment.AddUpdateTime_onAbsenceCatChange(oEvent, this.getView().getModel('AddTime'), this.getView());
 		},
 		handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);
+		},
+		handleAccAllowanceZoneTypeLoadItems: function(oEvent) {
+			fragment.AddUpdatetime_handleAccAllowanceZoneTypeLoadItems(oEvent);
 		},
 		handleAbsTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAbsTypeLoadItems(oEvent);

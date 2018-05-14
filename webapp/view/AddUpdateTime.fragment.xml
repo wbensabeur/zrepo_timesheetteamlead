@@ -82,6 +82,45 @@
 				</VBox>
 				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 			</IconTabFilter>
+			<IconTabFilter key="overnight" icon="sap-icon://map-3" text="{i18n>accAllowance}" visible="{AddTime>/visibleOvernight}"
+				design="Horizontal">
+				<VBox width="100%" height="100%" id="addAccAllowance">
+					<VBox>
+						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
+							<Label text="{i18n>DailyAllowances}"/>
+							<HBox alignItems="Center" justifyContent="Start">
+								<ComboBox id="AccAllowanceType" placeholder="{i18n>selectZone}" change="onPressOvernightInd"
+									selectedKey="{ZoneType}"
+									items="{path:'/ValueHelpSet', suspended: true, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"
+									loadItems="handleAccAllowanceZoneTypeLoadItems" class="SelectCombo" showSecondaryValues="false">
+									<core:ListItem key="{FieldDescription}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>
+								</ComboBox>
+								<!--<ToggleButton id="SiteIndicator" text="{i18n>jobsite}" class="AccAllwanceButton sapUiLargeMarginBegin"
+									width="10rem" press="onPressOvernightInd" pressed="{MealIndicator}" visible="true">
+								</ToggleButton>
+								<ToggleButton id="SiteChangeIndicator" text="{i18n>siteChange}" class="AccAllwanceButton" width="10rem"
+									press="onPressOvernightInd" pressed="{JourneyIndicator}" visible="true"/>
+								<ToggleButton id="WeekendSiteIndicator" width="10rem" text="{i18n>wkndjobsite}" class="AccAllwanceButton"
+									press="onPressOvernightInd" pressed="{TransportIndicator}" visible="true"/>-->
+								<SegmentedButton id="overnightInd" class="sapUiLargeMarginBegin" width="auto" visible="true">
+									<items>
+										<SegmentedButtonItem id="SiteIndicator" text="{i18n>jobsite}" key="0" width="10rem" press="onPressOvernightInd"/>
+										<SegmentedButtonItem id="SiteChangeIndicator" text="{i18n>siteChange}" key="1" width="10rem" press="onPressOvernightInd"/>
+										<SegmentedButtonItem id="WeekendSiteIndicator" text="{i18n>wkndjobsite}" key="2" width="10rem" press="onPressOvernightInd"/>
+									</items>
+								</SegmentedButton>
+							</HBox>
+						</VBox>
+						<VBox id="AccAllowanceProject" alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+							<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProjectWithDelete' type='XML'/>
+						</VBox>
+					</VBox>
+					<VBox visible="false">
+						<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
+					</VBox>
+				</VBox>
+				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
+			</IconTabFilter>
 			<IconTabFilter key="bonus" icon="sap-icon://travel-expense-report" text="{i18n>bonus}" visible="{AddTime>/visibleBonus}" design="Horizontal">
 				<VBox id="addBonusTab" width="100%" height="100%">
 					<VBox>

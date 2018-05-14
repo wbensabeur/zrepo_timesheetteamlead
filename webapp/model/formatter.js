@@ -452,7 +452,7 @@ sap.ui.define([
 								if (data.results[k].PersoValue === 'X')
 									userPreferenceModel.setProperty('/defaultOvernight', true);
 								else
-									userPreferenceModel.setProperty('/defaultOvernight', false);
+									userPreferenceModel.setProperty('/defaultOvernight', true);
 								break;
 							case 'BONUS':
 								if (data.results[k].PersoValue === 'X')

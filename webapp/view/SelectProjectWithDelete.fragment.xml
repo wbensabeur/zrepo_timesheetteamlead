@@ -9,6 +9,6 @@
 		<Button text="{i18n>projectSelect}" type="Emphasized" press="OnProjectSearch" visible="{parts:[{path:'AddTime>/newTime'},{path:'ProjectId'}],formatter:'.formatter.booleanNotPRJLForNew'}" class="sapUiLargeMarginEnd"/>
 		<Button text="{i18n>projectRefrsh}" visible="{parts:[{path:'AddTime>/newTime'},{path:'ProjectId'}],formatter:'.formatter.booleanNotPRJL'}" class="sapUiLargeMarginEnd" press="OnProjectRefresh" icon="sap-icon://synchronize"/>
 		<Button text="{i18n>projectDelete}" visible="{parts:[{path:'AddTime>/newTime'},{path:'ProjectId'}],formatter:'.formatter.booleanNotPRJL'}" press="OnProjectDelete" icon="sap-icon://delete" class="sapUiSmallMarginBegin" />
-		<Text width="25rem" text="{i18n>IPDPrjSelectionMsg}" class="sapUiSmallMarginTop sapUiLargeMarginEnd BoldBuleLabel"/>
+		<Text width="25rem" visible="{AddTime>/visibleProjMandatoryTxt}" text="{i18n>IPDPrjSelectionMsg}" class="sapUiSmallMarginTop sapUiLargeMarginEnd BoldBuleLabel"/>
 	</VBox>
 </core:FragmentDefinition>

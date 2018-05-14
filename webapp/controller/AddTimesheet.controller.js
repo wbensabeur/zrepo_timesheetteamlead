@@ -335,7 +335,7 @@ sap.ui.define([
 
 		},
 		onPressProjectSelect: function(oEvent) {
-			fragment.SelectProject_onPressProjectSelect();
+			fragment.SelectProject_onPressProjectSelect(this);
 		},
 		onProjectDescriptionSuggest: function(oEvent) {
 			fragment.SearchProject_onProjectDescriptionSuggest(oEvent);
@@ -466,8 +466,14 @@ sap.ui.define([
 		onAllowanceIndicator: function(oEvent) {
 			fragment.AddUpdatetime_onAllowanceIndicator(oEvent);
 		},
+		onPressOvernightInd: function(oEvent) {
+			fragment.AddUpdatetime_onOvernightIndicator(oEvent);
+		},
 		handleAllowanceZoneTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAllowanceZoneTypeLoadItems(oEvent);
+		},
+		handleAccAllowanceZoneTypeLoadItems: function(oEvent) {
+			fragment.AddUpdatetime_handleAccAllowanceZoneTypeLoadItems(oEvent);
 		},
 		handleAbsTypeLoadItems: function(oEvent) {
 			fragment.AddUpdatetime_handleAbsTypeLoadItems(oEvent);

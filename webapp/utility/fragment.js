@@ -366,7 +366,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			projectfragment.getItems()[4].getBinding("items").filter(Filters, "Application");
 
 		},
-		SelectProject_afterSelection: function(projectContext) {
+		SelectProject_afterSelection: function(projectContext, sTabKey) {
 			this.selectProjectcontext[0].bindElement(projectContext); // Label
 			this.selectProjectcontext[0].setVisible(true); // Label
 			this.selectProjectcontext[1].setVisible(false); // ownIntialButton
@@ -374,6 +374,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			if (this.selectProjectcontext.length === 4) {
 				this.selectProjectcontext[3].setVisible(true); // ownDeleteButton
+			}
+			
+			if(this.selectProjectcontext.length === 5 && sTabKey === "overnight") {
+				this.selectProjectcontext[0].setVisible(true); // Label
+				this.selectProjectcontext[1].setVisible(false); // ownIntialButton
+				this.selectProjectcontext[2].setVisible(true); // ownRefreshButton
+				this.selectProjectcontext[3].setVisible(true); // ownDeleteButton
+				this.selectProjectcontext[4].setVisible(false); // ownText
 			}
 		},
 		SelectProject_OnProjectSearch: function(oEvent, controler, selectButton, allProject) {
@@ -406,15 +414,19 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var projectfragment = this.SearchProject_getProjectSearchFragment();
 			this.SearchProject_destroy(projectfragment);
 		},
-		SelectProject_onPressProjectSelect: function() {
+		SelectProject_onPressProjectSelect: function(oController) {
 			var projectfragment = this.SearchProject_getProjectSearchFragment();
-
+			var oIcnTabBar = oController.byId('idIconTabBarMulti');
+			var sKey = "";
+			if(oIcnTabBar) {
+				sKey = oIcnTabBar.getSelectedKey();
+			}
 			var projectContext = this.SearchProject_getProjectContext(projectfragment); //oEvent.getSource().getCustomData()[0].getValue();
 			if (projectContext === null || projectContext === "") {
 				MessageBox.alert(this.i18nModel.getText("noprojectselectmessage"));
 			} else {
 
-				this.SelectProject_afterSelection(projectContext);
+				this.SelectProject_afterSelection(projectContext, sKey);
 				this.SearchProject_destroy(projectfragment);
 
 			}
@@ -1064,12 +1076,19 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var odata = null;
 			var userPrefModel = controler.getModel('userPreference');
 			this.userPrefModel = userPrefModel;
+			
+			var oIcnTabBar = controler.byId('idIconTabBarMulti');
+			var sKey = "";
+			if(oIcnTabBar) {
+				sKey = oIcnTabBar.getSelectedKey();
+			}
 
 			if (this.equipment) {
 				odata = {
 					totalhrs: 0,
 					visibleHrs: false, //userPrefModel.getProperty('/defaultHours'),
 					visibleDailyAllow: false,
+					visibleOvernight: false,
 					visibleBonus: false,
 					visibleKM: false,
 					visibleAbsence: false,
@@ -1080,6 +1099,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleEquipment: true, //userPrefModel.getProperty('/defaultEquipment'),
 					visibleSummary: false,
 					visibleProjectOptional: false,
+					visibleProjMandatoryTxt: false,
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1089,6 +1109,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					totalhrs: 0,
 					visibleHrs: true, //userPrefModel.getProperty('/defaultHours'),
 					visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
+					visibleOvernight: userPrefModel.getProperty('/defaultOvernight'),
 					visibleBonus: userPrefModel.getProperty('/defaultBonus'),
 					visibleKM: userPrefModel.getProperty('/defaultKM'),
 					visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
@@ -1099,6 +1120,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
 					visibleSummary: false,
 					visibleProjectOptional: false,
+					visibleProjMandatoryTxt: ((sKey === "overnight")? false : true),
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1124,6 +1146,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.addItem(oFragment);
 			controler.getView().byId('AllowanceZoneType').onAfterRendering = this._comboKeyboardDisable;
 			controler.getView().byId('AbsCat').onAfterRendering = this._comboKeyboardDisable;
+			controler.getView().byId('AccAllowanceType').onAfterRendering = this._comboKeyboardDisable;
 			this.oDataModel = odataModel;
 			this.employees = employees;
 			
@@ -1146,6 +1169,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				odata.visibleHrs = false;
 				odata.visibleBonus = false;
 				odata.visibleDailyAllow = false;
+				odata.visibleOvernight = false;
 				odata.visibleKM = false;
 				odata.visibleAbsence = false;
 				odata.visibleEquipment = false;
@@ -1178,10 +1202,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 						// allDayCombo.setPlaceholder("");
 						//selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
-						selecthrsCombo.getParent().getItems()[4].getItems()[0].setPlaceholder("");
+						//selecthrsCombo.getParent().getItems()[4].getItems()[0].setPlaceholder("");
 						break;
 					case 'IPD':
 						odata.visibleDailyAllow = true;
+						odata.visibleProjMandatoryTxt = true;
 						controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
 						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
 						var projectView = controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1];
@@ -1221,6 +1246,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								//sap.m.MessageToast.show("Failed");
 							}
 						});
+						break;
+					case 'OVERNIGHT':
+						odata.visibleOvernight = true;
+						odata.visibleProjMandatoryTxt = false;
+						controler.getView().byId('AccAllowanceType').getBinding("items").resume();
+						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
+						var projectView = controler.getView().byId('addAccAllowance').getItems()[0].getItems()[1].getItems()[1];
+						if (projectId !== null && projectId !== '' && projectId !== undefined) {
+							var projectContext = "/ProjectSet(ProjectId='" + projectId + "',ApplicationName='TEAMLEAD')";
+							projectView.bindElement(projectContext);
+						} else if (projectId === '') {
+							projectView.getItems()[0].setText("");
+						}
+						controler.getView().byId('AccAllowanceType').setPlaceholder("");
 						break;
 					case 'KM':
 						odata.visibleKM = true;
@@ -1333,6 +1372,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var key = oEvent.getParameter('key');
 			var source = oEvent.getSource();
 			var that = this;
+			
+			// For SelectProjectWithDelete fragment, label for mandatory project is displayed for IPD 
+			// and not for overnight mask entry
+			var oAddTimeModel = controler.getModel("AddTime");
+			if(oAddTimeModel) {
+				oAddTimeModel.setProperty("/visibleProjMandatoryTxt", true);
+			}
+			
 			if (this.warning) {
 
 				MessageBox.confirm(this.i18nModel.getText("maskEntryWarningMsg"), {
@@ -1378,11 +1425,24 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					oView.byId("AllowanceTravelIndicator").setVisible(true);
 				}
 
-			}
-			/*else {
-				this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', false);
-			}*/
-			else if (key === 'absence') {
+			} else if(key === 'overnight') {
+				// Combo box
+				oView.byId('AccAllowanceType').setSelectedKey(null);
+				// Segmented buttons
+				oView.byId('overnightInd').setSelectedButton(null);
+				
+				// Project VBox
+				oView.byId('AccAllowanceProject').getItems()[1].getItems()[0].unbindElement();
+				oView.byId('AccAllowanceProject').getItems()[1].getItems()[0].setVisible(false); // Label
+				oView.byId('AccAllowanceProject').getItems()[1].getItems()[1].setVisible(true); // ownIntialButton
+				oView.byId('AccAllowanceProject').getItems()[1].getItems()[2].setVisible(false);
+				oView.byId('AccAllowanceProject').getItems()[1].getItems()[3].setVisible(false);
+				// Setting label visibility to false
+				if(oAddTimeModel) {
+					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
+				}
+				
+			} else if (key === 'absence') {
 				if (this.oEmpsModel.getData().length === 1) {
 					oView.byId('AbsEmployee').setEnabled(false);
 				} else {
@@ -1432,6 +1492,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
 			this.warning = true;
 		},
+		
+		AddUpdatetime_onOvernightIndicator : function(oEvent) {
+			this.warning = true;
+		},
+		
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
 			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0], addNew);
@@ -1473,6 +1538,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			return parent.getContent()[0];
 		},
 		AddUpdatetime_handleAllowanceZoneTypeLoadItems: function(oEvent) {
+			oEvent.getSource().getBinding("items").resume();
+		},
+		AddUpdatetime_handleAccAllowanceZoneTypeLoadItems: function(oEvent) {
 			oEvent.getSource().getBinding("items").resume();
 		},
 		AddUpdatetime_onAllowanceIndicatorData: function(oEvent, that) {
@@ -1602,6 +1670,56 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					"JourneyIndicator": transport,
 					"TransportIndicator": travel
 
+				};
+			} else if(selectedTab === 'overnight') {
+				// Get Item Data from view for Accommodation Allowances
+				var oSegmentedButton = oView.byId('overnightInd');
+				var sKey = oSegmentedButton.getSelectedKey();
+				var jobsite = false;
+				var siteChanges = false;
+				var wkndJobsite = false;
+				
+				switch(sKey) {
+					case("0"):
+						jobsite = true;
+						break;
+					case("1"):
+						siteChanges = true;
+						break;
+					case("2"):
+						wkndJobsite = true;
+						break;
+				}
+				
+				var zonetype = oView.byId('AccAllowanceType').getSelectedKey();
+				var zoneName = oView.byId('AccAllowanceType').getValue();
+				if (zoneName === undefined || zoneName === "" || zoneName === null) {
+					//MessageBox.alert("Zone type is not selected");
+					MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
+					ctype.setBusy(false);
+					rButton.setEnabled(true);
+					return;
+				}
+				
+				var allwProjectID = null;
+				try {
+					var allwProject = oView.byId('AccAllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
+					allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
+				} catch (err) {
+					allwProjectID = "";
+				}
+				if (allwProjectID === undefined || allwProjectID === null) {
+					allwProjectID = "";
+				}
+				
+				workDayItem = {
+					"ProjectID": allwProjectID,
+					"EntryType": "OVERNIGHT",
+					"ZoneType": zonetype,
+					"ZoneName": zoneName,
+					"MealIndicator": jobsite,
+					"JourneyIndicator": siteChanges,
+					"TransportIndicator": wkndJobsite
 				};
 			} else if (selectedTab === 'bonus') {
 				var bnstab = oView.byId('addBonusTab').getItems()[0].getItems()[1];
@@ -2222,6 +2340,61 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					};
 					workDayItems.push(workDayAllowanceItem);
 					//	}
+				}else if(selectedTab === "overnight") {
+					// Get Item Data from view for Accommodation Allowances
+					var oSegmentedButton = oView.byId('overnightInd');
+					var sKey = oSegmentedButton.getSelectedKey();
+					var jobsite = false;
+					var siteChanges = false;
+					var wkndJobsite = false;
+					
+					switch(sKey) {
+						case("0"):
+							jobsite = true;
+							break;
+						case("1"):
+							siteChanges = true;
+							break;
+						case("2"):
+							wkndJobsite = true;
+							break;
+					}
+					
+					var zonetype = oView.byId('AccAllowanceType').getSelectedKey();
+					var zoneName = oView.byId('AccAllowanceType').getValue();
+					if (zoneName === undefined || zoneName === "" || zoneName === null) {
+						MessageBox.alert(this.i18nModel.getText("zoneTypeIsNotSelected"));
+						ctype.setBusy(false);
+						rButton.setEnabled(true);
+						return;
+					}
+					var allwProjectID = null;
+					try {
+						var allwProject = oView.byId('AccAllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
+						allwProjectID = oView.getModel().getProperty(allwProject).ProjectId;
+					} catch (err) {
+						allwProjectID = "";
+					}
+
+					var workDayAllowanceItem = {
+						"ProjectID": allwProjectID,
+						"EntryType": "OVERNIGHT",
+						"EntryTypeCatId": null,
+						"Hours": "1",
+						"StartTime": "000000",
+						"EndTime": "000000",
+						"FullDay": false,
+						"AllowancesName": "",
+						"ZoneType": zonetype,
+						"ZoneName": zoneName,
+						"MealIndicator": jobsite,
+						"JourneyIndicator": siteChanges,
+						"TransportIndicator": wkndJobsite,
+						"StartDate": null,
+						"EndDate": null,
+						"Comment": null
+					};
+					workDayItems.push(workDayAllowanceItem);
 				}
 				////
 
