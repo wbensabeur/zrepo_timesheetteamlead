@@ -472,6 +472,9 @@ sap.ui.define([
 					return k;
 			}
 			return -1;
+		},
+		checkNumber: function(oEvent) {
+			formatter.checkNumber(oEvent);                            
 		}
 
 	});

@@ -226,7 +226,7 @@
 										<Text text="{EndTime}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
-										<Text text="{KMNumber}" class="sapUiTinyMarginTop"/>
+										<Text text="{parts:['KMNumber'], formatter:'.formatter.numberFormatter'}" class="sapUiTinyMarginTop"/>
 									</VBox>
 									<VBox alignItems="Center" justifyContent="Center" height="2.5rem">
 										<Text text="{parts:['EntryType','HourUnit'],formatter:'.formatter.getUnit'}" class="sapUiTinyMarginTop"/>

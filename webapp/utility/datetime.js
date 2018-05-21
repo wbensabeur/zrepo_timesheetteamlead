@@ -228,8 +228,14 @@ sap.ui.define([], function() {
     	 return Hrs + parseFloat(mins);
 		} ,
 		timeToMilliSec: function(time) {  // format = 13:00 PM
-			var arr = time.split(':');
-			var arr2 = arr[1].split(' ');
+			var arr = [];
+			var arr2 = [];
+			arr = time.split(':');
+			if(arr.length > 1) {
+				arr2 = arr[1].split(' ');
+			}else {
+				arr2[0] = "";
+			}
 			
 			var hour = Number(arr[0]);
 			var min = Number (arr2[0]);

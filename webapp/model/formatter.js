@@ -268,6 +268,48 @@ sap.ui.define([
 			var valueInNum = Number(value); //.toString();
 			return oFloatFormat.format(valueInNum);
 		},
+		
+		checkNumber: function(oEvent) {
+			var setText = oEvent.getSource().getValue();
+			// Find the first seperator used "," / "."
+			var sep = "";
+			if (setText.search(",") !== -1) {
+				sep = ",";
+			} else if (setText.search(".") !== -1) {
+				sep = ".";
+			} else {
+				sep = ".";
+			}
+			// Logic to evaluate
+			var localFinalStr = "";
+			var localSetText = "";
+			var arr = [];
+			var ans = "";
+			var localarr = [];
+			
+			if (sep === ",") {
+				localSetText = setText.replace(/[^\d,]/g, '');
+				arr = localSetText.split(",");
+				ans = arr.splice(0, 2).join(',') + arr.join('');
+				localarr = ans.split(",");
+				if (localarr.length > 1) {
+					localFinalStr = localarr[0].slice(0, 4) + "," + localarr[1].slice(0, 2);
+				} else {
+					localFinalStr = ans.slice(0, 4);
+				}
+			} else {
+				localSetText = setText.replace(/[^\d.]/g, '');
+				arr = localSetText.split(".");
+				ans = arr.splice(0, 2).join('.') + arr.join('');
+				localarr = ans.split(".");
+				if (localarr.length > 1) {
+					localFinalStr = localarr[0].slice(0, 4) + "." + localarr[1].slice(0, 2);
+				} else {
+					localFinalStr = ans.slice(0, 4);
+				}
+			}
+			oEvent.getSource().setValue(localFinalStr);
+		},
 		totalFormatter: function(value) {
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
 			var oFormatOptions = {
@@ -452,7 +494,7 @@ sap.ui.define([
 								if (data.results[k].PersoValue === 'X')
 									userPreferenceModel.setProperty('/defaultOvernight', true);
 								else
-									userPreferenceModel.setProperty('/defaultOvernight', true);
+									userPreferenceModel.setProperty('/defaultOvernight', false);
 								break;
 							case 'BONUS':
 								if (data.results[k].PersoValue === 'X')

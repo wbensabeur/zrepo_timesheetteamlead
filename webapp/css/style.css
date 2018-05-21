@@ -903,3 +903,11 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .vinciFooterBar.sapMTB {
     height: auto !important;
 }
+
+.fontTravelDetails {
+	font-size: 1.125rem !important;
+    font-family: Arial,Helvetica,sans-serif !important;
+    line-height: normal !important;
+    font-weight: normal !important;
+    color: #333333 !important;
+}

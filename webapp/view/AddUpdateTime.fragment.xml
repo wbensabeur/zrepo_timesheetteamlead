@@ -189,13 +189,18 @@
 			</IconTabFilter>
 			<IconTabFilter key="KM" icon="sap-icon://map" text="{i18n>km}" visible="{AddTime>/visibleKM}" design="Horizontal">
 				<VBox id="addKM" width="100%" height="100%">
-					<VBox>
+					<!--<VBox>
 						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML' class="sapUiMediumMarginTop"/>
 						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddKM' type='XML'/>
 						<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddKM' type='XML'/>
+					</VBox>-->
+					<VBox>
+					<!--	<core:Fragment fragmentName="com.vinci.timesheet.admin.view.AddProjectKM" type="XML"/>-->
 					</VBox>
+					<FlexBox alignContent="End" justifyContent="End">
+						<Button id="addKMButton" class="AddButton" icon="sap-icon://add" type="Transparent" press="onaddNewKmPress" visible="false"/>
+					</FlexBox>
 					<VBox visible="false">
-						<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 					</VBox>
 				</VBox>
 			</IconTabFilter>

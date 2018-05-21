@@ -105,7 +105,7 @@ sap.ui.define([
 				this.getView().setModel(oModel.Emps, "Emps");
 
 			} else {
-				this.getRouter().navTo("Summary", {
+				this.getRouter().navTo("home", {
 					source: 'AddTime'
 				}, true);
 			}
@@ -498,7 +498,10 @@ sap.ui.define([
 		},
 		handleKMTypeLoadItems: function(oEvent) {
 				fragment.AddKM_handleKMTypeLoadItems(oEvent);
-			}
+		},
+		checkNumber: function(oEvent) {
+			formatter.checkNumber(oEvent);                            
+		}
 			//// **AddKM Fragment Event End** ///////
 
 		/*	_getOwnContentObject: function(source) {

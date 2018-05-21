@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="com.vinci.timesheet.admin.utility">
+	<VBox>
+		<FlexBox class="AddHoursDivider" visible="{AddTime>/newTime}"/>
+		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}" class="sapUiNoMarginBottom">
+			<Button class="DeleteButton" icon="sap-icon://delete" type="Transparent" press="OnKmDelete"/>
+		</FlexBox>
+		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginTopBottom" width="100%">
+			<Text text="{i18n>travelDetails}" class="fontTravelDetails sapUiSmallMarginBegin sapUiNoMarginTop sapUiSmallMarginBottom"/>
+			<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginBegin sapUiNoMarginTop sapUiSmallMarginBottom">
+				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProjectWithDelete' type='XML'/>
+			</VBox>
+			<VBox>
+				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.AddKM' type='XML'/>
+			</VBox>
+			<VBox width="100%">
+				<Panel>
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Title text="{i18n>comments}"/>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<TextArea value="{Comment}" rows="4" maxLength="300" width="100%"/>
+					</content>
+				</Panel>
+			</VBox>
+		</VBox>
+		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}">
+			<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="onaddNewKmPress"/>
+		</FlexBox>
+	</VBox>
+</core:FragmentDefinition>
