@@ -292,7 +292,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (oEvent.getParameter("suggestionItem") === undefined) {
 				var query = oEvent.getParameter("query");
 				if (query !== null && query.length > 0) {
-					this.projectfilter = new Filter("ProjectDescription", FilterOperator.Contains, query);
+					this.projectfilter = new Filter({
+						filters: [new Filter("ProjectDescription", FilterOperator.Contains, query), new Filter("ProjectId", FilterOperator.Contains,
+							query)],
+						and: true
+					});
 				} else {
 					this.projectfilter = null;
 				}
