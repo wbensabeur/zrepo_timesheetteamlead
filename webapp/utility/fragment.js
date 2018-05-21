@@ -237,21 +237,24 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						value)],
 					and: true
 				});
-
-				if (this.equipment) {
-					filters1 = new Filter({
-						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
-							"TEAMLEAD_E")],
-						and: true
-					});
-				} else {
-					filters1 = new Filter({
-						filters: [filters, new Filter("ApplicationName", FilterOperator.EQ,
-							"TEAMLEAD")],
-						and: true
-					});
+				
+				filters1.push(filters);
+				
+				if (this.BUfilter !== null) {
+					filters1.push(this.BUfilter);
 				}
-				source.getBinding("suggestionItems").filter(filters1);
+				
+				if (this.equipment) {
+					filters1.push(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD_E"));
+				} else {
+					filters1.push(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD"));
+				}
+				
+				var appFilter = new Filter({
+						filters: filters1,
+						and: true
+					});
+				source.getBinding("suggestionItems").filter(appFilter);
 				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
 					source.suggest();
 				});
