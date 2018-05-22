@@ -88,7 +88,7 @@
 									<Label text="{i18n>timeType}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
 							</Column>
-							<Column width="6%" hAlign="Center">
+							<Column width="5%" hAlign="Center">
 								<VBox class="EmployeeWeeklyReportColumn" alignItems="Center" justifyContent="Center" height="50px">
 									<Label text="{i18n>unit}" design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 								</VBox>
@@ -138,7 +138,7 @@
 					<Table width="97%" class="sapUiSmallMarginBegin sapUiSmallMarginEnd whiteColoumCell">
 						<columns>
 							<Column width="auto"/>
-							<Column width="6%"/>
+							<Column width="5%"/>
 							<Column width="6%"/>
 							<Column minScreenWidth="Tablet" demandPopin="true" width="6%"/>
 							<Column minScreenWidth="Tablet" demandPopin="true" width="6%"/>
@@ -280,7 +280,7 @@
 							<Column width="12%"/>
 							<Column width="auto"/>
 							<Column width="12%"/>
-							<Column width="6%"/>
+							<Column width="5%"/>
 							<Column width="6%"/>
 							<Column minScreenWidth="Tablet" demandPopin="true" width="6%"/>
 							<Column minScreenWidth="Tablet" demandPopin="true" width="6%"/>
@@ -310,28 +310,28 @@
 										<Text text="{itemData>unit}"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Label text="{path:'itemData>total',type:'Float',formatter:'.formatter.totalFormatter'}" design="Bold" />
+										<Label text="{path:'itemData>total/hrsKm',type:'Float',formatter:'.formatter.totalFormatter'}" design="Bold" class="WklyReportText" />
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{path:'itemData>mon',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Text text="{path:'itemData>mon/hrsKm',type:'Float',formatter:'.formatter.numberFormatter'}" class="WklyReportText"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{path:'itemData>tue',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Text text="{path:'itemData>tue/hrsKm',type:'Float',formatter:'.formatter.numberFormatter'}" class="WklyReportText"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{path:'itemData>wed',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Text text="{path:'itemData>wed/hrsKm',type:'Float',formatter:'.formatter.numberFormatter'}" class="WklyReportText"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{path:'itemData>thr',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Text text="{path:'itemData>thr/hrsKm',type:'Float',formatter:'.formatter.numberFormatter'}" class="WklyReportText"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{path:'itemData>fri',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Text text="{path:'itemData>fri/hrsKm',type:'Float',formatter:'.formatter.numberFormatter'}" class="WklyReportText"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{path:'itemData>sat',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Text text="{path:'itemData>sat/hrsKm',type:'Float',formatter:'.formatter.numberFormatter'}" class="WklyReportText"/>
 									</VBox>
 									<VBox class="EmployeeWeeklyReportAggregateRow" alignItems="Center" justifyContent="Center" height="3rem">
-										<Text text="{path:'itemData>sun',type:'Float',formatter:'.formatter.numberFormatter'}"/>
+										<Text text="{path:'itemData>sun/hrsKm',type:'Float',formatter:'.formatter.numberFormatter'}" class="WklyReportText"/>
 									</VBox>
 								</cells>
 							</ColumnListItem>

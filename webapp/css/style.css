@@ -911,3 +911,7 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
     font-weight: normal !important;
     color: #333333 !important;
 }
+
+.WklyReportText{
+	font-size: 0.75rem !important;
+}

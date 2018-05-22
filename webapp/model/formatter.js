@@ -266,7 +266,11 @@ sap.ui.define([
 			};
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
 			var valueInNum = Number(value); //.toString();
-			return oFloatFormat.format(valueInNum);
+			if(isNaN(valueInNum)) {
+				return value;
+			}else{
+				return oFloatFormat.format(valueInNum);
+			}
 		},
 		
 		checkNumber: function(oEvent) {
@@ -317,7 +321,11 @@ sap.ui.define([
 			};
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
 			var valueInNum = Number(value); //.toString();
-			return oFloatFormat.format(valueInNum);
+			if(isNaN(valueInNum)) {
+				return value;
+			}else {
+				return oFloatFormat.format(valueInNum);
+			}
 		},
 		numEmptyFormatter: function(value) {
 			return '';

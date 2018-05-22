@@ -217,10 +217,8 @@ sap.ui.define([
 			oView.byId("WeeklyArregatedTargetData").bindElement(this.localBindingContextPath);
 			this.EmplWeekContext = [];
 			var that = this;
-			//var startDateFilter = new Filter("WorkDate", FilterOperator.GT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date);
-			//var endDateFilter = new Filter("WorkDate", FilterOperator.LT, oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate7Date);
-			//var filter2 = new Filter([startDateFilter,endDateFilter],true);
-
+			
+			// Get workday items for the entire week using greater than workdate and less than workdate url filter operators
 			var urlFilterParam = "$filter=EmployeeId%20eq%20'" + this.employeId + "'and%20Status%20ne%20'R'%20and%20WorkDate%20gt%20" +
 				datetime.getODataDateFilter(
 					oView.getModel().getProperty(this.localBindingContextPath).WeekDate1Date) + "and%20WorkDate%20lt%20" + datetime.getODataDateFilter(
@@ -242,12 +240,16 @@ sap.ui.define([
 						var contextBinding = uri.substring((uri.indexOf('WorkDayItemSet') - 1));
 						that.EmplWeekContext.push(contextBinding);
 						var hrs = formatter.getQuantity(results[k].EntryType, results[k].Hours);
+						var km = formatter.getQuantity(results[k].EntryType, results[k].KMNumber);
+						
+						// If workday item has a different project id, entry type or project description, create a new line to be displayed and set initial hours 
+						// Else aggregate current hours with previous hours for this work date on current line
 						if (projectId !== results[k].ProjectID || entryType !== results[k].EntryType || entryTypeDesc !== results[k].EntryTypeDesc) /// New Line
 						{
 							if (line !== null) {
 								oData1.push(line);
 							}
-							line = {
+							/*line = {
 								project: results[k].ProjectID,
 								projectName: results[k].ProjectName,
 								type: results[k].EntryTypeDesc,
@@ -260,61 +262,132 @@ sap.ui.define([
 								fri: 0,
 								sat: 0,
 								sun: 0
+							};*/
+							line = {
+								project: results[k].ProjectID,
+								projectName: results[k].ProjectName,
+								type: results[k].EntryTypeDesc,
+								unit: formatter.getUnit(results[k].EntryType, results[k].HourUnit),
+								total: {
+									hrs : hrs,
+									km : km,
+									hrsKm : (results[k].EntryType === "KM") ? (hrs + "H - " + formatter.totalFormatter(km) + "KM") : hrs
+								},
+								mon: {
+									hrs : 0,
+									km : 0,
+									hrsKm : "0"
+								},
+								tue: {
+									hrs : 0,
+									km : 0,
+									hrsKm : "0"	
+								},
+								wed: {
+									hrs : 0,
+									km : 0,
+									hrsKm : "0"
+								},
+								thr: {
+									hrs : 0,
+									km : 0,
+									hrsKm : "0"
+								},
+								fri: {
+									hrs : 0,
+									km : 0,
+									hrsKm : "0"
+								},
+								sat: {
+									hrs : 0,
+									km : 0,
+									hrsKm : "0"
+								},
+								sun: {
+									hrs : 0,
+									km : 0,
+									hrsKm : "0"
+								}
 							};
 							switch (results[k].WorkDate.getDay()) {
 								case 1:
-									line.mon = hrs;
-
+									line.mon.hrs = hrs;
+									line.mon.km = km;
+									line.mon.hrsKm = (results[k].EntryType === "KM") ? (hrs + "H - " + formatter.numberFormatter(km) + "KM") : hrs;
 									break;
 								case 2:
-									line.tue = hrs;
+									line.tue.hrs = hrs;
+									line.tue.km = km;
+									line.tue.hrsKm = (results[k].EntryType === "KM") ? (hrs + "H - " + formatter.numberFormatter(km) + "KM") : hrs;
 									break;
 								case 3:
-									line.wed = hrs;
+									line.wed.hrs = hrs;
+									line.wed.km = km;
+									line.wed.hrsKm = (results[k].EntryType === "KM") ? (hrs + "H - " + formatter.numberFormatter(km) + "KM") : hrs;
 									break;
 								case 4:
-									line.thr = hrs;
+									line.thr.hrs = hrs;
+									line.thr.km = km;
+									line.thr.hrsKm = (results[k].EntryType === "KM") ? (hrs + "H - " + formatter.numberFormatter(km) + "KM") : hrs;
 									break;
 								case 5:
-									line.fri = hrs;
+									line.fri.hrs = hrs;
+									line.fri.km = km;
+									line.fri.hrsKm = (results[k].EntryType === "KM") ? (hrs + "H - " + formatter.numberFormatter(km) + "KM") : hrs;
 									break;
 								case 6:
-									line.sat = hrs;
+									line.sat.hrs = hrs;
+									line.sat.km = km;
+									line.sat.hrsKm = (results[k].EntryType === "KM") ? (hrs + "H - " + formatter.numberFormatter(km) + "KM") : hrs;
 									break;
 								case 0:
-									line.sun = hrs;
+									line.sun.hrs = hrs;
+									line.sun.km = km;
+									line.sun.hrsKm = (results[k].EntryType === "KM") ? (hrs + "H - " + formatter.numberFormatter(km) + "KM") : hrs;
 									break;
 								default:
 
 							}
-
-							/*	if (results[k].WorkDate === oView.getModel().getProperty(employee.getBindingContextPath()).WeekDate1Date) {
-									line.mon = results[k].Hours;
-								} */
 						} else /// add
 						{
-							line.total = line.total + hrs;
+							line.total.hrs = line.total.hrs + hrs;
+							line.total.km = line.total.km + km;
+							line.total.hrsKm = (results[k].EntryType === "KM") ? (line.total.hrs + "H - " + formatter.totalFormatter(line.total.km) + "KM") : line.total.hrs;
 							switch (results[k].WorkDate.getDay()) {
 								case 1:
-									line.mon = line.mon + hrs;
+									line.mon.hrs = line.mon.hrs + hrs;
+									line.mon.km = line.mon.km + km;
+									line.mon.hrsKm = (results[k].EntryType === "KM") ? (line.mon.hrs + "H - " + formatter.numberFormatter(line.mon.km) + "KM") : line.mon.hrs;
 									break;
 								case 2:
-									line.tue = line.tue + hrs;
+									line.tue.hrs = line.tue.hrs + hrs;
+									line.tue.km = line.tue.km + km;
+									line.tue.hrsKm = (results[k].EntryType === "KM") ? (line.tue.hrs + "H - " + formatter.numberFormatter(line.tue.km) + "KM") : line.tue.hrs;
 									break;
 								case 3:
-									line.wed = line.wed + hrs;
+									line.wed.hrs = line.wed.hrs + hrs;
+									line.wed.km = line.wed.km + km;
+									line.wed.hrsKm = (results[k].EntryType === "KM") ? (line.wed.hrs + "H - " + formatter.numberFormatter(line.wed.km) + "KM") : line.wed.hrs;
 									break;
 								case 4:
-									line.thr = line.thr + hrs;
+									line.thr.hrs = line.thr.hrs + hrs;
+									line.thr.km = line.thr.km + km;
+									line.thr.hrsKm = (results[k].EntryType === "KM") ? (line.thr.hrs + "H - " + formatter.numberFormatter(line.thr.km) + "KM") : line.thr.hrs;
 									break;
 								case 5:
-									line.fri = line.fri + hrs;
+									line.fri.hrs = line.fri.hrs + hrs;
+									line.fri.km = line.fri.km + km;
+									line.fri.hrsKm = (results[k].EntryType === "KM") ? (line.fri.hrs + "H - " + formatter.numberFormatter(line.fri.km) + "KM") : line.fri.hrs;
 									break;
 								case 6:
-									line.sat = line.sat + hrs;
+									line.sat.hrs = line.sat.hrs + hrs;
+									line.sat.km = line.sat.km + km;
+									line.sat.hrsKm = (results[k].EntryType === "KM") ? (line.sat.hrs + "H - " + formatter.numberFormatter(line.sat.km) + "KM") : line.sat.hrs;
 									break;
 								case 0:
-									line.sun = line.sun + hrs;
+									line.sun.hrs = line.sun.hrs + hrs;
+									line.sun.km = line.sun.km + km;
+									line.sun.hrsKm = (results[k].EntryType === "KM") ? (line.sun.hrs + "H - " + formatter.numberFormatter(line.sun.km) + "KM") : line.sun.hrs;
 									break;
 								default:
 							}
