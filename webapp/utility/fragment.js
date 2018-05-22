@@ -688,7 +688,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				//	that.byId("ProjectCancelButton").focus();
 			});*/
 		},
-		AddProjectTime_OnChangeHours: function(oEvent) {
+		/*AddProjectTime_OnChangeHours: function(oEvent) {
 			var source = oEvent.getSource();
 			this.warning = true;
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
@@ -715,12 +715,27 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			// Changing SAP team implementation
 			// totalhrs in Addtime model is the same as the value of the step input
 			// assigning new value to totalhrs directly
-			/*var currentValue = sourcePanel.getCustomData()[0].getValue();
+			// var currentValue = sourcePanel.getCustomData()[0].getValue();
+			// var deltahrs = newValue - currentValue;
+			// var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			// var newTotalhrs = currentTotalhrs + deltahrs;
+			// this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			
+			this.AddUpdatetimeModel.setProperty('/totalhrs', newValue);
+			sourcePanel.getCustomData()[0].setValue(newValue);
+		},*/
+		
+		AddProjectTime_OnChangeHours: function(oEvent) {
+			var source = oEvent.getSource();
+			this.warning = true;
+			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
+			var newValue = oEvent.getParameter("value");
+
+			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
 			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);*/
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newValue);
+			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
 

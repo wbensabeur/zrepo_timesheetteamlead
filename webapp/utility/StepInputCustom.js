@@ -754,12 +754,12 @@ sap.ui.define(["jquery.sap.global", "sap/ui/core/Icon", "sap/m/Input", "sap/m/In
 		 * Attaches the <code>liveChange</code> handler for the input.
 		 * @private
 		 */
-		 /*Changed default _liveChange to enable value to be updated whenever user enters a character*/
-		/*StepInputCustom.prototype._liveChange = function () {
+		StepInputCustom.prototype._liveChange = function () {
 			this._verifyValue();
 			this._disableButtons(this._getInput().getValue(), this.getMax(), this.getMin());
-		};*/
-		StepInputCustom.prototype._liveChange = function (oEvent) {
+		};
+		/*Changed default _liveChange to enable value to be updated whenever user enters a character*/
+		/*StepInputCustom.prototype._liveChange = function (oEvent) {
 			this._sOldValue = this.getValue();
 
 			this._verifyValue();
@@ -769,17 +769,17 @@ sap.ui.define(["jquery.sap.global", "sap/ui/core/Icon", "sap/m/Input", "sap/m/In
 				jQuery.sap.clearDelayedCall(this._iChangeEventTimer);
 			}
 
-			/* In case the reason for change event is pressing +/- button(input loses focus),
-			 * this will lead to firing the StepInput#change event twice.
-			 * This is why we "schedule" a task for event firing, which will be executed unless the +/- button press handler
-			 * invalidates it.
-			 **/
+			 //In case the reason for change event is pressing +/- button(input loses focus),
+			 //this will lead to firing the StepInput#change event twice.
+			 //This is why we "schedule" a task for event firing, which will be executed unless the +/- button press handler
+			 //invalidates it.
+			 
 			this._iChangeEventTimer = jQuery.sap.delayedCall(100, this, function() {
 				if (this._sOldValue !== this.getValue()) {
 					this.fireChange({value: this.getValue()});
 				}
 			});
-		};
+		};*/
 
 		/**
 		 * Handles the <code>change</code> event for the input.
