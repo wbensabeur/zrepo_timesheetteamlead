@@ -1307,7 +1307,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					case 'OVERNIGHT':
 						odata.visibleOvernight = true;
 						odata.visibleProjMandatoryTxt = false;
+						
+						// Load items for AccAllowance Type drop down list
 						controler.getView().byId('AccAllowanceType').getBinding("items").resume();
+						controler.getView().byId('AccAllowanceType').setPlaceholder("");
+						
+						// Binding current project of workday item to projectView
 						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
 						var projectView = controler.getView().byId('addAccAllowance').getItems()[0].getItems()[1].getItems()[1];
 						if (projectId !== null && projectId !== '' && projectId !== undefined) {
@@ -1316,7 +1321,22 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						} else if (projectId === '') {
 							projectView.getItems()[0].setText("");
 						}
-						controler.getView().byId('AccAllowanceType').setPlaceholder("");
+						
+						// Select correct segmented button for current workday item
+						var oSgmtButton = controler.getView().byId("overnightInd");
+						if(oSgmtButton) {
+							//odataModel.getProperty(updateKeyPath).EntryType
+							if(odataModel.getProperty(updateKeyPath).MealIndicator) {
+								oSgmtButton.setSelectedKey("0"); 
+							}else if(odataModel.getProperty(updateKeyPath).JourneyIndicator) {
+								oSgmtButton.setSelectedKey("1");
+							}else if(odataModel.getProperty(updateKeyPath).TransportIndicator) {
+								oSgmtButton.setSelectedKey("2");
+							}else {
+								oSgmtButton.setSelectedKey("0");	
+							}	
+						}
+						
 						break;
 					case 'KM':
 						odata.visibleKM = true;
@@ -2478,6 +2498,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							break;
 						case("2"):
 							wkndJobsite = true;
+							break;
+						default:
+							jobsite = true;
 							break;
 					}
 					

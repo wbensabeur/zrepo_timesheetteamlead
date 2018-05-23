@@ -418,6 +418,10 @@ sap.ui.define([
 			var container = this.getView().byId('addBonusTab').getItems()[0];
 			fragment.AddProjectTime_OnBonusDelete(oEvent, container);
 		},
+		OnKmDelete: function(oEvent) {
+			var container = this.getView().byId("addKM").getItems()[0];
+			fragment.AddProjectTime_OnKmDelete(oEvent, container, this);
+		},
 		OnchangeTimeSelection: function(oEvent) {
 			//	var timeModel = this.getView().getModel('AddTime');
 			fragment.AddProjectTime_OnchangeTimeSelection(oEvent);
@@ -456,6 +460,9 @@ sap.ui.define([
 		},
 		OnaddNewBonusPress: function(oEvent) {
 			fragment.AddUpdatetime_OnaddNewBonusPress(this);
+		},
+		onaddNewKmPress: function(oEvent) {
+			fragment.AddUpdatetime_OnaddNewKmPress(this);
 		},
 		onSelectAbsenceStartDate: function(oEvent) {
 			fragment.AddUpdatetime_onSelectAbsenceStartDate(oEvent, this.getView());
