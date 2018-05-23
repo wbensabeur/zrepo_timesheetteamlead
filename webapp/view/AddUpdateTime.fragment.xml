@@ -87,7 +87,7 @@
 				<VBox width="100%" height="100%" id="addAccAllowance">
 					<VBox>
 						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
-							<Label text="{i18n>DailyAllowances}"/>
+							<!--<Label text="{i18n>DailyAllowances}"/>-->
 							<HBox alignItems="Center" justifyContent="Start">
 								<ComboBox id="AccAllowanceType" placeholder="{i18n>selectZone}" change="onPressOvernightInd"
 									selectedKey="{ZoneType}"
