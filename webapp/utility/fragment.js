@@ -19,6 +19,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.lastProjectFilter = null;
 			
 			container.getItems()[0].setVisible(false);
+			// Fragment for project search and display of search results is inserted in 2nd VBox of main VBox in icon tab filter
 			container.getItems()[1].setVisible(true);
 			container.getItems()[1].addItem(fragment);
 			
@@ -2368,8 +2369,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							var bnsType = tabBns[k].getItems()[2].getItems()[0].getItems()[0].getItems()[1].getSelectedKey();
 							var bnsDesc = tabBns[k].getItems()[2].getItems()[0].getItems()[0].getItems()[1]._getSelectedItemText();
 							var bnsQty = tabBns[k].getItems()[2].getItems()[0].getItems()[1].getItems()[1].getValue();
-							var bnsProjectBindingPath = tabBns[k].getItems()[2].getItems()[2].getItems()[0].getBindingContext().getPath();
-							var bnsProjectID = oView.getModel().getProperty(bnsProjectBindingPath).ProjectId;
+							var oProjectContext = tabBns[k].getItems()[2].getItems()[2].getItems()[0].getBindingContext();
+							var bnsProjectBindingPath = "";
+							var bnsProjectID = "";
+							if(oProjectContext) {
+								bnsProjectBindingPath = oProjectContext.getPath();
+								bnsProjectID = oView.getModel().getProperty(bnsProjectBindingPath).ProjectId;
+							}
 							bnsProjectID = (bnsProjectID === undefined || bnsProjectID === null) ? "" : bnsProjectID;
 						} catch (err) {
 							if (bnsType === "")
