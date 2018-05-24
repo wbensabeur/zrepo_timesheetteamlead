@@ -357,37 +357,37 @@ sap.ui.define([
 								case 1:
 									line.mon.hrs = line.mon.hrs + hrs;
 									line.mon.km = line.mon.km + km;
-									line.mon.hrsKm = (results[k].EntryType === "KM") ? (line.mon.hrs + "H - " + formatter.numberFormatter(line.mon.km) + "KM") : line.mon.hrs;
+									line.mon.hrsKm = (results[k].EntryType === "KM") ? (line.mon.hrs + "H - " + formatter.totalFormatter(line.mon.km) + "KM") : line.mon.hrs;
 									break;
 								case 2:
 									line.tue.hrs = line.tue.hrs + hrs;
 									line.tue.km = line.tue.km + km;
-									line.tue.hrsKm = (results[k].EntryType === "KM") ? (line.tue.hrs + "H - " + formatter.numberFormatter(line.tue.km) + "KM") : line.tue.hrs;
+									line.tue.hrsKm = (results[k].EntryType === "KM") ? (line.tue.hrs + "H - " + formatter.totalFormatter(line.tue.km) + "KM") : line.tue.hrs;
 									break;
 								case 3:
 									line.wed.hrs = line.wed.hrs + hrs;
 									line.wed.km = line.wed.km + km;
-									line.wed.hrsKm = (results[k].EntryType === "KM") ? (line.wed.hrs + "H - " + formatter.numberFormatter(line.wed.km) + "KM") : line.wed.hrs;
+									line.wed.hrsKm = (results[k].EntryType === "KM") ? (line.wed.hrs + "H - " + formatter.totalFormatter(line.wed.km) + "KM") : line.wed.hrs;
 									break;
 								case 4:
 									line.thr.hrs = line.thr.hrs + hrs;
 									line.thr.km = line.thr.km + km;
-									line.thr.hrsKm = (results[k].EntryType === "KM") ? (line.thr.hrs + "H - " + formatter.numberFormatter(line.thr.km) + "KM") : line.thr.hrs;
+									line.thr.hrsKm = (results[k].EntryType === "KM") ? (line.thr.hrs + "H - " + formatter.totalFormatter(line.thr.km) + "KM") : line.thr.hrs;
 									break;
 								case 5:
 									line.fri.hrs = line.fri.hrs + hrs;
 									line.fri.km = line.fri.km + km;
-									line.fri.hrsKm = (results[k].EntryType === "KM") ? (line.fri.hrs + "H - " + formatter.numberFormatter(line.fri.km) + "KM") : line.fri.hrs;
+									line.fri.hrsKm = (results[k].EntryType === "KM") ? (line.fri.hrs + "H - " + formatter.totalFormatter(line.fri.km) + "KM") : line.fri.hrs;
 									break;
 								case 6:
 									line.sat.hrs = line.sat.hrs + hrs;
 									line.sat.km = line.sat.km + km;
-									line.sat.hrsKm = (results[k].EntryType === "KM") ? (line.sat.hrs + "H - " + formatter.numberFormatter(line.sat.km) + "KM") : line.sat.hrs;
+									line.sat.hrsKm = (results[k].EntryType === "KM") ? (line.sat.hrs + "H - " + formatter.totalFormatter(line.sat.km) + "KM") : line.sat.hrs;
 									break;
 								case 0:
 									line.sun.hrs = line.sun.hrs + hrs;
 									line.sun.km = line.sun.km + km;
-									line.sun.hrsKm = (results[k].EntryType === "KM") ? (line.sun.hrs + "H - " + formatter.numberFormatter(line.sun.km) + "KM") : line.sun.hrs;
+									line.sun.hrsKm = (results[k].EntryType === "KM") ? (line.sun.hrs + "H - " + formatter.totalFormatter(line.sun.km) + "KM") : line.sun.hrs;
 									break;
 								default:
 							}

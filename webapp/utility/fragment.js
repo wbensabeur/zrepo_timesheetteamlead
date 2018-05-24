@@ -11,31 +11,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_init: function(controler, container, selectButton, allProject) {
 
 			var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
-
-			//this.projectSearchFragment = container.getItems()[1].getItems()[0].getId();
+			
 			this.projectSearchFragment = fragment.getId();
 			this.projectfilter = null;
 			this.BUfilter = null;
 			this.positionfilter = null;
 			this.lastProjectFilter = null;
-			//var oView = controler.getView();
-			// change for radio focus 
-			/*	var buttons = fragment.getItems()[1].getButtons();
-				for (var k = 0; k < buttons.length; k++) {
-					buttons[k].onAfterRendering = function() {
-						oView.byId("ProjectCancelButton").focus();
-					};
-				}*/
-			/*fragment.getItems()[1].onAfterRendering = function () {
-				oView.byId("ProjectCancelButton").focus();
-			};*/
-
-			//	fragment.getCustomData()[1].setValue(returnRef.getId()); 
-
+			
 			container.getItems()[0].setVisible(false);
 			container.getItems()[1].setVisible(true);
-			//hideContainer.setVisible(false);
 			container.getItems()[1].addItem(fragment);
+			
 			fragment.getItems()[2].getItems()[0].onAfterRendering = this._comboKeyboardDisable;
 			fragment.getItems()[2].getItems()[2].onAfterRendering = this._comboKeyboardDisable;
 
@@ -1619,11 +1605,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}*/
 			
 			if (container.getItems().length === 1) {
-				container.getParent().getItems()[1].getItems()[0].setVisible(false);
+				container.getParent().getItems()[2].getItems()[0].setVisible(false);
 			} else if(container.getItems().length > 1){
-				container.getParent().getItems()[1].getItems()[0].setVisible(false);
+				container.getParent().getItems()[2].getItems()[0].setVisible(false);
 			}else {
-				container.getParent().getItems()[1].getItems()[0].setVisible(true);
+				container.getParent().getItems()[2].getItems()[0].setVisible(true);
 			}
 			
 		},

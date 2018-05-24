@@ -6,7 +6,7 @@
 		</FlexBox>
 		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginTopBottom" width="100%">
 			<Text text="{i18n>travelDetails}" class="fontTravelDetails sapUiSmallMarginBegin sapUiNoMarginTop sapUiSmallMarginBottom"/>
-			<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginBegin sapUiNoMarginTop sapUiSmallMarginBottom">
+			<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginBegin sapUiNoMarginTop sapUiSmallMarginBottom" width="100%">
 				<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProjectWithDelete' type='XML'/>
 			</VBox>
 			<VBox>
