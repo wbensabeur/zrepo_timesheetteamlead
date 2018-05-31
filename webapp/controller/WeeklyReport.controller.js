@@ -206,15 +206,18 @@ sap.ui.define([
 			if (this.employeId === null || this.employeId === undefined || this.employeId === "") {
 				this.employeId = employee.getModel().getProperty(this.localBindingContextPath).EmployeeId;
 			}
-			//oView.byId("userInfo").bindElement("/EmployeeSet('" + this.employeId + "')");
 			oView.byId("userInfo").bindElement("/EmployeeSet(EmployeeId='" + this.employeId + "',StartDate=" + datetime.getODataDateKey(oView.getModel()
 					.getProperty(this.localBindingContextPath).WeekDate1Date) + ",EndDate=" + datetime.getODataDateKey(oView.getModel().getProperty(
 					this.localBindingContextPath).WeekDate1Date) + ",ApplicationName='" + this.userPref.application +
 				"')");
+			
+			// The model must be refreshed before binding to show updated total hours especially if new items were added in weekly or daily view
+			oView.getModel().refresh();
 			oView.byId("WeeklyStatus").bindElement(this.localBindingContextPath);
 			oView.byId("WeeklyAggregation").bindElement(this.localBindingContextPath);
 			oView.byId("WeeklyArregatedFilledData").bindElement(this.localBindingContextPath);
 			oView.byId("WeeklyArregatedTargetData").bindElement(this.localBindingContextPath);
+			
 			this.EmplWeekContext = [];
 			var that = this;
 			
