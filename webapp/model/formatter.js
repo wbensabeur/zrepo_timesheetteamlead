@@ -538,6 +538,24 @@ sap.ui.define([
 				}
 			});	
 		
+		},
+		
+		formatWorkOrderID: function(sText, sPosition) {
+			var sWorkOrderID = sText;
+			if(sPosition === "WO" && (sText !== "" || sText !== null || sText !== undefined)) {
+				var iIndex = sText.indexOf("[");
+				sWorkOrderID = sText.substring(0, (iIndex-1));
+			}
+			return sWorkOrderID;
+		},
+		
+		formatProjectID: function(sText, sPosition) {
+			var sProjectID = sText;
+			if(sPosition === "WO" && (sText !== "" || sText !== null || sText !== undefined)) {
+				var iIndex = sText.indexOf("[");
+				sProjectID = sText.substring(iIndex, sText.length);
+			}
+			return sProjectID;
 		}
 	};
 

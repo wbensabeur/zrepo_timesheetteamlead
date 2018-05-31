@@ -915,3 +915,7 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .WklyReportText{
 	font-size: 0.75rem !important;
 }
+
+.textAlignmentStart .sapMText[data-isWorkOrder] {
+	font-weight: bold !important;
+}

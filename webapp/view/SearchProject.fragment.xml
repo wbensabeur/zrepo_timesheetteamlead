@@ -96,7 +96,17 @@
 					</cells>
 					<cells>
 						<Text class="sapUiTinyMarginBegin" text="{BusinessUnit}"/>
-						<Text class="sapUiTinyMarginBegin" text="{ProjectId}"/>
+						<!--<Text class="sapUiTinyMarginBegin" text="{ProjectId}"/>-->
+						<!-- Customising display for work orders -->
+						<VBox>
+							<Text class="sapUiTinyMarginBegin" text="{parts:['ProjectId','Position'],formatter:'.formatter.formatWorkOrderID'}">
+								<customData>
+  									<core:CustomData key="isWorkOrder" value="true"
+										writeToDom="{= ${Position} === 'WO'}"/>
+								</customData>
+							</Text>
+							<Text text="{parts: ['ProjectId','Position'],formatter:'.formatter.formatProjectID'}" visible="{= ${Position} === 'WO' ? true : false}"/>
+						</VBox>
 						<Text class="sapUiTinyMarginBegin" text="{Position}" textAlign="Center"/>
 						<Text class="sapUiTinyMarginBegin" text="{ResponsiblePMName}"/>
 						<core:Icon src="{path:'Favorite',formatter:'.formatter.favIcon'}" class="sapUiSmallMarginBegin" press="OnFavoriteChange"/>
