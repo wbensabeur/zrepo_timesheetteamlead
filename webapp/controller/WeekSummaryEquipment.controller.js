@@ -1101,6 +1101,7 @@ sap.ui.define([
 				this.twoWeek = true;
 				oPeriodbutton.setSelectedKey("twoWeek");
 			}
+			
 			this._calendarBinding(this.userPref.startDate, this.userPref.defaultPeriod);
 		},
 		_applyFilters: function() {
@@ -1163,6 +1164,13 @@ sap.ui.define([
 			}, true);
 		},
 		OnEquipmentOff: function() {
+			// Removing any existing filter on equipment name before navigating to previous page
+			this.userPref.equipmentFilter = "";
+			var oSearchField = this.getView().byId("EmpSearch");
+			if(oSearchField) {
+				oSearchField.setValue("");
+			}
+			
 			this.getRouter().navTo("home", {}, true);
 		},
 		OnEditEmpDayitem: function(oEvent) {
