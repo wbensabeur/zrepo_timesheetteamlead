@@ -1,14 +1,14 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<!-- if design below is changed make necessary changes in functions incrementStepInput and decrementStepInput in fragment.js -->
-	<HBox class="sapUiNoMargin" width="9rem" height="2.375rem" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}">
-		<VBox class="sapUiNoMargin">
-			<Button class="customStepInput leftStepInputCtrl" icon="sap-icon://less" width="2.375rem" press="onDecrementHours"></Button>
+	<HBox class="sapUiNoMargin" width="9.5rem" height="2.375rem" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}">
+		<VBox class="sapUiNoMargin" width="2.5rem">
+			<Button class="customStepInput leftStepInputCtrl" icon="sap-icon://less" width="2.5rem" press="onDecrementHours"></Button>
 		</VBox>
-		<VBox class="sapUiNoMargin">
-			<Input value="{path:'Hours', formatter:'.formatter.formatDefaultHours'}" class="leftStepInputCtrl rightStepInputCtrl centerStepInputText" liveChange="onLiveChangeDuration"></Input>
+		<VBox class="sapUiNoMargin" width="4.5rem">
+			<Input value="{path:'Hours', formatter:'.formatter.formatDefaultHours'}" width="4.5rem" class="leftStepInputCtrl rightStepInputCtrl centerStepInputText" liveChange="onLiveChangeDuration"></Input>
 		</VBox>
-		<VBox class="sapUiNoMargin">
-			<Button class="customStepInput rightStepInputCtrl" icon="sap-icon://add" width="2.375rem" press="onIncrementHours"></Button>
+		<VBox class="sapUiNoMargin" width="2.5rem">
+			<Button class="customStepInput rightStepInputCtrl" icon="sap-icon://add" width="2.5rem" press="onIncrementHours"></Button>
 		</VBox>
 	</HBox>
 </core:FragmentDefinition>

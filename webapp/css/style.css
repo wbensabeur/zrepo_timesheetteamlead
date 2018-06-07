@@ -948,6 +948,7 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 
 .leftStepInputCtrl .sapMBtnInner {
 	border-right: 0px;
+	border-left: 1px solid #bfbfbf;
 }
 
 .leftStepInputCtrl .sapMInputBaseInner {
@@ -955,6 +956,7 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 }
 
 .rightStepInputCtrl .sapMBtnInner {
+	border-right: 1px solid #bfbfbf;
 	border-left: 0px;
 }
 
