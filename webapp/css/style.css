@@ -916,6 +916,48 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 	font-size: 0.75rem !important;
 }
 
+/*In search fragment custom display of project id column*/
 .textAlignmentStart .sapMText[data-isWorkOrder] {
 	font-weight: bold !important;
+}
+
+/*Custom step input*/
+.customStepInput .sapMBtnInner {
+	background: #ffffff !important;
+}
+
+.centerStepInputText .sapMInputBaseInner {
+	text-align: center !important;
+}
+
+.centerStepInputText.leftStepInputCtrl.rightStepInputCtrl.sapMInput.sapMInputBase.sapMInputBaseWidthPadding>input:focus {
+    border-color: #bfbfbf;
+}
+
+.centerStepInputText.leftStepInputCtrl.rightStepInputCtrl.sapMInput.sapMInputBase.sapMInputBaseWidthPadding>input:hover {
+    border-color: #bfbfbf;
+}
+
+.customStepInput.leftStepInputCtrl>.sapMBtnDefault.sapMBtnHoverable.sapMBtnIconFirst.sapMBtnInner.sapMFocusable:active {
+	border-color: #bfbfbf;
+}
+
+.customStepInput.rightStepInputCtrl>.sapMBtnDefault.sapMBtnHoverable.sapMBtnIconFirst.sapMBtnInner.sapMFocusable:active {
+	border-color: #bfbfbf;
+}
+
+.leftStepInputCtrl .sapMBtnInner {
+	border-right: 0px;
+}
+
+.leftStepInputCtrl .sapMInputBaseInner {
+	border-right: 0px;
+}
+
+.rightStepInputCtrl .sapMBtnInner {
+	border-left: 0px;
+}
+
+.rightStepInputCtrl .sapMInputBaseInner {
+	border-left: 0px;
 }

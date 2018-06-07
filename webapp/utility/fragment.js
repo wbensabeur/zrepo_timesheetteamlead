@@ -3,8 +3,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(datetime, formatter, JSONModel, MessageBox, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/ui/core/format/NumberFormat"
+], function(datetime, formatter, JSONModel, MessageBox, Filter, FilterOperator, NumberFormat) {
 	"use strict";
 
 	return {
@@ -491,6 +492,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		AddProjectTime_init: function(controler, container, addNew) {
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectTime", controler);
+				// Attaching change event on input field of custom step input control 
+				var oInputField = oFragment.getItems()[3].getItems()[2].getItems()[0].getItems()[1].getItems()[0];
+				oInputField.attachChange(controler.OnChangeHours, controler);
+				oInputField.onfocusout = function (oEvent) {
+					controler.formatDuration(oInputField);
+				};
 				container.addItem(oFragment);
 				// oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 				// oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering = this._comboKeyboardDisable;
@@ -502,7 +509,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectEquipment", controler);
 				container.addItem(oFragment);
-
+				// Attaching change event on input field of custom step input control 
+				var oInputField = oFragment.getItems()[2].getItems()[3].getItems()[1].getItems()[0];
+				oInputField.attachChange(controler.OnEquipmentChangeQuanity, controler);
+				oInputField.onfocusout = function (oEvent) {
+					controler.formatDuration(oInputField);
+				};
+				
 			}
 
 		},
@@ -522,6 +535,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var oAddKMFrgmt = container.getItems()[0].getItems()[2].getItems()[2].getItems()[0];
 				var oComboBox = oAddKMFrgmt.getItems()[1].getItems()[4];
 				oComboBox.onAfterRendering = this._comboKeyboardDisable;
+				
+				// Attaching change event on input field of custom step input control 
+				var oInputField = oFragment.getItems()[2].getItems()[2].getItems()[0].getItems()[1].getItems()[0].getItems()[1].getItems()[0];
+				oInputField.attachChange(controller.OnChangeKMHours, controller);
+				oInputField.onfocusout = function (oEvent) {
+					controller.formatDuration(oInputField);
+				};
 			}
 		},
 		_comboKeyboardDisable: function() {
@@ -599,30 +619,26 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 		AddProjectTime_OnchangeTimeSelection: function(oEvent) {
 
-			//var index = oEvent.getParameter('selectedIndex');
 			var buttons = oEvent.getSource().getButtons();
 			this.warning = true;
-			//var sourceId = button.getId();
 
 			var source = oEvent.getSource();
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var newValue = 0;
-			// var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
-			var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3]; //this._getOwnSelectedHrContent(source);
-			var timepicker = selecthrsCombo.getItems()[2].getItems()[0];
-			//	var timepickerFrom = selecthrsCombo.getItems()[2].getItems()[1];
+			
+			// VBox containing labels + time picker and step input for duration input
+			var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3]; 
+			// HBox containing labels + time picker and step input for duration input
+			//var timepicker = selecthrsCombo.getItems()[2].getItems()[0].getItems()[1].getItems()[0];
 			var timepickerTo = selecthrsCombo.getItems()[2].getItems()[2];
-			/*var durationId = '#' + timepicker.getId();
-			$(durationId).on('keydown',function(event){
-				sap.ui.getCore().byId(timepicker.getId()).fireChange();
-			} );*/
+			
 			if (oEvent.getParameter("selectedIndex") === 1) {
 				//newValue = 0;
 				buttons[0].setEnabled(true);
 				buttons[1].setEnabled(false);
 				// allDayCombo.setVisible(false);
 				selecthrsCombo.setVisible(true);
-				timepicker.setValue("0.00");
+				//timepicker.setValue("0.00");
 				timepickerTo.setEnabled(false);
 
 			} else { // For all day Selection
@@ -643,26 +659,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
 					selecthrsCombo.getParent().getItems()[4].getItems()[0].setPlaceholder("");
 				}
-				// if (selecthrsCombo.getVisible() === true) {
-				// 	try {
-				// 		var localComboKey = selecthrsCombo.getItems()[2].getItems()[3].getSelectedKey();
-				// 	} catch (e) {
-				// 		localComboKey = undefined;
-				// 	}
-				// 	if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
-				// 		selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
-				// 	}
-				// } else if (allDayCombo.getVisible() === true) {
-				// 	localComboKey = undefined;
-				// 	try {
-				// 		localComboKey = allDayCombo.getSelectedKey();
-				// 	} catch (e) {
-				// 		localComboKey = undefined;
-				// 	}
-				// 	if (localComboKey !== undefined && localComboKey !== null && localComboKey !== "") {
-				// 		allDayCombo.setPlaceholder("");
-				// 	}
-				// }
 			}
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
@@ -670,47 +666,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newTotalhrs = currentTotalhrs + deltahrs;
 			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			sourcePanel.getCustomData()[0].setValue(newValue);
-			/*jQuery.sap.delayedCall(0, this, function() {
-				document.getElementById(sourceId).blur();
-				//	that.byId("ProjectCancelButton").focus();
-			});*/
+			
 		},
-		/*AddProjectTime_OnChangeHours: function(oEvent) {
-			var source = oEvent.getSource();
-			this.warning = true;
-			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
-			var newValue = oEvent.getParameter("value");
-			
-			var aValue = newValue.toString().split(".");
-			var sInt = aValue[0];
-			var sDecimal = aValue[1];
-			if(parseInt(sInt) > 24) {
-				var currentValue = sourcePanel.getCustomData()[0].getValue();
-				sInt = currentValue.toString().split(".")[0];
-			}
-			
-			if (sDecimal) {
-			    if (sInt === "") {
-					sInt = "0";
-			    }
-			    newValue = sInt + "." + sDecimal.slice(0, 2);
-			}else {
-				newValue = sInt;
-			}
-			newValue = parseFloat(newValue);
-			
-			// Changing SAP team implementation
-			// totalhrs in Addtime model is the same as the value of the step input
-			// assigning new value to totalhrs directly
-			// var currentValue = sourcePanel.getCustomData()[0].getValue();
-			// var deltahrs = newValue - currentValue;
-			// var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
-			// var newTotalhrs = currentTotalhrs + deltahrs;
-			// this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
-			
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newValue);
-			sourcePanel.getCustomData()[0].setValue(newValue);
-		},*/
 		
 		AddProjectTime_OnChangeHours: function(oEvent) {
 			var source = oEvent.getSource();
@@ -720,9 +677,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
-			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
-			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			var currentTotalhrs = this.AddUpdatetimeModel.getProperty("/totalhrs");
+			var newTotalhrs = Number(currentTotalhrs) + Number(deltahrs);
+			this.AddUpdatetimeModel.setProperty("/totalhrs", formatter.formatHour(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
 
@@ -735,8 +692,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
-			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			var newTotalhrs = Number(currentTotalhrs) + Number(deltahrs);
+			this.AddUpdatetimeModel.setProperty('/totalhrs', formatter.formatHour(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
 		AddProjectTime_OnChangeStartTime: function(oEvent) {
@@ -853,7 +810,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			oEvent.getSource().getBinding("items").resume();
 		},
 		AddKM_OnChangeKMHours: function(oEvent) {
-			var source = oEvent.getSource();
+			// StepInput fragment
+			var source = oEvent.getSource().getParent().getParent();
 			this.warning = true;
 			var sourcePanel = this.AddProjectKM__getOwnFrameObject(source);
 			var newValue = oEvent.getParameter("value");
@@ -1234,7 +1192,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var buttons = source.getButtons();
 						// var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
 						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
-
+						
+						// Converting string 'Hours' to numeric type
+						/*var oInputDuration = selecthrsCombo.getItems()[2].getItems()[0].getItems()[1].getItems()[0];
+						var iHours = odataModel.getProperty(updateKeyPath).Hours;
+						if(iHours === "" || iHours === undefined || iHours === null) {
+							iHours = 0;
+						}else {
+							iHours = Number(iHours);
+						}
+						oInputDuration.setValue(formatter.formatHour(iHours));*/
+						
 						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[1];
 						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
@@ -1549,6 +1517,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
 				}
 				this.AddProjectKm_init(controler, oVbox, this.AddUpdatetimeModel.getData().newTime);
+				
+				/*// Set initial value of duration to '0.00' for KM icon tab filter
+				if (!this.AddUpdatetimeModel.getProperty("/duration")) { 
+					// Attaching change event on input field of custom step input control 
+					var oInputField = oVbox.getItems()[0].getItems()[2].getItems()[2].getItems()[0].getItems()[1].getItems()[0].getItems()[1].getItems()[0];	
+					oInputField.setValue("0.00");
+				}*/
+				
 			}
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
@@ -2645,6 +2621,60 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			source.setShowValueStateMessage(true);
 			source.openValueStateMessage();
 			source.focus();
+		},
+		
+		/* 
+		   Incrementing the custom Step input value in fragment StepInput.fragment.xml. 
+		   Function accepts a maximum value and an incremental step value as arguments
+		*/
+		incrementStepInput: function(iInputVal, maxVal, stepVal) {
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {
+				minIntegerDigits: 1,
+				maxIntegerDigits: 2,
+				minFractionDigits: 2,
+				maxFractionDigits: 2
+			};
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			var iVal = Number(iInputVal); 
+			if(isNaN(iVal)) {
+				iVal = oFloatFormat.format(0);
+			}else{
+				if(iVal < maxVal) {
+					iVal += stepVal;
+				}else {
+					iVal = maxVal;
+				}
+				iVal = oFloatFormat.format(iVal);
+			}
+			return iVal;
+		}, 
+		
+		/* 
+		   Decrementing the custom Step input value in fragment StepInput.fragment.xml. 
+		   Function accepts a minimum value and an decremental step value as arguments
+		*/
+		decrementStepInput: function(iInputVal, minVal, stepVal) {
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {
+				minIntegerDigits: 1,
+				maxIntegerDigits: 2,
+				minFractionDigits: 2,
+				maxFractionDigits: 2
+			};
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			var iVal = Number(iInputVal); 
+			if(isNaN(iVal)) {
+				iVal = oFloatFormat.format(0);
+			}else{
+				if(iVal > minVal) {
+					iVal -= stepVal;
+				}else {
+					iVal = minVal;
+				}
+				iVal = oFloatFormat.format(iVal);
+			}
+			return iVal;
 		}
 
 	};

@@ -314,6 +314,94 @@ sap.ui.define([
 			}
 			oEvent.getSource().setValue(localFinalStr);
 		},
+		
+		checkHourInput: function(sInput) {
+			var sValue = "";
+			
+			if(sInput !== "" && sInput !== null && sInput !== undefined) {
+				// Find the first seperator used "," / "."
+				var sep = "";
+				var sTemp = "";
+				var arr = [];
+				var ans = "";
+				var localarr = [];
+			
+				if (sInput.search(",") !== -1) {
+					sep = ",";
+				} else if (sInput.search(".") !== -1) {
+					sep = ".";
+				} else {
+					sep = ".";
+				}
+				
+				if (sep === ",") {
+					//Replace all characters that do not match a digit character or a , with an empty space
+					sTemp = sInput.replace(/[^\d,]/g, '');
+					arr = sTemp.split(",");
+					ans = arr.splice(0, 2).join(',') + arr.join('');
+					localarr = ans.split(",");
+					if (localarr.length > 1) {
+						if(Number(localarr[0]) < 24) {
+							sValue = localarr[0].slice(0, 2) + "," + localarr[1].slice(0, 2);
+						}else {
+							sValue = localarr[0].slice(0, 2);
+						}
+					} else {
+						if(Number(ans) <= 24) {
+							sValue = ans.slice(0, 2);
+						}else {
+							sValue = ans.slice(0, 1);
+						}
+						
+					}
+				} else {
+					//Replace all characters that do not match a digit character or a . with an empty space
+					sTemp = sInput.replace(/[^\d.]/g, '');
+					arr = sTemp.split(".");
+					ans = arr.splice(0, 2).join('.') + arr.join('');
+					localarr = ans.split(".");
+					if (localarr.length > 1) {
+						if(Number(localarr[0]) < 24) {
+							sValue = localarr[0].slice(0, 2) + "." + localarr[1].slice(0, 2);
+						}else {
+							sValue = localarr[0].slice(0, 2);
+						}
+					} else {
+						if(Number(ans) <= 24) {
+							sValue = ans.slice(0, 2);
+						}else {
+							sValue = ans.slice(0, 1);
+						}
+					}
+				}
+			}
+			
+			/*//if a "." is at the end of the line
+			if (sValue.toString().match(/\.$/)) { 
+				sValue += "00";
+			}*/
+			
+			//if a "." is at the beginning of the line
+			if(sValue.toString().match(/^\./)){
+				sValue = "0" + sValue;
+			}
+			
+			return sValue;
+		},
+		
+		formatHour : function(sValue) {
+			// Formatting output
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {
+				minIntegerDigits: 1,
+				maxIntegerDigits: 2,
+				minFractionDigits: 2,
+				maxFractionDigits: 2
+			};
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			return (oFloatFormat.format(Number(sValue)));
+		},
+		
 		totalFormatter: function(value) {
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
 			var oFormatOptions = {
@@ -556,6 +644,14 @@ sap.ui.define([
 				sProjectID = sText.substring(iIndex, sText.length);
 			}
 			return sProjectID;
+		},
+		
+		formatDefaultHours: function(sValue) {
+			if(sValue === "" || sValue === undefined || sValue === null) {
+				return "0.00";
+			} else {
+				return sValue;
+			}
 		}
 	};
 

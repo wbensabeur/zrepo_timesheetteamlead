@@ -1477,7 +1477,45 @@ sap.ui.define([
 		},
 		checkNumber: function(oEvent) {
 			formatter.checkNumber(oEvent);                            
-		}
+		},
 			//// **AddKM Fragment Event End** ///////
+			
+		/*For Step input fragment of duration in hours*/
+		onIncrementHours: function(oEvent) {
+			var oInput = oEvent.getSource().getParent().getParent().getItems()[1].getItems()[0];
+			var iNewVal = "0.00";
+			if(oInput) {
+				// Passing current value, maximum value of input and step input value as parameters
+				iNewVal = fragment.incrementStepInput(oInput.getValue(), 24, 0.5); 
+				oInput.setValue(iNewVal);
+				oInput.fireChange({value: iNewVal});
+			}
+			
+		},
+		
+		onDecrementHours: function(oEvent) {
+			var oInput = oEvent.getSource().getParent().getParent().getItems()[1].getItems()[0];
+			var iNewVal = "0.00";
+			if(oInput) {
+				// Passing current value, minimum value of input and step input value as parameters
+				iNewVal = fragment.decrementStepInput(oInput.getValue(), 0, 0.5); 
+				oInput.setValue(iNewVal);
+				oInput.fireChange({value: iNewVal});
+			}
+			
+		},
+		
+		onLiveChangeDuration: function(oEvent) {
+			var oInput = oEvent.getSource();
+			var sValue = formatter.checkHourInput(oInput.getValue());
+			oInput.setValue(sValue);
+			oInput.fireChange({value: sValue});
+		},
+		
+		formatDuration: function(oInput) {
+			var sValue = formatter.formatHour(oInput.getValue());
+			oInput.setValue(sValue);
+			oInput.fireChange({value: sValue});
+		}
 	});
 });

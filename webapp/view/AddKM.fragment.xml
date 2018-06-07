@@ -1,10 +1,11 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:custom="com.vinci.timesheet.admin.utility">
 	<VBox>
 		<Label text="{i18n>SelectKms}" visible="true" class="sapUiSmallMarginBegin"/>
-		<HBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
-			<custom:StepInputCustom class="customStep sapUiSmallMarginBegin" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"
-				displayValuePrecision="2" value="{Hours}" width="9rem" min="0.00" max="24.00" step="0.5" change="OnChangeKMHours"/>
-			<TimePicker visible='{AddTime>/duration}' class="sapUiSmallMarginBegin" valueFormat="HH:mm" displayFormat="HH:mm" value="{StartTime}"
+		<HBox class="sapUiSmallMarginBegin sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+			<!--<custom:StepInputCustom class="customStep sapUiSmallMarginBegin" visible="{path:'AddTime>/duration',formatter:'.formatter.booleanNot'}"
+				displayValuePrecision="2" value="{Hours}" width="9rem" min="0.00" max="24.00" step="0.5" change="OnChangeKMHours"/>-->
+			<core:Fragment fragmentName="com.vinci.timesheet.admin.view.StepInput" type="XML"/>
+			<TimePicker visible='{AddTime>/duration}' valueFormat="HH:mm" displayFormat="HH:mm" value="{StartTime}"
 				placeholder="{i18n>startTime}" change="OnChangeStartTimeKM"/>
 			<!--<TimePicker visible='{AddTime>/duration}' class="sapUiSmallMarginBegin" enabled="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" valueFormat="HH:mm" displayFormat="HH:mm" value="{EndTime}"-->
 			<TimePicker visible='{AddTime>/duration}' class="sapUiSmallMarginBegin" enabled="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" valueFormat="HH:mm" displayFormat="HH:mm" value="{EndTime}"

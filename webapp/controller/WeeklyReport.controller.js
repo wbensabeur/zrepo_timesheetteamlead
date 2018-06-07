@@ -183,6 +183,7 @@ sap.ui.define([
 		},
 		
 		_applyEmployeeBinding: function(employee) {
+			var oController = this;
 			/// SP6-21 check for noEdit Flag
 			var oView = this.getView();
 			try {
@@ -212,11 +213,27 @@ sap.ui.define([
 				"')");
 			
 			// The model must be refreshed before binding to show updated total hours especially if new items were added in weekly or daily view
-			oView.getModel().refresh();
-			oView.byId("WeeklyStatus").bindElement(this.localBindingContextPath);
+			//oView.getModel().refresh();
+			
+			var oWeekSummaryData = oView.getModel().getProperty(this.localBindingContextPath);
+			
+			var sUrl = "/WeekSummarySet(WeekNumber='" + oWeekSummaryData.WeekNumber + "',WeekYear='" + oWeekSummaryData.WeekYear + "',isByWeekly="
+						+ oWeekSummaryData.isByWeekly + ",EmployeeId='" + oWeekSummaryData.EmployeeId + "',ApplicationName='" 
+						+ oWeekSummaryData.ApplicationName + "')";
+						
+			oView.getModel().read(sUrl, {
+				success: function() {
+					oView.byId("WeeklyStatus").bindElement(oController.localBindingContextPath);
+					oView.byId("WeeklyAggregation").bindElement(oController.localBindingContextPath);
+					oView.byId("WeeklyArregatedFilledData").bindElement(oController.localBindingContextPath);
+					oView.byId("WeeklyArregatedTargetData").bindElement(oController.localBindingContextPath);
+				}
+			});
+			
+			/*oView.byId("WeeklyStatus").bindElement(this.localBindingContextPath);
 			oView.byId("WeeklyAggregation").bindElement(this.localBindingContextPath);
 			oView.byId("WeeklyArregatedFilledData").bindElement(this.localBindingContextPath);
-			oView.byId("WeeklyArregatedTargetData").bindElement(this.localBindingContextPath);
+			oView.byId("WeeklyArregatedTargetData").bindElement(this.localBindingContextPath);*/
 			
 			this.EmplWeekContext = [];
 			var that = this;

@@ -7,7 +7,8 @@
 		<VBox alignItems="Start" justifyContent="Start" class="sapUiTinyMarginBottom" width="100%">
 			<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SelectProject' type='XML'/>
 			<Label text="{i18n>SelectQuantity}" class="sapUiMediumMarginTop"  />
-			<custom:StepInputCustom class="customStep" displayValuePrecision="2"  value="{Hours}" width="9rem" min="0.00" max="24.00" step=".5" change="OnEquipmentChangeQuanity"/>
+			<!--<custom:StepInputCustom class="customStep" displayValuePrecision="2"  value="{Hours}" width="9rem" min="0.00" max="24.00" step=".5" change="OnEquipmentChangeQuanity"/>-->
+			<core:Fragment fragmentName="com.vinci.timesheet.admin.view.StepInput" type="XML"/>
 		</VBox>
 		<customData>
 			<core:CustomData key="hrs" value="{Hours}"/>
