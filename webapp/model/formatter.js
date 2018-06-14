@@ -382,7 +382,7 @@ sap.ui.define([
 			}*/
 			
 			//if a "." is at the beginning of the line
-			if(sValue.toString().match(/^\./)){
+			if(sValue.toString().match(/^\./) || sValue.toString().match(/^\,/)){
 				sValue = "0" + sValue;
 			}
 			
@@ -391,13 +391,35 @@ sap.ui.define([
 		
 		formatHour : function(sValue) {
 			// Formatting output
+			var sep = "";
+			if(sValue) {
+				if (sValue.toString().indexOf(",") !== -1) {
+					sep = ",";
+				} else if (sValue.toString().indexOf(".") !== -1) {
+					sep = ".";
+				}
+			}
+			
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
-			var oFormatOptions = {
-				minIntegerDigits: 1,
-				maxIntegerDigits: 2,
-				minFractionDigits: 2,
-				maxFractionDigits: 2
-			};
+			var oFormatOptions = {};
+			if(sep === "") {
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 2,
+					minFractionDigits: 2,
+					maxFractionDigits: 2
+				};
+			}else {
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 2,
+					minFractionDigits: 2,
+					maxFractionDigits: 2,
+					decimalSeparator: sep
+				};	
+			}
+			
+			sValue = sValue.toString().replace(/[,]/g, '.');
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
 			return (oFloatFormat.format(Number(sValue)));
 		},
@@ -648,7 +670,8 @@ sap.ui.define([
 		
 		formatDefaultHours: function(sValue) {
 			if(sValue === "" || sValue === undefined || sValue === null) {
-				return "0.00";
+				//return "0.00";
+				return this.formatter.formatHour("0");
 			} else {
 				return sValue;
 			}

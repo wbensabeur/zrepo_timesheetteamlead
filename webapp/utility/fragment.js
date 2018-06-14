@@ -664,7 +664,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
 			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			//this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			this.AddUpdatetimeModel.setProperty("/totalhrs", formatter.formatHour(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
 			
 		},
@@ -673,12 +674,31 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var source = oEvent.getSource();
 			this.warning = true;
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
+			
 			var newValue = oEvent.getParameter("value");
-
+			var sep = "";
+			if(newValue) {
+				if (newValue.toString().indexOf(",") !== -1) {
+					sep = ",";
+					newValue = newValue.toString().replace(/[,]/g, '.');
+				} else {
+					sep = ".";
+				}
+			}
+			
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			if(currentValue) {
+				currentValue = currentValue.toString().replace(/[,]/g, '.');
+			}
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty("/totalhrs");
+			if(currentTotalhrs) {
+				currentTotalhrs = currentTotalhrs.toString().replace(/[,]/g, '.');
+			}
 			var newTotalhrs = Number(currentTotalhrs) + Number(deltahrs);
+			if(sep === ",") {
+				newTotalhrs = newTotalhrs.toString().replace(/[.]/g, ',');
+			}
 			this.AddUpdatetimeModel.setProperty("/totalhrs", formatter.formatHour(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
@@ -2628,15 +2648,36 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		   Function accepts a maximum value and an incremental step value as arguments
 		*/
 		incrementStepInput: function(iInputVal, maxVal, stepVal) {
+			var sep = "";
+			if(iInputVal) {
+				if (iInputVal.toString().indexOf(",") !== -1) {
+					sep = ",";
+				} else if (iInputVal.toString().indexOf(".") !== -1) {
+					sep = ".";
+				}
+			}
+			
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
-			var oFormatOptions = {
-				minIntegerDigits: 1,
-				maxIntegerDigits: 2,
-				minFractionDigits: 2,
-				maxFractionDigits: 2
-			};
+			var oFormatOptions = {};
+			if(sep === ".") {
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 2,
+					minFractionDigits: 2,
+					maxFractionDigits: 2
+				};	
+			}else{
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 2,
+					minFractionDigits: 2,
+					maxFractionDigits: 2,
+					decimalSeparator: sep
+				};
+			}
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
-			var iVal = Number(iInputVal); 
+			
+			var iVal = Number(iInputVal.toString().replace(/[,]/g, '.')); 
 			if(isNaN(iVal)) {
 				iVal = oFloatFormat.format(0);
 			}else{
@@ -2655,15 +2696,35 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		   Function accepts a minimum value and an decremental step value as arguments
 		*/
 		decrementStepInput: function(iInputVal, minVal, stepVal) {
+			var sep = "";
+			if(iInputVal) {
+				if (iInputVal.toString().indexOf(",") !== -1) {
+					sep = ",";
+				} else if (iInputVal.toString().indexOf(".") !== -1) {
+					sep = ".";
+				}
+			}
+			
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
-			var oFormatOptions = {
-				minIntegerDigits: 1,
-				maxIntegerDigits: 2,
-				minFractionDigits: 2,
-				maxFractionDigits: 2
-			};
+			var oFormatOptions = {};
+			if(sep === ".") {
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 2,
+					minFractionDigits: 2,
+					maxFractionDigits: 2
+				};	
+			}else{
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 2,
+					minFractionDigits: 2,
+					maxFractionDigits: 2,
+					decimalSeparator: sep
+				};
+			}
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
-			var iVal = Number(iInputVal); 
+			var iVal = Number(iInputVal.toString().replace(/[,]/g, '.'));  
 			if(isNaN(iVal)) {
 				iVal = oFloatFormat.format(0);
 			}else{
