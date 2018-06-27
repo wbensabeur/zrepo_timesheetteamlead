@@ -857,6 +857,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			this.warning = true;
 			var sourcePanel = this.AddProjectKM__getOwnFrameObject(source);
 			var newValue = oEvent.getParameter("value");
+			newValue = newValue.toString().replace(/[,]/g, '.');
 			sourcePanel.getCustomData()[0].setValue(newValue);
 
 		},
