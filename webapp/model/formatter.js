@@ -315,6 +315,76 @@ sap.ui.define([
 			oEvent.getSource().setValue(localFinalStr);
 		},
 		
+	checkHourEquipment: function(sInput)  {
+		var sValue = "";
+
+			if (sInput !== "" && sInput !== null && sInput !== undefined) {
+				// Find the first seperator used "," / "."
+				var sep = "";
+				var sTemp = "";
+				var arr = [];
+				var ans = "";
+				var localarr = [];
+
+				if (sInput.search(",") !== -1) {
+					sep = ",";
+				} else if (sInput.search(".") !== -1) {
+					sep = ".";
+				} else {
+					sep = ".";
+				}
+
+				if (sep === ",") {
+					//Replace all characters that do not match a digit character or a , with an empty space
+					sTemp = sInput.replace(/[^\d,]/g, '');
+					arr = sTemp.split(",");
+					ans = arr.splice(0, 2).join(',') + arr.join('');
+					localarr = ans.split(",");
+					if (localarr.length > 1) {
+						if (Number(localarr[0]) < 9999999) {
+							sValue = localarr[0].slice(0, 2) + "," + localarr[1].slice(0, 2);
+						} else {
+							sValue = localarr[0].slice(0, 2);
+						}
+					} else {
+						if (Number(ans) <= 9999999) {
+							sValue = ans.slice(0, 2);
+						} else {
+							sValue = ans.slice(0, 1);
+						}
+
+					}
+				} else {
+					//Replace all characters that do not match a digit character or a . with an empty space
+					sTemp = sInput.replace(/[^\d.]/g, '');
+					arr = sTemp.split(".");
+					ans = arr.splice(0, 2).join('.') + arr.join('');
+					localarr = ans.split(".");
+					if (localarr.length > 1) {
+						if (Number(localarr[0]) < 9999999) {
+							sValue = localarr[0].slice(0, 2) + "." + localarr[1].slice(0, 2);
+						} else {
+							sValue = localarr[0].slice(0, 2);
+						}
+					} else {
+						if (Number(ans) <= 9999999) {
+							sValue = ans.slice(0, 2);
+						} else {
+							sValue = ans.slice(0, 1);
+						}
+					}
+				}
+			}
+
+			//if a "." is at the beginning of the line
+			if (sValue.toString().match(/^\./) || sValue.toString().match(/^\,/)) {
+				sValue = "0" + sValue;
+			}
+
+			return sValue;		
+			
+		},
+		
 		checkHourInput: function(sInput) {
 			var sValue = "";
 			
@@ -447,7 +517,39 @@ sap.ui.define([
 				return hrUnit;
 		},
 		getQuantity: function(type, hrs) {
-			return Number(hrs);
+			var sep = "";
+			if(hrs) {
+			   if (navigator.language==='fr') {
+					sep = ",";
+				} else {
+					sep = ".";
+				}
+			}
+			
+		    var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {};
+			if(sep === "") {
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 2,
+					minFractionDigits: 2,
+					maxFractionDigits: 2
+				};
+			}else {
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 2,
+					minFractionDigits: 2,
+					maxFractionDigits: 2
+					//decimalSeparator: sep
+				};	
+			}
+		    hrs = hrs.toString().replace(/[,]/g, '.');
+		    var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			return (oFloatFormat.format(Number(hrs)));
+			
+			//return Number(hrs);
+			
 			/*if (type === 'Hours')
 			{
 				return Number(hrs);

@@ -1437,7 +1437,8 @@ sap.ui.define([
 			var iNewVal = "0.00";
 			if(oInput) {
 				// Passing current value, maximum value of input and step input value as parameters
-				iNewVal = fragment.incrementStepInput(oInput.getValue(), 24, 0.5); 
+				//iNewVal = fragment.incrementStepInput(oInput.getValue(), 24, 0.5); 
+				iNewVal = fragment.incrementStepInput(oInput.getValue(), 9999999, 0.5); 
 				oInput.setValue(iNewVal);
 				oInput.fireChange({value: iNewVal});
 			}
@@ -1458,7 +1459,9 @@ sap.ui.define([
 		
 		onLiveChangeDuration: function(oEvent) {
 			var oInput = oEvent.getSource();
-			var sValue = formatter.checkHourInput(oInput.getValue());
+			//Function for equipment select Quantity 
+			var sValue = formatter.checkHourEquipment(oInput.getValue()); 	
+			//var sValue = formatter.checkHourInput(oInput.getValue());
 			oInput.setValue(sValue);
 			oInput.fireChange({value: sValue});
 		},

@@ -704,15 +704,37 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		AddProjectTime_OnEquipmentChangeQuanity: function(oEvent) {
+			
 			var source = oEvent.getSource();
 			this.warning = true;
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var newValue = oEvent.getParameter("value");
-
+			
+			var sep = "";
+			if(newValue) {
+				if (newValue.toString().indexOf(",") !== -1) {
+					sep = ",";
+					newValue = newValue.toString().replace(/[,]/g, '.');
+				} else {
+					sep = ".";
+				}
+			}
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			
+			if(currentValue) {
+				currentValue = currentValue.toString().replace(/[,]/g, '.');
+			}
+			
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			if(currentTotalhrs) {
+				currentTotalhrs = currentTotalhrs.toString().replace(/[,]/g, '.');
+			}
+
 			var newTotalhrs = Number(currentTotalhrs) + Number(deltahrs);
+			if(sep === ",") {
+				newTotalhrs = newTotalhrs.toString().replace(/[.]/g, ',');
+			}
 			this.AddUpdatetimeModel.setProperty('/totalhrs', formatter.formatHour(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
