@@ -11,14 +11,22 @@
 			<TimePicker visible='{AddTime>/duration}' class="sapUiSmallMarginBegin" enabled="{path:'AddTime>/newTime',formatter:'.formatter.booleanNot'}" valueFormat="HH:mm" displayFormat="HH:mm" value="{EndTime}"
 				placeholder="{i18n>endTime}" change="OnChangeEndTimeKM"/>
 			<Input type="Number" class="sapUiSmallMarginBegin" value="{parts:['KMNumber'],formatter:'.formatter.numberFormatter'}" liveChange="checkNumber" placeholder="{i18n>noOfKM}" width="10rem"/>
-			<ComboBox placeholder="{i18n>kmType}"
+			<!--<ComboBox placeholder="{i18n>kmType}"
 				items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'KM'}]}"
 				selectedKey="{EntryTypeCatId}" loadItems="handleKMTypeLoadItems" class="SelectCombo sapUiSmallMarginBegin">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
-			</ComboBox>
+			</ComboBox>-->
+			<Select
+				items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'KM'}]}"
+				selectedKey="{EntryTypeCatId}" class="SelectCombo sapUiSmallMarginBegin">
+				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
+				<layoutData>
+					<FlexItemData growFactor="1"/>
+				</layoutData>
+			</Select>
 		</HBox>
 		<customData>
 			<core:CustomData key="hrs" value="{Hours}"/>

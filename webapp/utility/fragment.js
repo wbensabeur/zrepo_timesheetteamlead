@@ -1347,10 +1347,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var oComboBox = oAddKMFrgmt.getItems()[1].getItems()[4];
 						oComboBox.getBinding("items").resume();
 
-						var projectView = oVbox.getItems()[0].getItems()[2].getItems()[1];
-						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID +
+						projectView = oVbox.getItems()[0].getItems()[2].getItems()[1];
+						projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID +
 							"',ApplicationName='TEAMLEAD')";
-						projectView.bindElement(projectContext);
+						projectId = odataModel.getProperty(updateKeyPath).ProjectID;
+						if(projectId !== "" && projectId !== null && projectId !== undefined) {
+							projectView.bindElement(projectContext);
+						}else {
+							projectView.getItems()[1].getItems()[0].setText("");
+						}
+						
 						
 						break;
 					case 'ABSENCE':
