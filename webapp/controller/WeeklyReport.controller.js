@@ -259,8 +259,10 @@ sap.ui.define([
 						var uri = results[k].__metadata.uri;
 						var contextBinding = uri.substring((uri.indexOf('WorkDayItemSet') - 1));
 						that.EmplWeekContext.push(contextBinding);
-						var hrs = formatter.getQuantity(results[k].EntryType, results[k].Hours);
-						var km = formatter.getQuantity(results[k].EntryType, results[k].KMNumber);
+						//var hrs = formatter.getQuantity(results[k].EntryType, results[k].Hours);
+						var hrs = Number(results[k].Hours);
+						//var km = formatter.getQuantity(results[k].EntryType, results[k].KMNumber);
+						var km = Number(results[k].KMNumber);
 						
 						// If workday item has a different project id, entry type or project description, create a new line to be displayed and set initial hours 
 						// Else aggregate current hours with previous hours for this work date on current line

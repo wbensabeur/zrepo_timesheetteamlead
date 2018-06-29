@@ -765,10 +765,19 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newValue = datetime.timeToDecimal(duration);
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			if(currentValue) {
+				currentValue = Number(currentValue.toString().replace(/[,]/g, '.'));
+			}
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			var sep = ".";
+			if(currentTotalhrs && currentTotalhrs.toString().indexOf(",") > 0) {
+				currentTotalhrs = Number(currentTotalhrs.toString().replace(/[,]/g, '.'));
+				sep = ",";
+			}
 			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			newTotalhrs = newTotalhrs.toString().replace(/[.]/g, sep);
+			this.AddUpdatetimeModel.setProperty('/totalhrs', formatter.formatHour(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
 			source.setDateValue(new Date(datetime.timeToMilliSec(oEvent.getParameter("value"))));
 			//endTimer.setValue(source.getValue());
@@ -796,10 +805,19 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newValue = datetime.timeToDecimal(duration);
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
+			if(currentValue) {
+				currentValue = Number(currentValue.toString().replace(/[,]/g, '.'));
+			}
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			var sep = ".";
+			if(currentTotalhrs && currentTotalhrs.toString().indexOf(",") > 0) {
+				currentTotalhrs = Number(currentTotalhrs.toString().replace(/[,]/g, '.'));
+				sep = ",";
+			}
 			var newTotalhrs = currentTotalhrs + deltahrs;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			newTotalhrs = newTotalhrs.toString().replace(/[.]/g, sep);
+			this.AddUpdatetimeModel.setProperty('/totalhrs', formatter.formatHour(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
 			source.setDateValue(new Date(datetime.timeToMilliSec(oEvent.getParameter("value"))));
 

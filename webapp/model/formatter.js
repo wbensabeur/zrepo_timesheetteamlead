@@ -517,46 +517,16 @@ sap.ui.define([
 				return hrUnit;
 		},
 		getQuantity: function(type, hrs) {
-			var sep = "";
-			if(hrs) {
-			   if (navigator.language==='fr') {
-					sep = ",";
-				} else {
-					sep = ".";
-				}
-			}
-			
 		    var oLocale = sap.ui.getCore().getConfiguration().getLocale();
-			var oFormatOptions = {};
-			if(sep === "") {
-				oFormatOptions = {
-					minIntegerDigits: 1,
-					maxIntegerDigits: 2,
-					minFractionDigits: 2,
-					maxFractionDigits: 2
-				};
-			}else {
-				oFormatOptions = {
-					minIntegerDigits: 1,
-					maxIntegerDigits: 2,
-					minFractionDigits: 2,
-					maxFractionDigits: 2
-					//decimalSeparator: sep
-				};	
-			}
-		    hrs = hrs.toString().replace(/[,]/g, '.');
+			var oFormatOptions = {
+				minIntegerDigits: 1,
+				maxFractionDigits: 2
+			};
+		   
 		    var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
 			return (oFloatFormat.format(Number(hrs)));
 			
 			//return Number(hrs);
-			
-			/*if (type === 'Hours')
-			{
-				return Number(hrs);
-			}
-			else if (type === "IPD"){
-				return Number(hrs);
-			}*/
 		},
 		getNumber: function(Value) {
 			if(Value) {
