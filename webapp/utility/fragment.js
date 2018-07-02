@@ -722,7 +722,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			
 			if(currentValue) {
-				currentValue = currentValue.toString().replace(/[,]/g, '.');
+				//currentValue = currentValue.toString().replace(/[,]/g, '.',);
+				currentValue = currentValue.toString().replace(/\s/g,'');
 			}
 			
 			var deltahrs = newValue - currentValue;
@@ -735,7 +736,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if(sep === ",") {
 				newTotalhrs = newTotalhrs.toString().replace(/[.]/g, ',');
 			}
-			this.AddUpdatetimeModel.setProperty('/totalhrs', formatter.formatHour(newTotalhrs));
+			//this.AddUpdatetimeModel.setProperty('/totalhrs', formatter.formatHour(newTotalhrs));
+			this.AddUpdatetimeModel.setProperty('/totalhrs', formatter.formatHourEquip(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
 		},
 		AddProjectTime_OnChangeStartTime: function(oEvent) {

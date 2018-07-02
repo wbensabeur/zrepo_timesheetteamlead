@@ -273,6 +273,23 @@ sap.ui.define([
 			}
 		},
 		
+		numberFormatterEquip: function(value) {
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {
+				minIntegerDigits: 1,
+				maxIntegerDigits: 9999999,
+				minFractionDigits: 0,
+				maxFractionDigits: 2
+			};
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			var valueInNum = Number(value); //.toString();
+			if(isNaN(valueInNum)) {
+				return value;
+			}else{
+				return oFloatFormat.format(valueInNum);
+			}
+		},	
+		
 		checkNumber: function(oEvent) {
 			var setText = oEvent.getSource().getValue();
 			// Find the first seperator used "," / "."
@@ -338,17 +355,21 @@ sap.ui.define([
 					//Replace all characters that do not match a digit character or a , with an empty space
 					sTemp = sInput.replace(/[^\d,]/g, '');
 					arr = sTemp.split(",");
-					ans = arr.splice(0, 2).join(',') + arr.join('');
+					//ans = arr.splice(0, 2).join(',') + arr.join('');
+					ans = arr.splice(0, 9999999).join(',') + arr.join('');
 					localarr = ans.split(",");
 					if (localarr.length > 1) {
 						if (Number(localarr[0]) < 9999999) {
-							sValue = localarr[0].slice(0, 2) + "," + localarr[1].slice(0, 2);
+							//sValue = localarr[0].slice(0, 2) + "," + localarr[1].slice(0, 2);
+							sValue = localarr[0].slice(0, 9999999) + "," + localarr[1].slice(0, 9999999);
 						} else {
-							sValue = localarr[0].slice(0, 2);
+							//sValue = localarr[0].slice(0, 2);
+							sValue = localarr[0].slice(0, 9999999);
 						}
 					} else {
 						if (Number(ans) <= 9999999) {
-							sValue = ans.slice(0, 2);
+							//sValue = ans.slice(0, 2);
+							sValue = ans.slice(0, 9999999);
 						} else {
 							sValue = ans.slice(0, 1);
 						}
@@ -358,17 +379,21 @@ sap.ui.define([
 					//Replace all characters that do not match a digit character or a . with an empty space
 					sTemp = sInput.replace(/[^\d.]/g, '');
 					arr = sTemp.split(".");
-					ans = arr.splice(0, 2).join('.') + arr.join('');
+					//ans = arr.splice(0, 2).join('.') + arr.join('');
+					ans = arr.splice(0, 9999999).join('.') + arr.join('');
 					localarr = ans.split(".");
 					if (localarr.length > 1) {
 						if (Number(localarr[0]) < 9999999) {
-							sValue = localarr[0].slice(0, 2) + "." + localarr[1].slice(0, 2);
+							//sValue = localarr[0].slice(0, 2) + "." + localarr[1].slice(0, 2);
+							sValue = localarr[0].slice(0, 9999999) + "." + localarr[1].slice(0, 9999999);
 						} else {
-							sValue = localarr[0].slice(0, 2);
+							//sValue = localarr[0].slice(0, 2);
+							sValue = localarr[0].slice(0, 9999999);
 						}
 					} else {
 						if (Number(ans) <= 9999999) {
-							sValue = ans.slice(0, 2);
+						//	sValue = ans.slice(0, 2);
+						sValue = ans.slice(0, 9999999);
 						} else {
 							sValue = ans.slice(0, 1);
 						}
@@ -476,15 +501,58 @@ sap.ui.define([
 				oFormatOptions = {
 					minIntegerDigits: 1,
 					maxIntegerDigits: 2,
+					//maxIntegerDigits: 9999999,
 					minFractionDigits: 2,
-					maxFractionDigits: 2
+					maxFractionDigits: 2,
+					groupingEnabled:false
+
 				};
 			}else {
 				oFormatOptions = {
 					minIntegerDigits: 1,
 					maxIntegerDigits: 2,
+					//maxIntegerDigits: 9999999,
 					minFractionDigits: 2,
 					maxFractionDigits: 2,
+					groupingEnabled:false,
+					decimalSeparator: sep
+				};	
+			}
+			
+			sValue = sValue.toString().replace(/[,]/g, '.');
+			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
+			return (oFloatFormat.format(Number(sValue)));
+		},
+		
+		formatHourEquip : function(sValue) {
+			// Formatting output
+			var sep = "";
+			if(sValue) {
+				if (sValue.toString().indexOf(",") !== -1) {
+					sep = ",";
+				} else if (sValue.toString().indexOf(".") !== -1) {
+					sep = ".";
+				}
+			}
+			
+			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
+			var oFormatOptions = {};
+			if(sep === "") {
+				oFormatOptions = {
+					minIntegerDigits: 1,
+					maxIntegerDigits: 9999999,
+					minFractionDigits: 2,
+					maxFractionDigits: 2,
+					groupingEnabled:false
+
+				};
+			}else {
+				oFormatOptions = {
+					minIntegerDigits: 1,
+				    maxIntegerDigits: 9999999,
+					minFractionDigits: 2,
+					maxFractionDigits: 2,
+					groupingEnabled:false,
 					decimalSeparator: sep
 				};	
 			}

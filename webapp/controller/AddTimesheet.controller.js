@@ -558,7 +558,14 @@ sap.ui.define([
 		},
 		
 		formatDuration: function(oInput) {
-			var sValue = formatter.formatHour(oInput.getValue());
+			//var sValue = formatter.formatHour(oInput.getValue());
+			var sValue ="0.00";
+			if (this.isEquipment === "Equipment") {
+			  sValue = formatter.formatHourEquip(oInput.getValue()); 	
+			   }else{
+			   	
+			   sValue = formatter.formatHour(oInput.getValue());
+			   }
 			oInput.setValue(sValue);
 			oInput.fireChange({value: sValue});
 		}
