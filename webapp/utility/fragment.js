@@ -1165,6 +1165,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					visibleProjMandatoryTxt: false,
+					visibleManagerTxt: true,
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1186,6 +1187,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					visibleProjMandatoryTxt: ((sKey === "overnight" || sKey === "KM" || sKey === "bonus")? false : true),
+					visibleManagerTxt: true,
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1385,6 +1387,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					case 'PREMIUM':
 						odata.visibleBonus = true;
 						odata.visibleProjMandatoryTxt = false;
+						//Project name does not display-SelectProjectWithDelete fragment
+						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
+						if (type === 'Update') {
+					    	if (projectId !== null || projectId === "" || projectId === undefined) {
+							 odata.visibleManagerTxt = false;
+						   }
+						}						
 						//Add the Fragment
 						var containerbns = controler.getView().byId("addBonusTab").getItems()[0];
 						var header2 = containerbns.getItems()[0];
