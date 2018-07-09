@@ -12,18 +12,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		SearchProject_init: function(controler, container, selectButton, allProject) {
 
 			var fragment = sap.ui.xmlfragment(controler.getView().getId(), "com.vinci.timesheet.admin.view.SearchProject", controler);
-			
+
 			this.projectSearchFragment = fragment.getId();
 			this.projectfilter = null;
 			this.BUfilter = null;
 			this.positionfilter = null;
 			this.lastProjectFilter = null;
-			
+
 			container.getItems()[0].setVisible(false);
 			// Fragment for project search and display of search results is inserted in 2nd VBox of main VBox in icon tab filter
 			container.getItems()[1].setVisible(true);
 			container.getItems()[1].addItem(fragment);
-			
+
 			fragment.getItems()[2].getItems()[0].onAfterRendering = this._comboKeyboardDisable;
 			fragment.getItems()[2].getItems()[2].onAfterRendering = this._comboKeyboardDisable;
 
@@ -225,23 +225,23 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						value)],
 					and: true
 				});
-				
+
 				filters1.push(filters);
-				
+
 				if (this.BUfilter !== null) {
 					filters1.push(this.BUfilter);
 				}
-				
+
 				if (this.equipment) {
 					filters1.push(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD_E"));
 				} else {
 					filters1.push(new Filter("ApplicationName", FilterOperator.EQ, "TEAMLEAD"));
 				}
-				
+
 				var appFilter = new Filter({
-						filters: filters1,
-						and: true
-					});
+					filters: filters1,
+					and: true
+				});
 				source.getBinding("suggestionItems").filter(appFilter);
 				source.getBinding("suggestionItems").attachEventOnce('dataReceived', function() {
 					source.suggest();
@@ -370,8 +370,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (this.selectProjectcontext.length === 4) {
 				this.selectProjectcontext[3].setVisible(true); // ownDeleteButton
 			}
-			
-			if(this.selectProjectcontext.length === 5 && (sTabKey === "overnight" || sTabKey === "KM" || sTabKey === "bonus")) {
+
+			if (this.selectProjectcontext.length === 5 && (sTabKey === "overnight" || sTabKey === "KM" || sTabKey === "bonus")) {
 				this.selectProjectcontext[0].setVisible(true); // Label
 				this.selectProjectcontext[1].setVisible(false); // ownIntialButton
 				this.selectProjectcontext[2].setVisible(true); // ownRefreshButton
@@ -413,7 +413,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var projectfragment = this.SearchProject_getProjectSearchFragment();
 			var oIcnTabBar = oController.byId('idIconTabBarMulti');
 			var sKey = "";
-			if(oIcnTabBar) {
+			if (oIcnTabBar) {
 				sKey = oIcnTabBar.getSelectedKey();
 			}
 			var projectContext = this.SearchProject_getProjectContext(projectfragment); //oEvent.getSource().getCustomData()[0].getValue();
@@ -495,7 +495,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				// Attaching change event on input field of custom step input control 
 				var oInputField = oFragment.getItems()[3].getItems()[2].getItems()[0].getItems()[1].getItems()[0];
 				oInputField.attachChange(controler.OnChangeHours, controler);
-				oInputField.onfocusout = function (oEvent) {
+				oInputField.onfocusout = function(oEvent) {
 					controler.formatDuration(oInputField);
 				};
 				container.addItem(oFragment);
@@ -512,10 +512,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				// Attaching change event on input field of custom step input control 
 				var oInputField = oFragment.getItems()[2].getItems()[3].getItems()[1].getItems()[0];
 				oInputField.attachChange(controler.OnEquipmentChangeQuanity, controler);
-				oInputField.onfocusout = function (oEvent) {
+				oInputField.onfocusout = function(oEvent) {
 					controler.formatDuration(oInputField);
 				};
-				
+
 			}
 
 		},
@@ -527,7 +527,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 		},
-		
+
 		AddProjectKm_init: function(controller, container, addNew) {
 			if (addNew) {
 				var oFragment = sap.ui.xmlfragment(controller.getView().getId(), "com.vinci.timesheet.admin.view.AddProjectKM", controller);
@@ -535,11 +535,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var oAddKMFrgmt = container.getItems()[0].getItems()[2].getItems()[2].getItems()[0];
 				var oComboBox = oAddKMFrgmt.getItems()[1].getItems()[4];
 				oComboBox.onAfterRendering = this._comboKeyboardDisable;
-				
+
 				// Attaching change event on input field of custom step input control 
 				var oInputField = oFragment.getItems()[2].getItems()[2].getItems()[0].getItems()[1].getItems()[0].getItems()[1].getItems()[0];
 				oInputField.attachChange(controller.OnChangeKMHours, controller);
-				oInputField.onfocusout = function (oEvent) {
+				oInputField.onfocusout = function(oEvent) {
 					controller.formatDuration(oInputField);
 				};
 			}
@@ -595,24 +595,24 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			container.removeItem(sourcePanel);
 			sourcePanel.destroy(true);
 			if (container.getItems().length === 1) {
-				if(oAddKMBtn){
+				if (oAddKMBtn) {
 					oAddKMBtn.setVisible(false);
-				}else{
+				} else {
 					container.getParent().getItems()[1].getItems()[0].setVisible(false);
 				}
 				//container.getParent().getItems()[1].getItems()[0].setVisible(false);
-			} else if(container.getItems().length > 1){
+			} else if (container.getItems().length > 1) {
 				//container.getParent().getItems()[1].getItems()[0].setVisible(false);
-				if(oAddKMBtn){
+				if (oAddKMBtn) {
 					oAddKMBtn.setVisible(false);
-				}else{
+				} else {
 					container.getParent().getItems()[1].getItems()[0].setVisible(false);
 				}
-			}else {
+			} else {
 				//container.getParent().getItems()[1].getItems()[0].setVisible(true);
-				if(oAddKMBtn){
+				if (oAddKMBtn) {
 					oAddKMBtn.setVisible(true);
-				}else{
+				} else {
 					container.getParent().getItems()[1].getItems()[0].setVisible(true);
 				}
 			}
@@ -625,13 +625,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var source = oEvent.getSource();
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var newValue = 0;
-			
+
 			// VBox containing labels + time picker and step input for duration input
-			var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3]; 
+			var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
 			// HBox containing labels + time picker and step input for duration input
 			//var timepicker = selecthrsCombo.getItems()[2].getItems()[0].getItems()[1].getItems()[0];
 			var timepickerTo = selecthrsCombo.getItems()[2].getItems()[2];
-			
+
 			if (oEvent.getParameter("selectedIndex") === 1) {
 				//newValue = 0;
 				buttons[0].setEnabled(true);
@@ -667,17 +667,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			//this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
 			this.AddUpdatetimeModel.setProperty("/totalhrs", formatter.formatHour(newTotalhrs));
 			sourcePanel.getCustomData()[0].setValue(newValue);
-			
+
 		},
-		
+
 		AddProjectTime_OnChangeHours: function(oEvent) {
 			var source = oEvent.getSource();
 			this.warning = true;
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
-			
+
 			var newValue = oEvent.getParameter("value");
 			var sep = "";
-			if(newValue) {
+			if (newValue) {
 				if (newValue.toString().indexOf(",") !== -1) {
 					sep = ",";
 					newValue = newValue.toString().replace(/[,]/g, '.');
@@ -685,18 +685,18 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					sep = ".";
 				}
 			}
-			
+
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
-			if(currentValue) {
+			if (currentValue) {
 				currentValue = currentValue.toString().replace(/[,]/g, '.');
 			}
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty("/totalhrs");
-			if(currentTotalhrs) {
+			if (currentTotalhrs) {
 				currentTotalhrs = currentTotalhrs.toString().replace(/[,]/g, '.');
 			}
 			var newTotalhrs = Number(currentTotalhrs) + Number(deltahrs);
-			if(sep === ",") {
+			if (sep === ",") {
 				newTotalhrs = newTotalhrs.toString().replace(/[.]/g, ',');
 			}
 			this.AddUpdatetimeModel.setProperty("/totalhrs", formatter.formatHour(newTotalhrs));
@@ -704,14 +704,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 		},
 
 		AddProjectTime_OnEquipmentChangeQuanity: function(oEvent) {
-			
+
 			var source = oEvent.getSource();
 			this.warning = true;
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var newValue = oEvent.getParameter("value");
-			
+
 			var sep = "";
-			if(newValue) {
+			if (newValue) {
 				if (newValue.toString().indexOf(",") !== -1) {
 					sep = ",";
 					newValue = newValue.toString().replace(/[,]/g, '.');
@@ -720,20 +720,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			}
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
-			
-			if(currentValue) {
+
+			if (currentValue) {
 				//currentValue = currentValue.toString().replace(/[,]/g, '.',);
-				currentValue = currentValue.toString().replace(/\s/g,'');
+				currentValue = currentValue.toString().replace(/\s/g, '');
 			}
-			
+
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
-			if(currentTotalhrs) {
+			if (currentTotalhrs) {
 				currentTotalhrs = currentTotalhrs.toString().replace(/[,]/g, '.');
 			}
 
 			var newTotalhrs = Number(currentTotalhrs) + Number(deltahrs);
-			if(sep === ",") {
+			if (sep === ",") {
 				newTotalhrs = newTotalhrs.toString().replace(/[.]/g, ',');
 			}
 			//this.AddUpdatetimeModel.setProperty('/totalhrs', formatter.formatHour(newTotalhrs));
@@ -767,13 +767,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newValue = datetime.timeToDecimal(duration);
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
-			if(currentValue) {
+			if (currentValue) {
 				currentValue = Number(currentValue.toString().replace(/[,]/g, '.'));
 			}
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
 			var sep = ".";
-			if(currentTotalhrs && currentTotalhrs.toString().indexOf(",") > 0) {
+			if (currentTotalhrs && currentTotalhrs.toString().indexOf(",") > 0) {
 				currentTotalhrs = Number(currentTotalhrs.toString().replace(/[,]/g, '.'));
 				sep = ",";
 			}
@@ -807,13 +807,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newValue = datetime.timeToDecimal(duration);
 			var sourcePanel = this.AddProjectTime__getOwnFrameObject(source);
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
-			if(currentValue) {
+			if (currentValue) {
 				currentValue = Number(currentValue.toString().replace(/[,]/g, '.'));
 			}
 			var deltahrs = newValue - currentValue;
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
 			var sep = ".";
-			if(currentTotalhrs && currentTotalhrs.toString().indexOf(",") > 0) {
+			if (currentTotalhrs && currentTotalhrs.toString().indexOf(",") > 0) {
 				currentTotalhrs = Number(currentTotalhrs.toString().replace(/[,]/g, '.'));
 				sep = ",";
 			}
@@ -1141,10 +1141,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var odata = null;
 			var userPrefModel = controler.getModel('userPreference');
 			this.userPrefModel = userPrefModel;
-			
+
 			var oIcnTabBar = controler.byId('idIconTabBarMulti');
 			var sKey = "";
-			if(oIcnTabBar) {
+			if (oIcnTabBar) {
 				sKey = oIcnTabBar.getSelectedKey();
 			}
 
@@ -1186,7 +1186,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
 					visibleSummary: false,
 					visibleProjectOptional: false,
-					visibleProjMandatoryTxt: ((sKey === "overnight" || sKey === "KM" || sKey === "bonus")? false : true),
+					visibleProjMandatoryTxt: ((sKey === "overnight" || sKey === "KM" || sKey === "bonus") ? false : true),
 					visibleManagerTxt: true,
 					newTime: true,
 					newBonus: true,
@@ -1216,7 +1216,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			controler.getView().byId('AccAllowanceType').onAfterRendering = this._comboKeyboardDisable;
 			this.oDataModel = odataModel;
 			this.employees = employees;
-			
+
 			if (type === 'New') {
 
 				this.warning = false;
@@ -1257,7 +1257,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var buttons = source.getButtons();
 						// var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
 						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
-						
+
 						// Converting string 'Hours' to numeric type
 						/*var oInputDuration = selecthrsCombo.getItems()[2].getItems()[0].getItems()[1].getItems()[0];
 						var iHours = odataModel.getProperty(updateKeyPath).Hours;
@@ -1267,7 +1267,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							iHours = Number(iHours);
 						}
 						oInputDuration.setValue(formatter.formatHour(iHours));*/
-						
+
 						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[1];
 						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
@@ -1327,11 +1327,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					case 'OVERNIGHT':
 						odata.visibleOvernight = true;
 						odata.visibleProjMandatoryTxt = false;
-						
+
 						// Load items for AccAllowance Type drop down list
 						controler.getView().byId('AccAllowanceType').getBinding("items").resume();
 						controler.getView().byId('AccAllowanceType').setPlaceholder("");
-						
+
 						// Binding current project of workday item to projectView
 						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
 						var projectView = controler.getView().byId('addAccAllowance').getItems()[0].getItems()[1].getItems()[1];
@@ -1341,27 +1341,27 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						} else if (projectId === '') {
 							projectView.getItems()[0].setText("");
 						}
-						
+
 						// Select correct segmented button for current workday item
 						var oSgmtButton = controler.getView().byId("overnightInd");
-						if(oSgmtButton) {
+						if (oSgmtButton) {
 							//odataModel.getProperty(updateKeyPath).EntryType
-							if(odataModel.getProperty(updateKeyPath).MealIndicator) {
-								oSgmtButton.setSelectedKey("0"); 
-							}else if(odataModel.getProperty(updateKeyPath).JourneyIndicator) {
+							if (odataModel.getProperty(updateKeyPath).MealIndicator) {
+								oSgmtButton.setSelectedKey("0");
+							} else if (odataModel.getProperty(updateKeyPath).JourneyIndicator) {
 								oSgmtButton.setSelectedKey("1");
-							}else if(odataModel.getProperty(updateKeyPath).TransportIndicator) {
+							} else if (odataModel.getProperty(updateKeyPath).TransportIndicator) {
 								oSgmtButton.setSelectedKey("2");
-							}else {
-								oSgmtButton.setSelectedKey("0");	
-							}	
+							} else {
+								oSgmtButton.setSelectedKey("0");
+							}
 						}
-						
+
 						break;
 					case 'KM':
 						odata.visibleKM = true;
 						odata.visibleProjMandatoryTxt = false;
-						
+
 						var oVbox = controler.getView().byId("addKM").getItems()[0];
 						oVbox.removeAllItems();
 						this.AddProjectKm_init(controler, oVbox, true);
@@ -1373,13 +1373,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID +
 							"',ApplicationName='TEAMLEAD')";
 						projectId = odataModel.getProperty(updateKeyPath).ProjectID;
-						if(projectId !== "" && projectId !== null && projectId !== undefined) {
+						if (projectId !== "" && projectId !== null && projectId !== undefined) {
 							projectView.bindElement(projectContext);
-						}else {
+						} else {
 							projectView.getItems()[1].getItems()[0].setText("");
 						}
-						
-						
+
 						break;
 					case 'ABSENCE':
 						odata.visibleAbsence = true;
@@ -1389,11 +1388,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						odata.visibleProjMandatoryTxt = false;
 						//Project name does not display-SelectProjectWithDelete fragment
 						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
+						//"+ERA"
 						if (type === 'Update') {
-					    	if (projectId !== null || projectId === "" || projectId === undefined) {
-							 odata.visibleManagerTxt = false;
-						   }
-						}						
+							if (projectId !== null || projectId === "" || projectId === undefined) {
+								odata.visibleManagerTxt = false;
+							}
+						}
+						//"+ERA"
 						//Add the Fragment
 						var containerbns = controler.getView().byId("addBonusTab").getItems()[0];
 						var header2 = containerbns.getItems()[0];
@@ -1485,14 +1486,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var key = oEvent.getParameter('key');
 			var source = oEvent.getSource();
 			var that = this;
-			
+
 			// For SelectProjectWithDelete fragment, label for mandatory project is displayed for IPD 
 			// and not for overnight mask entry
 			var oAddTimeModel = controler.getModel("AddTime");
-			if(oAddTimeModel) {
+			if (oAddTimeModel) {
 				oAddTimeModel.setProperty("/visibleProjMandatoryTxt", true);
 			}
-			
+
 			if (this.warning) {
 
 				MessageBox.confirm(this.i18nModel.getText("maskEntryWarningMsg"), {
@@ -1538,12 +1539,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					oView.byId("AllowanceTravelIndicator").setVisible(true);
 				}
 
-			} else if(key === 'overnight') {
+			} else if (key === 'overnight') {
 				// Combo box
 				oView.byId('AccAllowanceType').setSelectedKey(null);
 				// Segmented buttons
 				oView.byId('overnightInd').setSelectedButton(null);
-				
+
 				// Project VBox
 				oView.byId('AccAllowanceProject').getItems()[1].getItems()[0].unbindElement();
 				oView.byId('AccAllowanceProject').getItems()[1].getItems()[0].setVisible(false); // Label
@@ -1551,10 +1552,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oView.byId('AccAllowanceProject').getItems()[1].getItems()[2].setVisible(false);
 				oView.byId('AccAllowanceProject').getItems()[1].getItems()[3].setVisible(false);
 				// Setting label visibility to false
-				if(oAddTimeModel) {
+				if (oAddTimeModel) {
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
 				}
-				
+
 			} else if (key === 'absence') {
 				if (this.oEmpsModel.getData().length === 1) {
 					oView.byId('AbsEmployee').setEnabled(false);
@@ -1580,8 +1581,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var header2 = container.getItems()[0];
 				container.removeAllItems();
 				container.insertItem(header2);
-				if(oAddTimeModel) {
+				if (oAddTimeModel) {
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
+					//+ERA
+					oAddTimeModel.setProperty("/visibleManagerTxt", false);
+				   	//+ERA
 				}
 				var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
 				container.addItem(oFragment);
@@ -1591,28 +1595,31 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var oVbox = oView.byId("addKM").getItems()[0];
 				oVbox.removeAllItems();
 				// Setting label visibility to false
-				if(oAddTimeModel) {
+				if (oAddTimeModel) {
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
+					//+ERA
+					oAddTimeModel.setProperty("/visibleManagerTxt", false);
+				   	//+ERA
 				}
 				this.AddProjectKm_init(controler, oVbox, this.AddUpdatetimeModel.getData().newTime);
-				
+
 				/*// Set initial value of duration to '0.00' for KM icon tab filter
 				if (!this.AddUpdatetimeModel.getProperty("/duration")) { 
 					// Attaching change event on input field of custom step input control 
 					var oInputField = oVbox.getItems()[0].getItems()[2].getItems()[2].getItems()[0].getItems()[1].getItems()[0].getItems()[1].getItems()[0];	
 					oInputField.setValue("0.00");
 				}*/
-				
+
 			}
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
 			this.warning = true;
 		},
-		
-		AddUpdatetime_onOvernightIndicator : function(oEvent) {
+
+		AddUpdatetime_onOvernightIndicator: function(oEvent) {
 			this.warning = true;
 		},
-		
+
 		AddUpdatetime_OnaddNewHourPress: function(controller) {
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
 			this.AddProjectTime_init(controller, controller.getView().byId('addTimeTab').getItems()[0], addNew);
@@ -1650,7 +1657,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var addNew = this.AddUpdatetimeModel.getData().newTime;
 			var container = controller.getView().byId("addKM").getItems()[0];
 			this.AddProjectKm_init(controller, container, addNew);
-			
+
 			/*if (container.getItems().length === 1) {
 				container.getItems()[0].getItems()[3].getItems()[0].setVisible(false);
 			} else if (container.getItems().length > 1) {
@@ -1658,15 +1665,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 				container.getItems()[0].getItems()[3].getItems()[0].setVisible(true);
 			}*/
-			
+
 			if (container.getItems().length === 1) {
 				container.getParent().getItems()[2].getItems()[0].setVisible(false);
-			} else if(container.getItems().length > 1){
+			} else if (container.getItems().length > 1) {
 				container.getParent().getItems()[2].getItems()[0].setVisible(false);
-			}else {
+			} else {
 				container.getParent().getItems()[2].getItems()[0].setVisible(true);
 			}
-			
+
 		},
 		AddUpdatetime_getOwnIconTabObject: function(source) {
 			var parent = source.getParent();
@@ -1735,7 +1742,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var selectedTab = oView.byId('idIconTabBarMulti').getSelectedKey();
 			var workDayItem;
 			var bUpdate = true;
-			
+
 			if (selectedTab === 'hours') {
 				var tab = oView.byId('addTimeTab').getItems()[0].getItems()[1];
 				var startTime = '00:00';
@@ -1811,26 +1818,26 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					"TransportIndicator": travel
 
 				};
-			} else if(selectedTab === 'overnight') {
+			} else if (selectedTab === 'overnight') {
 				// Get Item Data from view for Accommodation Allowances
 				var oSegmentedButton = oView.byId('overnightInd');
 				var sKey = oSegmentedButton.getSelectedKey();
 				var jobsite = false;
 				var siteChanges = false;
 				var wkndJobsite = false;
-				
-				switch(sKey) {
-					case("0"):
+
+				switch (sKey) {
+					case ("0"):
 						jobsite = true;
 						break;
-					case("1"):
+					case ("1"):
 						siteChanges = true;
 						break;
-					case("2"):
+					case ("2"):
 						wkndJobsite = true;
 						break;
 				}
-				
+
 				var zonetype = oView.byId('AccAllowanceType').getSelectedKey();
 				var zoneName = oView.byId('AccAllowanceType').getValue();
 				if (zoneName === undefined || zoneName === "" || zoneName === null) {
@@ -1840,7 +1847,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					rButton.setEnabled(true);
 					return;
 				}
-				
+
 				var allwProjectID = null;
 				try {
 					var allwProject = oView.byId('AccAllowanceProject').getItems()[1].getItems()[0].getBindingContext().getPath();
@@ -1851,7 +1858,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				if (allwProjectID === undefined || allwProjectID === null) {
 					allwProjectID = "";
 				}
-				
+
 				workDayItem = {
 					"ProjectID": allwProjectID,
 					"EntryType": "OVERNIGHT",
@@ -1881,28 +1888,28 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var startTime = '000000';
 				var endTime = '000000';
 				var hrs = "0";
-				
+
 				var kmContainer = kmtab.getItems()[2].getItems()[2].getItems()[0];
 				var kmprojectID = undefined;
 				var kmhrType = undefined;
-				var oTxtArea = kmtab.getItems()[2].getItems()[3].getItems()[0].getContent()[0]; 
-				
+				var oTxtArea = kmtab.getItems()[2].getItems()[3].getItems()[0].getContent()[0];
+
 				if (this.AddUpdatetimeModel.getData().duration) {
 					startTime = kmContainer.getItems()[1].getItems()[1].getValue();
 					endTime = kmContainer.getItems()[1].getItems()[2].getValue();
-				}else{
-					if(kmContainer.data('hrs')) {
-						hrs = kmContainer.data('hrs').toString();	
-					}else{
+				} else {
+					if (kmContainer.data('hrs')) {
+						hrs = kmContainer.data('hrs').toString();
+					} else {
 						hrs = "";
 					}
 				}
-				
+
 				var KMNumber = kmContainer.getItems()[1].getItems()[3].getValue();
 				kmhrType = kmContainer.getItems()[1].getItems()[4].getSelectedKey();
 				var kmprojectBindingPath = kmtab.getItems()[2].getItems()[1].getItems()[1].getItems()[0].getBindingContext().getPath();
 				kmprojectID = oView.getModel().getProperty(kmprojectBindingPath).ProjectId;
-				
+
 				// If front-end validation should be implemented
 				/*var kmhrTypeEmpty = (kmhrType === "" || kmhrType === undefined || kmhrType === null);
 				var startTimeEmpty = (startTime === "" || startTime === undefined || startTime === null);
@@ -1927,22 +1934,22 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					rButton.setEnabled(true);
 					bUpdate = false;
 				}*/
-				
+
 				//if(bUpdate) {
-					workDayItem = {
-						"ProjectID": kmprojectID,
-						"Hours": hrs,
-						"EntryTypeCatId": kmhrType,
-						"KMNumber": KMNumber,
-						"Comment": oTxtArea.getValue(),
-						"StartTime": startTime,
-						"EndTime": endTime
-					};
+				workDayItem = {
+					"ProjectID": kmprojectID,
+					"Hours": hrs,
+					"EntryTypeCatId": kmhrType,
+					"KMNumber": KMNumber,
+					"Comment": oTxtArea.getValue(),
+					"StartTime": startTime,
+					"EndTime": endTime
+				};
 				//}
 
 			}
-			
-			if(bUpdate) {
+
+			if (bUpdate) {
 				///Update Model
 				var that = this;
 				ctype.setBusy(true);
@@ -2332,15 +2339,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							var kmContainer = kmtab[km].getItems()[2].getItems()[2].getItems()[0];
 							var kmprojectID = undefined;
 							var kmhrType = undefined;
-							var oTxtArea = kmtab[km].getItems()[2].getItems()[3].getItems()[0].getContent()[0];   
+							var oTxtArea = kmtab[km].getItems()[2].getItems()[3].getItems()[0].getContent()[0];
 
 							if (this.AddUpdatetimeModel.getData().duration) {
 								startTime = kmContainer.getItems()[1].getItems()[1].getValue();
 								endTime = kmContainer.getItems()[1].getItems()[2].getValue();
-							}else{
-								if(kmContainer.data('hrs')) {
-									hrs = kmContainer.data('hrs').toString();	
-								}else{
+							} else {
+								if (kmContainer.data('hrs')) {
+									hrs = kmContainer.data('hrs').toString();
+								} else {
 									hrs = "";
 								}
 							}
@@ -2349,14 +2356,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							kmhrType = kmContainer.getItems()[1].getItems()[4].getSelectedKey();
 							var kmprojectBindingPath = kmtab[km].getItems()[2].getItems()[1].getItems()[1].getItems()[0].getBindingContext().getPath();
 							kmprojectID = oView.getModel().getProperty(kmprojectBindingPath).ProjectId;
-							
+
 							var kmhrTypeEmpty = (kmhrType === "" || kmhrType === undefined || kmhrType === null);
 							var kmprojectIDEmpty = (kmprojectID === "" || kmprojectID === undefined || kmprojectID === null);
 							var startTimeEmpty = (startTime === "" || startTime === undefined || startTime === null);
 							var endTimeEmpty = (endTime === "" || endTime === undefined || endTime === null);
 							var KMNumberEmpty = (KMNumber === "" || KMNumber === undefined || KMNumber === null);
 							var hrsEmpty = (hrs === "" || hrs === undefined || hrs === null);
-							
+
 							if (kmprojectIDEmpty && kmhrTypeEmpty && KMNumberEmpty && startTimeEmpty && endTimeEmpty && hrsEmpty) {
 								continue;
 							} else if (KMNumberEmpty && (startTimeEmpty || endTimeEmpty)) {
@@ -2364,7 +2371,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;
-							}  else if (KMNumberEmpty && hrsEmpty) {
+							} else if (KMNumberEmpty && hrsEmpty) {
 								MessageBox.alert(this.i18nModel.getText("kmNumberOrkmTimeNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
@@ -2381,7 +2388,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
 								return;
-							}  else if (KMNumberEmpty && hrsEmpty) {
+							} else if (KMNumberEmpty && hrsEmpty) {
 								MessageBox.alert(this.i18nModel.getText("kmNumberOrkmTimeNotSelected"));
 								ctype.setBusy(false);
 								rButton.setEnabled(true);
@@ -2426,7 +2433,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							var oProjectContext = tabBns[k].getItems()[2].getItems()[2].getItems()[0].getBindingContext();
 							var bnsProjectBindingPath = "";
 							var bnsProjectID = "";
-							if(oProjectContext) {
+							if (oProjectContext) {
 								bnsProjectBindingPath = oProjectContext.getPath();
 								bnsProjectID = oView.getModel().getProperty(bnsProjectBindingPath).ProjectId;
 							}
@@ -2437,17 +2444,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							ctype.setBusy(false);
 							rButton.setEnabled(true);
 							return;
-							
+
 						}
 						//if (bnsProjectID === undefined && bnsType === "") {
 						//	continue;
 						//} else {
-							//MessageBox.alert("All Items are not selected");
+						//MessageBox.alert("All Items are not selected");
 						var localreturn = false;
 						if (bnsType === "") {
 							MessageBox.alert(this.i18nModel.getText("bnsTypeNotSelected"));
 							localreturn = true;
-						} 
+						}
 						if (localreturn === true) {
 							ctype.setBusy(false);
 							rButton.setEnabled(true);
@@ -2527,29 +2534,29 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					};
 					workDayItems.push(workDayAllowanceItem);
 					//	}
-				}else if(selectedTab === "overnight") {
+				} else if (selectedTab === "overnight") {
 					// Get Item Data from view for Accommodation Allowances
 					var oSegmentedButton = oView.byId('overnightInd');
 					var sKey = oSegmentedButton.getSelectedKey();
 					var jobsite = false;
 					var siteChanges = false;
 					var wkndJobsite = false;
-					
-					switch(sKey) {
-						case("0"):
+
+					switch (sKey) {
+						case ("0"):
 							jobsite = true;
 							break;
-						case("1"):
+						case ("1"):
 							siteChanges = true;
 							break;
-						case("2"):
+						case ("2"):
 							wkndJobsite = true;
 							break;
 						default:
 							jobsite = true;
 							break;
 					}
-					
+
 					var zonetype = oView.byId('AccAllowanceType').getSelectedKey();
 					var zoneName = oView.byId('AccAllowanceType').getValue();
 					if (zoneName === undefined || zoneName === "" || zoneName === null) {
@@ -2700,31 +2707,31 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			source.openValueStateMessage();
 			source.focus();
 		},
-		
+
 		/* 
 		   Incrementing the custom Step input value in fragment StepInput.fragment.xml. 
 		   Function accepts a maximum value and an incremental step value as arguments
 		*/
 		incrementStepInput: function(iInputVal, maxVal, stepVal) {
 			var sep = "";
-			if(iInputVal) {
+			if (iInputVal) {
 				if (iInputVal.toString().indexOf(",") !== -1) {
 					sep = ",";
 				} else if (iInputVal.toString().indexOf(".") !== -1) {
 					sep = ".";
 				}
 			}
-			
+
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
 			var oFormatOptions = {};
-			if(sep === ".") {
+			if (sep === ".") {
 				oFormatOptions = {
 					minIntegerDigits: 1,
 					maxIntegerDigits: 2,
 					minFractionDigits: 2,
 					maxFractionDigits: 2
-				};	
-			}else{
+				};
+			} else {
 				oFormatOptions = {
 					minIntegerDigits: 1,
 					maxIntegerDigits: 2,
@@ -2734,45 +2741,45 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				};
 			}
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
-			
-			var iVal = Number(iInputVal.toString().replace(/[,]/g, '.')); 
-			if(isNaN(iVal)) {
+
+			var iVal = Number(iInputVal.toString().replace(/[,]/g, '.'));
+			if (isNaN(iVal)) {
 				iVal = oFloatFormat.format(0);
-			}else{
-				if(iVal < maxVal) {
+			} else {
+				if (iVal < maxVal) {
 					iVal += stepVal;
-				}else {
+				} else {
 					iVal = maxVal;
 				}
 				iVal = oFloatFormat.format(iVal);
 			}
 			return iVal;
-		}, 
-		
+		},
+
 		/* 
 		   Decrementing the custom Step input value in fragment StepInput.fragment.xml. 
 		   Function accepts a minimum value and an decremental step value as arguments
 		*/
 		decrementStepInput: function(iInputVal, minVal, stepVal) {
 			var sep = "";
-			if(iInputVal) {
+			if (iInputVal) {
 				if (iInputVal.toString().indexOf(",") !== -1) {
 					sep = ",";
 				} else if (iInputVal.toString().indexOf(".") !== -1) {
 					sep = ".";
 				}
 			}
-			
+
 			var oLocale = sap.ui.getCore().getConfiguration().getLocale();
 			var oFormatOptions = {};
-			if(sep === ".") {
+			if (sep === ".") {
 				oFormatOptions = {
 					minIntegerDigits: 1,
 					maxIntegerDigits: 2,
 					minFractionDigits: 2,
 					maxFractionDigits: 2
-				};	
-			}else{
+				};
+			} else {
 				oFormatOptions = {
 					minIntegerDigits: 1,
 					maxIntegerDigits: 2,
@@ -2782,13 +2789,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				};
 			}
 			var oFloatFormat = NumberFormat.getFloatInstance(oFormatOptions, oLocale);
-			var iVal = Number(iInputVal.toString().replace(/[,]/g, '.'));  
-			if(isNaN(iVal)) {
+			var iVal = Number(iInputVal.toString().replace(/[,]/g, '.'));
+			if (isNaN(iVal)) {
 				iVal = oFloatFormat.format(0);
-			}else{
-				if(iVal > minVal) {
+			} else {
+				if (iVal > minVal) {
 					iVal -= stepVal;
-				}else {
+				} else {
 					iVal = minVal;
 				}
 				iVal = oFloatFormat.format(iVal);
