@@ -2689,8 +2689,19 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					datetime.getODataDateFilter(employees[0].Days[0]) + "and%20ApplicationName%20eq%20%27" + userPref
 					.application + "%27%20and%20ApplicationVersion%20eq%20%27" + userPref.applicationVersion + "%27%20";
 			} else {
-				var fromDay = employees[0].Days[0];
-				var toDay = employees[0].Days[employees[0].Days.length - 1];
+				// Defining a custom sorting function to compare date objects and sort them in ascending order. 
+				// JavaScript's native comparison operators can be used to compare dates.
+				var sortDateAsc = function (date1, date2) {  
+				  if (date1 > date2) return 1;
+				  if (date1 < date2) return -1;
+				  return 0;
+				};
+				
+				var aDates = employees[0].Days;
+				aDates.sort(sortDateAsc);
+				
+				var fromDay = aDates[0];
+				var toDay = aDates[aDates.length - 1];
 				urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20WorkDate%20ge%20" +
 					datetime.getODataDateFilter(fromDay) + "and%20WorkDate%20le%20" + datetime.getODataDateFilter(toDay) +
 					"and%20ApplicationName%20eq%20%27" + userPref.application + "%27%20and%20ApplicationVersion%20eq%20%27" + userPref.applicationVersion +
