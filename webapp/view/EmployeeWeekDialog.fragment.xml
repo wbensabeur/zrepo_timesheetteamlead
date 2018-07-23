@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Dialog id="EmpWeekCheckDialog" title="{i18n>empWeekHeader} {WeekNumber}" contentHeight="600px" contentWidth="800px" draggable="false">
+	<Dialog id="EmpWeekCheckDialog" title="{i18n>empWeekHeader} {WeekNumber}" contentHeight="600px" contentWidth="800px" draggable="false" class="EmpWeekDialogBG">
 		<customHeader>
 			<Bar>
 				<contentLeft>

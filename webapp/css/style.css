@@ -963,3 +963,8 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 .rightStepInputCtrl .sapMInputBaseInner {
 	border-left: 0px;
 }
+
+/*Employee Week and Day Dialog background color*/
+.EmpWeekDialogBG>section.sapMDialogSection {
+    background: #f9f9f9 !important;
+}

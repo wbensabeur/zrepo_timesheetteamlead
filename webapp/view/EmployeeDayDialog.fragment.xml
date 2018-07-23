@@ -10,7 +10,7 @@
 				</contentRight>
 			</Bar>
 		</customHeader>
-		<content>
+		<content class="customDgBoxColor">
 			<VBox>
 				<VBox>
 					<HBox class="sapUiMediumMarginTop sapUiSmallMarginBegin">
