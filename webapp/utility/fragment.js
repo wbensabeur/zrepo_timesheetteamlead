@@ -567,8 +567,26 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			//+ERA_PRD24-Change the decimal place before calculation
+			var sep = "";
+			if (currentTotalhrs) {
+				if (currentTotalhrs.toString().indexOf(",") !== -1) {
+					sep = ",";
+					currentTotalhrs = currentTotalhrs.toString().replace(/[,]/g, '.');
+				} else {
+				sep = ".";
+				}
+			}		
+			//+ERA_PRD24
 			var newTotalhrs = currentTotalhrs - currentValue;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			//+ERA_PRD24 - change value of total hours to put the correct seperator
+			//this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			if (sep === ",") {
+				newTotalhrs = newTotalhrs.toString().replace(/[.]/g, ',');
+			}
+			//Change back to the correct decimal place to display
+			this.AddUpdatetimeModel.setProperty("/totalhrs", formatter.formatHourEquip(newTotalhrs));
+			//+ERA_PRD24			
 			this.AddProjectTime_destroy(sourcePanel);
 
 			if (container.getItems().length === 1) {
@@ -1151,21 +1169,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			if (this.equipment) {
 				odata = {
 					totalhrs: 0,
-					visibleHrs: false, //userPrefModel.getProperty('/defaultHours'),
+					visibleHrs: false,
 					visibleDailyAllow: false,
 					visibleOvernight: false,
 					visibleBonus: false,
 					visibleKM: false,
 					visibleAbsence: false,
-					//visibleAbsence: true,
 					visibleAbsence1: false,
 					visibleAbsence2: false,
 					visibleAbsence3: false,
-					visibleEquipment: true, //userPrefModel.getProperty('/defaultEquipment'),
+					visibleEquipment: true,
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					visibleProjMandatoryTxt: false,
-					visibleManagerTxt: true,
+					visibleManagerTxt: true,									//ERA_PRD18
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1173,21 +1190,20 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 				odata = {
 					totalhrs: 0,
-					visibleHrs: true, //userPrefModel.getProperty('/defaultHours'),
+					visibleHrs: true,
 					visibleDailyAllow: userPrefModel.getProperty('/defaultIPD'),
 					visibleOvernight: userPrefModel.getProperty('/defaultOvernight'),
 					visibleBonus: userPrefModel.getProperty('/defaultBonus'),
 					visibleKM: userPrefModel.getProperty('/defaultKM'),
 					visibleAbsence: userPrefModel.getProperty('/defaultAbsence'),
-					//visibleAbsence: true,
 					visibleAbsence1: true,
 					visibleAbsence2: false,
 					visibleAbsence3: false,
-					visibleEquipment: false, //userPrefModel.getProperty('/defaultEquipment'),
+					visibleEquipment: false,
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					visibleProjMandatoryTxt: ((sKey === "overnight" || sKey === "KM" || sKey === "bonus") ? false : true),
-					visibleManagerTxt: true,
+					visibleManagerTxt: true,							//ERA_PRD18
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1200,12 +1216,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				this.AddProjectEquipment_init(controler, controler.getView().byId('addEquipmentTab').getItems()[0], true); // initialse with single hour
 			}
 
-			//this.AddProjectBonus_init(controler, controler.getView().byId('addBonusTab').getItems()[0], true)
-
 			var footerData;
 			this.warning = false;
 			this.currentView = 'hours';
-			//this.AddKM_init(controler, controler.getView().byId('addKM').getItems()[0], odata.newTime);
 			var items = container.getItems();
 			if (items.length > 0) {
 				items[0].setVisible(false);
@@ -1216,7 +1229,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			controler.getView().byId('AccAllowanceType').onAfterRendering = this._comboKeyboardDisable;
 			this.oDataModel = odataModel;
 			this.employees = employees;
-
+			var oSelectFilters = this.getValueHelpParams(this.employees);
+			this.setSelectTypeBinding(sKey, oSelectFilters, controler);
+			
 			if (type === 'New') {
 
 				this.warning = false;
@@ -1255,18 +1270,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 						var source = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2].getItems()[0];
 						var buttons = source.getButtons();
-						// var allDayCombo = this.AddProjectTime_getOwnAllDayComboBox(source);
 						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
-
-						// Converting string 'Hours' to numeric type
-						/*var oInputDuration = selecthrsCombo.getItems()[2].getItems()[0].getItems()[1].getItems()[0];
-						var iHours = odataModel.getProperty(updateKeyPath).Hours;
-						if(iHours === "" || iHours === undefined || iHours === null) {
-							iHours = 0;
-						}else {
-							iHours = Number(iHours);
-						}
-						oInputDuration.setValue(formatter.formatHour(iHours));*/
 
 						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[1];
 						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
@@ -1274,17 +1278,23 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 						buttons[0].setEnabled(true);
 						buttons[1].setEnabled(false);
-						// allDayCombo.setVisible(false);
+						
+						//Binding of value help categories
+						oSelectFilters = this.getValueHelpParams(this.employees);
+						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
+						
 						selecthrsCombo.setVisible(true);
 
-						// allDayCombo.setPlaceholder("");
-						//selecthrsCombo.getItems()[2].getItems()[3].setPlaceholder("");
-						//selecthrsCombo.getParent().getItems()[4].getItems()[0].setPlaceholder("");
 						break;
 					case 'IPD':
 						odata.visibleDailyAllow = true;
 						odata.visibleProjMandatoryTxt = true;
-						controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
+						
+						//controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
+						//Binding of value help categories
+						oSelectFilters = this.getValueHelpParams(this.employees);
+						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
+						
 						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
 						var projectView = controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1];
 						if (projectId !== null && projectId !== '' && projectId !== undefined) {
@@ -1320,7 +1330,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 								}
 							},
 							error: function(error) {
-								//sap.m.MessageToast.show("Failed");
 							}
 						});
 						break;
@@ -1328,8 +1337,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						odata.visibleOvernight = true;
 						odata.visibleProjMandatoryTxt = false;
 
+						//Binding of value help categories
+						oSelectFilters = this.getValueHelpParams(this.employees);
+						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
+						
 						// Load items for AccAllowance Type drop down list
-						controler.getView().byId('AccAllowanceType').getBinding("items").resume();
+						//controler.getView().byId('AccAllowanceType').getBinding("items").resume();
 						controler.getView().byId('AccAllowanceType').setPlaceholder("");
 
 						// Binding current project of workday item to projectView
@@ -1345,7 +1358,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						// Select correct segmented button for current workday item
 						var oSgmtButton = controler.getView().byId("overnightInd");
 						if (oSgmtButton) {
-							//odataModel.getProperty(updateKeyPath).EntryType
 							if (odataModel.getProperty(updateKeyPath).MealIndicator) {
 								oSgmtButton.setSelectedKey("0");
 							} else if (odataModel.getProperty(updateKeyPath).JourneyIndicator) {
@@ -1366,8 +1378,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						oVbox.removeAllItems();
 						this.AddProjectKm_init(controler, oVbox, true);
 						var oAddKMFrgmt = oVbox.getItems()[0].getItems()[2].getItems()[2].getItems()[0];
-						var oComboBox = oAddKMFrgmt.getItems()[1].getItems()[4];
-						oComboBox.getBinding("items").resume();
+						//var oComboBox = oAddKMFrgmt.getItems()[1].getItems()[4];
+						//oComboBox.getBinding("items").resume();
+						
+						//Binding of value help categories
+						oSelectFilters = this.getValueHelpParams(this.employees);
+						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
 
 						projectView = oVbox.getItems()[0].getItems()[2].getItems()[1];
 						projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID +
@@ -1388,13 +1404,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						odata.visibleProjMandatoryTxt = false;
 						//Project name does not display-SelectProjectWithDelete fragment
 						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
-						//"+ERA"
+						//ERA_PRD18
 						if (type === 'Update') {
 							if (projectId !== null || projectId === "" || projectId === undefined) {
 								odata.visibleManagerTxt = false;
 							}
 						}
-						//"+ERA"
+						//"+ERA_PRD18
 						//Add the Fragment
 						var containerbns = controler.getView().byId("addBonusTab").getItems()[0];
 						var header2 = containerbns.getItems()[0];
@@ -1413,7 +1429,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						projectView = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2];
 						projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
-						selectbnsCombo.getBinding("items").resume();
+						
+						//selectbnsCombo.getBinding("items").resume();
+						
+						//Binding of value help categories
+						oSelectFilters = this.getValueHelpParams(this.employees);
+						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
+						
 						var localHours = formatter.getNumber(odataModel.getProperty(updateKeyPath).Hours);
 						selectbnsInput.setValue(localHours);
 						selectbnsCombo.setPlaceholder("");
@@ -1515,7 +1537,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 
 			if (key === 'allowance') {
-				//this.AddUpdatetimeModel.setProperty('/visibleProjectOptional', true);
+				//Binding of value help categories
+				var oSelectFilters = this.getValueHelpParams(this.employees);
+				this.setSelectTypeBinding(key, oSelectFilters, controler);
+				
 				oView.byId('AllowanceZoneType').setSelectedKey(null);
 				oView.byId('AllowanceMealIndicator').setPressed(false);
 				oView.byId('AllowanceTransportIndicator').setPressed(false);
@@ -1540,6 +1565,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 
 			} else if (key === 'overnight') {
+				//Binding of value help categories
+				var oSelectFilters = this.getValueHelpParams(this.employees);
+				this.setSelectTypeBinding(key, oSelectFilters, controler);
+				
 				// Combo box
 				oView.byId('AccAllowanceType').setSelectedKey(null);
 				// Segmented buttons
@@ -1562,6 +1591,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				} else {
 					oView.byId('AbsEmployee').setEnabled(true);
 				}
+				
+				//Binding of value help categories
+				var oSelectFilters = this.getValueHelpParams(this.employees);
+				this.setSelectTypeBinding(key, oSelectFilters, controler);
 
 				oView.byId('AbsCat').setSelectedKey(null);
 				oView.byId('AbsStartDate').setValue(null);
@@ -1575,6 +1608,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oView.byId('addTimeTab').getItems()[0].insertItem(header);
 				var addNew = this.AddUpdatetimeModel.getData().newTime;
 				this.AddProjectTime_init(controler, oView.byId('addTimeTab').getItems()[0], addNew);
+				
+				//Binding of value help categories
+				var oSelectFilters = this.getValueHelpParams(this.employees);
+				this.setSelectTypeBinding(key, oSelectFilters, controler);
 			} else if (key === 'bonus') {
 				//	if(oView.byId("addBonusTab").getItems()[0].getItems().length === 1) {
 				var container = oView.byId("addBonusTab").getItems()[0];
@@ -1583,12 +1620,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				container.insertItem(header2);
 				if (oAddTimeModel) {
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
-					//+ERA
+					//+ERA_PRD18
 					oAddTimeModel.setProperty("/visibleManagerTxt", false);
-				   	//+ERA
+				   	//+ERA_PRD18
 				}
 				var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
 				container.addItem(oFragment);
+				
+				//Binding of value help categories
+				var oSelectFilters = this.getValueHelpParams(this.employees);
+				this.setSelectTypeBinding(key, oSelectFilters, controler);
+				
 				oFragment.getItems()[2].getItems()[0].getItems()[0].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 				//	}
 			} else if (key === 'KM') {
@@ -1597,19 +1639,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				// Setting label visibility to false
 				if (oAddTimeModel) {
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
-					//+ERA
+					//+ERA_PRD18
 					oAddTimeModel.setProperty("/visibleManagerTxt", false);
-				   	//+ERA
+				   	//+ERA_PRD18
 				}
+				
 				this.AddProjectKm_init(controler, oVbox, this.AddUpdatetimeModel.getData().newTime);
-
-				/*// Set initial value of duration to '0.00' for KM icon tab filter
-				if (!this.AddUpdatetimeModel.getProperty("/duration")) { 
-					// Attaching change event on input field of custom step input control 
-					var oInputField = oVbox.getItems()[0].getItems()[2].getItems()[2].getItems()[0].getItems()[1].getItems()[0].getItems()[1].getItems()[0];	
-					oInputField.setValue("0.00");
-				}*/
-
+				//Binding of value help categories
+				var oSelectFilters = this.getValueHelpParams(this.employees);
+				this.setSelectTypeBinding(key, oSelectFilters, controler);
 			}
 		},
 		AddUpdatetime_onAllowanceIndicator: function(oEvent) {
@@ -2812,6 +2850,67 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				iVal = oFloatFormat.format(iVal);
 			}
 			return iVal;
+		},
+		
+		/*
+			For binding category type lists of the entity ValueHelpSet
+		*/
+		getValueHelpParams: function(aEmployees) {
+				// Defining a custom sorting function to compare date objects and sort them in ascending order. 
+				// JavaScript's native comparison operators can be used to compare dates.
+				var sortDateAsc = function (date1, date2) {  
+				  if (date1 > date2) return 1;
+				  if (date1 < date2) return -1;
+				  return 0;
+				};
+				var aSelectedDays = [];
+				var aEmpIds = [];
+				var oParams = {};
+				
+				for(var i = 0; i < aEmployees.length; i++) {
+					aEmpIds.push(aEmployees[i].employee);
+					for(var j = 0; j < aEmployees[i].Days.length; j++) {
+						aSelectedDays.push(aEmployees[i].Days[j]);
+					}
+				}
+				
+				aSelectedDays.sort(sortDateAsc);
+				oParams = {
+					EmployeeIds : aEmpIds,
+					StartDate : aSelectedDays[0],
+					EndDate : aSelectedDays[aSelectedDays.length-1]
+				};
+				
+				return oParams;
+		},
+		
+		setSelectTypeBinding: function(sKey, oParams, oController) {
+			jQuery.sap.log.error("No of selected employees: " + oParams.EmployeeIds.length + " " + oParams.StartDate + " " + oParams.EndDate);
+			switch(sKey) {
+				case 'hours':
+					var source = oController.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2].getItems()[0];
+					var oSelecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
+					break;
+				case 'allowance':
+					var oSelectAllowance = oController.getView().byId('AllowanceZoneType');
+					break;
+				case 'overnight':
+					var oSelectAccAllowance = oController.getView().byId('AccAllowanceType');
+					break;
+				case 'bonus':
+					var oSelectBns = oController.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[0].getItems()[1];
+					break;
+				case 'absence':
+					var oSelectAbs =  oController.getView().byId("AbsCat");
+					break;
+				case 'KM':
+					var oVbox = oController.getView().byId("addKM").getItems()[0].getItems()[0].getItems()[2].getItems()[2].getItems()[0];
+					var oSelectKm = oVbox.getItems()[1].getItems()[4];
+					break;
+				case 'Equipment':
+					break;
+				
+			}
 		}
 
 	};
