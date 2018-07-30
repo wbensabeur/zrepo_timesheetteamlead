@@ -567,8 +567,26 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 			var currentValue = sourcePanel.getCustomData()[0].getValue();
 			var currentTotalhrs = this.AddUpdatetimeModel.getProperty('/totalhrs');
+			//+ERA_PRD24-Change the decimal place before calculation
+			var sep = "";
+			if (currentTotalhrs) {
+				if (currentTotalhrs.toString().indexOf(",") !== -1) {
+					sep = ",";
+					currentTotalhrs = currentTotalhrs.toString().replace(/[,]/g, '.');
+				} else {
+				sep = ".";
+				}
+			}		
+			//+ERA_PRD24
 			var newTotalhrs = currentTotalhrs - currentValue;
-			this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			//+ERA_PRD24 - change value of total hours to put the correct seperator
+			//this.AddUpdatetimeModel.setProperty('/totalhrs', newTotalhrs);
+			if (sep === ",") {
+				newTotalhrs = newTotalhrs.toString().replace(/[.]/g, ',');
+			}
+			//Change back to the correct decimal place to display
+			this.AddUpdatetimeModel.setProperty("/totalhrs", formatter.formatHourEquip(newTotalhrs));
+			//+ERA_PRD24			
 			this.AddProjectTime_destroy(sourcePanel);
 
 			if (container.getItems().length === 1) {
@@ -1164,7 +1182,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					visibleProjMandatoryTxt: false,
-					visibleManagerTxt: true,
+					visibleManagerTxt: true,									//ERA_PRD18
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1185,7 +1203,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					visibleProjMandatoryTxt: ((sKey === "overnight" || sKey === "KM" || sKey === "bonus") ? false : true),
-					visibleManagerTxt: true,
+					visibleManagerTxt: true,							//ERA_PRD18
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1386,13 +1404,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						odata.visibleProjMandatoryTxt = false;
 						//Project name does not display-SelectProjectWithDelete fragment
 						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
-						//"+ERA"
+						//ERA_PRD18
 						if (type === 'Update') {
 							if (projectId !== null || projectId === "" || projectId === undefined) {
 								odata.visibleManagerTxt = false;
 							}
 						}
-						//"+ERA"
+						//"+ERA_PRD18
 						//Add the Fragment
 						var containerbns = controler.getView().byId("addBonusTab").getItems()[0];
 						var header2 = containerbns.getItems()[0];
@@ -1602,9 +1620,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				container.insertItem(header2);
 				if (oAddTimeModel) {
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
-					//+ERA
+					//+ERA_PRD18
 					oAddTimeModel.setProperty("/visibleManagerTxt", false);
-				   	//+ERA
+				   	//+ERA_PRD18
 				}
 				var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
 				container.addItem(oFragment);
@@ -1621,9 +1639,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				// Setting label visibility to false
 				if (oAddTimeModel) {
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
-					//+ERA
+					//+ERA_PRD18
 					oAddTimeModel.setProperty("/visibleManagerTxt", false);
-				   	//+ERA
+				   	//+ERA_PRD18
 				}
 				
 				this.AddProjectKm_init(controler, oVbox, this.AddUpdatetimeModel.getData().newTime);
