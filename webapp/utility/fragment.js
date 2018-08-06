@@ -502,6 +502,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				// oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 				// oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering = this._comboKeyboardDisable;
 				oFragment.getItems()[4].getItems()[0].onAfterRendering = this._comboKeyboardDisable;
+				//ERA_US1
+				var sKey = "hours";
+				var position = controler.getView().byId('addTimeTab').getItems()[0].getItems().length - 1;
+
+				if (position >= 1) {
+					var oSelectFilters = this.getValueHelpParams(controler.employees);
+					this.setSelectTypeBinding(sKey, oSelectFilters, controler, position);
+				}
+				//ERA_US1
+
 			}
 
 		},
@@ -525,7 +535,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				container.addItem(oFragment);
 				oFragment.getItems()[2].getItems()[0].getItems()[0].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 			}
+			//ERA_US1
+			var sKey = "bonus";
+			var position = controler.getView().byId('addBonusTab').getItems()[0].getItems().length - 1;
 
+			if (position >= 1) {
+				var oSelectFilters = this.getValueHelpParams(controler.employees);
+				this.setSelectTypeBinding(sKey, oSelectFilters, controler, position);
+			}
+			//ERA_US1
 		},
 
 		AddProjectKm_init: function(controller, container, addNew) {
@@ -542,6 +560,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oInputField.onfocusout = function(oEvent) {
 					controller.formatDuration(oInputField);
 				};
+				//ERA_US1
+				var sKey = "KM";
+				var position = controller.getView().byId('addKM').getItems()[0].getItems().length - 1;
+
+				if (position >= 1) {
+					var oSelectFilters = this.getValueHelpParams(controller.employees);
+					this.setSelectTypeBinding(sKey, oSelectFilters, controller, position);
+				}
+				//ERA_US1
+
 			}
 		},
 		_comboKeyboardDisable: function() {
@@ -574,9 +602,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					sep = ",";
 					currentTotalhrs = currentTotalhrs.toString().replace(/[,]/g, '.');
 				} else {
-				sep = ".";
+					sep = ".";
 				}
-			}		
+			}
 			//+ERA_PRD24
 			var newTotalhrs = currentTotalhrs - currentValue;
 			//+ERA_PRD24 - change value of total hours to put the correct seperator
@@ -1182,7 +1210,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					visibleProjMandatoryTxt: false,
-					visibleManagerTxt: true,									//ERA_PRD18
+					visibleManagerTxt: true, //ERA_PRD18
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1203,7 +1231,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					visibleSummary: false,
 					visibleProjectOptional: false,
 					visibleProjMandatoryTxt: ((sKey === "overnight" || sKey === "KM" || sKey === "bonus") ? false : true),
-					visibleManagerTxt: true,							//ERA_PRD18
+					visibleManagerTxt: true, //ERA_PRD18
 					newTime: true,
 					newBonus: true,
 					duration: userPrefModel.getProperty('/durationFlag')
@@ -1229,14 +1257,17 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			controler.getView().byId('AccAllowanceType').onAfterRendering = this._comboKeyboardDisable;
 			this.oDataModel = odataModel;
 			this.employees = employees;
-			var oSelectFilters = this.getValueHelpParams(this.employees);
-			this.setSelectTypeBinding(sKey, oSelectFilters, controler);
-			
+
 			if (type === 'New') {
 
-				this.warning = false;
-				this.currentView = 'hours';
+				var oSelectFilters = this.getValueHelpParams(this.employees);
+				//ERA_US1 Pointages par domaine du personnel
+				sKey = "hours";
+				//ERA_US1 Pointages par domaine du personnel
+				this.setSelectTypeBinding(sKey, oSelectFilters, controler);
 
+				this.warning = false;
+				this.currentView = "hours";
 				footerData = {
 					MainNewScreen: true,
 					MainUpdateScreen: false,
@@ -1278,23 +1309,29 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 
 						buttons[0].setEnabled(true);
 						buttons[1].setEnabled(false);
-						
+
 						//Binding of value help categories
-						oSelectFilters = this.getValueHelpParams(this.employees);
+						oSelectFilters = this.getValueHelpParams(this.employees, updateKeyPath);
+						//ERA_US1 Pointages par domaine du personnel
+						sKey = "hours";
+						//ERA_US1 Pointages par domaine du personnel
 						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
-						
+
 						selecthrsCombo.setVisible(true);
 
 						break;
 					case 'IPD':
 						odata.visibleDailyAllow = true;
 						odata.visibleProjMandatoryTxt = true;
-						
+
 						//controler.getView().byId('AllowanceZoneType').getBinding("items").resume();
 						//Binding of value help categories
-						oSelectFilters = this.getValueHelpParams(this.employees);
+						oSelectFilters = this.getValueHelpParams(this.employees, updateKeyPath);
+						//ERA_US1 Pointages par domaine du personnel
+						sKey = "allowance";
+						//ERA_US1 Pointages par domaine du personnel
 						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
-						
+
 						var projectId = odataModel.getProperty(updateKeyPath).ProjectID;
 						var projectView = controler.getView().byId('addAllowance').getItems()[0].getItems()[1].getItems()[1];
 						if (projectId !== null && projectId !== '' && projectId !== undefined) {
@@ -1329,8 +1366,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 									}
 								}
 							},
-							error: function(error) {
-							}
+							error: function(error) {}
 						});
 						break;
 					case 'OVERNIGHT':
@@ -1338,9 +1374,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						odata.visibleProjMandatoryTxt = false;
 
 						//Binding of value help categories
-						oSelectFilters = this.getValueHelpParams(this.employees);
+						oSelectFilters = this.getValueHelpParams(this.employees, updateKeyPath);
+						//ERA_US1 Pointages par domaine du personnel
+						sKey = "overnight";
+						//ERA_US1 Pointages par domaine du personnel
 						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
-						
+
 						// Load items for AccAllowance Type drop down list
 						//controler.getView().byId('AccAllowanceType').getBinding("items").resume();
 						controler.getView().byId('AccAllowanceType').setPlaceholder("");
@@ -1380,9 +1419,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var oAddKMFrgmt = oVbox.getItems()[0].getItems()[2].getItems()[2].getItems()[0];
 						//var oComboBox = oAddKMFrgmt.getItems()[1].getItems()[4];
 						//oComboBox.getBinding("items").resume();
-						
+
 						//Binding of value help categories
-						oSelectFilters = this.getValueHelpParams(this.employees);
+						oSelectFilters = this.getValueHelpParams(this.employees, updateKeyPath);
+						//ERA_US1 Pointages par domaine du personnel
+						sKey = "KM";
+						//ERA_US1 Pointages par domaine du personnel
 						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
 
 						projectView = oVbox.getItems()[0].getItems()[2].getItems()[1];
@@ -1429,13 +1471,16 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						projectView = controler.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2];
 						projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
-						
+
 						//selectbnsCombo.getBinding("items").resume();
-						
+
 						//Binding of value help categories
-						oSelectFilters = this.getValueHelpParams(this.employees);
+						oSelectFilters = this.getValueHelpParams(this.employees, updateKeyPath);
+						//ERA_US1 Pointages par domaine du personnel
+						sKey = "bonus";
+						//ERA_US1 Pointages par domaine du personnel
 						this.setSelectTypeBinding(sKey, oSelectFilters, controler);
-						
+
 						var localHours = formatter.getNumber(odataModel.getProperty(updateKeyPath).Hours);
 						selectbnsInput.setValue(localHours);
 						selectbnsCombo.setPlaceholder("");
@@ -1540,7 +1585,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				//Binding of value help categories
 				var oSelectFilters = this.getValueHelpParams(this.employees);
 				this.setSelectTypeBinding(key, oSelectFilters, controler);
-				
+
 				oView.byId('AllowanceZoneType').setSelectedKey(null);
 				oView.byId('AllowanceMealIndicator').setPressed(false);
 				oView.byId('AllowanceTransportIndicator').setPressed(false);
@@ -1568,7 +1613,6 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				//Binding of value help categories
 				var oSelectFilters = this.getValueHelpParams(this.employees);
 				this.setSelectTypeBinding(key, oSelectFilters, controler);
-				
 				// Combo box
 				oView.byId('AccAllowanceType').setSelectedKey(null);
 				// Segmented buttons
@@ -1591,7 +1635,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				} else {
 					oView.byId('AbsEmployee').setEnabled(true);
 				}
-				
+
 				//Binding of value help categories
 				var oSelectFilters = this.getValueHelpParams(this.employees);
 				this.setSelectTypeBinding(key, oSelectFilters, controler);
@@ -1601,6 +1645,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oView.byId('AbsEndDate').setValue(null);
 				oView.byId('NoofHrs').setValue(null);
 				oView.byId('AbsComment').setValue(null);
+
 			} else if (key === 'hours') {
 				var header = oView.byId('addTimeTab').getItems()[0].getItems()[0];
 				oView.getModel('AddTime').setProperty('/totalhrs', 0);
@@ -1608,10 +1653,11 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				oView.byId('addTimeTab').getItems()[0].insertItem(header);
 				var addNew = this.AddUpdatetimeModel.getData().newTime;
 				this.AddProjectTime_init(controler, oView.byId('addTimeTab').getItems()[0], addNew);
-				
+
 				//Binding of value help categories
 				var oSelectFilters = this.getValueHelpParams(this.employees);
 				this.setSelectTypeBinding(key, oSelectFilters, controler);
+
 			} else if (key === 'bonus') {
 				//	if(oView.byId("addBonusTab").getItems()[0].getItems().length === 1) {
 				var container = oView.byId("addBonusTab").getItems()[0];
@@ -1622,15 +1668,14 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
 					//+ERA_PRD18
 					oAddTimeModel.setProperty("/visibleManagerTxt", false);
-				   	//+ERA_PRD18
+					//+ERA_PRD18
 				}
 				var oFragment = sap.ui.xmlfragment(oView.getId(), "com.vinci.timesheet.admin.view.AddProjectBonus", controler);
 				container.addItem(oFragment);
-				
+
 				//Binding of value help categories
 				var oSelectFilters = this.getValueHelpParams(this.employees);
 				this.setSelectTypeBinding(key, oSelectFilters, controler);
-				
 				oFragment.getItems()[2].getItems()[0].getItems()[0].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 				//	}
 			} else if (key === 'KM') {
@@ -1641,9 +1686,9 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					oAddTimeModel.setProperty("/visibleProjMandatoryTxt", false);
 					//+ERA_PRD18
 					oAddTimeModel.setProperty("/visibleManagerTxt", false);
-				   	//+ERA_PRD18
+					//+ERA_PRD18
 				}
-				
+
 				this.AddProjectKm_init(controler, oVbox, this.AddUpdatetimeModel.getData().newTime);
 				//Binding of value help categories
 				var oSelectFilters = this.getValueHelpParams(this.employees);
@@ -1766,7 +1811,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				default:
 
 			}
-			var startDate = view.byId('AbsStartDate');;
+			var startDate = view.byId('AbsStartDate');
 			var NoofHrs = view.byId('NoofHrs');
 			var endDate = view.byId('AbsEndDate');
 			var dayType = view.byId('dayType');
@@ -2729,15 +2774,15 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			} else {
 				// Defining a custom sorting function to compare date objects and sort them in ascending order. 
 				// JavaScript's native comparison operators can be used to compare dates.
-				var sortDateAsc = function (date1, date2) {  
-				  if (date1 > date2) return 1;
-				  if (date1 < date2) return -1;
-				  return 0;
+				var sortDateAsc = function(date1, date2) {
+					if (date1 > date2) return 1;
+					if (date1 < date2) return -1;
+					return 0;
 				};
-				
+
 				var aDates = employees[0].Days;
 				aDates.sort(sortDateAsc);
-				
+
 				var fromDay = aDates[0];
 				var toDay = aDates[aDates.length - 1];
 				urlFilterParam = "$filter=EmployeeId%20eq%20'" + employees[0].employee + "'and%20WorkDate%20ge%20" +
@@ -2851,65 +2896,174 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			}
 			return iVal;
 		},
-		
+
 		/*
 			For binding category type lists of the entity ValueHelpSet
 		*/
-		getValueHelpParams: function(aEmployees) {
-				// Defining a custom sorting function to compare date objects and sort them in ascending order. 
-				// JavaScript's native comparison operators can be used to compare dates.
-				var sortDateAsc = function (date1, date2) {  
-				  if (date1 > date2) return 1;
-				  if (date1 < date2) return -1;
-				  return 0;
-				};
-				var aSelectedDays = [];
-				var aEmpIds = [];
-				var oParams = {};
-				
-				for(var i = 0; i < aEmployees.length; i++) {
-					aEmpIds.push(aEmployees[i].employee);
-					for(var j = 0; j < aEmployees[i].Days.length; j++) {
-						aSelectedDays.push(aEmployees[i].Days[j]);
-					}
+		getValueHelpParams: function(aEmployees, updatePath) {
+			// Defining a custom sorting function to compare date objects and sort them in ascending order. 
+			// JavaScript's native comparison operators can be used to compare dates.
+			var sortDateAsc = function(date1, date2) {
+				if (date1 > date2) {
+					return 1;
 				}
-				
-				aSelectedDays.sort(sortDateAsc);
+				if (date1 < date2) {
+					return -1;
+				}
+				return 0;
+			};
+			var aSelectedDays = [];
+			var aEmpIds = [];
+			var oParams = {};
+
+			for (var i = 0; i < aEmployees.length; i++) {
+				aEmpIds.push(aEmployees[i].employee);
+				for (var j = 0; j < aEmployees[i].Days.length; j++) {
+					aSelectedDays.push(aEmployees[i].Days[j]);
+				}
+			}
+
+			aSelectedDays.sort(sortDateAsc);
+			//ERA_US1- si c'est modification (KM,Hours,OtherAllowances etc)
+			if (aSelectedDays.length !== 0 && updatePath !== undefined) {
 				oParams = {
-					EmployeeIds : aEmpIds,
-					StartDate : aSelectedDays[0],
-					EndDate : aSelectedDays[aSelectedDays.length-1]
+					EmployeeIds: aEmpIds,
+					StartDate: this.oDataModel.getProperty(updatePath).WorkDate,
+					EndDate: this.oDataModel.getProperty(updatePath).WorkDate
 				};
-				
-				return oParams;
+			}
+			//ERA_US1- si c'est modification(KM,Hours,OtherAllowances etc)
+			else {
+				oParams = {
+					EmployeeIds: aEmpIds,
+					StartDate: aSelectedDays[0],
+					EndDate: aSelectedDays[aSelectedDays.length - 1]
+				};
+			}
+			return oParams;
 		},
-		
-		setSelectTypeBinding: function(sKey, oParams, oController) {
+		//+ERA_Catégorie de pointages par domaine du personnel
+		requestPointage: function(oDataArray, ohoursType, oHelpType) {
+
+			var startDateFilters = [];
+			var endDateFilters = [];
+			var EmpIDFilters = [];
+			var filterAN = [];
+			var AllFilters = [];
+			var helpType = [];
+
+			if (ohoursType !== null && ohoursType !== "" && ohoursType !== undefined) {
+
+				//Define the template for items, which will be inserted inside a select element
+				var oItemSelectTemplate = new sap.ui.core.Item({
+					key: "{FieldValue}",
+					text: "{FieldDescription}"
+				});
+
+				//Build the Odata Request wih Employee ID StarDate and EndDate
+				filterAN = new Filter("ApplicationName", sap.ui.model.FilterOperator.EQ, "TEAMLEAD");
+				helpType = new Filter("HelpType", sap.ui.model.FilterOperator.EQ, oHelpType);
+
+				for (var i = 0; i < oDataArray.EmployeeIds.length; i++) {
+					EmpIDFilters = new Filter("EmployeeId", sap.ui.model.FilterOperator.EQ, oDataArray.EmployeeIds[i].toString());
+					AllFilters.push(EmpIDFilters);
+				}
+
+				startDateFilters = new Filter("StartDate", sap.ui.model.FilterOperator.EQ, oDataArray.StartDate);
+				endDateFilters = new Filter("EndDate", sap.ui.model.FilterOperator.EQ, oDataArray.EndDate);
+				AllFilters.push(filterAN);
+				AllFilters.push(helpType);
+				AllFilters.push(startDateFilters);
+				AllFilters.push(endDateFilters);
+
+				ohoursType.bindItems({
+					path: "/ValueHelpSet",
+					filters: AllFilters,
+					template: oItemSelectTemplate
+				});
+			}
+		},
+		//+ERA_Catégorie de pointages par domaine du personnel
+
+		setSelectTypeBinding: function(sKey, oParams, oController, oPosition) {
 			jQuery.sap.log.error("No of selected employees: " + oParams.EmployeeIds.length + " " + oParams.StartDate + " " + oParams.EndDate);
-			switch(sKey) {
+			switch (sKey) {
 				case 'hours':
-					var source = oController.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2].getItems()[0];
-					var oSelecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
+					//var oSelecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
+					if (oPosition === undefined) {
+						var source = oController.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2].getItems()[0];
+						var oSelecthrsCombo = source.getParent().getParent().getParent().getItems()[4].getItems()[0];
+					} else {
+						source = oController.getView().byId('addTimeTab').getItems()[0].getItems()[oPosition].getItems()[2].getItems()[2].getItems()[0];
+						oSelecthrsCombo = source.getParent().getParent().getParent().getItems()[4].getItems()[0];
+					}
+					//ERA_US1 Pointages par domaine du personnel
+					var sHelpType = "DH";
+					if (oParams !== null && oParams !== "" && oParams !== undefined) {
+						this.requestPointage(oParams, oSelecthrsCombo, sHelpType);
+					}
+					//ERA_US1 Pointages par domaine du personnel				
 					break;
 				case 'allowance':
 					var oSelectAllowance = oController.getView().byId('AllowanceZoneType');
+					//ERA_US1 Pointages par domaine du personnel
+					sHelpType = "ZN";
+					if (oParams !== null && oParams !== "" && oParams !== undefined) {
+						this.requestPointage(oParams, oSelectAllowance, sHelpType);
+					}
+					//ERA_US1 Pointages par domaine du personnel			
 					break;
 				case 'overnight':
 					var oSelectAccAllowance = oController.getView().byId('AccAllowanceType');
+					//ERA_US1 Pointages par domaine du personnel
+					sHelpType = "ZN";
+					if (oParams !== null && oParams !== "" && oParams !== undefined) {
+						this.requestPointage(oParams, oSelectAccAllowance, sHelpType);
+					}
+					//ERA_US1 Pointages par domaine du personnel					
 					break;
 				case 'bonus':
-					var oSelectBns = oController.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[0].getItems()[1];
+					if (oPosition === undefined) {
+						var oSelectBns = oController.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[0].getItems()[
+							1];
+					} else {
+						oSelectBns = oController.getView().byId('addBonusTab').getItems()[0].getItems()[oPosition].getItems()[2].getItems()[0].getItems()[0].getItems()[
+							1];
+					}
+					//ERA_US1 Pointages par domaine du personnel
+					sHelpType = "BNS";
+					if (oParams !== null && oParams !== "" && oParams !== undefined) {
+						this.requestPointage(oParams, oSelectBns, sHelpType);
+					}
+					//ERA_US1 Pointages par domaine du personnel					
 					break;
 				case 'absence':
-					var oSelectAbs =  oController.getView().byId("AbsCat");
+					var oSelectAbs = oController.getView().byId("AbsCat");
+					//ERA_US1 Pointages par domaine du personnel
+					sHelpType = "ABS";
+					if (oParams !== null && oParams !== "" && oParams !== undefined) {
+						this.requestPointage(oParams, oSelectAbs, sHelpType);
+					}
+					//ERA_US1 Pointages par domaine du personnel
 					break;
 				case 'KM':
-					var oVbox = oController.getView().byId("addKM").getItems()[0].getItems()[0].getItems()[2].getItems()[2].getItems()[0];
-					var oSelectKm = oVbox.getItems()[1].getItems()[4];
+
+					if (oPosition === undefined) {
+						var oVbox = oController.getView().byId("addKM").getItems()[0].getItems()[0].getItems()[2].getItems()[2].getItems()[0];
+						var oSelectKm = oVbox.getItems()[1].getItems()[4];
+					} else {
+						oVbox = oController.getView().byId("addKM").getItems()[0].getItems()[oPosition].getItems()[2].getItems()[2].getItems()[0];
+						oSelectKm = oVbox.getItems()[1].getItems()[4];
+					}
+					//ERA_US1 Pointages par domaine du personnel
+					if (oParams !== null && oParams !== "" && oParams !== undefined) {
+						this.requestPointage(oParams, oSelectKm, sKey);
+					}
+					//ERA_US1 Pointages par domaine du personnel					
 					break;
 				case 'Equipment':
 					break;
-				
+
 			}
 		}
 

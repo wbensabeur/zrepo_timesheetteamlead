@@ -37,10 +37,8 @@
 							<Label text="{i18n>DailyAllowances}"/>
 							<HBox alignItems="Center" justifyContent="Start">
 								<ComboBox id="AllowanceZoneType" placeholder="{i18n>selectZone}" change="onAllowanceIndicator" selectionChange="onAllowanceIndicatorData"
-									selectedKey="{ZoneType}"
-									items="{path:'/ValueHelpSet', suspended: true, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"
-									loadItems="handleAllowanceZoneTypeLoadItems" class="SelectCombo" showSecondaryValues="false">
-									<core:ListItem key="{FieldDescription}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>
+									selectedKey="{ZoneType}" loadItems="handleAllowanceZoneTypeLoadItems" class="SelectCombo" showSecondaryValues="false">
+									<!--<core:ListItem key="{FieldDescription}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>-->
 								</ComboBox>
 								<!--<SegmentedButton class="sapUiLargeMarginBegin sapUiLargeMarginEnd" width="20rem">
 									<items>-->
@@ -82,18 +80,18 @@
 				</VBox>
 				<!--<core:Fragment fragmentName='com.vinci.timesheet.admin.view.SearchProject' type='XML'/>-->
 			</IconTabFilter>
-			<IconTabFilter key="overnight" icon="sap-icon://map-3" text="{i18n>accAllowance}" visible="{AddTime>/visibleOvernight}"
-				design="Horizontal">
+			<IconTabFilter key="overnight" icon="sap-icon://map-3" text="{i18n>accAllowance}" visible="{AddTime>/visibleOvernight}" design="Horizontal">
 				<VBox width="100%" height="100%" id="addAccAllowance">
 					<VBox>
 						<VBox alignItems="Start" justifyContent="Start" class="sapUiSmallMarginTop sapUiLargeMarginBottom">
 							<!--<Label text="{i18n>DailyAllowances}"/>-->
 							<HBox alignItems="Center" justifyContent="Start">
-								<ComboBox id="AccAllowanceType" placeholder="{i18n>selectZone}" change="onPressOvernightInd"
-									selectedKey="{ZoneType}"
-									items="{path:'/ValueHelpSet', suspended: true, filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ZN'}]}"
+								<ComboBox id="AccAllowanceType" placeholder="{i18n>selectZone}" change="onPressOvernightInd" selectedKey="{ZoneType}"
+									
 									loadItems="handleAccAllowanceZoneTypeLoadItems" class="SelectCombo" showSecondaryValues="false">
-									<core:ListItem key="{FieldDescription}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>
+									<!--ERA_US1 Pointages par domaine du personnel-->
+									<!--<core:ListItem key="{FieldDescription}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>-->
+									<!--ERA_US1 Pointages par domaine du personnel-->
 								</ComboBox>
 								<SegmentedButton id="overnightInd" class="sapUiLargeMarginBegin" width="auto" visible="true">
 									<items>
@@ -146,9 +144,10 @@
 						</Select>
 						<!--<Label text="{i18n>selectAbsCategory}" class="sapUiSmallMarginBegin"/>-->
 						<ComboBox placeholder="{i18n>selectAbsence}" id="AbsCat" class="SelectCombo sapUiSmallMarginTop sapUiSmallMarginBegin"
-							items="{path:'/ValueHelpSet', suspended: true , filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'ABS'}]}"
 							loadItems="handleAbsTypeLoadItems" selectionChange="onAbsenceCatChange" change="onAbsenceCatChange">
-							<core:ListItem key="{FieldValue}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>
+							<!--ERA_US1 Pointages par domaine du personnel-->
+							<!--<core:ListItem key="{FieldValue}" text="{FieldDescription}" additionalText="{FieldAdditionalValue}"/>-->
+							<!--ERA_US1 Pointages par domaine du personnel-->
 						</ComboBox>
 						<Label text="{i18n>selectDates}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
 						<HBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
@@ -183,10 +182,9 @@
 			<IconTabFilter key="KM" icon="sap-icon://map" text="{i18n>km}" visible="{AddTime>/visibleKM}" design="Horizontal">
 				<VBox id="addKM" width="100%" height="100%">
 					<VBox width="100%" height="100%">
-					<!--	<core:Fragment fragmentName="com.vinci.timesheet.admin.view.AddProjectKM" type="XML"/>-->
+						<!--	<core:Fragment fragmentName="com.vinci.timesheet.admin.view.AddProjectKM" type="XML"/>-->
 					</VBox>
-					<VBox visible="false">
-					</VBox>
+					<VBox visible="false"></VBox>
 					<FlexBox alignContent="End" justifyContent="End">
 						<Button id="addKMButton" class="AddButton" icon="sap-icon://add" type="Transparent" press="onaddNewKmPress" visible="false"/>
 					</FlexBox>
@@ -204,8 +202,8 @@
 								</layoutData>
 							</Button>
 							<FlexBox alignContent="Start" justifyContent="Start">
-							<Label text="{i18n>total}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
-							<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
+								<Label text="{i18n>total}" class="sapUiSmallMarginTop sapUiSmallMarginBegin"/>
+								<Label text="{AddTime>/totalhrs}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd totalHrs"/>
 							</FlexBox>
 							<FlexBox alignContent="End" justifyContent="End">
 								<Button class="AddButton" icon="sap-icon://add" type="Transparent" press="OnaddNewEquipmentPress" visible="false"/>

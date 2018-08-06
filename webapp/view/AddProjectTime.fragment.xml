@@ -50,9 +50,10 @@
 			</ComboBox>-->
 			<!--Select does not have a placeholder and selects first item by default-->
 			<Select class="SelectCombo" selectedKey="{EntryTypeCatId}" 
-				items="{path:'/ValueHelpSet',  filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'DH'}]}"
 				change="OnDailyHrTypeChange" >
-				<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
+				<!--ERA_US1 Pointages par domaine du personnel-->
+				<!--<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>-->
+				<!--ERA_US1 Pointages par domaine du personnel-->
 			</Select>
 		</VBox>
 		<FlexBox alignContent="Start" justifyContent="End" visible="{AddTime>/newTime}">

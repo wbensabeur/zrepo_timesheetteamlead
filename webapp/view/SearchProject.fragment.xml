@@ -9,7 +9,7 @@
 		</RadioButtonGroup>
 		<HBox class="sapUiSmallMarginBottom" visible="false">
 			<ComboBox placeholder="{i18n>searchBU}" class="SelectCombo"
-				items="{path:'/ValueHelpSet' ,  suspended: true , filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}"
+				items="{path:'/ValueHelpSet' , suspended: true , filters: [{ path: 'HelpType', operator: 'EQ', value1: 'BU'}]}"
 				selectionChange="onBUFilterChange" selectedKey="{userPreference>/defaultBU}">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
@@ -17,7 +17,8 @@
 				</layoutData>
 			</ComboBox>
 			<SearchField placeholder="{i18n>searchProject}" enableSuggestions="true" search="onProjectDescriptionSearch"
-				suggest="onProjectDescriptionSuggest" suggestionItems="{ path: '/ProjectSet' ,  suspended: true , templateShareable:false, length: 5, sorter: { path: 'ProjectDescription' } }">
+				suggest="onProjectDescriptionSuggest"
+				suggestionItems="{ path: '/ProjectSet' , suspended: true , templateShareable:false, length: 5, sorter: { path: 'ProjectDescription' } }">
 				<suggestionItems>
 					<SuggestionItem text="{ProjectDescription}" description="{ProjectId}" key="{ProjectId}"/>
 				</suggestionItems>
@@ -25,13 +26,13 @@
 					<FlexItemData growFactor="3"/>
 				</layoutData>
 			</SearchField>
-			
 			<!--<ComboBox value="{i18n>projID}">
 				<layoutData>
 					<FlexItemData growFactor="1"/>
 				</layoutData>
 			</ComboBox>-->
-			<ComboBox placeholder="{i18n>searchPosition}" items="{path:'/ValueHelpSet' ,  suspended: true , templateShareable:false, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}"
+			<ComboBox placeholder="{i18n>searchPosition}"
+				items="{path:'/ValueHelpSet' , suspended: true , templateShareable:false, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'POS'}]}"
 				selectionChange="onPositionFilterChange" class="SelectCombo">
 				<core:Item key="{FieldValue}" text="{FieldDescription}"/>
 				<layoutData>
@@ -39,7 +40,7 @@
 				</layoutData>
 			</ComboBox>
 			<SearchField placeholder="{i18n>searchManager}" enableSuggestions="true" search="onProjectManagerSearch" suggest="onProjectManagerSuggest"
-				suggestionItems="{ path: '/ValueHelpSet' ,  suspended: true , templateShareable:false , length: 5, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'PM'}], sorter: { path: 'FieldValue' } }">
+				suggestionItems="{ path: '/ValueHelpSet' , suspended: true , templateShareable:false , length: 5, filters: [{ path: 'HelpType', operator: 'EQ', value1: 'PM'}], sorter: { path: 'FieldValue' } }">
 				<suggestionItems>
 					<SuggestionItem text="{FieldDescription}" description="{path:'FieldValue'}" key="{FieldValue}"/>
 				</suggestionItems>
@@ -54,8 +55,9 @@
 			</ComboBox>-->
 		</HBox>
 		<Label class="sapUiTinyMarginBottom" text="{projectSearch>/worklistTableTitle}" design="Bold"/>
-		<Table items="{ path: '/ProjectSet' ,  suspended: true , templateShareable:false  }" growing="true" growingScrollToLoad="true" mode="SingleSelectMaster" modeAnimationOn="false"
-			updateFinished="onProjectSearchFinished" growingThreshold="10" selectionChange="OnProjectSelected">
+		<Table items="{ path: '/ProjectSet' , suspended: true , templateShareable:false }" growing="true" growingScrollToLoad="true"
+			mode="SingleSelectMaster" modeAnimationOn="false" updateFinished="onProjectSearchFinished" growingThreshold="10"
+			selectionChange="OnProjectSelected">
 			<columns>
 				<Column width="auto" hAlign="Center">
 					<VBox class="EmployeeWeeklyReportColumn" alignItems="Start" justifyContent="Center" height="50px">
@@ -98,7 +100,7 @@
 						<Text class="sapUiTinyMarginBegin" text="{BusinessUnit}"/>
 						<Text class="sapUiTinyMarginBegin" text="{ProjectId}"/>
 						<!-- Customising display for work orders -->
-						<!--<VBox>
+					<!--<VBox>
 							<Text class="sapUiTinyMarginBegin" text="{parts:['ProjectId','Position'],formatter:'.formatter.formatWorkOrderID'}">
 								<customData>
   									<core:CustomData key="isWorkOrder" value="true"

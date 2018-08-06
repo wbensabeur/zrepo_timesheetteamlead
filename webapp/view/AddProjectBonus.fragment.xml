@@ -9,9 +9,10 @@
 				<VBox class="sapUiSmallMarginBottom">
 					<Label text="{i18n>typeAllowance}" />
 					<ComboBox class="SelectCombo" selectedKey="{EntryTypeCatId}" placeholder="{i18n>selectAllowance}"
-						items="{path:'/ValueHelpSet', filters: [{ path: 'ApplicationName', operator: 'EQ', value1: 'TEAMLEAD'},{ path: 'HelpType', operator: 'EQ', value1: 'BNS'}]}"
 						selectionChange="OnOthAllownaceTypeChange">
-						<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>
+						<!--ERA_US1 Pointages par domaine du personnel-->
+						<!--<core:ListItem key="{FieldValue}" text="{FieldDescription}"/>-->
+						<!--ERA_US1 Pointages par domaine du personnel-->
 					</ComboBox>
 				</VBox>
 				<VBox class="sapUiSmallMarginBottom">
