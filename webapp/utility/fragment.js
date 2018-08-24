@@ -430,7 +430,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var selectedKey = oEvent.getParameter('selectedItem').getKey();
 			this.warning = true;
 			//oEvent.getSource().setPlaceholder("");
-			
+
 			//AMU_US6 Ergonomie du Masque de saisies des heures
 			//oEvent.getSource().getParent().getParent().getItems()[4].getItems()[0].setSelectedKey(selectedKey);
 			oEvent.getSource().getParent().getParent().getItems()[3].getItems()[0].setSelectedKey(selectedKey);
@@ -508,12 +508,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				container.addItem(oFragment);
 				// oFragment.getItems()[2].getItems()[2].getItems()[1].onAfterRendering = this._comboKeyboardDisable;
 				// oFragment.getItems()[3].getItems()[2].getItems()[3].onAfterRendering = this._comboKeyboardDisable;
-				
+
 				//AMU_US6 Ergonomie du Masque de saisies des heures
 				//oFragment.getItems()[4].getItems()[0].onAfterRendering = this._comboKeyboardDisable;
 				oFragment.getItems()[3].getItems()[0].onAfterRendering = this._comboKeyboardDisable;
 				//AMU_US6 Ergonomie du Masque de saisies des heures
-				
+
 				//ERA_US1
 				var sKey = "hours";
 				var position = controler.getView().byId('addTimeTab').getItems()[0].getItems().length - 1;
@@ -685,12 +685,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 			var newValue = 0;
 
 			// VBox containing labels + time picker and step input for duration input
-			
+
 			//AMU_US6 Ergonomie du Masque de saisies des heures
 			//var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
 			var selecthrsCombo = source.getParent().getParent().getParent().getItems()[2];
 			//AMU_US6 Ergonomie du Masque de saisies des heures
-			
+
 			// HBox containing labels + time picker and step input for duration input
 			//var timepicker = selecthrsCombo.getItems()[2].getItems()[0].getItems()[1].getItems()[0];
 			var timepickerTo = selecthrsCombo.getItems()[2].getItems()[2];
@@ -1316,13 +1316,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 					case 'HOURS':
 						odata.visibleHrs = true;
 
-                        //AMU_US6 Ergonomie du Masque de saisies des heures
-                        //getting the selected radio button
-                        //var source = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2].getItems()[0];
+						//AMU_US6 Ergonomie du Masque de saisies des heures
+						//getting the selected radio button
+						//var source = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[2].getItems()[2].getItems()[0];
 						var source = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[1].getItems()[1].getItems()[0];
-					    //AMU_US6 Ergonomie du Masque de saisies des heures
+						//AMU_US6 Ergonomie du Masque de saisies des heures
 						var buttons = source.getButtons();
-						
+
 						//AMU_US6 Ergonomie du Masque de saisies des heures
 						//getting the time picker
 						//var selecthrsCombo = source.getParent().getParent().getParent().getItems()[3];
@@ -1330,13 +1330,13 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var selecthrsCombo = source.getParent().getParent().getParent().getItems()[2];
 						var projectView = controler.getView().byId('addTimeTab').getItems()[0].getItems()[1].getItems()[1].getItems()[0].getItems()[1];
 						//AMU_US6 Ergonomie du Masque de saisies des heures
-					
+
 						var projectContext = "/ProjectSet(ProjectId='" + odataModel.getProperty(updateKeyPath).ProjectID + "',ApplicationName='TEAMLEAD')";
 						projectView.bindElement(projectContext);
 
 						buttons[0].setEnabled(true);
 						buttons[1].setEnabled(false);
-						
+
 						//Binding of value help categories
 						oSelectFilters = this.getValueHelpParams(this.employees, updateKeyPath);
 						//ERA_US1 Pointages par domaine du personnel
@@ -1861,22 +1861,22 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				try {
 
 					// var hrType = tab.getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
-			        //AMU_US6 Ergonomie du Masque de saisies des heures
-			        //var hrType = tab.getItems()[4].getItems()[0].getSelectedKey();
+					//AMU_US6 Ergonomie du Masque de saisies des heures
+					//var hrType = tab.getItems()[4].getItems()[0].getSelectedKey();
 					// var projectBindingPath = tab.getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
 					// var fullDayindex = tab.getItems()[2].getItems()[2].getItems()[0].getSelectedIndex();
-			        
+
 					var hrType = tab.getItems()[3].getItems()[0].getSelectedKey();
 					var projectBindingPath = tab.getItems()[1].getItems()[0].getItems()[1].getItems()[0].getBindingContext().getPath();
 					var fullDayindex = tab.getItems()[1].getItems()[1].getItems()[0].getSelectedIndex();
-					 //AMU_US6 Ergonomie du Masque de saisies des heures
-					 
+					//AMU_US6 Ergonomie du Masque de saisies des heures
+
 					if (this.AddUpdatetimeModel.getData().duration) {
-						
+
 						//AMU_US6 Ergonomie du Masque de saisies des heures
 						// startTime = tab.getItems()[3].getItems()[2].getItems()[1].getValue();
 						// endTime = tab.getItems()[3].getItems()[2].getItems()[2].getValue();
-						
+
 						startTime = tab.getItems()[2].getItems()[2].getItems()[1].getValue();
 						endTime = tab.getItems()[2].getItems()[2].getItems()[2].getValue();
 						//AMU_US6 Ergonomie du Masque de saisies des heures
@@ -2038,8 +2038,8 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				var endTimeEmpty = (endTime === "" || endTime === undefined || endTime === null);
 				var KMNumberEmpty = (KMNumber === "" || KMNumber === undefined || KMNumber === null);
 				var hrsEmpty = (hrs === "" || hrs === undefined || hrs === null);
-				
-				
+					
+					
 				if (KMNumberEmpty && (startTimeEmpty || endTimeEmpty)) {
 					MessageBox.alert(this.i18nModel.getText("kmNumberOrkmTimeNotSelected"));
 					ctype.setBusy(false);
@@ -2354,7 +2354,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 				}
 			} else {
 
-              ////Hours ///
+				////Hours ///
 				if (selectedTab === 'hours') {
 					tab = oView.byId('addTimeTab').getItems()[0].getItems();
 					for (k = 1; k < tab.length; k++) {
@@ -2363,7 +2363,7 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						try {
 							projectID = undefined;
 							//var hrType = tab[k].getItems()[2].getItems()[2].getItems()[1].getSelectedKey();
-							
+
 							//AMU_US6 Ergonomie du Masque de saisies des heures
 							// var hrType = tab[k].getItems()[4].getItems()[0].getSelectedKey();
 							// projectBindingPath = tab[k].getItems()[2].getItems()[1].getItems()[0].getBindingContext().getPath();
@@ -2372,12 +2372,12 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 							projectBindingPath = tab[k].getItems()[1].getItems()[0].getItems()[1].getItems()[0].getBindingContext().getPath();
 							var fullDayindex = tab[k].getItems()[1].getItems()[1].getItems()[0].getSelectedIndex();
 							//AMU_US6 Ergonomie du Masque de saisies des heures
-							
+
 							if (this.AddUpdatetimeModel.getData().duration) {
 								//AMU_US6 Ergonomie du Masque de saisies des heures
 								// startTime = tab[k].getItems()[3].getItems()[2].getItems()[1].getValue();
 								// endTime = tab[k].getItems()[3].getItems()[2].getItems()[2].getValue();
-								
+
 								startTime = tab[k].getItems()[2].getItems()[2].getItems()[1].getValue();
 								endTime = tab[k].getItems()[2].getItems()[2].getItems()[2].getValue();
 								//AMU_US6 Ergonomie du Masque de saisies des heures
@@ -3085,8 +3085,10 @@ sap.ui.define(["com/vinci/timesheet/admin/utility/datetime",
 						var oSelectBns = oController.getView().byId('addBonusTab').getItems()[0].getItems()[1].getItems()[2].getItems()[0].getItems()[0].getItems()[
 							1];
 					} else {
-						oSelectBns = oController.getView().byId('addBonusTab').getItems()[0].getItems()[oPosition].getItems()[2].getItems()[0].getItems()[0].getItems()[
-							1];
+						oSelectBns = oController.getView().byId('addBonusTab').getItems()[0].getItems()[oPosition].getItems()[2].getItems()[0].getItems()[
+								0]
+							.getItems()[
+								1];
 					}
 					//ERA_US1 Pointages par domaine du personnel
 					sHelpType = "BNS";

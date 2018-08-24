@@ -1,0 +1,6 @@
+{
+  "deploy": {
+    "destination": "DGW_Sandeep",
+    "name": "Z_HR_TS_TL"
+  }
+}
