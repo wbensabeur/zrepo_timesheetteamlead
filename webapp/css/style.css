@@ -9,7 +9,7 @@
 }
 
 .sapUiUfdShellHeadUsrItmExp {
-	display: none;
+    display: none;
 }
 
 .sapUiUfdShellHeadItm:hover>span {
@@ -554,7 +554,7 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 }
 
 .DaySelectionStatus[data-background="L"] {
-	background-color: rgb(165, 201, 220) !important;
+    background-color: rgb(165, 201, 220) !important;
     /*background-color: rgb(232, 241, 246) !important;*/
     height: 100% !important;
 }
@@ -689,6 +689,9 @@ html.sap-desktop .sapMBtnTransparent>.sapMBtnIcon {
 .AddHoursDivider {
     height: .1rem;
     background-color: black;
+    /* AMU_US6 Ajustement entre la barre et le boutton select project */
+    margin-bottom: 28px;
+    /* AMU_US6 Ajustement entre la barre et le boutton select project */
 }
 
 :not(.sapMBtnDisabled) .DeleteButton>.sapMBtnTransparent>.sapMBtnIcon {
@@ -897,29 +900,33 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 }
 
 .fontTravelDetails {
-	font-size: 1.125rem !important;
-    font-family: Arial,Helvetica,sans-serif !important;
+    font-size: 1.125rem !important;
+    font-family: Arial, Helvetica, sans-serif !important;
     line-height: normal !important;
     font-weight: normal !important;
     color: #333333 !important;
 }
 
-.WklyReportText{
-	font-size: 0.75rem !important;
+.WklyReportText {
+    font-size: 0.75rem !important;
 }
+
 
 /*In search fragment custom display of project id column*/
+
 .textAlignmentStart .sapMText[data-isWorkOrder] {
-	font-weight: bold !important;
+    font-weight: bold !important;
 }
 
+
 /*Custom step input*/
+
 .customStepInput .sapMBtnInner {
-	background: #ffffff !important;
+    background: #ffffff !important;
 }
 
 .centerStepInputText .sapMInputBaseInner {
-	text-align: center !important;
+    text-align: center !important;
 }
 
 .centerStepInputText.leftStepInputCtrl.rightStepInputCtrl.sapMInput.sapMInputBase.sapMInputBaseWidthPadding>input:focus {
@@ -931,32 +938,34 @@ customStep.sapMStepInput .sapMStepInputBtn.sapMStepInputBtnDecrease {
 }
 
 .customStepInput.leftStepInputCtrl>.sapMBtnDefault.sapMBtnHoverable.sapMBtnIconFirst.sapMBtnInner.sapMFocusable:active {
-	border-color: #bfbfbf;
+    border-color: #bfbfbf;
 }
 
 .customStepInput.rightStepInputCtrl>.sapMBtnDefault.sapMBtnHoverable.sapMBtnIconFirst.sapMBtnInner.sapMFocusable:active {
-	border-color: #bfbfbf;
+    border-color: #bfbfbf;
 }
 
 .leftStepInputCtrl .sapMBtnInner {
-	border-right: 0px;
-	border-left: 1px solid #bfbfbf;
+    border-right: 0px;
+    border-left: 1px solid #bfbfbf;
 }
 
 .leftStepInputCtrl .sapMInputBaseInner {
-	border-right: 0px;
+    border-right: 0px;
 }
 
 .rightStepInputCtrl .sapMBtnInner {
-	border-right: 1px solid #bfbfbf;
-	border-left: 0px;
+    border-right: 1px solid #bfbfbf;
+    border-left: 0px;
 }
 
 .rightStepInputCtrl .sapMInputBaseInner {
-	border-left: 0px;
+    border-left: 0px;
 }
 
+
 /*Employee Week and Day Dialog background color*/
+
 .EmpWeekDialogBG>section.sapMDialogSection {
     background: #f9f9f9 !important;
 }
